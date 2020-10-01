@@ -11,7 +11,7 @@ TIMEZONE = 'Europe/Madrid'
 
 DEFAULT_LANG = 'es'
 
-THEME = "/home/javier/virtualenv/Pelican/Blog/theme/pelican-clean-blog"
+THEME = "/home/javier/virtualenv/Pelican/BlogJPH-theme/pelican-clean-blog"
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None

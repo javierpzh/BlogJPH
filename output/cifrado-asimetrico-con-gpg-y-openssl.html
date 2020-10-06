@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <title>Cifrado asimétrico con gpg y openssl</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="/theme/css/code_blocks/darkly.css" rel="stylesheet">
+
+
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+        <meta name="description" content="Cifrado asimétrico con gpg En esta práctica vamos a cifrar ficheros utilizando cifrado asimétrico utilizando el programa gpg. Puedes...">
+
+        <meta name="author" content="Javier Pérez Hidalgo">
+
+
+	                <meta property="og:locale" content="">
+		<meta property="og:site_name" content="Blog Javier Pérez">
+
+	<meta property="og:type" content="article">
+            <meta property="article:author" content="/author/javier-perez-hidalgo.html">
+	<meta property="og:url" content="/cifrado-asimetrico-con-gpg-y-openssl.html">
+	<meta property="og:title" content="Cifrado asimétrico con gpg y openssl">
+	<meta property="article:published_time" content="2020-10-06 00:00:00+02:00">
+            <meta property="og:description" content="Cifrado asimétrico con gpg En esta práctica vamos a cifrar ficheros utilizando cifrado asimétrico utilizando el programa gpg. Puedes...">
+
+            <meta property="og:image" content="/theme/images/hacker-banner.jpg">
+</head>
+
+<body class="article-cifrado-asimetrico-con-gpg-y-openssl">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Blog Javier Pérez</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('/theme/images/hacker-banner.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Cifrado asimétrico con gpg y openssl</h1>
+                        <span class="meta">Publicado por
+                                <a href="/author/javier-perez-hidalgo.html">Javier Pérez Hidalgo</a>
+                             el mar 06 octubre 2020
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <h2>Cifrado asimétrico con gpg</h2>
+<p>En esta práctica vamos a cifrar ficheros utilizando cifrado asimétrico utilizando el programa gpg. Puedes encontrar el resumen de comando en esta <a href="https://elbauldelprogramador.com/chuleta-de-comandos-para-gpg/">chuleta</a> o buscar información en internet.</p>
+<h3>Tarea 1: Generación de claves.</h3>
+<p>Los algoritmos de cifrado asimétrico utilizan dos claves para el cifrado y descifrado de mensajes. Cada persona involucrada (receptor y emisor) debe disponer, por tanto, de una pareja de claves pública y privada. Para generar nuestra pareja de claves con gpg utilizamos la opción --gen-key:</p>
+<p>Para esta práctica no es necesario que indiquemos frase de paso en la generación de las claves (al menos para la clave pública).</p>
+<p><strong>1. Genera un par de claves (pública y privada). ¿En que directorio se guarda las claves de un usuario?</strong></p>
+<p>Para generar un nuevo par de claves, utlizamos el siguiente comando:
+<pre>
+gpg --gen-key
+</pre>
+Aquí muestro como lo he relizado yo:
+<pre>
+javier@debian:~$ gpg --gen-key
+gpg (GnuPG) 2.2.12; Copyright (C) 2018 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.</p>
+<p>Nota: Usa "gpg --full-generate-key" para el diálogo completo de generación de clave.</p>
+<p>GnuPG debe construir un ID de usuario para identificar su clave.</p>
+<p>Nombre y apellidos: Javier Pérez Hidalgo
+Dirección de correo electrónico: reyole111@gmail.com
+Está usando el juego de caracteres 'utf-8'.
+Ha seleccionado este ID de usuario:
+    "Javier Pérez Hidalgo <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#114;&#101;&#121;&#111;&#108;&#101;&#49;&#49;&#49;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#114;&#101;&#121;&#111;&#108;&#101;&#49;&#49;&#49;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>"</p>
+<p>¿Cambia (N)ombre, (D)irección o (V)ale/(S)alir? v
+Es necesario generar muchos bytes aleatorios. Es una buena idea realizar
+alguna otra tarea (trabajar en otra ventana/consola, mover el ratón, usar
+la red y los discos) durante la generación de números primos. Esto da al
+generador de números aleatorios mayor oportunidad de recoger suficiente
+entropía.
+Es necesario generar muchos bytes aleatorios. Es una buena idea realizar
+alguna otra tarea (trabajar en otra ventana/consola, mover el ratón, usar
+la red y los discos) durante la generación de números primos. Esto da al
+generador de números aleatorios mayor oportunidad de recoger suficiente
+entropía.
+gpg: clave E446ACC5CFC7D182 marcada como de confianza absoluta
+gpg: creado el directorio '/home/javier/.gnupg/openpgp-revocs.d'
+gpg: certificado de revocación guardado como '/home/javier/.gnupg/openpgp-revocs.d/17A7AC2D8A4E98A191B8A5A7E446ACC5CFC7D182.rev'
+claves pública y secreta creadas y firmadas.</p>
+<p>pub   rsa3072 2020-10-06 [SC] [caduca: 2022-10-06]
+      17A7AC2D8A4E98A191B8A5A7E446ACC5CFC7D182
+uid                      Javier Pérez Hidalgo <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#114;&#101;&#121;&#111;&#108;&#101;&#49;&#49;&#49;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#114;&#101;&#121;&#111;&#108;&#101;&#49;&#49;&#49;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>
+sub   rsa3072 2020-10-06 [E] [caduca: 2022-10-06]</p>
+<p>javier@debian:~$
+</pre>
+Antes de completar el proceso nos va a saltar una ventana donde vamos a tener que especificar nuestra contraseña.
+Las claves y los datos que se crean se guardan en el directorio '.gnupg'.</p>
+<p><strong>2. Lista las claves públicas que tienes en tu almacén de claves. Explica los distintos datos que nos muestra. ¿Cómo deberías haber generado las claves para indicar, por ejemplo, que tenga un 1 mes de validez?</strong></p>
+<p><strong>3. Lista las claves privadas de tu almacén de claves.</strong></p>
+<h3>Tarea 2: Importar / exportar clave pública.</h3>
+<p>Para enviar archivos cifrados a otras personas, necesitamos disponer de sus claves públicas. De la misma manera, si queremos que cierta persona pueda enviarnos datos cifrados, ésta necesita conocer nuestra clave pública. Para ello, podemos hacérsela llegar por email por ejemplo. Cuando recibamos una clave pública de otra persona, ésta deberemos incluirla en nuestro keyring o anillo de claves, que es el lugar donde se almacenan todas las claves públicas de las que disponemos.</p>
+<p><strong>1. Exporta tu clave pública en formato ASCII y guárdalo en un archivo nombre_apellido.asc y envíalo al compañero con el que vas a hacer esta práctica.</strong></p>
+<p><strong>2. Importa las claves públicas recibidas de vuestro compañero.</strong></p>
+<p><strong>3. Comprueba que las claves se han incluido correctamente en vuestro keyring.</strong></p>
+<h3>Tarea 3: Cifrado asimétrico con claves públicas.</h3>
+<p>Tras realizar el ejercicio anterior, podemos enviar ya documentos cifrados utilizando la clave pública de los destinatarios del mensaje.</p>
+<p><strong>1. Cifraremos un archivo cualquiera y lo remitiremos por email a uno de nuestros compañeros que nos proporcionó su clave pública.</strong></p>
+<p><strong>2. Nuestro compañero, a su vez, nos remitirá un archivo cifrado para que nosotros lo descifremos.</strong></p>
+<p><strong>3. Tanto nosotros como nuestro compañero comprobaremos que hemos podido descifrar los mensajes recibidos respectivamente.</strong></p>
+<p><strong>4. Por último, enviaremos el documento cifrado a alguien que no estaba en la lista de destinatarios y comprobaremos que este usuario no podrá descifrar este archivo.</strong></p>
+<p><strong>5. Para terminar, indica los comandos necesarios para borrar las claves públicas y privadas que posees.</strong></p>
+<h3>Tarea 4: Exportar clave a un servidor público de claves PGP.</h3>
+<p>Para distribuir las claves públicas es mucho más habitual utilizar un servidor específico para distribuirlas, que permite a los clientes añadir las claves públicas a sus anillos de forma mucho más sencilla.</p>
+<p><strong>1. Genera la clave de revocación de tu clave pública para utilizarla en caso de que haya problemas.</strong></p>
+<p><strong>2. Exporta tu clave pública al servidor <code>pgp.rediris.es</code> .</strong></p>
+<p><strong>3. Borra la clave pública de alguno de tus compañeros de clase e impórtala ahora del servidor público de rediris.</strong></p>
+<h3>Tarea 5: Cifrado asimétrico con openssl.</h3>
+<p>En esta ocasión vamos a cifrar nuestros ficheros de forma asimétrica utilizando la herramienta openssl.</p>
+<p><strong>1. Genera un par de claves (pública y privada).</strong></p>
+<p><strong>2. Envía tu clave pública a un compañero.</strong></p>
+<p><strong>3. Utilizando la clave pública cifra un fichero de texto y envíalo a tu compañero.</strong></p>
+<p><strong>4. Tu compañero te ha mandado un fichero cifrado, muestra el proceso para el descifrado.</strong></p>
+    </article>
+
+
+    <hr>
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                            <li>
+                                <a href="https://www.instagram.com/javierpzh/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/jperezhid_">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/javierpzh">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+<p class="copyright text-muted">
+    Blog creado por <a href="http://www.instagram.com/javierpzh/">Javier Pérez Hidalgo</a>,
+    con la utilización de <a href="https://blog.getpelican.com/">Pelican</a>. <br />        &copy;  Javier Pérez Hidalgo
+</p>                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/theme/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/theme/js/bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="/theme/js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

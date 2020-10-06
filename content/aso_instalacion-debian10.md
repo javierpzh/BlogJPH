@@ -1,5 +1,5 @@
 Title: Instalación Debian 10
-Date: 10-05-2020
+Date: 10/05/2020
 Category:Administración de Sistemas Operativos
 
 ## Introducción

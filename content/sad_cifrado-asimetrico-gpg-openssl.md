@@ -1,5 +1,5 @@
 Title: Cifrado asimétrico con gpg y openssl
-Date: 2020/10/08
+Date: 2020/10/09
 Category: Seguridad y Alta Disponibilidad
 
 ## Cifrado asimétrico con gpg

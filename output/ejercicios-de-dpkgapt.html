@@ -106,12 +106,12 @@
 <p>La versión de debian buster a fecha de hoy, es la versión 10.6. Sobre una máquina de versión anterior realizar las siguientes acciones:</p>
 <h2>Trabajo con apt, aptitude, dpkg</h2>
 <p><strong>1. Que acciones consigo al realizar apt update y apt upgrade. Explica detalladamente.</strong></p>
-<p>Al realizar un "apt update" lo que se hace es actualizar los paquetes de los repositorios que tenemos guardados en nuestro archivos "sources.list", por eso es recomendable realizar este comando cada vez que vayamos a instalar un nuevo paquete, y al realizar un "apt upgrade" estamos comprobando si existen actualizaciones de los paquetes que ya tenemos instalados en nuestra máquina, y si hay nuevas versiones, se actualizan.</p>
+<p>Al realizar un "apt update" lo que se hace es actualizar los paquetes de los repositorios que tenemos guardados en nuestro archivo "sources.list", por eso es recomendable realizar este comando cada vez que vayamos a instalar un nuevo paquete, y al realizar un "apt upgrade" estamos comprobando si existen actualizaciones de los paquetes que ya tenemos instalados en nuestra máquina, y si hay nuevas versiones, se actualizan.</p>
 <p><strong>2. Lista la relación de paquetes que pueden ser actualizados. ¿Qué información puedes sacar a tenor de lo mostrado en el listado?</strong></p>
-<p>Para listar todos los paquetes que disponen de versiones superiores a la instalada, podemos realizar un "apt upgrade" y nos saldrán todos los paquetes que no están en su versión más reciente.</p>
+<p>Para listar todos los paquetes que disponen de versiones superiores a la instalada, podemos realizar un "apt list --upgradable" y nos saldrán todos los paquetes que no están en su versión más reciente.</p>
 <p><strong>3. Indica la versión instalada, candidata así como la prioridad del paquete openssh-client.</strong></p>
 <p>Para ver esta información yo utilizo el comando "apt policy openssh-client".
-La versión instalada y la candidata es la misma, 1:7.9p1-10+deb10u2. Para ver la prioridad podemos emplear el comando "apt show openssh-client" y vemos que tiene una prioridad standard.</p>
+La versión instalada y la candidata es la misma, 1:7.9p1-10+deb10u2. Tiene una prioridad 500 (standard).</p>
 <p><strong>4. ¿Cómo puedes sacar información de un paquete oficial instalado o que no este instalado?</strong></p>
 <p>Con el comando "apt policy (nombrepaquete)".</p>
 <p><strong>5. Saca toda la información que puedas del paquete openssh-client que tienes actualmente instalado en tu máquina.</strong></p>
@@ -145,14 +145,19 @@ root@buster:~#
 </pre>
 
 <p><strong>6. Saca toda la información que puedas del paquete openssh-client candidato a actualizar en tu máquina.</strong></p>
+<pre>
+apt show -a openssh-client
+</pre>
+
 <p><strong>7. Lista todo el contenido referente al paquete openssh-client actual de tu máquina. Utiliza para ello tanto dpkg como apt.</strong></p>
 <p>Con apt:
 <pre>
-apt show openssh-client
+apt-file update
+apt-file list openssh-client
 </pre>
 Con dpkg:
 <pre>
-dpkg-query --status openssh-client
+dpkg -L openssh-client
 </pre></p>
 <p><strong>8. Listar el contenido de un paquete sin la necesidad de instalarlo o descargarlo.</strong></p>
 <p>Para ver el contenido de un paquete podemos emplear la utilidad "apt-file", que no viene instalada por defecto en Debian, lo podemos instalar con "apt install apt-file".
@@ -211,8 +216,20 @@ root@buster:~#
 </pre>
 Vemos que parece que ha instalado el paquete, pero en realidad no lo hace. Si os fijáis, si después lo comprobamos, no está instalado.</p>
 <p><strong>10. ¿Qué comando te informa de los posibles bugs que presente un determinado paquete?</strong></p>
+<pre>
+apt-listbugs list (nombrepaquete) -s all
+</pre>
+
 <p><strong>11. Después de realizar un apt update &amp;&amp; apt upgrade. Si quisieras actualizar únicamente los paquetes que tienen de cadena openssh. ¿Qué procedimiento seguirías? Realiza esta acción, con las estructuras repetitivas que te ofrece bash, así como con el comando xargs.</strong></p>
+<p>Para ver las actualizaciones de un paquete específico:
+<pre>
+apt list --upgradable | grep (nombrepaquete)
+</pre></p>
 <p><strong>12. ¿Cómo encontrarías qué paquetes dependen de un paquete específico?</strong></p>
+<pre>
+apt depends (nombrepaquete)
+</pre>
+
 <p><strong>13. Como procederías para encontrar el paquete al que pertenece un determinado archivo.</strong></p>
 <p>Lo podemos encontrar con la utilidad "apt-file" que hemos instalado anteriormente. La sintáxis sería: "apt-file search (rutadelarchivo)".</p>
 <p><strong>14. ¿Que procedimientos emplearías para eliminar y liberar la cache en cuanto a descargas de paquetería?</strong></p>
@@ -224,6 +241,11 @@ También nos permite desinstalar los paquetes/dependencias que detecta que ya no
 <pre>
 apt autoremove
 </pre></p>
+<p><strong>15. Realiza la instalación del servidor de bases de datos MariaDB pasando previamente los valores de los parámetros de configuración como variables de entorno.</strong></p>
+<p><strong>16. Reconfigura el paquete locales de tu equipo, añadiendo una localización que no exista previamente. Comprueba a modificar las variables de entorno correspondientes para que la sesión del usuario utilice otra localización.</strong></p>
+<p><strong>17. Interrumpe la configuración de un paquete y explica los pasos a dar para continuar la instalación.</strong></p>
+<p><strong>18. Explica la instrucción que utilizarías para hacer una actualización completa de todos los paquetes de tu sistema de manera completamente no interactiva.</strong></p>
+<p><strong>19. Bloquea la actualización de determinados paquetes.</strong></p>
 <h2>Trabajo con ficheros .deb</h2>
 <p><strong>1. Descarga un paquete sin instalarlo, es decir, descarga el fichero .deb correspondiente. Indica diferentes formas de hacerlo.</strong></p>
 <p><strong>2. ¿Cómo puedes ver el contenido, que no extraerlo, de lo que se instalará en el sistema de un paquete deb?</strong></p>

@@ -1,5 +1,5 @@
 Title: Ejercicios de dpkg/APT
-Date: 10/05/2020
+Date: 2020/10/05
 Category:Administración de Sistemas Operativos
 
 
@@ -11,16 +11,16 @@ La versión de debian buster a fecha de hoy, es la versión 10.6. Sobre una máq
 
 **1. Que acciones consigo al realizar apt update y apt upgrade. Explica detalladamente.**
 
-Al realizar un "apt update" lo que se hace es actualizar los paquetes de los repositorios que tenemos guardados en nuestro archivos "sources.list", por eso es recomendable realizar este comando cada vez que vayamos a instalar un nuevo paquete, y al realizar un "apt upgrade" estamos comprobando si existen actualizaciones de los paquetes que ya tenemos instalados en nuestra máquina, y si hay nuevas versiones, se actualizan.
+Al realizar un "apt update" lo que se hace es actualizar los paquetes de los repositorios que tenemos guardados en nuestro archivo "sources.list", por eso es recomendable realizar este comando cada vez que vayamos a instalar un nuevo paquete, y al realizar un "apt upgrade" estamos comprobando si existen actualizaciones de los paquetes que ya tenemos instalados en nuestra máquina, y si hay nuevas versiones, se actualizan.
 
 **2. Lista la relación de paquetes que pueden ser actualizados. ¿Qué información puedes sacar a tenor de lo mostrado en el listado?**
 
-Para listar todos los paquetes que disponen de versiones superiores a la instalada, podemos realizar un "apt upgrade" y nos saldrán todos los paquetes que no están en su versión más reciente.
+Para listar todos los paquetes que disponen de versiones superiores a la instalada, podemos realizar un "apt list --upgradable" y nos saldrán todos los paquetes que no están en su versión más reciente.
 
 **3. Indica la versión instalada, candidata así como la prioridad del paquete openssh-client.**
 
 Para ver esta información yo utilizo el comando "apt policy openssh-client".
-La versión instalada y la candidata es la misma, 1:7.9p1-10+deb10u2. Para ver la prioridad podemos emplear el comando "apt show openssh-client" y vemos que tiene una prioridad standard.
+La versión instalada y la candidata es la misma, 1:7.9p1-10+deb10u2. Tiene una prioridad 500 (standard).
 
 **4. ¿Cómo puedes sacar información de un paquete oficial instalado o que no este instalado?**
 
@@ -59,17 +59,20 @@ root@buster:~#
 
 **6. Saca toda la información que puedas del paquete openssh-client candidato a actualizar en tu máquina.**
 
-
+<pre>
+apt show -a openssh-client
+</pre>
 
 **7. Lista todo el contenido referente al paquete openssh-client actual de tu máquina. Utiliza para ello tanto dpkg como apt.**
 
 Con apt:
 <pre>
-apt show openssh-client
+apt-file update
+apt-file list openssh-client
 </pre>
 Con dpkg:
 <pre>
-dpkg-query --status openssh-client
+dpkg -L openssh-client
 </pre>
 
 **8. Listar el contenido de un paquete sin la necesidad de instalarlo o descargarlo.**
@@ -134,15 +137,22 @@ Vemos que parece que ha instalado el paquete, pero en realidad no lo hace. Si os
 
 **10. ¿Qué comando te informa de los posibles bugs que presente un determinado paquete?**
 
-
+<pre>
+apt-listbugs list (nombrepaquete) -s all
+</pre>
 
 **11. Después de realizar un apt update && apt upgrade. Si quisieras actualizar únicamente los paquetes que tienen de cadena openssh. ¿Qué procedimiento seguirías? Realiza esta acción, con las estructuras repetitivas que te ofrece bash, así como con el comando xargs.**
 
-
+Para ver las actualizaciones de un paquete específico:
+<pre>
+apt list --upgradable | grep (nombrepaquete)
+</pre>
 
 **12. ¿Cómo encontrarías qué paquetes dependen de un paquete específico?**
 
-
+<pre>
+apt depends (nombrepaquete)
+</pre>
 
 **13. Como procederías para encontrar el paquete al que pertenece un determinado archivo.**
 
@@ -158,6 +168,25 @@ También nos permite desinstalar los paquetes/dependencias que detecta que ya no
 <pre>
 apt autoremove
 </pre>
+
+**15. Realiza la instalación del servidor de bases de datos MariaDB pasando previamente los valores de los parámetros de configuración como variables de entorno.**
+
+
+
+**16. Reconfigura el paquete locales de tu equipo, añadiendo una localización que no exista previamente. Comprueba a modificar las variables de entorno correspondientes para que la sesión del usuario utilice otra localización.**
+
+
+
+**17. Interrumpe la configuración de un paquete y explica los pasos a dar para continuar la instalación.**
+
+
+
+**18. Explica la instrucción que utilizarías para hacer una actualización completa de todos los paquetes de tu sistema de manera completamente no interactiva.**
+
+
+
+**19. Bloquea la actualización de determinados paquetes.**
+
 
 
 

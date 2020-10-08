@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 
 AUTHOR = 'Javier Pérez Hidalgo'
-SITENAME = 'Blog Javier Pérez'
+SITENAME = 'Javier Pérez Hidalgo'
 SITEURL = ''
 
 PATH = 'content'
@@ -35,12 +35,16 @@ AUTHOR_FEED_RSS = None
 LINKS = (('Instagram', 'https://www.instagram.com/javierpzh/'),
          ('Twitter', 'https://twitter.com/jperezhid_'),
          ('GitHub', 'https://github.com/javierpzh'),
+	 ('Facebook', 'https://www.facebook.com/javier.perezhidalgo.904'),
+	 ('envelope-square', 'mailto:reyole111@gmail.com'),
          )
 
 # Social widget
 SOCIAL = (('Instagram', 'https://www.instagram.com/javierpzh/'),
          ('Twitter', 'https://twitter.com/jperezhid_'),
          ('GitHub', 'https://github.com/javierpzh'),
+	 ('Facebook', 'https://www.facebook.com/javier.perezhidalgo.904'),
+	 ('envelope-square', 'mailto:reyole111@gmail.com'),
 	 )
 
 DEFAULT_PAGINATION = 10

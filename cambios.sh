@@ -1,5 +1,7 @@
 #! /bin/bash
 
+#Script que actualiza los cambios en mis repositorios, y actualiza el contenido de mi página web.
+
 make html
 
 git add .

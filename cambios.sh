@@ -10,3 +10,4 @@ cd output/
 git add .
 git commit -am "cambiosweb"
 git push
+cd ..

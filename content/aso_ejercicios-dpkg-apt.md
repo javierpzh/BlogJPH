@@ -1,7 +1,6 @@
 Title: Ejercicios de dpkg/APT
 Date: 2020/10/05
-Category:Administración de Sistemas Operativos
-
+Category: Administración de Sistemas Operativos
 
 En primer lugar prepara una máquina virtual con Debian buster, puedes hacerlo de la forma que prefieras o usando el fichero Vagrantfile que se proporciona.
 

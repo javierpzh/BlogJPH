@@ -34,6 +34,37 @@ pip install pelican markdown
 </pre>
 Pelican es un generador de páginas estáticas libre y que está desarrollado en Python. Utiliza el sistema de plantillas de jinja2. Tiene muchas ventajas ya que le puedes añadir muchos temas y plugins diferentes de una forma muy sencilla, con el objetivo que te centres únicamente en la elaboración del contenido, que se escribirá en un archivo Markdown, este lenguaje es muy simple y muy fácil de aprender, puedes ver un poco [aquí](https://guides.github.com/features/mastering-markdown/).
 
+Para crear un nuevo sitio web con Pelican:
+<pre>
+(blogjph) javier@debian:~/virtualenv/Pelican/BlogJPH$ pelican-quickstart
+Welcome to pelican-quickstart v4.5.0.
+
+This script will help you create a new Pelican-based website.
+
+Please answer the following questions so this script can generate the files
+needed by Pelican.
+
+
+  Where do you want to create your new web site? [.]
+  What will be the title of this web site? Javier Pérez Hidalgo
+  Who will be the author of this web site? Javier Pérez Hidalgo
+  What will be the default language of this web site? [en] es
+  Do you want to specify a URL prefix? e.g., https://example.com   (Y/n) n
+  Do you want to enable article pagination? (Y/n)
+  How many articles per page do you want? [10]
+  What is your time zone? [Europe/Paris] Europe/Madrid
+  Do you want to generate a tasks.py/Makefile to automate generation and publishing? (Y/n)
+  Do you want to upload your website using FTP? (y/N)
+  Do you want to upload your website using SSH? (y/N)
+  Do you want to upload your website using Dropbox? (y/N)
+  Do you want to upload your website using S3? (y/N)
+  Do you want to upload your website using Rackspace Cloud Files? (y/N)
+  Do you want to upload your website using GitHub Pages? (y/N)
+Done. Your new project is available at /home/virtualenv/Pelican/BlogJPH/
+(blogjph) javier@debian:~/virtualenv/Pelican/BlogJPH$
+</pre>
+Si listamos los directorios podemos ver como nos ha creado una serie de carpetas que son las que contendrán el contenido e información de nuestra web.
+
 **3. Configura el generador para cambiar el nombre de tu página, el tema o estilo de la página,… Indica cualquier otro cambio de configuración que hayas realizado.**
 
 

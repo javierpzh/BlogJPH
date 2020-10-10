@@ -10,7 +10,29 @@ He decidido utilizar como generador de páginas estáticas Pelican, ya que utili
 
 **2. Comenta la instalación del generador de página estática. Recuerda que el generador tienes que instalarlo en tu entorno de desarrollo. Indica el lenguaje en el que está desarrollado y el sistema de plantillas que utiliza.**
 
-
+Voy a trabajar en un entorno de desarrollo, para así evitar posibles conflictos a la hora de instalar Pelican y las demás necesidades. Para crear un entorno virtual, antes debemos instalar este paquete:
+<pre>
+sudo apt-get install python3-venv
+</pre>
+Ahora ya podemos crear nuestro entorno de desarrollo. Hay que decir que este entorno lo creamos dentro de una carpeta y solo lo podremos activar desde esa carpeta, pero lo vamos a poder utilizar por todas las rutas.
+Para crear un entorno:
+<pre>
+python3 -m venv (nombreentorno)
+</pre>
+Para activarlo:
+<pre>
+source (nombreentorno)/bin/activate
+</pre>
+Si lo hemos activado bien, vemos que ha cambiado el prompt y ahora aparece el nombre del entorno.
+Ahora estamos trabajando en un nuevo espacio, que es independiente a los paquetes instalados de nuestro equipo, si queremos ver lo que tenemos en este espacio:
+<pre>
+pip list
+</pre>
+Para instalar cualquier paquete, es igual que con 'apt' pero con 'pip'. En mi caso voy a instalar Pelican y Markdown que es el lenguaje que voy a utilizar para crear el contenido de mi web:
+<pre>
+pip install pelican markdown
+</pre>
+Pelican es un generador de páginas estáticas libre y que está desarrollado en Python. Utiliza el sistema de plantillas de jinja2. Tiene muchas ventajas ya que le puedes añadir muchos temas y plugins diferentes de una forma muy sencilla, con el objetivo que te centres únicamente en la elaboración del contenido, que se escribirá en un archivo Markdown, este lenguaje es muy simple y muy fácil de aprender, puedes ver un poco [aquí](https://guides.github.com/features/mastering-markdown/).
 
 **3. Configura el generador para cambiar el nombre de tu página, el tema o estilo de la página,… Indica cualquier otro cambio de configuración que hayas realizado.**
 

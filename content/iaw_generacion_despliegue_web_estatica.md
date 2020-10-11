@@ -1,5 +1,5 @@
 Title: Implantación y despliegue de una aplicación web estática
-Date: 2020/10/10
+Date: 2020/10/11
 Category: Implantación de Aplicaciones Web
 
 ## Ejercicios
@@ -66,7 +66,68 @@ Si listamos los directorios podemos ver como nos ha creado una serie de carpetas
 
 **3. Configura el generador para cambiar el nombre de tu página, el tema o estilo de la página,… Indica cualquier otro cambio de configuración que hayas realizado.**
 
+Al realizar el comando del paso anterior y crear una paǵina con Pelican, como ya he dicho se generan una serie de ficheros y directorios, y uno de ellos es el fichero 'pelicanconf.py', que contiene la información básica de la paǵina y su principal configuración.
 
+Aquí podemos cambiar su nombre, su autor, el lenguaje, también podemos aplicar un tema determinado que nos descarguemos.
+
+En mi caso en mi fichero de configuración he cambiado el tema de mi página, he añadido un favicon, y una serie de links a mis redes sociales.
+
+Queda tal que así:
+<pre>
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- #
+
+AUTHOR = 'Javier Pérez Hidalgo'
+SITENAME = 'Javier Pérez Hidalgo'
+SITEURL = ''
+
+PATH = 'content'
+
+TIMEZONE = 'Europe/Madrid'
+
+DEFAULT_LANG = 'es'
+
+THEME = "theme"
+
+
+STATIC_PATHS = [
+    'images',
+    'extra/favicon.ico',
+]
+
+
+EXTRA_PATH_METADATA = {
+    'extra/favicon.ico': {'path': 'favicon.ico'},
+}
+
+# Feed generation is usually not desired when developing
+FEED_ALL_ATOM = None
+CATEGORY_FEED_ATOM = None
+TRANSLATION_FEED_ATOM = None
+AUTHOR_FEED_ATOM = None
+AUTHOR_FEED_RSS = None
+
+# Blogroll
+LINKS = (('Instagram', 'https://www.instagram.com/javierpzh/'),
+         ('Twitter', 'https://twitter.com/jperezhid_'),
+         ('GitHub', 'https://github.com/javierpzh'),
+         ('Facebook', 'https://www.facebook.com/javier.perezhidalgo.904'),
+         ('envelope-square', 'mailto:reyole111@gmail.com'),
+         )
+
+# Social widget
+SOCIAL = (('Instagram', 'https://www.instagram.com/javierpzh/'),
+        ('Twitter', 'https://twitter.com/jperezhid_'),
+        ('GitHub', 'https://github.com/javierpzh'),
+        ('Facebook', 'https://www.facebook.com/javier.perezhidalgo.904'),
+        ('envelope-square', 'mailto:reyole111@gmail.com'),
+        )
+
+DEFAULT_PAGINATION = 10
+
+# Uncomment following line if you want document-relative URLs when developing
+#RELATIVE_URLS = True
+</pre>
 
 **4. Genera un sitio web estático con al menos 3 páginas. Deben estar escritas en Markdown y deben tener los siguientes elementos HTML: títulos, listas, párrafos, enlaces e imágenes. El código que estas desarrollando, configuración del generado, páginas en markdown,… debe estar en un repositorio Git (no es necesario que el código generado se guarde en el repositorio, evitalo usando el fichero .gitignore).**
 

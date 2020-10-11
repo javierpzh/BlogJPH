@@ -95,7 +95,24 @@ SOCIAL = (('Instagram', 'https://www.instagram.com/javierpzh/'),
 
 **4. Genera un sitio web estático con al menos 3 páginas. Deben estar escritas en Markdown y deben tener los siguientes elementos HTML: títulos, listas, párrafos, enlaces e imágenes. El código que estas desarrollando, configuración del generado, páginas en markdown,… debe estar en un repositorio Git (no es necesario que el código generado se guarde en el repositorio, evitalo usando el fichero .gitignore).**
 
-Toda la información y contenido de la web, tanto las páginas escritas en Markdown, como el tema, las imágenes, ... la tengo en este [repositorio](https://github.com/javierpzh/BlogJPH) de Github. Y la salida, es decir el HTML generado, lo guardo en este otro [repositorio](https://github.com/javierpzh/javierpzh.github.io).
+Toda la información y contenido de la web, tanto las páginas escritas en Markdown, como el tema, las imágenes, ... la tengo en este [repositorio](https://github.com/javierpzh/BlogJPH) de Github.
+
+Existe un directorio llamado 'output', donde se guarda el código generado a partir de los documentos escritos en Markdown, de las imágenes, ... Esta carpeta se actualiza conforme realizamos cambios en nuestras paǵinas, por tanto, es la que nos interesa ya que este contenido es el que tenemos que subir al servicio de hosting.
+Se encuentra en el directorio donde tenemos el repositorio mencionado antes, por eso vamos a hacer un fichero .gitignore , para que el repositorio no guarde los cambios de esta carpeta al hacer un commit.
+Para que entendamos lo que hace el fichero .gitignore , básicamente cuando hacemos un 'git commit && git push' el repositorio lee este fichero y detecta que esta carpeta no la tiene que actualizar, por tanto no se preocupa por ella.
+
+Ahora que tenemos esta carpeta aislada por así decirlo, vamos a crear un nuevo repositorio dentro de ella para que guarde únicamente el HTML generado, esto nos interesa ya que este repositorio es el que utilizaremos para desplegar nuestra web.
+Para asociar esta carpeta a nuestro segundo repositorio:
+<pre>
+cd output/
+git init
+git add .
+git commit -am "añado el contenido"
+git remote add javierpzh.github.io https://github.com/javierpzh/javierpzh.github.io
+git push --set-upstream javierpzh.github.io master
+</pre>
+Como vemos ya lo hemos asociado a la rama master de nuestro [repositorio](https://github.com/javierpzh/javierpzh.github.io).
+
 
 **5. Explica el proceso de despliegue utilizado por el servicio de hosting que vas a utilizar.**
 

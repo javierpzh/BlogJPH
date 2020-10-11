@@ -84,7 +84,7 @@ STATIC_PATHS = [
 EXTRA_PATH_METADATA = {
     'extra/favicon.ico': {'path': 'favicon.ico'},
 }
-"# Social widget"
+.# Social widget
 SOCIAL = (('Instagram', 'https://www.instagram.com/javierpzh/'),
         ('Twitter', 'https://twitter.com/jperezhid_'),
         ('GitHub', 'https://github.com/javierpzh'),
@@ -95,7 +95,7 @@ SOCIAL = (('Instagram', 'https://www.instagram.com/javierpzh/'),
 
 **4. Genera un sitio web estático con al menos 3 páginas. Deben estar escritas en Markdown y deben tener los siguientes elementos HTML: títulos, listas, párrafos, enlaces e imágenes. El código que estas desarrollando, configuración del generado, páginas en markdown,… debe estar en un repositorio Git (no es necesario que el código generado se guarde en el repositorio, evitalo usando el fichero .gitignore).**
 
-
+Toda la información y contenido de la web, tanto las páginas escritas en Markdown, como el tema, las imágenes, ... la tengo en este [repositorio](https://github.com/javierpzh/BlogJPH) de Github. Y la salida, es decir el HTML generado, lo guardo en este otro [repositorio](https://github.com/javierpzh/javierpzh.github.io).
 
 **5. Explica el proceso de despliegue utilizado por el servicio de hosting que vas a utilizar.**
 

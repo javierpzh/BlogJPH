@@ -383,7 +383,8 @@ javier@debian:~/.gnupg$
 
 **2. Exporta tu clave pública al servidor `pgp.rediris.es` .**
 
-El servidor `pgp.rediris.es` no funcionaba correctamente en este momento por tanto la he enviado a este otro servidor: keys.gnupg.net
+El servidor `pgp.rediris.es` no funcionaba correctamente en este momento por tanto la he enviado a este otro servidor: `keys.gnupg.net`.
+
 <pre>
 javier@debian:~/.gnupg$ gpg --keyserver keys.gnupg.net --send-key 17A7AC2D8A4E98A191B8A5A7E446ACC5CFC7D182
 gpg: enviando clave E446ACC5CFC7D182 a hkp://hkps.pool.sks-keyservers.net
@@ -391,6 +392,8 @@ javier@debian:~/.gnupg$
 </pre>
 
 **3. Borra la clave pública de alguno de tus compañeros de clase e impórtala ahora del servidor público de rediris.**
+
+Voy a intentar importar la clave de Juanlu que previamente ha subido a este servidor:
 
 <pre>
 javier@debian:~/.gnupg$ gpg --recv-keys --keyserver keys.gnupg.net 4C220919DD2364BED7D49C3215E1B16E8352B9BB
@@ -400,12 +403,15 @@ gpg:               importadas: 1
 javier@debian:~/.gnupg$
 </pre>
 
+Vemos como la hemos importado correctamente a nuestro anillo de claves.
 
 ### Tarea 5: Cifrado asimétrico con openssl.
 
 En esta ocasión vamos a cifrar nuestros ficheros de forma asimétrica utilizando la herramienta openssl.
 
 **1. Genera un par de claves (pública y privada).**
+
+Para generar un par de claves openssl:
 
 <pre>
 javier@debian:~$ openssl genrsa -aes128 -out javier_perez_hidalgo_key.pem 2048
@@ -429,11 +435,15 @@ writing RSA key
 javier@debian:~$
 </pre>
 
+Podemos ver como las hemos creado correctamente.
+
 **2. Envía tu clave pública a un compañero.**
 
-
+Le he enviado mi clave pública 'javier_perez_hidalgo_key.pub.pem' a Juanlu, y él me ha pasado la suya `key.pub.pem`.
 
 **3. Utilizando la clave pública cifra un fichero de texto y envíalo a tu compañero.**
+
+Voy a crear un fichero de texto, lo voy a cifrar con la pública de Juanlu y se lo voy a enviar.
 
 <pre>
 javier@debian:~/Descargas$ touch prueba_juanlu_openssl.txt
@@ -449,6 +459,8 @@ javier@debian:~/Descargas$
 
 **4. Tu compañero te ha mandado un fichero cifrado, muestra el proceso para el descifrado.**
 
+Juanlu me acaba de enviar un fichero cifrado supuestamente con mi clave pública, por tanto yo no tendría que tener ningún problema a la hora de descifrarlo. El archivo se llama `holaejemplo.enc`.
+
 <pre>
 javier@debian:~/Descargas$ ls
 hola1.txt.gpg    Imágenes             prueba_juanlu_openssl.enc  prueba_para_juanlu_2.txt.gpg
@@ -460,3 +472,5 @@ javier@debian:~/Descargas$ cat holaejemplo.dec
 hola compañero javier
 javier@debian:~/Descargas$
 </pre>
+
+Vemos como lo he descifrado y he podido leer su mensaje.

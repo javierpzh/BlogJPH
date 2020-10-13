@@ -115,7 +115,7 @@ Si quisiéramos listar las claves privadas de muestro anillo de claves privadas:
 gpg --list-secret-keys
 </pre>
 
-
+#
 ### Tarea 2: Importar / exportar clave pública.
 
 Para enviar archivos cifrados a otras personas, necesitamos disponer de sus claves públicas. De la misma manera, si queremos que cierta persona pueda enviarnos datos cifrados, ésta necesita conocer nuestra clave pública. Para ello, podemos hacérsela llegar por email por ejemplo. Cuando recibamos una clave pública de otra persona, ésta deberemos incluirla en nuestro keyring o anillo de claves, que es el lugar donde se almacenan todas las claves públicas de las que disponemos.

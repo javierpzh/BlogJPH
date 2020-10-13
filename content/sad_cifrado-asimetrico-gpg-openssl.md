@@ -357,7 +357,27 @@ En esta ocasión vamos a cifrar nuestros ficheros de forma asimétrica utilizand
 
 **1. Genera un par de claves (pública y privada).**
 
+<pre>
+javier@debian:~$ openssl genrsa -aes128 -out javier_perez_hidalgo_key.pem 2048
+Generating RSA private key, 2048 bit long modulus (2 primes)
+...........+++++
+.................................+++++
+e is 65537 (0x010001)
+Enter pass phrase for javier_perez_hidalgo_key.pem:
+Verifying - Enter pass phrase for javier_perez_hidalgo_key.pem:
+javier@debian:~$ ls
+ Descargas    Escritorio                     Música       Vagrant           virtualenv
+ Documentos   Imágenes                       Plantillas   Vídeos
+ Dropbox      javier_perez_hidalgo_key.pem   Público     'VirtualBox VMs'
+javier@debian:~$
+</pre>
 
+<pre>
+javier@debian:~$ openssl rsa -in javier_perez_hidalgo_key.pem -out javier_perez_hidalgo_key.pub.pem -outform PEM -pubout
+Enter pass phrase for javier_perez_hidalgo_key.pem:
+writing RSA key
+javier@debian:~$
+</pre>
 
 **2. Envía tu clave pública a un compañero.**
 
@@ -365,6 +385,28 @@ En esta ocasión vamos a cifrar nuestros ficheros de forma asimétrica utilizand
 
 **3. Utilizando la clave pública cifra un fichero de texto y envíalo a tu compañero.**
 
-
+<pre>
+javier@debian:~/Descargas$ touch prueba_juanlu_openssl.txt
+javier@debian:~/Descargas$ nano prueba_juanlu_openssl.txt
+javier@debian:~/Descargas$ openssl rsautl -pubin -encrypt -in prueba_juanlu_openssl.txt -out prueba_juanlu_openssl.enc -inkey key.pub.pem
+javier@debian:~/Descargas$ ls
+hola1.txt.gpg        key.pub.pem                prueba_para_juanlu_2.txt.gpg
+hola.txt.gpg         prueba_juanlu_openssl.enc  prueba_para_juanlu.txt
+Imágenes             prueba_juanlu_openssl.txt  prueba_para_juanlu.txt.gpg
+juanluis_millan.asc  prueba_para_juanlu_2.txt
+javier@debian:~/Descargas$
+</pre>
 
 **4. Tu compañero te ha mandado un fichero cifrado, muestra el proceso para el descifrado.**
+
+<pre>
+javier@debian:~/Descargas$ ls
+hola1.txt.gpg    Imágenes             prueba_juanlu_openssl.enc  prueba_para_juanlu_2.txt.gpg
+holaejemplo.enc  juanluis_millan.asc  prueba_juanlu_openssl.txt  prueba_para_juanlu.txt
+hola.txt.gpg     key.pub.pem          prueba_para_juanlu_2.txt   prueba_para_juanlu.txt.gpg
+javier@debian:~/Descargas$ openssl rsautl -decrypt -inkey ../javier_perez_hidalgo_key.pem -in holaejemplo.enc -out holaejemplo.dec
+Enter pass phrase for ../javier_perez_hidalgo_key.pem:
+javier@debian:~/Descargas$ cat holaejemplo.dec
+hola compañero javier
+javier@debian:~/Descargas$
+</pre>

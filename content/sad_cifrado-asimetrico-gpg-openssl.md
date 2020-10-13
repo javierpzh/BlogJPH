@@ -335,6 +335,8 @@ Para distribuir las claves públicas es mucho más habitual utilizar un servidor
 
 **1. Genera la clave de revocación de tu clave pública para utilizarla en caso de que haya problemas.**
 
+Voy a generar la clave de revocación de mi clave pública.
+
 <pre>
 javier@debian:~/.gnupg$ gpg -k
 /home/javier/.gnupg/pubring.kbx
@@ -381,7 +383,7 @@ javier@debian:~/.gnupg$
 
 **2. Exporta tu clave pública al servidor `pgp.rediris.es` .**
 
-La he enviado a este servidor: keys.gnupg.net
+El servidor `pgp.rediris.es` no funcionaba correctamente en este momento por tanto la he enviado a este otro servidor: keys.gnupg.net
 <pre>
 javier@debian:~/.gnupg$ gpg --keyserver keys.gnupg.net --send-key 17A7AC2D8A4E98A191B8A5A7E446ACC5CFC7D182
 gpg: enviando clave E446ACC5CFC7D182 a hkp://hkps.pool.sks-keyservers.net

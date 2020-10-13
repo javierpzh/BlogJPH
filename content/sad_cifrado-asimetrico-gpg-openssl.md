@@ -122,15 +122,41 @@ Para enviar archivos cifrados a otras personas, necesitamos disponer de sus clav
 
 **1. Exporta tu clave pública en formato ASCII y guárdalo en un archivo nombre_apellido.asc y envíalo al compañero con el que vas a hacer esta práctica.**
 
-
+<pre>
+gpg --armor --output javier_perez_hidalgo.asc --export "Javier Pérez Hidalgo"
+</pre>
 
 **2. Importa las claves públicas recibidas de vuestro compañero.**
 
-
+<pre>
+javier@debian:~/Descargas$ gpg --import juanluis_millan.asc
+gpg: clave 15E1B16E8352B9BB: clave pública "Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.com>" importada
+gpg: Cantidad total procesada: 1
+gpg:               importadas: 1
+javier@debian:~/Descargas$
+</pre>
 
 **3. Comprueba que las claves se han incluido correctamente en vuestro keyring.**
 
+javier@debian:~/.gnupg$ gpg --list-keys
+/home/javier/.gnupg/pubring.kbx
+-------------------------------
+pub   rsa3072 2020-10-06 [SC] [caduca: 2022-10-06]
+      17A7AC2D8A4E98A191B8A5A7E446ACC5CFC7D182
+uid        [  absoluta ] Javier Pérez Hidalgo <reyole111@gmail.com>
+sub   rsa3072 2020-10-06 [E] [caduca: 2022-10-06]
 
+pub   rsa3072 2020-10-13 [SC] [caduca: 2022-10-13]
+      B02B578465B0756DFD271C733E0DA17912B9A4F8
+uid        [desconocida] Álvaro Vaca Ferreras <avacaferreras@gmail.com>
+sub   rsa3072 2020-10-13 [E] [caduca: 2022-10-13]
+
+pub   rsa3072 2020-10-07 [SC] [caduca: 2022-10-07]
+      4C220919DD2364BED7D49C3215E1B16E8352B9BB
+uid        [desconocida] Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.com>
+sub   rsa3072 2020-10-07 [E] [caduca: 2022-10-07]
+
+javier@debian:~/.gnupg$
 
 
 ### Tarea 3: Cifrado asimétrico con claves públicas.
@@ -139,24 +165,120 @@ Tras realizar el ejercicio anterior, podemos enviar ya documentos cifrados utili
 
 **1. Cifraremos un archivo cualquiera y lo remitiremos por email a uno de nuestros compañeros que nos proporcionó su clave pública.**
 
+<pre>
+javier@debian:~/Descargas$ gpg -r juanluismillanhidalgo@gmail.com --encrypt prueba_para_juanlu.txt
+gpg: 988EDEB8C4FF299C: No hay seguridad de que esta clave pertenezca realmente
+al usuario que se nombra
 
+sub  rsa3072/988EDEB8C4FF299C 2020-10-07 Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.com>
+ Huella clave primaria: 4C22 0919 DD23 64BE D7D4  9C32 15E1 B16E 8352 B9BB
+      Huella de subclave: 92ED 2E50 2319 E80D 5B0A  D728 988E DEB8 C4FF 299C
+
+No es seguro que la clave pertenezca a la persona que se nombra en el
+identificador de usuario. Si *realmente* sabe lo que está haciendo,
+puede contestar sí a la siguiente pregunta.
+
+¿Usar esta clave de todas formas? (s/N) s
+javier@debian:~/Descargas$
+</pre>
 
 **2. Nuestro compañero, a su vez, nos remitirá un archivo cifrado para que nosotros lo descifremos.**
 
-
+<pre>
+javier@debian:~/Descargas$ ls
+hola.txt.gpg  juanluis_millan.asc     prueba_para_juanlu.txt.gpg
+Imágenes      prueba_para_juanlu.txt
+javier@debian:~/Descargas$
+</pre>
 
 **3. Tanto nosotros como nuestro compañero comprobaremos que hemos podido descifrar los mensajes recibidos respectivamente.**
 
-
+<pre>
+javier@debian:~/Descargas$ gpg --decrypt hola.txt.gpg
+gpg: cifrado con clave de 3072 bits RSA, ID 1A5336E5C764C497, creada el 2020-10-06
+      "Javier Pérez Hidalgo <reyole111@gmail.com>"
+hola compañero javier
+javier@debian:~/Descargas$
+</pre>
 
 **4. Por último, enviaremos el documento cifrado a alguien que no estaba en la lista de destinatarios y comprobaremos que este usuario no podrá descifrar este archivo.**
 
+Voy a quitar a Juanlu
+<pre>
+javier@debian:~/.gnupg$ gpg --list-keys
+/home/javier/.gnupg/pubring.kbx
+-------------------------------
+pub   rsa3072 2020-10-06 [SC] [caduca: 2022-10-06]
+      17A7AC2D8A4E98A191B8A5A7E446ACC5CFC7D182
+uid        [  absoluta ] Javier Pérez Hidalgo <reyole111@gmail.com>
+sub   rsa3072 2020-10-06 [E] [caduca: 2022-10-06]
 
+pub   rsa3072 2020-10-13 [SC] [caduca: 2022-10-13]
+      B02B578465B0756DFD271C733E0DA17912B9A4F8
+uid        [desconocida] Álvaro Vaca Ferreras <avacaferreras@gmail.com>
+sub   rsa3072 2020-10-13 [E] [caduca: 2022-10-13]
+
+pub   rsa3072 2020-10-07 [SC] [caduca: 2022-10-07]
+      4C220919DD2364BED7D49C3215E1B16E8352B9BB
+uid        [desconocida] Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.com>
+sub   rsa3072 2020-10-07 [E] [caduca: 2022-10-07]
+
+javier@debian:~/.gnupg$ gpg --delete-key Juan Luis Millan Hidalgo
+gpg (GnuPG) 2.2.12; Copyright (C) 2018 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+
+pub  rsa3072/15E1B16E8352B9BB 2020-10-07 Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.com>
+
+¿Eliminar esta clave del anillo? (s/N) s
+gpg: clave "Luis" no encontrada: Not found
+gpg: Luis: delete key failed: Not found
+javier@debian:~/.gnupg$ gpg --list-keys
+/home/javier/.gnupg/pubring.kbx
+-------------------------------
+pub   rsa3072 2020-10-06 [SC] [caduca: 2022-10-06]
+      17A7AC2D8A4E98A191B8A5A7E446ACC5CFC7D182
+uid        [  absoluta ] Javier Pérez Hidalgo <reyole111@gmail.com>
+sub   rsa3072 2020-10-06 [E] [caduca: 2022-10-06]
+
+pub   rsa3072 2020-10-13 [SC] [caduca: 2022-10-13]
+      B02B578465B0756DFD271C733E0DA17912B9A4F8
+uid        [desconocida] Álvaro Vaca Ferreras <avacaferreras@gmail.com>
+sub   rsa3072 2020-10-13 [E] [caduca: 2022-10-13]
+
+javier@debian:~/.gnupg$
+</pre>
+
+<pre>
+javier@debian:~/Descargas$ touch prueba_para_juanlu_2.txt
+javier@debian:~/Descargas$ nano prueba_para_juanlu_2.txt
+javier@debian:~/Descargas$ gpg -r reyole111@gmail.com --encrypt prueba_para_juanlu_2.txt
+</pre>
+
+
+Juanlu me manda hola1.txt.gpg
+<pre>
+javier@debian:~/Descargas$ ls
+hola1.txt.gpg  Imágenes             prueba_para_juanlu_2.txt      prueba_para_juanlu.txt
+hola.txt.gpg   juanluis_millan.asc  prueba_para_juanlu_2.txt.gpg  prueba_para_juanlu.txt.gpg
+javier@debian:~/Descargas$ gpg --decrypt hola1.txt.gpg
+gpg: cifrado con clave RSA, ID 988EDEB8C4FF299C
+gpg: descifrado fallido: No secret key
+javier@debian:~/Descargas$
+</pre>
 
 **5. Para terminar, indica los comandos necesarios para borrar las claves públicas y privadas que posees.**
 
+Para borrar cualquier clave pública:
+<pre>
+gpg --delete-key "(identificador)"
+</pre>
 
-
+Para borrar cualquier clave privada:
+<pre>
+gpg --delete-secret-key "(identificador)"
+</pre>
 
 ### Tarea 4: Exportar clave a un servidor público de claves PGP.
 

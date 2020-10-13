@@ -138,6 +138,7 @@ javier@debian:~/Descargas$
 
 **3. Comprueba que las claves se han incluido correctamente en vuestro keyring.**
 
+<pre>
 javier@debian:~/.gnupg$ gpg --list-keys
 /home/javier/.gnupg/pubring.kbx
 -------------------------------
@@ -157,7 +158,7 @@ uid        [desconocida] Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.c
 sub   rsa3072 2020-10-07 [E] [caduca: 2022-10-07]
 
 javier@debian:~/.gnupg$
-
+</pre>
 
 ### Tarea 3: Cifrado asimétrico con claves públicas.
 

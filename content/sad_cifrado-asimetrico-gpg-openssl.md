@@ -8,13 +8,13 @@ En esta práctica vamos a cifrar ficheros utilizando cifrado asimétrico utiliza
 
 ### Tarea 1: Generación de claves.
 
-Los algoritmos de cifrado asimétrico utilizan dos claves para el cifrado y descifrado de mensajes. Cada persona involucrada (receptor y emisor) debe disponer, por tanto, de una pareja de claves pública y privada. Para generar nuestra pareja de claves con gpg utilizamos la opción --gen-key:
+Los algoritmos de cifrado asimétrico utilizan dos claves para el cifrado y descifrado de mensajes. Cada persona involucrada (receptor y emisor) debe disponer, por tanto, de una pareja de claves pública y privada. Para generar nuestra pareja de claves con gpg utilizamos la opción `--gen-key`:
 
 Para esta práctica no es necesario que indiquemos frase de paso en la generación de las claves (al menos para la clave pública).
 
 **1. Genera un par de claves (pública y privada). ¿En que directorio se guarda las claves de un usuario?**
 
-Para generar un nuevo par de claves, utlizamos el siguiente comando:
+Para generar un nuevo par de claves, utilizamos el siguiente comando:
 
 <pre>
 gpg --gen-key
@@ -63,7 +63,7 @@ javier@debian:~$
 </pre>
 
 Antes de completar el proceso nos va a saltar una ventana donde vamos a tener que especificar nuestra contraseña.
-Las claves y los datos que se crean se guardan en el directorio '.gnupg'.
+Las claves y los datos que se crean se guardan en el directorio `.gnupg`.
 
 **2. Lista las claves públicas que tienes en tu almacén de claves. Explica los distintos datos que nos muestra. ¿Cómo deberías haber generado las claves para indicar, por ejemplo, que tenga un 1 mes de validez?**
 
@@ -81,8 +81,7 @@ sub   rsa3072 2020-10-06 [E] [caduca: 2022-10-06]
 javier@debian:~/.gnupg$
 </pre>
 
-Nos muestra la fecha de creación, la fecha de caducidad, el identificador, el nombre que le hemos puesto y el correo.
-
+Nos muestra la fecha de creación, la fecha de caducidad, el identificador, el nombre que le hemos puesto y el correo electrónico.
 
 Para generar una clave pública-privada que tengan un mes de validez, debemos usar el siguiente comando, en el que podemos especificar además, más opciones y parámetros por si no queremos los predeterminados:
 
@@ -140,7 +139,7 @@ Para enviar archivos cifrados a otras personas, necesitamos disponer de sus clav
 
 **1. Exporta tu clave pública en formato ASCII y guárdalo en un archivo nombre_apellido.asc y envíalo al compañero con el que vas a hacer esta práctica.**
 
-Para exportar mi clave pública con formato ASCII, indicamos el parámetro '--armor', le indicamos con el parámetro '--output' el nombre que va a recibir la clave y con '--export' indicamos la clave a exportar.
+Para exportar mi clave pública con formato ASCII, indicamos el parámetro `--armor`, le indicamos con el parámetro `--output` el nombre que va a recibir la clave y con `--export` indicamos la clave a exportar.
 
 <pre>
 gpg --armor --output javier_perez_hidalgo.asc --export "Javier Pérez Hidalgo"
@@ -150,7 +149,7 @@ Ahora se la paso a mi compañero [Juanlu](https://www.instagram.com/juanlu_milla
 
 **2. Importa las claves públicas recibidas de vuestro compañero.**
 
-Juanlu me ha pasado su clave pública llamada 'juanluis_millan.asc' y yo la importo a mi anillo de claves públicas.
+Juanlu me ha pasado su clave pública llamada `juanluis_millan.asc` y yo la importo a mi anillo de claves públicas.
 
 <pre>
 javier@debian:~/Descargas$ gpg --import juanluis_millan.asc
@@ -196,7 +195,7 @@ Tras realizar el ejercicio anterior, podemos enviar ya documentos cifrados utili
 
 **1. Cifraremos un archivo cualquiera y lo remitiremos por email a uno de nuestros compañeros que nos proporcionó su clave pública.**
 
-He creado un archivo llamado 'prueba_para_juanlu.txt' y lo encripto con la clave pública de Juanlu para que solo él con su clave privada pueda descifrarlo.
+He creado un archivo llamado `prueba_para_juanlu.txt` y lo encripto con la clave pública de Juanlu para que solo él con su clave privada pueda descifrarlo.
 
 <pre>
 javier@debian:~/Descargas$ gpg -r juanluismillanhidalgo@gmail.com --encrypt prueba_para_juanlu.txt
@@ -219,7 +218,7 @@ Una vez cifrado, se lo envío.
 
 **2. Nuestro compañero, a su vez, nos remitirá un archivo cifrado para que nosotros lo descifremos.**
 
-Mi compañero me ha pasado un archivo encriptado por él con mi clave pública, que se llama 'hola.txt.gpg'.
+Mi compañero me ha pasado un archivo encriptado por él con mi clave pública, que se llama `hola.txt.gpg`.
 
 <pre>
 javier@debian:~/Descargas$ ls
@@ -300,7 +299,7 @@ javier@debian:~/Descargas$ nano prueba_para_juanlu_2.txt
 javier@debian:~/Descargas$ gpg -r reyole111@gmail.com --encrypt prueba_para_juanlu_2.txt
 </pre>
 
-Juanlu me envía un elemento cifrado llamado 'hola1.txt.gpg', voy a intentar descifrarlo.
+Juanlu me envía un elemento cifrado llamado `hola1.txt.gpg`, voy a intentar descifrarlo.
 
 <pre>
 javier@debian:~/Descargas$ ls
@@ -439,7 +438,7 @@ Podemos ver como las hemos creado correctamente.
 
 **2. Envía tu clave pública a un compañero.**
 
-Le he enviado mi clave pública 'javier_perez_hidalgo_key.pub.pem' a Juanlu, y él me ha pasado la suya `key.pub.pem`.
+Le he enviado mi clave pública `javier_perez_hidalgo_key.pub.pem` a Juanlu, y él me ha pasado la suya `key.pub.pem`.
 
 **3. Utilizando la clave pública cifra un fichero de texto y envíalo a tu compañero.**
 

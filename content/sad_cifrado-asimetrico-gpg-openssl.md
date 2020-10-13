@@ -67,10 +67,6 @@ Para listar las claves de nuestro anillo de claves públicas:
 <pre>
 gpg --list-keys
 </pre>
-Si quisiéramos listar las claves privadas de muestro anillo de claves privadas:
-<pre>
-gpg --list-secret-keys
-</pre>
 
 Para generar una clave pública-privada que tengan un mes de validez, debemos usar el siguiente comando, en el que podemos especificar además, más opciones y parámetros por si no queremos los predeterminados:
 <pre>
@@ -110,11 +106,14 @@ Ha seleccionado este ID de usuario:
 ¿Cambia (N)ombre, (C)omentario, (D)irección o (V)ale/(S)alir? s
 gpg: Creación de claves cancelada.
 javier@debian:~/.gnupg$
-</pre> 
+</pre>
 
 **3. Lista las claves privadas de tu almacén de claves.**
 
-
+Si quisiéramos listar las claves privadas de muestro anillo de claves privadas:
+<pre>
+gpg --list-secret-keys
+</pre>
 
 
 ### Tarea 2: Importar / exportar clave pública.

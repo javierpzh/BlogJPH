@@ -1,4 +1,4 @@
-Title: Ejercicio 3: VirtualHosting con Apache
+Title: VirtualHosting con Apache
 Date: 2020/10/13
 Category: Servicios de Red e Internet
 

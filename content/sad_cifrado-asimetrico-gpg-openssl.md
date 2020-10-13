@@ -287,15 +287,68 @@ Para distribuir las claves públicas es mucho más habitual utilizar un servidor
 
 **1. Genera la clave de revocación de tu clave pública para utilizarla en caso de que haya problemas.**
 
+<pre>
+javier@debian:~/.gnupg$ gpg -k
+/home/javier/.gnupg/pubring.kbx
+-------------------------------
+pub   rsa3072 2020-10-06 [SC] [caduca: 2022-10-06]
+      17A7AC2D8A4E98A191B8A5A7E446ACC5CFC7D182
+uid        [  absoluta ] Javier Pérez Hidalgo <reyole111@gmail.com>
+sub   rsa3072 2020-10-06 [E] [caduca: 2022-10-06]
 
+pub   rsa3072 2020-10-13 [SC] [caduca: 2022-10-13]
+      B02B578465B0756DFD271C733E0DA17912B9A4F8
+uid        [desconocida] Álvaro Vaca Ferreras <avacaferreras@gmail.com>
+sub   rsa3072 2020-10-13 [E] [caduca: 2022-10-13]
+
+javier@debian:~/.gnupg$ gpg --output javier_perez_hidalgo_revocacion.asc --gen-revoke 17A7AC2D8A4E98A191B8A5A7E446ACC5CFC7D182
+
+sec  rsa3072/E446ACC5CFC7D182 2020-10-06 Javier Pérez Hidalgo <reyole111@gmail.com>
+
+¿Crear un certificado de revocación para esta clave? (s/N) s
+Por favor elija una razón para la revocación:
+  0 = No se dio ninguna razón
+  1 = La clave ha sido comprometida
+  2 = La clave ha sido reemplazada
+  3 = La clave ya no está en uso
+  Q = Cancelar
+(Probablemente quería seleccionar 1 aquí)
+¿Su decisión? 1
+Introduzca una descripción opcional; acábela con una línea vacía:
+
+Razón para la revocación: La clave ha sido comprometida
+(No se dió descripción)
+¿Es correcto? (s/N) s
+se fuerza salida con armadura ASCII.
+Certificado de revocación creado.
+
+Por favor consérvelo en un medio que pueda esconder; si alguien consigue
+acceso a este certificado puede usarlo para inutilizar su clave.
+Es inteligente imprimir este certificado y guardarlo en otro lugar, por
+si acaso su medio resulta imposible de leer. Pero precaución: ¡el sistema
+de impresión de su máquina podría almacenar los datos y hacerlos accesibles
+a otras personas!
+javier@debian:~/.gnupg$
+</pre>
 
 **2. Exporta tu clave pública al servidor `pgp.rediris.es` .**
 
-
+La he enviado a este servidor: keys.gnupg.net
+<pre>
+javier@debian:~/.gnupg$ gpg --keyserver keys.gnupg.net --send-key 17A7AC2D8A4E98A191B8A5A7E446ACC5CFC7D182
+gpg: enviando clave E446ACC5CFC7D182 a hkp://hkps.pool.sks-keyservers.net
+javier@debian:~/.gnupg$
+</pre>
 
 **3. Borra la clave pública de alguno de tus compañeros de clase e impórtala ahora del servidor público de rediris.**
 
-
+<pre>
+javier@debian:~/.gnupg$ gpg --recv-keys --keyserver keys.gnupg.net 4C220919DD2364BED7D49C3215E1B16E8352B9BB
+gpg: clave 15E1B16E8352B9BB: clave pública "Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.com>" importada
+gpg: Cantidad total procesada: 1
+gpg:               importadas: 1
+javier@debian:~/.gnupg$
+</pre>
 
 
 ### Tarea 5: Cifrado asimétrico con openssl.

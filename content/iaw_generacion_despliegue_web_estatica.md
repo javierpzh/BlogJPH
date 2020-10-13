@@ -100,6 +100,7 @@ Toda la información y contenido de la web, tanto las páginas escritas en Markd
 Existe un directorio llamado 'output', donde se guarda el código generado a partir de los documentos escritos en Markdown, de las imágenes, ... Esta carpeta se actualiza conforme realizamos cambios en nuestras paǵinas, por tanto, es la que nos interesa ya que este contenido es el que tenemos que subir al servicio de hosting.
 Se encuentra en el directorio donde tenemos el repositorio mencionado antes, por eso vamos a hacer un fichero .gitignore , para que el repositorio no guarde los cambios de esta carpeta al hacer un commit.
 Para que entendamos lo que hace el fichero .gitignore , básicamente cuando hacemos un 'git commit && git push' el repositorio lee este fichero y detecta que esta carpeta no la tiene que actualizar, por tanto no se preocupa por ella.
+
 Es importante decir que para evitar problemas, es conveniente crear el fichero '.gitignore' antes que los archivos que vamos a especificar dentro. Si nos encontramos en la situación que ya existe dicho archivo, podemos crear el .gitignore y luego sacar el archivo del repositorio, hacer un commit, un push y volver a añadirlo al repositorio.
 
 Ahora que tenemos esta carpeta aislada por así decirlo, vamos a crear un nuevo repositorio dentro de ella para que guarde únicamente el HTML generado, esto nos interesa ya que este repositorio es el que utilizaremos para desplegar nuestra web.

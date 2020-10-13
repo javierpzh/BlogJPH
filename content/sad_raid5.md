@@ -9,19 +9,25 @@ Category: Seguridad y Alta Disponibilidad
 **Tarea 1: Crea una raid llamado md5 con los discos que hemos conectado a la máquina. ¿Cuántos discos tienes que conectar? ¿Qué diferencia existe entre el RAID 5 y el RAID1?**
 
 Antes de nada tenemos que crear la mv, por tanto hay que configurar el fichero Vagrantfile, en mi caso he añadido 3 discos para crear el RAID5 y uno más que actuará como hot spare, es decir como disco de repuesto.
-Lo primero sería instalar la utilidad "mdadm", que normalmente no viene instalada por defecto. Esto lo hacemos con el siguiente comando:
+Lo primero sería instalar la utilidad 'mdadm', que normalmente no viene instalada por defecto. Esto lo hacemos con el siguiente comando:
+
 <pre>
 apt update && apt install mdadm
 </pre>
+
 Antes de empezar, una forma de asegurarnos de evitar problemas con sistemas de ficheros existentes, puedes ser llenar de ceros los discos que se van a incluir en el RAID.
 Con el siguiente comando:
+
 <pre>
 mdadm --zero-superblock /dev/sdb /dev/sdc /dev/sdd
 </pre>
+
 En mi caso como acabo de añadir los discos y son totalmente nuevos, pues no haría falta. Porcedereíamos directamente a crear el RAID5. Lo creamos con el comando:
+
 <pre>
 mdadm -C /dev/md5 --level=raid5 --raid-devices=3 /dev/sdb /dev/sdc /dev/sdd
 </pre>
+
 Aquí vemos que se ha creado correctamente:
 
 ![.](images/sad_raid5/raid5.png)
@@ -39,6 +45,7 @@ En la siguiente imagen podemos ver el estado del RAID, la cantidad de discos que
 ![.](images/sad_raid5/informacionraid5.png)
 
 Si queremos mirar solo el estado del RAID, también podemos hacerlo con este comando:
+
 <pre>
 cat /proc/mdstat
 </pre>
@@ -50,11 +57,14 @@ cat /proc/mdstat
 **Tarea 3: Crea un volumen lógico (LVM) de 500Mb en el raid 5.**
 
 Lo primero para utlizar LVM, debemos instalar el siguiente paquete:
+
 <pre>
 apt install lvm2
 </pre>
+
 Ahora tenemos que tener claro que para crear un volumen lógico, antes debemos crear un volumen físico y un grupo de volúmenes.
 Para crear un volumen físico:
+
 <pre>
 pvcreate /dev/md5
 </pre>
@@ -62,6 +72,7 @@ pvcreate /dev/md5
 ![.](images/sad_raid5/crearvolfisico.png)
 
 Ahora tendríamos que crear el grupo de volúmenes al que va a pertenecer:
+
 <pre>
 vgcreate testing /dev/md5
 </pre>
@@ -69,39 +80,49 @@ vgcreate testing /dev/md5
 ![.](images/sad_raid5/creargrupodevol.png)
 
 Y ahora sí, podemos crear el volumen lógico de 500MB que deseábamos:
+
 <pre>
 lvcreate testing -L 500M -n vollogico1
 </pre>
-El parámetro -L indica la cantidad de almacenamiento y el parámetro -n el nombre o identificación.
+
+El parámetro `-L` indica la cantidad de almacenamiento y el parámetro `-n` el nombre o identificación.
 
 ![.](images/sad_raid5/crearvollogico_lsblk.png)
 
 
 **Tarea 4: Formatea ese volumen con un sistema de archivos xfs.**
 
-Antes de nada, para formatear el volumen con este tipo de sistema de archivos necesitamos instalar el paquete xfsprogs.
+Antes de nada, para formatear el volumen con este tipo de sistema de archivos necesitamos instalar el paquete 'xfsprogs'.
+
 <pre>
 apt install xfsprogs
 </pre>
+
 Ahora con la utilidad mkfs, seguido del sistema de archivos que queremos que posea, formateamos el volumen. Este sería el comando:
+
 <pre>
 mkfs.xfs /dev/testing/vollogico1
 </pre>
-Podemos comprobar que se ha establecido el sistema de archivos XFS, haciendo un 'lsblk -f' .
+
+Podemos comprobar que se ha establecido el sistema de archivos XFS, haciendo un `lsblk -f`.
 
 ![.](images/sad_raid5/comprobarsisarchxfs.png)
 
 **Tarea 5: Monta el volumen en el directorio /mnt/raid5 y crea un fichero. ¿Qué tendríamos que hacer para que este punto de montaje sea permanente?**
 
 Antes debemos crear el directorio raid5 dentro de la carpeta /mnt . Para ello:
+
 <pre>
 mkdir /mnt/raid5
 </pre>
+
 Ahora ya si podemos montar el volumen en este directorio, lo cuál lo hacemos con la utilidad 'mount':
+
 <pre>
 mount -t xfs /dev/testing/vollogico1 /mnt/raid5
 </pre>
-Haciendo un 'lsblk' podemos ver como se ha montado correctamente:
+
+Haciendo un `lsblk` podemos ver como se ha montado correctamente:
 
 ![.](images/sad_raid5/montarvolumen.png)
 
@@ -109,7 +130,7 @@ Ahora vamos a crear un fichero para mostrar que está bien montado y nos deja ut
 
 ![.](images/sad_raid5/crearfichero.png)
 
-Para hacer que se monte automáticamente y de manera permanente, hay que modificar el archivo fstab, hay que añadir una línea con estos datos:
+Para hacer que se monte automáticamente y de manera permanente, hay que modificar el archivo 'fstab', hay que añadir una línea con estos datos:
 
 ![.](images/sad_raid5/fstab.png)
 
@@ -122,6 +143,7 @@ Vemos que funciona como queremos y se monta de manera automática en el director
 **Tarea 6: Marca un disco como estropeado. Muestra el estado del raid para comprobar que un disco falla. ¿Podemos acceder al fichero?**
 
 Vamos a marcar un disco como estropeado. En mi caso voy a marcar el tercer disco, que se identifica como /dev/sdd . Lo realizamos con este comando:
+
 <pre>
 mdadm --manage /dev/md5 --fail /dev/sdd
 </pre>
@@ -137,17 +159,20 @@ Aquí vemos como podemos acceder al fichero (que no muestra nada porque está va
 
 **Tarea 7: Una vez marcado como estropeado, lo tenemos que retirar del raid.**
 
-Para retirar un disco del RAID, lo único que debemos especificar es el RAID al que pertenece y el nombre del dispositivo en sí, junto con la orden 'remove', tal que así:
+Para retirar un disco del RAID, lo único que debemos especificar es el RAID al que pertenece y el nombre del dispositivo en sí, junto con la orden `remove`, tal que así:
+
 <pre>
 mdadm -r /dev/md5 /dev/sdd
 </pre>
+
 Comprobamos que se ha retirado y así es.
 
 ![.](images/sad_raid5/retirardisco.png)
 
 **Tarea 8: Imaginemos que lo cambiamos por un nuevo disco nuevo (el dispositivo de bloque se llama igual), añádelo al array y comprueba como se sincroniza con el anterior.**
 
-Para añadir un disco, en este caso el /dev/sde , el comando es igual que el anterior pero cambiando la orden, 'remove' por 'add' .
+Para añadir un disco, en este caso el /dev/sde , el comando es igual que el anterior pero cambiando la orden, `remove` por `add`.
+
 <pre>
 mdadm -a /dev/md5 /dev/sde
 </pre>
@@ -163,6 +188,7 @@ Ya ha terminado la sincronización y está actuando como un disco normal, el ree
 **Tarea 9: Añade otro disco como reserva. Vuelve a simular el fallo de un disco y comprueba como automática se realiza la sincronización con el disco de reserva.**
 
 Vamos a añadir un nuevo disco que se identifica como /dev/sdf . Este disco va a actuar como disco de repuesto, ya que ahora mismo el RAID funciona correctamente, y solo se utilizará y se pondrá en funcionamiento cuando en algunos de los discos principales se produzca un fallo.
+
 <pre>
 mdadm -a /dev/md5 /dev/sdf
 </pre>
@@ -171,6 +197,7 @@ mdadm -a /dev/md5 /dev/sdf
 
 Vemos como se configura como hot spare.
 Producimos un fallo en un disco para ver como actúa en caso de emergencia.
+
 <pre>
 mdadm --manage /dev/md5 --fail /dev/sde
 </pre>
@@ -186,6 +213,7 @@ Ya ha terminado la sincronización y ha reemplazado al disco estropeado.
 **Tarea 10: Redimensiona el volumen y el sistema de archivos de 500Mb al tamaño del raid.**
 
 Lo primero que debemos hacer es agrandar el volumen lógico. Como nos dice que lo agrandemos al tamaño del RAID, el cuál es de 2GB, en el comando vamos a especificar que coja todo el espacio que haya libre. El comando sería:
+
 <pre>
 lvresize -l +100%FREE /dev/testing/vollogico1
 </pre>
@@ -195,6 +223,7 @@ lvresize -l +100%FREE /dev/testing/vollogico1
 Nos manda un mensaje que nos dice que ahora poseemos prácticamente 2GB de espacio, por tanto solo nos quedaría extender el sistema de archivos.
 Y ahora viene lo que de verdad es realmente ventajoso por parte de este sistema de archivos. Si nos acordamos, anteriormente, configuramos el fichero 'fstab' para que montara automáticamente el volumen, por tanto el volumen ahora mismo está montado. Otros sistemas de archivos no permiten extender el espacio sin desmontar el volumen, pero XFS a diferencia de éstos, no solo nos permite extenderlo en caliente, sino que también nos garantiza la integridad de los datos.
 Para redimensionar el sistema de archivos utilizamos el siguiente comando:
+
 <pre>
 xfs_growfs /mnt/raid5/
 </pre>

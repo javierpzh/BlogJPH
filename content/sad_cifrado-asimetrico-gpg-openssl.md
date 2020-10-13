@@ -1,5 +1,5 @@
 Title: Cifrado asimétrico con gpg y openssl
-Date: 2020/10/10
+Date: 2020/10/13
 Category: Seguridad y Alta Disponibilidad
 
 ## Cifrado asimétrico con gpg
@@ -63,7 +63,7 @@ javier@debian:~$
 </pre>
 
 Antes de completar el proceso nos va a saltar una ventana donde vamos a tener que especificar nuestra contraseña.
-Las claves y los datos que se crean se guardan en el directorio `.gnupg`.
+Las claves y los datos que se crean se guardan en el directorio '.gnupg'.
 
 **2. Lista las claves públicas que tienes en tu almacén de claves. Explica los distintos datos que nos muestra. ¿Cómo deberías haber generado las claves para indicar, por ejemplo, que tenga un 1 mes de validez?**
 

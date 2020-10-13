@@ -10,20 +10,20 @@ La versión de debian buster a fecha de hoy, es la versión 10.6. Sobre una máq
 
 **1. Que acciones consigo al realizar apt update y apt upgrade. Explica detalladamente.**
 
-Al realizar un "apt update" lo que se hace es actualizar los paquetes de los repositorios que tenemos guardados en nuestro archivo "sources.list", por eso es recomendable realizar este comando cada vez que vayamos a instalar un nuevo paquete, y al realizar un "apt upgrade" estamos comprobando si existen actualizaciones de los paquetes que ya tenemos instalados en nuestra máquina, y si hay nuevas versiones, se actualizan.
+Al realizar un `apt update` lo que se hace es actualizar los paquetes de los repositorios que tenemos guardados en nuestro archivo `sources.list`, por eso es recomendable realizar este comando cada vez que vayamos a instalar un nuevo paquete, y al realizar un `apt upgrade` estamos comprobando si existen actualizaciones de los paquetes que ya tenemos instalados en nuestra máquina, y si hay nuevas versiones, se actualizan.
 
 **2. Lista la relación de paquetes que pueden ser actualizados. ¿Qué información puedes sacar a tenor de lo mostrado en el listado?**
 
-Para listar todos los paquetes que disponen de versiones superiores a la instalada, podemos realizar un "apt list --upgradable" y nos saldrán todos los paquetes que no están en su versión más reciente.
+Para listar todos los paquetes que disponen de versiones superiores a la instalada, podemos realizar un `apt list --upgradable` y nos saldrán todos los paquetes que no están en su versión más reciente.
 
 **3. Indica la versión instalada, candidata así como la prioridad del paquete openssh-client.**
 
-Para ver esta información yo utilizo el comando "apt policy openssh-client".
+Para ver esta información yo utilizo el comando `apt policy openssh-client`.
 La versión instalada y la candidata es la misma, 1:7.9p1-10+deb10u2. Tiene una prioridad 500 (standard).
 
 **4. ¿Cómo puedes sacar información de un paquete oficial instalado o que no este instalado?**
 
-Con el comando "apt policy (nombrepaquete)".
+Con el comando `apt policy (nombrepaquete)`.
 
 **5. Saca toda la información que puedas del paquete openssh-client que tienes actualmente instalado en tu máquina.**
 
@@ -65,23 +65,27 @@ apt show -a openssh-client
 **7. Lista todo el contenido referente al paquete openssh-client actual de tu máquina. Utiliza para ello tanto dpkg como apt.**
 
 Con apt:
+
 <pre>
 apt-file update
 apt-file list openssh-client
 </pre>
+
 Con dpkg:
+
 <pre>
 dpkg -L openssh-client
 </pre>
 
 **8. Listar el contenido de un paquete sin la necesidad de instalarlo o descargarlo.**
 
-Para ver el contenido de un paquete podemos emplear la utilidad "apt-file", que no viene instalada por defecto en Debian, lo podemos instalar con "apt install apt-file".
-Y ahora para buscar el contenido, la sintáxis sería: "apt-file list (nombrepaquete)".
+Para ver el contenido de un paquete podemos emplear la utilidad `apt-file`, que no viene instalada por defecto en Debian, lo podemos instalar con `apt install apt-file`.
+Y ahora para buscar el contenido, la sintáxis sería: `apt-file list (nombrepaquete)`.
 
 **9. Simula la instalación del paquete openssh-client.**
 
-Para simular la instalación de un paquete, por ejemplo de "apache2", utilizamos el sigiuente comando:
+Para simular la instalación de un paquete, por ejemplo de 'apache2', utilizamos el siguiente comando:
+
 <pre>
 root@buster:~# apt -s install apache2
 Reading package lists... Done
@@ -132,6 +136,7 @@ apache2:
       500 http://security.debian.org/debian-security buster/updates/main amd64 Packages
 root@buster:~#
 </pre>
+
 Vemos que parece que ha instalado el paquete, pero en realidad no lo hace. Si os fijáis, si después lo comprobamos, no está instalado.
 
 **10. ¿Qué comando te informa de los posibles bugs que presente un determinado paquete?**
@@ -143,6 +148,7 @@ apt-listbugs list (nombrepaquete) -s all
 **11. Después de realizar un apt update && apt upgrade. Si quisieras actualizar únicamente los paquetes que tienen de cadena openssh. ¿Qué procedimiento seguirías? Realiza esta acción, con las estructuras repetitivas que te ofrece bash, así como con el comando xargs.**
 
 Para ver las actualizaciones de un paquete específico:
+
 <pre>
 apt list --upgradable | grep (nombrepaquete)
 </pre>
@@ -155,15 +161,18 @@ apt depends (nombrepaquete)
 
 **13. Como procederías para encontrar el paquete al que pertenece un determinado archivo.**
 
-Lo podemos encontrar con la utilidad "apt-file" que hemos instalado anteriormente. La sintáxis sería: "apt-file search (rutadelarchivo)".
+Lo podemos encontrar con la utilidad `apt-file` que hemos instalado anteriormente. La sintáxis sería: `apt-file search (rutadelarchivo)`.
 
 **14. ¿Que procedimientos emplearías para eliminar y liberar la cache en cuanto a descargas de paquetería?**
 
 Debian dispone de comandos que nos permiten limpiar la caché de los paquetes que descargamos:
+
 <pre>
 apt autoclean
 </pre>
+
 También nos permite desinstalar los paquetes/dependencias que detecta que ya no son necesarios:
+
 <pre>
 apt autoremove
 </pre>

@@ -11,30 +11,41 @@ He decidido utilizar como generador de páginas estáticas Pelican, ya que utili
 **2. Comenta la instalación del generador de página estática. Recuerda que el generador tienes que instalarlo en tu entorno de desarrollo. Indica el lenguaje en el que está desarrollado y el sistema de plantillas que utiliza.**
 
 Voy a trabajar en un entorno de desarrollo, para así evitar posibles conflictos a la hora de instalar Pelican y las demás necesidades. Para crear un entorno virtual, antes debemos instalar este paquete:
+
 <pre>
 sudo apt-get install python3-venv
 </pre>
+
 Ahora ya podemos crear nuestro entorno de desarrollo. Hay que decir que este entorno lo creamos dentro de una carpeta y solo lo podremos activar desde esa carpeta, pero lo vamos a poder utilizar por todas las rutas.
 Para crear un entorno:
+
 <pre>
 python3 -m venv (nombreentorno)
 </pre>
+
 Para activarlo:
+
 <pre>
 source (nombreentorno)/bin/activate
 </pre>
+
 Si lo hemos activado bien, vemos que ha cambiado el prompt y ahora aparece el nombre del entorno.
 Ahora estamos trabajando en un nuevo espacio, que es independiente a los paquetes instalados de nuestro equipo, si queremos ver lo que tenemos en este espacio:
+
 <pre>
 pip list
 </pre>
-Para instalar cualquier paquete, es igual que con 'apt' pero con 'pip'. En mi caso voy a instalar Pelican y Markdown que es el lenguaje que voy a utilizar para crear el contenido de mi web:
+
+Para instalar cualquier paquete, es igual que con `apt` pero con `pip`. En mi caso voy a instalar Pelican y Markdown que es el lenguaje que voy a utilizar para crear el contenido de mi web:
+
 <pre>
 pip install pelican markdown
 </pre>
+
 Pelican es un generador de páginas estáticas libre y que está desarrollado en Python. Utiliza el sistema de plantillas de jinja2. Tiene muchas ventajas ya que le puedes añadir muchos temas y plugins diferentes de una forma muy sencilla, con el objetivo que te centres únicamente en la elaboración del contenido, que se escribirá en un archivo Markdown, este lenguaje es muy simple y muy fácil de aprender, puedes ver un poco [aquí](https://guides.github.com/features/mastering-markdown/).
 
 Para crear un nuevo sitio web con Pelican:
+
 <pre>
 (blogjph) javier@debian:~/virtualenv/Pelican/BlogJPH$ pelican-quickstart
 Welcome to pelican-quickstart v4.5.0.
@@ -62,17 +73,19 @@ needed by Pelican.
 Done. Your new project is available at /home/virtualenv/Pelican/BlogJPH/
 (blogjph) javier@debian:~/virtualenv/Pelican/BlogJPH$
 </pre>
+
 Si listamos los directorios podemos ver como nos ha creado una serie de carpetas que son las que contendrán el contenido e información de nuestra web.
 
 **3. Configura el generador para cambiar el nombre de tu página, el tema o estilo de la página,… Indica cualquier otro cambio de configuración que hayas realizado.**
 
-Al realizar el comando del paso anterior y crear una paǵina con Pelican, como ya he dicho se generan una serie de ficheros y directorios, y uno de ellos es el fichero 'pelicanconf.py', que contiene la información básica de la paǵina y su principal configuración.
+Al realizar el comando del paso anterior y crear una paǵina con Pelican, como ya he dicho se generan una serie de ficheros y directorios, y uno de ellos es el fichero `pelicanconf.py`, que contiene la información básica de la paǵina y su principal configuración.
 
 Aquí podemos cambiar su nombre, su autor, el lenguaje, también podemos aplicar un tema determinado que nos descarguemos.
 
 En mi caso en mi fichero de configuración he cambiado el tema de mi página, he añadido un favicon, y una serie de links a mis redes sociales.
 
 Queda tal que así:
+
 <pre>
 THEME = "theme"
 
@@ -97,14 +110,15 @@ SOCIAL = (('Instagram', 'https://www.instagram.com/javierpzh/'),
 
 Toda la información y contenido de la web, tanto las páginas escritas en Markdown, como el tema, las imágenes, ... la tengo en este [repositorio](https://github.com/javierpzh/BlogJPH) de Github.
 
-Existe un directorio llamado 'output', donde se guarda el código generado a partir de los documentos escritos en Markdown, de las imágenes, ... Esta carpeta se actualiza conforme realizamos cambios en nuestras paǵinas, por tanto, es la que nos interesa ya que este contenido es el que tenemos que subir al servicio de hosting.
-Se encuentra en el directorio donde tenemos el repositorio mencionado antes, por eso vamos a hacer un fichero .gitignore , para que el repositorio no guarde los cambios de esta carpeta al hacer un commit.
-Para que entendamos lo que hace el fichero .gitignore , básicamente cuando hacemos un 'git commit && git push' el repositorio lee este fichero y detecta que esta carpeta no la tiene que actualizar, por tanto no se preocupa por ella.
+Existe un directorio llamado `output`, donde se guarda el código generado a partir de los documentos escritos en Markdown, de las imágenes, ... Esta carpeta se actualiza conforme realizamos cambios en nuestras paǵinas, por tanto, es la que nos interesa ya que este contenido es el que tenemos que subir al servicio de hosting.
+Se encuentra en el directorio donde tenemos el repositorio mencionado antes, por eso vamos a hacer un fichero `.gitignore` , para que el repositorio no guarde los cambios de esta carpeta al hacer un commit.
+Para que entendamos lo que hace el fichero .gitignore , básicamente cuando hacemos un `git commit && git push` el repositorio lee este fichero y detecta que esta carpeta no la tiene que actualizar, por tanto no se preocupa por ella.
 
-Es importante decir que para evitar problemas, es conveniente crear el fichero '.gitignore' antes que los archivos que vamos a especificar dentro. Si nos encontramos en la situación que ya existe dicho archivo, podemos crear el .gitignore y luego sacar el archivo del repositorio, hacer un commit, un push y volver a añadirlo al repositorio.
+Es importante decir que para evitar problemas, es conveniente crear el fichero `.gitignore` antes que los archivos que vamos a especificar dentro. Si nos encontramos en la situación que ya existe dicho archivo, podemos crear el .gitignore y luego sacar el archivo del repositorio, hacer un commit, un push y volver a añadirlo al repositorio.
 
 Ahora que tenemos esta carpeta aislada por así decirlo, vamos a crear un nuevo repositorio dentro de ella para que guarde únicamente el HTML generado, esto nos interesa ya que este repositorio es el que utilizaremos para desplegar nuestra web.
 Para asociar esta carpeta a nuestro segundo repositorio:
+
 <pre>
 cd output/
 git init
@@ -113,6 +127,7 @@ git commit -am "añado el contenido"
 git remote add javierpzh.github.io https://github.com/javierpzh/javierpzh.github.io
 git push --set-upstream javierpzh.github.io master
 </pre>
+
 Como vemos ya lo hemos asociado a la rama master de nuestro [repositorio](https://github.com/javierpzh/javierpzh.github.io).
 
 

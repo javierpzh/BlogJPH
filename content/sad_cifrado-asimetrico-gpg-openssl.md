@@ -63,7 +63,54 @@ Las claves y los datos que se crean se guardan en el directorio '.gnupg'.
 
 **2. Lista las claves públicas que tienes en tu almacén de claves. Explica los distintos datos que nos muestra. ¿Cómo deberías haber generado las claves para indicar, por ejemplo, que tenga un 1 mes de validez?**
 
+Para listar las claves de nuestro anillo de claves públicas:
+<pre>
+gpg --list-keys
+</pre>
+Si quisiéramos listar las claves privadas de muestro anillo de claves privadas:
+<pre>
+gpg --list-secret-keys
+</pre>
 
+Para generar una clave pública-privada que tengan un mes de validez, debemos usar el siguiente comando, en el que podemos especificar además, más opciones y parámetros por si no queremos los predeterminados:
+<pre>
+javier@debian:~/.gnupg$ gpg --full-generate-key
+gpg (GnuPG) 2.2.12; Copyright (C) 2018 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Por favor seleccione tipo de clave deseado:
+   (1) RSA y RSA (por defecto)
+   (2) DSA y ElGamal
+   (3) DSA (sólo firmar)
+   (4) RSA (sólo firmar)
+Su elección: 1
+las claves RSA pueden tener entre 1024 y 4096 bits de longitud.
+¿De qué tamaño quiere la clave? (3072)
+El tamaño requerido es de 3072 bits
+Por favor, especifique el período de validez de la clave.
+         0 = la clave nunca caduca
+      <n>  = la clave caduca en n días
+      <n>w = la clave caduca en n semanas
+      <n>m = la clave caduca en n meses
+      <n>y = la clave caduca en n años
+¿Validez de la clave (0)? 1m
+La clave caduca jue 12 nov 2020 16:47:41 CET
+¿Es correcto? (s/n) s
+
+GnuPG debe construir un ID de usuario para identificar su clave.
+
+Nombre y apellidos: Javier Pérez Hidalgo
+Dirección de correo electrónico: reyole111@gmail.com
+Comentario:
+Está usando el juego de caracteres 'utf-8'.
+Ha seleccionado este ID de usuario:
+    "Javier Pérez Hidalgo <reyole111@gmail.com>"
+
+¿Cambia (N)ombre, (C)omentario, (D)irección o (V)ale/(S)alir? s
+gpg: Creación de claves cancelada.
+javier@debian:~/.gnupg$
+</pre> 
 
 **3. Lista las claves privadas de tu almacén de claves.**
 

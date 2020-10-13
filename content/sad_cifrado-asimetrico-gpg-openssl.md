@@ -61,12 +61,14 @@ sub   rsa3072 2020-10-06 [E] [caduca: 2022-10-06]
 
 javier@debian:~$
 </pre>
+
 Antes de completar el proceso nos va a saltar una ventana donde vamos a tener que especificar nuestra contraseña.
 Las claves y los datos que se crean se guardan en el directorio '.gnupg'.
 
 **2. Lista las claves públicas que tienes en tu almacén de claves. Explica los distintos datos que nos muestra. ¿Cómo deberías haber generado las claves para indicar, por ejemplo, que tenga un 1 mes de validez?**
 
 Para listar las claves de nuestro anillo de claves públicas:
+
 <pre>
 javier@debian:~/.gnupg$ gpg --list-keys
 /home/javier/.gnupg/pubring.kbx
@@ -78,10 +80,12 @@ sub   rsa3072 2020-10-06 [E] [caduca: 2022-10-06]
 
 javier@debian:~/.gnupg$
 </pre>
+
 Nos muestra la fecha de creación, la fecha de caducidad, el identificador, el nombre que le hemos puesto y el correo.
 
 
 Para generar una clave pública-privada que tengan un mes de validez, debemos usar el siguiente comando, en el que podemos especificar además, más opciones y parámetros por si no queremos los predeterminados:
+
 <pre>
 javier@debian:~/.gnupg$ gpg --full-generate-key
 gpg (GnuPG) 2.2.12; Copyright (C) 2018 Free Software Foundation, Inc.
@@ -124,6 +128,7 @@ javier@debian:~/.gnupg$
 **3. Lista las claves privadas de tu almacén de claves.**
 
 Si quisiéramos listar las claves privadas de muestro anillo de claves privadas:
+
 <pre>
 gpg --list-secret-keys
 </pre>
@@ -136,14 +141,17 @@ Para enviar archivos cifrados a otras personas, necesitamos disponer de sus clav
 **1. Exporta tu clave pública en formato ASCII y guárdalo en un archivo nombre_apellido.asc y envíalo al compañero con el que vas a hacer esta práctica.**
 
 Para exportar mi clave pública con formato ASCII, indicamos el parámetro '--armor', le indicamos con el parámetro '--output' el nombre que va a recibir la clave y con '--export' indicamos la clave a exportar.
+
 <pre>
 gpg --armor --output javier_perez_hidalgo.asc --export "Javier Pérez Hidalgo"
 </pre>
+
 Ahora se la paso a mi compañero [Juanlu](https://www.instagram.com/juanlu_millan/).
 
 **2. Importa las claves públicas recibidas de vuestro compañero.**
 
 Juanlu me ha pasado su clave pública llamada 'juanluis_millan.asc' y yo la importo a mi anillo de claves públicas.
+
 <pre>
 javier@debian:~/Descargas$ gpg --import juanluis_millan.asc
 gpg: clave 15E1B16E8352B9BB: clave pública "Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.com>" importada
@@ -151,11 +159,13 @@ gpg: Cantidad total procesada: 1
 gpg:               importadas: 1
 javier@debian:~/Descargas$
 </pre>
+
 Él también ha incluido mi pública en su anillo de claves públicas.
 
 **3. Comprueba que las claves se han incluido correctamente en vuestro keyring.**
 
 Compruebo que se ha importado de manera correcta:
+
 <pre>
 javier@debian:~/.gnupg$ gpg --list-keys
 /home/javier/.gnupg/pubring.kbx
@@ -177,6 +187,7 @@ sub   rsa3072 2020-10-07 [E] [caduca: 2022-10-07]
 
 javier@debian:~/.gnupg$
 </pre>
+
 Vemos que la tenemos almacenada, por tanto ya podríamos enviarnos archivos encriptados.
 
 ### Tarea 3: Cifrado asimétrico con claves públicas.
@@ -186,6 +197,7 @@ Tras realizar el ejercicio anterior, podemos enviar ya documentos cifrados utili
 **1. Cifraremos un archivo cualquiera y lo remitiremos por email a uno de nuestros compañeros que nos proporcionó su clave pública.**
 
 He creado un archivo llamado 'prueba_para_juanlu.txt' y lo encripto con la clave pública de Juanlu para que solo él con su clave privada pueda descifrarlo.
+
 <pre>
 javier@debian:~/Descargas$ gpg -r juanluismillanhidalgo@gmail.com --encrypt prueba_para_juanlu.txt
 gpg: 988EDEB8C4FF299C: No hay seguridad de que esta clave pertenezca realmente
@@ -202,11 +214,13 @@ puede contestar sí a la siguiente pregunta.
 ¿Usar esta clave de todas formas? (s/N) s
 javier@debian:~/Descargas$
 </pre>
+
 Una vez cifrado, se lo envío.
 
 **2. Nuestro compañero, a su vez, nos remitirá un archivo cifrado para que nosotros lo descifremos.**
 
-Mi compañera me ha pasado un archivo encriptado por él con mi clave pública, que se llama 'hola.txt.gpg'.
+Mi compañero me ha pasado un archivo encriptado por él con mi clave pública, que se llama 'hola.txt.gpg'.
+
 <pre>
 javier@debian:~/Descargas$ ls
 hola.txt.gpg  juanluis_millan.asc     prueba_para_juanlu.txt.gpg
@@ -217,6 +231,7 @@ javier@debian:~/Descargas$
 **3. Tanto nosotros como nuestro compañero comprobaremos que hemos podido descifrar los mensajes recibidos respectivamente.**
 
 Voy a descifrar el archivo con mi clave privada.
+
 <pre>
 javier@debian:~/Descargas$ gpg --decrypt hola.txt.gpg
 gpg: cifrado con clave de 3072 bits RSA, ID 1A5336E5C764C497, creada el 2020-10-06
@@ -224,11 +239,13 @@ gpg: cifrado con clave de 3072 bits RSA, ID 1A5336E5C764C497, creada el 2020-10-
 hola compañero javier
 javier@debian:~/Descargas$
 </pre>
+
 Vemos como lo hemos descifrado correctamente y que ya podemos leer el mensaje que Juanlu me quería hacer llegar.
 
 **4. Por último, enviaremos el documento cifrado a alguien que no estaba en la lista de destinatarios y comprobaremos que este usuario no podrá descifrar este archivo.**
 
 Voy a quitar la clave pública de Juanlu para ver como efectivamente, ya no podré descifrar el fichero que Juanlu me envíe encriptado con su clave privada.
+
 <pre>
 javier@debian:~/.gnupg$ gpg --list-keys
 /home/javier/.gnupg/pubring.kbx
@@ -300,11 +317,13 @@ Aquí vemos como me da error y me dice que no puedo descifrarlo porque no poseo 
 **5. Para terminar, indica los comandos necesarios para borrar las claves públicas y privadas que posees.**
 
 Para borrar cualquier clave pública:
+
 <pre>
 gpg --delete-key "(identificador)"
 </pre>
 
 Para borrar cualquier clave privada:
+
 <pre>
 gpg --delete-secret-key "(identificador)"
 </pre>

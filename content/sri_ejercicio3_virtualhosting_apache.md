@@ -26,11 +26,24 @@ cp 000-default.conf departamentos.conf
 
 **De esta manera tendremos un fichero llamado `iesgn.conf` para realizar la configuración del sitio web `www.iesgn.org`, y otro llamado `departamentos.conf` para el sitio web `www.departamentosgn.org`.**
 
-s
+
 
 **2. Modificamos los ficheros `iesgn.conf` y `departamentos.conf`, para indicar el nombre que vamos a usar para acceder al host virtual `(ServerName)` y el directorio de trabajo (`DocumentRoot`).**
 
+Cambiamos las líneas de ServerName y DocumentRoot de forma que queden así:
+Para la pagina `www.iesgn.org`:
 
+<pre>
+ServerName www.iesgn.org
+DocumentRoot /var/www/iesgn
+</pre>
+
+Para `www.departamentosgn.org`:
+
+<pre>
+ServerName www.departamentosgn.org
+DocumentRoot /var/www/departamentos
+</pre>
 
 **3. No es suficiente crear los ficheros de configuración de cada sitio web, es necesario crear un enlace simbólico a estos ficheros dentro del directorio `/etc/apache2/sites-enabled`, para ello:**
 

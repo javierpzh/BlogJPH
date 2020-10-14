@@ -98,4 +98,32 @@ Esto indica que mostrará todos los ficheros de las páginas alojadas en la ruta
 
 ![.](images/sri_virtualhosting_apache/apache2.conf_modificado.png)
 
-A
+Ahora creamos la estructura de directorios que queremos y copiamos los mismos 'index.html' que hemos utilizado antes:
+<pre>
+cd /var/www/iesgn
+cp index.html /srv/www/iesgn/
+cd ../departamentos/
+cp index.html /srv/www/departamentos/
+</pre>
+
+Ahora ya solo nos quedaría modificar los archivos `iesgn.conf` y `departamentos.conf` que se encuentran en el directorio `/etc/apache2/sites-available`. En mi caso he utilizado los mismos ficheros de configuración que había generado antes, por tanto solo tendría que cambiar la ruta del 'DocumentRoot', pero también se podría generar otros archivos de configuración, si deseamos conservar estos:
+
+El fichero `iesgn.conf` quedaría:
+
+<pre>
+DocumentRoot /srv/www/iesgn
+</pre>
+
+Y el `departamentos.conf`:
+
+<pre>
+DocumentRoot /srv/www/departamentos
+</pre>
+
+Ahora reiniciamos el servicio:
+
+<pre>
+systemctl restart apache2.service
+</pre>
+
+Y ya podríamos ver las páginas alojadas en nuestro directorio `/srv/``.

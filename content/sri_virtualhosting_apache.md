@@ -106,15 +106,15 @@ cd ../departamentos/
 cp index.html /srv/www/departamentos/
 </pre>
 
-Ahora ya solo nos quedaría modificar los archivos `iesgn.conf` y `departamentos.conf` que se encuentran en el directorio `/etc/apache2/sites-available`. En mi caso he utilizado los mismos ficheros de configuración que había generado antes, por tanto solo tendría que cambiar la ruta del 'DocumentRoot', pero también se podría generar otros archivos de configuración, si deseamos conservar estos:
+Ahora ya solo nos quedaría modificar los archivos `iesgn.conf` y `departamentos.conf` que se encuentran en el directorio `/etc/apache2/sites-available`. En mi caso he utilizado los mismos ficheros de configuración que había generado antes, por tanto solo tendría que cambiar la ruta del 'DocumentRoot', pero también se podrían generar otros archivos de configuración, si deseamos conservar estos:
 
-El fichero `iesgn.conf` quedaría:
+La línea del fichero `iesgn.conf` quedaría:
 
 <pre>
 DocumentRoot /srv/www/iesgn
 </pre>
 
-Y el `departamentos.conf`:
+Y la del `departamentos.conf`:
 
 <pre>
 DocumentRoot /srv/www/departamentos
@@ -126,4 +126,4 @@ Ahora reiniciamos el servicio:
 systemctl restart apache2.service
 </pre>
 
-Y ya podríamos ver las páginas alojadas en nuestro directorio `/srv/``.
+Y ya podríamos ver las páginas alojadas en nuestro directorio `/srv/`.

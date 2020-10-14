@@ -48,3 +48,9 @@ La creación de los enlaces simbólicos se puede hacer con la instrucción `a2en
 
 
 5. Para terminar lo único que tendremos que hacer es cambiar el fichero hosts en los clientes y poner dos nuevas líneas donde se haga la conversión entre los dos nombre de dominio y la dirección IP del servidor.
+
+
+
+
+
+!!! Repite el ejercicio cambiando los directorios de trabajo a `/srv/www`. ¿Qué modificación debes hacer en el fichero `/etc/apache2/apache2.conf`?

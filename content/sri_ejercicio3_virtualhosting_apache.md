@@ -31,7 +31,7 @@ cp 000-default.conf departamentos.conf
 **2. Modificamos los ficheros `iesgn.conf` y `departamentos.conf`, para indicar el nombre que vamos a usar para acceder al host virtual `(ServerName)` y el directorio de trabajo (`DocumentRoot`).**
 
 Cambiamos las líneas de ServerName y DocumentRoot de forma que queden así:
-Para la pagina `www.iesgn.org`:
+Para la página `www.iesgn.org`:
 
 <pre>
 ServerName www.iesgn.org
@@ -54,7 +54,10 @@ a2ensite departamentos
 
 **La creación de los enlaces simbólicos se puede hacer con la instrucción `a2ensite nombre_fichero_configuracion`, para deshabilitar el sitio tenemos que borrar el enlace simbólico o usar la instrucción `a2dissite nombre_fichero_configuracion`.**
 
-
+<pre>
+a2ensite iesgn.conf
+a2ensite departamentos.conf
+</pre>
 
 **4. Crea los directorios y los ficheros 'index.html' necesarios en `/var/www` y reiniciamos el servicio.**
 

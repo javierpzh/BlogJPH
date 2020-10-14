@@ -63,9 +63,28 @@ a2ensite departamentos.conf
 
 ![.](images/sri_virtualhosting_apache/cat_iesgn_departamentos.png)
 
+Para reiniciar el servicio:
+
+<pre>
+systemctl restart apache2.service
+</pre>
+
 **5. Para terminar lo único que tendremos que hacer es cambiar el fichero hosts en los clientes y poner dos nuevas líneas donde se haga la conversión entre los dos nombre de dominio y la dirección IP del servidor.**
 
+Hay que decir que si queremos visualizar las dos páginas webs en nuestro cliente, debemos configurar la red en modo puente y luego en el fichero `/etc/hosts` del cliente, añadir estas dos líneas.
 
+<pre>
+192.168.0.27    www.iesgn.org
+192.168.0.27    www.departamentosgn.org
+</pre>
+
+La IP obviamente depende de la cual tengamos asignada a la mv.
+
+Voy a abrir las páginas desde el cliente.
+
+![.](images/sri_virtualhosting_apache/iesgn_web.png)
+
+![.](images/sri_virtualhosting_apache/departamentos_web.png)
 
 
 

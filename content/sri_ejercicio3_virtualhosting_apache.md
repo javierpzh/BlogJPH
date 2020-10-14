@@ -28,29 +28,29 @@ cp 000-default.conf departamentos.conf
 
 
 
-2. Modificamos los ficheros `iesgn.conf` y `departamentos.conf`, para indicar el nombre que vamos a usar para acceder al host virtual `(ServerName)` y el directorio de trabajo (`DocumentRoot`).
+**2. Modificamos los ficheros `iesgn.conf` y `departamentos.conf`, para indicar el nombre que vamos a usar para acceder al host virtual `(ServerName)` y el directorio de trabajo (`DocumentRoot`).**
 
 
 
-3. No es suficiente crear los ficheros de configuración de cada sitio web, es necesario crear un enlace simbólico a estos ficheros dentro del directorio `/etc/apache2/sites-enabled`, para ello:
+**3. No es suficiente crear los ficheros de configuración de cada sitio web, es necesario crear un enlace simbólico a estos ficheros dentro del directorio `/etc/apache2/sites-enabled`, para ello:**
 
 <pre>
 a2ensite iesgn
 a2ensite departamentos
 </pre>
 
-La creación de los enlaces simbólicos se puede hacer con la instrucción `a2ensite nombre_fichero_configuracion`, para deshabilitar el sitio tenemos que borrar el enlace simbólico o usar la instrucción `a2dissite nombre_fichero_configuracion`.
+**La creación de los enlaces simbólicos se puede hacer con la instrucción `a2ensite nombre_fichero_configuracion`, para deshabilitar el sitio tenemos que borrar el enlace simbólico o usar la instrucción `a2dissite nombre_fichero_configuracion`.**
 
 
 
-4. Crea los directorios y los ficheros 'index.html' necesarios en `/var/www` y reiniciamos el servicio.
+**4. Crea los directorios y los ficheros 'index.html' necesarios en `/var/www` y reiniciamos el servicio.**
 
 
 
-5. Para terminar lo único que tendremos que hacer es cambiar el fichero hosts en los clientes y poner dos nuevas líneas donde se haga la conversión entre los dos nombre de dominio y la dirección IP del servidor.
+**5. Para terminar lo único que tendremos que hacer es cambiar el fichero hosts en los clientes y poner dos nuevas líneas donde se haga la conversión entre los dos nombre de dominio y la dirección IP del servidor.**
 
 
 
 
 
-Repite el ejercicio cambiando los directorios de trabajo a `/srv/www`. ¿Qué modificación debes hacer en el fichero `/etc/apache2/apache2.conf`?
+**Repite el ejercicio cambiando los directorios de trabajo a `/srv/www`. ¿Qué modificación debes hacer en el fichero `/etc/apache2/apache2.conf`?**

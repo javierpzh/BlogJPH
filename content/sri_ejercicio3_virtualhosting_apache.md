@@ -59,18 +59,18 @@ a2ensite iesgn.conf
 a2ensite departamentos.conf
 </pre>
 
-**4. Crea los directorios y los ficheros 'index.html' necesarios en `/var/www` y reiniciamos el servicio.**
+**4. Crea los directorios y los ficheros 'index.html' necesarios en `/var/www` y reiniciamos el servicio.o**
 
 <pre>
 root@buster:/var/www# cat iesgn/index.html
-\<html>
-\	<head>
-\		<title>INICIO IESGN</title>
-\        </head>
-\        <body>
-\	     <h1>Inicio</h1>
-\             <p>Pagina del Gonzalo Nazareno.</p>
-\	</body>
+\<html\>
+	\<head\>
+	  \<title\>INICIO IESGN\</title\>
+        \</head>
+        \<body>
+	     \<h1\>Inicio\</h1\>
+             \<p\>Pagina del Gonzalo Nazareno.</p>
+	\</body\>
 \</html>
 root@buster:/var/www# cat departamentos/index.html
 \<html>

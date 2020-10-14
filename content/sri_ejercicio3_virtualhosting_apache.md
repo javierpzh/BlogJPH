@@ -59,10 +59,8 @@ a2ensite iesgn.conf
 a2ensite departamentos.conf
 </pre>
 
-**4. Crea los directorios y los ficheros 'index.html' necesarios en `/var/www` y reiniciamos el servicio.o**
+**4. Crea los directorios y los ficheros 'index.html' necesarios en `/var/www` y reiniciamos el servicio.**
 
-<pre>
-...
 root@buster:/var/www# cat iesgn/index.html
 <html>
 	<head>
@@ -86,8 +84,6 @@ root@buster:/var/www# cat departamentos/index.html
 	</body>
 </html>
 root@buster:/var/www#
-...
-</pre>
 
 **5. Para terminar lo único que tendremos que hacer es cambiar el fichero hosts en los clientes y poner dos nuevas líneas donde se haga la conversión entre los dos nombre de dominio y la dirección IP del servidor.**
 

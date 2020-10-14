@@ -89,3 +89,13 @@ Voy a abrir las páginas desde el cliente.
 
 
 **Repite el ejercicio cambiando los directorios de trabajo a `/srv/www`. ¿Qué modificación debes hacer en el fichero `/etc/apache2/apache2.conf`?**
+
+Lo primero que debemos hacer es modificar el fichero `apache2.conf`, que actualmente posee esta configuración:
+
+![.](images/sri_virtualhosting_apache/apache2.conf_inicial.png)
+
+Esto indica que mostrará todos los ficheros de las páginas alojadas en la ruta `/var/www/`. Lo que debemos hacer es comentar estas líneas y descomentar las de abajo que hacen referencia a la ruta '/srv/' y añadirle el directorio 'www', de forma que quedaría la ruta `/srv/www/`:
+
+![.](images/sri_virtualhosting_apache/apache2.conf_modificado.png)
+
+A

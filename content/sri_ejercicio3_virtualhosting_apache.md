@@ -62,29 +62,29 @@ a2ensite departamentos.conf
 **4. Crea los directorios y los ficheros 'index.html' necesarios en `/var/www` y reiniciamos el servicio.o**
 
 <pre>
-root@buster:/var/www# cat iesgn/index.html
-\<html\>
-	\<head\>
-	  \<title\>INICIO IESGN\</title\>
-        \</head>
-        \<body>
-	     \<h1\>Inicio\</h1\>
-             \<p\>Pagina del Gonzalo Nazareno.</p>
-	\</body\>
-\</html>
+`root@buster:/var/www# cat iesgn/index.html
+<html>
+	<head>
+		<title>INICIO IESGN</title>
+        </head>
+        <body>
+	     <h1>Inicio</h1>
+             <p>Pagina del Gonzalo Nazareno.</p>
+	</body>
+</html>
 root@buster:/var/www# cat departamentos/index.html
-\<html>
-\	<head>
-\		<title>DEPARTAMENTOS IESGN</title>
-\        </head>
-\        <body>
-\	     <h1>Departamentos</h1>
-\             <p>Departamentos del Gonzalo Nazareno.</p>
-\	     <ul>Seguridad</ul>
-\	     <ul>Servicios</ul>
-\	</body>
-\</html>
-root@buster:/var/www#
+<html>
+	<head>
+		<title>DEPARTAMENTOS IESGN</title>
+        </head>
+        <body>
+	     <h1>Departamentos</h1>
+             <p>Departamentos del Gonzalo Nazareno.</p>
+	     <ul>Seguridad</ul>
+	     <ul>Servicios</ul>
+	</body>
+</html>
+root@buster:/var/www#`
 </pre>
 
 **5. Para terminar lo único que tendremos que hacer es cambiar el fichero hosts en los clientes y poner dos nuevas líneas donde se haga la conversión entre los dos nombre de dominio y la dirección IP del servidor.**

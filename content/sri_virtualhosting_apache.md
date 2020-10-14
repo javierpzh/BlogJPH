@@ -94,7 +94,7 @@ Lo primero que debemos hacer es modificar el fichero `apache2.conf`, que actualm
 
 ![.](images/sri_virtualhosting_apache/apache2.conf_inicial.png)
 
-Esto indica que mostrará todos los ficheros de las páginas alojadas en la ruta `/var/www/`. Lo que debemos hacer es comentar estas líneas y descomentar las de abajo que hacen referencia a la ruta '/srv/' y añadirle el directorio 'www', de forma que quedaría la ruta `/srv/www/`:
+Esto indica que mostrará todos los ficheros de las páginas alojadas en la ruta `/var/www/`. Lo que debemos hacer es comentar estas líneas y descomentar las de abajo que hacen referencia a la ruta `/srv/` y todos sus hijos:
 
 ![.](images/sri_virtualhosting_apache/apache2.conf_modificado.png)
 

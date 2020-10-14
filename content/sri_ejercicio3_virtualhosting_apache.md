@@ -26,7 +26,7 @@ cp 000-default.conf departamentos.conf
 
 **De esta manera tendremos un fichero llamado `iesgn.conf` para realizar la configuración del sitio web `www.iesgn.org`, y otro llamado `departamentos.conf` para el sitio web `www.departamentosgn.org`.**
 
-
+s
 
 **2. Modificamos los ficheros `iesgn.conf` y `departamentos.conf`, para indicar el nombre que vamos a usar para acceder al host virtual `(ServerName)` y el directorio de trabajo (`DocumentRoot`).**
 

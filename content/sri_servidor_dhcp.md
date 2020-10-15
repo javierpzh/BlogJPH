@@ -182,7 +182,21 @@ default via 192.168.0.1 dev eth1
 192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
 </pre>
 
+Al cliente:
 
+<pre>
+root@nodolan1:/home/vagrant# ip r
+default via 10.0.2.2 dev eth0
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
+192.168.100.0/24 dev eth1 proto kernel scope link src 192.168.100.3
+
+root@nodolan1:/home/vagrant# ip r replace default via 192.168.100.1
+
+root@nodolan1:/home/vagrant# ip r
+default via 192.168.100.1 dev eth1
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
+192.168.100.0/24 dev eth1 proto kernel scope link src 192.168.100.3
+</pre>
 
 **Tarea 5: Realizar una captura, desde el servidor usando `tcpdump`, de los cuatro paquetes que corresponden a una concesión: `DISCOVER`, `OFFER`, `REQUEST`, `ACK`.**
 

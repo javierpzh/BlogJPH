@@ -19,6 +19,18 @@ Category: Servicios de Red e Internet
 
 **Instala un servidor dhcp en el ordenador “servidor” que de servicio a los ordenadores de red local, teniendo en cuenta que el tiempo de concesión sea 12 horas y que la red local tiene el direccionamiento `192.168.100.0/24`.**
 
+<pre>
+apt-get install isc-dhcp-server
+</pre>
+
+
+/etc/default/isc-dhcp-server
+"eth2"
+
+/etc/dhcp/dhcpd.conf
+
+
+
 **Tarea 2: Entrega el fichero `Vagrantfile` que define el escenario.**
 **Tarea 3: Muestra el fichero de configuración del servidor, la lista de concesiones, la modificación en la configuración que has hecho en el cliente para que tome la configuración de forma automática y muestra la salida del comando `ip address`.**
 **Tarea 4: Configura el servidor para que funcione como router y NAT, de esta forma los clientes tengan internet. Muestra las rutas por defecto del servidor y el cliente. Realiza una prueba de funcionamiento para comprobar que el cliente tiene acceso a internet (utiliza nombres, para comprobar que tiene resolución DNS).**

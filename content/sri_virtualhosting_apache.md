@@ -4,7 +4,7 @@ Category: Servicios de Red e Internet
 
 ## Configuración de VirtualHosting
 
-Antes de nada voy a decir que en mi caso voy a utilizar `Vagrant` y como provider `VirtualBox`.
+Antes de nada voy a decir que en mi caso voy a utilizar [Vagrant](https://www.vagrantup.com/) y como provider [VirtualBox](https://www.virtualbox.org/).
 
 El objetivo de esta práctica es la puesta en marcha de dos sitios web utilizando el mismo servidor web apache. Hay que tener en cuenta lo siguiente:
 

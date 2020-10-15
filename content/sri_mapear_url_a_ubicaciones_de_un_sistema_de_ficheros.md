@@ -32,6 +32,3 @@ Category: Servicios de Red e Internet
 - **Descomenta en el fichero `localized-error-pages.conf` las líneas adecuadas para tener los mensajes de error traducidos a los diferentes idiomas. Para que funcione tienes que hacer dos cosas:**
     - **Activar el módulo `include`.**
     - **Si quieres los mensajes en español modifica adecuadamente la directiva `LanguagePriority` del módulo `negotiation`.**
-
-
-dewfd

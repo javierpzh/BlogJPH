@@ -221,10 +221,18 @@ iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth1 -j MASQUERADE
 Ahora sí, vamos a comprobar que el cliente posee realmente conexión haciéndole un ping a `www.google.es`:
 
 <pre>
-
+root@nodolan1:/home/vagrant# ping www.google.es
+PING www.google.es (216.58.209.67) 56(84) bytes of data.
+64 bytes from waw02s06-in-f3.1e100.net (216.58.209.67): icmp_seq=1 ttl=117 time=17.7 ms
+64 bytes from waw02s06-in-f3.1e100.net (216.58.209.67): icmp_seq=2 ttl=117 time=121 ms
+64 bytes from waw02s06-in-f3.1e100.net (216.58.209.67): icmp_seq=3 ttl=117 time=21.8 ms
+^C
+--- www.google.es ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 5ms
+rtt min/avg/max/mdev = 17.712/53.625/121.410/47.959 ms
 </pre>
 
-
+Vemos que hace ping correctamente, por tanto ya tenemos conexión en nuestro cliente.
 
 **Tarea 5: Realizar una captura, desde el servidor usando `tcpdump`, de los cuatro paquetes que corresponden a una concesión: `DISCOVER`, `OFFER`, `REQUEST`, `ACK`.**
 

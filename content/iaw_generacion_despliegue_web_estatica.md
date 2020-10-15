@@ -124,7 +124,7 @@ cd output/
 git init
 git add .
 git commit -am "añado el contenido"
-git remote add javierpzh.github.io https://github.com/javierpzh/javierpzh.github.io
+git remote add javierpzh.github.io git@github.com:javierpzh/javierpzh.github.io.git
 git push --set-upstream javierpzh.github.io master
 </pre>
 

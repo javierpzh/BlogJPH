@@ -144,3 +144,6 @@ Guardamos los cambios y en unos minutos tendremos generada nuestra página está
 ![.](images/iaw_generacion_despliegue_web_estatica/confgithubpages.png)
 
 **6. Piensa algún método (script, scp, rsync, git,…) que te permita automatizar la generación de la página (integración continua) y el despliegue automático de la página en el entorno de producción, después de realizar un cambio de la página en el entorno de desarrollo. Muestra al profesor un ejemplo de como al modificar la página se realiza la puesta en producción de forma automática.**
+
+
+actualizando

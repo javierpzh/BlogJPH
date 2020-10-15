@@ -9,17 +9,17 @@ Category: Servicios de Red e Internet
 **2. [Alias](http://httpd.apache.org/docs/2.4/mod/mod_alias.html#alias): Crea un alias en el host virtual del ejercicio anterior, que mi permita entrar en la URL `http://www.mapeo.com/documentos` y visualice los ficheros del `/home/usuario/Documentos`. En la sección `Directory`... pon las mismas directivas que tiene la sección `Directory` del fichero `/etc/apache2/apache2.conf`.**
 
 **3. [Options](http://httpd.apache.org/docs/2.4/mod/core.html#options): Determina para que sirven las siguientes opciones de funcionamiento:**
-        - All
-        - FollowSymLinks
-        - Indexes
-        - MultiViews
-        - SymLinksOwnerMatch
-        - ExecCGI
+- All
+- FollowSymLinks
+- Indexes
+- MultiViews
+- SymLinksOwnerMatch
+- ExecCGI
 
-        Determina como funciona si delante de las opciones pongo el signo + o -.
-        - Crea un enlace directo dentro de `/home/usuario/document` y comprueba si es posible seguirlo. Cambia las opciones del directorio para que no siga los enlaces símbolicos.
-        - Deshabilita la opción de que se listen los archivos existentes en la carpeta cuando no existe un fichero definido en la directiva [DirectoryIndex](http://httpd.apache.org/docs/2.4/mod/mod_dir.html#directoryindex).
-        - MultiViews: Para saber más sobre el [negociado de contenido](http://httpd.apache.org/docs/2.4/content-negotiation.html). Siguiendo el ejemplo de esta [página](www.howtoforge.com/using-apache2-content-negotiation-to-serve-different-languages) realiza un fichero de bienvenida en español e inglés y compruba como se visualiza.
+Determina como funciona si delante de las opciones pongo el signo + o -.
+- Crea un enlace directo dentro de `/home/usuario/document` y comprueba si es posible seguirlo. Cambia las opciones del directorio para que no siga los enlaces símbolicos.
+- Deshabilita la opción de que se listen los archivos existentes en la carpeta cuando no existe un fichero definido en la directiva [DirectoryIndex](http://httpd.apache.org/docs/2.4/mod/mod_dir.html#directoryindex).
+- MultiViews: Para saber más sobre el [negociado de contenido](http://httpd.apache.org/docs/2.4/content-negotiation.html). Siguiendo el ejemplo de esta [página](www.howtoforge.com/using-apache2-content-negotiation-to-serve-different-languages) realiza un fichero de bienvenida en español e inglés y compruba como se visualiza.
 
 **4. Usando la directiva [Redirect](http://httpd.apache.org/docs/2.4/mod/mod_alias.html#redirect) realiza una redirección, que permita que cuando entre a tu servidor `http://www.mapeo.com`, salte a `http://www.mapeo.com/web`.**
 

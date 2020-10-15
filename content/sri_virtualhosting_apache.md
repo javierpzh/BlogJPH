@@ -4,6 +4,8 @@ Category: Servicios de Red e Internet
 
 ## Configuración de VirtualHosting
 
+Antes de nada voy a decir que en mi caso voy a utilizar `Vagrant` y como provider `VirtualBox`.
+
 El objetivo de esta práctica es la puesta en marcha de dos sitios web utilizando el mismo servidor web apache. Hay que tener en cuenta lo siguiente:
 
 - Cada sitio web tendrá nombres distintos.
@@ -72,11 +74,19 @@ systemctl restart apache2.service
 
 **5. Para terminar lo único que tendremos que hacer es cambiar el fichero hosts en los clientes y poner dos nuevas líneas donde se haga la conversión entre los dos nombre de dominio y la dirección IP del servidor.**
 
-Hay que decir que si queremos visualizar las dos páginas webs en nuestro cliente, debemos configurar la red en modo puente y luego en el fichero `/etc/hosts` del cliente, añadir estas dos líneas.
+Hay que decir que si queremos visualizar las dos páginas webs en nuestro cliente, debemos configurar una red privada.
+
+Para crear una red `hostonly`, podemos simplemente descomentar la siguiente línea que viene comentada por defecto en el fichero 'Vagrantfile'. Esto asignará un IP privada fija a nuestra mv.
 
 <pre>
-192.168.0.27    www.iesgn.org
-192.168.0.27    www.departamentosgn.org
+config.vm.network "private_network", ip: "192.168.33.10"
+</pre>
+
+Luego en el fichero `/etc/hosts` del cliente, añadir estas dos líneas:
+
+<pre>
+192.168.33.10    www.iesgn.org
+192.168.33.10    www.departamentosgn.org
 </pre>
 
 La IP obviamente depende de la cual tengamos asignada a la mv.

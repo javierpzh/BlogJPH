@@ -144,3 +144,26 @@ Guardamos los cambios y en unos minutos tendremos generada nuestra página está
 ![.](images/iaw_generacion_despliegue_web_estatica/confgithubpages.png)
 
 **6. Piensa algún método (script, scp, rsync, git,…) que te permita automatizar la generación de la página (integración continua) y el despliegue automático de la página en el entorno de producción, después de realizar un cambio de la página en el entorno de desarrollo. Muestra al profesor un ejemplo de como al modificar la página se realiza la puesta en producción de forma automática.**
+
+He creado un script que se encarga de actualizar los cambios de mis repositorios, tanto del repositorio que contiene el contenido, tanto del que contiene solo la salida. Realmente solo tendría que guardarme los cambios que se produzcan en la carpeta donde se guarda la salida, pero he incluido el primer repositorio también para solo tener que ejecutar un comando.
+El script se encuentra en mi [repositorio principal](https://github.com/javierpzh/BlogJPH) de la página con el nombre `actualizarblog.sh`.
+
+Igualmente este es el código:
+
+<pre>
+\#! /bin/bash
+
+\#Script que actualiza los cambios en mis repositorios, y actualiza el contenido de mi página web.
+
+make html
+
+git add .
+git commit -am "cambios"
+git push
+
+cd output/
+git add .
+git commit -am "cambiosweb"
+git push
+cd ..
+</pre>

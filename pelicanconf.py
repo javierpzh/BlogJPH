@@ -32,19 +32,19 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('Instagram', 'https://www.instagram.com/javierpzh/'),
-         ('Twitter', 'https://twitter.com/jperezhid_'),
-         ('GitHub', 'https://github.com/javierpzh'),
-	 ('Facebook', 'https://www.facebook.com/javier.perezhidalgo.904'),
-	 ('envelope-square', 'mailto:reyole111@gmail.com'),
-         )
+# LINKS = (('Instagram', 'https://www.instagram.com/javierpzh/'),
+#         ('Twitter', 'https://twitter.com/jperezhid_'),
+#         ('GitHub', 'https://github.com/javierpzh'),
+#	 ('Facebook', 'https://www.facebook.com/javier.perezhidalgo.904'),
+#	 ('envelope-square', 'mailto:javierperezhidalgo01@gmail.com'),
+#         )
 
 # Social widget
 SOCIAL = (('Instagram', 'https://www.instagram.com/javierpzh/'),
          ('Twitter', 'https://twitter.com/jperezhid_'),
          ('GitHub', 'https://github.com/javierpzh'),
 	 ('Facebook', 'https://www.facebook.com/javier.perezhidalgo.904'),
-	 ('envelope-square', 'mailto:reyole111@gmail.com'),
+	 ('envelope-square', 'mailto:javierperezhidalgo01@gmail.com'),
 	 )
 
 DEFAULT_PAGINATION = 10

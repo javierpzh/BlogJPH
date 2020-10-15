@@ -101,7 +101,7 @@ subnet 192.168.100.0 netmask 255.255.255.0 {
 }
 </pre>
 
-Le hemos especificado que nuestra red es la 192.168.100.0/24, de ahí la máscara puesta, el rango de direcciones va desde la 3 a la 10,                                , le indicamos que la puerta de enlace sea la 192.168.100.1, y el broadcast la 192.168.100.255. Le he puesto un tiempo de concesión por defecto de 60 segundos, y un tiempo de concesión máximo de 12 horas, que son 43200 segundos.
+Le hemos especificado que nuestra red es la 192.168.100.0/24, de ahí la máscara puesta, el rango de direcciones va desde la 3 hasta la 10,                                , le indicamos que la puerta de enlace sea la 192.168.100.1, y el broadcast la 192.168.100.255. Le he puesto un tiempo de concesión por defecto de 60 segundos, y un tiempo de concesión máximo de 12 horas, que son 43200 segundos.
 
 Y una vez hecho esto, si realizamos un `systemctl restart isc-dhcp-server.service`, y reiniciamos el servidor dhcp, el cliente debería recibir automáticamente una dirección IP dentro del rango que hemos puesto.
 

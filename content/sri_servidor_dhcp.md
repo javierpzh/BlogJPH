@@ -131,7 +131,7 @@ server-duid "\000\001\000\001'\033[\027\010\000'<\300p";
 root@servidordhcp:/home/vagrant#
 </pre>
 
-Vemos que en la lista de concesiones del servidor nos aparece como que ha dado la IP 192.168.100.3 al cliente nodolan1.
+Vemos que en la lista de concesiones del servidor, que es la `/var/lib/dhcp/dhcpd.leases` nos aparece como que ha dado la IP 192.168.100.3 al cliente nodolan1.
 
 Si ahora nos vamos al cliente, nos va a mostrar que posee la dirección 192.168.100.3, que es la que nos mostraba el servidor.
 

@@ -107,6 +107,7 @@ Y una vez hecho esto, si realizamos un `systemctl restart isc-dhcp-server.servic
 
 <pre>
 root@servidordhcp:/home/vagrant# systemctl restart isc-dhcp-server.service
+
 root@servidordhcp:/home/vagrant# cat /var/lib/dhcp/dhcpd.leases
 \# The format of this file is documented in the dhcpd.leases(5) manual page.
 \# This lease file was written by isc-dhcp-4.4.1
@@ -159,20 +160,31 @@ root@nodolan1:/home/vagrant#
 Vemos como en la eth1, tenemos esta dirección.
 
 **Tarea 4: Configura el servidor para que funcione como router y NAT, de esta forma los clientes tengan internet. Muestra las rutas por defecto del servidor y el cliente. Realiza una prueba de funcionamiento para comprobar que el cliente tiene acceso a internet (utiliza nombres, para comprobar que tiene resolución DNS).**
+
+Ahora lo que tenemos que hacer es cambiar las puertas de enlace para que el cliente tenga acceso a internet. Esto lo conseguimos cambiando las puertas de enlace del servidor y del cliente.
+
+Al servidor le tenemos que poner la 192.168.0.1, que es la ruta para que acceda al router de mi casa.
+Vemos como la hemos cambiado:
+
+<pre>
+root@servidordhcp:/home/vagrant# ip r
+default via 10.0.2.2 dev eth0
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
+192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.31
+192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
+
+root@servidordhcp:/home/vagrant# ip r replace default via 192.168.0.1
+
+root@servidordhcp:/home/vagrant# ip r
+default via 192.168.0.1 dev eth1
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
+192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.31
+192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
+</pre>
+
+
+
 **Tarea 5: Realizar una captura, desde el servidor usando `tcpdump`, de los cuatro paquetes que corresponden a una concesión: `DISCOVER`, `OFFER`, `REQUEST`, `ACK`.**
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

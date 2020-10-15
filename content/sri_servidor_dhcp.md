@@ -76,7 +76,7 @@ vagrant ssh nodolan1
 En la máquina servidor instalamos los paquetes necesarios para instalar el servidor dhcp.
 
 <pre>
-apt install isc-dhcp-server
+apt update && apt install isc-dhcp-server -y
 </pre>
 
 Una vez instalado, tenemos que editar estos dos ficheros:

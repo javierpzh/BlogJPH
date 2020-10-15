@@ -105,6 +105,62 @@ Le hemos especificado que nuestra red es la 192.168.100.0/24, de ahí la máscar
 
 Y una vez hecho esto, si realizamos un `systemctl restart isc-dhcp-server.service`, y reiniciamos el servidor dhcp, el cliente debería recibir automáticamente una dirección IP dentro del rango que hemos puesto.
 
+<pre>
+root@servidordhcp:/home/vagrant# systemctl restart isc-dhcp-server.service
+root@servidordhcp:/home/vagrant# cat /var/lib/dhcp/dhcpd.leases
+\# The format of this file is documented in the dhcpd.leases(5) manual page.
+\# This lease file was written by isc-dhcp-4.4.1
+
+\# authoring-byte-order entry is generated, DO NOT DELETE
+authoring-byte-order little-endian;
+
+lease 192.168.100.3 {
+  starts 4 2020/10/15 19:10:11;
+  ends 4 2020/10/15 19:15:11;
+  tstp 4 2020/10/15 19:15:11;
+  cltt 4 2020/10/15 19:10:11;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 08:00:27:bc:5c:d7;
+  uid "\377'\274\\\327\000\001\000\001'\033C\256\010\000'\274\\\327";
+  client-hostname "nodolan1";
+}
+server-duid "\000\001\000\001'\033[\027\010\000'<\300p";
+
+root@servidordhcp:/home/vagrant#
+</pre>
+
+Vemos que en la lista de concesiones del servidor nos aparece como que ha dado la IP 192.168.100.3 al cliente nodolan1.
+
+Si ahora nos vamos al cliente, nos va a mostrar que posee la dirección 192.168.100.3, que es la que nos mostraba el servidor.
+
+<pre>
+root@nodolan1:/home/vagrant# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:8d:c0:4d brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic eth0
+       valid_lft 80857sec preferred_lft 80857sec
+    inet6 fe80::a00:27ff:fe8d:c04d/64 scope link
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:bc:5c:d7 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.3/24 brd 192.168.100.255 scope global dynamic eth1
+       valid_lft 228sec preferred_lft 228sec
+    inet6 fe80::a00:27ff:febc:5cd7/64 scope link
+       valid_lft forever preferred_lft forever
+root@nodolan1:/home/vagrant#
+</pre>
+
+Vemos como en la eth1, tenemos esta dirección.
+
+
 
 
 

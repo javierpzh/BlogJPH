@@ -6,7 +6,7 @@ Category: Implantación de Aplicaciones Web
 
 **1. Selecciona una combinación entre generador de páginas estáticas y servicio donde desplegar la página web. Escribe tu propuesta en redmine, cada propuesta debe ser original.**
 
-He decidido utilizar como generador de páginas estáticas Pelican, ya que utiliza el lenguaje de Python y es el que más he utilizado y el que más controlo. Como servicio donde desplegar la web he decidido utilizar GitHub Pages ya que todos los cambios los iré guardando en un repositorio de mi GitHub.
+He decidido utilizar como generador de páginas estáticas `Pelican`, ya que utiliza el lenguaje de Python y es el que más he utilizado y el que más controlo. Como servicio donde desplegar la web he decidido utilizar `GitHub Pages` ya que todos los cambios los iré guardando en un repositorio de mi GitHub.
 
 **2. Comenta la instalación del generador de página estática. Recuerda que el generador tienes que instalarlo en tu entorno de desarrollo. Indica el lenguaje en el que está desarrollado y el sistema de plantillas que utiliza.**
 

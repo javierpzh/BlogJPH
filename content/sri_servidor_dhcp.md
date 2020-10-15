@@ -160,15 +160,23 @@ root@nodolan1:/home/vagrant#
 
 Vemos como en la eth1, tenemos esta dirección.
 
-
-
-
-
-
-
-
 **Tarea 4: Configura el servidor para que funcione como router y NAT, de esta forma los clientes tengan internet. Muestra las rutas por defecto del servidor y el cliente. Realiza una prueba de funcionamiento para comprobar que el cliente tiene acceso a internet (utiliza nombres, para comprobar que tiene resolución DNS).**
 **Tarea 5: Realizar una captura, desde el servidor usando `tcpdump`, de los cuatro paquetes que corresponden a una concesión: `DISCOVER`, `OFFER`, `REQUEST`, `ACK`.**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #### Funcionamiento del DHCP
 

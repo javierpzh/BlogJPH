@@ -182,7 +182,7 @@ default via 192.168.0.1 dev eth1
 192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
 </pre>
 
-Al cliente:
+Al cliente le vamos a poner la 192.168.100.1, que es la puerta de enlace que pertenece al servidor web, de esta manera el cliente se conecta al servidor dhcp (que está conectado con el equipo principal) y sale por su puerta de enlace hacia el equipo principal que es el que está conectado al router del proveedor de internet:
 
 <pre>
 root@nodolan1:/home/vagrant# ip r
@@ -197,6 +197,28 @@ default via 192.168.100.1 dev eth1
 10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
 192.168.100.0/24 dev eth1 proto kernel scope link src 192.168.100.3
 </pre>
+
+Por último, debemos activar el `bit de forward` en la máquina que va a actuar como servidor. Esto va a permitir que funcione como router, o más concretamente en este caso como dispositivo de NAT.
+Se puede activar con el siguiente comando:
+
+<pre>
+echo 1 > /proc/sys/net/ipv4/ip_forward
+</pre>
+
+Este comando lo que hace es poner a '1' el valor del bit de forward, por tanto lo activa.
+Pero esta activación se borra cuando se apaga el equipo. Para que dicha activación permanezca debemos definirla en el fichero `/etc/sysctl.conf`, descomentando esta línea que por defecto viene desactivada:
+
+<pre>
+net.ipv4.ip_forward=1
+</pre>
+
+Ahora sí, vamos a comprobar que el cliente posee realmente conexión haciéndole un ping a `www.google.es`:
+
+<pre>
+
+</pre>
+
+
 
 **Tarea 5: Realizar una captura, desde el servidor usando `tcpdump`, de los cuatro paquetes que corresponden a una concesión: `DISCOVER`, `OFFER`, `REQUEST`, `ACK`.**
 

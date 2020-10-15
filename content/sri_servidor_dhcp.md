@@ -28,10 +28,41 @@ apt-get install isc-dhcp-server
 "eth2"
 
 /etc/dhcp/dhcpd.conf
-
+subnet 192.168.100.0 netmask 255.255.255.0 {
+  range 192.168.100.3 192.168.100.10;
+  option domain-name-servers 8.8.8.8,8.8.4.4;
+  option routers 192.168.100.1;
+  option broadcast-address 192.168.100.255;
+  default-lease-time 60;
+  max-lease-time 43200;
+}
 
 
 **Tarea 2: Entrega el fichero `Vagrantfile` que define el escenario.**
+
+He creado este fichero Vagrantfile para definir el escenario.
+
+<pre>
+\# -*- mode: ruby -*-
+\# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define :servidor do |servidor|
+        servidor.vm.box="debian/buster64"
+        servidor.vm.hostname="servidordhcp"
+        servidor.vm.network :public_network, :bridge=>"wlo"
+        servidor.vm.network :private_network, ip: "192.168.100.1", virtualbox__intnet: "red1"
+  end
+
+  config.vm.define :nodolan1 do |nodolan1|
+        nodolan1.vm.box="debian/buster64"
+        nodolan1.vm.hostname="nodolan1"
+        nodolan1.vm.network :private_network, virtualbox__intnet: "red1", type: "dhcp"
+  end
+
+end
+</pre>
+
 **Tarea 3: Muestra el fichero de configuración del servidor, la lista de concesiones, la modificación en la configuración que has hecho en el cliente para que tome la configuración de forma automática y muestra la salida del comando `ip address`.**
 **Tarea 4: Configura el servidor para que funcione como router y NAT, de esta forma los clientes tengan internet. Muestra las rutas por defecto del servidor y el cliente. Realiza una prueba de funcionamiento para comprobar que el cliente tiene acceso a internet (utiliza nombres, para comprobar que tiene resolución DNS).**
 **Tarea 5: Realizar una captura, desde el servidor usando `tcpdump`, de los cuatro paquetes que corresponden a una concesión: `DISCOVER`, `OFFER`, `REQUEST`, `ACK`.**

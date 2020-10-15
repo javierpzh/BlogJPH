@@ -212,10 +212,10 @@ Pero esta activación se borra cuando se apaga el equipo. Para que dicha activac
 net.ipv4.ip_forward=1
 </pre>
 
-Por último, vamos a añadir esta regla para que se haga `SNAT` de todos los equipos de la red 192.168.100.0/24 es tan simple como:
+Por último, vamos a añadir, también en el servidor, esta regla a `iptables` para que se haga `SNAT` de todos los equipos de la red 192.168.100.0/24 es tan simple como:
 
 <pre>
-iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth1 -j MASQUERADE
 </pre>
 
 Ahora sí, vamos a comprobar que el cliente posee realmente conexión haciéndole un ping a `www.google.es`:

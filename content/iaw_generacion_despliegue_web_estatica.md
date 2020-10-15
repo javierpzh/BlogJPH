@@ -168,4 +168,4 @@ git push
 cd ..
 </pre>
 
-Este es un artículo del propio blog que he generado. Si quieres ir al inicio pincha [aquí](https://javierpzh.github.io/).
+Este es un artículo del propio blog que he generado. Si quieres ir al inicio haz click [aquí](https://javierpzh.github.io/).

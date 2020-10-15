@@ -198,7 +198,7 @@ default via 192.168.100.1 dev eth1
 192.168.100.0/24 dev eth1 proto kernel scope link src 192.168.100.3
 </pre>
 
-Por último, debemos activar el `bit de forward` en la máquina que va a actuar como servidor. Esto va a permitir que funcione como router, o más concretamente en este caso como dispositivo de NAT.
+Ahora debemos activar el `bit de forward` en la máquina que va a actuar como servidor. Esto va a permitir que funcione como router, o más concretamente en este caso como dispositivo de NAT.
 Se puede activar con el siguiente comando:
 
 <pre>
@@ -210,6 +210,12 @@ Pero esta activación se borra cuando se apaga el equipo. Para que dicha activac
 
 <pre>
 net.ipv4.ip_forward=1
+</pre>
+
+Por último, vamos a añadir esta regla para que se haga `SNAT` de todos los equipos de la red 192.168.100.0/24 es tan simple como:
+
+<pre>
+iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE
 </pre>
 
 Ahora sí, vamos a comprobar que el cliente posee realmente conexión haciéndole un ping a `www.google.es`:

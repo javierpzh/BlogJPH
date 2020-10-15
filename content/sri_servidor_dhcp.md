@@ -7,7 +7,7 @@ Category: Servicios de Red e Internet
 **Tarea 1: Lee el documento [Teoría: Servidor DHCP](https://fp.josedomingo.org/serviciosgs/u02/dhcp.html) y explica el funcionamiento del servidor DHCP resumido en este [gráfico](https://fp.josedomingo.org/serviciosgs/u02/img/dhcp.png).**
 
 ## DHCPv4
-###Preparación del escenario
+####Preparación del escenario
 
 **Crea un escenario usando Vagrant que defina las siguientes máquinas:**
 

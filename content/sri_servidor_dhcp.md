@@ -14,7 +14,7 @@ Category: Servicios de Red e Internet
 - **Servidor:** Tiene dos tarjetas de red: una pública y una privada que se conectan a la red local.
 - **nodo_lan1:** Un cliente conectado a la red local.
 
-### Servidor DHCP
+#### Servidor DHCP
 
 **Instala un servidor dhcp en el ordenador “servidor” que de servicio a los ordenadores de red local, teniendo en cuenta que el tiempo de concesión sea 12 horas y que la red local tiene el direccionamiento `192.168.100.0/24`.**
 
@@ -23,20 +23,20 @@ Category: Servicios de Red e Internet
 **Tarea 4: Configura el servidor para que funcione como router y NAT, de esta forma los clientes tengan internet. Muestra las rutas por defecto del servidor y el cliente. Realiza una prueba de funcionamiento para comprobar que el cliente tiene acceso a internet (utiliza nombres, para comprobar que tiene resolución DNS).**
 **Tarea 5: Realizar una captura, desde el servidor usando `tcpdump`, de los cuatro paquetes que corresponden a una concesión: `DISCOVER`, `OFFER`, `REQUEST`, `ACK`.**
 
-### Funcionamiento del DHCP
+#### Funcionamiento del DHCP
 
 **Vamos a comprobar que ocurre con la configuración de los clientes en determinadas circunstancias, para ello vamos a poner un tiempo de concesión muy bajo.**
 
 **Tarea 6: Los clientes toman una configuración, y a continuación apagamos el servidor dhcp. ¿qué ocurre con el cliente windows? ¿Y con el cliente linux?**
 **Tarea 7: Los clientes toman una configuración, y a continuación cambiamos la configuración del servidor dhcp (por ejemplo el rango). ¿qué ocurriría con un cliente windows? ¿Y con el cliente linux?**
 
-### Reservas
+#### Reservas
 
 **Crea una reserva para el que el cliente tome siempre la dirección `192.168.100.100`.**
 
 **Tarea 8: Indica las modificaciones realizadas en los ficheros de configuración y entrega una comprobación de que el cliente ha tomado esa dirección.**
 
-### Uso de varios ámbitos
+#### Uso de varios ámbitos
 
 **Modifica el escenario Vagrant para añadir una nueva red local y un nuevo nodo:**
 

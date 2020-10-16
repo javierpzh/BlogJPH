@@ -13,8 +13,6 @@ DEFAULT_LANG = 'es'
 
 THEME = "theme"
 
-COLOR_SCHEME_CSS = 'tomorrow_night.css'
-
 #STATIC_PATHS = [
 #    'images',
 #    'extra/favicon.ico',

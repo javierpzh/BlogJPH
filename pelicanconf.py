@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 
 AUTHOR = 'Javier Pérez Hidalgo'
-SITENAME = 'Javier Pérez Hidalgo'
+SITENAME = 'javierpzh | Inicio'
 SITEURL = ''
 
 PATH = 'content'

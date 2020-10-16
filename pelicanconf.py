@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 
 AUTHOR = 'Javier Pérez Hidalgo'
-SITENAME = 'javierpzh | Inicio'
+SITENAME = 'Javier Pérez Hidalgo'
 SITEURL = ''
 
 PATH = 'content'
@@ -14,14 +14,11 @@ DEFAULT_LANG = 'es'
 THEME = "pelican-clean-blog"
 
 
-FAVICON = 'favicon.ico'
+#STATIC_PATHS = ['images', 'extra/favicon.ico']
+#EXTRA_PATH_METADATA = {
+#    'extra/favicon.ico': {'path': 'favicon.ico'}
+#}
 
-STATIC_PATHS = ['images', 'extra/favicon.ico']
-EXTRA_PATH_METADATA = {
-    'extra/favicon.ico': {'path': 'favicon.ico'}
-}
-
-FAVICON = 'favicon.ico'
 
 
 # Feed generation is usually not desired when developing
@@ -35,9 +32,9 @@ AUTHOR_FEED_RSS = None
 SOCIAL = (('Instagram', 'https://www.instagram.com/javierpzh/'),
          ('Twitter', 'https://twitter.com/jperezhid_'),
          ('GitHub', 'https://github.com/javierpzh'),
-	     ('Facebook', 'https://www.facebook.com/javier.perezhidalgo.904'),
-	     ('envelope-square', 'mailto:javierperezhidalgo01@gmail.com'),
-	     )
+	 ('Facebook', 'https://www.facebook.com/javier.perezhidalgo.904'),
+	 ('envelope-square', 'mailto:javierperezhidalgo01@gmail.com'),
+	 )
 
 DEFAULT_PAGINATION = 10
 

@@ -1,6 +1,7 @@
 Title: rclone - Gestionando nuestro almacenamiento en la nube
 Date: 2020/09/30
 Category: Seguridad y Alta Disponibilidad
+Header_Cover: theme/images/banner-seguridad.jpg
 
 ## rclone
 

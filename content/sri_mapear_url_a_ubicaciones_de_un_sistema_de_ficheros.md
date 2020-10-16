@@ -1,6 +1,7 @@
 Title: Mapear URL a ubicaciones de un sistema de ficheros
 Date: 2020/10/15
 Category: Servicios de Red e Internet
+Header_Cover: theme/images/banner-seguridad.jpg
 
 
 

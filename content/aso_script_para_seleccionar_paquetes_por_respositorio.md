@@ -1,6 +1,7 @@
 Title: Script para seleccionar paquetes por repositorio
 Date: 2020/10/16
 Category: Administración de Sistemas Operativos
+Header_Cover: theme/images/banner-seguridad.jpg
 
 ## Descripción
 

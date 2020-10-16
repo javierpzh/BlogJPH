@@ -1,7 +1,7 @@
 Title: Implantación y despliegue de una aplicación web estática
 Date: 2020/10/11
 Category: Implantación de Aplicaciones Web
-Header_Cover: theme/images/banner-seguridad.jpg
+Header_Cover: theme/images/banner-aplicaciones.jpg
 
 ## Ejercicios
 

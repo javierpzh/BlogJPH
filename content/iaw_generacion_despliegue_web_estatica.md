@@ -97,7 +97,7 @@ STATIC_PATHS = [
 EXTRA_PATH_METADATA = {
     'extra/favicon.ico': {'path': 'favicon.ico'},
 }
-\# Social widget
+# Social widget
 SOCIAL = (('Instagram', 'https://www.instagram.com/javierpzh/'),
         ('Twitter', 'https://twitter.com/jperezhid_'),
         ('GitHub', 'https://github.com/javierpzh'),
@@ -151,9 +151,9 @@ El script se encuentra en mi [repositorio principal](https://github.com/javierpz
 Igualmente este es el código:
 
 <pre>
-\#! /bin/bash
+#! /bin/bash
 
-\#Script que actualiza los cambios en mis repositorios, y actualiza el contenido de mi página web.
+#Script que actualiza los cambios en mis repositorios, y actualiza el contenido de mi página web.
 
 make html
 

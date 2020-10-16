@@ -1,4 +1,4 @@
-Title: Ejercicios de dpkg/APTeeeeeee
+Title: Ejercicios de dpkg/APT
 Date: 2020/10/05
 Category: Administración de Sistemas Operativos
 Header_Cover: theme/images/banner-seguridad.jpg

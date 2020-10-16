@@ -37,7 +37,6 @@ Hay que decir que aquí no he añadido un hot spare, es decir un disco de repues
 Las diferencias que hay entre un RAID1 y un RAID5 principalmente son que el RAID1 necesita como mínimo 2 discos, donde los 2 van a contener la misma información y se replican entre ellos, y en RAID5 es necesario tener 3 o + discos y te ofrece redundancia de datos y con menos espacio perdido cosa que con RAID1 pierdes la mitad del disco. Ambos ofrecen que en caso del fallo de un disco, el sistema sigue funcionando, no se para, y también podemos sustituir discos en caliente.
 
 
-
 **Tarea 2: Comprueba las características del RAID. Comprueba el estado del RAID. ¿Qué capacidad tiene el RAID que hemos creado?**
 
 En la siguiente imagen podemos ver el estado del RAID, la cantidad de discos que lo componen (3), la capacidad ocupada, libre y total del RAID (2GB), nos muestra los dispositivos que presentan algún fallo (0), si disponemos de discos de repuesto...

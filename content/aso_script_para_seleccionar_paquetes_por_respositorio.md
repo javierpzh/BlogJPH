@@ -37,3 +37,5 @@ do
  fi
 done
 </pre>
+
+Lo que hace este script, es que al recibir como parámetro un repositorio, busca en todos los paquetes instalados, el repositorio del que provienen. Esto lo hace mediante el comando `apt-cache policy`, que muestra la versión instalada mediante `***` y abajo identifica el repositorio desde donde se ha instalado. Por tanto lo que hace con la opción `grep -A 1 [***]` es quedarse con la línea de debajo de los tres asteriscos, y luego se queda con la cadena que contiene `http:`, para omitir que imprima la propia línea `***`, y ahora que ya únicamente tenemos la línea del repositorio, con `awk` nos quedamos con la segunda columna que es el propio repositorio en sí.

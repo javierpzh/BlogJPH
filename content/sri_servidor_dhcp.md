@@ -43,8 +43,8 @@ subnet 192.168.100.0 netmask 255.255.255.0 {
 He creado este fichero Vagrantfile para definir el escenario.
 
 <pre>
-\# -*- mode: ruby -*-
-\# vi: set ft=ruby :
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
   config.vm.define :servidor do |servidor|
@@ -90,7 +90,7 @@ INTERFACESv4="eth2"
 Y segundo, en el `/etc/dhcp/dhcpd.conf`, tenemos que realizar esta configuración, que por defecto viene comentada:
 
 <pre>
-\# A slightly different configuration for an internal subnet.
+# A slightly different configuration for an internal subnet.
 subnet 192.168.100.0 netmask 255.255.255.0 {
   range 192.168.100.3 192.168.100.10;
   option domain-name-servers 8.8.8.8,8.8.4.4;
@@ -109,10 +109,10 @@ Y una vez hecho esto, si realizamos un `systemctl restart isc-dhcp-server.servic
 root@servidordhcp:/home/vagrant# systemctl restart isc-dhcp-server.service
 
 root@servidordhcp:/home/vagrant# cat /var/lib/dhcp/dhcpd.leases
-\# The format of this file is documented in the dhcpd.leases(5) manual page.
-\# This lease file was written by isc-dhcp-4.4.1
+# The format of this file is documented in the dhcpd.leases(5) manual page.
+# This lease file was written by isc-dhcp-4.4.1
 
-\# authoring-byte-order entry is generated, DO NOT DELETE
+# authoring-byte-order entry is generated, DO NOT DELETE
 authoring-byte-order little-endian;
 
 server-duid "\000\001\000\001'\033\`\"\010\000'|]\230";

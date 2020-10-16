@@ -217,6 +217,13 @@ Vemos que hace ping correctamente, por tanto ya tenemos conexión en nuestro cli
 
 **Tarea 5: Realizar una captura, desde el servidor usando `tcpdump`, de los cuatro paquetes que corresponden a una concesión: `DISCOVER`, `OFFER`, `REQUEST`, `ACK`.**
 
+Para realizar una captura con la utilidad `tcpdump`, antes debemos instalar el paquete:
+
+<pre>
+apt update && apt install tcpdump -y
+</pre>
+
+
 
 
 #### Funcionamiento del DHCP

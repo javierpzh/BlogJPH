@@ -19,25 +19,6 @@ Category: Servicios de Red e Internet
 
 **Instala un servidor dhcp en el ordenador “servidor” que de servicio a los ordenadores de red local, teniendo en cuenta que el tiempo de concesión sea 12 horas y que la red local tiene el direccionamiento `192.168.100.0/24`.**
 
-<pre>
-apt-get install isc-dhcp-server
-</pre>
-
-
-/etc/default/isc-dhcp-server
-"eth2"
-
-/etc/dhcp/dhcpd.conf
-subnet 192.168.100.0 netmask 255.255.255.0 {
-  range 192.168.100.3 192.168.100.10;
-  option domain-name-servers 8.8.8.8,8.8.4.4;
-  option routers 192.168.100.1;
-  option broadcast-address 192.168.100.255;
-  default-lease-time 60;
-  max-lease-time 43200;
-}
-
-
 **Tarea 2: Entrega el fichero `Vagrantfile` que define el escenario.**
 
 He creado este fichero Vagrantfile para definir el escenario.

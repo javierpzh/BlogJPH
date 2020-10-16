@@ -3,7 +3,7 @@
 
 AUTHOR = 'Javier Pérez Hidalgo'
 SITENAME = 'Javier Pérez Hidalgo'
-SITEURL = 'https://www.javierperezhidalgo.com'
+SITEURL = ''
 
 PATH = 'content'
 

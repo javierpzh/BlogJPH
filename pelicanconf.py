@@ -38,7 +38,7 @@ SOCIAL = (('Instagram', 'https://www.instagram.com/javierpzh/'),
 	 ('envelope-square', 'mailto:javierperezhidalgo01@gmail.com'),
 	 )
 
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = 5
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True

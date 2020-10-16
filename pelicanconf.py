@@ -11,7 +11,7 @@ TIMEZONE = 'Europe/Madrid'
 
 DEFAULT_LANG = 'es'
 
-THEME = "theme"
+THEME = "pelican-clean-blog"
 
 #STATIC_PATHS = [
 #    'images',

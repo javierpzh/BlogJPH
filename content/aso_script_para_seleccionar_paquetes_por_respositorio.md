@@ -38,4 +38,10 @@ do
 done
 </pre>
 
-Lo que hace este script, es que al recibir como parámetro un repositorio, busca en todos los paquetes instalados, el repositorio del que provienen. Esto lo hace mediante el comando `apt-cache policy`, que muestra la versión instalada mediante `***` y abajo identifica el repositorio desde donde se ha instalado. Por tanto lo que hace con la opción `grep -A 1 [***]` es quedarse con la línea de debajo de los tres asteriscos, y luego se queda con la cadena que contiene `http:`, para omitir que imprima la propia línea `***`, y ahora que ya únicamente tenemos la línea del repositorio, con `awk` nos quedamos con la segunda columna que es el propio repositorio en sí.
+Lo que hace este script, es que al recibir como parámetro un repositorio, busca en todos los paquetes instalados, el repositorio del que provienen, y si es el mismo que el que hemos introducido, mostramos por pantalla ese paquete.
+
+La primera parte sería identificar los repositorios de los paquetes. Esto lo hace mediante el comando `apt-cache policy`, que muestra la versión instalada mediante `***` y abajo identifica el repositorio desde donde se ha instalado. Por tanto lo que hace con el comando `grep -A 1 [***]` es quedarse con la línea de debajo de los tres asteriscos, y luego se queda con la cadena que contiene `http:`, para omitir que imprima la propia línea `***`, y ahora que ya únicamente tenemos la línea del repositorio, con `awk` nos quedamos con la segunda columna que es el propio repositorio en sí.
+
+Ahora lo único que falta es comparar si el repositorio que hemos introducido, es el mismo que el del paquete, si es el mismo muestra el nombre del paquete, y sino no hace nada.
+
+Puedes descargar aquí el [script](images/aso_script_para_seleccionar_paquetes_por_respositorio/paquetesporrepositorio.sh).

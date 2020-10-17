@@ -2,6 +2,7 @@ Title: RAID5: Gestión del almacenamiento de la información
 Date: 2020/09/30
 Category: Seguridad y Alta Disponibilidad
 Header_Cover: theme/images/banner-seguridad.jpg
+Tags: raid
 
 ## Ejercicio: RAID 5
 

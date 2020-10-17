@@ -2,7 +2,7 @@ Title: Mapear URL a ubicaciones de un sistema de ficheros
 Date: 2020/10/15
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
-
+Tags: 
 
 **1. Crea un nuevo host virtual que es accedido con el nombre `www.mapeo.com`, cuyo `DocumentRoot` sea '/srv/mapeo'.**
 

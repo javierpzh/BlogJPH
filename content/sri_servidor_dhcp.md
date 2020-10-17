@@ -2,6 +2,7 @@ Title: Servidor DHCP
 Date: 2020/10/15
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
+Tags: servidor, dhcp
 
 ## Teoría
 

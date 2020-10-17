@@ -2,6 +2,7 @@ Title: VirtualHosting con Apache
 Date: 2020/10/14
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
+Tags: virtualhosting, apache, web
 
 ## Configuración de VirtualHosting
 

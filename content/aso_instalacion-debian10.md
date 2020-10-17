@@ -12,7 +12,7 @@ Ahora que ya estamos puestos en situación, solo queda decir que Debian va a con
 
 ## Proceso de instalación
 
-Lo primero obviamente sería descargarnos la iso de Debian que queremos instalar, en mi caso utilicé la última versión estable. Con esta iso y el programa Rufus, que es un programa para bootear, es decir, para preparar medios para la instalación de sistemas operativos, ya terminé todo lo que necesitaba y comencé el proceso. En mi caso dispongo de 160GB más o menos libre en el disco, que es lo que vamos a utilizar para Debian, aunque no todo en una solo partición simple, lo veremos más adelante.
+Lo primero obviamente sería descargarnos la iso de Debian que queremos instalar, en mi caso utilicé la última versión estable. Con esta iso y el programa Rufus, que es un programa para programar arranques, es decir, para preparar medios para la instalación de sistemas operativos, ya terminé todo lo que necesitaba y comencé el proceso. En mi caso dispongo de 160GB más o menos libre en el disco, que es lo que vamos a utilizar para Debian, aunque no todo en una solo partición simple, lo veremos más adelante.
 Iniciamos el asistente del proceso y vamos introduciendo el nuevo usuario, contraseñas, ...
 Hasta que llegamos a la parte que nos interesa, a la hora de indicar dónde, en que lugar del disco queremos instalar el sistema.
 Indicamos que lo queremos particionar manualmente, y aquí veremos todas las particiones ya creadas y que utiliza Windows, y vemos que hay una con 160GB de espacio libre que es la que seleccionamos, y le creamos una tabla de particiones nueva. Ahora en el menú debe aparecernos una opción que dice `Configurar el Gestor de Volúmenes Lógicos (LVM)` , esto es lo que nos interesa.

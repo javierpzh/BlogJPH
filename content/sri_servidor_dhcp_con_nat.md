@@ -12,7 +12,7 @@ Tags: servidor, dhcp, nat, snat
 
 Voy a explicar este gráfico que define el funcionamiento de un servidor DHCP.
 
-Primeramente se inicia el cliente DHCP, y se encuentra en su estado inicial (**init**), ya que aún no posee ningún tipo de información. Acto seguido envía un **DHCPDISCOVER** al puerto 67 del servidor, este mensaje usa la dirección IP de broadcast la red (255.255.255.255). Si no existe un servidor DHCP en la red local, el router deberá tener un agente **DHCP relay** para la retransmisión de esta petición hacia las otras subredes.
+Primeramente se inicia el cliente DHCP, y se encuentra en su estado inicial (**INT**), ya que aún no posee ningún tipo de información. Acto seguido envía un **DHCPDISCOVER** al puerto 67 del servidor, este mensaje usa la dirección IP de broadcast la red (255.255.255.255). Si no existe un servidor DHCP en la red local, el router deberá tener un agente **DHCP relay** para la retransmisión de esta petición hacia las otras subredes.
 El mensaje DHCPDISCOVER, se envía tras esperar de 1 a 10 segundos para evitar una posible colisión con otros clientes DHCP.
 
 Una vez enviado este mensaje, el cliente pasa a un estado llamado **SELECTING**, donde va a recibir los mensajes **DHCPOFFER** del servidor DHCP, configurados para atender a este cliente. En el caso de que el cliente reciba más de un mensaje DHCPOFFER, escogerá uno. Como respuesta, el cliente DHCP enviará un mensaje **DHCPREQUEST** para elegir un servidor DHCP, el que contestará con un **DHCPACK**, que contendrá la configuración de red para el cliente.

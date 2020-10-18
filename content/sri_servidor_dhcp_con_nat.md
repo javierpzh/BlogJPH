@@ -348,8 +348,17 @@ vagrant@nodolan1:~$ ip a
 Ya hemos eliminado la dirección asignada anteriormente, es el momento de iniciar la captura de los paquetes. La opción `-vv` es para que nos muestre la información detallada, la opción `-i` para especificar la interfaz de red donde queremos realizar la captura del tráfico, y la opción `port` para capturar solamente el tráfico de los puertos **67** y **68** que son los que utiliza DHCP.
 
 <pre>
-sudo tcpdump -vv -i eth2 port 67 and 68
+tcpdump -vv -i eth2 port 67 and 68
 </pre>
+
+Desde el cliente vamos a pedirle la concesión de una dirección al servidor DHCP:
+
+<pre>
+sudo dhclient eth1
+</pre>
+
+
+
 
 
 

@@ -179,7 +179,14 @@ Y una vez hecho esto, si realizamos un `systemctl restart isc-dhcp-server.servic
 
 <pre>
 root@servidordhcp:/home/vagrant# systemctl restart isc-dhcp-server.service
+</pre>
 
+<pre>
+javier@debian:~/Vagrant/Deb10-ServidorDHCP$ vagrant up nodolan1
+javier@debian:~/Vagrant/Deb10-ServidorDHCP$ vagrant ssh nodolan1
+</pre>
+
+<pre>
 root@servidordhcp:/home/vagrant# cat /var/lib/dhcp/dhcpd.leases
 # The format of this file is documented in the dhcpd.leases(5) manual page.
 # This lease file was written by isc-dhcp-4.4.1

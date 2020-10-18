@@ -65,6 +65,7 @@ Vagrant.configure("2") do |config|
         servidor.vm.box="debian/buster64"
         servidor.vm.hostname="servidordhcp"
         servidor.vm.network :public_network, :bridge=>"wlo"
+         use_dhcp_assigned_default_route: true
         servidor.vm.network :private_network, ip: "192.168.100.1", virtualbox__intnet: "red1"
   end
 
@@ -76,6 +77,9 @@ Vagrant.configure("2") do |config|
 
 end
 </pre>
+
+En este fichero de configuración hemos especificado que cree una primera máquina, que actuará de servidor, la cual está conectada en modo puente a nuestra máquina, y le indicamos que utilice los valores obtenidos por DHCP por esta interfaz. También hemos creado una red privada.
+La segunda máquina es la que actuará como cliente, a la que también le asignamos una red privada.
 
 **Tarea 3: Muestra el fichero de configuración del servidor, la lista de concesiones, la modificación en la configuración que has hecho en el cliente para que tome la configuración de forma automática y muestra la salida del comando `ip address`.**
 

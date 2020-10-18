@@ -65,7 +65,6 @@ Vagrant.configure("2") do |config|
         servidor.vm.box="debian/buster64"
         servidor.vm.hostname="servidordhcp"
         servidor.vm.network :public_network, :bridge=>"wlo"
-         use_dhcp_assigned_default_route: true
         servidor.vm.network :private_network, ip: "192.168.100.1", virtualbox__intnet: "red1"
   end
 
@@ -78,7 +77,7 @@ Vagrant.configure("2") do |config|
 end
 </pre>
 
-En este fichero de configuración hemos especificado que cree una primera máquina, que actuará de servidor, la cual está conectada en modo puente a nuestra máquina, y le indicamos que utilice los valores obtenidos por DHCP por esta interfaz. También hemos creado una red privada.
+En este fichero de configuración hemos especificado que cree una primera máquina, que actuará de servidor, la cual está conectada en modo puente a nuestra máquina física. También hemos creado una red privada.
 La segunda máquina es la que actuará como cliente, a la que también le asignamos una red privada.
 
 **Tarea 3: Muestra el fichero de configuración del servidor, la lista de concesiones, la modificación en la configuración que has hecho en el cliente para que tome la configuración de forma automática y muestra la salida del comando `ip address`.**
@@ -90,7 +89,62 @@ vagrant up servidor
 vagrant ssh servidor
 </pre>
 
-Primeramente instalamos los paquetes necesarios para instalar el servidor dhcp.
+Primeramente vamos a comprobar que tenemos las interfaces de red:
+
+<pre>
+vagrant@servidordhcp:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:8d:c0:4d brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic eth0
+       valid_lft 86350sec preferred_lft 86350sec
+    inet6 fe80::a00:27ff:fe8d:c04d/64 scope link
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:19:0c:cb brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.35/24 brd 192.168.0.255 scope global dynamic eth1
+       valid_lft 86355sec preferred_lft 86355sec
+    inet6 fe80::a00:27ff:fe19:ccb/64 scope link
+       valid_lft forever preferred_lft forever
+4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:04:09:00 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.1/24 brd 192.168.100.255 scope global eth2
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a00:27ff:fe04:900/64 scope link
+       valid_lft forever preferred_lft forever
+</pre>
+
+Vemos que efectivamente tenemos las interfaces que deseábamos:
+
+- **eth0:** Se genera automáticamente por VirtualBox.
+
+- **eth1:** Es la interfaz en la que hemos creado nuestra red pública en modo puente a nuestra máquina física, con la que poseemos una IP pública, **192.168.0.35**.
+
+- **eth2:** Es la interfaz en la que hemos creado nuestra red privada, **192.168.100.1**.
+
+<pre>
+vagrant@servidordhcp:~$ ip r
+default via 10.0.2.2 dev eth0
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
+192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.35
+192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
+vagrant@servidordhcp:~$ sudo ip r replace default via 192.168.0.1
+vagrant@servidordhcp:~$ ip r
+default via 192.168.0.1 dev eth1
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
+192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.35
+192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
+vagrant@servidordhcp:~$
+</pre>
+
+He cambiado la puerta de enlace y he especificado que utilice la puerta de enlace de mi router físico.
+
+Ahora instalamos los paquetes necesarios para instalar el servidor dhcp.
 
 <pre>
 apt update && apt install isc-dhcp-server -y

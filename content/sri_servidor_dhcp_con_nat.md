@@ -184,7 +184,38 @@ root@servidordhcp:/home/vagrant# systemctl restart isc-dhcp-server.service
 <pre>
 javier@debian:~/Vagrant/Deb10-ServidorDHCP$ vagrant up nodolan1
 javier@debian:~/Vagrant/Deb10-ServidorDHCP$ vagrant ssh nodolan1
+Linux nodolan1 4.19.0-9-amd64 #1 SMP Debian 4.19.118-2 (2020-04-29) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+vagrant@nodolan1:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:8d:c0:4d brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic eth0
+       valid_lft 86311sec preferred_lft 86311sec
+    inet6 fe80::a00:27ff:fe8d:c04d/64 scope link
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:aa:c6:76 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.7/24 brd 192.168.100.255 scope global dynamic eth1
+       valid_lft 43115sec preferred_lft 43115sec
+    inet6 fe80::a00:27ff:feaa:c676/64 scope link
+       valid_lft forever preferred_lft forever
+vagrant@nodolan1:~$
 </pre>
+
+Podemos ver que efectivamente nos ha asignado la primera dirección dentro del rango que hemos puesto.
+Si nos vamos a la máquina servidor y miramos la lista de concesiones, podremos ver la concesión de esta dirección.
 
 <pre>
 root@servidordhcp:/home/vagrant# cat /var/lib/dhcp/dhcpd.leases
@@ -194,23 +225,23 @@ root@servidordhcp:/home/vagrant# cat /var/lib/dhcp/dhcpd.leases
 # authoring-byte-order entry is generated, DO NOT DELETE
 authoring-byte-order little-endian;
 
-server-duid "\000\001\000\001'\033\`\"\010\000'|]\230";
+server-duid "\000\001\000\001'\037.\355\010\000'\330/\233";
 
-lease 192.168.100.3 {
-  starts 4 2020/10/15 19:34:31;
-  ends 4 2020/10/15 19:39:31;
-  cltt 4 2020/10/15 19:34:31;
+lease 192.168.100.7 {
+  starts 0 2020/10/18 16:51:43;
+  ends 1 2020/10/19 04:51:43;
+  cltt 0 2020/10/18 16:51:43;
   binding state active;
   next binding state free;
   rewind binding state free;
-  hardware ethernet 08:00:27:06:dc:18;
-  uid "\377'\006\334\030\000\001\000\001'\033^\245\010\000'\006\334\030";
+  hardware ethernet 08:00:27:aa:c6:76;
+  uid "\377'\252\306v\000\001\000\001'\037/\034\010\000'\252\306v";
   client-hostname "nodolan1";
 }
 root@servidordhcp:/home/vagrant#
 </pre>
 
-Vemos que en la lista de concesiones del servidor, que es la `/var/lib/dhcp/dhcpd.leases` nos aparece como que ha dado la IP 192.168.100.3 al cliente nodolan1.
+Vemos que en la lista de concesiones del servidor, que es la `/var/lib/dhcp/dhcpd.leases` nos aparece como que ha dado la IP **192.168.100.7** al cliente **nodolan1**. Si nos fijamos, podemos apreciar que la concesión se inició a las **16:51** y terminará a las **04:51**, lo que serían doce horas, como hemos establecido en el tiempo de concesión máximo.
 
 Si ahora nos vamos al cliente, nos va a mostrar que posee la dirección 192.168.100.3, que es la que nos mostraba el servidor.
 

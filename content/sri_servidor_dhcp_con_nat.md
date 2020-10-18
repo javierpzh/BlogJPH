@@ -26,6 +26,8 @@ En dicho estado, se colocan tres valores de temporización, que pueden ser espec
 
 - **T3:** tiempo de duración del alquiler. Este valor se debe indicar en el servidor de manera indispensable.
 
+Cuando **T1** expira, el cliente cambia de estado a **RENEWING**, y negocia con el servidor un nuevo alquiler. Si el servidor decide no renovarle el alquiler, le envía un mensaje **DHCPNACK** y el cliente pasará a estado **INIT**. Si por el contrario, el servidor decide renovarle el alquiler, le enviará un mensaje **DHCPACK** que contendrá la nueva duración del alquiler, y el cliente pasará a estado **BOUND**.
+
 
 
 

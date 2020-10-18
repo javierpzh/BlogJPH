@@ -83,15 +83,14 @@ La segunda máquina es la que actuará como cliente, a la que también le asigna
 
 **Tarea 3: Muestra el fichero de configuración del servidor, la lista de concesiones, la modificación en la configuración que has hecho en el cliente para que tome la configuración de forma automática y muestra la salida del comando `ip address`.**
 
-Una vez creado el Vagrantfile, ejecutamos estos comandos y nos conectamos a las máquinas.
+Una vez creado el Vagrantfile, ejecutamos estos comandos y nos conectamos a la máquina servidor para realizar las configuraciones necesarias.
 
 <pre>
-vagrant up
+vagrant up servidor
 vagrant ssh servidor
-vagrant ssh nodolan1
 </pre>
 
-En la máquina servidor instalamos los paquetes necesarios para instalar el servidor dhcp.
+Primeramente instalamos los paquetes necesarios para instalar el servidor dhcp.
 
 <pre>
 apt update && apt install isc-dhcp-server -y

@@ -164,18 +164,18 @@ Y segundo, en el `/etc/dhcp/dhcpd.conf`, tenemos que realizar esta configuració
 <pre>
 # A slightly different configuration for an internal subnet.
 subnet 192.168.100.0 netmask 255.255.255.0 {
-  range 192.168.100.3 192.168.100.10;
-  option domain-name-servers 8.8.8.8,8.8.4.4;
+  range 192.168.100.7 192.168.100.220;
+  option domain-name-servers 8.8.8.8, 8.8.4.4;
   option routers 192.168.100.1;
-  option broadcast-address 192.168.100.255;
-  default-lease-time 10;
+  default-lease-time 43200;
   max-lease-time 43200;
 }
 </pre>
 
-Le hemos especificado que nuestra red es la 192.168.100.0/24, de ahí la máscara puesta, el rango de direcciones va desde la 3 hasta la 10,                                , le indicamos que la puerta de enlace sea la 192.168.100.1, y el broadcast la 192.168.100.255. Le he puesto un tiempo de concesión por defecto de 10 segundos para no tener que esperar mucho, y un tiempo de concesión máximo de 12 horas, que son 43200 segundos.
+Le hemos especificado que nuestra red es la 192.168.100.0/24, de ahí la máscara puesta, el rango de direcciones va desde la 7 hasta la 220, le indicamos que la puerta de enlace sea la 192.168.100.1.
+Le he puesto un tiempo de concesión por defecto y un tiempo de concesión máximo de 12 horas (43200 segundos).
 
-Y una vez hecho esto, si realizamos un `systemctl restart isc-dhcp-server.service`, y reiniciamos el servidor dhcp, el cliente debería recibir automáticamente una dirección IP dentro del rango que hemos puesto.
+Y una vez hecho esto, si realizamos un `systemctl restart isc-dhcp-server.service`, y reiniciamos el servidor dhcp, al arrancar la máquina cliente, debería recibir automáticamente una dirección IP dentro del rango que hemos puesto.
 
 <pre>
 root@servidordhcp:/home/vagrant# systemctl restart isc-dhcp-server.service

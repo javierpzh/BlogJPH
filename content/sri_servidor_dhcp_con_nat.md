@@ -444,6 +444,7 @@ tcpdump: listening on eth2, link-type EN10MB (Ethernet), capture size 262144 byt
 0 packets dropped by kernel
 </pre>
 
+En la captura podemos encontrar los paquetes: **DISCOVER, OFFER, REQUEST** y **ACK**.
 
 #### Funcionamiento del DHCP
 

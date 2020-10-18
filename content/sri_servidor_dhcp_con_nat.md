@@ -18,13 +18,13 @@ El mensaje DHCPDISCOVER, se envía tras esperar de 1 a 10 segundos para evitar u
 Una vez enviado este mensaje, el cliente pasa a un estado llamado **SELECTING**, donde va a recibir los mensajes **DHCPOFFER** del servidor DHCP, configurados para atender a este cliente. En el caso de que el cliente reciba más de un mensaje DHCPOFFER, escogerá uno. Como respuesta, el cliente DHCP enviará un mensaje **DHCPREQUEST** para elegir un servidor DHCP, el que contestará con un **DHCPACK**, que contendrá la configuración de red para el cliente.
 En este punto, como opción, el cliente envía una petición **ARP** con la dirección IP que le ha asignado el servidor, para comprobar que dicha dirección no esté duplicada. Si lo estuviera, el DHCPACK del servidor se ignora y se envía un **DHCPDECLINE** y el cliente regresaría al estado inicial. Si la dirección es únicamente utilizada por el cliente, éste pasaría a estado **BOUND**.
 
-En dicho estado, se colocan tres valores de temporización:
+En dicho estado, se colocan tres valores de temporización, que pueden ser especificados en el servidor:
 
-- **T1:** tiempo de renovación del alquiler
-- **T2:** tiempo de reenganche
-- **T3:** tiempo de duración del alquiler
+- **T1:** tiempo de renovación del alquiler. Si no se especifica su valor, se recurre esta fórmula, **T3 x 0'5**.
+- **T2:** tiempo de reenganche. Si no se especifica su valor, se recurre esta fórmula, **T3 x 0'875**.
+- **T3:** tiempo de duración del alquiler. Este valor se debe indicar en el servidor de manera indispensable.
 
-
+El DHCPACK siempre trae consigo el valor de T3. Los valores de T1 y T2 se configuran en el servidor DHCP; de no ser así, se usan los valores por defecto siguientes:
 
 
 

@@ -181,6 +181,8 @@ Y una vez hecho esto, si realizamos un `systemctl restart isc-dhcp-server.servic
 root@servidordhcp:/home/vagrant# systemctl restart isc-dhcp-server.service
 </pre>
 
+Iniciamos el cliente y nos conectamos a él:
+
 <pre>
 javier@debian:~/Vagrant/Deb10-ServidorDHCP$ vagrant up nodolan1
 javier@debian:~/Vagrant/Deb10-ServidorDHCP$ vagrant ssh nodolan1

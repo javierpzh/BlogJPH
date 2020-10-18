@@ -245,32 +245,6 @@ root@servidordhcp:/home/vagrant#
 
 Vemos que en la lista de concesiones del servidor, que es la `/var/lib/dhcp/dhcpd.leases` nos aparece como que ha dado la IP **192.168.100.7** al cliente **nodolan1**. Si nos fijamos, podemos apreciar que la concesión se inició a las **16:51** y terminará a las **04:51**, lo que serían doce horas, como hemos establecido en el tiempo de concesión máximo.
 
-Si ahora nos vamos al cliente, nos va a mostrar que posee la dirección 192.168.100.3, que es la que nos mostraba el servidor.
-
-<pre>
-root@nodolan1:/home/vagrant# ip a
-
-...
-
-3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 08:00:27:06:dc:18 brd ff:ff:ff:ff:ff:ff
-    inet6 fe80::a00:27ff:fe06:dc18/64 scope link
-       valid_lft forever preferred_lft forever
-root@nodolan1:/home/vagrant# ip a
-
-...
-
-3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 08:00:27:06:dc:18 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.100.3/24 brd 192.168.100.255 scope global dynamic eth1
-       valid_lft 290sec preferred_lft 290sec
-    inet6 fe80::a00:27ff:fe06:dc18/64 scope link
-       valid_lft forever preferred_lft forever
-root@nodolan1:/home/vagrant#
-</pre>
-
-Vemos como en la eth1, tenemos esta dirección.
-
 **Tarea 4: Configura el servidor para que funcione como router y NAT, de esta forma los clientes tengan internet. Muestra las rutas por defecto del servidor y el cliente. Realiza una prueba de funcionamiento para comprobar que el cliente tiene acceso a internet (utiliza nombres, para comprobar que tiene resolución DNS).**
 
 Ahora lo que tenemos que hacer es cambiar las puertas de enlace para que el cliente tenga acceso a internet. Esto lo conseguimos cambiando las puertas de enlace del servidor y del cliente.

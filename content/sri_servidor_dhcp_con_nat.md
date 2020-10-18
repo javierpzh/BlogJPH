@@ -102,28 +102,29 @@ vagrant@servidordhcp:~$ ip a
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
     link/ether 08:00:27:8d:c0:4d brd ff:ff:ff:ff:ff:ff
     inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic eth0
-       valid_lft 86350sec preferred_lft 86350sec
+       valid_lft 86376sec preferred_lft 86376sec
     inet6 fe80::a00:27ff:fe8d:c04d/64 scope link
        valid_lft forever preferred_lft forever
 3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 08:00:27:19:0c:cb brd ff:ff:ff:ff:ff:ff
-    inet 192.168.0.35/24 brd 192.168.0.255 scope global dynamic eth1
-       valid_lft 86355sec preferred_lft 86355sec
-    inet6 fe80::a00:27ff:fe19:ccb/64 scope link
+    link/ether 08:00:27:94:f6:bc brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.36/24 brd 192.168.0.255 scope global dynamic eth1
+       valid_lft 86382sec preferred_lft 86382sec
+    inet6 fe80::a00:27ff:fe94:f6bc/64 scope link
        valid_lft forever preferred_lft forever
 4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 08:00:27:04:09:00 brd ff:ff:ff:ff:ff:ff
+    link/ether 08:00:27:d8:2f:9b brd ff:ff:ff:ff:ff:ff
     inet 192.168.100.1/24 brd 192.168.100.255 scope global eth2
        valid_lft forever preferred_lft forever
-    inet6 fe80::a00:27ff:fe04:900/64 scope link
+    inet6 fe80::a00:27ff:fed8:2f9b/64 scope link
        valid_lft forever preferred_lft forever
+vagrant@servidordhcp:~$
 </pre>
 
 Vemos que efectivamente tenemos las interfaces que deseábamos:
 
 - **eth0:** Se genera automáticamente por VirtualBox.
 
-- **eth1:** Es la interfaz en la que hemos creado nuestra red pública en modo puente a nuestra máquina física, con la que poseemos una IP pública, **192.168.0.35**.
+- **eth1:** Es la interfaz en la que hemos creado nuestra red pública en modo puente a nuestra máquina física, con la que poseemos una IP pública, **192.168.0.36**.
 
 - **eth2:** Es la interfaz en la que hemos creado nuestra red privada, **192.168.100.1**.
 
@@ -131,13 +132,13 @@ Vemos que efectivamente tenemos las interfaces que deseábamos:
 vagrant@servidordhcp:~$ ip r
 default via 10.0.2.2 dev eth0
 10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
-192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.35
+192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.36
 192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
 vagrant@servidordhcp:~$ sudo ip r replace default via 192.168.0.1
 vagrant@servidordhcp:~$ ip r
 default via 192.168.0.1 dev eth1
 10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
-192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.35
+192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.36
 192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
 vagrant@servidordhcp:~$
 </pre>

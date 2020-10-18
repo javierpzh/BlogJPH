@@ -266,6 +266,7 @@ default via 192.168.100.1 dev eth1
 192.168.100.0/24 dev eth1 proto kernel scope link src 192.168.100.7
 </pre>
 
+Llegados a este punto solo nos faltaría tener un router que soporte el protocolo **NAT** para que los equipos de la red interna, salgan al exterior mediante la IP pública (que realmente no es pública) del router.
 Ahora debemos activar el `bit de forward` en la máquina que va a actuar como servidor. Esto va a permitir que funcione como router, o más concretamente en este caso como dispositivo de NAT.
 Se puede activar con el siguiente comando:
 

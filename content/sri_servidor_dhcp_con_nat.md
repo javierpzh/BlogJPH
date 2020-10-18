@@ -247,28 +247,11 @@ Vemos que en la lista de concesiones del servidor, que es la `/var/lib/dhcp/dhcp
 
 **Tarea 4: Configura el servidor para que funcione como router y NAT, de esta forma los clientes tengan internet. Muestra las rutas por defecto del servidor y el cliente. Realiza una prueba de funcionamiento para comprobar que el cliente tiene acceso a internet (utiliza nombres, para comprobar que tiene resolución DNS).**
 
-Ahora lo que tenemos que hacer es cambiar las puertas de enlace para que el cliente tenga acceso a internet. Esto lo conseguimos cambiando las puertas de enlace del servidor y del cliente.
+Ahora lo que tenemos que hacer es cambiar la puerta de enlace para que el cliente tenga acceso a internet.
 
-Al servidor le tenemos que poner la 192.168.0.1, que es la ruta para que acceda al router de mi casa.
-Vemos como la hemos cambiado:
+Al servidor anteriormente le hemos puesto la **192.168.0.1**, que es la ruta de enlace del router de mi casa. Ahora tendríamos que cambiar la puerta de enlace del cliente.
 
-<pre>
-root@servidordhcp:/home/vagrant# ip r
-default via 10.0.2.2 dev eth0
-10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
-192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.31
-192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
-
-root@servidordhcp:/home/vagrant# ip r replace default via 192.168.0.1
-
-root@servidordhcp:/home/vagrant# ip r
-default via 192.168.0.1 dev eth1
-10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
-192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.31
-192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
-</pre>
-
-Al cliente le vamos a poner la 192.168.100.1, que es la puerta de enlace que pertenece al servidor web, de esta manera el cliente se conecta al servidor dhcp (que está conectado con el equipo principal) y sale por su puerta de enlace hacia el equipo principal que es el que está conectado al router del proveedor de internet:
+Al cliente le vamos a poner la **192.168.100.1**, que es la puerta de enlace que pertenece al servidor web, de esta manera el cliente se conecta al servidor dhcp (que está conectado con el equipo principal) y sale por su puerta de enlace hacia el equipo principal que es el que está conectado al router del proveedor de internet:
 
 <pre>
 root@nodolan1:/home/vagrant# ip r

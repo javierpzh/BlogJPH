@@ -21,10 +21,12 @@ En este punto, como opción, el cliente envía una petición **ARP** con la dire
 En dicho estado, se colocan tres valores de temporización, que pueden ser especificados en el servidor:
 
 - **T1:** tiempo de renovación del alquiler. Si no se especifica su valor, se recurre esta fórmula, **T3 x 0'5**.
+
 - **T2:** tiempo de reenganche. Si no se especifica su valor, se recurre esta fórmula, **T3 x 0'875**.
+
 - **T3:** tiempo de duración del alquiler. Este valor se debe indicar en el servidor de manera indispensable.
 
-El DHCPACK siempre trae consigo el valor de T3. Los valores de T1 y T2 se configuran en el servidor DHCP; de no ser así, se usan los valores por defecto siguientes:
+
 
 
 

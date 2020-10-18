@@ -117,7 +117,6 @@ vagrant@servidordhcp:~$ ip a
        valid_lft forever preferred_lft forever
     inet6 fe80::a00:27ff:fed8:2f9b/64 scope link
        valid_lft forever preferred_lft forever
-vagrant@servidordhcp:~$
 </pre>
 
 Vemos que efectivamente tenemos las interfaces que deseábamos:
@@ -134,13 +133,14 @@ default via 10.0.2.2 dev eth0
 10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
 192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.36
 192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
+
 vagrant@servidordhcp:~$ sudo ip r replace default via 192.168.0.1
+
 vagrant@servidordhcp:~$ ip r
 default via 192.168.0.1 dev eth1
 10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
 192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.36
 192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
-vagrant@servidordhcp:~$
 </pre>
 
 He cambiado la puerta de enlace y he especificado que utilice la puerta de enlace de mi router físico.
@@ -185,6 +185,7 @@ Iniciamos el cliente y nos conectamos a él:
 
 <pre>
 javier@debian:~/Vagrant/Deb10-ServidorDHCP$ vagrant up nodolan1
+
 javier@debian:~/Vagrant/Deb10-ServidorDHCP$ vagrant ssh nodolan1
 Linux nodolan1 4.19.0-9-amd64 #1 SMP Debian 4.19.118-2 (2020-04-29) x86_64
 
@@ -213,7 +214,6 @@ vagrant@nodolan1:~$ ip a
        valid_lft 43115sec preferred_lft 43115sec
     inet6 fe80::a00:27ff:feaa:c676/64 scope link
        valid_lft forever preferred_lft forever
-vagrant@nodolan1:~$
 </pre>
 
 Podemos ver que efectivamente nos ha asignado la primera dirección dentro del rango que hemos puesto.
@@ -240,7 +240,6 @@ lease 192.168.100.7 {
   uid "\377'\252\306v\000\001\000\001'\037/\034\010\000'\252\306v";
   client-hostname "nodolan1";
 }
-root@servidordhcp:/home/vagrant#
 </pre>
 
 Vemos que en la lista de concesiones del servidor, que es la `/var/lib/dhcp/dhcpd.leases` nos aparece como que ha dado la IP **192.168.100.7** al cliente **nodolan1**. Si nos fijamos, podemos apreciar que la concesión se inició a las **16:51** y terminará a las **04:51**, lo que serían doce horas, como hemos establecido en el tiempo de concesión máximo.
@@ -254,17 +253,17 @@ Al servidor anteriormente le hemos puesto la **192.168.0.1**, que es la ruta de 
 Al cliente le vamos a poner la **192.168.100.1**, que es la puerta de enlace que pertenece al servidor web, de esta manera el cliente se conecta al servidor dhcp (que está conectado con el equipo principal) y sale por su puerta de enlace hacia el equipo principal que es el que está conectado al router del proveedor de internet:
 
 <pre>
-root@nodolan1:/home/vagrant# ip r
+vagrant@nodolan1:~$ ip r
 default via 10.0.2.2 dev eth0
 10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
-192.168.100.0/24 dev eth1 proto kernel scope link src 192.168.100.3
+192.168.100.0/24 dev eth1 proto kernel scope link src 192.168.100.7
 
-root@nodolan1:/home/vagrant# ip r replace default via 192.168.100.1
+vagrant@nodolan1:~$ sudo ip r replace default via 192.168.100.1
 
-root@nodolan1:/home/vagrant# ip r
+vagrant@nodolan1:~$ ip r
 default via 192.168.100.1 dev eth1
 10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
-192.168.100.0/24 dev eth1 proto kernel scope link src 192.168.100.3
+192.168.100.0/24 dev eth1 proto kernel scope link src 192.168.100.7
 </pre>
 
 Ahora debemos activar el `bit de forward` en la máquina que va a actuar como servidor. Esto va a permitir que funcione como router, o más concretamente en este caso como dispositivo de NAT.

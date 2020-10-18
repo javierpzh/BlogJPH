@@ -33,12 +33,10 @@ Cuando ocurre esto, el cliente tiene que buscar otra alternativa, por tanto, se 
 
 - Si un servidor le responde con un **DHCPACK**, el cliente renueva su alquiler, y vuelve al estado **BOUND**.
 
-- Si no ningún servidor le responde, el alquiler caduca y pasa al estado **INIT**.
+- Si ningún servidor le responde, y el **T3** expira, el alquiler caduca y pasa al estado **INIT**, eliminando toda la configuración de red.
 
-
-
-
-
+Hay que decir que el cliente no siempre debe esperar a que termine su tiempo de concesión para devolver la IP que le han asignado, sino que también puede renunciar a esta dirección voluntariamente cuando ya no le sea necesario.
+Al hacer esto, el cliente le envía un mensaje **DHCPRELEASE** al servidor para cancelar el alquiler, y esta dirección IP volverá estar disponible para otro cliente.
 
 
 ## DHCPv4

@@ -28,6 +28,14 @@ En dicho estado, se colocan tres valores de temporización, que pueden ser espec
 
 Cuando **T1** expira, el cliente cambia de estado a **RENEWING**, y negocia con el servidor un nuevo alquiler. Si el servidor decide no renovarle el alquiler, le envía un mensaje **DHCPNACK** y el cliente pasará a estado **INIT**. Si por el contrario, el servidor decide renovarle el alquiler, le enviará un mensaje **DHCPACK** que contendrá la nueva duración del alquiler, y el cliente pasará a estado **BOUND**.
 
+También existe la posibilidad de que al cliente, mientras está esperando la respuesta del servidor, le expire el **T2**, en este caso, se moverá al estado **REBINDING**.
+Cuando ocurre esto, el cliente tiene que buscar otra alternativa, por tanto, se decide a intentar contactar con cualquier servidor DHCP que se encuentre en la red, a través de un **DHCPREQUEST**:
+
+- Si un servidor le responde con un **DHCPACK**, el cliente renueva su alquiler, y vuelve al estado **BOUND**.
+
+- Si no ningún servidor le responde, el alquiler caduca y pasa al estado **INIT**.
+
+
 
 
 

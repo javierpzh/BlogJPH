@@ -20,9 +20,9 @@ En este punto, como opción, el cliente envía una petición **ARP** con la dire
 
 En dicho estado, se colocan tres valores de temporización:
 
-- T1: tiempo de renovación del alquiler
-- T2: tiempo de reenganche
-- T3: tiempo de duración del alquiler
+- **T1:** tiempo de renovación del alquiler
+- **T2:** tiempo de reenganche
+- **T3:** tiempo de duración del alquiler
 
 
 

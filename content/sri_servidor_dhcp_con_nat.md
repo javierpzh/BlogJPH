@@ -281,7 +281,26 @@ Pero esta activación se borra cuando se apaga el equipo. Para que dicha activac
 net.ipv4.ip_forward=1
 </pre>
 
-Por último, vamos a añadir, también en el servidor, esta regla a `iptables` para que se haga `SNAT` de todos los equipos de la red 192.168.100.0/24 es tan simple como:
+Es el momento de instalar el paquete `nftables`, que es el responsable de permitirnos hacer NAT.
+
+<pre>
+apt update && apt install nftables -y
+</pre>
+
+Una vez instalado, vamos a iniciar el **demonio**, además de especificar que se inicie cada vez que arranque la máquina.
+
+<pre>
+systemctl enable nftables.service
+systemctl start nftables.service
+</pre>
+
+Ahora vamos a crear una **nueva tabla de nftables**, con el nombre **nat**.
+
+<pre>
+nft add table nat
+</pre>
+
+
 
 <pre>
 iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth1 -j MASQUERADE

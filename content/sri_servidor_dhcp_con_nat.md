@@ -172,8 +172,7 @@ subnet 192.168.100.0 netmask 255.255.255.0 {
 }
 </pre>
 
-Le hemos especificado que nuestra red es la 192.168.100.0/24, de ahí la máscara puesta, el rango de direcciones va desde la 7 hasta la 220, le indicamos que la puerta de enlace sea la 192.168.100.1.
-Le he puesto un tiempo de concesión por defecto y un tiempo de concesión máximo de 12 horas (43200 segundos).
+Le hemos especificado que nuestra red es la **192.168.100.0/24**, de ahí la máscara puesta, **/24**, el rango de direcciones va **desde la 7 hasta la 220**, le indicamos que la puerta de enlace sea la **192.168.100.1**. Le he puesto un tiempo de concesión por defecto y un tiempo de concesión máximo de **12 horas** (43200 segundos). Vamos a utilizar el DNS de Google **(8.8.8.8)** y el **8.8.4.4**.
 
 Y una vez hecho esto, si realizamos un `systemctl restart isc-dhcp-server.service`, y reiniciamos el servidor dhcp, al arrancar la máquina cliente, debería recibir automáticamente una dirección IP dentro del rango que hemos puesto.
 

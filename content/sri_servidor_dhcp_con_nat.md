@@ -357,9 +357,92 @@ Desde el cliente vamos a pedirle la concesión de una dirección al servidor DHC
 sudo dhclient eth1
 </pre>
 
+Automáticamente el cliente recibe una dirección IP del servidor, en este caso la **192.168.100.8**:
 
+<pre>
+vagrant@nodolan1:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:8d:c0:4d brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic eth0
+       valid_lft 82815sec preferred_lft 82815sec
+    inet6 fe80::a00:27ff:fe8d:c04d/64 scope link
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:aa:c6:76 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.8/24 brd 192.168.100.255 scope global dynamic eth1
+       valid_lft 43072sec preferred_lft 43072sec
+    inet6 fe80::a00:27ff:feaa:c676/64 scope link
+       valid_lft forever preferred_lft forever
+</pre>
 
+Vemos como efectivamente, `tcpdump` nos ha capturado el tráfico:
 
+<pre>
+root@servidordhcp:/home/vagrant# tcpdump -vv -i eth2 port 67 and 68
+tcpdump: listening on eth2, link-type EN10MB (Ethernet), capture size 262144 bytes
+17:49:15.650780 IP (tos 0x10, ttl 128, id 0, offset 0, flags [none], proto UDP (17), length 328)
+    0.0.0.0.bootpc > 255.255.255.255.bootps: [udp sum ok] BOOTP/DHCP, Request from 08:00:27:aa:c6:76 (oui Unknown), length 300, xid 0x440e3325, Flags [none] (0x0000)
+	  Client-Ethernet-Address 08:00:27:aa:c6:76 (oui Unknown)
+	  Vendor-rfc1048 Extensions
+	    Magic Cookie 0x63825363
+	    DHCP-Message Option 53, length 1: Discover
+	    Hostname Option 12, length 8: "nodolan1"
+	    Parameter-Request Option 55, length 13:
+	      Subnet-Mask, BR, Time-Zone, Default-Gateway
+	      Domain-Name, Domain-Name-Server, Option 119, Hostname
+	      Netbios-Name-Server, Netbios-Scope, MTU, Classless-Static-Route
+	      NTP
+17:49:16.652685 IP (tos 0x10, ttl 128, id 0, offset 0, flags [none], proto UDP (17), length 328)
+    192.168.100.1.bootps > 192.168.100.8.bootpc: [udp sum ok] BOOTP/DHCP, Reply, length 300, xid 0x440e3325, Flags [none] (0x0000)
+	  Your-IP 192.168.100.8
+	  Client-Ethernet-Address 08:00:27:aa:c6:76 (oui Unknown)
+	  Vendor-rfc1048 Extensions
+	    Magic Cookie 0x63825363
+	    DHCP-Message Option 53, length 1: Offer
+	    Server-ID Option 54, length 4: 192.168.100.1
+	    Lease-Time Option 51, length 4: 43200
+	    Subnet-Mask Option 1, length 4: 255.255.255.0
+	    Default-Gateway Option 3, length 4: 192.168.100.1
+	    Domain-Name Option 15, length 11: "example.org"
+	    Domain-Name-Server Option 6, length 8: dns.google,dns.google
+17:49:16.654052 IP (tos 0x10, ttl 128, id 0, offset 0, flags [none], proto UDP (17), length 328)
+    0.0.0.0.bootpc > 255.255.255.255.bootps: [udp sum ok] BOOTP/DHCP, Request from 08:00:27:aa:c6:76 (oui Unknown), length 300, xid 0x440e3325, Flags [none] (0x0000)
+	  Client-Ethernet-Address 08:00:27:aa:c6:76 (oui Unknown)
+	  Vendor-rfc1048 Extensions
+	    Magic Cookie 0x63825363
+	    DHCP-Message Option 53, length 1: Request
+	    Server-ID Option 54, length 4: 192.168.100.1
+	    Requested-IP Option 50, length 4: 192.168.100.8
+	    Hostname Option 12, length 8: "nodolan1"
+	    Parameter-Request Option 55, length 13:
+	      Subnet-Mask, BR, Time-Zone, Default-Gateway
+	      Domain-Name, Domain-Name-Server, Option 119, Hostname
+	      Netbios-Name-Server, Netbios-Scope, MTU, Classless-Static-Route
+	      NTP
+17:49:16.656379 IP (tos 0x10, ttl 128, id 0, offset 0, flags [none], proto UDP (17), length 328)
+    192.168.100.1.bootps > 192.168.100.8.bootpc: [udp sum ok] BOOTP/DHCP, Reply, length 300, xid 0x440e3325, Flags [none] (0x0000)
+	  Your-IP 192.168.100.8
+	  Client-Ethernet-Address 08:00:27:aa:c6:76 (oui Unknown)
+	  Vendor-rfc1048 Extensions
+	    Magic Cookie 0x63825363
+	    DHCP-Message Option 53, length 1: ACK
+	    Server-ID Option 54, length 4: 192.168.100.1
+	    Lease-Time Option 51, length 4: 43200
+	    Subnet-Mask Option 1, length 4: 255.255.255.0
+	    Default-Gateway Option 3, length 4: 192.168.100.1
+	    Domain-Name Option 15, length 11: "example.org"
+	    Domain-Name-Server Option 6, length 8: dns.google,dns.google
+^C
+4 packets captured
+4 packets received by filter
+0 packets dropped by kernel
+</pre>
 
 
 #### Funcionamiento del DHCP

@@ -287,18 +287,28 @@ Es el momento de instalar de crear una nueva regla de `iptables`, que es el resp
 iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth1 -j MASQUERADE
 </pre>
 
-Ahora sí, vamos a comprobar que el cliente posee realmente conexión haciéndole un ping a `www.google.es`:
+Ahora sí, vamos a comprobar que el cliente posee realmente conexión haciéndole un ping al **servidor DNS de Google** `8.8.8.8.` y luego a `www.google.es`, para comprobar también que nos realiza la resolución de nombres:
 
 <pre>
-root@nodolan1:/home/vagrant# ping www.google.es
-PING www.google.es (216.58.209.67) 56(84) bytes of data.
-64 bytes from waw02s06-in-f3.1e100.net (216.58.209.67): icmp_seq=1 ttl=117 time=17.7 ms
-64 bytes from waw02s06-in-f3.1e100.net (216.58.209.67): icmp_seq=2 ttl=117 time=121 ms
-64 bytes from waw02s06-in-f3.1e100.net (216.58.209.67): icmp_seq=3 ttl=117 time=21.8 ms
+vagrant@nodolan1:~$ ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=116 time=17.4 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=116 time=17.7 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=116 time=19.7 ms
 ^C
---- www.google.es ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 5ms
-rtt min/avg/max/mdev = 17.712/53.625/121.410/47.959 ms
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 6ms
+rtt min/avg/max/mdev = 17.410/18.279/19.726/1.035 ms
+vagrant@nodolan1:~$ ping www.google.com
+PING www.google.com (172.217.168.164) 56(84) bytes of data.
+64 bytes from mad07s10-in-f4.1e100.net (172.217.168.164): icmp_seq=1 ttl=116 time=17.4 ms
+64 bytes from mad07s10-in-f4.1e100.net (172.217.168.164): icmp_seq=2 ttl=116 time=16.4 ms
+64 bytes from mad07s10-in-f4.1e100.net (172.217.168.164): icmp_seq=3 ttl=116 time=19.8 ms
+^C
+--- www.google.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 7ms
+rtt min/avg/max/mdev = 16.366/17.853/19.820/1.458 ms
+vagrant@nodolan1:~$
 </pre>
 
 Vemos que hace ping correctamente, por tanto ya tenemos conexión en nuestro cliente.

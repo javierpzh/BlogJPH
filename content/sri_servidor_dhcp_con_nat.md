@@ -145,10 +145,10 @@ vagrant@servidordhcp:~$
 
 He cambiado la puerta de enlace y he especificado que utilice la puerta de enlace de mi router físico.
 
-Ahora instalamos los paquetes necesarios para instalar el servidor dhcp.
+Ahora instalamos los paquetes necesarios para instalar el servidor dhcp. También es recomendable actualizar los paquetes instalados, ya que la box que estoy utilizando no es de la última versión de Debian.
 
 <pre>
-apt update && apt install isc-dhcp-server -y
+apt update && apt upgrade -y &&apt install isc-dhcp-server -y
 </pre>
 
 Una vez instalado, tenemos que editar estos dos ficheros:

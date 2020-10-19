@@ -478,13 +478,42 @@ host nodolan1 {
 
 Vemos que hemos establecido un nombre, en este caso **nodolan1**, su dirección MAC, **08:00:27:aa:c6:76**, y la IP estática que le deseámos reservar, la **192.168.100.100**.
 
+Después de editar el fichero, reiniciamos el servicio `systemctl restart isc-dhcp-server.service`, y reiniciamos el cliente para que vuelva a hacer la petición DHCP al servidor, y en este caso, debería darle la dirección que acabamos de reservarle.
 
+<pre>
+vagrant@nodolan1:~$ ip a show dev eth1
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:aa:c6:76 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.10/24 brd 192.168.100.255 scope global dynamic eth1
+       valid_lft 6sec preferred_lft 6sec
+    inet6 fe80::a00:27ff:feaa:c676/64 scope link
+       valid_lft forever preferred_lft forever
 
+vagrant@nodolan1:~$ sudo reboot
+Connection to 127.0.0.1 closed by remote host.
+Connection to 127.0.0.1 closed.
 
+javier@debian:~/Vagrant/Deb10-ServidorDHCP$ vagrant ssh nodolan1
+Linux nodolan1 4.19.0-9-amd64 #1 SMP Debian 4.19.118-2 (2020-04-29) x86_64
 
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
 
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Mon Oct 19 09:57:41 2020 from 10.0.2.2
 
+vagrant@nodolan1:~$ ip a show dev eth1
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:aa:c6:76 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.100/24 brd 192.168.100.255 scope global dynamic eth1
+       valid_lft 8sec preferred_lft 8sec
+    inet6 fe80::a00:27ff:feaa:c676/64 scope link
+       valid_lft forever preferred_lft forever
+</pre>
 
+Vemos que el cliente **nodolan1** ha recibido ahora la dirección **192.168.100.100**.
 
 #### Uso de varios ámbitos
 

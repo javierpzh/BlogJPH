@@ -526,7 +526,33 @@ Vemos que el cliente **nodolan1**, que antes tenía la dirección 192.168.100.10
 
 **Tarea 9: Entrega el nuevo fichero Vagrantfile que define el escenario.**
 
+<pre>
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
 
+Vagrant.configure("2") do |config|
+  config.vm.define :servidor do |servidor|
+        servidor.vm.box="debian/buster64"
+        servidor.vm.hostname="servidordhcp"
+        servidor.vm.network :public_network, :bridge=>"wlo"
+        servidor.vm.network :private_network, ip: "192.168.100.1", virtualbox__intnet: "red1"
+        servidor.vm.network :private_network, ip: "192.168.200.1", virtualbox__intnet: "red2"
+  end
+
+  config.vm.define :nodolan1 do |nodolan1|
+        nodolan1.vm.box="debian/buster64"
+        nodolan1.vm.hostname="nodolan1"
+        nodolan1.vm.network :private_network, virtualbox__intnet: "red1", type: "dhcp"
+  end
+
+  config.vm.define :nodolan2 do |nodolan2|
+        nodolan2.vm.box="debian/buster64"
+        nodolan2.vm.hostname="nodolan2"
+        nodolan2.vm.network :private_network, virtualbox__intnet: "red2", type: "dhcp"
+  end
+
+end
+</pre>
 
 **Tarea 10: Explica las modificaciones que has hecho en los distintos ficheros de configuración. Entrega las comprobaciones necesarias de que los dos ámbitos están funcionando.**
 

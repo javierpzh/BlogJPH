@@ -643,12 +643,13 @@ Al igual que antes, es **importante** que no quitemos la configuración de la **
 
 Ya hemos realizado todos los cambios necesarios en el servidor, por tanto reiniciamos el servicio, `systemctl restart isc-dhcp-server.service`.
 
-En la máquina servidor solo nos quedaría activar el **`bit de forward`** y de crear las nuevas reglas de `iptables`:
+En la máquina servidor solo nos quedaría activar el `bit de forward` y de crear las nuevas reglas de `iptables`:
 
 <pre>
-
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth1 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 192.168.200.0/24 -o eth1 -j MASQUERADE
 </pre>
-
 
 Iniciamos los clientes, y vamos a comprobar que tanto el cliente **nodolan1**, tanto el cliente **nodolan2**, poseen una dirección IP correspondiente a su red.
 

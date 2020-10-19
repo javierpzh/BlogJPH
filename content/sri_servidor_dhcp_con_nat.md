@@ -680,5 +680,43 @@ vagrant@nodolan1:~$ ip a
        valid_lft forever preferred_lft forever
 </pre>
 
+Vemos como este cliente posee la dirección **192.168.100.100**, la que le asignamos antes mediante una reserva.
+
+Cliente **nodolan2**:
+
+<pre>
+javier@debian:~/Vagrant/Deb10-ServidorDHCP$ vagrant ssh nodolan2
+Linux nodolan2 4.19.0-9-amd64 #1 SMP Debian 4.19.118-2 (2020-04-29) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Mon Oct 19 11:03:50 2020 from 10.0.2.2
+
+vagrant@nodolan2:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:8d:c0:4d brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic eth0
+       valid_lft 86247sec preferred_lft 86247sec
+    inet6 fe80::a00:27ff:fe8d:c04d/64 scope link
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:13:18:76 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.200.10/24 brd 192.168.200.255 scope global dynamic eth1
+       valid_lft 86248sec preferred_lft 86248sec
+    inet6 fe80::a00:27ff:fe13:1876/64 scope link
+       valid_lft forever preferred_lft forever
+</pre>
+
+Vemos como este cliente posee la dirección **192.168.200.10**, la primera del rango que le hemos asignado a esta red.
 
 **Tarea 11: Realiza las modificaciones necesarias para que los cliente de la segunda red local tengan acceso a internet. Entrega las comprobaciones necesarias.**

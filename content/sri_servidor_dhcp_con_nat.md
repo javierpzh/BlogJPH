@@ -556,6 +556,67 @@ end
 
 **Tarea 10: Explica las modificaciones que has hecho en los distintos ficheros de configuración. Entrega las comprobaciones necesarias de que los dos ámbitos están funcionando.**
 
+Antes de nada, en la máquina servidor vamos a verificar que nos ha asignado de manera correcta la nueva interfaz de red:
+
+<pre>
+vagrant@servidordhcp:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:8d:c0:4d brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic eth0
+       valid_lft 85781sec preferred_lft 85781sec
+    inet6 fe80::a00:27ff:fe8d:c04d/64 scope link
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:94:f6:bc brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.36/24 brd 192.168.0.255 scope global dynamic eth1
+       valid_lft 85802sec preferred_lft 85802sec
+    inet6 fe80::a00:27ff:fe94:f6bc/64 scope link
+       valid_lft forever preferred_lft forever
+4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:d8:2f:9b brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.1/24 brd 192.168.100.255 scope global eth2
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a00:27ff:fed8:2f9b/64 scope link
+       valid_lft forever preferred_lft forever
+5: eth3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:99:f1:0b brd ff:ff:ff:ff:ff:ff
+    inet 192.168.200.1/24 brd 192.168.200.255 scope global eth3
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a00:27ff:fe99:f10b/64 scope link
+       valid_lft forever preferred_lft forever
+</pre>
+
+Vemos como nos ha creado una nueva interfaz, **eth3** que contiene la dirección **192.168.200.1**.
+
+Tenemos que cambiar la puerta de enlace ya que si nos fijamos, nos ha añadido la regla de la nueva interfaz, pero como pasaba al crear la primera red, tenemos que reemplazar la ruta de enlace predeterminada:
+
+<pre>
+vagrant@servidordhcp:~$ ip r
+default via 10.0.2.2 dev eth0
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
+192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.36
+192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
+192.168.200.0/24 dev eth3 proto kernel scope link src 192.168.200.1
+
+vagrant@servidordhcp:~$ sudo ip r replace default via 192.168.0.1
+
+vagrant@servidordhcp:~$ ip r
+default via 192.168.0.1 dev eth1
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
+192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.36
+192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
+192.168.200.0/24 dev eth3 proto kernel scope link src 192.168.200.1
+</pre>
+
+Volvemos a asignar como predeterminada, la ruta de enlace de nuestro router doméstico.
+
+
 
 
 **Tarea 11: Realiza las modificaciones necesarias para que los cliente de la segunda red local tengan acceso a internet. Entrega las comprobaciones necesarias.**

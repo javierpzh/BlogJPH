@@ -513,7 +513,7 @@ vagrant@nodolan1:~$ ip a show dev eth1
        valid_lft forever preferred_lft forever
 </pre>
 
-Vemos que el cliente **nodolan1** ha recibido ahora la dirección **192.168.100.100**.
+Vemos que el cliente **nodolan1**, que antes tenía la dirección 192.168.100.10, ha recibido ahora la dirección **192.168.100.100**.
 
 #### Uso de varios ámbitos
 

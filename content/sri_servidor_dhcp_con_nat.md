@@ -617,7 +617,11 @@ default via 192.168.0.1 dev eth1
 
 Volvemos a asignar como predeterminada, la ruta de enlace de nuestro router doméstico.
 
+Ahora nos dirigimos a editar el fichero `/etc/default/isc-dhcp-server`, en el que tenemos que cambiar la línea `INTERFACESv4` y asignarle el valor `eth3`, de manera que quede así:
 
+<pre>
+INTERFACESv4="eth3"
+</pre>
 
 
 **Tarea 11: Realiza las modificaciones necesarias para que los cliente de la segunda red local tengan acceso a internet. Entrega las comprobaciones necesarias.**

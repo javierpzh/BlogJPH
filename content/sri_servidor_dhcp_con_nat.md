@@ -643,6 +643,13 @@ Al igual que antes, es **importante** que no quitemos la configuración de la **
 
 Ya hemos realizado todos los cambios necesarios en el servidor, por tanto reiniciamos el servicio, `systemctl restart isc-dhcp-server.service`.
 
+En la máquina servidor solo nos quedaría activar el **`bit de forward`** y de crear las nuevas reglas de `iptables`:
+
+<pre>
+
+</pre>
+
+
 Iniciamos los clientes, y vamos a comprobar que tanto el cliente **nodolan1**, tanto el cliente **nodolan2**, poseen una dirección IP correspondiente a su red.
 
 Cliente **nodolan1**:
@@ -681,6 +688,28 @@ vagrant@nodolan1:~$ ip a
 </pre>
 
 Vemos como este cliente posee la dirección **192.168.100.100**, la que le asignamos antes mediante una reserva.
+Le cambiamos la puerta de enlace:
+
+<pre>
+vagrant@nodolan1:~$ sudo ip r replace default via 192.168.100.1
+
+vagrant@nodolan1:~$ ip r
+default via 192.168.100.1 dev eth1
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
+192.168.100.0/24 dev eth1 proto kernel scope link src 192.168.100.100
+</pre>
+
+Y hacemos un ping a `www.google.es`:
+
+<pre>
+
+</pre>
+
+
+
+
+
+
 
 Cliente **nodolan2**:
 

@@ -643,6 +643,42 @@ Al igual que antes, es **importante** que no quitemos la configuración de la **
 
 Ya hemos realizado todos los cambios necesarios en el servidor, por tanto reiniciamos el servicio, `systemctl restart isc-dhcp-server.service`.
 
+Iniciamos los clientes, y vamos a comprobar que tanto el cliente **nodolan1**, tanto el cliente **nodolan2**, poseen una dirección IP correspondiente a su red.
+
+Cliente **nodolan1**:
+
+<pre>
+javier@debian:~/Vagrant/Deb10-ServidorDHCP$ vagrant ssh nodolan1
+Linux nodolan1 4.19.0-9-amd64 #1 SMP Debian 4.19.118-2 (2020-04-29) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Mon Oct 19 11:03:41 2020 from 10.0.2.2
+
+vagrant@nodolan1:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:8d:c0:4d brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic eth0
+       valid_lft 86254sec preferred_lft 86254sec
+    inet6 fe80::a00:27ff:fe8d:c04d/64 scope link
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:aa:c6:76 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.100/24 brd 192.168.100.255 scope global dynamic eth1
+       valid_lft 43055sec preferred_lft 43055sec
+    inet6 fe80::a00:27ff:feaa:c676/64 scope link
+       valid_lft forever preferred_lft forever
+</pre>
 
 
 **Tarea 11: Realiza las modificaciones necesarias para que los cliente de la segunda red local tengan acceso a internet. Entrega las comprobaciones necesarias.**

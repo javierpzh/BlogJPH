@@ -638,6 +638,7 @@ subnet 192.168.200.0 netmask 255.255.255.0 {
 
 Le hemos especificado que nuestra red es la **192.168.200.0/24**, de ahí la máscara puesta, **/24**, el rango de direcciones va **desde la 10 hasta la 220**, le indicamos que la puerta de enlace sea la **192.168.200.1**. Le he puesto un tiempo de concesión por defecto y un tiempo de concesión máximo de **24 horas** (86400 segundos). Vamos a utilizar el **DNS de Google (8.8.8.8)** y el **8.8.4.4**.
 
+Ya hemos realizado todos los cambios necesarios en el servidor, por tanto reiniciamos el servicio, `systemctl restart isc-dhcp-server.service`.
 
 
 

@@ -460,6 +460,32 @@ En la captura podemos encontrar los paquetes: **DISCOVER, OFFER, REQUEST** y **A
 
 **Tarea 8: Indica las modificaciones realizadas en los ficheros de configuración y entrega una comprobación de que el cliente ha tomado esa dirección.**
 
+Para configurar una **reserva**, tendremos que especificarla en el fichero de configuración principal del servidor DHCP. Para editar este fichero:
+
+<pre>
+nano /etc/dhcp/dhcpd.conf
+</pre>
+
+En este archivo de configuración, antes establecimos la red, sus parámetros, los tiempos, ...
+Si nos situamos dos párrafos más abajo de esta configuración, nos encontramos con unas líneas que componen la **sección de host**, que vienen comentadas y vamos a descomentar y adaptar a nuestro gusto. En mi caso:
+
+<pre>
+host nodolan1 {
+  hardware ethernet 08:00:27:aa:c6:76;
+  fixed-address 192.168.100.100;
+}
+</pre>
+
+Vemos que hemos establecido un nombre, en este caso **nodolan1**, su dirección MAC, **08:00:27:aa:c6:76**, y la IP estática que le deseámos reservar, la **192.168.100.100**.
+
+
+
+
+
+
+
+
+
 #### Uso de varios ámbitos
 
 **Modifica el escenario Vagrant para añadir una nueva red local y un nuevo nodo:**

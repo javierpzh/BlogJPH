@@ -618,9 +618,10 @@ default via 192.168.0.1 dev eth1
 Volvemos a asignar como predeterminada, la ruta de enlace de nuestro router doméstico.
 
 Ahora nos dirigimos a editar el fichero `/etc/default/isc-dhcp-server`, en el que tenemos que cambiar la línea `INTERFACESv4` y asignarle el valor `eth3`, de manera que quede así:
+Es **importante** no quitar la interfaz **eth2** ya que es la que pertenece a la **red1**, y si la quitamos estaríamos perdiendo esta configuración DHCP.
 
 <pre>
-INTERFACESv4="eth3"
+INTERFACESv4="eth2 eth3"
 </pre>
 
 Es el momento de modificar el archivo principal de configuración del servidor DHCP, el `/etc/dhcp/dhcpd.conf`. Quedaría de esta forma:
@@ -637,6 +638,8 @@ subnet 192.168.200.0 netmask 255.255.255.0 {
 </pre>
 
 Le hemos especificado que nuestra red es la **192.168.200.0/24**, de ahí la máscara puesta, **/24**, el rango de direcciones va **desde la 10 hasta la 220**, le indicamos que la puerta de enlace sea la **192.168.200.1**. Le he puesto un tiempo de concesión por defecto y un tiempo de concesión máximo de **24 horas** (86400 segundos). Vamos a utilizar el **DNS de Google (8.8.8.8)** y el **8.8.4.4**.
+
+Al igual que antes, es **importante** que no quitemos la configuración de la **red1**. Simplemente esta configuración la podemos realizar debajo.
 
 Ya hemos realizado todos los cambios necesarios en el servidor, por tanto reiniciamos el servicio, `systemctl restart isc-dhcp-server.service`.
 

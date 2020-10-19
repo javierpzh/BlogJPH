@@ -556,7 +556,8 @@ end
 
 **Tarea 10: Explica las modificaciones que has hecho en los distintos ficheros de configuración. Entrega las comprobaciones necesarias de que los dos ámbitos están funcionando.**
 
-Antes de nada, en la máquina servidor vamos a verificar que nos ha asignado de manera correcta la nueva interfaz de red:
+Este proceso es el mismo que hemos seguido al principio de la práctica con la **red1**, pero en este caso lo haremos con la **red2**.
+Primeramente, en la máquina servidor vamos a verificar que nos ha asignado de manera correcta la nueva interfaz de red:
 
 <pre>
 vagrant@servidordhcp:~$ ip a

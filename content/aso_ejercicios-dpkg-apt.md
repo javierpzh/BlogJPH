@@ -55,7 +55,6 @@ APT-Sources: http://deb.debian.org/debian buster/main amd64 Packages
 Description: secure shell (SSH) client, for secure access to remote machines
 
 N: There is 1 additional record. Please use the '-a' switch to see it
-root@buster:~#
 </pre>
 
 **6. Saca toda la información que puedas del paquete openssh-client candidato a actualizar en tu máquina.**
@@ -128,6 +127,7 @@ Conf apache2-data (2.4.38-3+deb10u4 Debian:10.6/stable, Debian-Security:10/stabl
 Conf apache2-utils (2.4.38-3+deb10u4 Debian:10.6/stable, Debian-Security:10/stable [amd64])
 Conf apache2 (2.4.38-3+deb10u4 Debian:10.6/stable, Debian-Security:10/stable [amd64])
 Conf ssl-cert (1.0.39 Debian:10.6/stable [all])
+
 root@buster:~# apt policy apache2
 apache2:
   Installed: (none)
@@ -136,7 +136,6 @@ apache2:
     2.4.38-3+deb10u4 500
       500 http://deb.debian.org/debian buster/main amd64 Packages
       500 http://security.debian.org/debian-security buster/updates/main amd64 Packages
-root@buster:~#
 </pre>
 
 Vemos que parece que ha instalado el paquete, pero en realidad no lo hace. Si os fijáis, si después lo comprobamos, no está instalado.

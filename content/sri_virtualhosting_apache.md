@@ -111,11 +111,11 @@ Lo primero que debemos hacer es modificar el fichero `apache2.conf`, que actualm
         Require all granted
 </Directory>
 
-#<Directory /srv/>
-#       Options Indexes FollowSymLinks
-#       AllowOverride None
-#       Require all granted
-#</Directory>
+\#<Directory /srv/>
+\#       Options Indexes FollowSymLinks
+\#       AllowOverride None
+\#       Require all granted
+\#</Directory>
 </pre>
 
 Esto indica que mostrará todos los ficheros de las páginas alojadas en la ruta `/var/www/`. Lo que debemos hacer es comentar estas líneas y descomentar las de abajo que hacen referencia a la ruta `/srv/` y todos sus hijos:

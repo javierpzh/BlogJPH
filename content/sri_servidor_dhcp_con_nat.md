@@ -618,11 +618,12 @@ default via 192.168.0.1 dev eth1
 Volvemos a asignar como predeterminada, la ruta de enlace de nuestro router doméstico.
 
 Ahora nos dirigimos a editar el fichero `/etc/default/isc-dhcp-server`, en el que tenemos que cambiar la línea `INTERFACESv4` y asignarle el valor `eth3`, de manera que quede así:
-Es **importante** no quitar la interfaz **eth2** ya que es la que pertenece a la **red1**, y si la quitamos estaríamos perdiendo esta configuración DHCP.
 
 <pre>
 INTERFACESv4="eth2 eth3"
 </pre>
+
+Es **importante** no quitar la interfaz **eth2** ya que es la que pertenece a la **red1**, y si la quitamos estaríamos perdiendo esta configuración DHCP.
 
 Es el momento de modificar el archivo principal de configuración del servidor DHCP, el `/etc/dhcp/dhcpd.conf`. Quedaría de esta forma:
 

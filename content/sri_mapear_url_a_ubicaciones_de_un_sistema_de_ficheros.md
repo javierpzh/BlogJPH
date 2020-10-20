@@ -4,22 +4,22 @@ Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags:
 
-**1. [Alias](http://httpd.apache.org/docs/2.4/mod/mod_alias.html#alias): Un alias me permite servir ficheros que no se encuentran en el `DocumentRoot`.**
+- **[Alias](http://httpd.apache.org/docs/2.4/mod/mod_alias.html#alias): Un alias me permite servir ficheros que no se encuentran en el `DocumentRoot`.**
 
-**2. [Options](http://httpd.apache.org/docs/2.4/mod/core.html#options): Determina para que sirven las siguientes opciones de funcionamiento:**
+- **[Options](http://httpd.apache.org/docs/2.4/mod/core.html#options): Determina para que sirven las siguientes opciones de funcionamiento:**
 
-- **All**
-- **FollowSymLinks**
-- **Indexes**
-- **MultiViews**
-- **SymLinksOwnerMatch**
-- **ExecCGI**
+  - **All**
+  - **FollowSymLinks**
+  - **Indexes**
+  - **MultiViews**
+  - **SymLinksOwnerMatch**
+  - **ExecCGI**
 
 **Determina como funciona si delante de las opciones pongo el signo + o -.**
 
-**3. La directiva [Redirect](http://httpd.apache.org/docs/2.4/mod/mod_alias.html#redirect) nos permite crear redirecciones temporaless o permanentes.**
+- **La directiva [Redirect](http://httpd.apache.org/docs/2.4/mod/mod_alias.html#redirect) nos permite crear redirecciones temporaless o permanentes.**
 
-**4. Con la directiva `ErrorDocument` se pueden crear [Respuestas de error personalizadas](http://httpd.apache.org/docs/2.4/custom-error.html). Todo esto se puede llevar a cabo en el fichero `/etc/apache2/conf-available/localized-error-pages.conf`.**
+- **Con la directiva `ErrorDocument` se pueden crear [Respuestas de error personalizadas](http://httpd.apache.org/docs/2.4/custom-error.html). Todo esto se puede llevar a cabo en el fichero `/etc/apache2/conf-available/localized-error-pages.conf`.**
 
 
 ## Ejercicios

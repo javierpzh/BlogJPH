@@ -772,7 +772,6 @@ vagrant@nodolan2:~$ ip r
 default via 192.168.200.1 dev eth1
 10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
 192.168.200.0/24 dev eth1 proto kernel scope link src 192.168.200.10
-vagrant@nodolan2:~$
 </pre>
 
 Y hacemos un ping a `www.google.es`:

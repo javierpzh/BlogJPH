@@ -120,7 +120,19 @@ Lo primero que debemos hacer es modificar el fichero `apache2.conf`, que actualm
 
 Esto indica que mostrará todos los ficheros de las páginas alojadas en la ruta `/var/www/`. Lo que debemos hacer es comentar estas líneas y descomentar las de abajo que hacen referencia a la ruta `/srv/` y todos sus hijos:
 
-![.](images/sri_virtualhosting_apache/apache2.conf_modificado.png)
+<pre>
+#<\Directory /var/www/>
+#        Options Indexes FollowSymLinks
+#        AllowOverride None
+#        Require all granted
+#<\/Directory>
+
+<\Directory /srv/>
+       Options Indexes FollowSymLinks
+       AllowOverride None
+       Require all granted
+<\/Directory>
+</pre>
 
 Ahora creamos la estructura de directorios que queremos y copiamos los mismos 'index.html' que hemos utilizado antes:
 <pre>

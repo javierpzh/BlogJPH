@@ -751,7 +751,13 @@ vagrant@nodolan2:~$ ip a
        valid_lft forever preferred_lft forever
 </pre>
 
-Vemos como este cliente posee la dirección **192.168.200.10**, la primera del rango que le hemos asignado a esta red.
+Vemos como a este cliente se le ha asignado la dirección **192.168.200.10**, la primera del rango que le hemos asignado a esta red.
+
+**Tarea 11: Realiza las modificaciones necesarias para que los cliente de la segunda red local tengan acceso a internet. Entrega las comprobaciones necesarias.**
+
+Por último, vamos a configurar el servidor y el cliente **nodnolan2** para que este tenga conectividad.
+
+Para ello, al igual que para el cliente 1, debemos añadir en el servidor una **nueva regla de `iptables`**.
 
 Le cambiamos la puerta de enlace:
 
@@ -781,5 +787,3 @@ vagrant@nodolan2:~$
 </pre>
 
 Observamos como también tenemos conexión en este segundo cliente.
-
-**Tarea 11: Realiza las modificaciones necesarias para que los cliente de la segunda red local tengan acceso a internet. Entrega las comprobaciones necesarias.**

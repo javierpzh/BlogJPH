@@ -762,8 +762,7 @@ Para ello, al igual que para el cliente 1, debemos añadir en el servidor una nu
 iptables -t nat -A POSTROUTING -s 192.168.200.0/24 -o eth1 -j MASQUERADE
 </pre>
 
-
-Le cambiamos la puerta de enlace:
+Ya solo nos quedaría cambiar la puerta de enlace del cliente:
 
 <pre>
 vagrant@nodolan2:~$ sudo ip r replace default via 192.168.200.1

@@ -16,7 +16,7 @@ Tags: mapear, web
 
     - **MultiViews:** permite mostrar una página distinta en función del idioma del navegador.
 
-    - **SymLinksOwnerMatch:**
+    - **SymLinksOwnerMatch:** sirve para que el servidor siga los enlaces simbólicos en los que el fichero o directorio final pertenezca al mismo usuario que el propio enlace.
 
     - **ExecCGI:** permite la ejecución de aplicaciones CGI en el directorio.
 

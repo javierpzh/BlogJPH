@@ -60,8 +60,6 @@ pub   rsa3072 2020-10-06 [SC] [caduca: 2022-10-06]
       17A7AC2D8A4E98A191B8A5A7E446ACC5CFC7D182
 uid                      Javier Pérez Hidalgo <reyole111@gmail.com>
 sub   rsa3072 2020-10-06 [E] [caduca: 2022-10-06]
-
-javier@debian:~$
 </pre>
 
 Antes de completar el proceso nos va a saltar una ventana donde vamos a tener que especificar nuestra contraseña.
@@ -79,8 +77,6 @@ pub   rsa3072 2020-10-06 [SC] [caduca: 2022-10-06]
       17A7AC2D8A4E98A191B8A5A7E446ACC5CFC7D182
 uid        [  absoluta ] Javier Pérez Hidalgo <reyole111@gmail.com>
 sub   rsa3072 2020-10-06 [E] [caduca: 2022-10-06]
-
-javier@debian:~/.gnupg$
 </pre>
 
 Nos muestra la fecha de creación, la fecha de caducidad, el identificador, el nombre que le hemos puesto y el correo electrónico.
@@ -123,7 +119,6 @@ Ha seleccionado este ID de usuario:
 
 ¿Cambia (N)ombre, (C)omentario, (D)irección o (V)ale/(S)alir? s
 gpg: Creación de claves cancelada.
-javier@debian:~/.gnupg$
 </pre>
 
 **3. Lista las claves privadas de tu almacén de claves.**
@@ -158,7 +153,6 @@ javier@debian:~/Descargas$ gpg --import juanluis_millan.asc
 gpg: clave 15E1B16E8352B9BB: clave pública "Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.com>" importada
 gpg: Cantidad total procesada: 1
 gpg:               importadas: 1
-javier@debian:~/Descargas$
 </pre>
 
 Él también ha incluido mi pública en su anillo de claves públicas.
@@ -185,8 +179,6 @@ pub   rsa3072 2020-10-07 [SC] [caduca: 2022-10-07]
       4C220919DD2364BED7D49C3215E1B16E8352B9BB
 uid        [desconocida] Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.com>
 sub   rsa3072 2020-10-07 [E] [caduca: 2022-10-07]
-
-javier@debian:~/.gnupg$
 </pre>
 
 Vemos que la tenemos almacenada, por tanto ya podríamos enviarnos archivos encriptados.
@@ -213,7 +205,6 @@ identificador de usuario. Si *realmente* sabe lo que está haciendo,
 puede contestar sí a la siguiente pregunta.
 
 ¿Usar esta clave de todas formas? (s/N) s
-javier@debian:~/Descargas$
 </pre>
 
 Una vez cifrado, se lo envío.
@@ -226,7 +217,6 @@ Mi compañero me ha pasado un archivo encriptado por él con mi clave pública, 
 javier@debian:~/Descargas$ ls
 hola.txt.gpg  juanluis_millan.asc     prueba_para_juanlu.txt.gpg
 Imágenes      prueba_para_juanlu.txt
-javier@debian:~/Descargas$
 </pre>
 
 **3. Tanto nosotros como nuestro compañero comprobaremos que hemos podido descifrar los mensajes recibidos respectivamente.**
@@ -238,7 +228,6 @@ javier@debian:~/Descargas$ gpg --decrypt hola.txt.gpg
 gpg: cifrado con clave de 3072 bits RSA, ID 1A5336E5C764C497, creada el 2020-10-06
       "Javier Pérez Hidalgo <reyole111@gmail.com>"
 hola compañero javier
-javier@debian:~/Descargas$
 </pre>
 
 Vemos como lo hemos descifrado correctamente y que ya podemos leer el mensaje que Juanlu me quería hacer llegar.
@@ -277,6 +266,7 @@ pub  rsa3072/15E1B16E8352B9BB 2020-10-07 Juan Luis Millan Hidalgo <juanluismilla
 ¿Eliminar esta clave del anillo? (s/N) s
 gpg: clave "Luis" no encontrada: Not found
 gpg: Luis: delete key failed: Not found
+
 javier@debian:~/.gnupg$ gpg --list-keys
 /home/javier/.gnupg/pubring.kbx
 -------------------------------
@@ -289,15 +279,15 @@ pub   rsa3072 2020-10-13 [SC] [caduca: 2022-10-13]
       B02B578465B0756DFD271C733E0DA17912B9A4F8
 uid        [desconocida] Álvaro Vaca Ferreras <avacaferreras@gmail.com>
 sub   rsa3072 2020-10-13 [E] [caduca: 2022-10-13]
-
-javier@debian:~/.gnupg$
 </pre>
 
 Aquí muestro como he borrado su clave de mi anillo. A su vez, él también ha borrado mi clave de su anillo, y ahora voy a cifrar un archivo con mi privada que él no podrá descifrar.
 
 <pre>
 javier@debian:~/Descargas$ touch prueba_para_juanlu_2.txt
+
 javier@debian:~/Descargas$ nano prueba_para_juanlu_2.txt
+
 javier@debian:~/Descargas$ gpg -r reyole111@gmail.com --encrypt prueba_para_juanlu_2.txt
 </pre>
 
@@ -307,10 +297,10 @@ Juanlu me envía un elemento cifrado llamado `hola1.txt.gpg`, voy a intentar des
 javier@debian:~/Descargas$ ls
 hola1.txt.gpg  Imágenes             prueba_para_juanlu_2.txt      prueba_para_juanlu.txt
 hola.txt.gpg   juanluis_millan.asc  prueba_para_juanlu_2.txt.gpg  prueba_para_juanlu.txt.gpg
+
 javier@debian:~/Descargas$ gpg --decrypt hola1.txt.gpg
 gpg: cifrado con clave RSA, ID 988EDEB8C4FF299C
 gpg: descifrado fallido: No secret key
-javier@debian:~/Descargas$
 </pre>
 
 Aquí vemos como me da error y me dice que no puedo descifrarlo porque no poseo la clave correcta.
@@ -379,7 +369,6 @@ Es inteligente imprimir este certificado y guardarlo en otro lugar, por
 si acaso su medio resulta imposible de leer. Pero precaución: ¡el sistema
 de impresión de su máquina podría almacenar los datos y hacerlos accesibles
 a otras personas!
-javier@debian:~/.gnupg$
 </pre>
 
 **2. Exporta tu clave pública al servidor `pgp.rediris.es` .**
@@ -389,7 +378,6 @@ El servidor `pgp.rediris.es` no funcionaba correctamente en este momento por tan
 <pre>
 javier@debian:~/.gnupg$ gpg --keyserver keys.gnupg.net --send-key 17A7AC2D8A4E98A191B8A5A7E446ACC5CFC7D182
 gpg: enviando clave E446ACC5CFC7D182 a hkp://hkps.pool.sks-keyservers.net
-javier@debian:~/.gnupg$
 </pre>
 
 **3. Borra la clave pública de alguno de tus compañeros de clase e impórtala ahora del servidor público de rediris.**
@@ -401,7 +389,6 @@ javier@debian:~/.gnupg$ gpg --recv-keys --keyserver keys.gnupg.net 4C220919DD236
 gpg: clave 15E1B16E8352B9BB: clave pública "Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.com>" importada
 gpg: Cantidad total procesada: 1
 gpg:               importadas: 1
-javier@debian:~/.gnupg$
 </pre>
 
 Vemos como la hemos importado correctamente a nuestro anillo de claves.
@@ -422,18 +409,17 @@ Generating RSA private key, 2048 bit long modulus (2 primes)
 e is 65537 (0x010001)
 Enter pass phrase for javier_perez_hidalgo_key.pem:
 Verifying - Enter pass phrase for javier_perez_hidalgo_key.pem:
+
 javier@debian:~$ ls
  Descargas    Escritorio                     Música       Vagrant           virtualenv
  Documentos   Imágenes                       Plantillas   Vídeos
  Dropbox      javier_perez_hidalgo_key.pem   Público     'VirtualBox VMs'
-javier@debian:~$
 </pre>
 
 <pre>
 javier@debian:~$ openssl rsa -in javier_perez_hidalgo_key.pem -out javier_perez_hidalgo_key.pub.pem -outform PEM -pubout
 Enter pass phrase for javier_perez_hidalgo_key.pem:
 writing RSA key
-javier@debian:~$
 </pre>
 
 Podemos ver como las hemos creado correctamente.
@@ -448,14 +434,16 @@ Voy a crear un fichero de texto, lo voy a cifrar con la pública de Juanlu y se 
 
 <pre>
 javier@debian:~/Descargas$ touch prueba_juanlu_openssl.txt
+
 javier@debian:~/Descargas$ nano prueba_juanlu_openssl.txt
+
 javier@debian:~/Descargas$ openssl rsautl -pubin -encrypt -in prueba_juanlu_openssl.txt -out prueba_juanlu_openssl.enc -inkey key.pub.pem
+
 javier@debian:~/Descargas$ ls
 hola1.txt.gpg        key.pub.pem                prueba_para_juanlu_2.txt.gpg
 hola.txt.gpg         prueba_juanlu_openssl.enc  prueba_para_juanlu.txt
 Imágenes             prueba_juanlu_openssl.txt  prueba_para_juanlu.txt.gpg
 juanluis_millan.asc  prueba_para_juanlu_2.txt
-javier@debian:~/Descargas$
 </pre>
 
 **4. Tu compañero te ha mandado un fichero cifrado, muestra el proceso para el descifrado.**
@@ -467,11 +455,12 @@ javier@debian:~/Descargas$ ls
 hola1.txt.gpg    Imágenes             prueba_juanlu_openssl.enc  prueba_para_juanlu_2.txt.gpg
 holaejemplo.enc  juanluis_millan.asc  prueba_juanlu_openssl.txt  prueba_para_juanlu.txt
 hola.txt.gpg     key.pub.pem          prueba_para_juanlu_2.txt   prueba_para_juanlu.txt.gpg
+
 javier@debian:~/Descargas$ openssl rsautl -decrypt -inkey ../javier_perez_hidalgo_key.pem -in holaejemplo.enc -out holaejemplo.dec
 Enter pass phrase for ../javier_perez_hidalgo_key.pem:
+
 javier@debian:~/Descargas$ cat holaejemplo.dec
 hola compañero javier
-javier@debian:~/Descargas$
 </pre>
 
 Vemos como lo he descifrado y he podido leer su mensaje.

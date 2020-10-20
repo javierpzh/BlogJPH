@@ -73,7 +73,6 @@ needed by Pelican.
   Do you want to upload your website using Rackspace Cloud Files? (y/N)
   Do you want to upload your website using GitHub Pages? (y/N)
 Done. Your new project is available at /home/virtualenv/Pelican/BlogJPH/
-(blogjph) javier@debian:~/virtualenv/Pelican/BlogJPH$
 </pre>
 
 Si listamos los directorios podemos ver como nos ha creado una serie de carpetas que son las que contendrán el contenido e información de nuestra web.

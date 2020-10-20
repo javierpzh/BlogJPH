@@ -18,8 +18,8 @@ Tags: mapear, web
 
     - **SymLinksOwnerMatch:**
 
-    - **ExecCGI:**
-    
+    - **ExecCGI:** permite la ejecución de aplicaciones CGI en el directorio.
+
 
       **Determina como funciona si delante de las opciones pongo el signo + o -.**
 

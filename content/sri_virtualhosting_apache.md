@@ -67,32 +67,29 @@ a2ensite departamentos.conf
 
 <pre>
 root@buster:/var/www# cat iesgn/index.html
-<html>
-	<head>
-		<title>INICIO IESGN</title>
-        </head>
-        <body>
-	     <h1>Inicio</h1>
-             <p>Pagina del Gonzalo Nazareno.</p>
-	</body>
-</html>
+<\html>
+	<\head>
+		<\title>INICIO IESGN<\/title>
+        <\/head>
+        <\body>
+	           <\h1>Inicio<\/h1>
+             <\p>Pagina del Gonzalo Nazareno.<\/p>
+	<\/body>
+<\/html>
 
-root@buster:/var/www# cat departamentos/index.html 
-<html>
-	<head>
-		<title>DEPARTAMENTOS IESGN</title>
-        </head>
-        <body>
-	     <h1>Departamentos</h1>
-             <p>Departamentos del Gonzalo Nazareno.</p>
-	     <ul>Seguridad</ul>
-	     <ul>Servicios</ul>
-	</body>
-</html>
-</pre>
-
-
-![.](images/sri_virtualhosting_apache/cat_iesgn_departamentos.png)
+root@buster:/var/www# cat departamentos/index.html
+<\html>
+	<\head>
+		<\title>DEPARTAMENTOS IESGN<\/title>
+        <\/head>
+        <\body>
+	           <\h1>Departamentos<\/h1>
+             <\p>Departamentos del Gonzalo Nazareno.<\/p>
+	     <\ul>Seguridad<\/ul>
+	     <\ul>Servicios<\/ul>
+	<\/body>
+<\/html>
+<\/pre>
 
 Para reiniciar el servicio:
 

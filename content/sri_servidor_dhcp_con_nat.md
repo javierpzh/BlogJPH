@@ -519,8 +519,8 @@ Vemos que el cliente **nodolan1**, que antes tenía la dirección 192.168.100.10
 
 **Modifica el escenario Vagrant para añadir una nueva red local y un nuevo nodo:**
 
-- **Servidor: En el servidor hay que crear una nueva interfaz.**
-- **nodo_lan2: Un cliente conectado a la segunda red local.**
+- **Servidor:** En el servidor hay que crear una nueva interfaz.
+- **nodo_lan2:** Un cliente conectado a la segunda red local.
 
 **Configura el servidor dhcp en el ordenador “servidor” para que de servicio a los ordenadores de la nueva red local, teniendo en cuenta que el tiempo de concesión sea 24 horas y que la red local tiene el direccionamiento 192.168.200.0/24.**
 

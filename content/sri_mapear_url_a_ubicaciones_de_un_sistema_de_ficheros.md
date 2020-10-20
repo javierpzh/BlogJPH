@@ -8,12 +8,12 @@ Tags: mapear, web
 
 - **[Options](http://httpd.apache.org/docs/2.4/mod/core.html#options): Determina para que sirven las siguientes opciones de funcionamiento:**
 
-    - **All**
-    - **FollowSymLinks**
-    - **Indexes**
-    - **MultiViews**
-    - **SymLinksOwnerMatch**
-    - **ExecCGI**
+    - **All:**
+    - **FollowSymLinks:**
+    - **Indexes:**
+    - **MultiViews:**
+    - **SymLinksOwnerMatch:**
+    - **ExecCGI:**
 
       **Determina como funciona si delante de las opciones pongo el signo + o -.**
 

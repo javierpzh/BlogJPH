@@ -281,7 +281,7 @@ Pero esta activación se borra cuando se apaga el equipo. Para que dicha activac
 net.ipv4.ip_forward=1
 </pre>
 
-Es el momento de instalar de crear una nueva regla de `iptables`, que es el responsable de permitirnos hacer NAT.
+Es el momento de crear una nueva regla de `iptables`, que es el responsable de permitirnos hacer NAT.
 
 <pre>
 iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth1 -j MASQUERADE

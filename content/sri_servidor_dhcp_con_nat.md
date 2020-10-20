@@ -299,6 +299,7 @@ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 --- 8.8.8.8 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 6ms
 rtt min/avg/max/mdev = 17.410/18.279/19.726/1.035 ms
+
 vagrant@nodolan1:~$ ping www.google.com
 PING www.google.com (172.217.168.164) 56(84) bytes of data.
 64 bytes from mad07s10-in-f4.1e100.net (172.217.168.164): icmp_seq=1 ttl=116 time=17.4 ms
@@ -308,7 +309,6 @@ PING www.google.com (172.217.168.164) 56(84) bytes of data.
 --- www.google.com ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 7ms
 rtt min/avg/max/mdev = 16.366/17.853/19.820/1.458 ms
-vagrant@nodolan1:~$
 </pre>
 
 Vemos que hace ping correctamente, por tanto ya tenemos conexión en nuestro cliente.

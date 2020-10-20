@@ -15,7 +15,7 @@ Tags: mapear
     - **SymLinksOwnerMatch**
     - **ExecCGI**
 
-**Determina como funciona si delante de las opciones pongo el signo + o -.**
+      **Determina como funciona si delante de las opciones pongo el signo + o -.**
 
 - **La directiva [Redirect](http://httpd.apache.org/docs/2.4/mod/mod_alias.html#redirect) nos permite crear redirecciones temporaless o permanentes.**
 

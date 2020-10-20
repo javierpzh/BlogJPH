@@ -143,7 +143,7 @@ default via 192.168.0.1 dev eth1
 192.168.100.0/24 dev eth2 proto kernel scope link src 192.168.100.1
 </pre>
 
-He cambiado la puerta de enlace y he especificado que utilice la puerta de enlace de mi router físico.
+He cambiado la puerta de enlace y he especificado que utilice la puerta de enlace de mi **router físico**.
 
 Ahora instalamos los paquetes necesarios para instalar el servidor dhcp. También es recomendable actualizar los paquetes instalados, ya que la box que estoy utilizando no es de la última versión de Debian.
 

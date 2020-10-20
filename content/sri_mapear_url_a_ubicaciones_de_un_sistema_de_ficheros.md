@@ -2,7 +2,7 @@ Title: Mapear URL a ubicaciones de un sistema de ficheros
 Date: 2020/10/20
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
-Tags: mapear
+Tags: mapear, web
 
 - **[Alias](http://httpd.apache.org/docs/2.4/mod/mod_alias.html#alias): Un alias me permite servir ficheros que no se encuentran en el `DocumentRoot`.**
 

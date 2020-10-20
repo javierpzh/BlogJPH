@@ -644,7 +644,7 @@ Al igual que antes, es **importante** que no quitemos la configuración de la **
 
 Ya hemos realizado todos los cambios necesarios en el servidor, por tanto reiniciamos el servicio, `systemctl restart isc-dhcp-server.service`.
 
-En la máquina servidor solo nos quedaría activar el `bit de forward` y de crear de nuevo la regla de `iptables`:
+En la máquina servidor solo nos quedaría activar el `bit de forward` y crear de nuevo la regla de `iptables`:
 
 <pre>
 echo 1 > /proc/sys/net/ipv4/ip_forward
@@ -753,7 +753,7 @@ vagrant@nodolan2:~$ ip a
 
 Vemos como a este cliente se le ha asignado la dirección **192.168.200.10**, la primera del rango que le hemos asignado a esta red.
 
-**Tarea 11: Realiza las modificaciones necesarias para que los cliente de la segunda red local tengan acceso a internet. Entrega las comprobaciones necesarias.**
+**Tarea 11: Realiza las modificaciones necesarias para que los clientes de la segunda red local tengan acceso a internet. Entrega las comprobaciones necesarias.**
 
 Por último, vamos a configurar el servidor y el cliente **nodolan2** para que este tenga conectividad.
 

@@ -8,7 +8,7 @@ Tags: mapear, web
 
 - **[Options](http://httpd.apache.org/docs/2.4/mod/core.html#options): Determina para que sirven las siguientes opciones de funcionamiento:**
 
-    - **All:** habilita todas las opciones, menos
+    - **All:** habilita todas las opciones, menos `MultiViews`. Es la opción por defecto si no se indica ninguna opción.
 
     - **FollowSymLinks:** sirve para seguir los enlaces simbólicos de un directorio.
 

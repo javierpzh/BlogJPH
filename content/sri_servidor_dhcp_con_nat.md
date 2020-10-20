@@ -756,10 +756,10 @@ Vemos como a este cliente se le ha asignado la dirección **192.168.200.10**, la
 
 Por último, vamos a configurar el servidor y el cliente **nodnolan2** para que este tenga conectividad.
 
-Para ello, al igual que para el cliente 1, debemos añadir en el servidor una **nueva regla de `iptables`**.
+Para ello, al igual que para el cliente 1, debemos añadir en el servidor una nueva regla de `iptables`.
 
 <pre>
-
+iptables -t nat -A POSTROUTING -s 192.168.200.0/24 -o eth1 -j MASQUERADE
 </pre>
 
 

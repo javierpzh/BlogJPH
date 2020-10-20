@@ -466,7 +466,7 @@ Para configurar una **reserva**, tendremos que especificarla en el fichero de co
 nano /etc/dhcp/dhcpd.conf
 </pre>
 
-En este archivo de configuración, antes establecimos la red, sus parámetros, los tiempos, ...
+En este archivo de configuración, antes, establecimos la red, sus parámetros, los tiempos, ...
 Si nos situamos dos párrafos más abajo de esta configuración, nos encontramos con unas líneas que componen la **sección de host**, que vienen comentadas y vamos a descomentar y adaptar a nuestro gusto. En mi caso:
 
 <pre>

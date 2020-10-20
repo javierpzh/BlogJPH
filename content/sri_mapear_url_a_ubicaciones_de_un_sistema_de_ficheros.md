@@ -8,9 +8,9 @@ Tags: mapear, web
 
 - **[Options](http://httpd.apache.org/docs/2.4/mod/core.html#options): Determina para que sirven las siguientes opciones de funcionamiento:**
 
-    - **All:**
-    - **FollowSymLinks:**
-    - **Indexes:**
+    - **All:** habilita todas las opciones, menos
+    - **FollowSymLinks:** sirve para seguir los enlaces simbólicos de un directorio.
+    - **Indexes:** sirve por si el cliente solicita un directorio en el que no exista ninguno de los ficheros especificados en `DirectoryIndex`, el servidor ofrecerá un listado de los archivos del directorio.
     - **MultiViews:**
     - **SymLinksOwnerMatch:**
     - **ExecCGI:**

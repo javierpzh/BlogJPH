@@ -89,7 +89,7 @@ root@buster:/var/www# cat departamentos/index.html
 	     <\ul>Servicios<\/ul>
 	<\/body>
 <\/html>
-<\/pre>
+</pre>
 
 Para reiniciar el servicio:
 

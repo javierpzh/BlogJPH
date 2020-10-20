@@ -754,7 +754,7 @@ Vemos como a este cliente se le ha asignado la dirección **192.168.200.10**, la
 
 **Tarea 11: Realiza las modificaciones necesarias para que los cliente de la segunda red local tengan acceso a internet. Entrega las comprobaciones necesarias.**
 
-Por último, vamos a configurar el servidor y el cliente **nodnolan2** para que este tenga conectividad.
+Por último, vamos a configurar el servidor y el cliente **nodolan2** para que este tenga conectividad.
 
 Para ello, al igual que para el cliente 1, debemos añadir en el servidor una nueva regla de `iptables`.
 

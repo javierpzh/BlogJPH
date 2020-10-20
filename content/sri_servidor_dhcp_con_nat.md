@@ -703,14 +703,18 @@ default via 192.168.100.1 dev eth1
 Y hacemos un ping a `www.google.es`:
 
 <pre>
-
+vagrant@nodolan1:~$ ping www.google.es
+PING www.google.es (216.58.209.67) 56(84) bytes of data.
+64 bytes from waw02s06-in-f67.1e100.net (216.58.209.67): icmp_seq=1 ttl=117 time=17.3 ms
+64 bytes from waw02s06-in-f67.1e100.net (216.58.209.67): icmp_seq=2 ttl=117 time=43.3 ms
+64 bytes from waw02s06-in-f67.1e100.net (216.58.209.67): icmp_seq=3 ttl=117 time=100 ms
+^C
+--- www.google.es ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 152ms
+rtt min/avg/max/mdev = 17.294/53.574/100.180/34.617 ms
 </pre>
 
-
-
-
-
-
+Y ya tendríamos conexión hacia el exterior en el primer cliente.
 
 Cliente **nodolan2**:
 
@@ -748,5 +752,34 @@ vagrant@nodolan2:~$ ip a
 </pre>
 
 Vemos como este cliente posee la dirección **192.168.200.10**, la primera del rango que le hemos asignado a esta red.
+
+Le cambiamos la puerta de enlace:
+
+<pre>
+vagrant@nodolan2:~$ sudo ip r replace default via 192.168.200.1
+
+vagrant@nodolan2:~$ ip r
+default via 192.168.200.1 dev eth1
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
+192.168.200.0/24 dev eth1 proto kernel scope link src 192.168.200.10
+vagrant@nodolan2:~$
+</pre>
+
+Y hacemos un ping a `www.google.es`:
+
+<pre>
+vagrant@nodolan2:~$ ping www.google.es
+PING www.google.es (216.58.209.67) 56(84) bytes of data.
+64 bytes from waw02s06-in-f67.1e100.net (216.58.209.67): icmp_seq=1 ttl=117 time=16.9 ms
+64 bytes from waw02s06-in-f67.1e100.net (216.58.209.67): icmp_seq=2 ttl=117 time=22.1 ms
+64 bytes from waw02s06-in-f67.1e100.net (216.58.209.67): icmp_seq=3 ttl=117 time=18.2 ms
+^C
+--- www.google.es ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 169ms
+rtt min/avg/max/mdev = 16.862/19.061/22.079/2.212 ms
+vagrant@nodolan2:~$
+</pre>
+
+Observamos como también tenemos conexión en este segundo cliente.
 
 **Tarea 11: Realiza las modificaciones necesarias para que los cliente de la segunda red local tengan acceso a internet. Entrega las comprobaciones necesarias.**

@@ -215,7 +215,7 @@ Observamos que tenemos acceso a él y a sus archivos.
 
 **4. En todo el host virtual se debe redefinir los mensajes de error de objeto no encontrado y no permitido. Para ello se crearán dos ficheros html dentro del directorio error. Entrega las modificaciones necesarias en la configuración y una comprobación del buen funcionamiento.**
 
-Creamos la carpeta error dentro del directorio `mapeo`, y creamos los archivos html, en este caso `403.html` y `404.html`.
+Creamos la carpeta `error` dentro del directorio `mapeo`, y creamos los archivos html, en este caso `403.html` y `404.html`.
 
 <pre>
 root@buster:/srv/mapeo# mkdir error

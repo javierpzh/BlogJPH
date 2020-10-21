@@ -93,7 +93,7 @@ Redirect /index.html /principal
 
 Lo que indicamos con esta opción es que al introducir la ruta `/index.html` que es la que se introduce por defecto cuando accedemos a `www.mapeo.com`, nos salte a la ruta `/principal`, que contendrá otro `index.html`.
 
-¿Te preguntarás porque he especificado `/index.html` en vez de `/` que suele ser lo más habitual, no? Pues bien, si pruebas esta opción introduciendo como url de origen `/` te redirige a un bucle infinito que tendría como resultado una ruta como esta `www.mapeo.com/principalprincipalprincipalprincipal ...`.
+¿Te preguntarás porque he especificado `/index.html` en vez de `/` que suele ser lo más habitual, no? Pues bien, si pruebas esta opción introduciendo como url de origen `/` verás que te redirige a un bucle infinito que tendría como resultado una ruta como esta `www.mapeo.com/principalprincipalprincipalprincipal ...`.
 
 Después reiniciamos el servicio:
 

@@ -148,6 +148,8 @@ Podemos acceder e inspeccionar el contenido de los archivos:
 
 **3. Si accedes a la página `www.mapeo.com/principal/documentos` se visualizarán los documentos que hay en `/home/usuario/doc`. Por lo tanto se permitirá el listado de fichero y el seguimiento de enlaces simbólicos siempre que el propietario del enlace y del fichero al que apunta sean el mismo usuario. Explica bien y pon una prueba de funcionamiento donde se vea bien el seguimiento de los enlaces simbólicos.**
 
+Lo primero que debemos hacer es crear un enlace simbólico a la carpeta `Documents` con el nombre **documentos**. Para ello:
+
 <pre>
 root@buster:/srv/mapeo/principal# ln -s ../../../home/vagrant/Documents/ documentos
 
@@ -160,6 +162,10 @@ lrwxrwxrwx 1 root root  32 Oct 21 16:13 documentos -> ../../../home/vagrant/Docu
 -rw-r--r-- 1 root root 159 Oct 21 14:39 index.old
 </pre>
 
+Vemos como nos ha creado el enlace simbólico, que apunta a la carpeta `/home/vagrant/Documents/`, cuyo propietario es **root**, que esto es muy importante, ya que el propietario del enlace simbólico y del archivo/directorio al que haga referencia tienen que ser el mismo.
+
+Ahora creo un par de ficheros y una carpeta dentro de `Documents`:
+
 <pre>
 root@buster:/home/vagrant/Documents# touch ejemplo1 ejemplo2
 
@@ -168,6 +174,8 @@ root@buster:/home/vagrant/Documents# mkdir ejemplo
 root@buster:/home/vagrant/Documents# ls
 ejemplo  ejemplo1  ejemplo2
 </pre>
+
+
 
 <pre>
 vagrant@buster:~$ sudo chown root:root Documents/
@@ -191,6 +199,5 @@ drwxr-xr-x 2 vagrant vagrant 4096 Oct 13 12:31 Videos
 <\/Directory>
 </pre>
 
-![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/video.flv)
 
 **4. En todo el host virtual se debe redefinir los mensajes de error de objeto no encontrado y no permitido. Para ello se crearan dos ficheros html dentro del directorio error. Entrega las modificaciones necesarias en la configuración y una comprobación del buen funcionamiento.**

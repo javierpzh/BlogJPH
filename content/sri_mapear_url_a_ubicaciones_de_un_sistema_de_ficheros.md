@@ -214,6 +214,7 @@ Observamos que tenemos acceso a él y a sus archivos.
 **4. En todo el host virtual se debe redefinir los mensajes de error de objeto no encontrado y no permitido. Para ello se crearán dos ficheros html dentro del directorio error. Entrega las modificaciones necesarias en la configuración y una comprobación del buen funcionamiento.**
 
 
+
 <pre>
 root@buster:/srv/mapeo# mkdir error
 
@@ -228,6 +229,14 @@ noexiste.html  nopermitido.html
 </pre>
 
 
-![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/noexiste.png)
+
+
+
+<pre>
+ErrorDocument 404 "Esta pagina no existe"
+ErrorDocument 403 "No tienes acceso a esta pagina"
+</pre>
+
+  ![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/noexiste.png)
 
 ![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/sinpermiso.png)

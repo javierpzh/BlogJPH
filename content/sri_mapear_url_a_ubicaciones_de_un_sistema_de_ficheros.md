@@ -61,14 +61,19 @@ Y dentro de este fichero, debemos indicar en la línea **DocumentRoot** que se e
 DocumentRoot /svr/mapeo
 </pre>
 
+Y creamos el enlace simbólico para activar el sitio web:
 
-
-
-
-
-
+<pre>
+a2ensite mapeo.conf
+</pre>
 
 **1. Cuando se entre a la dirección `www.mapeo.com`, se redireccionará automáticamente a `www.mapeo.com/principal`, donde se mostrará el mensaje de bienvenida.**
+
+
+
+
+
+
 
 **2. En el directorio `principal` no se permite ver la lista de los ficheros, no se permite que se siga los enlaces simbólicos y no se permite negociación de contenido. Muestra al profesor el funcionamiento. ¿Qué configuración tienes que poner?**
 

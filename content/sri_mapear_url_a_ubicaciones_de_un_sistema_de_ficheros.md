@@ -151,11 +151,14 @@ Podemos acceder e inspeccionar el contenido de los archivos:
 <pre>
 root@buster:/srv/mapeo/principal# ln -s ../../../home/vagrant/Documents/ documentos
 
-root@buster:/srv/mapeo/principal# ls
-1  2  3  documentos  index.old
+root@buster:/srv/mapeo/principal# ls -l
+total 8
+-rw-r--r-- 1 root root  19 Oct 21 15:41 1
+-rw-r--r-- 1 root root   0 Oct 21 15:15 2
+-rw-r--r-- 1 root root   0 Oct 21 15:15 3
+lrwxrwxrwx 1 root root  32 Oct 21 16:13 documentos -> ../../../home/vagrant/Documents/
+-rw-r--r-- 1 root root 159 Oct 21 14:39 index.old
 </pre>
-
-
 
 <pre>
 root@buster:/home/vagrant/Documents# touch ejemplo1 ejemplo2
@@ -166,5 +169,28 @@ root@buster:/home/vagrant/Documents# ls
 ejemplo  ejemplo1  ejemplo2
 </pre>
 
+<pre>
+vagrant@buster:~$ sudo chown root:root Documents/
+vagrant@buster:~$ ls -l
+total 32
+drwxr-xr-x 2 vagrant vagrant 4096 Oct 13 12:31 Desktop
+drwxr-xr-x 3 root    root    4096 Oct 21 16:05 Documents
+drwxr-xr-x 2 vagrant vagrant 4096 Oct 13 12:31 Downloads
+drwxr-xr-x 2 vagrant vagrant 4096 Oct 13 12:31 Music
+drwxr-xr-x 2 vagrant vagrant 4096 Oct 13 12:31 Pictures
+drwxr-xr-x 2 vagrant vagrant 4096 Oct 13 12:31 Public
+drwxr-xr-x 2 vagrant vagrant 4096 Oct 13 12:31 Templates
+drwxr-xr-x 2 vagrant vagrant 4096 Oct 13 12:31 Videos
+</pre>
+
+<pre>
+<\Directory /srv/mapeo>
+  Options Indexes SymLinksIfOwnerMatch
+  AllowOverride None
+  Require all granted
+<\/Directory>
+</pre>
+
+![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/video.flv)
 
 **4. En todo el host virtual se debe redefinir los mensajes de error de objeto no encontrado y no permitido. Para ello se crearan dos ficheros html dentro del directorio error. Entrega las modificaciones necesarias en la configuración y una comprobación del buen funcionamiento.**

@@ -48,8 +48,18 @@ En esta máquina virtual, nos dirigimos al fichero de configuración de apache, 
 
 Esto indica que mostrará todos los ficheros de las páginas alojadas en la ruta `/srv/` y sus hijos.
 
-En la ruta `/etc/apache2/sites-available/`
+En la ruta `/etc/apache2/sites-available/` creamos un fichero de configuración para esta página. Podemos copiar el fichero llamado `000-default.conf` para tener la estructura y luego lo modificamos:
 
+<pre>
+cp 000-default.conf mapeo.conf
+nano mapeo.conf
+</pre>
+
+Y dentro de este fichero, debemos indicar en la línea **DocumentRoot** que se encuentra en `/srv/mapeo`, tiene que quedar así:
+
+<pre>
+DocumentRoot /svr/mapeo
+</pre>
 
 
 

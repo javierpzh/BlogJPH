@@ -142,7 +142,9 @@ Si accedemos a `www.mapeo.com` (que nos redirige a `www.mapeo.com/principal`), n
 
 ![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/indexes.png)
 
+Podemos acceder e inspeccionar el contenido de los archivos:
 
+![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/fichero1.png)
 
 **3. Si accedes a la página `www.mapeo.com/principal/documentos` se visualizarán los documentos que hay en `/home/usuario/doc`. Por lo tanto se permitirá el listado de fichero y el seguimiento de enlaces simbólicos siempre que el propietario del enlace y del fichero al que apunta sean el mismo usuario. Explica bien y pon una prueba de funcionamiento donde se vea bien el seguimiento de los enlaces simbólicos.**
 

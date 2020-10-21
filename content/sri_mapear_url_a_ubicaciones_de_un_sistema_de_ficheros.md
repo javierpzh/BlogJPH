@@ -226,3 +226,8 @@ root@buster:/srv/mapeo/error# nano noexiste.html
 root@buster:/srv/mapeo/error# ls
 noexiste.html  nopermitido.html
 </pre>
+
+
+![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/noexiste.png)
+
+![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/sinpermiso.png)

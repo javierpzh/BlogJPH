@@ -93,19 +93,15 @@ Redirect /index.html /principal
 
 Lo que indicamos con esta opción es que al introducir la ruta `/index.html` que es la que se introduce por defecto cuando accedemos a `www.mapeo.com`, nos salte a la ruta `/principal`, que contendrá otro `index.html`.
 
+¿Te preguntarás porque he especificado `/index.html` en vez de `/` que suele ser lo más habitual, no? Pues bien, si pruebas esta opción introduciendo como url de origen `/` te redirige a un bucle infinito que tendría como resultado una ruta como esta `www.mapeo.com/principalprincipalprincipalprincipal ...`.
+
 Después reiniciamos el servicio:
 
 <pre>
 systemctl restart apache2
 </pre>
 
-Y si ahora, accedemos a `www.mapeo.com`, automáticamente nos redirige y nos muestra la página `www.mapeo.com/principal`.
-
-
-
-
-
-
+Si ahora, accedemos a `www.mapeo.com`, automáticamente nos redirige y nos muestra la página `www.mapeo.com/principal`.
 
 **2. En el directorio `principal` no se permite ver la lista de los ficheros, no se permite que se siga los enlaces simbólicos y no se permite negociación de contenido. Muestra al profesor el funcionamiento. ¿Qué configuración tienes que poner?**
 

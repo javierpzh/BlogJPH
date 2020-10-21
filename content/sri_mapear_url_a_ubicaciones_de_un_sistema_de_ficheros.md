@@ -148,4 +148,11 @@ Podemos acceder e inspeccionar el contenido de los archivos:
 
 **3. Si accedes a la página `www.mapeo.com/principal/documentos` se visualizarán los documentos que hay en `/home/usuario/doc`. Por lo tanto se permitirá el listado de fichero y el seguimiento de enlaces simbólicos siempre que el propietario del enlace y del fichero al que apunta sean el mismo usuario. Explica bien y pon una prueba de funcionamiento donde se vea bien el seguimiento de los enlaces simbólicos.**
 
+
+
+
+
+
+
+
 **4. En todo el host virtual se debe redefinir los mensajes de error de objeto no encontrado y no permitido. Para ello se crearan dos ficheros html dentro del directorio error. Entrega las modificaciones necesarias en la configuración y una comprobación del buen funcionamiento.**

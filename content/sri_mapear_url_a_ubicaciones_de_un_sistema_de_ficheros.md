@@ -36,6 +36,12 @@ Tags: mapear, web
 
 Antes de nada voy a decir que en mi caso voy a utilizar [Vagrant](https://www.vagrantup.com/) y como software de virtualización [VirtualBox](https://www.virtualbox.org/).
 
+En el archivo **VagrantFile**, debemos realizar una configuración para crear una red privada, mediante la cuál poder visualizar los sitios webs fuera de la máquina virtual. Yo he utilizado esta configuración:
+
+<pre>
+config.vm.network "private_network", ip: "192.168.33.10"
+</pre>
+
 En esta máquina virtual, nos dirigimos al fichero de configuración de apache, `/etc/apache2/apache2.conf`, y debemos asegurarnos que tenemos descomentadas las siguientes líneas, que por defecto vienen comentadas:
 
 <pre>
@@ -66,6 +72,14 @@ Y creamos el enlace simbólico para activar el sitio web:
 <pre>
 a2ensite mapeo.conf
 </pre>
+
+Por último para visualizar este sitio web, en nuestro ordenador principal, deberíamos añadir a nuestro `/etc/hosts` la siguiente línea:
+
+<pre>
+192.168.33.10   www.mapeo.com
+</pre>
+
+Y ya podríamos ver la página web.
 
 **1. Cuando se entre a la dirección `www.mapeo.com`, se redireccionará automáticamente a `www.mapeo.com/principal`, donde se mostrará el mensaje de bienvenida.**
 

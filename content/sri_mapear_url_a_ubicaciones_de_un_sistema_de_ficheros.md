@@ -48,6 +48,14 @@ En esta máquina virtual, nos dirigimos al fichero de configuración de apache, 
 
 Esto indica que mostrará todos los ficheros de las páginas alojadas en la ruta `/srv/` y sus hijos.
 
+En la ruta `/etc/apache2/sites-available/`
+
+
+
+
+
+
+
 
 
 **1. Cuando se entre a la dirección `www.mapeo.com`, se redireccionará automáticamente a `www.mapeo.com/principal`, donde se mostrará el mensaje de bienvenida.**

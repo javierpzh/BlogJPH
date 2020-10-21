@@ -151,14 +151,14 @@ Podemos acceder e inspeccionar el contenido de los archivos:
 Lo primero que debemos hacer es crear un enlace simbólico a la carpeta `Documents` con el nombre **documentos**. Para ello:
 
 <pre>
-root@buster:/srv/mapeo/principal# ln -s ../../../home/vagrant/Documents/ documentos
+root@buster:/srv/mapeo/principal# ln -s /home/vagrant/Documents/ documentos
 
 root@buster:/srv/mapeo/principal# ls -l
 total 8
 -rw-r--r-- 1 root root  19 Oct 21 15:41 1
 -rw-r--r-- 1 root root   0 Oct 21 15:15 2
 -rw-r--r-- 1 root root   0 Oct 21 15:15 3
-lrwxrwxrwx 1 root root  32 Oct 21 16:13 documentos -> ../../../home/vagrant/Documents/
+lrwxrwxrwx 1 root root  32 Oct 21 16:13 documentos -> /home/vagrant/Documents/
 -rw-r--r-- 1 root root 159 Oct 21 14:39 index.old
 </pre>
 
@@ -211,4 +211,18 @@ Vemos que nos muestra un directorio `documentos`, y si accedemos a él:
 
 Observamos que tenemos acceso a él y a sus archivos.
 
-**4. En todo el host virtual se debe redefinir los mensajes de error de objeto no encontrado y no permitido. Para ello se crearan dos ficheros html dentro del directorio error. Entrega las modificaciones necesarias en la configuración y una comprobación del buen funcionamiento.**
+**4. En todo el host virtual se debe redefinir los mensajes de error de objeto no encontrado y no permitido. Para ello se crearán dos ficheros html dentro del directorio error. Entrega las modificaciones necesarias en la configuración y una comprobación del buen funcionamiento.**
+
+
+<pre>
+root@buster:/srv/mapeo# mkdir error
+
+root@buster:/srv/mapeo# cd error/
+
+root@buster:/srv/mapeo/error# nano nopermitido.html
+
+root@buster:/srv/mapeo/error# nano noexiste.html
+
+root@buster:/srv/mapeo/error# ls
+noexiste.html  nopermitido.html
+</pre>

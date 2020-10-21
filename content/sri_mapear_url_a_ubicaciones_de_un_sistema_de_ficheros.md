@@ -235,13 +235,13 @@ ErrorDocument 404 /error/404.html
 ErrorDocument 403 /error/403.html
 </pre>
 
-Reiniamos el servicio:
+Reiniciamos el servicio:
 
 <pre>
 systemctl restart apache2
 </pre>
 
-Si introducimos una ruta que no existe nos sale este error:
+Si introducimos una ruta que no existe, nos sale este error 404:
 
 ![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/noexiste.png)
 

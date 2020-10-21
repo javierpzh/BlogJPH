@@ -107,6 +107,16 @@ Si ahora, accedemos a `www.mapeo.com`, automáticamente nos redirige y nos muest
 
 **2. En el directorio `principal` no se permite ver la lista de los ficheros, no se permite que se siga los enlaces simbólicos y no se permite negociación de contenido. Muestra al profesor el funcionamiento. ¿Qué configuración tienes que poner?**
 
+Para ver la lista de ficheros de una dirección, cuando no se encuentre una archivo `index.html`, hay que añadir la opción **Indexes** al fichero de configuración de la página.
+
+Antes vamos a renombrar el `index.html` para que no lo encuentre y nos muestre esta lista. Además voy a crear unos ficheros para que nos los muestre:
+
+<pre>
+root@buster:/srv/mapeo/principal# mv index.html index.old
+
+root@buster:/srv/mapeo/principal# touch 1 2 3
+</pre>
+
 
 
 <pre>
@@ -116,6 +126,16 @@ Si ahora, accedemos a `www.mapeo.com`, automáticamente nos redirige y nos muest
   Require all granted
 <\/Directory>
 </pre>
+
+
+<pre>
+systemctl restart apache2
+</pre>
+
+Si ahora accedemos a `www.mapeo.com` (que nos redirige a `www.mapeo.com/principal`), nos muestra esta salida del sitio web.
+
+![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/indexes.png)
+
 
 
 **3. Si accedes a la página `www.mapeo.com/principal/documentos` se visualizarán los documentos que hay en `/home/usuario/doc`. Por lo tanto se permitirá el listado de fichero y el seguimiento de enlaces simbólicos siempre que el propietario del enlace y del fichero al que apunta sean el mismo usuario. Explica bien y pon una prueba de funcionamiento donde se vea bien el seguimiento de los enlaces simbólicos.**

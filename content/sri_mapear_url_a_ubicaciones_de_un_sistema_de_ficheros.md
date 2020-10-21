@@ -83,6 +83,22 @@ Y ya podríamos ver la página web.
 
 **1. Cuando se entre a la dirección `www.mapeo.com`, se redireccionará automáticamente a `www.mapeo.com/principal`, donde se mostrará el mensaje de bienvenida.**
 
+Para automatizar una redirección, debemos configurarla en el archivo de configuración de la página, en este caso, se encuentra en `/etc/apache2/sites-available/mapeo.conf`.
+
+Debemos introducir la siguiente línea:
+
+<pre>
+Redirect /index.html /principal
+</pre>
+
+Después reiniciamos el servicio:
+
+<pre>
+systemctl restart apache2
+</pre>
+
+Y si ahora, accedemos a `www.mapeo.com`, automáticamente nos redirige y nos muestra la página `www.mapeo.com/principal`.
+
 
 
 

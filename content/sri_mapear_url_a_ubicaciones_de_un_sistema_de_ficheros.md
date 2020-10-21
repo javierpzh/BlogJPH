@@ -131,7 +131,7 @@ Ya podemos añadir la opción **Indexes** a nuestro `mapeo.conf`. Tenemos que a�
 <\/Directory>
 </pre>
 
-Lo que estamos configurando aquí es que el directorio `/srv/mapeo` y sus hijos, si no encuentra el `index.html`, muestren la lista de archivos del directorio en el que se encuentre.
+Lo que estamos configurando aquí es que el directorio `/srv/mapeo` y sus hijos, si no encuentran el `index.html`, muestren la lista de archivos del directorio en el que se encuentre.
 
 Reiniciamos el servicio:
 

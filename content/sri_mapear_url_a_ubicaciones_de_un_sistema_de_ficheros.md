@@ -34,6 +34,22 @@ Tags: mapear, web
 
 **Crea un nuevo host virtual que es accedido con el nombre `www.mapeo.com`, cuyo `DocumentRoot` sea `/srv/mapeo`.**
 
+Antes de nada voy a decir que en mi caso voy a utilizar [Vagrant](https://www.vagrantup.com/) y como software de virtualización [VirtualBox](https://www.virtualbox.org/).
+
+En esta máquina virtual, nos dirigimos al fichero de configuración de apache, `/etc/apache2/apache2.conf`, y debemos asegurarnos que tenemos descomentadas las siguientes líneas, que por defecto vienen comentadas:
+
+<pre>
+<\Directory /srv/>
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+<\/Directory>
+</pre>
+
+Esto indica que mostrará todos los ficheros de las páginas alojadas en la ruta `/srv/` y sus hijos.
+
+
+
 **1. Cuando se entre a la dirección `www.mapeo.com`, se redireccionará automáticamente a `www.mapeo.com/principal`, donde se mostrará el mensaje de bienvenida.**
 
 **2. En el directorio `principal` no se permite ver la lista de los ficheros, no se permite que se siga los enlaces simbólicos y no se permite negociación de contenido. Muestra al profesor el funcionamiento. ¿Qué configuración tienes que poner?**

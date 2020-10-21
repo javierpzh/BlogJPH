@@ -213,30 +213,40 @@ Observamos que tenemos acceso a él y a sus archivos.
 
 **4. En todo el host virtual se debe redefinir los mensajes de error de objeto no encontrado y no permitido. Para ello se crearán dos ficheros html dentro del directorio error. Entrega las modificaciones necesarias en la configuración y una comprobación del buen funcionamiento.**
 
-
+Creamos la carpeta error dentro del directorio `mapeo`, y creamos los archivos html, en este caso `403.html` y `404.html`.
 
 <pre>
 root@buster:/srv/mapeo# mkdir error
 
 root@buster:/srv/mapeo# cd error/
 
-root@buster:/srv/mapeo/error# nano nopermitido.html
+root@buster:/srv/mapeo/error# nano 403.html
 
-root@buster:/srv/mapeo/error# nano noexiste.html
+root@buster:/srv/mapeo/error# nano 404.html
 
 root@buster:/srv/mapeo/error# ls
-noexiste.html  nopermitido.html
+403.html  404.html
 </pre>
 
-
-
-
+Nos movemos al fichero de configuración de la web y añadimos las siguientes líneas:
 
 <pre>
-ErrorDocument 404 "Esta pagina no existe"
-ErrorDocument 403 "No tienes acceso a esta pagina"
+ErrorDocument 404 /error/404.html
+ErrorDocument 403 /error/403.html
 </pre>
 
-  ![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/noexiste.png)
+Reiniamos el servicio:
+
+<pre>
+systemctl restart apache2
+</pre>
+
+Si introducimos una ruta que no existe nos sale este error:
+
+![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/noexiste.png)
+
+Vemos que sale el archivo html que hemos configurado para este error. Para el error 403, es decir, cuando intentamos acceder a una ruta a la que no tenemos permisos suficientes:
 
 ![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/sinpermiso.png)
+
+Nos muestra este error.

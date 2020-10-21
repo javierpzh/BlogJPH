@@ -23,7 +23,9 @@ Tags: mapear, web
 
       **Determina como funciona si delante de las opciones pongo el signo + o -.**
 
-      Si pones el signo **+** delante de una opción, habilitas su funcionamiento. Si pones el signo **-** la deshabilitas.
+      Si pones el signo **+** delante de una opción, habilitas su funcionamiento, pero ojo, estás añadiendo esta opción a las demás opciones que haya configuradas antes. Si pones el signo **-** deshabilitas una opción de las que en un principio estaban habilitadas.
+
+      Es decir, esto es interesante a la hora de establecer, por ejemplo, que opciones tiene un directorio hijo a diferencia de su padre.
 
 - **La directiva [Redirect](http://httpd.apache.org/docs/2.4/mod/mod_alias.html#redirect) nos permite crear redirecciones temporaless o permanentes.**
 
@@ -109,7 +111,7 @@ Si ahora, accedemos a `www.mapeo.com`, automáticamente nos redirige y nos muest
 
 <pre>
 <\Directory /srv/mapeo>
-  Options Indexes FollowSymLinks
+  Options Indexes
   AllowOverride None
   Require all granted
 <\/Directory>

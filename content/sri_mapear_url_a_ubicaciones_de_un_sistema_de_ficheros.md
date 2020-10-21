@@ -180,6 +180,7 @@ El propietario de la carpeta `Documents` es **vagrant**, y como he comentado ant
 
 <pre>
 vagrant@buster:~$ sudo chown root:root Documents/
+
 vagrant@buster:~$ ls -l
 total 32
 drwxr-xr-x 2 vagrant vagrant 4096 Oct 13 12:31 Desktop

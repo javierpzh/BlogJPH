@@ -23,6 +23,8 @@ Tags: mapear, web
 
       **Determina como funciona si delante de las opciones pongo el signo + o -.**
 
+      Si pones el signo **+** delante de una opción, habilitas su funcionamiento. Si pones el signo **-** la deshabilitas.
+
 - **La directiva [Redirect](http://httpd.apache.org/docs/2.4/mod/mod_alias.html#redirect) nos permite crear redirecciones temporaless o permanentes.**
 
 - **Con la directiva `ErrorDocument` se pueden crear [Respuestas de error personalizadas](http://httpd.apache.org/docs/2.4/custom-error.html). Todo esto se puede llevar a cabo en el fichero `/etc/apache2/conf-available/localized-error-pages.conf`.**

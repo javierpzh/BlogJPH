@@ -63,7 +63,7 @@ cp 000-default.conf mapeo.conf
 nano mapeo.conf
 </pre>
 
-Y dentro de este fichero, establecemos la url de la web en el apartado **ServerName**, e indicamos en la línea **DocumentRoot**, que se encuentra en `/srv/mapeo`, tiene que quedar así:
+Y dentro de este fichero, establecemos la url de la web en el apartado **ServerName**, e indicamos en la línea **DocumentRoot**, que se encuentra en `/srv/mapeo`. Tiene que quedar así:
 
 <pre>
 ServerName www.mapeo.com

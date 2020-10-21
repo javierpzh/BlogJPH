@@ -175,7 +175,7 @@ root@buster:/home/vagrant/Documents# ls
 ejemplo  ejemplo1  ejemplo2
 </pre>
 
-
+El propietario de la carpeta `Documents` es **vagrant**, y como he comentado antes, tiene que ser el mismo propietario que el enlace simbólico, por tanto, voy a cambiar el propietario de este directorio:
 
 <pre>
 vagrant@buster:~$ sudo chown root:root Documents/
@@ -191,6 +191,8 @@ drwxr-xr-x 2 vagrant vagrant 4096 Oct 13 12:31 Templates
 drwxr-xr-x 2 vagrant vagrant 4096 Oct 13 12:31 Videos
 </pre>
 
+Vemos como hemos cambiado el propietario de la carpeta, y en este punto solo nos quedaría añadir la opción **SymLinksIfOwnerMatch** al fichero de configuración de la web:
+
 <pre>
 <\Directory /srv/mapeo>
   Options Indexes SymLinksIfOwnerMatch
@@ -198,6 +200,11 @@ drwxr-xr-x 2 vagrant vagrant 4096 Oct 13 12:31 Videos
   Require all granted
 <\/Directory>
 </pre>
+
+Si accedemos a `www.mapeo.com` (que nos redirige a `www.mapeo.com/principal`), nos muestra esta salida del sitio web.
+
+![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/ejercicio3.png)
+
 
 
 **4. En todo el host virtual se debe redefinir los mensajes de error de objeto no encontrado y no permitido. Para ello se crearan dos ficheros html dentro del directorio error. Entrega las modificaciones necesarias en la configuración y una comprobación del buen funcionamiento.**

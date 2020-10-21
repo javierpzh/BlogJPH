@@ -91,6 +91,8 @@ Debemos introducir la siguiente línea:
 Redirect /index.html /principal
 </pre>
 
+Lo que indicamos con esta opción es que al introducir la ruta `/index.html` que es la que se introduce por defecto cuando accedemos a `www.mapeo.com`, nos salte a la ruta `/principal`, que contendrá otro `index.html`.
+
 Después reiniciamos el servicio:
 
 <pre>

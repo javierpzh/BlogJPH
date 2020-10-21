@@ -45,10 +45,10 @@ Esta tarea consiste en instalar un **CMS** de tecnología **PHP** en un servidor
 
 - **La mayoría de los CMS tienen la posibilidad de mandar correos electrónicos (por ejemplo para notificar una nueva versión, notificar un comentario,…)**
 
-- **Instala un servidor de correo electrónico en tu servidor. debes configurar un servidor relay de correo, para ello en el fichero `/etc/postfix/main.cf`, debes poner la siguiente línea:a**
+- **Instala un servidor de correo electrónico en tu servidor. debes configurar un servidor relay de correo, para ello en el fichero `/etc/postfix/main.cf`, debes poner la siguiente línea:**
 
 <pre>
-**relayhost = babuino-smtp.gonzalonazareno.org**
+relayhost = babuino-smtp.gonzalonazareno.org
 </pre>
 
 - **Configura alguno de los CMS para utilizar tu servidor de correo y realiza una prueba de funcionamiento.**

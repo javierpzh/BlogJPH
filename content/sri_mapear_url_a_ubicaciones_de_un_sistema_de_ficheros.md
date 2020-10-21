@@ -115,9 +115,12 @@ Antes vamos a renombrar el `index.html` para que no lo encuentre y nos muestre e
 root@buster:/srv/mapeo/principal# mv index.html index.old
 
 root@buster:/srv/mapeo/principal# touch 1 2 3
+
+root@buster:/srv/mapeo/principal# ls
+1  2  3  index.old
 </pre>
 
-
+Ya podemos añadir la opción **Indexes** a nuestro `mapeo.conf`. Tenemos que añadir un bloque como el siguiente:
 
 <pre>
 <\Directory /srv/mapeo>
@@ -127,12 +130,15 @@ root@buster:/srv/mapeo/principal# touch 1 2 3
 <\/Directory>
 </pre>
 
+Lo que estamos configurando aquí es que el directorio `/srv/mapeo` y sus hijos, si no encuentra el `index.html`, muestren la lista de archivos del directorio en el que se encuentre.
+
+Reiniciamos el servicio:
 
 <pre>
 systemctl restart apache2
 </pre>
 
-Si ahora accedemos a `www.mapeo.com` (que nos redirige a `www.mapeo.com/principal`), nos muestra esta salida del sitio web.
+Si accedemos a `www.mapeo.com` (que nos redirige a `www.mapeo.com/principal`), nos muestra esta salida del sitio web.
 
 ![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/indexes.png)
 

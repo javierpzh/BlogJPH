@@ -180,7 +180,37 @@ Vagrant.configure("2") do |config|
 end
 </pre>
 
-Cambiamos la puerta de enlace al servidor para que tenga conectividad a intenter a través de la máquina anfitriona:
+Confirmamos que en la máquina **servidor** se han creado correctamente las interfaces de red pública y privada:
+
+<pre>
+vagrant@servidor:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:8d:c0:4d brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic eth0
+       valid_lft 86000sec preferred_lft 86000sec
+    inet6 fe80::a00:27ff:fe8d:c04d/64 scope link
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:5b:f1:f9 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.38/24 brd 192.168.0.255 scope global dynamic eth1
+       valid_lft 86009sec preferred_lft 86009sec
+    inet6 fe80::a00:27ff:fe5b:f1f9/64 scope link
+       valid_lft forever preferred_lft forever
+4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:28:bb:c2 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.150.1/24 brd 192.168.150.255 scope global eth2
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a00:27ff:fe28:bbc2/64 scope link
+       valid_lft forever preferred_lft forever
+</pre>
+
+Podemos ver como la IP pública que posee es la **192.168.0.38** y la IP privada la **192.168.150.1**. Pero aún no hemos cambiado la puerta de enlace para que tenga conectividad a internet a través de la máquina anfitriona:
 
 <pre>
 vagrant@servidor:~$ sudo ip r replace default via 192.168.0.1
@@ -192,7 +222,33 @@ default via 192.168.0.1 dev eth1
 192.168.150.0/24 dev eth2 proto kernel scope link src 192.168.150.1
 </pre>
 
-Cambiamos la puerta de enlace al cliente para que tenga conectividad a la máquina servidor:
+Ya sí puede acceder a mi router doméstico y por tanto posee conexión.
+
+Vamos a hacer lo mismo para la máquina **cliente**. Vemos las interfaces de red:
+
+<pre>
+vagrant@cliente:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:8d:c0:4d brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic eth0
+       valid_lft 85783sec preferred_lft 85783sec
+    inet6 fe80::a00:27ff:fe8d:c04d/64 scope link
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:93:04:32 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.150.10/24 brd 192.168.150.255 scope global eth1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a00:27ff:fe93:432/64 scope link
+       valid_lft forever preferred_lft forever
+</pre>
+
+Nos ha creado bien la dirección IP de la red privada, que es la **192.168.150.10**. Cambiamos la puerta de enlace para que tenga conexión a la máquina servidor:
 
 <pre>
 vagrant@cliente:~$ sudo ip r replace default via 192.168.150.1
@@ -203,6 +259,7 @@ default via 192.168.150.1 dev eth1
 192.168.150.0/24 dev eth1 proto kernel scope link src 192.168.150.10
 </pre>
 
+Y ahora sí, tenemos configuradas las dos máquinas correctamente y podemos empezar a realizar los procedimientos.
 
 **1. A la URL `departamentos.iesgn.org/intranet` sólo se debe tener acceso desde el cliente de la red local, y no se pueda acceder desde la anfitriona por la red pública. A la URL `departamentos.iesgn.org/internet`, sin embargo, sólo se debe tener acceso desde la anfitriona por la red pública, y no desde la red local.**
 

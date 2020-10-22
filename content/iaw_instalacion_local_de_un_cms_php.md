@@ -304,6 +304,9 @@ Terminada la instalación llega el momento de configurar la identidad del sitio 
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/configuraridentidadsitio.png)
 
+Completamos según nuestras preferencias y guardamos y listo:
+
+![.](images/iaw_instalacion_local_de_un_cms_php/paginainiciodrupal.png)
 
 
 - **Realiza una configuración mínima de la aplicación (Cambia la plantilla, crea algún contenido, …)**

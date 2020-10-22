@@ -106,6 +106,11 @@ installation should now be secure.
 Thanks for using MariaDB!
 </pre>
 
+Nos quedaría por instalar el servidor web **Apache**, que lo vamos a instalar con este comando:
+
+<pre>
+apt install -y apache2 apache2-utils
+</pre>
 
 
 

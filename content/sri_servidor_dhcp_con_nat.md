@@ -452,11 +452,11 @@ En la captura podemos encontrar los paquetes: **DISCOVER, OFFER, REQUEST** y **A
 
 **Tarea 6: Los clientes toman una configuración, y a continuación apagamos el servidor dhcp. ¿qué ocurre con el cliente windows? ¿Y con el cliente linux?**
 
-Puedes ver el vídeo aquí: https://youtu.be/FR5I2eHsJxc
+Puedes ver el vídeo aquí: https://www.youtube.com/watch?v=FR5I2eHsJxc
 
 **Tarea 7: Los clientes toman una configuración, y a continuación cambiamos la configuración del servidor dhcp (por ejemplo el rango). ¿qué ocurriría con un cliente windows? ¿Y con el cliente linux?**
 
-Puedes ver el vídeo aquí: https://youtu.be/b-qLm7r5uzw
+Puedes ver el vídeo aquí: https://www.youtube.com/watch?v=b-qLm7r5uzw
 
 #### Reservas
 

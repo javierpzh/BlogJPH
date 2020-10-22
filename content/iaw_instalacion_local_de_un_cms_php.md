@@ -121,10 +121,10 @@ systemctl enable apache2
 Nos quedaría por instalar el **servidor PHP**, para ello:
 
 <pre>
-
+apt install php libapache2-mod-php php-cli php-mysql -y
 </pre>
 
-
+También he instalado las **librerías php** de *apache* y *mysql*.
 
 
 **Entrega un documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**

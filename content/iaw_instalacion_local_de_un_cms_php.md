@@ -250,7 +250,7 @@ Drupal puede hacer uso del sistema de reescritura de URLs, basado en el módulo 
 
 <pre>
 a2enmod expires headers rewrite
-<pre>
+</pre>
 
 Generamos un fichero de configuración para Drupal que permita el uso de archivos `.htaccess` que configuren el módulo `Rewrite`:
 

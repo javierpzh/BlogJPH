@@ -210,6 +210,39 @@ Además de crear el usuario **javier**, le he concedido todos los permisos para 
 
 - **Descarga la versión que te parezca más oportuna de Drupal y realiza la instalación.**
 
+Para descargar **Drupal** en su última versión, que en este momento es la **9**, nos dirigimos a la [página oficial de Drupal](https://www.drupal.org/download). Copiamos la ruta del enlace de descarga del archivo, en mi caso prefiero el *tar.gz* y lo descargamos en nuestro servidor LAMP con la utilidad `wget`.
+
+<pre>
+root@buster:~# wget https://www.drupal.org/download-latest/tar.gz
+--2020-10-22 18:29:12--  https://www.drupal.org/download-latest/tar.gz
+Resolving www.drupal.org (www.drupal.org)... 151.101.134.217
+Connecting to www.drupal.org (www.drupal.org)|151.101.134.217|:443... connected.
+HTTP request sent, awaiting response... 302 Moved Temporarily
+Location: https://ftp.drupal.org/files/projects/drupal-9.0.7.tar.gz [following]
+--2020-10-22 18:29:13--  https://ftp.drupal.org/files/projects/drupal-9.0.7.tar.gz
+Resolving ftp.drupal.org (ftp.drupal.org)... 151.101.134.217
+Connecting to ftp.drupal.org (ftp.drupal.org)|151.101.134.217|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 16863270 (16M) [application/octet-stream]
+Saving to: ‘tar.gz’
+
+tar.gz                    100%[=====================================>]  16.08M  28.9MB/s    in 0.6s    
+
+2020-10-22 18:29:14 (28.9 MB/s) - ‘tar.gz’ saved [16863270/16863270]
+
+root@buster:~# tar xf tar.gz -C /var/www/html/
+
+root@buster:~# ln -s /var/www/html/drupal-9.0.7/ /var/www/html/drupal
+
+root@buster:~# chown -R www-data:www-data /var/www/html/drupal/
+</pre>
+
+
+
+
+<pre>
+apt install php-pear phpmyadmin -y
+</pre>
 
 
 - **Realiza una configuración mínima de la aplicación (Cambia la plantilla, crea algún contenido, …)**

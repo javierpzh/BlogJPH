@@ -194,6 +194,9 @@ Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
+MariaDB [(none)]> CREATE DATABASE drupal;
+Query OK, 1 row affected (0.002 sec)
+
 MariaDB [(none)]> CREATE USER 'drupal' IDENTIFIED BY 'contraseña';
 Query OK, 0 rows affected (0.001 sec)
 
@@ -286,6 +289,22 @@ systemctl restart apache2
 En este punto ya podemos hacer uso del **Instalador Web de Drupal**. Accedemos a la web que hemos configurado antes con la URL `http://www.javierperezhidalgo-drupal.org` y le añadimos `/drupal`, y se nos abrirá el instalador.
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/instaladorwebdrupal.png)
+
+- Seleccionamos el idioma deseado.
+- Seleccionamos el perfil de la instalación, en mi caso **estándar**.
+- Configuramos la base de datos. En mi caso:
+    - **Tipo:** MySQL
+    - **Nombre de la base de datos:** drupal
+    - **Nombre de usuario de la base de datos:** drupal
+    - **Contraseña de la base de datos:**
+
+![.](images/iaw_instalacion_local_de_un_cms_php/instalandodrupal.png)
+
+Terminada la instalación llega el momento de configurar la identidad del sitio y crear el usuario administrador.
+
+![.](images/iaw_instalacion_local_de_un_cms_php/configuraridentidadsitio.png)
+
+
 
 - **Realiza una configuración mínima de la aplicación (Cambia la plantilla, crea algún contenido, …)**
 

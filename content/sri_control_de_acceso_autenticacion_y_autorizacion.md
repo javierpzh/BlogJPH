@@ -80,7 +80,7 @@ La autentificación tipo digest soluciona el problema de la transferencia de con
 <pre>
 a2enmod auth_digest
 /etc/init.d/apache2 restart
-<pre>
+</pre>
 
 Luego incluimos una sección como esta en el fichero de configuración de nuestro Virtual Host:
 

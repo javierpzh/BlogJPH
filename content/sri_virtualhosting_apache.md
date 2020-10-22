@@ -20,7 +20,7 @@ Queremos construir en nuestro servidor web apache dos sitios web con las siguien
 
 Para conseguir estos dos sitios virtuales debes seguir los siguientes pasos:
 
-1. **Los ficheros de configuración de los sitios webs se encuentran en el directorio `/etc/apache2/sites-available`, por defecto hay dos ficheros, uno se llama `000-default.conf` que es la configuración del sitio web por defecto. Necesitamos tener dos ficheros para realizar la configuración de los dos sitios virtuales, para ello vamos a copiar el fichero `000-default.conf`:**
+**1. Los ficheros de configuración de los sitios webs se encuentran en el directorio `/etc/apache2/sites-available`, por defecto hay dos ficheros, uno se llama `000-default.conf` que es la configuración del sitio web por defecto. Necesitamos tener dos ficheros para realizar la configuración de los dos sitios virtuales, para ello vamos a copiar el fichero `000-default.conf`:**
 
 <pre>
 cd /etc/apache2/sites-available
@@ -31,7 +31,7 @@ cp 000-default.conf departamentos.conf
 De esta manera tendremos un fichero llamado `iesgn.conf` para realizar la configuración del sitio web `www.iesgn.org`, y otro llamado `departamentos.conf` para el sitio web `www.departamentosgn.org`.
 
 
-2. **Modificamos los ficheros `iesgn.conf` y `departamentos.conf`, para indicar el nombre que vamos a usar para acceder al host virtual `(ServerName)` y el directorio de trabajo (`DocumentRoot`).**
+**2. Modificamos los ficheros `iesgn.conf` y `departamentos.conf`, para indicar el nombre que vamos a usar para acceder al host virtual `(ServerName)` y el directorio de trabajo (`DocumentRoot`).**
 
 Cambiamos las líneas de ServerName y DocumentRoot de forma que queden así:
 
@@ -49,7 +49,7 @@ ServerName www.departamentosgn.org
 DocumentRoot /var/www/departamentos
 </pre>
 
-3. **No es suficiente crear los ficheros de configuración de cada sitio web, es necesario crear un enlace simbólico a estos ficheros dentro del directorio `/etc/apache2/sites-enabled`, para ello:**
+**3. No es suficiente crear los ficheros de configuración de cada sitio web, es necesario crear un enlace simbólico a estos ficheros dentro del directorio `/etc/apache2/sites-enabled`, para ello:**
 
 <pre>
 a2ensite iesgn
@@ -63,7 +63,7 @@ a2ensite iesgn.conf
 a2ensite departamentos.conf
 </pre>
 
-4. **Crea los directorios y los ficheros 'index.html' necesarios en `/var/www` y reiniciamos el servicio.**
+**4. Crea los directorios y los ficheros 'index.html' necesarios en `/var/www` y reiniciamos el servicio.**
 
 <pre>
 root@buster:/var/www# cat iesgn/index.html
@@ -97,7 +97,7 @@ Para reiniciar el servicio:
 systemctl restart apache2.service
 </pre>
 
-5. **Para terminar lo único que tendremos que hacer es cambiar el fichero hosts en los clientes y poner dos nuevas líneas donde se haga la conversión entre los dos nombre de dominio y la dirección IP del servidor.**
+**5. Para terminar lo único que tendremos que hacer es cambiar el fichero hosts en los clientes y poner dos nuevas líneas donde se haga la conversión entre los dos nombre de dominio y la dirección IP del servidor.**
 
 Hay que decir que si queremos visualizar las dos páginas webs en nuestro cliente, debemos configurar una red privada.
 

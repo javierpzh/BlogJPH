@@ -20,6 +20,8 @@ De manera predeterminada, el fichero de configuración `000-default` tiene este 
 VirtualHost *:80
 </pre>
 
+Vemos que el control de acceso es de cualquier dirección, mientras el puerto establecido sea el 80.
+
 ## Autentificación básica
 
 El servidor web Apache puede acompañarse de distintos módulos para proporcionar diferentes modelos de autenticación. La primera forma que veremos es la más simple. Usamos para ello el módulo de autenticación básica que viene instalada “de serie” con cualquier Apache: [mod_auth_basic](http://httpd.apache.org/docs/2.4/es/mod/mod_auth_basic.html). La configuración que tenemos que añadir en el fichero de definición del Virtual Host a proteger podría ser algo así:
@@ -65,19 +67,19 @@ La principal ventaja de este método es su sencillez. Sus inconvenientes: lo inc
 
 Cuando desde el cliente intentamos acceder a una URL que esta controlada por el método de autentificación básico:
 
-1. El servidor manda una respuesta del tipo 401 HTTP/1.1 401 Authorization Required con una cabecera WWW-Authenticate al cliente de la forma:
+**1. El servidor manda una respuesta del tipo *401 HTTP/1.1 401 Authorization Required* con una cabecera `WWW-Authenticate` al cliente de la forma:**
 
 <pre>
 WWW-Authenticate: Basic realm="Palabra de paso"
 </pre>
 
-2. El navegador del cliente muestra una ventana emergente preguntando por el nombre de usuario y contraseña y cuando se rellena se manda una petición con una cabecera Authorization
+**2. El navegador del cliente muestra una ventana emergente preguntando por el nombre de usuario y contraseña y cuando se rellena se manda una petición con una cabecera `Authorization`**:
 
 <pre>
 Authorization: Basic am9zZTpqb3Nl
 </pre>
 
-En realidad la información que se manda es el nombre de usuario y la contraseña en base 64, que se puede decodificar fácilmente con cualquier [utilidad](https://www.base64decode.org/).
+En realidad la información que se manda es el nombre de usuario y la contraseña en **base 64**, que se puede decodificar fácilmente con cualquier [utilidad](https://www.base64decode.org/).
 
 ## Autentificación tipo digest
 

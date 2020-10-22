@@ -112,6 +112,12 @@ Nos quedaría por instalar el servidor web **Apache**, que lo vamos a instalar c
 apt install -y apache2 apache2-utils
 </pre>
 
+Y vamos a habilitar su servicio en cada inicio del sistema con:
+
+<pre>
+systemctl enable apache2
+</pre>
+
 
 
 **Entrega un documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**

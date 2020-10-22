@@ -25,7 +25,7 @@ end
 </pre>
 
 - **Instala en esa máquina virtual toda la pila LAMP**
-- **Entrega un documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**
+- **Entrega una documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**
 
 Una vez tenemos la máquina lista, vamos a instalar el **servidor LAMP**. Antes de nada vamos a preparar la máquina para la instalación:
 
@@ -151,6 +151,32 @@ La página web tiene este aspecto:
 ##Tarea 2: Instalación de drupal en mi servidor local
 
 - **Configura el servidor web con virtual hosting para que el CMS sea accesible desde la dirección: `www.nombrealumno-drupal.org`.**
+
+En la ruta `/etc/apache2/sites-available/` creamos un fichero de configuración para esta página. Podemos copiar el fichero llamado `000-default.conf` para tener la estructura y luego lo modificamos:
+
+<pre>
+cp 000-default.conf javierperezhidalgo-drupal.conf
+nano javierperezhidalgo-drupal.conf
+</pre>
+
+Dentro de este fichero, establecemos la url de la web en el apartado **ServerName**. Tiene que quedar así:
+
+<pre>
+ServerName www.javierperezhidalgo-drupal.org
+</pre>
+
+Creamos el enlace simbólico para activar el sitio web:
+
+<pre>
+a2ensite javierperezhidalgo-drupal.conf
+</pre>
+
+Reinicamos el servicio del servidor apache:
+
+<pre>
+systemctl restart apache2
+</pre>
+
 - **Crea un usuario en la base de datos para trabajar con la base de datos donde se van a guardar los datos del CMS.**
 - **Descarga la versión que te parezca más oportuna de Drupal y realiza la instalación.**
 - **Realiza una configuración mínima de la aplicación (Cambia la plantilla, crea algún contenido, …)**
@@ -167,7 +193,7 @@ La página web tiene este aspecto:
 - **Desinstala el servidor de base de datos en el servidor principal.**
 - **Realiza los cambios de configuración necesario en drupal para que la página funcione.**
 
-**Entrega un documentación resumida donde expliques los pasos fundamentales para realizar esta tarea. En este momento, muestra al profesor la aplicación funcionando en local.**
+**Entrega una documentación resumida donde expliques los pasos fundamentales para realizar esta tarea. En este momento, muestra al profesor la aplicación funcionando en local.**
 
 ## Tarea 4: Instalación de otro CMS PHP
 

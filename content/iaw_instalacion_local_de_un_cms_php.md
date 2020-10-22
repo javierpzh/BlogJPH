@@ -133,7 +133,7 @@ Activamos el módulo de **PHP** de **Apache**.
 a2enmod php7.3
 </pre>
 
-Y por último introducimos las siguiente líneas en forma de script PHP:
+Y por último introducimos la siguiente línea en forma de script PHP, que lo único que hace es crear un fichero llamado `phpinfo.php` dentro del directorio `/var/www/html`, en el que escribe **<?php phpinfo(); ?>**.
 
 `echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/phpinfo.php`
 

@@ -37,7 +37,7 @@ El método de autentificación básica se indica en la directiva [AuthType](http
 El fichero de contraseñas se genera mediante la utilidad `htpasswd`. Su sintaxis es bien sencilla. Para añadir un nuevo usuario al fichero operamos así:
 
 <pre>
-$ htpasswd /etc/apache2/claves/passwd.txt carolina
+htpasswd /etc/apache2/claves/passwd.txt carolina
 New password:
 Re-type new password:
 Adding password for user carolina
@@ -84,26 +84,32 @@ a2enmod auth_digest
 
 Luego incluimos una sección como esta en el fichero de configuración de nuestro Virtual Host:
 
-  <Directory "/var/www/miweb/privado">
-     AuthType Digest
-     AuthName "dominio"
-     AuthUserFile "/etc/claves/digest.txt"
-     Require valid-user
-  </Directory>
+<pre>
+<\Directory "/var/www/miweb/privado">
+  AuthType Digest
+  AuthName "dominio"
+  AuthUserFile "/etc/claves/digest.txt"
+  Require valid-user
+<\/Directory>
+</pre>
 
-Como vemos, es muy similar a la configuración necesaria en la autenticación básica. La directiva AuthName que en la autenticación básica se usaba para mostrar un mensaje en la ventana que pide el usuario y contraseña, ahora se usa también para identificar un nombre de dominio (realm) que debe de coincidir con el que aparezca después en el fichero de contraseñas. Dicho esto, vamos a generar dicho fichero con la utilidad htdigest:
+Como vemos, es muy similar a la configuración necesaria en la autenticación básica. La directiva `AuthName` que en la autenticación básica se usaba para mostrar un mensaje en la ventana que pide el usuario y contraseña, ahora se usa también para identificar un nombre de dominio (realm) que debe de coincidir con el que aparezca después en el fichero de contraseñas. Dicho esto, vamos a generar dicho fichero con la utilidad htdigest:
 
-$ htdigest -c /etc/claves/digest.txt dominio josemaria
+<pre>
+htdigest -c /etc/claves/digest.txt dominio josemaria
 Adding password for josemaria in realm dominio.
 New password:
 Re-type new password:
+</pre>
 
-Al igual que ocurría con htpassword, la opción -c (create) sólo debemos de usarla al crear el fichero con el primer usuario. Luego añadiremos los restantes usuarios prescindiendo de ella. A continuación vemos el fichero que se genera después de añadir un segundo usuario:
+Al igual que ocurría con `htpassword`, la opción `-c` (create) sólo debemos de usarla al crear el fichero con el primer usuario. Luego añadiremos los restantes usuarios prescindiendo de ella. A continuación vemos el fichero que se genera después de añadir un segundo usuario:
 
+<pre>
 josemaria:dominio:8d6af4e11e38ee8b51bb775895e11e0f
 gemma:dominio:dbd98f4294e2a49f62a486ec070b9b8c
+</pre>
 
-Cómo funciona este método de autentificación
+### Cómo funciona este método de autentificación
 
 Cuando desde el cliente intentamos acceder a una URL que esta controlada por el método de autentificación de tipo digest:
 

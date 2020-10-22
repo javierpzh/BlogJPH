@@ -246,6 +246,42 @@ También necesitamos algunas extensiones de PHP:
 apt install php-apcu php-gd php-mbstring php-uploadprogress php-xml -y
 </pre>
 
+Drupal puede hacer uso del sistema de reescritura de URLs, basado en el módulo `Rewrite` de Apache, que no está activado por defecto. Activamos el módulo `Rewrite` y otros que puede usar Drupal:
+
+<pre>
+a2enmod expires headers rewrite
+<pre>
+
+Generamos un fichero de configuración para Drupal que permita el uso de archivos `.htaccess` que configuren el módulo `Rewrite`:
+
+<pre>
+root@buster:/var/www/html# cd /etc/apache2/conf-available/
+
+root@buster:/etc/apache2/conf-available# nano drupal.conf
+</pre>
+
+El archivo `drupal.conf` tiene que contener:
+
+<pre>
+<\Directory /var/www/html/drupal>
+        AllowOverride all
+<\/Directory>
+</pre>
+
+Activamos la configuración:
+
+<pre>
+root@buster:/etc/apache2/conf-available# a2enconf drupal.conf
+Enabling conf drupal.
+To activate the new configuration, you need to run:
+  systemctl reload apache2
+</pre>
+
+Reiniciamos el servidor web:
+
+<pre>
+systemctl restart apache2
+</pre>
 
 - **Realiza una configuración mínima de la aplicación (Cambia la plantilla, crea algún contenido, …)**
 

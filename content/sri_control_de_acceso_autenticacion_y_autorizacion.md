@@ -267,6 +267,25 @@ Vamos a instalar **apache**. Para esto, antes de nada voy a actualizar los paque
 apt update && apt upgrade -y && apt autoremove -y && apt install apache2 -y
 </pre>
 
+
+
+Creamos el archivo de configuración del sitio web. Podemos copiar el fichero por defecto, que se encuentra en `/etc/apache2/sites-available` y a partir de éste, personalizar el nuevo:
+
+<pre>
+root@servidor:/etc/apache2/sites-available# cp 000-default.conf departamentos.conf
+
+root@servidor:/etc/apache2/sites-available# nano departamentos.conf
+</pre>
+
+Editamos las siguientes líneas del fichero `departamentos.conf`:
+
+<pre>
+ServerName www.departamentos.iesgn.org
+DocumentRoot /var/www/departamentos
+</pre>
+
+
+
 **1. A la URL `departamentos.iesgn.org/intranet` sólo se debe tener acceso desde el cliente de la red local, y no se pueda acceder desde la anfitriona por la red pública. A la URL `departamentos.iesgn.org/internet`, sin embargo, sólo se debe tener acceso desde la anfitriona por la red pública, y no desde la red local.**
 
 

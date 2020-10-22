@@ -25,6 +25,7 @@ end
 </pre>
 
 - **Instala en esa máquina virtual toda la pila LAMP**
+- **Entrega un documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**
 
 Una vez tenemos la máquina lista, vamos a instalar el **servidor LAMP**. Antes de nada vamos a preparar la máquina para la instalación:
 
@@ -134,13 +135,9 @@ a2enmod php7.3
 
 Y por último introducimos las siguiente líneas en forma de script PHP:
 
-<pre>
-echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/phpinfo.php
-</pre>
+`echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/phpinfo.php`
 
 Hemos terminado nuestro servidor LAMP.
-
-**Entrega un documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**
 
 ##Tarea 2: Instalación de drupal en mi servidor local
 

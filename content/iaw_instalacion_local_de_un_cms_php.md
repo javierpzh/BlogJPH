@@ -138,6 +138,15 @@ Y por último introducimos la siguiente línea en forma de script PHP, que lo ú
 `echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/phpinfo.php`
 
 Hemos terminado nuestro servidor LAMP.
+Si nos dirigimos a nuestra máquina anfitriona y añadimos al `/etc/hosts` esta línea, en el navegador podremos visualizar la web `www.javierperezhidalgo-drupal.org`:
+
+<pre>
+192.168.30.15   www.javierperezhidalgo-drupal.org
+</pre>
+
+La página web tiene este aspecto:
+
+![.](images/iaw_instalacion_local_de_un_cms_php/phpinfo.png)
 
 ##Tarea 2: Instalación de drupal en mi servidor local
 

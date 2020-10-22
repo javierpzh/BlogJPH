@@ -154,7 +154,7 @@ Una vez que lo recibe el servidor, puede hacer la misma operación y comprobar s
 
 ## Ejercicios
 
-**Crea un escenario en Vagrant o reutiliza uno de los que tienes en ejercicios anteriores, que tenga un servidor con una red publica, y una privada y un cliente conectada a la red privada. Crea un host virtual `departamentos.iesgn.org`.**
+**Crea un escenario en Vagrant o reutiliza uno de los que tienes en ejercicios anteriores, que tenga un servidor con una red pública, y una privada y un cliente conectado a la red privada. Crea un host virtual `departamentos.iesgn.org`.**
 
 He creado este fichero Vagrantfile para definir el escenario:
 

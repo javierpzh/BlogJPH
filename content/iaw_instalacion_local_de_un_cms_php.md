@@ -126,6 +126,8 @@ apt install php libapache2-mod-php php-cli php-mysql -y
 
 También he instalado las **librerías php** de *apache* y *mysql*.
 
+Activamos el módulo de **PHP** de **Apache**.
+
 
 **Entrega un documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**
 

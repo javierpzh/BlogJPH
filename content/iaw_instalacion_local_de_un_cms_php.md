@@ -184,26 +184,27 @@ La página web tiene este aspecto:
 Para crear un usario en MySQL:
 
 <pre>
-root@buster:~# mysql -u root -p
+root@buster:/var/www/html# mysql -u root -p
 Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 58
+Your MariaDB connection id is 65
 Server version: 10.3.25-MariaDB-0+deb10u1 Debian 10
 
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-MariaDB [(none)]> CREATE USER 'javier' IDENTIFIED BY 'contraseña';
+MariaDB [(none)]> CREATE USER 'drupal' IDENTIFIED BY 'contraseña';
 Query OK, 0 rows affected (0.001 sec)
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON * . * TO 'javier';
-Query OK, 0 rows affected (0.001 sec)
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON drupal.* TO 'drupal';
+Query OK, 0 rows affected (0.000 sec)
 
 MariaDB [(none)]> FLUSH PRIVILEGES;
 Query OK, 0 rows affected (0.001 sec)
 
-MariaDB [(none)]>
+MariaDB [(none)]> exit
+Bye
 </pre>
 
 Además de crear el usuario **javier**, le he concedido todos los permisos para tener acceso y control sobre todas las tablas y bases de datos.
@@ -237,11 +238,12 @@ root@buster:~# ln -s /var/www/html/drupal-9.0.7/ /var/www/html/drupal
 root@buster:~# chown -R www-data:www-data /var/www/html/drupal/
 </pre>
 
+Hemos descargado **Drupal** y lo hemos descomprimido en la ruta en la que se encuentra el sitio web. Además conviene crear un enlace simbólico sobre el directorio de Drupal para tener un nombre sin números de versión. Y como Drupal necesita escribir en su propio directorio, lo hemos otorgado como dueño del directorio y su contenido al servidor web.
 
-
+También necesitamos algunas extensiones de PHP:
 
 <pre>
-apt install php-pear phpmyadmin -y
+apt install php-apcu php-gd php-mbstring php-uploadprogress php-xml -y
 </pre>
 
 

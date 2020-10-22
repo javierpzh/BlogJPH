@@ -34,42 +34,53 @@ El método de autentificación básica se indica en la directiva [AuthType](http
 - Por último, en [AuthName](http://httpd.apache.org/docs/2.4/es/mod/core.html#authname) personalizamos el mensaje que aparecerá en la ventana del navegador que nos pedirá la contraseña.
 - Para controlar el control de acceso, es decir, que usuarios tienen permiso para obtener el recurso utilizamos las siguientes directivas: [AuthGroupFile](http://httpd.apache.org/docs/2.4/es/mod/mod_authz_groupfile.html#authgroupfile), [Require user](http://httpd.apache.org/docs/2.4/es/mod/core.html#require), [Require group](http://httpd.apache.org/docs/2.4/es/mod/core.html#require).
 
-El fichero de contraseñas se genera mediante la utilidad htpasswd. Su sintaxis es bien sencilla. Para añadir un nuevo usuario al fichero operamos así:
+El fichero de contraseñas se genera mediante la utilidad `htpasswd`. Su sintaxis es bien sencilla. Para añadir un nuevo usuario al fichero operamos así:
 
+<pre>
 $ htpasswd /etc/apache2/claves/passwd.txt carolina
 New password:
 Re-type new password:
 Adding password for user carolina
+</pre>
 
-Para crear el fichero de contraseñas con la introducción del primer usuario tenemos que añadir la opción -c (create) al comando anterior. Si por error la seguimos usando al incorporar nuevos usuarios borraremos todos los anteriores, así que cuidado con esto. Las contraseñas, como podemos ver a continuación, no se guardan en claro. Lo que se almacena es el resultado de aplicar una función hash:
+Para crear el fichero de contraseñas con la introducción del primer usuario tenemos que añadir la opción `-c` (create) al comando anterior. Si por error la seguimos usando al incorporar nuevos usuarios borraremos todos los anteriores, así que cuidado con esto. Las contraseñas, como podemos ver a continuación, no se guardan en claro. Lo que se almacena es el resultado de aplicar una [función hash](https://es.wikipedia.org/wiki/Funci%C3%B3n_hash):
 
+<pre>
 josemaria:rOUetcAKYaliE
 carolina:hmO6V4bM8KLdw
 alberto:9RjyKKYK.xyhk
+</pre>
 
 Para denegar el acceso a algún usuario basta con que borremos la línea correspondiente al mismo. No es necesario que le pidamos a Apache que vuelva a leer su configuración cada vez que hagamos algún cambio en este fichero de contraseñas.
 
-La principal ventaja de este método es su sencillez. Sus inconvenientes: lo incómodo de delegar la generación de nuevos usuarios en alguien que no sea un administrador de sistemas o de hacer un front-end para que sea el propio usuario quien cambie su contraseña. Y, por supuesto, que dichas contraseñas viajan en claro a través de la red. Si queremos evitar esto último podemos crear una instancia Apache con SSL.
+La principal ventaja de este método es su sencillez. Sus inconvenientes: lo incómodo de delegar la generación de nuevos usuarios en alguien que no sea un administrador de sistemas o de hacer un front-end para que sea el propio usuario quien cambie su contraseña. Y, por supuesto, que dichas contraseñas viajan en claro a través de la red. Si queremos evitar esto último podemos crear una [instancia Apache con SSL](https://blog.unlugarenelmundo.es/2008/09/23/chuletillas-y-viii-apache-2-con-ssl-en-debian/).
 
-Cómo funciona este método de autentificación
+### Cómo funciona este método de autentificación
 
 Cuando desde el cliente intentamos acceder a una URL que esta controlada por el método de autentificación básico:
 
-    El servidor manda una respuesta del tipo 401 HTTP/1.1 401 Authorization Required con una cabecera WWW-Authenticate al cliente de la forma:
+1. El servidor manda una respuesta del tipo 401 HTTP/1.1 401 Authorization Required con una cabecera WWW-Authenticate al cliente de la forma:
 
-     WWW-Authenticate: Basic realm="Palabra de paso"
+<pre>
+WWW-Authenticate: Basic realm="Palabra de paso"
+</pre>
 
-    El navegador del cliente muestra una ventana emergente preguntando por el nombre de usuario y contraseña y cuando se rellena se manda una petición con una cabecera Authorization
+2. El navegador del cliente muestra una ventana emergente preguntando por el nombre de usuario y contraseña y cuando se rellena se manda una petición con una cabecera Authorization
 
-     Authorization: Basic am9zZTpqb3Nl
+<pre>
+Authorization: Basic am9zZTpqb3Nl
+</pre>
 
-En realidad la información que se manda es el nombre de usuario y la contraseña en base 64, que se puede decodificar fácilmente con cualquier utilidad.
-Autentificación tipo digestPermalink
+En realidad la información que se manda es el nombre de usuario y la contraseña en base 64, que se puede decodificar fácilmente con cualquier [utilidad](https://www.base64decode.org/).
 
-La autentificación tipo digest soluciona el problema de la transferencia de contraseñas en claro sin necesidad de usar SSL. El procedimiento, como veréis, es muy similar al tipo básico pero cambiando algunas de las directivas y usando la utilidad htdigest en lugar de htpassword para crear el fichero de contraseñas. El módulo de autenticación necesario suele venir con Apache pero no habilitado por defecto. Para activarlo usamos la utilidad a2enmod y, a continuación reiniciamos el servidor Apache:
+## Autentificación tipo digest
 
-$ a2enmod auth_digest
-$ /etc/init.d/apache2 restart
+La autentificación tipo digest soluciona el problema de la transferencia de contraseñas en claro sin necesidad de usar SSL. El procedimiento, como veréis, es muy similar al tipo básico pero cambiando algunas de las directivas y usando la utilidad `htdigest` en lugar de `htpassword` para crear el fichero de contraseñas. El módulo de autenticación necesario suele venir con Apache pero no habilitado por defecto. Para activarlo usamos la utilidad `a2enmod` y, a continuación reiniciamos el servidor Apache:
+
+<pre>
+a2enmod auth_digest
+/etc/init.d/apache2 restart
+<pre>
 
 Luego incluimos una sección como esta en el fichero de configuración de nuestro Virtual Host:
 

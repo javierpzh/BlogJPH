@@ -106,7 +106,7 @@ installation should now be secure.
 Thanks for using MariaDB!
 </pre>
 
-Nos quedaría por instalar el servidor web **Apache**, que lo vamos a instalar con este comando:
+Procedemos a instalar el servidor web **Apache**, que lo vamos a instalar con este comando:
 
 <pre>
 apt install -y apache2 apache2-utils
@@ -117,6 +117,13 @@ Y vamos a habilitar su servicio en cada inicio del sistema con:
 <pre>
 systemctl enable apache2
 </pre>
+
+Nos quedaría por instalar el **servidor PHP**, para ello:
+
+<pre>
+
+</pre>
+
 
 
 

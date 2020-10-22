@@ -267,7 +267,7 @@ Vamos a instalar **apache**. Para esto, antes de nada voy a actualizar los paque
 apt update && apt upgrade -y && apt autoremove -y && apt install apache2 -y
 </pre>
 
-
+Una vez instalado Apache, podemos empezar a realizar las configuraciones. Lo primero es crear el sitio web, para ello:
 
 Creamos el archivo de configuración del sitio web. Podemos copiar el fichero por defecto, que se encuentra en `/etc/apache2/sites-available` y a partir de éste, personalizar el nuevo:
 
@@ -283,6 +283,38 @@ Editamos las siguientes líneas del fichero `departamentos.conf`:
 ServerName www.departamentos.iesgn.org
 DocumentRoot /var/www/departamentos
 </pre>
+
+Una vez terminado este fichero, tenemos que activar esta página:
+
+<pre>
+root@servidor:/etc/apache2/sites-available# a2ensite departamentos.conf
+Enabling site departamentos.
+To activate the new configuration, you need to run:
+  systemctl reload apache2
+</pre>
+
+Ya solo nos falta crear el `index.html` que hemos especificado en la configuración de la página que se iba a encontrar en la ruta `/var/www/departamentos`:
+
+<pre>
+root@servidor:/var/www# mkdir departamentos
+
+root@servidor:/var/www# cd departamentos/
+
+root@servidor:/var/www/departamentos# nano index.html
+</pre>
+
+Reiniciamos el servicio y ya podemos visualizar la página.
+
+<pre>
+root@servidor:/var/www/departamentos# systemctl restart apache2
+</pre>
+
+Ojo, para poder ver esta web, debemos indicar en el archivo `/etc/hosts` de nuestra máquina anfitriona esta línea:
+
+<pre>
+192.168.0.38    departamentos.iesgn.org
+</pre>
+
 
 
 

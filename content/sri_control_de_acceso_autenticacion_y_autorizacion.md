@@ -156,6 +156,54 @@ Una vez que lo recibe el servidor, puede hacer la misma operación y comprobar s
 
 **Crea un escenario en Vagrant o reutiliza uno de los que tienes en ejercicios anteriores, que tenga un servidor con una red publica, y una privada y un cliente conectada a la red privada. Crea un host virtual `departamentos.iesgn.org`.**
 
+He creado este fichero Vagrantfile para definir el escenario:
+
+<pre>
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+ config.vm.define :servidor do |servidor|
+  servidor.vm.box="debian/buster64"
+  servidor.vm.hostname="servidor"
+  servidor.vm.network :public_network, :bridge=>"wlo1"
+  servidor.vm.network :private_network, ip: "192.168.150.1", virtualbox__intnet: "redprivadaApache"
+ end
+
+ config.vm.define :cliente do |cliente|
+  cliente.vm.box="debian/buster64"
+  cliente.vm.hostname="cliente"
+  cliente.vm.network :private_network, ip: "192.168.150.10", virtualbox__intnet: "redprivadaApache"
+ end
+
+end
+</pre>
+
+Cambiamos la puerta de enlace al servidor para que tenga conectividad a intenter a través de la máquina anfitriona:
+
+<pre>
+vagrant@servidor:~$ sudo ip r replace default via 192.168.0.1
+
+vagrant@servidor:~$ ip r
+default via 192.168.0.1 dev eth1
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
+192.168.0.0/24 dev eth1 proto kernel scope link src 192.168.0.38
+192.168.150.0/24 dev eth2 proto kernel scope link src 192.168.150.1
+</pre>
+
+Cambiamos la puerta de enlace al cliente para que tenga conectividad a la máquina servidor:
+
+<pre>
+vagrant@cliente:~$ sudo ip r replace default via 192.168.150.1
+
+vagrant@cliente:~$ ip r
+default via 192.168.150.1 dev eth1
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
+192.168.150.0/24 dev eth1 proto kernel scope link src 192.168.150.10
+</pre>
+
+
 **1. A la URL `departamentos.iesgn.org/intranet` sólo se debe tener acceso desde el cliente de la red local, y no se pueda acceder desde la anfitriona por la red pública. A la URL `departamentos.iesgn.org/internet`, sin embargo, sólo se debe tener acceso desde la anfitriona por la red pública, y no desde la red local.**
 
 

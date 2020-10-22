@@ -17,7 +17,7 @@ En **apache2.4** se utilizan las siguientes directivas: [Require](https://httpd.
 De manera predeterminada, el fichero de configuración `000-default` tiene este control de acceso:
 
 <pre>
-\<VirtualHost *:80\>
+VirtualHost *:80
 </pre>
 
 ## Autentificación básica

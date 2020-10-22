@@ -113,38 +113,49 @@ gemma:dominio:dbd98f4294e2a49f62a486ec070b9b8c
 
 Cuando desde el cliente intentamos acceder a una URL que esta controlada por el método de autentificación de tipo digest:
 
-    El servidor manda una respuesta del tipo 401 HTTP/1.1 401 Authorization Required con una cabecera WWW-Authenticate al cliente de la forma:
+1. El servidor manda una respuesta del tipo 401 **HTTP/1.1 401 Authorization Required** con una cabecera **WWW-Authenticate** al cliente de la forma:
 
-     WWW-Authenticate: Digest realm="dominio",
-                      nonce="cIIDldTpBAA=9b0ce6b8eff03f5ef8b59da45a1ddfca0bc0c485",
-                      algorithm=MD5,
-                      qop="auth"
+<pre>
+WWW-Authenticate: Digest realm="dominio",
+                  nonce="cIIDldTpBAA=9b0ce6b8eff03f5ef8b59da45a1ddfca0bc0c485",
+                  algorithm=MD5,
+                  qop="auth"
+</pre>
 
-    El navegador del cliente muestra una ventana emergente preguntando por el nombre de usuario y contraseña y cuando se rellena se manda una petición con una cabecera Authorization
+2. El navegador del cliente muestra una ventana emergente preguntando por el nombre de usuario y contraseña y cuando se rellena se manda una petición con una cabecera **Authorization**
 
-     Authorization	Digest username="jose",
-                     realm="dominio",
-                     nonce="cIIDldTpBAA=9b0ce6b8eff03f5ef8b59da45a1ddfca0bc0c485",
-                     uri="/digest/",
-                     algorithm=MD5,
-                     response="814bc0d6644fa1202650e2c404460a21",
-                     qop=auth,
-                     nc=00000001,
-                     cnonce="3da69c14300e446b"
+Authorization	Digest username="jose",
+               realm="dominio",
+               nonce="cIIDldTpBAA=9b0ce6b8eff03f5ef8b59da45a1ddfca0bc0c485",
+               uri="/digest/",
+               algorithm=MD5,
+               response="814bc0d6644fa1202650e2c404460a21",
+               qop=auth,
+               nc=00000001,
+               cnonce="3da69c14300e446b"
 
     La información que se manda es responde que en este caso esta cifrada usando md5 y que se calcula de la siguiente manera:
 
-    Se calcula el md5 del nombre de usuario, del dominio (realm) y la contraseña, la llamamos HA1.
-    Se calcula el md5 del método de la petición (por ejemplo GET) y de la uri a la que estamos accediendo, la llamamos HA2.
-    El reultado que se manda es el md5 de HA1, un número aleatorio (nonce), el contador de peticiones (nc), el qop y el HA2.
+      - Se calcula el md5 del nombre de usuario, del dominio (realm) y la contraseña, la llamamos HA1.
+      - Se calcula el md5 del método de la petición (por ejemplo GET) y de la uri a la que estamos accediendo, la llamamos HA2.
+      - El reultado que se manda es el md5 de HA1, un número aleatorio (nonce), el contador de peticiones (nc), el qop y el HA2.
 
 Una vez que lo recibe el servidor, puede hacer la misma operación y comprobar si la información que se ha enviado es válida, con lo que se permitiría el acceso.
 
-Ejercicios
+## Ejercicios
 
-Crea un escenario en Vagrant o reutiliza uno de los que tienes en ejercicios anteriores, que tenga un servidor con una red publica, y una privada y un cliente conectada a la red privada. Crea un host virtual departamentos.iesgn.org.
+**Crea un escenario en Vagrant o reutiliza uno de los que tienes en ejercicios anteriores, que tenga un servidor con una red publica, y una privada y un cliente conectada a la red privada. Crea un host virtual `departamentos.iesgn.org`.**
 
-    A la URL departamentos.iesgn.org/intranet sólo se debe tener acceso desde el cliente de la red local, y no se pueda acceder desde la anfitriona por la red pública. A la URL departamentos.iesgn.org/internet, sin embargo, sólo se debe tener acceso desde la anfitriona por la red pública, y no desde la red local.
-    Autentificación básica. Limita el acceso a la URL departamentos.iesgn.org/secreto. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo se manda la contraseña entre el cliente y el servidor?. Entrega una breve explicación del ejercicio.
-    Cómo hemos visto la autentificación básica no es segura, modifica la autentificación para que sea del tipo digest, y sólo sea accesible a los usuarios pertenecientes al grupo directivos. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo funciona esta autentificación?
-    Vamos a combinar el control de acceso (tarea 6) y la autentificación (tareas 7 y 8), y vamos a configurar el virtual host para que se comporte de la siguiente manera: el acceso a la URL departamentos.iesgn.org/secreto se hace forma directa desde la intranet, desde la red pública te pide la autentificación. Muestra el resultado al profesor.
+1. **A la URL `departamentos.iesgn.org/intranet` sólo se debe tener acceso desde el cliente de la red local, y no se pueda acceder desde la anfitriona por la red pública. A la URL `departamentos.iesgn.org/internet`, sin embargo, sólo se debe tener acceso desde la anfitriona por la red pública, y no desde la red local.**
+
+
+
+2. **Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo se manda la contraseña entre el cliente y el servidor?. Entrega una breve explicación del ejercicio.**
+
+
+
+3. **Cómo hemos visto la autentificación básica no es segura, modifica la autentificación para que sea del tipo `digest`, y sólo sea accesible a los usuarios pertenecientes al grupo `directivos`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo funciona esta autentificación?**
+
+
+
+4. **Vamos a combinar el control de acceso (tarea 6) y la autentificación (tareas 7 y 8), y vamos a configurar el virtual host para que se comporte de la siguiente manera: el acceso a la URL `departamentos.iesgn.org/secreto` se hace forma directa desde la intranet, desde la red pública te pide la autentificación. Muestra el resultado al profesor.**

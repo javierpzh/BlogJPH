@@ -128,6 +128,17 @@ También he instalado las **librerías php** de *apache* y *mysql*.
 
 Activamos el módulo de **PHP** de **Apache**.
 
+<pre>
+a2enmod php7.3
+</pre>
+
+Y por último introducimos las siguiente líneas en forma de script PHP:
+
+<pre>
+echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/phpinfo.php
+</pre>
+
+Hemos terminado nuestro servidor LAMP.
 
 **Entrega un documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**
 

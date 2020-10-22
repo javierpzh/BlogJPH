@@ -8,11 +8,17 @@ Tags: web, apache
 
 El **Control de acceso** en un servidor web nos permite determinar desde donde podemos acceder a los recursos del servidor.
 
-En **apache2.2** se utilizan las siguientes directivas: [order](http://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#order), [allow](http://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#allow) y [deny](http://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#deny). Un buen manual para que quede más claro lo puedes encontrar en este [enlace](http://systemadmin.es/2011/04/la-directiva-order-de-apache). La directiva [satisfy](http://httpd.apache.org/docs/2.2/mod/core.html#satisfy) controla como el se debe comportar el servidor cuando tenemos autorizaciones de control de acceso (allow, deny,…) y tenemos autorizaciones de usuarios (require).
+En **apache2.2** se utilizan las siguientes directivas: [order](http://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#order), [allow](http://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#allow) y [deny](http://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#deny). Un buen manual para que quede más claro lo puedes encontrar en este [enlace](http://systemadmin.es/2011/04/la-directiva-order-de-apache). La directiva [satisfy](http://httpd.apache.org/docs/2.2/mod/core.html#satisfy) controla como se debe comportar el servidor cuando tenemos autorizaciones de control de acceso (allow, deny,…) y tenemos autorizaciones de usuarios (require).
 
 En **apache2.4** se utilizan las siguientes directivas: [Require](https://httpd.apache.org/docs/2.4/es/mod/mod_authz_core.html#require), [RequireAll](https://httpd.apache.org/docs/2.4/es/mod/mod_authz_core.html#requireall), [RequireAny](https://httpd.apache.org/docs/2.4/es/mod/mod_authz_core.html#requireany) y [RequireNone](https://httpd.apache.org/docs/2.4/es/mod/mod_authz_core.html#requirenone)
 
-1. Comprueba el control de acceso por defecto que tiene el virtual host por defecto (000-default).
+**1. Comprueba el control de acceso por defecto que tiene el virtual host por defecto (000-default).**
+
+De manera predeterminada, el fichero de configuración `000-default` tiene este control de acceso:
+
+<pre>
+<VirtualHost *:80>
+</pre>
 
 ## Autentificación básica
 

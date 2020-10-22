@@ -84,7 +84,7 @@ Por último para visualizar este sitio web, en nuestro ordenador principal, debe
 
 Y ya podríamos ver la página web.
 
-**1. Cuando se entre a la dirección `www.mapeo.com`, se redireccionará automáticamente a `www.mapeo.com/principal`, donde se mostrará el mensaje de bienvenida.**
+1. **Cuando se entre a la dirección `www.mapeo.com`, se redireccionará automáticamente a `www.mapeo.com/principal`, donde se mostrará el mensaje de bienvenida.**
 
 Para automatizar una redirección, debemos configurarla en el archivo de configuración de la página, en este caso, se encuentra en `/etc/apache2/sites-available/mapeo.conf`.
 
@@ -106,7 +106,7 @@ systemctl restart apache2
 
 Si ahora, accedemos a `www.mapeo.com`, automáticamente nos redirige y nos muestra la página `www.mapeo.com/principal`.
 
-**2. En el directorio `principal` no se permite ver la lista de los ficheros, no se permite que se siga los enlaces simbólicos y no se permite negociación de contenido. Muestra al profesor el funcionamiento. ¿Qué configuración tienes que poner?**
+2. **En el directorio `principal` no se permite ver la lista de los ficheros, no se permite que se siga los enlaces simbólicos y no se permite negociación de contenido. Muestra al profesor el funcionamiento. ¿Qué configuración tienes que poner?**
 
 Para ver la lista de ficheros de una dirección, cuando no se encuentre una archivo `index.html`, hay que añadir la opción **Indexes** al fichero de configuración de la página.
 
@@ -147,7 +147,7 @@ Podemos acceder e inspeccionar el contenido de los archivos:
 
 ![.](images/sri_mapear_url_a_ubicaciones_de_un_sistema_de_ficheros/fichero1.png)
 
-**3. Si accedes a la página `www.mapeo.com/principal/documentos` se visualizarán los documentos que hay en `/home/usuario/doc`. Por lo tanto se permitirá el listado de fichero y el seguimiento de enlaces simbólicos siempre que el propietario del enlace y del fichero al que apunta sean el mismo usuario. Explica bien y pon una prueba de funcionamiento donde se vea bien el seguimiento de los enlaces simbólicos.**
+3. **Si accedes a la página `www.mapeo.com/principal/documentos` se visualizarán los documentos que hay en `/home/usuario/doc`. Por lo tanto se permitirá el listado de fichero y el seguimiento de enlaces simbólicos siempre que el propietario del enlace y del fichero al que apunta sean el mismo usuario. Explica bien y pon una prueba de funcionamiento donde se vea bien el seguimiento de los enlaces simbólicos.**
 
 Lo primero que debemos hacer es crear un enlace simbólico a la carpeta `Documents` con el nombre **documentos**. Para ello:
 
@@ -213,7 +213,7 @@ Vemos que nos muestra un directorio `documentos`, y si accedemos a él:
 
 Observamos que tenemos acceso a él y a sus archivos.
 
-**4. En todo el host virtual se debe redefinir los mensajes de error de objeto no encontrado y no permitido. Para ello se crearán dos ficheros html dentro del directorio error. Entrega las modificaciones necesarias en la configuración y una comprobación del buen funcionamiento.**
+4. **En todo el host virtual se debe redefinir los mensajes de error de objeto no encontrado y no permitido. Para ello se crearán dos ficheros html dentro del directorio error. Entrega las modificaciones necesarias en la configuración y una comprobación del buen funcionamiento.**
 
 Creamos la carpeta `error` dentro del directorio `mapeo`, y creamos los archivos html, en este caso `403.html` y `404.html`.
 

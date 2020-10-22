@@ -261,6 +261,12 @@ default via 192.168.150.1 dev eth1
 
 Y ahora sí, tenemos configuradas las dos máquinas correctamente y podemos empezar a realizar los procedimientos.
 
+Vamos a instalar **apache**. Para esto, antes de nada voy a actualizar los paquetes necesarios, y voy a desinstalar los que ya no hagan falta. Esto lo hago porque la box que estoy utilizando es de **Debian 10.4** y a día de hoy la versión estable es la **10.6**:
+
+<pre>
+apt update && apt upgrade -y && apt autoremove -y && apt install apache2 -y
+</pre>
+
 **1. A la URL `departamentos.iesgn.org/intranet` sólo se debe tener acceso desde el cliente de la red local, y no se pueda acceder desde la anfitriona por la red pública. A la URL `departamentos.iesgn.org/internet`, sin embargo, sólo se debe tener acceso desde la anfitriona por la red pública, y no desde la red local.**
 
 

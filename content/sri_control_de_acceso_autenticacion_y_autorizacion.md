@@ -67,7 +67,7 @@ La principal ventaja de este método es su sencillez. Sus inconvenientes: lo inc
 
 Cuando desde el cliente intentamos acceder a una URL que esta controlada por el método de autentificación básico:
 
-**1. El servidor manda una respuesta del tipo *401 HTTP/1.1 401 Authorization Required* con una cabecera `WWW-Authenticate` al cliente de la forma:**
+**1. El servidor manda una respuesta del tipo 401 *HTTP/1.1 401 Authorization Required* con una cabecera `WWW-Authenticate` al cliente de la forma:**
 
 <pre>
 WWW-Authenticate: Basic realm="Palabra de paso"
@@ -79,11 +79,11 @@ WWW-Authenticate: Basic realm="Palabra de paso"
 Authorization: Basic am9zZTpqb3Nl
 </pre>
 
-En realidad la información que se manda es el nombre de usuario y la contraseña en **base 64**, que se puede decodificar fácilmente con cualquier [utilidad](https://www.base64decode.org/).
+En realidad la información que se manda es el **nombre de usuario** y la **contraseña en base 64**, que se puede decodificar fácilmente con cualquier [utilidad](https://www.base64decode.org/).
 
 ## Autentificación tipo digest
 
-La autentificación tipo digest soluciona el problema de la transferencia de contraseñas en claro sin necesidad de usar SSL. El procedimiento, como veréis, es muy similar al tipo básico pero cambiando algunas de las directivas y usando la utilidad `htdigest` en lugar de `htpassword` para crear el fichero de contraseñas. El módulo de autenticación necesario suele venir con Apache pero no habilitado por defecto. Para activarlo usamos la utilidad `a2enmod` y, a continuación reiniciamos el servidor Apache:
+La autentificación tipo **digest** soluciona el problema de la transferencia de contraseñas en claro sin necesidad de usar SSL. El procedimiento, como veréis, es muy similar al tipo básico pero cambiando algunas de las directivas y usando la utilidad `htdigest` en lugar de `htpassword` para crear el fichero de contraseñas. El módulo de autenticación necesario suele venir con Apache pero no habilitado por defecto. Para activarlo usamos la utilidad `a2enmod` y, a continuación reiniciamos el servidor Apache:
 
 <pre>
 a2enmod auth_digest
@@ -121,7 +121,7 @@ gemma:dominio:dbd98f4294e2a49f62a486ec070b9b8c
 
 Cuando desde el cliente intentamos acceder a una URL que esta controlada por el método de autentificación de tipo digest:
 
-1. El servidor manda una respuesta del tipo 401 **HTTP/1.1 401 Authorization Required** con una cabecera **WWW-Authenticate** al cliente de la forma:
+**1. El servidor manda una respuesta del tipo 401 *HTTP/1.1 401 Authorization Required* con una cabecera `WWW-Authenticate` al cliente de la forma:**
 
 <pre>
 WWW-Authenticate: Digest realm="dominio",
@@ -130,7 +130,7 @@ WWW-Authenticate: Digest realm="dominio",
                   qop="auth"
 </pre>
 
-2. El navegador del cliente muestra una ventana emergente preguntando por el nombre de usuario y contraseña y cuando se rellena se manda una petición con una cabecera **Authorization**
+**2. El navegador del cliente muestra una ventana emergente preguntando por el nombre de usuario y contraseña y cuando se rellena se manda una petición con una cabecera `Authorization`**
 
 <pre>
 Authorization	Digest username="jose",
@@ -144,7 +144,7 @@ Authorization	Digest username="jose",
                cnonce="3da69c14300e446b"
 </pre>
 
-    La información que se manda es responde que en este caso esta cifrada usando md5 y que se calcula de la siguiente manera:
+La información que se manda es responde que en este caso esta cifrada usando md5 y que se calcula de la siguiente manera:
 
       - Se calcula el md5 del nombre de usuario, del dominio (realm) y la contraseña, la llamamos HA1.
       - Se calcula el md5 del método de la petición (por ejemplo GET) y de la uri a la que estamos accediendo, la llamamos HA2.

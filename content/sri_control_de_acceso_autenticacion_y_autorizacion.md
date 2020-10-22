@@ -146,9 +146,9 @@ Authorization	Digest username="jose",
 
 La información que se manda es responde que en este caso esta cifrada usando md5 y que se calcula de la siguiente manera:
 
-      - Se calcula el md5 del nombre de usuario, del dominio (realm) y la contraseña, la llamamos **HA1**.
-      - Se calcula el md5 del método de la petición (por ejemplo GET) y de la uri a la que estamos accediendo, la llamamos **HA2**.
-      - El reultado que se manda es el md5 de HA1, un número aleatorio (nonce), el contador de peticiones (nc), el qop y el HA2.
+- Se calcula el md5 del nombre de usuario, del dominio (realm) y la contraseña, la llamamos **HA1**.
+- Se calcula el md5 del método de la petición (por ejemplo GET) y de la uri a la que estamos accediendo, la llamamos **HA2**.
+- El reultado que se manda es el md5 de HA1, un número aleatorio (nonce), el contador de peticiones (nc), el qop y el HA2.
 
 Una vez que lo recibe el servidor, puede hacer la misma operación y comprobar si la información que se ha enviado es válida, con lo que se permitiría el acceso.
 

@@ -180,8 +180,42 @@ La página web tiene este aspecto:
 
 
 - **Crea un usuario en la base de datos para trabajar con la base de datos donde se van a guardar los datos del CMS.**
+
+Para crear un usario en MySQL:
+
+<pre>
+root@buster:~# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 58
+Server version: 10.3.25-MariaDB-0+deb10u1 Debian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE USER 'javier' IDENTIFIED BY 'contraseña';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON * . * TO 'javier';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]>
+</pre>
+
+Además de crear el usuario **javier**, le he concedido todos los permisos para tener acceso y control sobre todas las tablas y bases de datos.
+
 - **Descarga la versión que te parezca más oportuna de Drupal y realiza la instalación.**
+
+
+
 - **Realiza una configuración mínima de la aplicación (Cambia la plantilla, crea algún contenido, …)**
+
+
+
 - **Instala un módulo para añadir alguna funcionalidad a drupal.**
 
 **En este momento, muestra al profesor la aplicación funcionando en local. Entrega un documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**

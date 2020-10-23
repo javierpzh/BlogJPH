@@ -349,7 +349,20 @@ Observamos como en la página de inicio, ahora nos aparece un pequeño menú con
 
 ## Tarea 3: Configuración multinodo
 
-- **Realiza un copia de seguridad de la base de datos**
+- **Realiza un copia de seguridad de la base de datos.**
+
+Realizamos una copia de seguridad de la base de datos de Drupal que tenemos en MySQL, mediante el comando:
+
+<pre>
+root@buster:/home/vagrant# mysqldump -u drupal -p drupal > copiaseguridaddrupal.sql
+Enter password:
+
+root@buster:/home/vagrant# ls
+copiaseguridaddrupal.sql
+</pre>
+
+Le pasamos dos parámetros: la opción **-u** indica el nombre de usuario y la opción **-p** el nombre de la base de datos.
+
 - **Crea otra máquina con vagrant, conectada con una red interna a la anterior y configura un servidor de base de datos.**
 - **Crea un usuario en la base de datos para trabajar con la nueva base de datos.**
 - **Restaura la copia de seguridad en el nuevo servidor de base datos.**

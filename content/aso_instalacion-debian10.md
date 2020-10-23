@@ -2,7 +2,7 @@ Title: Instalación Debian 10
 Date: 2020/10/05
 Category: Administración de Sistemas Operativos
 Header_Cover: theme/images/banner-sistemas.jpg
-Tags: debian, install, lvm
+Tags: debian, install, lvm, nvidia
 
 ## Introducción
 
@@ -28,10 +28,10 @@ Lo único que no me funciona es el **Wi-Fi** y el **Bluetooth**, pero para el Wi
 
 ## Instalación drivers GPU
 
-Dispongo de una GPU Nvidia GTX1650 Max-Q, la cual la reconoce el sistema pero no la utiliza por defecto ya que obviamente no tiene instalados los drivers.
+Dispongo de una GPU ***Nvidia GTX1650 Max-Q***, la cual la reconoce el sistema pero no la utiliza por defecto ya que obviamente no tiene instalados los drivers.
 Antes de explicar el proceso que he seguido, voy a decir que todavía no he conseguido instalarla y sigo utilizando los gráficos integrados de mi CPU.
 En primer lugar me descargue una utilidad que proporciona Nvidia para detectar el paquete que necesitamos dependiendo de nuestra tarjeta gráfica, ya que hay varios paquetes para los diferentes modelos.
-La utilidad es muy simple de descargar y lo único que hace es decirte el nombre del paquete recomendado para el modelo de tu tarjeta. Se llama `nvidia-detect`, y simplemente la instalamos y la ejecutamos.
+La utilidad es muy simple de descargar y lo único que hace es decirte el nombre del paquete recomendado para el modelo de tu tarjeta. El paquete se llama `nvidia-detect`, y simplemente lo instalamos y lo ejecutamos.
 En mi caso me recomendaba instalar el paquete llamado `nvidia-driver`. Ya sabía que paquete tenía que instalar y configurar pero antes de proceder a instalarlo, para evitar conflictos con los controladores libres nouveau, procedí a crear una lista negra:
 
 <pre>
@@ -53,7 +53,7 @@ alias lbm-nouveau off
 </pre>
 
 Si no realizas este paso, al instalar los drivers de Nvidia y al reiniciar el equipo, no llega a iniciar el sistema y se queda la pantalla en negra sin poder abrir ni siquiera una tty.
-Reinicié y el sistema arrancó perfecto, pero aún no estaba utilizando la GPU dedicada, ya que aún no la había configurado. Aquí llegó mi problema, ya que me aparecía el propio programa de configuración de Nvidia incluso como aplicación gráfica pero no sé porque no iniciaba. Intenté configurarlo desde la terminal:
+Reinicié y el sistema arrancó perfecto, pero aún no estaba utilizando la GPU dedicada, ya que aún no la había configurado. Aquí llegó mi problema, ya que me aparecía el propio programa de configuración de Nvidia incluso como aplicación gráfica, pero no sé porque no iniciaba. Intenté configurarlo desde la terminal:
 
 <pre>
 nvidia-settings
@@ -66,8 +66,8 @@ apt install nvidia-xconfig
 apt install nvidia-glx
 </pre>
 
-Después de instalar estos paquetes reinicié pero esta vez el sistema no arrancó, se quedó la pantalla en negro, sin poder abrir una tty, pero al menos pude recurrir al 'reisub' y no tuve que tirar de botonazo.
-En este punto no podía hacer otra cosa, así que decidí entrar en modo recovery y desinstalar los paquetes relacionados con Nvidia con el siguiente comando:
+Después de instalar estos paquetes reinicié pero esta vez el sistema no arrancó, se quedó la pantalla en negro, sin poder abrir una tty, pero al menos pude recurrir al *reisub* y no tuve que tirar de botonazo.
+En este punto no podía hacer otra cosa, así que decidí entrar en *modo recovery* y desinstalar los paquetes relacionados con Nvidia con el siguiente comando:
 
 <pre>
 apt-get purge nvidia.

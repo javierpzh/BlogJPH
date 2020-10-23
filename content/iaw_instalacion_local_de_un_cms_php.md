@@ -364,17 +364,38 @@ copiaseguridaddrupal.sql
 Le pasamos dos parámetros: la opción **-u** indica el nombre de usuario y la opción **-p** el nombre de la base de datos.
 
 - **Crea otra máquina con vagrant, conectada con una red interna a la anterior y configura un servidor de base de datos.**
+
+
+
 - **Crea un usuario en la base de datos para trabajar con la nueva base de datos.**
+
+
+
 - **Restaura la copia de seguridad en el nuevo servidor de base datos.**
+
+
+
 - **Desinstala el servidor de base de datos en el servidor principal.**
+
+
+
 - **Realiza los cambios de configuración necesario en drupal para que la página funcione.**
+
+
+
 
 **Entrega una documentación resumida donde expliques los pasos fundamentales para realizar esta tarea. En este momento, muestra al profesor la aplicación funcionando en local.**
 
 ## Tarea 4: Instalación de otro CMS PHP
 
 - **Elige otro CMS realizado en PHP y realiza la instalación en tu infraestructura.**
+
+
+
 - **Configura otro virtualhost y elige otro nombre en el mismo dominio.**
+
+
+
 
 **En este momento, muestra al profesor la aplicación funcionando en local. Y describe en redmine los pasos fundamentales para realizar la tarea.**
 

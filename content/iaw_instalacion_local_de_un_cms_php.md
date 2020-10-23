@@ -2,7 +2,7 @@ Title: Instalación local de un CMS PHP
 Date: 2020/10/21
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
-Tags: lamp, cms, apache, mariadb, mysql, php
+Tags: lamp, cms, apache, mariadb, mysql, php, drupal
 
 Esta tarea consiste en instalar un **CMS** de tecnología **PHP** en un servidor local. Los pasos que tendrás que dar los siguientes:
 
@@ -311,6 +311,17 @@ Completamos según nuestras preferencias y guardamos y listo:
 
 - **Realiza una configuración mínima de la aplicación (Cambia la plantilla, crea algún contenido, …)**
 
+Para cambiar el tema de nuestro CMS, nos dirigimos a la opción que nos aparece arriba, **Apariencia** y seleccionamos `+ Instalar nuevo tema`, introducimos el enlace de descarga del tema que queremos añadir y listo.
+
+![.](images/iaw_instalacion_local_de_un_cms_php/temainstalado.png)
+
+Lo seleccionamos como activo:
+
+![.](images/iaw_instalacion_local_de_un_cms_php/temaseleccionado.png)
+
+Y ya hemos cambiado el tema:
+
+![.](images/iaw_instalacion_local_de_un_cms_php/nuevotemainicio.png)
 
 
 - **Instala un módulo para añadir alguna funcionalidad a drupal.**

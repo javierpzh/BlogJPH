@@ -24,8 +24,7 @@ Ya solo queda seleccionar el gestor de ventanas que deseemos (si deseamos alguno
 ## Primer inicio e instalación de drivers
 
 Como dije antes los MSI suelen dar bastantes problemas o suelen ser más difíciles a la hora de funcionar con estos sistemas, pero en mi caso, el sistema desde el principio y simplemente con la instalación básica me funciona perfectamente, a diferencia de mis compañeros que también disponen de equipos de esta marca.
-Lo único que no me funciona es el Wi-Fi, pero simplemente he buscado el driver de mi tarjeta de red, la cuál es ***Intel Corporation Wireless-AC 9560***, desde la propia web de Intel nos proporcionan el driver necesario, lo instalamos y ya funciona. Me pasa algo que todavía no he encontrado la explicación ni he solucionado, y es que, como decía tengo tanto Windows como Debian instalados, y si entro en Windows, la siguiente vez que entre a Debian no me funciona el Wi-Fi, pero simplemente reiniciando el ordenador, y volviendo a entrar en Debian ya me funciona. O sea, depende del último sistema que haya utilizado, si solo utilizo Debian me lo reconoce siempre y perfecto, pero si entro en Windows sé que la próxima vez que entre en Debian tendré que reiniciar para que me funciona la red inalámbrica.
-Por todo lo demás el sistema corre perfectamente.
+Lo único que no me funciona es el **Wi-Fi** y el **Bluetooth**, pero para el Wi-Fi simplemente he buscado el driver de mi tarjeta de red, la cuál es ***Intel Corporation Wireless-AC 9560***, desde la propia web de Intel nos proporcionan el driver necesario, lo instalamos y ya funciona. Y el dispositivo Bluetooth lo reconoce pero no me deja encenderlo ni hacer nada con él. He instalado el paquete `firmware-iwlwifi` y ya me funciona correctamente. Por todo lo demás el sistema corre perfectamente, funcionan tanto las teclas, especiales, como las asignaciones de subir/bajar el brillo, el touchpad, teclas de sonido, ...
 
 ## Instalación drivers GPU
 

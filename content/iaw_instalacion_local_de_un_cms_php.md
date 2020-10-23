@@ -334,7 +334,7 @@ Así quedaría nuestra nueva publicación:
 
 - **Instala un módulo para añadir alguna funcionalidad a drupal.**
 
-**En este momento, muestra al profesor la aplicación funcionando en local. Entrega un documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**
+**En este momento, muestra al profesor la aplicación funcionando en local. Entrega una documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**
 
 ## Tarea 3: Configuración multinodo
 

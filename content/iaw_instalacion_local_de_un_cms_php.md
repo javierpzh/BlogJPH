@@ -311,7 +311,7 @@ Completamos según nuestras preferencias y guardamos y listo:
 
 - **Realiza una configuración mínima de la aplicación (Cambia la plantilla, crea algún contenido, …)**
 
-Para cambiar el tema de nuestro CMS, nos dirigimos a la opción que nos aparece arriba, **Apariencia** y seleccionamos `+ Instalar nuevo tema`, introducimos el enlace de descarga del tema que queremos añadir y listo.
+Para **cambiar el tema de nuestro CMS**, nos dirigimos a la opción que nos aparece arriba, **Apariencia** y seleccionamos `+ Instalar nuevo tema`, introducimos el enlace de descarga del tema que queremos añadir y listo. Cuidado, tenemos que comprobar que el tema que vamos a instalar es compatible con la versión de Drupal que estamos utilizando.
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/temainstalado.png)
 
@@ -329,10 +329,21 @@ Así quedaría nuestra nueva publicación:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/nuevocontenido.png)
 
-
-
-
 - **Instala un módulo para añadir alguna funcionalidad a drupal.**
+
+Para **instalar un nuevo módulo** en Drupal, es bastante sencillo y parecido a los temas. Vamos a la opción **Ampliar**, clickamos en `+ Instalar nuevo tema`, introducimos el enlace de descarga del módulo que queremos añadir y listo. Al igual que con el tema, tenemos que verificar que funciona con nuestra versión de Drupal.
+
+En mi caso, voy a instalar un módulo llamado ***AddToAny*** que permite compartir los artículos y entradas de la web a través de nuestras redes sociales.
+
+![.](images/iaw_instalacion_local_de_un_cms_php/moduloinstalado.png)
+
+Activamos el nuevo módulo:
+
+![.](images/iaw_instalacion_local_de_un_cms_php/moduloactivado.png)
+
+Observamos como en la página de inicio, ahora nos aparece un pequeño menú con varias redes sociales para compartir el artículo.
+
+![.](images/iaw_instalacion_local_de_un_cms_php/nuevomodulo.png)
 
 **En este momento, muestra al profesor la aplicación funcionando en local. Entrega una documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**
 

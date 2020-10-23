@@ -323,6 +323,14 @@ Y ya hemos cambiado el tema:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/nuevotemainicio.png)
 
+Vamos a añadir alguna entrada, para ver como mostraría el contenido. Para ello en la parte superior de las opciones, donde dice **Contenido**, clickamos en `+ Añadir contenido`, y se nos abrirá una especie de editor, que configuramos a nuestro gusto y guardamos los cambios.
+
+Así quedaría nuestra nueva publicación:
+
+![.](images/iaw_instalacion_local_de_un_cms_php/nuevocontenido.png)
+
+
+
 
 - **Instala un módulo para añadir alguna funcionalidad a drupal.**
 

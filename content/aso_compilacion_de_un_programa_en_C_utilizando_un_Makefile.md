@@ -31,3 +31,5 @@ Es importante, descargarlo en la ruta `/usr/local` para que no interfiera con el
 <pre>
 tar -xf wget_1.20.1.orig.tar.gz
 </pre>
+
+Vemos que nos ha generado una serie de ficheros y directorios, entre los cuáles se encuentran los archivos ***README*** y ***INSTALL***. Es bastante recomendable leerlos.

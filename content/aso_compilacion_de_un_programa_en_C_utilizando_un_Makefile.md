@@ -26,4 +26,8 @@ El primer paso sería descargarlo. Para ello nos dirigimos a la [página de Debi
 
 Para descargar el paquete, nos dirigimos al apartado de la [fuente del paquete](https://packages.debian.org/source/buster/wget), y aquí nos descargamos el archivo que prefiramos, en mi caso voy a descargar [este](http://deb.debian.org/debian/pool/main/w/wget/wget_1.20.1.orig.tar.gz).
 
-Es importante, descargarlo en la ruta `/usr/local` para que no interfiera con el sistema de paquetes.
+Es importante, descargarlo en la ruta `/usr/local` para que no interfiera con el sistema de paquetes. Lo descomprimimos:
+
+<pre>
+tar -xf wget_1.20.1.orig.tar.gz
+</pre>

@@ -11,3 +11,15 @@ Tags: compilar, gcc, C, Makefile
 **Realiza los pasos necesarios para compilarlo e instálalo en tu equipo en un directorio que no interfiera con tu sistema de paquetes (/opt, /usr/local, etc.)**
 
 **La corrección se hará en clase y deberás ser capaz de explicar qué son todos los ficheros que se hayan instalado y realizar una desinstalación limpia.**
+
+Como introducción, veo necesario explicar que significa la palabra *compilar* y en qué consiste el proceso que voy a realizar.
+
+Cuando nos referimos en términos informáticos a compilar un programa, a lo que nos estamos refiriendo, es a realizar una traducción del código fuente del programa, a un código ejecutable por un sistema. Esta traducción la lleva a cabo una herramienta de software llamada **compilador**.
+
+**¿Y qué es el código fuente del programa?** Pues son las líneas de código que forman el programa y están escritas en un lenguaje de programación. Este código escrito en un lenguaje de programación, no puede ser ejecutado por un sistema, ya que el sistema solo entiende su lenguaje binario.
+
+**¿Qué es un compilador?** Es el programa 
+
+He decidido elegir el programa **wget**, escrito en **C**, para compilarlo e instalarlo en mi equipo.
+
+El primer paso sería descargarlo.

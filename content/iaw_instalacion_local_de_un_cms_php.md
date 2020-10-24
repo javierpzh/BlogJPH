@@ -365,6 +365,11 @@ Le pasamos dos parámetros: la opción **-u** indica el nombre de usuario y la o
 
 - **Crea otra máquina con vagrant, conectada con una red interna a la anterior y configura un servidor de base de datos.**
 
+Modifico el escenario creado antes y queda así:
+
+<pre>
+
+</pre>
 
 
 - **Crea un usuario en la base de datos para trabajar con la nueva base de datos.**

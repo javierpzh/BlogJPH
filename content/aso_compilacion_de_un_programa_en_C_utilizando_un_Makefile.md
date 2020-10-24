@@ -22,4 +22,6 @@ Cuando nos referimos en términos informáticos a compilar un programa, a lo que
 
 He decidido elegir el programa **wget**, escrito en **C**, para compilarlo e instalarlo en mi equipo.
 
-El primer paso sería descargarlo.
+El primer paso sería descargarlo. Para ello nos dirigimos a la [página de Debian](https://www.debian.org/distrib/packages) y lo buscamos por su nombre. Si entramos en la [información del paquete](https://packages.debian.org/buster/wget), podemos ver en qué lenguaje está escrito, paquetes similares, paquetes relacionados, bugs, ...
+
+Para descargar el paquete, nos dirigimos al apartado de la [fuente del paquete](https://packages.debian.org/source/buster/wget), y aquí nos descargamos el archivo que prefiramos, en mi caso voy a descargar [este](http://deb.debian.org/debian/pool/main/w/wget/wget_1.20.1.orig.tar.gz).

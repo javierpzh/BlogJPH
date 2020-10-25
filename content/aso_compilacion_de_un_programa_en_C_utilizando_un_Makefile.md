@@ -26,7 +26,7 @@ El primer paso sería descargarlo. Para ello nos dirigimos a la [página de Debi
 
 Para descargar el paquete, nos dirigimos al apartado de la [fuente del paquete](https://packages.debian.org/source/buster/wget), y aquí nos descargamos el archivo que prefiramos, en mi caso voy a descargar [este](http://deb.debian.org/debian/pool/main/w/wget/wget_1.20.1.orig.tar.gz).
 
-Es importante, descargarlo en la ruta `/usr/local` para que no interfiera con el sistema de paquetes. Lo descomprimimos:
+Es importante, descargarlo en la ruta `/usr/local/bin` para que no interfiera con el sistema de paquetes. Lo descomprimimos:
 
 <pre>
 tar -xf wget_1.20.1.orig.tar.gz
@@ -52,15 +52,20 @@ Por último vamos a instalar el paquete `libgnutls28-dev`. GnuTLS es una bibliot
 apt install libgnutls28-dev -y
 </pre>
 
-En este punto, ya lo tenemos todo listo para empezar la compilación del paquete `wget` que queremos instalar. Ahora solo nos queda
+En este punto, ya lo tenemos todo listo para empezar la compilación del paquete `wget` que queremos instalar. Ahora solo nos queda ejecutar el script `configure`, ejecutar el comando `make` que se encarga de la compilación y ejecutar el comando `make install` que instala la aplicación en el sistema.
 
 <pre>
 ./configure
 make
 make install
-whereis wget
 </pre>
+
+Siguiendo estos pasos ya habríamos instalado correctamente `wget` en nuestro equipo. Si quisiéramos desinstalarlo, tendríamos que dirigirnos al directorio donde hemos realizado la instalación, en mi caso `/usr/local/bin/wget-1.20.1` y una vez aquí, introducir el comando:
 
 <pre>
 make uninstall
 </pre>
+
+Antes de terminar, veo muy interesante comentar una herramienta que he encontrado mientras realizaba la práctica y buscaba información.
+
+Se trata del paquete `checkinstall`. Este paquete actualmente solo se encuentra disponible en repositorios de *Backports*. Esta herramienta lo que hace es crear un paquete `.deb` de forma que no sería necesario compilarlo más veces. Hay que decir no incluye la lista de dependencias. Los beneficios principales de `CheckInstall` a diferencia de ejecutar `make install`, es la habilidad de permitirnos desinstalar el paquete del sistema usando el **Sistema de gestión de paquetes**, además de poder instalar el paquete resultante en varios equipos.

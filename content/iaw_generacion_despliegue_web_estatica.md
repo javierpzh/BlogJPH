@@ -83,7 +83,7 @@ Si listamos los directorios podemos ver como nos ha creado una serie de carpetas
 
 - **output:** directorio generado por *Pelican* donde se guarda la salida en formato `.html`.
 
-- **pelican-clean-blog:** directorio que contiene el tema de la página. Esto es algo que cambiará en función al tema que escoja cada uno para su sitio web.
+- **pelican-clean-blog:** directorio que contiene el tema de la página. Esto es algo que cambiará en función al tema que escoja y añada cada uno para su sitio web.
 
 - **pelicanconf.py:** fichero de configuración de *Pelican*. Aquí podemos establecer el nombre de la web, el autor, el lenguaje, el tema, ...
 

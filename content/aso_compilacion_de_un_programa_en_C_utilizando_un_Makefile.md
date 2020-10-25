@@ -55,9 +55,7 @@ apt install libgnutls28-dev -y
 En este punto, ya lo tenemos todo listo para empezar la compilación del paquete `wget` que queremos instalar. Ahora solo nos queda ejecutar el script `configure`, ejecutar el comando `make` que se encarga de la compilación y ejecutar el comando `make install` que instala la aplicación en el sistema.
 
 <pre>
-./configure
-make
-make install
+./configure && make && make install
 </pre>
 
 Siguiendo estos pasos ya habríamos instalado correctamente `wget` en nuestro equipo. Si quisiéramos desinstalarlo, tendríamos que dirigirnos al directorio donde hemos realizado la instalación, en mi caso `/usr/local/bin/wget-1.20.1` y una vez aquí, introducir el comando:

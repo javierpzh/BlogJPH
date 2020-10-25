@@ -75,7 +75,14 @@ needed by Pelican.
 Done. Your new project is available at /home/virtualenv/Pelican/BlogJPH/
 </pre>
 
-Si listamos los directorios podemos ver como nos ha creado una serie de carpetas que son las que contendrán el contenido e información de nuestra web.
+Si listamos los directorios podemos ver como nos ha creado una serie de carpetas que son las que contendrán el contenido e información de nuestra web. En mi caso, dispongo de estos directorios y ficheros:
+
+- **blogjph:** directorio que hace referencia al entorno virtual.
+
+- **content:** directorio generado por *Pelican* donde vamos a almacenar todo el contenido de nuestra web. Tanto archivos *Markdown* como imágenes. Estas últimas en un subdirectorio dentro de esta carpeta, con el nombre *images*.
+
+- **output:** directorio generado por *Pelican*
+
 
 **3. Configura el generador para cambiar el nombre de tu página, el tema o estilo de la página,… Indica cualquier otro cambio de configuración que hayas realizado.**
 

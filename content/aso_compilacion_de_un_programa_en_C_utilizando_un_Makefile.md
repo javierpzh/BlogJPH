@@ -34,7 +34,7 @@ tar -xf wget_1.20.1.orig.tar.gz
 
 Vemos que nos ha generado una serie de ficheros y directorios, entre los cuáles se encuentran los archivos ***README*** y ***INSTALL***. Es bastante recomendable leerlos antes de saltar al siguiente paso, ya que contienen información e instrucciones que nos resultarán bastantes útiles. Si no me equivoco, pero digo desde ya que no estoy seguro, hay algunos paquetes que no contienen estos archivos, pero son una gran minoría.
 
-Es necesario revisar que tenemos instalado el paquete `build-essential` y todas sus dependencias. Para asegurarnos de este proceso, podemos instalarlo:
+Es necesario revisar que tenemos instalado el paquete `build-essential` y todas sus dependencias. Este paquete incluye todo lo necesario a la hora de compilar. Para asegurarnos de este proceso, podemos instalarlo:
 
 <pre>
 apt install build-essential -y
@@ -46,7 +46,7 @@ Voy a instalar el paquete `pkg-config` que es un sistema para gestionar las opci
 apt install pkg-config -y
 </pre>
 
-
+Por último vamos a instalar el paquete `libgnutls28-dev`. GnuTLS es una biblioteca portátil que implementa los protocolos *Transport Layer Security* y *Datagram Transport Layer Security*.
 
 <pre>
 apt install libgnutls28-dev -y

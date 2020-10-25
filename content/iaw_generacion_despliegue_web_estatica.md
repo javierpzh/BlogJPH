@@ -81,8 +81,13 @@ Si listamos los directorios podemos ver como nos ha creado una serie de carpetas
 
 - **content:** directorio generado por *Pelican* donde vamos a almacenar todo el contenido de nuestra web. Tanto archivos *Markdown* como imágenes. Estas últimas en un subdirectorio dentro de esta carpeta, con el nombre *images*.
 
-- **output:** directorio generado por *Pelican*
+- **output:** directorio generado por *Pelican* donde se guarda la salida en formato `.html`.
 
+- **pelican-clean-blog:** directorio que contiene el tema de la página. Esto es algo que cambiará en función al tema que escoja cada uno para su sitio web.
+
+- **pelicanconf.py:** fichero de configuración de *Pelican*. Aquí podemos establecer el nombre de la web, el autor, el lenguaje, el tema, ...
+
+- **Makefile, publishconf.py , tasks.py:** son ficheros que utiliza *Pelican* para su configuración y sus procesos internos (ej: traducir de Markdown a html) y que no hace falta editar.
 
 **3. Configura el generador para cambiar el nombre de tu página, el tema o estilo de la página,… Indica cualquier otro cambio de configuración que hayas realizado.**
 

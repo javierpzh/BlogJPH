@@ -40,7 +40,7 @@ Es necesario revisar que tenemos instalado el paquete `build-essential` y todas 
 apt install build-essential -y
 </pre>
 
-Voy a instalar el paquete `pkg-config` que es un sistema para gestionar las opciones de compilación y enlazado de las bibliotecas, funciona con automake y autoconf. Su funcionamiento consiste en llamar a bibliotecas instaladas cuando se está compilando un programa a partir del código fuente.
+Voy a instalar el paquete `pkg-config` que es un sistema para gestionar las opciones de compilación y enlazado de las bibliotecas, funciona con *automake* y *autoconf*. Su funcionamiento consiste en llamar a bibliotecas instaladas cuando se está compilando un programa a partir del código fuente.
 
 <pre>
 apt install pkg-config -y

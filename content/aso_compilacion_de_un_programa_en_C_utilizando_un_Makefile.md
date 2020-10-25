@@ -33,3 +33,32 @@ tar -xf wget_1.20.1.orig.tar.gz
 </pre>
 
 Vemos que nos ha generado una serie de ficheros y directorios, entre los cuáles se encuentran los archivos ***README*** y ***INSTALL***. Es bastante recomendable leerlos antes de saltar al siguiente paso, ya que contienen información e instrucciones que nos resultarán bastantes útiles. Si no me equivoco, pero digo desde ya que no estoy seguro, hay algunos paquetes que no contienen estos archivos, pero son una gran minoría.
+
+Es necesario revisar que tenemos instalado el paquete `build-essential` y todas sus dependencias. Para asegurarnos de este proceso, podemos instalarlo:
+
+<pre>
+apt install build-essential -y
+</pre>
+
+Voy a instalar el paquete `pkg-config` que es un sistema para gestionar las opciones de compilación y enlazado de las bibliotecas, funciona con automake y autoconf. Su funcionamiento consiste en llamar a bibliotecas instaladas cuando se está compilando un programa a partir del código fuente.
+
+<pre>
+apt install pkg-config -y
+</pre>
+
+
+
+<pre>
+apt install libgnutls28-dev -y
+</pre>
+
+<pre>
+./configure
+make
+make install
+whereis wget
+</pre>
+
+<pre>
+make uninstall
+</pre>

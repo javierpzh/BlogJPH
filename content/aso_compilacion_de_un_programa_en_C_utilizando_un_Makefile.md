@@ -46,7 +46,7 @@ Voy a instalar el paquete `pkg-config` que es un sistema para gestionar las opci
 apt install pkg-config -y
 </pre>
 
-Por último vamos a instalar el paquete `libgnutls28-dev`. GnuTLS es una biblioteca portátil que implementa los protocolos *Transport Layer Security* y *Datagram Transport Layer Security*.
+Por último vamos a instalar el paquete `libgnutls28-dev`. **GnuTLS** es una biblioteca portátil que implementa los protocolos *Transport Layer Security* y *Datagram Transport Layer Security*.
 
 <pre>
 apt install libgnutls28-dev -y

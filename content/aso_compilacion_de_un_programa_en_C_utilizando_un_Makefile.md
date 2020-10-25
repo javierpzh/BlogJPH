@@ -34,7 +34,7 @@ tar -xf wget_1.20.1.orig.tar.gz
 
 Vemos que nos ha generado una serie de ficheros y directorios, entre los cuáles se encuentran los archivos ***README*** y ***INSTALL***. Es bastante recomendable leerlos antes de saltar al siguiente paso, ya que contienen información e instrucciones que nos resultarán bastantes útiles. Si no me equivoco, pero digo desde ya que no estoy seguro, hay algunos paquetes que no contienen estos archivos, pero son una gran minoría.
 
-Es necesario revisar que tenemos instalado el paquete `build-essential` y todas sus dependencias. Este paquete incluye todo lo necesario a la hora de compilar. Para asegurarnos de este proceso, podemos instalarlo:
+Es necesario revisar que tenemos instalado el paquete `build-essential` y todas sus dependencias. Este paquete incluye todo lo necesario a la hora de compilar. Se trata de un paquete que contiene una lista informativa de los paquetes que se consideran esenciales para la creación de paquetes Debian. Para instalarlo:
 
 <pre>
 apt install build-essential -y
@@ -51,6 +51,8 @@ Por último vamos a instalar el paquete `libgnutls28-dev`. GnuTLS es una bibliot
 <pre>
 apt install libgnutls28-dev -y
 </pre>
+
+En este punto, ya lo tenemos todo listo para empezar la compilación del paquete `wget` que queremos instalar. Ahora solo nos queda
 
 <pre>
 ./configure

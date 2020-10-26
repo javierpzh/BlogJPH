@@ -281,6 +281,12 @@ Pero esta activación se borra cuando se apaga el equipo. Para que dicha activac
 net.ipv4.ip_forward=1
 </pre>
 
+Y ejecutando el siguiente comando para guardar la configuración;
+
+<pre>
+sysctl -p /etc/sysctl.conf
+</pre>
+
 Es el momento de crear una nueva regla de `iptables`, que es el responsable de permitirnos hacer NAT.
 
 <pre>

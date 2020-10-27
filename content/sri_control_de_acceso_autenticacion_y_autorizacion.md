@@ -344,7 +344,8 @@ root@servidor:/var/www/departamentos/internet# nano index.html
 
 Una vez tenemos creados las dos páginas webs, es el momento de establecer el control de acceso.
 
-Las restricciones de acceso se llevan a cabo en el fichero de configuración de la web, es decir, en `/etc/apache2/sites-available/departamentos.conf`. Se nos pide que a la página ***Intranet*** pueda acceder la máquina conectada a la red local **192.168.150.0/24**, es decir nuestra mv, y a la página ***Internet*** el equipo anfitrión. Para ello el fichero debe quedar así:
+Las restricciones de acceso se llevan a cabo en el fichero de configuración de la web, es decir, en `/etc/apache2/sites-available/departamentos.conf`. Se nos pide que a la página ***Intranet*** pueda acceder la máquina conectada a la red local **192.168.150.0/24**, es decir nuestra mv, cuya IP es **192.168.150.10**, y a la página ***Internet*** el equipo anfitrión, cuya IP es **192.168.0.25**.
+Para ello el fichero debe quedar así:
 
 <pre>
 <Directory /var/www/departamentos/intranet >
@@ -356,6 +357,7 @@ Las restricciones de acceso se llevan a cabo en el fichero de configuración de 
 </Directory>
 </pre>
 
+Con esto lo que estamos haciendo es permitirle el acceso a la página
 
 **2. Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo se manda la contraseña entre el cliente y el servidor?. Entrega una breve explicación del ejercicio.**
 

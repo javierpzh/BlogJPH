@@ -66,7 +66,7 @@ Huellas dactilares de la clave primaria: E8DD 5DA9 3B88 F08A DA1D  26BF 5141 3DD
 
 
 
-**2. Añade a la cuenta las opciones de seguridad para poder enviar correos firmados con tu clave privada o **cifrar los mensajes para otros destinatarios**
+**2. Añade a la cuenta las opciones de seguridad para poder enviar correos firmados con tu clave privada o cifrar los mensajes para otros destinatarios**
 
 
 

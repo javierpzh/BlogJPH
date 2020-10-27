@@ -382,7 +382,15 @@ Con esto lo que estamos haciendo es:
 
 **2. Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo se manda la contraseña entre el cliente y el servidor?. Entrega una breve explicación del ejercicio.**
 
+Lo primero sería crear en `/var/www/departamentos` la carpeta **secreto** y dentro de ella crear un fichero `index.html`:
 
+<pre>
+root@servidor:/var/www/departamentos# mkdir secreto
+
+root@servidor:/var/www/departamentos# cp index.html ./secreto/
+
+root@servidor:/var/www/departamentos# nano index.html
+</pre>
 
 **3. Cómo hemos visto la autentificación básica no es segura, modifica la autentificación para que sea del tipo `digest`, y sólo sea accesible a los usuarios pertenecientes al grupo `directivos`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo funciona esta autentificación?**
 

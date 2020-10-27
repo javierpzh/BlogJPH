@@ -447,10 +447,13 @@ Vemos que nos pide que iniciemos sesión ya que el contenido está protegido. Va
 
 **3. Cómo hemos visto la autentificación básica no es segura, modifica la autentificación para que sea del tipo `digest`, y sólo sea accesible a los usuarios pertenecientes al grupo `directivos`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo funciona esta autentificación?**
 
+Para llevar a cabo una autenticación de tipo **Digest**, antes debemos habilitar su módulo:
+
 <pre>
 a2enmod auth_digest
 </pre>
 
+ El proceso es muy parecido al anterior, por tanto lo primero sería crear el **archivo de contraseñas**:
 
 <pre>
 root@servidor:/var/www/departamentos/secreto# htdigest -c /var/www/departamentos/secreto/.htdigest gruposecreto javier
@@ -458,6 +461,12 @@ Adding password for javier in realm gruposecreto.
 New password:
 Re-type new password:
 </pre>
+
+A diferencia de la autenticación básica, en esta debemos añadir un nombre de domino, es decir, un grupo al que va a pertenecer el usuario.
+
+Si quisiéramos añadir un nuevo usuario, deberíamos introducir el mismo comando pero sin la opción `-c`, ya que sino, nos crearía un nuevo un archivo machacando el ya existente.
+
+Nos quedaría especificar en el `/etc/apache2/sites-available/departamentos.conf` esta configuración de autenticación básica. Debemos añadir algo así:
 
 <pre>
 <\Directory /var/www/departamentos/secreto \>

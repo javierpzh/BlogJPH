@@ -344,7 +344,7 @@ root@servidor:/var/www/departamentos/internet# nano index.html
 
 Una vez tenemos creados las dos páginas webs, es el momento de establecer el control de acceso.
 
-Las restricciones de acceso se llevan a cabo en el fichero de configuración de la web, es decir, en `/etc/apache2/sites-available/departamentos.conf`. Se nos pide que a la página ***Intranet*** pueda acceder la máquina conectada a la red local **192.168.150.0/24**, es decir nuestra mv, cuya IP es **192.168.150.10**, y a la página ***Internet*** el equipo anfitrión, cuya IP es **192.168.0.25**.
+Las restricciones de acceso se llevan a cabo en el fichero de configuración de la web, es decir, en `/etc/apache2/sites-available/departamentos.conf`. Se nos pide que a la página `Intranet` pueda acceder la máquina conectada a la red local **192.168.150.0/24**, es decir nuestra mv, cuya IP es **192.168.150.10**, y a la página `Internet` el equipo anfitrión, cuya IP es **192.168.0.25**.
 Para ello el fichero debe quedar así:
 
 <pre>

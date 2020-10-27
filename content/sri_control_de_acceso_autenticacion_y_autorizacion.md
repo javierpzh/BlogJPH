@@ -394,7 +394,9 @@ root@servidor:/var/www/departamentos# cd secreto/
 root@servidor:/var/www/departamentos/secreto# nano index.html
 </pre>
 
-Creamos el archivo de contraseñas de Apache:
+Ahora vamos a configurar para que a la página `departamentos.iesgn.org/secreto` solo se pueda acceder si la persona está autorizada y posee un usuario y una contraseña.
+
+Para ello, lo primero sería crear el **archivo de contraseñas** de Apache:
 
 <pre>
 root@servidor:/var/www/departamentos/secreto# htpasswd -c /var/www/departamentos/secreto/.htpasswd javier
@@ -403,8 +405,18 @@ Re-type new password:
 Adding password for user javier
 </pre>
 
+Si quisiéramos añadir un nuevo usuario, deberíamos introducir el mismo comando pero sin la opción `-c`, ya que sino, nos crearía un nuevo un archivo machacando el ya existente.
 
+Nos quedaría especificar en el `/etc/apache2/sites-available/departamentos.conf` esta configuración de autenticación básica. Debemos añadir algo así:
 
+<pre>
+<\Directory /var/www/departamentos/secreto \>
+ AuthType Basic
+ AuthName "Identifiquese para acceder a esta pagina"
+ AuthUserFile /var/www/departamentos/secreto/.htpasswd
+ Require valid-user
+<\/Directory\>
+</pre>
 
 
 

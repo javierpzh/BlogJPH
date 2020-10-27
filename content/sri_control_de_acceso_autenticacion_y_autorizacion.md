@@ -363,8 +363,6 @@ Con esto lo que estamos haciendo es:
 
 - **Máquina cliente:** permitirle el acceso a la página `departamentos.iesgn.org/intranet/`.
 
-
-
 **2. Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo se manda la contraseña entre el cliente y el servidor?. Entrega una breve explicación del ejercicio.**
 
 

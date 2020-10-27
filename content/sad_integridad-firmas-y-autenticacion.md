@@ -28,6 +28,7 @@ Huellas dactilares de la clave primaria: E8DD 5DA9 3B88 F08A DA1D  26BF 5141 3DD
 </pre>
 
 **3. Vamos a crear un anillo de confianza entre los miembros de nuestra clase, para ello.**
+
     - **Tu clave pública debe estar en un servidor de claves**
 
     - **Escribe tu fingerprint en un papel y dárselo a tu compañero, para que puede descargarse tu clave pública.**

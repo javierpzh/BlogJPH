@@ -361,7 +361,24 @@ Con esto lo que estamos haciendo es:
 
 - **Máquina anfitrión:** permitirle el acceso a la página `departamentos.iesgn.org/internet/`.
 
+    - Si accedemos a `departamentos.iesgn.org/internet/`:
+
+    ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/anfitrioninternet.png)
+
+    - Si accedemos a `departamentos.iesgn.org/intranet/`:
+
+    ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/anfitrionintranet.png)
+
 - **Máquina cliente:** permitirle el acceso a la página `departamentos.iesgn.org/intranet/`.
+
+    - Si accedemos a `departamentos.iesgn.org/internet/`:
+
+    ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/mvinternet.png)
+
+    - Si accedemos a `departamentos.iesgn.org/intranet/`:
+
+    ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/mvintranet.png)
+
 
 **2. Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo se manda la contraseña entre el cliente y el servidor?. Entrega una breve explicación del ejercicio.**
 

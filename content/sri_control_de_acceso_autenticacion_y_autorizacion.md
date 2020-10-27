@@ -348,13 +348,13 @@ Las restricciones de acceso se llevan a cabo en el fichero de configuración de 
 Para ello el fichero debe quedar así:
 
 <pre>
-<Directory /var/www/departamentos/intranet >
+<\Directory /var/www/departamentos/intranet \>
  Require ip 192.168.150
-</Directory>
+<\/Directory\>
 
-<Directory /var/www/departamentos/internet >
+<\Directory /var/www/departamentos/internet \>
  Require ip 192.168.0
-</Directory>
+<\/Directory\>
 </pre>
 
 Con esto lo que estamos haciendo es permitirle el acceso a la página

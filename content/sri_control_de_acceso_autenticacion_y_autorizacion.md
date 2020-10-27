@@ -500,4 +500,4 @@ Vemos que nos pide que iniciemos sesión ya que el contenido está protegido. Va
 ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/autenticacionfallida.png)
 
 
-**4. Vamos a combinar el control de acceso (tarea 6) y la autentificación (tareas 7 y 8), y vamos a configurar el virtual host para que se comporte de la siguiente manera: el acceso a la URL `departamentos.iesgn.org/secreto` se hace forma directa desde la intranet, desde la red pública te pide la autentificación. Muestra el resultado al profesor.**
+**4. Vamos a combinar el control de acceso (tarea 6) y la autenticación (tareas 7 y 8), y vamos a configurar el virtual host para que se comporte de la siguiente manera: el acceso a la URL `departamentos.iesgn.org/secreto` se hace forma directa desde la intranet, desde la red pública te pide la autenticación. Muestra el resultado al profesor.**

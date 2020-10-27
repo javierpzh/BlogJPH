@@ -447,6 +447,8 @@ Vemos que nos pide que iniciemos sesión ya que el contenido está protegido. Va
 
 **3. Cómo hemos visto la autentificación básica no es segura, modifica la autentificación para que sea del tipo `digest`, y sólo sea accesible a los usuarios pertenecientes al grupo `directivos`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo funciona esta autentificación?**
 
+(Me he equivocado y he añadido los usuarios al grupo **gruposecreto** en vez de **directivos**).
+
 Para llevar a cabo una autenticación de tipo **Digest**, antes debemos habilitar su módulo:
 
 <pre>

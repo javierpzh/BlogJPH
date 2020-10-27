@@ -394,6 +394,20 @@ root@servidor:/var/www/departamentos# cd secreto/
 root@servidor:/var/www/departamentos/secreto# nano index.html
 </pre>
 
+Creamos el archivo de contraseñas de Apache:
+
+<pre>
+root@servidor:/var/www/departamentos/secreto# htpasswd -c /var/www/departamentos/secreto/.htpasswd javier
+New password:
+Re-type new password:
+Adding password for user javier
+</pre>
+
+
+
+
+
+
 **3. Cómo hemos visto la autentificación básica no es segura, modifica la autentificación para que sea del tipo `digest`, y sólo sea accesible a los usuarios pertenecientes al grupo `directivos`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo funciona esta autentificación?**
 
 

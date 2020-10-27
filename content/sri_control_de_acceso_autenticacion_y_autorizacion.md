@@ -306,7 +306,7 @@ root@servidor:/var/www/departamentos# nano index.html
 Reiniciamos el servicio y ya podemos visualizar la página.
 
 <pre>
-root@servidor:/var/www/departamentos# systemctl restart apache2
+systemctl restart apache2
 </pre>
 
 Ojo, para poder ver esta web, debemos indicar en el archivo `/etc/hosts` de nuestra máquina anfitriona esta línea:
@@ -355,6 +355,12 @@ Para ello el fichero debe quedar así:
 <\Directory /var/www/departamentos/internet \>
  Require ip 192.168.0
 <\/Directory\>
+</pre>
+
+Reiniciamos el servicio:
+
+<pre>
+systemctl restart apache2
 </pre>
 
 Con esto lo que estamos haciendo es:
@@ -418,6 +424,12 @@ Nos quedaría especificar en el `/etc/apache2/sites-available/departamentos.conf
 <\/Directory\>
 </pre>
 
+Reiniciamos el servicio:
+
+<pre>
+systemctl restart apache2
+</pre>
+
 Si ahora probamos a acceder a `departamentos.iesgn.org/secreto`:
 
 ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/autenticacion.png)
@@ -428,13 +440,53 @@ Vemos que nos pide que iniciemos sesión ya que el contenido está protegido. Va
 
 ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/autenticacioncompleta.png)
 
-- No iniciamos sesión:
+- No iniciamos sesión o de manera incorrecta:
 
 ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/autenticacionfallida.png)
 
 
 **3. Cómo hemos visto la autentificación básica no es segura, modifica la autentificación para que sea del tipo `digest`, y sólo sea accesible a los usuarios pertenecientes al grupo `directivos`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo funciona esta autentificación?**
 
+<pre>
+a2enmod auth_digest
+</pre>
+
+
+<pre>
+root@servidor:/var/www/departamentos/secreto# htdigest -c /var/www/departamentos/secreto/.htdigest gruposecreto javier
+Adding password for javier in realm gruposecreto.
+New password:
+Re-type new password:
+</pre>
+
+<pre>
+<\Directory /var/www/departamentos/secreto \>
+ AuthType Digest
+ AuthName "gruposecreto"
+ AuthUserFile /var/www/departamentos/secreto/.htdigest
+ Require valid-user
+<\/Directory\>
+</pre>
+
+Reiniciamos el servicio:
+
+<pre>
+systemctl restart apache2
+</pre>
+
+Si ahora probamos a acceder a `departamentos.iesgn.org/secreto`:
+
+![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/autenticacionhtdigest.png)
+
+Vemos que nos pide que iniciemos sesión ya que el contenido está protegido. Vamos a ver que puede pasar:
+
+- Iniciamos sesión correctamente:
+
+![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/autenticacioncompletahtdigest.png)
+
+- No iniciamos sesión o de manera incorrecta:
+
+![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/autenticacionfallida.png)
 
 
 **4. Vamos a combinar el control de acceso (tarea 6) y la autentificación (tareas 7 y 8), y vamos a configurar el virtual host para que se comporte de la siguiente manera: el acceso a la URL `departamentos.iesgn.org/secreto` se hace forma directa desde la intranet, desde la red pública te pide la autentificación. Muestra el resultado al profesor.**

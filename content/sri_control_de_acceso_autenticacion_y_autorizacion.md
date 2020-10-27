@@ -418,6 +418,19 @@ Nos quedaría especificar en el `/etc/apache2/sites-available/departamentos.conf
 <\/Directory\>
 </pre>
 
+Si ahora probamos a acceder a `departamentos.iesgn.org/secreto`:
+
+![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/autenticacion.png)
+
+Vemos que nos pide que iniciemos sesión ya que el contenido está protegido. Vamos a ver que puede pasar:
+
+- Iniciamos sesión correctamente:
+
+![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/autenticacioncompleta.png)
+
+- No iniciamos sesión:
+
+![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/autenticacionfallida.png)
 
 
 **3. Cómo hemos visto la autentificación básica no es segura, modifica la autentificación para que sea del tipo `digest`, y sólo sea accesible a los usuarios pertenecientes al grupo `directivos`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo funciona esta autentificación?**

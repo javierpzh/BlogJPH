@@ -320,7 +320,29 @@ Ojo, para poder ver esta web, debemos indicar en el archivo `/etc/hosts` de nues
 
 **1. A la URL `departamentos.iesgn.org/intranet` sólo se debe tener acceso desde el cliente de la red local, y no se pueda acceder desde la anfitriona por la red pública. A la URL `departamentos.iesgn.org/internet`, sin embargo, sólo se debe tener acceso desde la anfitriona por la red pública, y no desde la red local.**
 
+Lo primero sería crear en `/var/www/departamentos` dos carpetas: una para **intranet** y otra para **internet**, y dentro de ellas crear un fichero `index.html`:
 
+<pre>
+root@servidor:/var/www/departamentos# mkdir intranet
+
+root@servidor:/var/www/departamentos# cd intranet/
+
+root@servidor:/var/www/departamentos/intranet# cp ../index.html ./
+
+root@servidor:/var/www/departamentos/intranet# nano index.html
+
+root@servidor:/var/www/departamentos/intranet# cd ..
+
+root@servidor:/var/www/departamentos# mkdir internet
+
+root@servidor:/var/www/departamentos# cp index.html ./internet/
+
+root@servidor:/var/www/departamentos# cd internet/
+
+root@servidor:/var/www/departamentos/internet# nano index.html
+</pre>
+
+Una vez tenemos creados las dos páginas webs, es el momento de establecer el control de acceso.
 
 **2. Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo se manda la contraseña entre el cliente y el servidor?. Entrega una breve explicación del ejercicio.**
 

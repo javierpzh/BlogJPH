@@ -294,11 +294,11 @@ En este punto ya podemos hacer uso del **Instalador Web de Drupal**. Accedemos a
 
 - Seleccionamos el idioma deseado.
 - Seleccionamos el perfil de la instalación, en mi caso **estándar**.
-- Configuramos la base de datos. En mi caso:
-    - **Tipo:** MySQL
-    - **Nombre de la base de datos:** drupal
-    - **Nombre de usuario de la base de datos:** drupal
-    - **Contraseña de la base de datos:**
+- Configuramos la base de datos:
+
+![.](images/iaw_instalacion_local_de_un_cms_php/instaladordrupalbbdd.png)
+
+Y ya comienza el proceso de instalación:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/instalandodrupal.png)
 

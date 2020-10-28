@@ -514,6 +514,122 @@ Ya tengo la copia de seguridad en la **maquina2**, que es donde quiero restaurar
 mysql -u drupal -p drupal < copiaseguridaddrupal.sql
 </pre>
 
+Si miramos las bases de datos del usuario **drupal**:
+
+<pre>
+root@buster:/home/vagrant# mysql -u drupal -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 63
+Server version: 10.3.25-MariaDB-0+deb10u1 Debian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| drupal             |
+| information_schema |
++--------------------+
+2 rows in set (0.001 sec)
+</pre>
+
+Si entramos en la base de datos **drupal** y miramos las tablas:
+
+<pre>
+MariaDB [(none)]> use drupal;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [drupal]> show tables;
++----------------------------------+
+| Tables_in_drupal                 |
++----------------------------------+
+| batch                            |
+| block_content                    |
+| block_content__body              |
+| block_content_field_data         |
+| block_content_field_revision     |
+| block_content_revision           |
+| block_content_revision__body     |
+| cache_bootstrap                  |
+| cache_config                     |
+| cache_container                  |
+| cache_data                       |
+| cache_default                    |
+| cache_discovery                  |
+| cache_dynamic_page_cache         |
+| cache_entity                     |
+| cache_menu                       |
+| cache_render                     |
+| cachetags                        |
+| comment                          |
+| comment__comment_body            |
+| comment_entity_statistics        |
+| comment_field_data               |
+| config                           |
+| file_managed                     |
+| file_usage                       |
+| history                          |
+| key_value                        |
+| key_value_expire                 |
+| locale_file                      |
+| locales_location                 |
+| locales_source                   |
+| locales_target                   |
+| menu_link_content                |
+| menu_link_content_data           |
+| menu_link_content_field_revision |
+| menu_link_content_revision       |
+| menu_tree                        |
+| node                             |
+| node__body                       |
+| node__comment                    |
+| node__field_image                |
+| node__field_tags                 |
+| node_access                      |
+| node_field_data                  |
+| node_field_revision              |
+| node_revision                    |
+| node_revision__body              |
+| node_revision__comment           |
+| node_revision__field_image       |
+| node_revision__field_tags        |
+| path_alias                       |
+| path_alias_revision              |
+| queue                            |
+| router                           |
+| search_dataset                   |
+| search_index                     |
+| search_total                     |
+| semaphore                        |
+| sequences                        |
+| sessions                         |
+| shortcut                         |
+| shortcut_field_data              |
+| shortcut_set_users               |
+| taxonomy_index                   |
+| taxonomy_term__parent            |
+| taxonomy_term_data               |
+| taxonomy_term_field_data         |
+| taxonomy_term_field_revision     |
+| taxonomy_term_revision           |
+| taxonomy_term_revision__parent   |
+| user__roles                      |
+| user__user_picture               |
+| users                            |
+| users_data                       |
+| users_field_data                 |
+| watchdog                         |
++----------------------------------+
+76 rows in set (0.001 sec)
+
+MariaDB [drupal]>
+</pre>
 
 - **Desinstala el servidor de base de datos en el servidor principal.**
 

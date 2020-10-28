@@ -390,14 +390,111 @@ Vagrant.configure("2") do |config|
 end
 </pre>
 
+En la nueva máquina llamada **maquina2** hay que configurar el nuevo servidor de base de datos, para ello previamente preparo y actualizo los paquetes, e instalo los relativos a **MySQL**:
+
+<pre>
+apt update && apt upgrade -y && apt autoremove -y && apt install mariadb-server mariadb-client -y
+</pre>
+
+Una vez lo hemos instalado, vamos a configurar una serie de opciones con el comando `mysql_secure_installation`. Vamos a especificarle una **contraseña de root**, vamos a **eliminar los usuarios anónimos**, vamos a **desactivar el acceso remoto** a la base de datos, en resumen, vamos a restablecer la base de datos, con nuestras preferencias:
+
+<pre>
+root@buster:/home/vagrant# mysql_secure_installation
+
+NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+
+In order to log into MariaDB to secure it, we'll need the current
+password for the root user.  If you've just installed MariaDB, and
+you haven't set the root password yet, the password will be blank,
+so you should just press enter here.
+
+Enter current password for root (enter for none):
+OK, successfully used password, moving on...
+
+Setting the root password ensures that nobody can log into the MariaDB
+root user without the proper authorisation.
+
+You already have a root password set, so you can safely answer 'n'.
+
+Change the root password? [Y/n] Y
+New password:
+Re-enter new password:
+Password updated successfully!
+Reloading privilege tables..
+ ... Success!
+
+
+By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them.  This is intended only for testing, and to make the installation
+go a bit smoother.  You should remove them before moving into a
+production environment.
+
+Remove anonymous users? [Y/n] Y
+ ... Success!
+
+Normally, root should only be allowed to connect from 'localhost'.  This
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] Y
+ ... Success!
+
+By default, MariaDB comes with a database named 'test' that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] Y
+ - Dropping test database...
+ ... Success!
+ - Removing privileges on test database...
+ ... Success!
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] Y
+ ... Success!
+
+Cleaning up...
+
+All done!  If you've completed all of the above steps, your MariaDB
+installation should now be secure.
+
+Thanks for using MariaDB!
+</pre>
 
 - **Crea un usuario en la base de datos para trabajar con la nueva base de datos.**
 
+Para crear un usario en MySQL:
 
+<pre>
+root@buster:/home/vagrant# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 57
+Server version: 10.3.25-MariaDB-0+deb10u1 Debian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE USER 'drupal' IDENTIFIED BY 'contraseña';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON drupal.* TO 'drupal';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> exit
+Bye
+</pre>
 
 - **Restaura la copia de seguridad en el nuevo servidor de base datos.**
 
-
+Para mover la copia de seguridad de la base de datos que hemos realizado en pasos anteriores,
 
 - **Desinstala el servidor de base de datos en el servidor principal.**
 

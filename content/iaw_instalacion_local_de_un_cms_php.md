@@ -633,7 +633,11 @@ MariaDB [drupal]>
 
 - **Desinstala el servidor de base de datos en el servidor principal.**
 
+En **servidor1**:
 
+<pre>
+apt remove mariadb-server mariadb-client -y
+</pre>
 
 - **Realiza los cambios de configuración necesario en drupal para que la página funcione.**
 

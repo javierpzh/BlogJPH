@@ -643,8 +643,9 @@ Probamos a acceder a la página de Drupal ahora:
 
 ![.](images/![.](images/iaw_instalacion_local_de_un_cms_php/bbddeliminada.png)
 
-
 - **Realiza los cambios de configuración necesario en drupal para que la página funcione.**
+
+En este punto, queremos volver a tener disponible nuestra web de Drupal, pero funcionando con la base de datos en la nueva máquina, ed decir, en **maquina2**.
 
 
 

@@ -271,6 +271,8 @@ El archivo `drupal.conf` tiene que contener:
 <\/Directory>
 </pre>
 
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
+
 Activamos la configuración:
 
 <pre>

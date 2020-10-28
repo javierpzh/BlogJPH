@@ -18,8 +18,10 @@ He creado una máquina virtual utilizando **Vagrant** y **VirtualBox**, mediante
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "debian/buster64"
-  config.vm.network "private_network", ip: "192.168.30.1"
+ config.vm.define :servidor1 do |servidor1|
+  servidor1.vm.box = "debian/buster64"
+  servidor1.vm.network "private_network", ip: "192.168.30.15"
+ end
 
 end
 </pre>

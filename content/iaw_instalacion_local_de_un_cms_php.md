@@ -19,8 +19,7 @@ He creado una máquina virtual utilizando **Vagrant** y **VirtualBox**, mediante
 Vagrant.configure("2") do |config|
 
   config.vm.box = "debian/buster64"
-  config.vm.network :public_network, :bridge=>"wlo1"
-  config.vm.network "private_network", ip: "192.168.30.1", virtualbox__intnet: "redprivadaservidorlamp"
+  config.vm.network "private_network", ip: "192.168.30.1"
 
 end
 </pre>
@@ -111,7 +110,7 @@ Thanks for using MariaDB!
 Procedemos a instalar el servidor web **Apache**, que lo vamos a instalar con este comando:
 
 <pre>
-apt install -y apache2 apache2-utils
+apt install apache2 apache2-utils -y
 </pre>
 
 Y vamos a habilitar su servicio en cada inicio del sistema con:
@@ -211,7 +210,7 @@ MariaDB [(none)]> exit
 Bye
 </pre>
 
-Además de crear el usuario **javier**, le he concedido todos los permisos para tener acceso y control sobre todas las tablas y bases de datos.
+Además de crear el usuario **drupal**, le he concedido todos los permisos para tener acceso y control sobre todas las tablas y bases de datos.
 
 - **Descarga la versión que te parezca más oportuna de Drupal y realiza la instalación.**
 
@@ -376,13 +375,12 @@ Vagrant.configure("2") do |config|
 
  config.vm.define :servidor1 do |servidor1|
   servidor1.vm.box = "debian/buster64"
-  servidor1.vm.network :public_network, :bridge=>"wlo1"
-  servidor1.vm.network "private_network", ip: "192.168.30.1", virtualbox__intnet: "redprivadaservidorla$
+  servidor1.vm.network "private_network", ip: "192.168.30.15"
  end
 
  config.vm.define :maquina2 do |maquina2|
   maquina2.vm.box = "debian/buster64"
-  maquina2.vm.network :private_network, ip: "192.168.30.10", virtualbox__intnet: "redprivadaservidorlam$
+  maquina2.vm.network "private_network", ip: "192.168.30.30"
  end
 
 end

@@ -641,7 +641,7 @@ apt remove --purge mariadb-server mariadb-client -y && apt autoremove
 
 Probamos a acceder a la página de Drupal ahora:
 
-![.](images/![.](images/iaw_instalacion_local_de_un_cms_php/bbddeliminada.png)
+![.](images/iaw_instalacion_local_de_un_cms_php/bbddeliminada.png)
 
 - **Realiza los cambios de configuración necesario en drupal para que la página funcione.**
 

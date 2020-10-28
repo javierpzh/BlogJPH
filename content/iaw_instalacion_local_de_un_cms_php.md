@@ -479,6 +479,9 @@ Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
+MariaDB [(none)]> CREATE DATABASE drupal;
+Query OK, 1 row affected (0.002 sec)
+
 MariaDB [(none)]> CREATE USER 'drupal' IDENTIFIED BY 'contraseña';
 Query OK, 0 rows affected (0.001 sec)
 
@@ -506,6 +509,11 @@ copiaseguridaddrupal.sql
 </pre>
 
 Ya tengo la copia de seguridad en la **maquina2**, que es donde quiero restaurarla.
+
+<pre>
+mysql -u drupal -p drupal < copiaseguridaddrupal.sql
+</pre>
+
 
 - **Desinstala el servidor de base de datos en el servidor principal.**
 

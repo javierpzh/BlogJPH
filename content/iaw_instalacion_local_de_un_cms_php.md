@@ -498,7 +498,14 @@ Para mover la copia de seguridad de la base de datos que hemos realizado en paso
 
 Ahora voy a configurar la misma cuenta de *Dropbox* con *rclone* en la máquina **maquina2**, y voy a descargar la copia de seguridad de la base de datos.
 
+<pre>
+root@buster:/home/vagrant# rclone copy dropbox:/rclone/copiaseguridaddrupal.sql /home/vagrant/
 
+root@buster:/home/vagrant# ls
+copiaseguridaddrupal.sql
+</pre>
+
+Ya tengo la copia de seguridad en la **maquina2**, que es donde quiero restaurarla.
 
 - **Desinstala el servidor de base de datos en el servidor principal.**
 

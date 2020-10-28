@@ -333,7 +333,7 @@ Así quedaría nuestra nueva publicación:
 
 - **Instala un módulo para añadir alguna funcionalidad a drupal.**
 
-Para **instalar un nuevo módulo** en Drupal, es bastante sencillo y parecido a los temas. Vamos a la opción **Ampliar**, clickamos en `+ Instalar nuevo tema`, introducimos el enlace de descarga del módulo que queremos añadir y listo. Al igual que con el tema, tenemos que verificar que funciona con nuestra versión de Drupal.
+Para **instalar un nuevo módulo** en Drupal, es bastante sencillo y parecido a los temas. Vamos a la opción **Ampliar**, clickamos en `+ Instalar nuevo módulo`, introducimos el enlace de descarga del módulo que queremos añadir y listo. Al igual que con el tema, tenemos que verificar que funciona con nuestra versión de Drupal.
 
 En mi caso, voy a instalar un módulo llamado ***AddToAny*** que permite compartir los artículos y entradas de la web a través de nuestras redes sociales.
 

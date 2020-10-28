@@ -19,7 +19,8 @@ He creado una máquina virtual utilizando **Vagrant** y **VirtualBox**, mediante
 Vagrant.configure("2") do |config|
 
   config.vm.box = "debian/buster64"
-  config.vm.network "private_network", ip: "192.168.30.15"
+  config.vm.network :public_network, :bridge=>"wlo1"
+  config.vm.network "private_network", ip: "192.168.30.1", virtualbox__intnet: "redprivadaservidorlamp"
 
 end
 </pre>
@@ -368,7 +369,23 @@ Le pasamos dos parámetros: la opción **-u** indica el nombre de usuario y la o
 Modifico el escenario creado antes y queda así:
 
 <pre>
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
 
+Vagrant.configure("2") do |config|
+
+ config.vm.define :servidor1 do |servidor1|
+  servidor1.vm.box = "debian/buster64"
+  servidor1.vm.network :public_network, :bridge=>"wlo1"
+  servidor1.vm.network "private_network", ip: "192.168.30.1", virtualbox__intnet: "redprivadaservidorla$
+ end
+
+ config.vm.define :maquina2 do |maquina2|
+  maquina2.vm.box = "debian/buster64"
+  maquina2.vm.network :private_network, ip: "192.168.30.10", virtualbox__intnet: "redprivadaservidorlam$
+ end
+
+end
 </pre>
 
 

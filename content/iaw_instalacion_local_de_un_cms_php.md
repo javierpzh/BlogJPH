@@ -636,16 +636,21 @@ MariaDB [drupal]>
 En **servidor1**:
 
 <pre>
-apt remove --purge mariadb-server mariadb-client -y && apt autoremove
+apt remove --purge mariadb-server mariadb-client -y && apt autoremove -y
 </pre>
 
 Probamos a acceder a la página de Drupal ahora:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/bbddeliminada.png)
 
-- **Realiza los cambios de configuración necesario en drupal para que la página funcione.**
+- **Realiza los cambios de configuración necesarios en drupal para que la página funcione.**
 
 En este punto, queremos volver a tener disponible nuestra web de Drupal, pero funcionando con la base de datos en la nueva máquina, ed decir, en **maquina2**.
+
+Tenemos que cambiar la configuración de Drupal,
+
+
+
 
 
 

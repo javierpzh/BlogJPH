@@ -494,7 +494,11 @@ Bye
 
 - **Restaura la copia de seguridad en el nuevo servidor de base datos.**
 
-Para mover la copia de seguridad de la base de datos que hemos realizado en pasos anteriores,
+Para mover la copia de seguridad de la base de datos que hemos realizado en pasos anteriores, en la máquina **servidor1** he instalado la utilidad **rclone**, he configurado mi cuenta de *Dropbox* y he copiado el archivo. Si quieres aprender más sobre *rclone* puedes visitar este [post](https://javierpzh.github.io/rclone-gestionando-nuestro-almacenamiento-en-la-nube.html).
+
+Ahora voy a configurar la misma cuenta de *Dropbox* con *rclone* en la máquina **maquina2**, y voy a descargar la copia de seguridad de la base de datos.
+
+
 
 - **Desinstala el servidor de base de datos en el servidor principal.**
 

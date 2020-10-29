@@ -2,7 +2,7 @@ Title: Instalación local de un CMS PHP
 Date: 2020/10/29
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
-Tags: lamp, cms, apache, mariadb, mysql, php, drupal
+Tags: LAMP, CMS, Apache, MariaDB, MySQL, PHP, DrupalCMS, PicoCMS
 
 Esta tarea consiste en instalar un **CMS** de tecnología **PHP** en un servidor local. Los pasos que tendrás que dar los siguientes:
 

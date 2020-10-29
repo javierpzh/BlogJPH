@@ -695,6 +695,10 @@ Ya podemos acceder de nuevo a nuestro sitio web Drupal.
 
 - **Elige otro CMS realizado en PHP y realiza la instalación en tu infraestructura.**
 
+- **Configura otro virtualhost y elige otro nombre en el mismo dominio.**
+
+**En este momento, muestra al profesor la aplicación funcionando en local. Y describe en redmine los pasos fundamentales para realizar la tarea.**
+
 He decidido elegir el CMS llamado **Pico**. No tiene un backend para editar los datos (aunque existe un plugin para ello). No utiliza consultas a la base de datos, por lo tanto, es súper rápido. Es compatible con el formato Markdown y las plantillas twig.
 
 Vamos a proceder a instalarlo.
@@ -744,14 +748,12 @@ a2ensite pico.conf
 systemctl restart apache2
 </pre>
 
+<pre>
+192.168.30.15   www.javierperezhidalgopico.com
+</pre>
+
 ![.](images/iaw_instalacion_local_de_un_cms_php/pico.png)
 
-- **Configura otro virtualhost y elige otro nombre en el mismo dominio.**
-
-
-
-
-**En este momento, muestra al profesor la aplicación funcionando en local. Y describe en redmine los pasos fundamentales para realizar la tarea.**
 
 ##Tarea 5: Necesidad de otros servicios
 

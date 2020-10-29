@@ -93,7 +93,7 @@ DocumentRoot /var/www/html/flask_temperaturas
 WSGIDaemonProcess flask_temp user=www-data group=www-data processes=1 threads=5 python-path=/var/www/html/flask_temperaturas:/home/debian/venv/flask/lib/python3.7/site-packages
 WSGIScriptAlias / /var/www/html/flask_temperaturas/app.wsgi
 
-<\Directory /var/www/html/flask_temperaturas\>
+<Directory /var/www/html/flask_temperaturas>
         WSGIProcessGroup flask_temp
         WSGIApplicationGroup %{GLOBAL}
         Require all granted

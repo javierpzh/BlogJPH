@@ -15,7 +15,7 @@ Clona el repositorio en tu equipo, mira las versiones de los paquetes necesarios
 
 **1. ¿Podríamos instalar estos paquetes con `apt`?**
 
-
+Podríamos instalar estos paquetes con *apt* pero con diferentes versiones, ya que los paquetes de los repositorios Debian no poseen las últimas versiones de muchos paquetes.
 
 **2. ¿Sería buena idea instalar como root estos paquetes en el sistema con `pip`?**
 
@@ -23,12 +23,24 @@ Clona el repositorio en tu equipo, mira las versiones de los paquetes necesarios
 
 **3. ¿Cómo sería la mejor manera de instalar estos paquetes?**
 
-
-
+En un entorno virtual creado con **Python**, para que no interfiera con la paquetería instalada en el equipo.
 
 #### Trabajamos con entornos virtuales
 
-Crea un entorno virtual con el módulo `venv` e instala en él los paquetes necesarios para que el programa funcione. Una vez instalado, ejecuta la aplicación con el servidor de desarrollo y comprueba que funciona.
+**Crea un entorno virtual con el módulo `venv` e instala en él los paquetes necesarios para que el programa funcione. Una vez instalado, ejecuta la aplicación con el servidor de desarrollo y comprueba que funciona.**
+
+Para crear un entorno virtual con *python3*:
+
+<pre>
+python3 -m venv desplegandoaplicacionflask
+</pre>
+
+Como hemos clonado el repositorio que contiene el archivo `requirements.txt`, podemos hacer una instalación de todos esos paquetes con un solo comando:
+
+<pre>
+pip install -r requirements.txt
+</pre>
+
 
 ### Despliegue en el entrono de producción
 

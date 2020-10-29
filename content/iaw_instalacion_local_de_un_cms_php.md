@@ -243,7 +243,7 @@ root@buster:~# ln -s /var/www/html/drupal-9.0.7/ /var/www/html/drupal
 root@buster:~# chown -R www-data:www-data /var/www/html/drupal/
 </pre>
 
-Hemos descargado **Drupal** y lo hemos descomprimido en la ruta en la que se encuentra el sitio web. Además conviene crear un enlace simbólico sobre el directorio de Drupal para tener un nombre sin números de versión. Y como Drupal necesita escribir en su propio directorio, lo hemos otorgado como dueño del directorio y su contenido al servidor web.
+Hemos descargado **Drupal** y lo hemos descomprimido en la ruta en la que se encuentra el sitio web. Además conviene crear un enlace simbólico sobre el directorio de Drupal para tener un nombre sin números de versión. Hemos otorgado a `www-data` como dueño del directorio y su contenido al servidor web.
 
 También necesitamos algunas extensiones de PHP:
 
@@ -703,13 +703,19 @@ He decidido elegir el CMS llamado **Pico**. No tiene un backend para editar los 
 
 Vamos a proceder a instalarlo.
 
+Si nos ayudamos de la página oficial de [Pico](http://picocms.org/), la descarga la podemos realizar clonando un repositorio de GitHub. Por tanto necesitamos el paquete `git` en nuestro sistema:
+
 <pre>
 apt install git -y
 </pre>
 
+Clonamos el repositorio en `/var/www/html`:
+
 <pre>
 git clone https://github.com/picocms/Pico.git
 </pre>
+
+Hemos otorgado a `www-data` como dueño del directorio y su contenido al servidor web.
 
 <pre>
 root@buster:/var/www/html# chown -R www-data:www-data ./Pico/
@@ -723,34 +729,45 @@ drwxr-xr-x  8 www-data www-data  4096 Oct 28 11:14 drupal-9.0.7
 drwxr-xr-x 12 www-data www-data  4096 Oct 29 17:54 Pico
 </pre>
 
+Vamos a instalar la utilidad para descargar archivos `curl`, ya que estamos siguiendo los pasos de la web de *Pico* y utiliza este comando:
+
 <pre>
 apt install curl -y
 </pre>
+
+Descargamos el instalador y lo lanzamos mediante los siguientes comandos:
 
 <pre>
 curl -sSL https://getcomposer.org/installer | php
 php composer.phar create-project picocms/pico-composer pico
 </pre>
 
-
-`pico.conf`:
+Hemos instalado el CMS Pico. Solo nos quedaría configurar apache para que sirva este sitio web en la dirección `http://www.javierperezhidalgopico.com/Pico/pico/`. Primero creamos el fichero de configuración en `/etc/apache2/sites-available`, lo voy a llamar `pico.conf`. Añado las siguientes líneas:
 
 <pre>
 ServerName www.javierperezhidalgopico.com
 DocumentRoot /var/www/html/Pico
 </pre>
 
+Habilitamos el despliegue de la página:
+
 <pre>
 a2ensite pico.conf
 </pre>
+
+Reiniciamos el servicio:
 
 <pre>
 systemctl restart apache2
 </pre>
 
+Acabamos de lanzar nuestra página en Pico, si queremos visualizarla en nuestra máquina anfitrión, añadimos la siguiente línea al fichero `/etc/hosts`:
+
 <pre>
 192.168.30.15   www.javierperezhidalgopico.com
 </pre>
+
+Nos dirigimos a la web `http://www.javierperezhidalgopico.com/Pico/pico/`:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/pico.png)
 

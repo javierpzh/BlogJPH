@@ -1,5 +1,5 @@
 Title: Instalación local de un CMS PHP
-Date: 2020/10/21
+Date: 2020/10/29
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: lamp, cms, apache, mariadb, mysql, php, drupal
@@ -645,9 +645,9 @@ Probamos a acceder a la página de Drupal ahora:
 
 - **Realiza los cambios de configuración necesarios en drupal para que la página funcione.**
 
-En este punto, queremos volver a tener disponible nuestra web de Drupal, pero funcionando con la base de datos en la nueva máquina, ed decir, en **maquina2**.
+En este punto, queremos volver a tener disponible nuestra web de Drupal, pero funcionando con la base de datos en la nueva máquina, es decir, en **maquina2**.
 
-Tenemos que cambiar la configuración de Drupal,
+Tenemos que cambiar la configuración de Drupal, para ello nos dirigimos al fichero que se encuentra en la ruta `/var/www/html/drupal-9.0.7/sites/default/settings.php`, y al final del archivo, se encuentra la configuración de la base de datos que utiliza Drupal. Como es obvio, está configurada como que la base de datos está en el mismo equipo, por tanto está configurado en **localhost**. Aquí viene el primer cambio, pues debemos remover *localhost* y sustituirlo por la IP de la máquina donde se encuentra la nueva base de datos sobre la que va a funcionar Drupal, que es la **192.168.30.30**.
 
 
 

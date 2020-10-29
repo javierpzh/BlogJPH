@@ -695,7 +695,23 @@ Ya podemos acceder de nuevo a nuestro sitio web Drupal.
 
 - **Elige otro CMS realizado en PHP y realiza la instalación en tu infraestructura.**
 
+He decidido elegir el CMS llamado **Pico**. No tiene un backend para editar los datos (aunque existe un plugin para ello). No utiliza consultas a la base de datos, por lo tanto, es súper rápido. Es compatible con el formato Markdown y las plantillas twig.
 
+Vamos a proceder a instalarlo.
+
+<pre>
+root@buster:/var/www/html# mkdir pico
+
+root@buster:/var/www/html# cd pico/
+
+root@buster:/var/www/html/pico# wget https://github.com/picocms/Pico/releases/download/v2.1.4/pico-release-v2.1.4.tar.gz
+
+root@buster:/var/www/html/pico# tar -xf pico-release-v2.1.4.tar.gz
+
+root@buster:/var/www/html/pico# ls
+assets	      composer.json  config   CONTRIBUTING.md  LICENSE			   plugins    themes
+CHANGELOG.md  composer.lock  content  index.php        pico-release-v2.1.4.tar.gz  README.md  vendor
+</pre>
 
 - **Configura otro virtualhost y elige otro nombre en el mismo dominio.**
 

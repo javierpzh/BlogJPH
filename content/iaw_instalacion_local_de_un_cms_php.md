@@ -700,18 +700,51 @@ He decidido elegir el CMS llamado **Pico**. No tiene un backend para editar los 
 Vamos a proceder a instalarlo.
 
 <pre>
-root@buster:/var/www/html# mkdir pico
-
-root@buster:/var/www/html# cd pico/
-
-root@buster:/var/www/html/pico# wget https://github.com/picocms/Pico/releases/download/v2.1.4/pico-release-v2.1.4.tar.gz
-
-root@buster:/var/www/html/pico# tar -xf pico-release-v2.1.4.tar.gz
-
-root@buster:/var/www/html/pico# ls
-assets	      composer.json  config   CONTRIBUTING.md  LICENSE			   plugins    themes
-CHANGELOG.md  composer.lock  content  index.php        pico-release-v2.1.4.tar.gz  README.md  vendor
+apt install git -y
 </pre>
+
+<pre>
+git clone https://github.com/picocms/Pico.git
+</pre>
+
+<pre>
+root@buster:/var/www/html# chown -R www-data:www-data ./Pico/
+
+root@buster:/var/www/html# ls -l
+total 24
+lrwxrwxrwx  1 root     root        27 Oct 28 09:52 drupal -> /var/www/html/drupal-9.0.7/
+drwxr-xr-x  8 www-data www-data  4096 Oct 28 11:14 drupal-9.0.7
+-rw-r--r--  1 root     root     10701 Oct 28 09:44 index.html
+-rw-r--r--  1 root     root        20 Oct 28 09:45 phpinfo.php
+drwxr-xr-x 12 www-data www-data  4096 Oct 29 17:54 Pico
+</pre>
+
+<pre>
+apt install curl -y
+</pre>
+
+<pre>
+curl -sSL https://getcomposer.org/installer | php
+php composer.phar create-project picocms/pico-composer pico
+</pre>
+
+
+`pico.conf`:
+
+<pre>
+ServerName www.javierperezhidalgopico.com
+DocumentRoot /var/www/html/Pico
+</pre>
+
+<pre>
+a2ensite pico.conf
+</pre>
+
+<pre>
+systemctl restart apache2
+</pre>
+
+![.](images/iaw_instalacion_local_de_un_cms_php/pico.png)
 
 - **Configura otro virtualhost y elige otro nombre en el mismo dominio.**
 

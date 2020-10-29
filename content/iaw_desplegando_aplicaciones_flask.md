@@ -35,6 +35,12 @@ Para crear un entorno virtual con *python3*:
 python3 -m venv desplegandoaplicacionflask
 </pre>
 
+Vamos a actualizar el paquete `pip` para evitar problemas al instalar paquetes:
+
+<pre>
+pip install --upgrade pip
+</pre>
+
 Como hemos clonado el repositorio que contiene el archivo `requirements.txt`, podemos hacer una instalación de todos esos paquetes con un solo comando:
 
 <pre>

@@ -59,7 +59,7 @@ Es decir, el protocolo WSGI define las reglas para que el servidor web se comuni
 
 #### Configuración de apache2 para servir una aplicación web flask
 
-Lo primero que tenemos que hacer es instala el módulo de apache2 wsgi:
+Lo primero que tenemos que hacer es instalar el módulo de apache2, `wsgi`:
 
 <pre>
 apt install libapache2-mod-wsgi-py3

@@ -649,11 +649,44 @@ En este punto, queremos volver a tener disponible nuestra web de Drupal, pero fu
 
 Tenemos que cambiar la configuración de Drupal, para ello nos dirigimos al fichero que se encuentra en la ruta `/var/www/html/drupal-9.0.7/sites/default/settings.php`, y al final del archivo, se encuentra la configuración de la base de datos que utiliza Drupal. Como es obvio, está configurada como que la base de datos está en el mismo equipo, por tanto está configurado en **localhost**. Aquí viene el primer cambio, pues debemos remover *localhost* y sustituirlo por la IP de la máquina donde se encuentra la nueva base de datos sobre la que va a funcionar Drupal, que es la **192.168.30.30**.
 
+<pre>
+$databases['default']['default'] = array (
+  'database' => 'drupal',
+  'username' => 'drupal',
+  'password' => 'contraseña',
+  'prefix' => '',
+  'host' => '192.168.30.30',
+  'port' => '3306',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+);
+</pre>
 
+Una vez hecho esto, tendríamos que dirigirnos a la máquina donde hemos migrado la copia de seguridad, es decir la llamada **maquina2**, y tenemos que permitirle el acceso remoto a la base de datos.
 
+El primer paso es editar el fichero de configuración que se encuentra en `/etc/mysql/mariadb.conf.d/50-server.cnf` y tenemos que editar, y en caso de estar comentadas las líneas `skip-external-locking` y `bind-address`. En esta última también tenemos que cambiar la IP, ya que por defecto aparece la de *localhost*, podemos poner una IP concreta si sabemos que siempre va a acceder un equipo con la misma dirección, o podemos habilitarlas todas. Si queremos esta última opción, la línea quedará así:
 
+<pre>
+bind-address            = 0.0.0.0
+</pre>
 
+En último lugar, vamos a permitirle tanto a nuestro usuario *drupal*, como a *root*, que puedan ser accesibles desde otros equipos.
 
+<pre>
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'contraseña' WITH GRANT OPTION;
+
+GRANT ALL PRIVILEGES ON *.* TO 'drupal'@'%' IDENTIFIED BY 'contraseña' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+</pre>
+
+Reiniciamos el servidor:
+
+<pre>
+systemctl restart mysqld
+</pre>
+
+Ya podemos acceder de nuevo a nuestro sitio web Drupal.
 
 **Entrega una documentación resumida donde expliques los pasos fundamentales para realizar esta tarea. En este momento, muestra al profesor la aplicación funcionando en local.**
 

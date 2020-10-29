@@ -6,6 +6,7 @@ Tags: entornos virtuales, apache, python3
 
 
 ## Desplegando aplicaciones flask
+
 ### Despliegue en el entorno de desarrollo
 
 Vamos a trabajar con la aplicación flask_temperaturas que puedes encontrar en el siguiente enlace: [https://github.com/josedom24/flask_temperaturas](https://github.com/josedom24/flask_temperaturas).

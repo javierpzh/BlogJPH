@@ -2,7 +2,7 @@ Title: Servidor DHCP con NAT
 Date: 2020/10/19
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
-Tags: servidor, dhcp, nat, snat
+Tags: servidor, DHCP, NAT, SNAT
 
 ## Teoría
 

@@ -2,7 +2,7 @@ Title: Compilación de un programa en C utilizando un Makefile
 Date: 2020/10/24
 Category: Administración de Sistemas Operativos
 Header_Cover: theme/images/banner-sistemas.jpg
-Tags: compilar, gcc, C, Makefile
+Tags: compilar, GCC, C, Makefile
 
 ## Descripción
 

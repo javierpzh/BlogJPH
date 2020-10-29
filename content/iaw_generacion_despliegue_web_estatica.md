@@ -2,7 +2,7 @@ Title: Implantación y despliegue de una aplicación web estática
 Date: 2020/10/11
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
-Tags: web, pelican, GitHub Pages, virtualenv
+Tags: web, Pelican, GitHub Pages, virtualenv
 
 ## Ejercicios
 

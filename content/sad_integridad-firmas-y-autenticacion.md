@@ -2,7 +2,7 @@ Title: Integridad, firmas y autenticación
 Date: 2020/10/27
 Category: Seguridad y Alta Disponibilidad
 Header_Cover: theme/images/banner-seguridad.jpg
-Tags: gpg
+Tags: GPG
 
 ## Tarea 1: Firmas electrónicas
 

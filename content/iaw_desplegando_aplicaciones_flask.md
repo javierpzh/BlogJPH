@@ -12,9 +12,18 @@ Vamos a trabajar con la aplicación flask_temperaturas que puedes encontrar en e
 
 Clona el repositorio en tu equipo, mira las versiones de los paquetes necesarios para que la aplicación funcione en el fichero `requirements.txt` y responde las siguientes preguntas:
 
-    ¿Podríamos instalar estos paquetes con `apt`?
-    ¿Sería buena idea instalar como root estos paquetes en el sistema con `pip`?
-    ¿Cómo sería la mejor manera de instalar estos paquetes?
+**1. ¿Podríamos instalar estos paquetes con `apt`?**
+
+
+
+**2. ¿Sería buena idea instalar como root estos paquetes en el sistema con `pip`?**
+
+
+
+**3. ¿Cómo sería la mejor manera de instalar estos paquetes?**
+
+
+
 
 #### Trabajamos con entornos virtuales
 

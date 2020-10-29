@@ -74,11 +74,11 @@ WSGIScriptAlias / /var/www/html/flask_temperaturas/app.wsgi
 
 Vamos a explicar la configuración:
 
-    El `DocumentRoot` se indica el directorio donde está la aplicación. Realmente el servidor web siempre va a llamar al fichero WSGI `app.wsgi`, pero el DocumentRoot es necesario por si hay contenido estático.
-    La línea WSGIDaemonProcess: Se define un grupo de procesos que se van a encargar de ejecutar la aplicación (servidor de aplicaciones). A estos procesos se le ponen un nombre (flask_temp), se indican el usuario y el grupo que van a utilizar (en este caso el mismo que el del servidor web), se indica el número de procesos (process) e hilos (threads) que va a tener cada proceso, y finalmente se indica los directorios donde se encuentran la aplicación y los paquetes necesarios (python-path), como puedes observar se pone el directorio donde esta la aplicación y el directorio donde se encuentran los paquetes en el entorno virtual, separados por dos puntos.
-    La directiva WSGIScriptAlias nos permite indicar que programa se va a ejecutar (el fichero WSGI: /var/www/html/flask_temperaturas/app.wsgi) cuando se haga una petición a la url /.
-    La sección Directory nos permite asignar el proceso creado anteriormente (WSGIProcessGroup flask_temp) al directorio donde tenemos la aplicación.
+- El `DocumentRoot` se indica el directorio donde está la aplicación. Realmente el servidor web siempre va a llamar al fichero WSGI `app.wsgi`, pero el DocumentRoot es necesario por si hay contenido estático.
+- La línea WSGIDaemonProcess: Se define un grupo de procesos que se van a encargar de ejecutar la aplicación (servidor de aplicaciones). A estos procesos se le ponen un nombre (`flask_temp`), se indican el usuario y el grupo que van a utilizar (en este caso el mismo que el del servidor web), se indica el número de procesos (`process`) e hilos (`threads`) que va a tener cada proceso, y finalmente se indica los directorios donde se encuentran la aplicación y los paquetes necesarios (`python-path`), como puedes observar se pone el directorio donde esta la aplicación y el directorio donde se encuentran los paquetes en el entorno virtual, separados por dos puntos.
+- La directiva `WSGIScriptAlias` nos permite indicar que programa se va a ejecutar (el fichero WSGI: `/var/www/html/flask_temperaturas/app.wsgi`) cuando se haga una petición a la url `/`.
+- La sección `Directory` nos permite asignar el proceso creado anteriormente (`WSGIProcessGroup flask_temp`) al directorio donde tenemos la aplicación.
 
-Reinicia el servicio web y prueba el funcionamiento. Si te da algún erro 500 puedes ver los errores, en /var/log/apache2/error.log.
+Reinicia el servicio web y prueba el funcionamiento. Si te da algún erro 500 puedes ver los errores, en `/var/log/apache2/error.log`.
 
-Realiza la configuración de apache2 para que sirva la aplicación con la que estamos trabajando en un virtualhost python.iesgn.org.
+**Realiza la configuración de apache2 para que sirva la aplicación con la que estamos trabajando en un virtualhost `python.iesgn.org`.**

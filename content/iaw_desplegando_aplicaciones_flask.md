@@ -1,7 +1,7 @@
 Title: Desplegando aplicaciones flask
 Date: 2020/10/29
 Category: Implantación de Aplicaciones Web
-Header_Cover: theme/images/banner-aplicaciones.jpg
+Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: entornos virtuales, apache, python3
 
 

@@ -29,7 +29,14 @@ end
 - **Instala en esa máquina virtual toda la pila LAMP**
 - **Entrega una documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**
 
-Una vez tenemos la máquina lista, vamos a instalar el **servidor LAMP**. Antes de nada vamos a preparar la máquina para la instalación:
+Una vez tenemos la máquina lista, vamos a instalar el **servidor LAMP**, que hace referencia a:
+
+- **L**inux, el sistema operativo
+- **A**pache, el servidor web
+- **M**ySQL/MariaDB, el gestor de bases de datos
+- **P**HP, el lenguaje de programación
+
+Antes de nada vamos a preparar la máquina para la instalación:
 
 <pre>
 apt update && apt upgrade -y && apt autoremove -y

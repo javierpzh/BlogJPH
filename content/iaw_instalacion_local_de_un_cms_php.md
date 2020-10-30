@@ -511,11 +511,13 @@ root@buster:/home/vagrant# ls
 copiaseguridaddrupal.sql
 </pre>
 
-Ya tengo la copia de seguridad en la **maquina2**, que es donde quiero restaurarla.
+Ya tengo la copia de seguridad en la **maquina2**, que es donde quiero restaurarla. Para restaurar una copia de seguridad de una base de datos en *MySQL*, introducimos el siguiente comando:
 
 <pre>
 mysql -u drupal -p drupal < copiaseguridaddrupal.sql
 </pre>
+
+El parámetro **-u** indica el nombre de usuario y **-p** el nombre de la base de datos, donde se va a restaurar la copia.
 
 Si miramos las bases de datos del usuario **drupal**:
 
@@ -633,6 +635,8 @@ MariaDB [drupal]> show tables;
 
 MariaDB [drupal]>
 </pre>
+
+Vemos que la copia se ha restaurado correctamente.
 
 - **Desinstala el servidor de base de datos en el servidor principal.**
 

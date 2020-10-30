@@ -699,7 +699,17 @@ Ya podemos acceder de nuevo a nuestro sitio web Drupal.
 
 **En este momento, muestra al profesor la aplicación funcionando en local. Y describe en redmine los pasos fundamentales para realizar la tarea.**
 
-He decidido elegir el CMS llamado **Pico**. No tiene un backend para editar los datos (aunque existe un plugin para ello). No utiliza consultas a la base de datos, por lo tanto, es súper rápido. Es compatible con el formato Markdown y las plantillas twig.
+He decidido elegir el CMS llamado **Anchor**. Cuenta con una interfaz de usuario muy simple. Instalar Anchor CMS te llevará muy poco tiempo. Soporta Markdown editor, campos personalizados, múltiples idiomas y la posibilidad de instalar múltiples temas.
+
+
+Si nos ayudamos de la página oficial de [Anchor](https://anchorcms.com/), la descarga la podemos realizar desde [aquí](https://anchorcms.com/download).
+
+
+
+
+## Instalación CMS PHP que no utiliza base de datos
+
+También voy a instalar un CMS llamado **Pico**. No tiene un backend para editar los datos (aunque existe un plugin para ello). No utiliza consultas a la base de datos, por lo tanto, es súper rápido. Es compatible con el formato Markdown y las plantillas twig.
 
 Vamos a proceder a instalarlo.
 

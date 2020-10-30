@@ -943,7 +943,7 @@ Creamos la cuenta administradora del sitio web:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/cuentaanchor.png)
 
-Y con esto ya hemos terminado la instalación de *Anchor*:
+Y con esto ya hemos terminado la instalación de *Anchor*.
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/instalacioncompletadaanchor.png)
 

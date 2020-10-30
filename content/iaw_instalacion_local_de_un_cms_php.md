@@ -331,7 +331,7 @@ Y ya hemos cambiado el tema:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/nuevotemainicio.png)
 
-Vamos a añadir alguna entrada, para ver como mostraría el contenido. Para ello en la parte superior de las opciones, donde dice **Contenido**, clickamos en `+ Añadir contenido`, y se nos abrirá una especie de editor, que configuramos a nuestro gusto y guardamos los cambios.
+Vamos a añadir alguna entrada, para ver como se mostraría el contenido. Para ello en la parte superior de las opciones, donde dice **Contenido**, clickamos en `+ Añadir contenido`, y se nos abrirá una especie de editor, que configuramos a nuestro gusto y guardamos los cambios.
 
 Así quedaría nuestra nueva publicación:
 
@@ -492,9 +492,6 @@ Query OK, 0 rows affected (0.001 sec)
 MariaDB [(none)]> GRANT ALL PRIVILEGES ON drupal.* TO 'drupal';
 Query OK, 0 rows affected (0.001 sec)
 
-MariaDB [(none)]> FLUSH PRIVILEGES;
-Query OK, 0 rows affected (0.001 sec)
-
 MariaDB [(none)]> exit
 Bye
 </pre>
@@ -502,6 +499,8 @@ Bye
 - **Restaura la copia de seguridad en el nuevo servidor de base datos.**
 
 Para mover la copia de seguridad de la base de datos que hemos realizado en pasos anteriores, en la máquina **servidor1** he instalado la utilidad **rclone**, he configurado mi cuenta de *Dropbox* y he copiado el archivo. Si quieres aprender más sobre *rclone* puedes visitar este [post](https://javierpzh.github.io/rclone-gestionando-nuestro-almacenamiento-en-la-nube.html).
+
+Podríamos haberlo hecho con el típico comando `scp`, pero en caso de querer utilizarlo, tendríamos que establecer una contraseña en las máquinas, ya que *Vagrant* por defecto no deja que nos conectemos por **SSH** si no utilizamos la clave privada, y luego configurar en el fichero `/etc/ssh/sshd_config` la línea `PasswordAuthentication no` y sustituir el **no** por un **yes**, y reiniciar el servicio SSH, ya que hemos tocado su configuración. Esta solución me la comentó mi compañero [Álvaro](https://www.instagram.com/whosalvr/) ya que yo no caí en estos detalles.
 
 Ahora voy a configurar la misma cuenta de *Dropbox* con *rclone* en la máquina **maquina2**, y voy a descargar la copia de seguridad de la base de datos.
 

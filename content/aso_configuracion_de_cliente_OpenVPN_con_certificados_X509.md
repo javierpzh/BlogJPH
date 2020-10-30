@@ -72,13 +72,13 @@ También hemos tenido que descargar el certificado de la entidad Gonzalo Nazaren
 root@debian:~# mv ../home/javier/Descargas/gonzalonazareno.csr /etc/ssl/certs/
 </pre>
 
-
+Solo nos quedaría crear un fichero que configure OpenVPN. Este fichero tiene que tener una extensión `.conf`, y tiene que encontrarse en el directorio `/etc/openvpn`.
 
 <pre>
 root@debian:/etc/openvpn# nano vpniesgn.conf
 </pre>
 
-
+Dentro de él copiamos y pegamos las siguientes líneas:
 
 <pre>
 dev tun
@@ -88,11 +88,47 @@ pull
 proto tcp-client
 tls-client
 remote-cert-tls server
-ca /etc/ssl/certs/gonzalonazareno.crt
-cert /etc/openvpn/msi-debian-javierperezhidalgo.crt
-key /etc/ssl/private/msi-debian-javierperezhidalgo.key
+ca /etc/ssl/certs/gonzalonazareno.crt <- Cambiar por la ruta al certificado de la CA Gonzalo Nazareno (el mismo que utilizamos para la moodle, redmine, etc.)
+cert /etc/openvpn/msi-debian-javierperezhidalgo.crt <- Cambiar por la ruta al certificado CRT firmado que nos han devuelto
+key /etc/ssl/private/msi-debian-javierperezhidalgo.key <- Cambiar por la ruta a la clave privada, aunque en ese directorio es donde debe estar y con permisos 600
 comp-lzo
 keepalive 10 60
 log /var/log/openvpn-sputnik.log
 verb 1
+</pre>
+
+Reiniciamos el servicio y lo iniciamos:
+
+<pre>
+systemctl restart openvpn.service
+systemctl start openvpn.service
+</pre>
+
+Comprobamos que nos ha creado el túnel y que se ha añadido una regla de encaminamiento para acceder a la red `172.22.0.0/16`:
+
+<pre>
+root@debian:/etc/ssl/certs# ip r
+...
+172.22.0.0/16 via 172.23.0.45 dev tun0
+...
+</pre>
+
+Comprobamos los mensajes del fichero `/var/log/openvpn-sputnik.log`:
+
+<pre>
+root@debian:/etc/ssl/certs# cat /var/log/openvpn-sputnik.log
+Fri Oct 30 17:14:33 2020 OpenVPN 2.4.7 x86_64-pc-linux-gnu [SSL (OpenSSL)] [LZO] [LZ4] [EPOLL] [PKCS11] [MH/PKTINFO] [AEAD] built on Feb 20 2019
+Fri Oct 30 17:14:33 2020 library versions: OpenSSL 1.1.1d  10 Sep 2019, LZO 2.10
+Fri Oct 30 17:14:33 2020 WARNING: using --pull/--client and --ifconfig together is probably not what you want
+Fri Oct 30 17:14:33 2020 TCP/UDP: Preserving recently used remote address: [AF_INET]92.222.86.77:1194
+Fri Oct 30 17:14:33 2020 Attempting to establish TCP connection with [AF_INET]92.222.86.77:1194 [nonblock]
+Fri Oct 30 17:14:34 2020 TCP connection established with [AF_INET]92.222.86.77:1194
+Fri Oct 30 17:14:34 2020 TCP_CLIENT link local: (not bound)
+Fri Oct 30 17:14:34 2020 TCP_CLIENT link remote: [AF_INET]92.222.86.77:1194
+Fri Oct 30 17:14:34 2020 [sputnik.gonzalonazareno.org] Peer Connection Initiated with [AF_INET]92.222.86.77:1194
+Fri Oct 30 17:14:36 2020 TUN/TAP device tun0 opened
+Fri Oct 30 17:14:36 2020 /sbin/ip link set dev tun0 up mtu 1500
+Fri Oct 30 17:14:36 2020 /sbin/ip addr add dev tun0 local 172.23.0.46 peer 172.23.0.45
+Fri Oct 30 17:14:36 2020 WARNING: this configuration may cache passwords in memory -- use the auth-nocache option to prevent this
+Fri Oct 30 17:14:36 2020 Initialization Sequence Completed
 </pre>

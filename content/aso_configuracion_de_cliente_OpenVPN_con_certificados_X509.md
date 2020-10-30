@@ -75,6 +75,21 @@ root@debian:~# mv ../../home/javier/Descargas/gonzalonazareno.crt /etc/ssl/certs
 </pre>
 
 
+
+<pre>
+root@debian:/etc/ssl/private# ls -l
+total 4
+-rw-r--r-- 1 root root 3243 oct 30 10:35 msi-debian-javierperezhidalgo.key
+
+root@debian:/etc/ssl/private# chmod 600 msi-debian-javierperezhidalgo.key
+
+root@debian:/etc/ssl/private# ls -l
+total 4
+-rw------- 1 root root 3243 oct 30 10:35 msi-debian-javierperezhidalgo.key
+</pre>
+
+
+
 <pre>
 root@debian:/etc/openvpn# nano vpniesgn.conf
 </pre>

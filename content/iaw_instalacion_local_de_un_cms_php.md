@@ -42,7 +42,7 @@ Antes de nada vamos a preparar la máquina para la instalación:
 apt update && apt upgrade -y && apt autoremove -y
 </pre>
 
-El primer paso sería instalar nuestro gestor de base de datos, yo voy a utilizar **MySQL**. Lo instalamos:
+El primer paso sería instalar nuestro gestor de base de datos, **MySQL**, por tnato, lo instalamos:
 
 <pre>
 apt install mariadb-server mariadb-client -y

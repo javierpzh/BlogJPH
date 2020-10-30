@@ -104,9 +104,17 @@ systemctl restart openvpn.service
 systemctl start openvpn.service
 </pre>
 
-Comprobamos que nos ha creado el túnel y que se ha añadido una regla de encaminamiento para acceder a la red `172.22.0.0/16`:
+Comprobamos que nos ha creado el túnel y que se nos ha añadido una IP y una regla de encaminamiento para acceder a la red `172.22.0.0/16`:
 
 <pre>
+root@debian:~# ip a show tun0
+10: tun0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UNKNOWN group default qlen 100
+    link/none
+    inet 172.23.0.46 peer 172.23.0.45/32 scope global tun0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::3ed2:aec4:b737:ab2c/64 scope link stable-privacy
+       valid_lft forever preferred_lft forever
+
 root@debian:/etc/ssl/certs# ip r
 ...
 172.22.0.0/16 via 172.23.0.45 dev tun0

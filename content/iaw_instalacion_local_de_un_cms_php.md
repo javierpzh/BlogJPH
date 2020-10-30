@@ -212,9 +212,6 @@ Query OK, 0 rows affected (0.001 sec)
 MariaDB [(none)]> GRANT ALL PRIVILEGES ON drupal.* TO 'drupal';
 Query OK, 0 rows affected (0.000 sec)
 
-MariaDB [(none)]> FLUSH PRIVILEGES;
-Query OK, 0 rows affected (0.001 sec)
-
 MariaDB [(none)]> exit
 Bye
 </pre>

@@ -640,7 +640,7 @@ Vemos que la copia se ha restaurado correctamente.
 
 - **Desinstala el servidor de base de datos en el servidor principal.**
 
-En **servidor1**:
+En **servidor1** desinstalamos el servidor de base de datos y borramos todos sus datos:
 
 <pre>
 apt remove --purge mariadb-server mariadb-client -y && apt autoremove -y
@@ -673,7 +673,7 @@ $databases['default']['default'] = array (
 
 Una vez hecho esto, tendríamos que dirigirnos a la máquina donde hemos migrado la copia de seguridad, es decir la llamada **maquina2**, y tenemos que permitirle el acceso remoto a la base de datos.
 
-El primer paso es editar el fichero de configuración que se encuentra en `/etc/mysql/mariadb.conf.d/50-server.cnf` y tenemos que editar, y en caso de estar comentadas las líneas `skip-external-locking` y `bind-address`. En esta última también tenemos que cambiar la IP, ya que por defecto aparece la de *localhost*, podemos poner una IP concreta si sabemos que siempre va a acceder un equipo con la misma dirección, o podemos habilitarlas todas. Si queremos esta última opción, la línea quedará así:
+El primer paso es editar el fichero de configuración que se encuentra en `/etc/mysql/mariadb.conf.d/50-server.cnf` y tenemos que editar, y en caso de estar comentadas la línea `bind-address`. En esta línea también tenemos que cambiar la IP, ya que por defecto aparece la de *localhost*, podemos poner una IP concreta si sabemos que siempre va a acceder un equipo con la misma dirección, o podemos habilitarlas todas. Si queremos esta última opción, la línea quedará así:
 
 <pre>
 bind-address            = 0.0.0.0
@@ -685,8 +685,6 @@ En último lugar, vamos a permitirle tanto a nuestro usuario *drupal*, como a *r
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'contraseña' WITH GRANT OPTION;
 
 GRANT ALL PRIVILEGES ON *.* TO 'drupal'@'%' IDENTIFIED BY 'contraseña' WITH GRANT OPTION;
-
-FLUSH PRIVILEGES;
 </pre>
 
 Reiniciamos el servidor:

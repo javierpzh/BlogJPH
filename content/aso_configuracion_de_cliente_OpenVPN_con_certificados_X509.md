@@ -132,3 +132,24 @@ Fri Oct 30 17:14:36 2020 /sbin/ip addr add dev tun0 local 172.23.0.46 peer 172.2
 Fri Oct 30 17:14:36 2020 WARNING: this configuration may cache passwords in memory -- use the auth-nocache option to prevent this
 Fri Oct 30 17:14:36 2020 Initialization Sequence Completed
 </pre>
+
+**Importante:** Si no queremos que se levante el túnel VPN cada vez que encendemos el ordenador deshabilitamos el servicio:
+
+<pre>
+systemctl disable openvpn.service
+</pre>
+
+Para habilitar el túnel VPN cuando lo necesitemos:
+
+<pre>
+systemctl start openvpn.service
+</pre>
+
+Si queremos utilizar resolución estática de nombres de las máquinas del centro, **jupiter** y **macaco**, añadimos en nuestro fichero `/etc/hosts` las siguientes líneas:
+
+<pre>
+172.22.222.1    jupiter
+172.22.0.1      macaco
+</pre>
+
+Ya hemos terminado la configuración de nuestra VPN.

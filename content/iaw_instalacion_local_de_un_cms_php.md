@@ -701,9 +701,140 @@ Ya podemos acceder de nuevo a nuestro sitio web Drupal.
 
 He decidido elegir el CMS llamado **Anchor**. Cuenta con una interfaz de usuario muy simple. Instalar Anchor CMS te llevará muy poco tiempo. Soporta Markdown editor, campos personalizados, múltiples idiomas y la posibilidad de instalar múltiples temas.
 
-
 Si nos ayudamos de la página oficial de [Anchor](https://anchorcms.com/), la descarga la podemos realizar desde [aquí](https://anchorcms.com/download).
 
+Como antes para realizar la migración, desinstalé *MySQL* de la máquina *servidor1*, voy a volver a realizar la instalación y configuración, esta vez sin tantos detalles.
+
+<pre>
+apt install mariadb-server mariadb-client -y
+mysql_secure_installation
+</pre>
+
+Creamos el usuario *anchor* de la base de datos y le otorgamos los permisos:
+
+<pre>
+root@buster:/home/vagrant# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 44
+Server version: 10.3.25-MariaDB-0+deb10u1 Debian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE anchor;
+Query OK, 1 row affected (0.000 sec)
+
+MariaDB [(none)]> CREATE USER anchor IDENTIFIED BY 'contraseña';
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON anchor. * TO 'anchor';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> exit
+Bye
+</pre>
+
+Vamos a instalar la utilidad para descargar archivos `curl`, ya que estamos siguiendo los pasos de la web de *Anchor* y utiliza este comando:
+
+<pre>
+apt install curl -y
+</pre>
+
+Necesitamos instalar *Composer* en el sistema, que es un administrador de dependencias PHP. Lo descargamos, instalamos y ejecutamos mediante el siguiente comando:
+
+<pre>
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+</pre>
+
+
+
+<pre>
+root@buster:/var/www/html# composer create-project anchorcms/anchor-cms
+Do not run Composer as root/super user! See https://getcomposer.org/root for details
+Continue as root/super user [yes]? yes
+Creating a "anchorcms/anchor-cms" project at "./anchor-cms"
+Installing anchorcms/anchor-cms (0.12.7)
+    Failed to download anchorcms/anchor-cms from dist: The zip extension and unzip command are both missing, skipping.
+Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
+    Now trying to download from source
+  - Syncing anchorcms/anchor-cms (0.12.7) into cache
+  - Installing anchorcms/anchor-cms (0.12.7): Cloning 08e8e50790 from cache
+Created project in /var/www/html/anchor-cms
+
+
+  [Composer\Json\JsonValidationException]                    
+  "./composer.json" does not match the expected JSON schema  
+
+
+create-project [-s|--stability STABILITY] [--prefer-source] [--prefer-dist] [--repository REPOSITORY] [--repository-url REPOSITORY-URL] [--add-repository] [--dev] [--no-dev] [--no-custom-installers] [--no-scripts] [--no-progress] [--no-secure-http] [--keep-vcs] [--remove-vcs] [--no-install] [--ignore-platform-req IGNORE-PLATFORM-REQ] [--ignore-platform-reqs] [--ask] [--] [<package>] [<directory>] [<version>]
+
+root@buster:/var/www/html# mv anchor-cms anchor
+</pre>
+
+
+
+<pre>
+root@buster:/var/www/html# chown -R www-data:www-data ./anchor/
+
+root@buster:/var/www/html# ls -l
+total 28
+drwxr-xr-x 10 www-data www-data  4096 Oct 30 12:05 anchor
+lrwxrwxrwx  1 root     root        27 Oct 28 09:52 drupal -> /var/www/html/drupal-9.0.7/
+drwxr-xr-x  8 www-data www-data  4096 Oct 28 11:14 drupal-9.0.7
+-rw-r--r--  1 root     root     10701 Oct 28 09:44 index.html
+-rw-r--r--  1 root     root        20 Oct 28 09:45 phpinfo.php
+drwxr-xr-x 13 www-data www-data  4096 Oct 29 17:59 Pico
+</pre>
+
+
+
+<pre>
+root@buster:/var/www/html/anchor# nano composer.json
+</pre>
+
+
+
+<pre>
+"type": "cms"
+</pre>
+
+
+
+<pre>
+composer install
+</pre>
+
+
+
+<pre>
+root@buster:/etc/apache2/sites-available# cp javierperezhidalgodrupal.conf anchor.conf
+
+root@buster:/etc/apache2/sites-available# nano anchor.conf
+</pre>
+
+
+
+<pre>
+ServerName www.javierperezhidalgoanchor.com
+DocumentRoot /var/www/html/anchor
+</pre>
+
+
+
+<pre>
+root@buster:/etc/apache2/sites-available# a2ensite anchor.conf
+Enabling site anchor.
+To activate the new configuration, you need to run:
+  systemctl reload apache2
+
+root@buster:/etc/apache2/sites-available# systemctl restart apache2
+</pre>
+
+
+
+![.](images/iaw_instalacion_local_de_un_cms_php/anchor.png)
 
 
 
@@ -737,12 +868,6 @@ drwxr-xr-x  8 www-data www-data  4096 Oct 28 11:14 drupal-9.0.7
 -rw-r--r--  1 root     root     10701 Oct 28 09:44 index.html
 -rw-r--r--  1 root     root        20 Oct 28 09:45 phpinfo.php
 drwxr-xr-x 12 www-data www-data  4096 Oct 29 17:54 Pico
-</pre>
-
-Vamos a instalar la utilidad para descargar archivos `curl`, ya que estamos siguiendo los pasos de la web de *Pico* y utiliza este comando:
-
-<pre>
-apt install curl -y
 </pre>
 
 Descargamos el instalador y lo lanzamos mediante los siguientes comandos:

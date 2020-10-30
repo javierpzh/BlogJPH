@@ -134,7 +134,7 @@ Nos quedaría por instalar el **servidor PHP**, para ello:
 apt install php libapache2-mod-php php-cli php-mysql -y
 </pre>
 
-También he instalado las **librerías php** de *apache* y *mysql*.
+También he instalado las **librerías php** de *apache* y *mysql*, para que todos los sistemas puedan funcionar de manera conjunta.
 
 Activamos el módulo de **PHP** de **Apache**.
 

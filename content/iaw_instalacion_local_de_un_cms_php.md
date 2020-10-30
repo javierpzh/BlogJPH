@@ -930,23 +930,21 @@ Especificamos la base de datos que va utilizar. La que previamente hemos creado 
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/bbddanchor.png)
 
-Configuramos el nombre de la página
+Configuramos el nombre de la página, la descripción, ...
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/confpaganchor.png)
 
+Creamos la cuenta administradora del sitio web:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/cuentaanchor.png)
 
+Y con esto ya hemos terminado la instalación de *Anchor*:
 
+![.](images/iaw_instalacion_local_de_un_cms_php/instalacioncompletadaanchor.png)
 
-
-![.](images/iaw_instalacion_local_de_un_cms_php/instalacioncompletaanchor.png)
+Así luce nuestra nueva página:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/terminadoanchor.png)
-
-
-
-
 
 
 ## Instalación CMS PHP que no utiliza base de datos

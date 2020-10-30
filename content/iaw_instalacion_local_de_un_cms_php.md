@@ -920,14 +920,17 @@ Introducimos en el navegador la dirección `www.javierperezhidalgoanchor.com` y 
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/anchor.png)
 
+Vamos a realizar una instalación rápida, ya que es muy parecido al proceso que hemos realizado para Drupal.
 
-
+En primer lugar indicamos el idioma y la zona horaria:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/idiomaanchor.png)
 
+Especificamos la base de datos que va utilizar. La que previamente hemos creado en *MySQL*:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/bbddanchor.png)
 
+Configuramos el nombre de la página
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/confpaganchor.png)
 

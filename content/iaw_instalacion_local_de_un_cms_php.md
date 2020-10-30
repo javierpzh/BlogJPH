@@ -146,7 +146,7 @@ Y por último introducimos la siguiente línea en forma de script PHP, que lo ú
 
 `echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/phpinfo.php`
 
-Hemos terminado nuestro servidor LAMP.
+Hemos terminado de montar nuestro servidor LAMP.
 
 ##Tarea 2: Instalación de drupal en mi servidor local
 

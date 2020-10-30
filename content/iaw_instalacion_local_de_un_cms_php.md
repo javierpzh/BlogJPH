@@ -255,7 +255,7 @@ También necesitamos algunas extensiones de PHP:
 apt install php-apcu php-gd php-mbstring php-uploadprogress php-xml -y
 </pre>
 
-Drupal puede hacer uso del sistema de reescritura de URLs, basado en el módulo `Rewrite` de Apache, que no está activado por defecto. Activamos el módulo `Rewrite` y otros que puede usar Drupal:
+Drupal puede hacer uso del sistema de reescritura de URLs, basado en el módulo `Rewrite` de Apache, que no está activado por defecto. Este módulo permite crear direcciones URL alternativas a las dinámicas generadas por la programación de nuestros sitio web, de tal modo que sean más legibles y fáciles de recordar. Activamos el módulo `Rewrite` y otros que puede usar Drupal:
 
 <pre>
 a2enmod expires headers rewrite

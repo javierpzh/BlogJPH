@@ -834,7 +834,14 @@ root@buster:/etc/apache2/sites-available# systemctl restart apache2
 
 
 
+<pre>
+192.168.30.15   www.javierperezhidalgoanchor.com
+</pre>
+
+Introducimos en el navegador la dirección `www.javierperezhidalgoanchor.com` nos saldrá el instalador de Anchor:
+
 ![.](images/iaw_instalacion_local_de_un_cms_php/anchor.png)
+
 
 
 

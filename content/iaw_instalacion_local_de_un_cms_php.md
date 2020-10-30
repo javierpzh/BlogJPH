@@ -715,7 +715,7 @@ apt install mariadb-server mariadb-client -y
 mysql_secure_installation
 </pre>
 
-Creamos el usuario *anchor* de la base de datos y le otorgamos los permisos:
+Creamos el usuario **anchor** de la base de datos y le otorgamos los permisos:
 
 <pre>
 root@buster:/home/vagrant# mysql -u root -p

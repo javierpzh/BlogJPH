@@ -36,7 +36,7 @@ Una vez tenemos la máquina lista, vamos a instalar el **servidor LAMP**, que ha
 - **M**ySQL/MariaDB, el gestor de bases de datos
 - **P**HP, el lenguaje de programación
 
-Antes de nada vamos a preparar la máquina para la instalación:
+Antes de nada voy a preparar la máquina para la instalación, voy a actualizar los paquetes instalados, ya que la box que estoy utilizando no es de la última versión de Debian.
 
 <pre>
 apt update && apt upgrade -y && apt autoremove -y

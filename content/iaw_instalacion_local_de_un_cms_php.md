@@ -952,7 +952,7 @@ Así luce nuestra nueva página:
 ![.](images/iaw_instalacion_local_de_un_cms_php/terminadoanchor.png)
 
 
-## Instalación CMS PHP que no utiliza base de datos
+## Instalación de un CMS PHP que no utiliza base de datos
 
 También voy a instalar un CMS llamado **Pico**. No tiene un backend para editar los datos (aunque existe un plugin para ello). No utiliza consultas a la base de datos, por lo tanto, es súper rápido. Es compatible con el formato Markdown y las plantillas twig.
 

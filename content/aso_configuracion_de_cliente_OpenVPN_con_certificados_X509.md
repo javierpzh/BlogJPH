@@ -16,6 +16,9 @@ Tags: OpenVPN, VPN
 - **Instala y configura apropiadamente el cliente openvpn y muestra los registros (logs) del sistema que demuestren que se ha establecido una conexión.**
 - **Cuando hayas establecido la conexión VPN tendrás acceso a la red 172.22.0.0/16 a través de un túnel SSL. Compruébalo haciendo ping a 172.22.0.1**
 
+En este post voy a tratar el tema de como crear una **VPN** utilizando **OpenVPN** con certificados **X.509**.
+
+Lo primero sería crear nuestra clave privada de **4096 bits**, para ello vamos a utilizar **openssl**. Vamos a guardar esta clave en el directorio `/etc/ssl/private/`. Para crear esta clave privada empleamos el siguiente comando:
 
 <pre>
 root@debian:~# openssl genrsa 4096 > /etc/ssl/private/msi-debian-javierperezhidalgo.key
@@ -23,7 +26,13 @@ Generating RSA private key, 4096 bit long modulus (2 primes)
 ................................................................................++++
 .................++++
 e is 65537 (0x010001)
+</pre>
 
+Lo siguiente sería generar una solicitud de firma de certificado, es decir, un fichero **csr**, que posteriormente enviaremos a la entidad del [Gonzalo Nazareno](https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/) para que nos lo firmen.
+
+Para generar nuestro archivo csr:
+
+<pre>
 root@debian:~# openssl req -new -key /etc/ssl/private/msi-debian-javierperezhidalgo.key -out /root/msi-debian-javierperezhidalgo.csr
 You are about to be asked to enter information that will be incorporated
 into your certificate request.
@@ -47,45 +56,20 @@ An optional company name []:
 
 root@debian:~# ls
 msi-debian-javierperezhidalgo.csr
-
-root@debian:~# cp msi-debian-javierperezhidalgo.csr ../
-bin/            home/           lib64/          proc/           sys/            vmlinuz.old
-boot/           initrd.img      libx32/         root/           tmp/            
-.cache/         initrd.img.old  media/          run/            usr/            
-dev/            lib/            mnt/            sbin/           var/            
-etc/            lib32/          opt/            srv/            vmlinuz         
-
-root@debian:~# mv msi-debian-javierperezhidalgo.csr ../home/javier/
-
-root@debian:~# mv ../home/javier/msi-debian-javierperezhidalgo.csr ./
-
-root@debian:~# ls
-msi-debian-javierperezhidalgo.csr
-
-root@debian:~# mv ../home/javier/Descargas/msi-debian-javierperezhidalgo.crt ./
-
-root@debian:~# ls
-msi-debian-javierperezhidalgo.crt  msi-debian-javierperezhidalgo.csr
-
-root@debian:~# mv msi-debian-javierperezhidalgo.crt /etc/openvpn/
-
-root@debian:~# mv msi-debian-javierperezhidalgo.csr /etc/ssl/certs/
-
-root@debian:~# mv ../../home/javier/Descargas/gonzalonazareno.crt /etc/ssl/certs/
 </pre>
 
+Vemos que ya hemos generado nuestro certificado, así que ahora tenemos que enviárselo al Gonzalo Nazareno para que nos lo firme. Lo enviamos desde este [enlace](https://dit.gonzalonazareno.org/gestiona/cert/).
 
+Una vez tenemos descargado el certificado firmado, normalmente lo habremos descargado en *Descargas*, por tanto lo vamos a mover a la carpeta `/etc/openvpn` de nuestro usuario *root*.
 
 <pre>
-root@debian:/etc/ssl/private# ls -l
-total 4
--rw-r--r-- 1 root root 3243 oct 30 10:35 msi-debian-javierperezhidalgo.key
+root@debian:~# mv ../home/javier/Descargas/msi-debian-javierperezhidalgo.crt /etc/openvpn/
+</pre>
 
-root@debian:/etc/ssl/private# chmod 600 msi-debian-javierperezhidalgo.key
+También hemos tenido que descargar el certificado de la entidad Gonzalo Nazareno. Por tanto lo vamos a mover a la ruta `/etc/ssl/certs/`:
 
-root@debian:/etc/ssl/private# ls -l
-total 4
--rw------- 1 root root 3243 oct 30 10:35 msi-debian-javierperezhidalgo.key
+<pre>
+root@debian:~# mv ../home/javier/Descargas/gonzalonazareno.csr /etc/ssl/certs/
 </pre>
 
 
@@ -104,9 +88,9 @@ pull
 proto tcp-client
 tls-client
 remote-cert-tls server
-ca /etc/ssl/certs/gonzalonazareno.crt <- Cambiar por la ruta al certificado de la CA Gonzalo Nazareno (el mismo que utilizamos para la moodle, redmine, etc.)
-cert /etc/openvpn/msi-debian-javierperezhidalgo.crt <- Cambiar por la ruta al certificado CRT firmado que nos han devuelto
-key /etc/ssl/private/msi-debian-javierperezhidalgo.key <- Cambiar por la ruta a la clave privada, aunque en ese directorio es donde debe estar y con permisos 600
+ca /etc/ssl/certs/gonzalonazareno.crt
+cert /etc/openvpn/msi-debian-javierperezhidalgo.crt
+key /etc/ssl/private/msi-debian-javierperezhidalgo.key
 comp-lzo
 keepalive 10 60
 log /var/log/openvpn-sputnik.log

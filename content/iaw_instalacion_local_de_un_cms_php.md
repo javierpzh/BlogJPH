@@ -708,7 +708,7 @@ He decidido elegir el CMS llamado **Anchor**. Este CMS cuenta con una interfaz d
 
 Si nos ayudamos de la página oficial de [Anchor](https://anchorcms.com/), la descarga la podemos realizar desde [aquí](https://anchorcms.com/download).
 
-Como antes para realizar la migración, desinstalé *MySQL* de la máquina *servidor1*, voy a volver a realizar la instalación y configuración, esta vez sin tantos detalles.
+Como antes para realizar la migración, desinstalé *MySQL* de la máquina **servidor1**, voy a volver a realizar la instalación y configuración, esta vez sin tantos detalles.
 
 <pre>
 apt install mariadb-server mariadb-client -y

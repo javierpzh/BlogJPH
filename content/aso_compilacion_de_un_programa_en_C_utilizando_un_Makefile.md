@@ -2,7 +2,7 @@ Title: Compilación de un programa en C utilizando un Makefile
 Date: 2020/10/24
 Category: Administración de Sistemas Operativos
 Header_Cover: theme/images/banner-sistemas.jpg
-Tags: compilar, GCC, C, Makefile
+Tags: compilar, GCC, C, Makefile, wget
 
 ## Descripción
 
@@ -62,6 +62,20 @@ Siguiendo estos pasos ya habríamos instalado correctamente `wget` en nuestro eq
 
 <pre>
 make uninstall
+</pre>
+
+Con esto habríamos desinstalado el programa, pero no habríamos borrado todos los archivos de configuración que se han creado mediante el proceso de compilación e instalación del programa.
+
+Si queremos borrar todos estos archivos, tenemos que ejecutar:
+
+<pre>
+make distclean
+</pre>
+
+Y si queremos deshacernos de todos los archivos/objetos creados por la compilación:
+
+<pre>
+make clean
 </pre>
 
 Antes de terminar, veo muy interesante comentar una herramienta que he encontrado mientras realizaba la práctica y buscaba información.

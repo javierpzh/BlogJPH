@@ -699,7 +699,7 @@ Ya podemos acceder de nuevo a nuestro sitio web Drupal.
 
 **En este momento, muestra al profesor la aplicación funcionando en local. Y describe en redmine los pasos fundamentales para realizar la tarea.**
 
-He decidido elegir el CMS llamado **Anchor**. Cuenta con una interfaz de usuario muy simple. Instalar Anchor CMS te llevará muy poco tiempo. Soporta Markdown editor, campos personalizados, múltiples idiomas y la posibilidad de instalar múltiples temas.
+He decidido elegir el CMS llamado **Anchor**. Este CMS cuenta con una interfaz de usuario muy simple. Instalar Anchor CMS te llevará muy poco tiempo. Soporta Markdown editor, campos personalizados, múltiples idiomas y la posibilidad de instalar múltiples temas.
 
 Si nos ayudamos de la página oficial de [Anchor](https://anchorcms.com/), la descarga la podemos realizar desde [aquí](https://anchorcms.com/download).
 
@@ -748,7 +748,7 @@ Necesitamos instalar *Composer* en el sistema, que es un administrador de depend
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 </pre>
 
-
+Descargamos y creamos la página de *Anchor* utilizando *Composer* con el comando:
 
 <pre>
 root@buster:/var/www/html# composer create-project anchorcms/anchor-cms
@@ -769,11 +769,107 @@ Created project in /var/www/html/anchor-cms
 
 
 create-project [-s|--stability STABILITY] [--prefer-source] [--prefer-dist] [--repository REPOSITORY] [--repository-url REPOSITORY-URL] [--add-repository] [--dev] [--no-dev] [--no-custom-installers] [--no-scripts] [--no-progress] [--no-secure-http] [--keep-vcs] [--remove-vcs] [--no-install] [--ignore-platform-req IGNORE-PLATFORM-REQ] [--ignore-platform-reqs] [--ask] [--] [<package>] [<directory>] [<version>]
+</pre>
 
+Antes de pasar con el error del que nos ha informado, he cambiado el nombre del directorio:
+
+<pre>
 root@buster:/var/www/html# mv anchor-cms anchor
 </pre>
 
+Si nos fijamos, nos ha reportado un mensaje de error. Nos indica que ha detectado un fallo en el fichero `composer.json`. Para solucionar este error, debemos editar el fichero:
 
+<pre>
+root@buster:/var/www/html/anchor# nano composer.json
+</pre>
+
+En la línea que hace referencia al tipo, debemos cambiar el valor, que por defecto viene *CMS*, debemos indicar el tipo con letras minúsculas, de forma que quede así:
+
+<pre>
+"type": "cms"
+</pre>
+
+Corremos el instalador de nuevo:
+
+<pre>
+root@buster:/var/www/html/anchor# composer install
+Do not run Composer as root/super user! See https://getcomposer.org/root for details
+Continue as root/super user [yes]? yes
+Installing dependencies from lock file (including require-dev)
+Verifying lock file contents can be installed on current platform.
+Warning: The lock file is not up to date with the latest changes in composer.json. You may be getting outdated dependencies. It is recommended that you run `composer update` or `composer update <package name>`.
+Package operations: 13 installs, 0 updates, 0 removals
+    Failed to download indigophp/hash-compat from dist: The zip extension and unzip command are both missing, skipping.
+Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
+    Now trying to download from source
+  - Syncing indigophp/hash-compat (v1.1.0) into cache
+    Failed to download ircmaxell/password-compat from dist: The zip extension and unzip command are both missing, skipping.
+Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
+    Now trying to download from source
+  - Syncing ircmaxell/password-compat (v1.0.4) into cache
+    Failed to download ircmaxell/security-lib from dist: The zip extension and unzip command are both missing, skipping.
+Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
+    Now trying to download from source
+  - Syncing ircmaxell/security-lib (v1.1.0) into cache
+    Failed to download ircmaxell/random-lib from dist: The zip extension and unzip command are both missing, skipping.
+Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
+    Now trying to download from source
+  - Syncing ircmaxell/random-lib (v1.2.0) into cache
+    Failed to download peridot-php/leo from dist: The zip extension and unzip command are both missing, skipping.
+Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
+    Now trying to download from source
+  - Syncing peridot-php/leo (1.6.1) into cache
+    Failed to download symfony/polyfill-mbstring from dist: The zip extension and unzip command are both missing, skipping.
+Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
+    Now trying to download from source
+  - Syncing symfony/polyfill-mbstring (v1.7.0) into cache
+    Failed to download psr/log from dist: The zip extension and unzip command are both missing, skipping.
+Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
+    Now trying to download from source
+  - Syncing psr/log (1.0.2) into cache
+    Failed to download symfony/debug from dist: The zip extension and unzip command are both missing, skipping.
+Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
+    Now trying to download from source
+  - Syncing symfony/debug (v4.0.5) into cache
+    Failed to download symfony/console from dist: The zip extension and unzip command are both missing, skipping.
+Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
+    Now trying to download from source
+  - Syncing symfony/console (v3.4.5) into cache
+    Failed to download phpunit/php-timer from dist: The zip extension and unzip command are both missing, skipping.
+Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
+    Now trying to download from source
+  - Syncing phpunit/php-timer (1.0.9) into cache
+    Failed to download peridot-php/peridot-scope from dist: The zip extension and unzip command are both missing, skipping.
+Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
+    Now trying to download from source
+  - Syncing peridot-php/peridot-scope (1.3.0) into cache
+    Failed to download evenement/evenement from dist: The zip extension and unzip command are both missing, skipping.
+Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
+    Now trying to download from source
+  - Syncing evenement/evenement (v2.1.0) into cache
+    Failed to download peridot-php/peridot from dist: The zip extension and unzip command are both missing, skipping.
+Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
+    Now trying to download from source
+  - Syncing peridot-php/peridot (1.19.0) into cache
+  - Installing indigophp/hash-compat (v1.1.0): Cloning 43a19f4209 from cache
+  - Installing ircmaxell/password-compat (v1.0.4): Cloning 5c5cde8822 from cache
+  - Installing ircmaxell/security-lib (v1.1.0): Cloning f3db6de12c from cache
+  - Installing ircmaxell/random-lib (v1.2.0): Cloning e9e0204f40 from cache
+  - Installing peridot-php/leo (1.6.1): Cloning 2a6f60f237 from cache
+  - Installing symfony/polyfill-mbstring (v1.7.0): Cloning 78be803ce0 from cache
+  - Installing psr/log (1.0.2): Cloning 4ebe3a8bf7 from cache
+  - Installing symfony/debug (v4.0.5): Cloning 1721e4e7ef from cache
+  - Installing symfony/console (v3.4.5): Cloning 067339e9b8 from cache
+  - Installing phpunit/php-timer (1.0.9): Cloning 3dcf38ca72 from cache
+  - Installing peridot-php/peridot-scope (1.3.0): Cloning b5cc7ac35b from cache
+  - Installing evenement/evenement (v2.1.0): Cloning 6ba9a77787 from cache
+  - Installing peridot-php/peridot (1.19.0): Cloning 1c573868d8 from cache
+Generating autoload files
+</pre>
+
+Ahora sí hemos instalado correctamente *Anchor* como nuestro CMS.
+
+Hemos otorgado a `www-data` como dueño del directorio y su contenido al servidor web.
 
 <pre>
 root@buster:/var/www/html# chown -R www-data:www-data ./anchor/
@@ -788,25 +884,7 @@ drwxr-xr-x  8 www-data www-data  4096 Oct 28 11:14 drupal-9.0.7
 drwxr-xr-x 13 www-data www-data  4096 Oct 29 17:59 Pico
 </pre>
 
-
-
-<pre>
-root@buster:/var/www/html/anchor# nano composer.json
-</pre>
-
-
-
-<pre>
-"type": "cms"
-</pre>
-
-
-
-<pre>
-composer install
-</pre>
-
-
+Solo nos quedaría configurar nuestro servidor web *Apache* para que sirviera la web. Para ello vamos a generar un fichero de configuración para *Anchor*:
 
 <pre>
 root@buster:/etc/apache2/sites-available# cp javierperezhidalgodrupal.conf anchor.conf
@@ -814,14 +892,14 @@ root@buster:/etc/apache2/sites-available# cp javierperezhidalgodrupal.conf ancho
 root@buster:/etc/apache2/sites-available# nano anchor.conf
 </pre>
 
-
+Dentro de este fichero especificamos la dirección de la web y el DocumentRoot:
 
 <pre>
 ServerName www.javierperezhidalgoanchor.com
 DocumentRoot /var/www/html/anchor
 </pre>
 
-
+Habilitamos el sitio web para que *Apache* lo muestre y reiniciamos el servidor, como siempre hay que hacer cuando hagamos un cambio:
 
 <pre>
 root@buster:/etc/apache2/sites-available# a2ensite anchor.conf
@@ -832,15 +910,38 @@ To activate the new configuration, you need to run:
 root@buster:/etc/apache2/sites-available# systemctl restart apache2
 </pre>
 
-
+Por último, añadimos esta línea al fichero `/etc/hosts` del equipo anfitrión para que podamos ver la web en nuestro navegador.
 
 <pre>
 192.168.30.15   www.javierperezhidalgoanchor.com
 </pre>
 
-Introducimos en el navegador la dirección `www.javierperezhidalgoanchor.com` nos saldrá el instalador de Anchor:
+Introducimos en el navegador la dirección `www.javierperezhidalgoanchor.com` y nos saldrá el instalador de Anchor:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/anchor.png)
+
+
+
+
+![.](images/iaw_instalacion_local_de_un_cms_php/idiomaanchor.png)
+
+
+![.](images/iaw_instalacion_local_de_un_cms_php/bbddanchor.png)
+
+
+![.](images/iaw_instalacion_local_de_un_cms_php/confpaganchor.png)
+
+
+![.](images/iaw_instalacion_local_de_un_cms_php/cuentaanchor.png)
+
+
+
+
+![.](images/iaw_instalacion_local_de_un_cms_php/instalacioncompletaanchor.png)
+
+![.](images/iaw_instalacion_local_de_un_cms_php/terminadoanchor.png)
+
+
 
 
 

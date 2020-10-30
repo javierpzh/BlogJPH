@@ -71,5 +71,29 @@ root@debian:~# mv msi-debian-javierperezhidalgo.crt /etc/openvpn/
 
 root@debian:~# mv msi-debian-javierperezhidalgo.csr /etc/ssl/certs/
 
+root@debian:~# mv ../../home/javier/Descargas/gonzalonazareno.crt /etc/ssl/certs/
+</pre>
 
+
+<pre>
+root@debian:/etc/openvpn# nano vpniesgn.conf
+</pre>
+
+
+
+<pre>
+dev tun
+remote sputnik.gonzalonazareno.org
+ifconfig 172.23.0.0 255.255.255.0
+pull
+proto tcp-client
+tls-client
+remote-cert-tls server
+ca /etc/ssl/certs/gonzalonazareno.crt <- Cambiar por la ruta al certificado de la CA Gonzalo Nazareno (el mismo que utilizamos para la moodle, redmine, etc.)
+cert /etc/openvpn/msi-debian-javierperezhidalgo.crt <- Cambiar por la ruta al certificado CRT firmado que nos han devuelto
+key /etc/ssl/private/msi-debian-javierperezhidalgo.key <- Cambiar por la ruta a la clave privada, aunque en ese directorio es donde debe estar y con permisos 600
+comp-lzo
+keepalive 10 60
+log /var/log/openvpn-sputnik.log
+verb 1
 </pre>

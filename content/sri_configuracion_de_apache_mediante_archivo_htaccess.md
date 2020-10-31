@@ -16,10 +16,18 @@ Para permitir el uso de los ficheros `.htaccess` o restringir las directivas que
 
 **1. Habilita el listado de ficheros en la URL `http://host.dominio/nas`.**
 
+En el fichero `.htaccess` introducimos la siguiente línea para que nos muestre la lista de los ficheros:
 
+<pre>
+Options +Indexes
+</pre>
 
 **2. Crea una redirección permanente: cuando entremos en `ttp://host.dominio/google` salte a `www.google.es`.**
 
+En el fichero `.htaccess` introducimos la siguiente línea para que nos haga la redirección:
 
+<pre>
+Redirect /google www.google.es
+</pre>
 
 **3. Pedir autentificación para entrar en la URL `http://host.dominio/prohibido`. (No la hagas si has elegido como proveedor CDMON, en la plataforma de prueba, no funciona.)**

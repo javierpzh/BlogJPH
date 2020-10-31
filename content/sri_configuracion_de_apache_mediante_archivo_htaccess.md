@@ -6,9 +6,9 @@ Tags: Apache, web, htaccess
 
 ## Configuración de apache mediante archivo .htaccess
 
-Un fichero `.htaccess` (hypertext access), también conocido como archivo de configuración distribuida, es un fichero especial, popularizado por el Servidor HTTP Apache que nos permite definir diferentes directivas de configuración para cada directorio (con sus respectivos subdirectorios) sin necesidad de editar el archivo de configuración principal de Apache.
+Un fichero `.htaccess` (hypertext access), también conocido como archivo de configuración distribuida, es un fichero especial, popularizado por el **Servidor HTTP Apache** que nos permite definir diferentes directivas de configuración para cada directorio (con sus respectivos subdirectorios) sin necesidad de editar el archivo de configuración principal de Apache.
 
-Para permitir el uso de los ficheros `.htaccess` o restringir las directivas que se pueden aplicar usamos ela directiva AllowOverride, que puede ir acompañada de una o varias opciones: `All`, `AuthConfig`, `FileInfo`, `Indexes`, `Limit`, … Estudia para que sirve cada una de las opciones.
+Para permitir el uso de los ficheros `.htaccess` o restringir las directivas que se pueden aplicar usamos la directiva `AllowOverride`, que puede ir acompañada de una o varias opciones: `All`, `AuthConfig`, `FileInfo`, `Indexes`, `Limit`, … Estudia para que sirve cada una de las opciones.
 
 #### Ejercicios
 

@@ -538,8 +538,8 @@ Si ahora probamos a acceder a `departamentos.iesgn.org/secreto`:
 
 - **Máquina anfitrión:**
 
-    ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/.png)
+    ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/internetaccesomedianteautentificacion.png)
 
 - **Máquina cliente:**
 
-    ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/.png)
+    ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/intranetaccesodirecto.png)

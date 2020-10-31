@@ -344,7 +344,7 @@ root@servidor:/var/www/departamentos/internet# nano index.html
 
 Una vez tenemos creados las dos páginas webs, es el momento de establecer el control de acceso.
 
-Las restricciones de acceso se llevan a cabo en el fichero de configuración de la web, es decir, en `/etc/apache2/sites-available/departamentos.conf`. Se nos pide que a la página `Intranet` pueda acceder la máquina conectada a la red local **192.168.150.0/24**, es decir nuestra mv, cuya IP es **192.168.150.10**, y a la página `Internet` el equipo anfitrión, cuya IP es **192.168.0.25**.
+Las restricciones de acceso se llevan a cabo en el fichero de configuración de la web, es decir, en `/etc/apache2/sites-available/departamentos.conf`. Se nos pide que a la página `Intranet` pueda acceder la máquina conectada a la red local **192.168.150.0/24**, es decir nuestra mv, cuya IP es **192.168.150.10**, y a la página `Internet` cualquier equipo que no pertenezca a la red local.
 Para ello el fichero debe quedar así:
 
 <pre>
@@ -353,7 +353,10 @@ Para ello el fichero debe quedar así:
 <\/Directory\>
 
 <\Directory /var/www/departamentos/internet \>
- Require ip 192.168.0
+ <\RequireAll\>
+   Require all granted
+   Require not ip 192.168.150
+ <\/RequireAll\>
 <\/Directory\>
 </pre>
 
@@ -443,6 +446,205 @@ Vemos que nos pide que iniciemos sesión ya que el contenido está protegido. Va
 - No iniciamos sesión o de manera incorrecta:
 
 ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/autenticacionfallida.png)
+
+Si capturamos el tráfico con `tcpdump`:
+
+<pre>
+root@servidor:/etc/apache2/sites-available# tcpdump -vi eth2
+tcpdump: listening on eth2, link-type EN10MB (Ethernet), capture size 262144 bytes
+14:55:27.187941 IP (tos 0x0, ttl 64, id 24679, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.150.10.48608 > server-13-224-119-105.mad50.r.cloudfront.net.https: Flags [S], cksum 0xfb72 (correct), seq 678382085, win 64240, options [mss 1460,sackOK,TS val 1814746981 ecr 0,nop,wscale 7], length 0
+14:55:29.144973 IP (tos 0x0, ttl 64, id 29037, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.150.10.39088 > server-13-224-119-76.mad50.r.cloudfront.net.https: Flags [S], cksum 0x3657 (correct), seq 1403051891, win 64240, options [mss 1460,sackOK,TS val 3963388188 ecr 0,nop,wscale 7], length 0
+14:55:30.164161 IP (tos 0x0, ttl 64, id 29038, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.150.10.39088 > server-13-224-119-76.mad50.r.cloudfront.net.https: Flags [S], cksum 0x325c (correct), seq 1403051891, win 64240, options [mss 1460,sackOK,TS val 3963389207 ecr 0,nop,wscale 7], length 0
+14:55:30.398228 IP (tos 0x0, ttl 64, id 23179, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.150.10.44642 > 192.168.0.38.http: Flags [S], cksum 0x0f96 (correct), seq 3591738047, win 64240, options [mss 1460,sackOK,TS val 2129104776 ecr 0,nop,wscale 7], length 0
+14:55:30.398257 IP (tos 0x0, ttl 64, id 0, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.0.38.http > 192.168.150.10.44642: Flags [S.], cksum 0x17b0 (incorrect -> 0x5d66), seq 3316736439, ack 3591738048, win 65160, options [mss 1460,sackOK,TS val 411070110 ecr 2129104776,nop,wscale 6], length 0
+14:55:30.398468 IP (tos 0x0, ttl 64, id 23180, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.150.10.44642 > 192.168.0.38.http: Flags [.], cksum 0x88c4 (correct), ack 1, win 502, options [nop,nop,TS val 2129104776 ecr 411070110], length 0
+14:55:30.398558 IP (tos 0x0, ttl 64, id 23181, offset 0, flags [DF], proto TCP (6), length 393)
+    192.168.150.10.44642 > 192.168.0.38.http: Flags [P.], cksum 0x9e2c (correct), seq 1:342, ack 1, win 502, options [nop,nop,TS val 2129104777 ecr 411070110], length 341: HTTP, length: 341
+	GET /secreto HTTP/1.1
+	Host: departamentos.iesgn.org
+	User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0
+	Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+	Accept-Language: en-US,en;q=0.5
+	Accept-Encoding: gzip, deflate
+	Connection: keep-alive
+	Upgrade-Insecure-Requests: 1
+
+14:55:30.398589 IP (tos 0x0, ttl 64, id 19904, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.0.38.http > 192.168.150.10.44642: Flags [.], cksum 0x17a8 (incorrect -> 0x856f), ack 342, win 1013, options [nop,nop,TS val 411070110 ecr 2129104777], length 0
+14:55:30.399333 IP (tos 0x0, ttl 64, id 19905, offset 0, flags [DF], proto TCP (6), length 816)
+    192.168.0.38.http > 192.168.150.10.44642: Flags [P.], cksum 0x1aa4 (incorrect -> 0x068e), seq 1:765, ack 342, win 1013, options [nop,nop,TS val 411070111 ecr 2129104777], length 764: HTTP, length: 764
+	HTTP/1.1 401 Unauthorized
+	Date: Sat, 31 Oct 2020 14:55:30 GMT
+	Server: Apache/2.4.38 (Debian)
+	WWW-Authenticate: Basic realm="Identifiquese para acceder a esta pagina"
+	Content-Length: 470
+	Keep-Alive: timeout=5, max=100
+	Connection: Keep-Alive
+	Content-Type: text/html; charset=iso-8859-1
+
+	<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+	<html><head>
+	<title>401 Unauthorized</title>
+	</head><body>
+	<h1>Unauthorized</h1>
+	<p>This server could not verify that you
+	are authorized to access the document
+	requested.  Either you supplied the wrong
+	credentials (e.g., bad password), or your
+	browser doesn't understand how to supply
+	the credentials required.</p>
+	<hr>
+	<address>Apache/2.4.38 (Debian) Server at departamentos.iesgn.org Port 80</address>
+	</body></html>
+14:55:30.399511 IP (tos 0x0, ttl 64, id 23182, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.150.10.44642 > 192.168.0.38.http: Flags [.], cksum 0x8472 (correct), ack 765, win 501, options [nop,nop,TS val 2129104777 ecr 411070111], length 0
+14:55:32.180572 IP (tos 0x0, ttl 64, id 29039, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.150.10.39088 > server-13-224-119-76.mad50.r.cloudfront.net.https: Flags [S], cksum 0x2a7c (correct), seq 1403051891, win 64240, options [mss 1460,sackOK,TS val 3963391223 ecr 0,nop,wscale 7], length 0
+14:55:34.356162 IP (tos 0x0, ttl 64, id 63813, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.150.10.55928 > server-13-224-119-20.mad50.r.cloudfront.net.https: Flags [S], cksum 0x225e (correct), seq 2313360561, win 64240, options [mss 1460,sackOK,TS val 864854197 ecr 0,nop,wscale 7], length 0
+14:55:35.406072 IP (tos 0x0, ttl 64, id 19906, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.0.38.http > 192.168.150.10.44642: Flags [F.], cksum 0x17a8 (incorrect -> 0x6ee3), seq 765, ack 342, win 1013, options [nop,nop,TS val 411075117 ecr 2129104777], length 0
+14:55:35.426077 IP (tos 0x0, ttl 64, id 23183, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.150.10.44642 > 192.168.0.38.http: Flags [F.], cksum 0x5d3f (correct), seq 342, ack 766, win 501, options [nop,nop,TS val 2129109804 ecr 411075117], length 0
+14:55:35.426153 IP (tos 0x0, ttl 64, id 19907, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.0.38.http > 192.168.150.10.44642: Flags [.], cksum 0x17a8 (incorrect -> 0x5b2b), ack 343, win 1013, options [nop,nop,TS val 411075137 ecr 2129109804], length 0
+14:55:36.849437 IP (tos 0x0, ttl 64, id 60909, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.150.10.44644 > 192.168.0.38.http: Flags [S], cksum 0x3962 (correct), seq 286463169, win 64240, options [mss 1460,sackOK,TS val 2129111227 ecr 0,nop,wscale 7], length 0
+14:55:36.849491 IP (tos 0x0, ttl 64, id 0, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.0.38.http > 192.168.150.10.44644: Flags [S.], cksum 0x17b0 (incorrect -> 0x72df), seq 4071043042, ack 286463170, win 65160, options [mss 1460,sackOK,TS val 411076560 ecr 2129111227,nop,wscale 6], length 0
+14:55:36.849716 IP (tos 0x0, ttl 64, id 60910, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.150.10.44644 > 192.168.0.38.http: Flags [.], cksum 0x9e3d (correct), ack 1, win 502, options [nop,nop,TS val 2129111227 ecr 411076560], length 0
+14:55:36.849951 IP (tos 0x0, ttl 64, id 60911, offset 0, flags [DF], proto TCP (6), length 440)
+    192.168.150.10.44644 > 192.168.0.38.http: Flags [P.], cksum 0xb269 (correct), seq 1:389, ack 1, win 502, options [nop,nop,TS val 2129111228 ecr 411076560], length 388: HTTP, length: 388
+	GET /secreto HTTP/1.1
+	Host: departamentos.iesgn.org
+	User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0
+	Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+	Accept-Language: en-US,en;q=0.5
+	Accept-Encoding: gzip, deflate
+	Connection: keep-alive
+	Upgrade-Insecure-Requests: 1
+	Authorization: Basic amF2aWVyOm1hcnRhZ3VhcGE3
+
+14:55:36.849981 IP (tos 0x0, ttl 64, id 63565, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.0.38.http > 192.168.150.10.44644: Flags [.], cksum 0x17a8 (incorrect -> 0x9ab8), ack 389, win 1013, options [nop,nop,TS val 411076561 ecr 2129111228], length 0
+14:55:36.850484 IP (tos 0x0, ttl 64, id 63566, offset 0, flags [DF], proto TCP (6), length 664)
+    192.168.0.38.http > 192.168.150.10.44644: Flags [P.], cksum 0x1a0c (incorrect -> 0xf9e4), seq 1:613, ack 389, win 1013, options [nop,nop,TS val 411076561 ecr 2129111228], length 612: HTTP, length: 612
+	HTTP/1.1 301 Moved Permanently
+	Date: Sat, 31 Oct 2020 14:55:36 GMT
+	Server: Apache/2.4.38 (Debian)
+	Location: http://departamentos.iesgn.org/secreto/
+	Content-Length: 336
+	Keep-Alive: timeout=5, max=100
+	Connection: Keep-Alive
+	Content-Type: text/html; charset=iso-8859-1
+
+	<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+	<html><head>
+	<title>301 Moved Permanently</title>
+	</head><body>
+	<h1>Moved Permanently</h1>
+	<p>The document has moved <a href="http://departamentos.iesgn.org/secreto/">here</a>.</p>
+	<hr>
+	<address>Apache/2.4.38 (Debian) Server at departamentos.iesgn.org Port 80</address>
+	</body></html>
+14:55:36.850689 IP (tos 0x0, ttl 64, id 60912, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.150.10.44644 > 192.168.0.38.http: Flags [.], cksum 0x9a54 (correct), ack 613, win 501, options [nop,nop,TS val 2129111228 ecr 411076561], length 0
+14:55:36.865574 IP (tos 0x0, ttl 64, id 2136, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.150.10.44646 > 192.168.0.38.http: Flags [S], cksum 0xa277 (correct), seq 3767262240, win 64240, options [mss 1460,sackOK,TS val 2129111243 ecr 0,nop,wscale 7], length 0
+14:55:36.865602 IP (tos 0x0, ttl 64, id 0, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.0.38.http > 192.168.150.10.44646: Flags [S.], cksum 0x17b0 (incorrect -> 0x51ec), seq 284072851, ack 3767262241, win 65160, options [mss 1460,sackOK,TS val 411076577 ecr 2129111243,nop,wscale 6], length 0
+14:55:36.865790 IP (tos 0x0, ttl 64, id 2137, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.150.10.44646 > 192.168.0.38.http: Flags [.], cksum 0x7d4a (correct), ack 1, win 502, options [nop,nop,TS val 2129111243 ecr 411076577], length 0
+14:55:36.865898 IP (tos 0x0, ttl 64, id 2138, offset 0, flags [DF], proto TCP (6), length 441)
+    192.168.150.10.44646 > 192.168.0.38.http: Flags [P.], cksum 0xd602 (correct), seq 1:390, ack 1, win 502, options [nop,nop,TS val 2129111243 ecr 411076577], length 389: HTTP, length: 389
+	GET /secreto/ HTTP/1.1
+	Host: departamentos.iesgn.org
+	User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0
+	Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+	Accept-Language: en-US,en;q=0.5
+	Accept-Encoding: gzip, deflate
+	Authorization: Basic amF2aWVyOm1hcnRhZ3VhcGE3
+	Connection: keep-alive
+	Upgrade-Insecure-Requests: 1
+
+14:55:36.865915 IP (tos 0x0, ttl 64, id 103, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.0.38.http > 192.168.150.10.44646: Flags [.], cksum 0x17a8 (incorrect -> 0x79c6), ack 390, win 1013, options [nop,nop,TS val 411076577 ecr 2129111243], length 0
+14:55:36.866216 IP (tos 0x0, ttl 64, id 60913, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.150.10.44644 > 192.168.0.38.http: Flags [F.], cksum 0x9a43 (correct), seq 389, ack 613, win 501, options [nop,nop,TS val 2129111244 ecr 411076561], length 0
+14:55:36.866844 IP (tos 0x0, ttl 64, id 104, offset 0, flags [DF], proto TCP (6), length 541)
+    192.168.0.38.http > 192.168.150.10.44646: Flags [P.], cksum 0x1991 (incorrect -> 0x5684), seq 1:490, ack 390, win 1013, options [nop,nop,TS val 411076578 ecr 2129111243], length 489: HTTP, length: 489
+	HTTP/1.1 200 OK
+	Date: Sat, 31 Oct 2020 14:55:36 GMT
+	Server: Apache/2.4.38 (Debian)
+	Last-Modified: Tue, 27 Oct 2020 16:13:06 GMT
+	ETag: "dc-5b2a952786fef-gzip"
+	Accept-Ranges: bytes
+	Vary: Accept-Encoding
+	Content-Encoding: gzip
+	Content-Length: 153
+	Keep-Alive: timeout=5, max=100
+	Connection: Keep-Alive
+	Content-Type: text/html
+
+14:55:36.866928 IP (tos 0x0, ttl 64, id 63567, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.0.38.http > 192.168.150.10.44644: Flags [F.], cksum 0x17a8 (incorrect -> 0x9831), seq 613, ack 390, win 1013, options [nop,nop,TS val 411076578 ecr 2129111244], length 0
+14:55:36.867025 IP (tos 0x0, ttl 64, id 2139, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.150.10.44646 > 192.168.0.38.http: Flags [.], cksum 0x79da (correct), ack 490, win 501, options [nop,nop,TS val 2129111245 ecr 411076578], length 0
+14:55:36.867128 IP (tos 0x0, ttl 64, id 60914, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.150.10.44644 > 192.168.0.38.http: Flags [.], cksum 0x9a30 (correct), ack 614, win 501, options [nop,nop,TS val 2129111245 ecr 411076578], length 0
+14:55:37.269131 IP (tos 0x0, ttl 64, id 2140, offset 0, flags [DF], proto TCP (6), length 354)
+    192.168.150.10.44646 > 192.168.0.38.http: Flags [P.], cksum 0xf234 (correct), seq 390:692, ack 490, win 501, options [nop,nop,TS val 2129111647 ecr 411076578], length 302: HTTP, length: 302
+	GET /favicon.ico HTTP/1.1
+	Host: departamentos.iesgn.org
+	User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0
+	Accept: image/webp,*/*
+	Accept-Language: en-US,en;q=0.5
+	Accept-Encoding: gzip, deflate
+	Authorization: Basic amF2aWVyOm1hcnRhZ3VhcGE3
+	Connection: keep-alive
+
+14:55:37.269361 IP (tos 0x0, ttl 64, id 105, offset 0, flags [DF], proto TCP (6), length 553)
+    192.168.0.38.http > 192.168.150.10.44646: Flags [P.], cksum 0x199d (incorrect -> 0xde2d), seq 490:991, ack 692, win 1009, options [nop,nop,TS val 411076980 ecr 2129111647], length 501: HTTP, length: 501
+	HTTP/1.1 404 Not Found
+	Date: Sat, 31 Oct 2020 14:55:37 GMT
+	Server: Apache/2.4.38 (Debian)
+	Content-Length: 285
+	Keep-Alive: timeout=5, max=99
+	Connection: Keep-Alive
+	Content-Type: text/html; charset=iso-8859-1
+
+	<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+	<html><head>
+	<title>404 Not Found</title>
+	</head><body>
+	<h1>Not Found</h1>
+	<p>The requested URL was not found on this server.</p>
+	<hr>
+	<address>Apache/2.4.38 (Debian) Server at departamentos.iesgn.org Port 80</address>
+	</body></html>
+14:55:37.269526 IP (tos 0x0, ttl 64, id 2141, offset 0, flags [DF], proto TCP (6), length 52)
+    192.168.150.10.44646 > 192.168.0.38.http: Flags [.], cksum 0x7393 (correct), ack 991, win 501, options [nop,nop,TS val 2129111647 ecr 411076980], length 0
+14:55:37.278921 IP (tos 0x0, ttl 64, id 43417, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.150.10.39096 > server-13-224-119-76.mad50.r.cloudfront.net.https: Flags [S], cksum 0x1c44 (correct), seq 527371755, win 64240, options [mss 1460,sackOK,TS val 3963396321 ecr 0,nop,wscale 7], length 0
+14:55:37.566369 IP (tos 0x0, ttl 64, id 34771, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.150.10.52160 > server-13-224-119-24.mad50.r.cloudfront.net.https: Flags [S], cksum 0xcb58 (correct), seq 3011471053, win 64240, options [mss 1460,sackOK,TS val 3860977696 ecr 0,nop,wscale 7], length 0
+14:55:38.320152 IP (tos 0x0, ttl 64, id 43418, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.150.10.39096 > server-13-224-119-76.mad50.r.cloudfront.net.https: Flags [S], cksum 0x1833 (correct), seq 527371755, win 64240, options [mss 1460,sackOK,TS val 3963397362 ecr 0,nop,wscale 7], length 0
+14:55:38.580440 IP (tos 0x0, ttl 64, id 34772, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.150.10.52160 > server-13-224-119-24.mad50.r.cloudfront.net.https: Flags [S], cksum 0xc762 (correct), seq 3011471053, win 64240, options [mss 1460,sackOK,TS val 3860978710 ecr 0,nop,wscale 7], length 0
+14:55:40.500879 IP (tos 0x0, ttl 64, id 43419, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.150.10.39096 > server-13-224-119-76.mad50.r.cloudfront.net.https: Flags [S], cksum 0x0fae (correct), seq 527371755, win 64240, options [mss 1460,sackOK,TS val 3963399543 ecr 0,nop,wscale 7], length 0
+14:55:40.596930 IP (tos 0x0, ttl 64, id 34773, offset 0, flags [DF], proto TCP (6), length 60)
+    192.168.150.10.52160 > server-13-224-119-24.mad50.r.cloudfront.net.https: Flags [S], cksum 0xbf82 (correct), seq 3011471053, win 64240, options [mss 1460,sackOK,TS val 3860980726 ecr 0,nop,wscale 7], length 0
+</pre>
+
 
 
 **3. Cómo hemos visto la autentificación básica no es segura, modifica la autentificación para que sea del tipo `digest`, y sólo sea accesible a los usuarios pertenecientes al grupo `directivos`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo funciona esta autentificación?**

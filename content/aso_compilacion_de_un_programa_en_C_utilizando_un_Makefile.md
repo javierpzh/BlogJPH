@@ -64,18 +64,18 @@ Siguiendo estos pasos ya habríamos instalado correctamente `wget` en nuestro eq
 make uninstall
 </pre>
 
-Con esto habríamos desinstalado el programa, pero no habríamos borrado todos los archivos de configuración que se han creado mediante el proceso de compilación e instalación del programa.
+Con esto habríamos desinstalado el programa, pero no habríamos borrado todos los archivos binarios del programa y los archivos de objetos del directorio fuente que se han creado durante la compilación.
 
 Si queremos borrar todos estos archivos, tenemos que ejecutar:
 
 <pre>
-make distclean
+make clean
 </pre>
 
-Y si queremos deshacernos de todos los archivos/objetos creados por la compilación:
+Y si queremos deshacernos también de de todos los ficheros de configuración:
 
 <pre>
-make clean
+make distclean
 </pre>
 
 Antes de terminar, veo muy interesante comentar una herramienta que he encontrado mientras realizaba la práctica y buscaba información.

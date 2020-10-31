@@ -64,7 +64,7 @@ Siguiendo estos pasos ya habríamos instalado correctamente `wget` en nuestro eq
 make uninstall
 </pre>
 
-Con esto habríamos desinstalado el programa, pero no habríamos borrado todos los archivos binarios del programa y los archivos de objetos del directorio fuente que se han creado durante la compilación.
+Con esto habríamos desinstalado el programa, pero no habríamos borrado todos los archivos binarios del programa y los archivos/objetos del directorio en el que se han creado durante la compilación.
 
 Si queremos borrar todos estos archivos, tenemos que ejecutar:
 

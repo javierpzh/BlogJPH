@@ -1,4 +1,4 @@
-Title: Configuración de apache mediante archivo .htaccess ssssss
+Title: Configuración de apache mediante archivo .htaccess
 Date: 2020/10/31
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg

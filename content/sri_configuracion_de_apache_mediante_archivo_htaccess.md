@@ -24,7 +24,7 @@ Options +Indexes
 
 **2. Crea una redirección permanente: cuando entremos en `ttp://host.dominio/google` salte a `www.google.es`.**
 
-En el fichero `.htaccess` introducimos la siguiente línea para que nos haga la redirección: fffff
+En el fichero `.htaccess` introducimos la siguiente línea para que nos haga la redirección:
 
 <pre>
 Redirect /google www.google.es

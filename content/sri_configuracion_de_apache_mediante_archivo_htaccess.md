@@ -20,7 +20,7 @@ En mi caso voy a utilizar [000webhost](https://www.000webhost.com/), para ello m
 
 **1. Habilita el listado de ficheros en la URL `http://host.dominio/nas`.**
 
-Nos dirigimos al gestor de archivos de nuestra página, en este caso de *000webhost*, y desde aquí vamos a realizar las configuraciones y los cambios en los archivos `.htaccess`, utilizo el plural porque ya adelante que vamos a tener que utilizar más de uno.
+Nos dirigimos al gestor de archivos de nuestra página, en este caso de *000webhost*, y desde aquí vamos a realizar las configuraciones y los cambios en los archivos `.htaccess`, utilizo el plural porque ya adelanto que vamos a tener que utilizar más de uno.
 
 Vamos a crear la carpeta `nas` dentro de `public_html` y vamos a crear un archivo de prueba.
 

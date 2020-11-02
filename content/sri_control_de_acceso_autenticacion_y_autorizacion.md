@@ -485,7 +485,7 @@ a2enmod auth_digest
  El proceso es muy parecido al anterior, por tanto lo primero sería crear el **archivo de contraseñas**:
 
 <pre>
-root@servidor:/var/www/departamentos/secreto# htdigest -c /var/www/departamentos/secreto/.htdigest gruposecreto javier
+root@servidor:/srv/departamentos/secreto# htdigest -c /srv/departamentos/secreto/.htdigest gruposecreto javier
 Adding password for javier in realm gruposecreto.
 New password:
 Re-type new password:
@@ -528,6 +528,13 @@ Vemos que nos pide que iniciemos sesión ya que el contenido está protegido. Va
 
 ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/autenticacionfallida.png)
 
+Antes vimos que la **autenticación básica** no era segura, vamos a ver si la **autenticación digest** lo es.
+
+He hecho una prueba capturando el tráfico.
+
+![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/wiresharkautenticaciondigest.png)
+
+Si nos fijamos en la línea seleccionada, que hace referencia a la petición que hemos hecho con nuestras credenciales, podemos ver como no nos muestra la contraseña como pasaba anteriormente.
 
 **4. Vamos a combinar el control de acceso (tarea 6) y la autenticación (tareas 7 y 8), y vamos a configurar el virtual host para que se comporte de la siguiente manera: el acceso a la URL `departamentos.iesgn.org/secreto` se hace forma directa desde la intranet, desde la red pública te pide la autenticación. Muestra el resultado al profesor.**
 

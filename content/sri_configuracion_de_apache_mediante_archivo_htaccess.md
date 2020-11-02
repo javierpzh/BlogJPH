@@ -86,7 +86,7 @@ Creamos el directorio `prohibido` dentro de `public_html`, y dentro de este dire
 
 <pre>
 AuthType Digest
-AuthName "gruposecreto"
+AuthName "prohibido"
 AuthUserFile /storage/ssd2/013/15299013/htdigest
 Require valid-user
 </pre>

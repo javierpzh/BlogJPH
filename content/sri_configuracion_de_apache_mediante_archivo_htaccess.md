@@ -26,7 +26,7 @@ Vamos a crear la carpeta `nas` dentro de `public_html` y vamos a crear un archiv
 
 Si probamos a acceder a la dirección `https://javierperezhidalgo-apache.000webhostapp.com/nas/` podemos ver como efectivamente nos muestra el listado de ficheros:
 
-![.](theme/images/sri_configuracion_de_apache_mediante_archivo_htaccess/naspordefecto.png)
+![.](images/sri_configuracion_de_apache_mediante_archivo_htaccess/naspordefecto.png)
 
 Pero esto nos lo muestra porque por defecto viene habilitada la opción `Indexes` para todos los directorios hijos de `public_html`, por tanto no tendría ningún misterio hacerlo así. Por eso he decidido quitar esta opción y volver a configurarla de manera manual. Para ello, en el `.htaccess` que se encuentra en `public_html` he introducido la siguiente línea:
 
@@ -36,7 +36,7 @@ Options -Indexes
 
 Si accedemos ahora a `https://javierperezhidalgo-apache.000webhostapp.com/nas/`:
 
-![.](theme/images/sri_configuracion_de_apache_mediante_archivo_htaccess/nasdeshabilitada.png)
+![.](images/sri_configuracion_de_apache_mediante_archivo_htaccess/nasdeshabilitada.png)
 
 Vemos como ya no nos muestra el listado de ficheros, entonces ahora voy a configurar esta opción en el `.htaccess` que he creado en la carpeta `/nas` y voy a introducir la siguiente línea:
 
@@ -46,7 +46,7 @@ Options +Indexes
 
 Accedemos de nuevo a `https://javierperezhidalgo-apache.000webhostapp.com/nas/`:
 
-![.](theme/images/sri_configuracion_de_apache_mediante_archivo_htaccess/nashabilitada.png)
+![.](images/sri_configuracion_de_apache_mediante_archivo_htaccess/nashabilitada.png)
 
 Ahora sí hemos realizo la configuración de manera correcta.
 
@@ -57,5 +57,7 @@ En el fichero `.htaccess` de `public_html` introducimos la siguiente línea para
 <pre>
 Redirect /google www.google.es
 </pre>
+
+De esta manera, cuando accedamos a la dirección `https://javierperezhidalgo-apache.000webhostapp.com/google` nos va a redirigir automáticamente a la dirección `https://www.google.es/`.
 
 **3. Pedir autentificación para entrar en la URL `http://host.dominio/prohibido`. (No la hagas si has elegido como proveedor CDMON, en la plataforma de prueba, no funciona.)**

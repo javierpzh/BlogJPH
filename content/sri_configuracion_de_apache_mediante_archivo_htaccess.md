@@ -16,7 +16,7 @@ Para permitir el uso de los ficheros `.htaccess` o restringir las directivas que
 
 Es importante asegurarnos de que el proveedor de hosting que vamos a utilizar tiene habilitada la directiva `AllowOverride`, ya que sino los cambios y configuraciones que hagamos en los ficheros `.htaccess` no van a tener ningún efecto.
 
-En mi caso voy a utilizar [000webhost](https://www.000webhost.com/), para ello me he registrado previamente y he creado un sitio web al que se accede mediante `https://javierperezhidalgo-apache.000webhostapp.com`.
+En mi caso voy a utilizar [000webhost](https://www.000webhost.com/), para ello me he registrado previamente y he creado un sitio web al que se accede mediante [https://javierperezhidalgo-apache.000webhostapp.com](https://javierperezhidalgo-apache.000webhostapp.com).
 
 **1. Habilita el listado de ficheros en la URL `http://host.dominio/nas`.**
 
@@ -24,7 +24,7 @@ Nos dirigimos al gestor de archivos de nuestra página, en este caso de *000webh
 
 Vamos a crear la carpeta `nas` dentro de `public_html` y vamos a crear un archivo de prueba.
 
-Si probamos a acceder a la dirección `https://javierperezhidalgo-apache.000webhostapp.com/nas/` podemos ver como efectivamente nos muestra el listado de ficheros:
+Si probamos a acceder a la dirección [https://javierperezhidalgo-apache.000webhostapp.com/nas/](https://javierperezhidalgo-apache.000webhostapp.com/nas/) podemos ver como efectivamente nos muestra el listado de ficheros:
 
 ![.](images/sri_configuracion_de_apache_mediante_archivo_htaccess/naspordefecto.png)
 
@@ -34,7 +34,7 @@ Pero esto nos lo muestra porque por defecto viene habilitada la opción `Indexes
 Options -Indexes
 </pre>
 
-Si accedemos ahora a `https://javierperezhidalgo-apache.000webhostapp.com/nas/`:
+Si accedemos ahora a [https://javierperezhidalgo-apache.000webhostapp.com/nas/](https://javierperezhidalgo-apache.000webhostapp.com/nas/):
 
 ![.](images/sri_configuracion_de_apache_mediante_archivo_htaccess/nasdeshabilitada.png)
 
@@ -44,7 +44,7 @@ Vemos como ya no nos muestra el listado de ficheros, entonces ahora voy a config
 Options +Indexes
 </pre>
 
-Accedemos de nuevo a `https://javierperezhidalgo-apache.000webhostapp.com/nas/`:
+Accedemos de nuevo a [https://javierperezhidalgo-apache.000webhostapp.com/nas/](https://javierperezhidalgo-apache.000webhostapp.com/nas/):
 
 ![.](images/sri_configuracion_de_apache_mediante_archivo_htaccess/nashabilitada.png)
 
@@ -58,6 +58,6 @@ En el fichero `.htaccess` de `public_html` introducimos la siguiente línea para
 Redirect /google www.google.es
 </pre>
 
-De esta manera, cuando accedamos a la dirección `https://javierperezhidalgo-apache.000webhostapp.com/google` nos va a redirigir automáticamente a la dirección `https://www.google.es/`.
+De esta manera, cuando accedamos a la dirección [https://javierperezhidalgo-apache.000webhostapp.com/google](https://javierperezhidalgo-apache.000webhostapp.com/google) nos va a redirigir automáticamente a la dirección [https://www.google.es/](https://www.google.es/).
 
 **3. Pedir autentificación para entrar en la URL `http://host.dominio/prohibido`. (No la hagas si has elegido como proveedor CDMON, en la plataforma de prueba, no funciona.)**

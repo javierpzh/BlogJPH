@@ -48,7 +48,7 @@ Accedemos de nuevo a [https://javierperezhidalgoapache.000webhostapp.com/nas/](h
 
 ![.](images/sri_configuracion_de_apache_mediante_archivo_htaccess/nashabilitada.png)
 
-Ahora sí hemos realizo la configuración de manera correcta.
+Ahora sí hemos realizado la configuración de manera correcta.
 
 **2. Crea una redirección permanente: cuando entremos en `ttp://host.dominio/google` salte a `www.google.es`.**
 

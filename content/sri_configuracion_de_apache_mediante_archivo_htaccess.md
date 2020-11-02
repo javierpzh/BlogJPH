@@ -78,7 +78,7 @@ root@servidor:~# cat htdigest
 javier:prohibido:fa09dc88b5d3c47ca6c0b51b3fb54d4c
 </pre>
 
-Y ahora vamos a copiar la línea que hemos generado y la incluiremo dentro de nuestro fichero de contraseñas, que se llamará `htdigest`.
+Y ahora vamos a copiar la línea que hemos generado y la incluiremos dentro de nuestro fichero de contraseñas, que se llamará `htdigest`.
 
 ![.](images/sri_configuracion_de_apache_mediante_archivo_htaccess/htdigest.png)
 

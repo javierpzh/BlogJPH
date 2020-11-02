@@ -154,7 +154,7 @@ Una vez que lo recibe el servidor, puede hacer la misma operación y comprobar s
 
 ## Ejercicios
 
-**Crea un escenario en Vagrant o reutiliza uno de los que tienes en ejercicios anteriores, que tenga un servidor con una red pública, y una privada y un cliente conectado a la red privada. Crea un host virtual `departamentos.iesgn.org`.**
+##### Crea un escenario en Vagrant o reutiliza uno de los que tienes en ejercicios anteriores, que tenga un servidor con una red pública, y una privada y un cliente conectado a la red privada. Crea un host virtual `departamentos.iesgn.org`.
 
 He creado este fichero Vagrantfile para definir el escenario:
 
@@ -331,7 +331,7 @@ Y para poder ver esta web en la máquina **cliente**, debemos indicar en su arch
 192.168.150.1    departamentos.iesgn.org
 </pre>
 
-**1. A la URL `departamentos.iesgn.org/intranet` sólo se debe tener acceso desde el cliente de la red local, y no se pueda acceder desde la anfitriona por la red pública. A la URL `departamentos.iesgn.org/internet`, sin embargo, sólo se debe tener acceso desde la anfitriona por la red pública, y no desde la red local.**
+##### 1. A la URL `departamentos.iesgn.org/intranet` sólo se debe tener acceso desde el cliente de la red local, y no se pueda acceder desde la anfitriona por la red pública. A la URL `departamentos.iesgn.org/internet`, sin embargo, sólo se debe tener acceso desde la anfitriona por la red pública, y no desde la red local.
 
 Lo primero sería crear en `/srv/departamentos` dos carpetas: una para **intranet** y otra para **internet**, y dentro de ellas crear un fichero `index.html`:
 
@@ -404,7 +404,7 @@ Con esto lo que estamos haciendo es:
     ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/mvintranet.png)
 
 
-**2. Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo se manda la contraseña entre el cliente y el servidor?. Entrega una breve explicación del ejercicio.**
+##### 2. Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo se manda la contraseña entre el cliente y el servidor?. Entrega una breve explicación del ejercicio.
 
 Lo primero sería crear en `/srv/departamentos` la carpeta **secreto** y dentro de ella crear un fichero `index.html`:
 
@@ -472,7 +472,7 @@ He hecho una prueba capturando el tráfico, en la que podemos ver como cualquier
 
 Si nos fijamos en la línea seleccionada, que hace referencia a la petición que hemos hecho con nuestras credenciales, podemos ver como nos muestra la contraseña.
 
-**3. Cómo hemos visto la autentificación básica no es segura, modifica la autentificación para que sea del tipo `digest`, y sólo sea accesible a los usuarios pertenecientes al grupo `directivos`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo funciona esta autentificación?**
+##### 3. Cómo hemos visto la autentificación básica no es segura, modifica la autentificación para que sea del tipo `digest`, y sólo sea accesible a los usuarios pertenecientes al grupo `directivos`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo funciona esta autentificación?
 
 (Me he equivocado y he añadido los usuarios al grupo **gruposecreto** en vez de **directivos**).
 

@@ -464,6 +464,13 @@ Vemos que nos pide que iniciemos sesión ya que el contenido está protegido. Va
 
 ![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/autenticacionfallida.png)
 
+A primera vista podemos creer que este método de autenticación es segura, pero aún no he comentado el gran fallo que tiene. ¿Qué es lo último que deseamos cuando nos *logueamos* en una web? Exacto, que nuestras credenciales y nuestros datos no se conozcan y sean seguros, pues la **autenticación básica** no cuida esto, sino que envía nuestras contraseñas sin ningún tipo de cifrado y al descubierto, por lo que estamos totalmente expuestos.
+
+He hecho una prueba capturando el tráfico, en la que podemos ver como cualquiera que esté escuchando el tráfico de la red, podría ver nuestros datos.
+
+![.](images/sri_control_de_acceso_autenticacion_y_autorizacion/wiresharkautenticacionbasica.png)
+
+Si nos fijamos en la línea seleccionada, que hace referencia a la petición que hemos hecho con nuestras credenciales, podemos ver como nos muestra la contraseña.
 
 **3. Cómo hemos visto la autentificación básica no es segura, modifica la autentificación para que sea del tipo `digest`, y sólo sea accesible a los usuarios pertenecientes al grupo `directivos`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo funciona esta autentificación?**
 

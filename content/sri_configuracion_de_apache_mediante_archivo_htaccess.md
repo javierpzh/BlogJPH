@@ -55,9 +55,35 @@ Ahora sí hemos realizo la configuración de manera correcta.
 En el fichero `.htaccess` de `public_html` introducimos la siguiente línea para que nos haga la redirección:
 
 <pre>
-Redirect /google www.google.es
+Redirect /google https://www.google.es
 </pre>
 
-De esta manera, cuando accedamos a la dirección [https://javierperezhidalgoapache.000webhostapp.com/google](https://javierperezhidalgoapache.000webhostapp.com/google) nos va a redirigir automáticamente a la dirección [https://www.google.es/](https://www.google.es/).
+De esta manera, cuando accedamos a la dirección [https://javierperezhidalgoapache.000webhostapp.com/google](https://javierperezhidalgoapache.000webhostapp.com/google) nos va a redirigir automáticamente a la dirección [https://www.google.es](https://www.google.es).
 
 **3. Pedir autentificación para entrar en la URL `http://host.dominio/prohibido`. (No la hagas si has elegido como proveedor CDMON, en la plataforma de prueba, no funciona.)**
+
+Voy a utilizar una autenticación de tipo **Digest**.
+
+Vamos a crear un fichero donde vamos a guardar las credenciales, que deben estar seguras. Por esta razón no podemos guardar este fichero dentro de `public_html`, ya que lo que se encuentra en él, es todo lo que muestra la página, así que este fichero lo crearemos a su mismo nivel.
+
+Generamos las credenciales:
+
+<pre>
+root@servidor:~# htdigest -c ./htdigest prohibido javier
+Adding password for javier in realm prohibido.
+New password:
+Re-type new password:
+
+root@servidor:~# cat htdigest
+javier:prohibido:fa09dc88b5d3c47ca6c0b51b3fb54d4c
+</pre>
+
+Y ahora vamos a copiar la línea que hemos generado y las incluiremos dentro de nuestro fichero de contraseñas, que se llamará `htdigest`.
+
+Creo el fichero
+
+Creamos el directorio `prohibido` dentro de `public_html`, y dentro de este directorio un nuevo `.htaccess`, con estas líneas:
+
+<pre>
+
+</pre>

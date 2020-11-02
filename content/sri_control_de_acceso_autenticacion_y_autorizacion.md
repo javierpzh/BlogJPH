@@ -498,10 +498,10 @@ Si quisiéramos añadir un nuevo usuario, deberíamos introducir el mismo comand
 Nos quedaría especificar en el `/etc/apache2/sites-available/departamentos.conf` esta configuración de autenticación básica. Debemos añadir algo así:
 
 <pre>
-<\Directory /var/www/departamentos/secreto \>
+<\Directory /srv/departamentos/secreto \>
  AuthType Digest
  AuthName "gruposecreto"
- AuthUserFile /var/www/departamentos/secreto/.htdigest
+ AuthUserFile /srv/departamentos/secreto/.htdigest
  Require valid-user
 <\/Directory\>
 </pre>

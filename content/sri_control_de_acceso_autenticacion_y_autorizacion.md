@@ -267,9 +267,19 @@ Vamos a instalar **apache**. Para esto, antes de nada voy a actualizar los paque
 apt update && apt upgrade -y && apt autoremove -y && apt install apache2 -y
 </pre>
 
-Una vez instalado Apache, podemos empezar a realizar las configuraciones. Lo primero es crear el sitio web, para ello:
+Una vez instalado Apache, podemos empezar a realizar las configuraciones. Lo primero antes de crear el sitio web, es habilitar la ruta donde vamos a crear la estructura de nuestra página. En mi caso la voy a situar en `/srv/departamentos`, esta dirección por defecto no viene habilitada para servir los archivos que creemos, por tanto, lo primero sería darle permisos, y para ello vamos a descomentar las siguientes líneas en `/etc/apache2/apache2.conf`:
 
-Creamos el archivo de configuración del sitio web. Podemos copiar el fichero por defecto, que se encuentra en `/etc/apache2/sites-available` y a partir de éste, personalizar el nuevo:
+<pre>
+<\Directory /srv/\>
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+<\/Directory\>
+</pre>
+
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
+
+El siguiente paso sería crear el archivo de configuración del sitio web. Podemos copiar el fichero por defecto, que se encuentra en `/etc/apache2/sites-available` y a partir de éste, personalizar el nuevo:
 
 <pre>
 root@servidor:/etc/apache2/sites-available# cp 000-default.conf departamentos.conf
@@ -280,8 +290,8 @@ root@servidor:/etc/apache2/sites-available# nano departamentos.conf
 Editamos las siguientes líneas del fichero `departamentos.conf`:
 
 <pre>
-ServerName www.departamentos.iesgn.org
-DocumentRoot /var/www/departamentos
+ServerName departamentos.iesgn.org
+DocumentRoot /srv/departamentos
 </pre>
 
 Una vez terminado este fichero, tenemos que activar esta página:
@@ -293,14 +303,14 @@ To activate the new configuration, you need to run:
   systemctl reload apache2
 </pre>
 
-Ya solo nos falta crear el `index.html` que hemos especificado en la configuración de la página que se iba a encontrar en la ruta `/var/www/departamentos`:
+Ya solo nos falta crear el `index.html` que hemos especificado en la configuración de la página que se iba a encontrar en la ruta `/srv/departamentos`:
 
 <pre>
-root@servidor:/var/www# mkdir departamentos
+root@servidor:/srv# mkdir departamentos
 
-root@servidor:/var/www# cd departamentos/
+root@servidor:/srv# cd departamentos/
 
-root@servidor:/var/www/departamentos# nano index.html
+root@servidor:/srv/departamentos# nano index.html
 </pre>
 
 Reiniciamos el servicio y ya podemos visualizar la página.
@@ -315,31 +325,34 @@ Ojo, para poder ver esta web, debemos indicar en el archivo `/etc/hosts` de nues
 192.168.0.38    departamentos.iesgn.org
 </pre>
 
+Y para poder ver esta web en la máquina **cliente**, debemos indicar en su archivo `/etc/hosts` esta línea:
 
-
+<pre>
+192.168.150.1    departamentos.iesgn.org
+</pre>
 
 **1. A la URL `departamentos.iesgn.org/intranet` sólo se debe tener acceso desde el cliente de la red local, y no se pueda acceder desde la anfitriona por la red pública. A la URL `departamentos.iesgn.org/internet`, sin embargo, sólo se debe tener acceso desde la anfitriona por la red pública, y no desde la red local.**
 
-Lo primero sería crear en `/var/www/departamentos` dos carpetas: una para **intranet** y otra para **internet**, y dentro de ellas crear un fichero `index.html`:
+Lo primero sería crear en `/srv/departamentos` dos carpetas: una para **intranet** y otra para **internet**, y dentro de ellas crear un fichero `index.html`:
 
 <pre>
-root@servidor:/var/www/departamentos# mkdir intranet
+root@servidor:srv/departamentos# mkdir intranet
 
-root@servidor:/var/www/departamentos# cd intranet/
+root@servidor:srv/departamentos# cd intranet/
 
-root@servidor:/var/www/departamentos/intranet# cp ../index.html ./
+root@servidor:srv/departamentos/intranet# cp ../index.html ./
 
-root@servidor:/var/www/departamentos/intranet# nano index.html
+root@servidor:srv/departamentos/intranet# nano index.html
 
-root@servidor:/var/www/departamentos/intranet# cd ..
+root@servidor:srv/departamentos/intranet# cd ..
 
-root@servidor:/var/www/departamentos# mkdir internet
+root@servidor:srv/departamentos# mkdir internet
 
-root@servidor:/var/www/departamentos# cp index.html ./internet/
+root@servidor:srv/departamentos# cp index.html ./internet/
 
-root@servidor:/var/www/departamentos# cd internet/
+root@servidor:srv/departamentos# cd internet/
 
-root@servidor:/var/www/departamentos/internet# nano index.html
+root@servidor:srv/departamentos/internet# nano index.html
 </pre>
 
 Una vez tenemos creados las dos páginas webs, es el momento de establecer el control de acceso.
@@ -348,11 +361,11 @@ Las restricciones de acceso se llevan a cabo en el fichero de configuración de 
 Para ello el fichero debe quedar así:
 
 <pre>
-<\Directory /var/www/departamentos/intranet \>
+<\Directory /srv/departamentos/intranet \>
  Require ip 192.168.150
 <\/Directory\>
 
-<\Directory /var/www/departamentos/internet \>
+<\Directory /srv/departamentos/internet \>
  <\RequireAll\>
    Require all granted
    Require not ip 192.168.150
@@ -393,16 +406,16 @@ Con esto lo que estamos haciendo es:
 
 **2. Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente. ¿Cómo se manda la contraseña entre el cliente y el servidor?. Entrega una breve explicación del ejercicio.**
 
-Lo primero sería crear en `/var/www/departamentos` la carpeta **secreto** y dentro de ella crear un fichero `index.html`:
+Lo primero sería crear en `/srv/departamentos` la carpeta **secreto** y dentro de ella crear un fichero `index.html`:
 
 <pre>
-root@servidor:/var/www/departamentos# mkdir secreto
+root@servidor:/srv/departamentos# mkdir secreto
 
-root@servidor:/var/www/departamentos# cp index.html ./secreto/
+root@servidor:/srv/departamentos# cp index.html ./secreto/
 
-root@servidor:/var/www/departamentos# cd secreto/
+root@servidor:/srv/departamentos# cd secreto/
 
-root@servidor:/var/www/departamentos/secreto# nano index.html
+root@servidor:/srv/departamentos/secreto# nano index.html
 </pre>
 
 Ahora vamos a configurar para que a la página `departamentos.iesgn.org/secreto` solo se pueda acceder si la persona está autorizada y posee un usuario y una contraseña.
@@ -410,7 +423,7 @@ Ahora vamos a configurar para que a la página `departamentos.iesgn.org/secreto`
 Para ello, lo primero sería crear el **archivo de contraseñas** de Apache:
 
 <pre>
-root@servidor:/var/www/departamentos/secreto# htpasswd -c /var/www/departamentos/secreto/.htpasswd javier
+root@servidor:/srv/departamentos/secreto# htpasswd -c /srv/departamentos/secreto/.htpasswd javier
 New password:
 Re-type new password:
 Adding password for user javier
@@ -421,10 +434,10 @@ Si quisiéramos añadir un nuevo usuario, deberíamos introducir el mismo comand
 Nos quedaría especificar en el `/etc/apache2/sites-available/departamentos.conf` esta configuración de autenticación básica. Debemos añadir algo así:
 
 <pre>
-<\Directory /var/www/departamentos/secreto \>
+<\Directory /srv/departamentos/secreto \>
  AuthType Basic
  AuthName "Identifiquese para acceder a esta pagina"
- AuthUserFile /var/www/departamentos/secreto/.htpasswd
+ AuthUserFile /srv/departamentos/secreto/.htpasswd
  Require valid-user
 <\/Directory\>
 </pre>

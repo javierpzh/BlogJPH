@@ -1,5 +1,5 @@
 Title: Configuración de apache mediante archivo .htaccess
-Date: 2020/10/31
+Date: 2020/11/2
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Apache, web, htaccess

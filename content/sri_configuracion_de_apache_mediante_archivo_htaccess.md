@@ -64,7 +64,7 @@ De esta manera, cuando accedamos a la dirección [https://javierperezhidalgoapac
 
 Voy a utilizar una autenticación de tipo **Digest**.
 
-Vamos a crear un fichero donde vamos a guardar las credenciales, que deben estar seguras. Por esta razón no podemos guardar este fichero dentro de `public_html`, ya que lo que se encuentra en él, es todo lo que muestra la página, así que este fichero lo crearemos a su mismo nivel.
+Vamos a crear un fichero donde vamos a guardar las credenciales, que deben estar seguras. Por esta razón no podemos guardar este fichero dentro de `public_html`, ya que lo que se encuentra en él, es todo lo que muestra la página, así que este fichero lo crearemos a su mismo nivel, es decir, en el directorio `/`.
 
 Generamos las credenciales:
 
@@ -78,12 +78,35 @@ root@servidor:~# cat htdigest
 javier:prohibido:fa09dc88b5d3c47ca6c0b51b3fb54d4c
 </pre>
 
-Y ahora vamos a copiar la línea que hemos generado y las incluiremos dentro de nuestro fichero de contraseñas, que se llamará `htdigest`.
+Y ahora vamos a copiar la línea que hemos generado y la incluiremo dentro de nuestro fichero de contraseñas, que se llamará `htdigest`.
 
-Creo el fichero
+![.](images/sri_configuracion_de_apache_mediante_archivo_htaccess/htdigest.png)
 
 Creamos el directorio `prohibido` dentro de `public_html`, y dentro de este directorio un nuevo `.htaccess`, con estas líneas:
 
 <pre>
-
+AuthType Digest
+AuthName "gruposecreto"
+AuthUserFile /storage/ssd2/013/15299013/htdigest
+Require valid-user
 </pre>
+
+*¿Por qué he puesto esa ruta en el apartado `AuthUserFile`?*
+
+Pues porque realmente, el directorio `/` donde hemos creado el fichero `htdigest`, no es realmente un directorio `/`, sino que se trata de una ruta virtual, que corresponde realmente a la ruta `/storage/ssd2/013/15299013`.
+
+Esta información la podemos encontrar aquí:
+
+![.](images/sri_configuracion_de_apache_mediante_archivo_htaccess/verinformacion.png)
+
+Vemos como efectivamente el directorio es `/storage/ssd2/013/15299013`:
+
+![.](images/sri_configuracion_de_apache_mediante_archivo_htaccess/informaciondirectorio.png)
+
+Si probamos a acceder a la dirección [https://javierperezhidalgoapache.000webhostapp.com/prohibido](https://javierperezhidalgoapache.000webhostapp.com/prohibido) nos pide las credenciales necesarias para mostrar la página.
+
+![.](images/sri_configuracion_de_apache_mediante_archivo_htaccess/autenticacion.png)
+
+Si introducimos correctamente el usuario y contraseña, nos muestra la página que he creado con un simple `index.html`:
+
+![.](images/sri_configuracion_de_apache_mediante_archivo_htaccess/pagina.png)

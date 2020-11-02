@@ -536,15 +536,15 @@ He hecho una prueba capturando el tráfico.
 
 Si nos fijamos en la línea seleccionada, que hace referencia a la petición que hemos hecho con nuestras credenciales, podemos ver como no nos muestra la contraseña como pasaba anteriormente.
 
-**4. Vamos a combinar el control de acceso (tarea 6) y la autenticación (tareas 7 y 8), y vamos a configurar el virtual host para que se comporte de la siguiente manera: el acceso a la URL `departamentos.iesgn.org/secreto` se hace forma directa desde la intranet, desde la red pública te pide la autenticación. Muestra el resultado al profesor.**
+### 4. Vamos a combinar el control de acceso (tarea 6) y la autenticación (tareas 7 y 8), y vamos a configurar el virtual host para que se comporte de la siguiente manera: el acceso a la URL `departamentos.iesgn.org/secreto` se hace forma directa desde la intranet, desde la red pública te pide la autenticación. Muestra el resultado al profesor.
 
 Si queremos que los equipos conectados a la red local, es decir, los que posean una IP **192.168.150.X**, accedan de manera directa a la URL `departamentos.iesgn.org/secreto`, pero los demás equipos tengan que iniciar sesión y validarse para acceder, debemos editar el fichero `/etc/apache2/sites-available/departamentos.conf` de manera que tenga este aspecto:
 
 <pre>
-<\Directory /var/www/departamentos/secreto \>
+<\Directory /srv/departamentos/secreto \>
  AuthType Digest
  AuthName "gruposecreto"
- AuthUserFile /var/www/departamentos/secreto/.htpasswd
+ AuthUserFile /srv/departamentos/secreto/.htpasswd
  Require valid-user
  <\RequireAll\>
   Require all granted

@@ -187,7 +187,7 @@ Observamos como se ha añadido una nueva firma, en este caso la mía. Por tanto,
 
 Me he encargado de pasar mi clave a tres compañeros para que me la firmen.
 
-En este caso, voy a mostrar como importo mi clave pública que recientemente me la ha enviado Álvaro firmada por él para actualizar mi lista de firmas:
+En este caso, voy a mostrar como importo mi clave pública, que recientemente me la ha enviado Álvaro firmada por él, para actualizar mi lista de firmas:
 
 <pre>
 javier@debian:~/Descargas$ ls

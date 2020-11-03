@@ -102,7 +102,7 @@ sig          3E0DA17912B9A4F8 2020-10-13  Álvaro Vaca Ferreras <avacaferreras@g
 ...
 </pre>
 
-Vemos como hemos importado a nuestro anillo de claves la clave pública de Álvaro, y que además si miramos las firmas que tiene su clave pública, encontramos que está firmado por 3 personas, entre las que se encuentra mi compañro [Juanlu](https://www.instagram.com/juanlu_millan/). Nos identifica la firma de Juanlu ya que en mi anillo de claves. también poseo la clave pública de Juanlu.
+Vemos como hemos importado a nuestro anillo de claves la clave pública de Álvaro, y que además si miramos las firmas que tiene su clave pública, encontramos que está firmada por 3 personas, entre las que se encuentra mi compañero [Juanlu](https://www.instagram.com/juanlu_millan/). Nos identifica la firma de Juanlu ya que en mi anillo de claves, también poseo la clave pública de Juanlu.
 
 Voy a firmar la clave de Álvaro:
 
@@ -136,6 +136,7 @@ con su clave: "Javier Pérez Hidalgo <javierperezhidalgo01@gmail.com>" (6F7A456B
 ¿Firmar de verdad? (s/N) s
 
 gpg> save
+
 javier@debian:~/Descargas$ gpg --list-sign
 gpg: comprobando base de datos de confianza
 gpg: marginals needed: 3  completes needed: 1  trust model: pgp
@@ -160,7 +161,7 @@ sig          3E0DA17912B9A4F8 2020-10-13  Álvaro Vaca Ferreras <avacaferreras@g
 ...
 </pre>
 
-Vemos como se ha añadido una nueva firma, en este caso la mía. Por tanto, ahora simplemente nos falataría exportar esta clave de Álvaro y hacérsela llega para que él pueda actualizar su clave pública que ahora también posee mi firma.
+Observamos como se ha añadido una nueva firma, en este caso la mía. Por tanto, ahora simplemente nos faltaría exportar esta clave de Álvaro y hacérsela llegar para que él pueda actualizar su clave pública que ahora también posee mi firma.
 
 - **Tú te debes asegurar que tu clave pública es firmada por al menos tres compañeros de la clase.**
 

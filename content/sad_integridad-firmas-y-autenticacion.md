@@ -1,5 +1,5 @@
 Title: Integridad, firmas y autenticación
-Date: 2020/10/27
+Date: 2020/11/3
 Category: Seguridad y Alta Disponibilidad
 Header_Cover: theme/images/banner-seguridad.jpg
 Tags: GPG
@@ -27,15 +27,148 @@ gpg:          No hay indicios de que la firma pertenezca al propietario.
 Huellas dactilares de la clave primaria: E8DD 5DA9 3B88 F08A DA1D  26BF 5141 3DDB 0C99 55FC
 </pre>
 
+Significa que la clave pública con la que hemos descifrado un archivo, no tiene ninguna firma de nuestras personas de confianza, por lo tanto, no podemos tener ninguna confianza en que esta clave pertenece de verdad a la persona que dice que es suya.
+
 **3. Vamos a crear un anillo de confianza entre los miembros de nuestra clase, para ello.**
 
 - **Tu clave pública debe estar en un servidor de claves**
+
+Para exportar mi clave pública a un servidor de claves, en este caso al servidor `keys.gnupg.net`:
+
+<pre>
+gpg --keyserver keys.gnupg.net --send-key C67662D3
+</pre>
 
 - **Escribe tu fingerprint en un papel y dáselo a tu compañero, para que puede descargarse tu clave pública.**
 
 - **Te debes bajar al menos tres claves públicas de compañeros. Firma estas claves.**
 
-- **Tu te debes asegurar que tu clave pública es firmada por al menos tres compañeros de la clase.**
+El comando para importar una clave pública desde un servidor de claves sería:
+
+<pre>
+gpg --keyserver keys.gnupg.net --recv-keys XXXXXXXX
+</pre>
+
+Los servidores de claves no funcionaban muy bien en el momento que estábamos realizando la práctica, por tanto, nos pasamos las claves por correo.
+
+Voy a importar la clave de mi compañero [Álvaro](https://www.instagram.com/whosalvr/) que previamente me ha pasado por correo electrónico y he descargado:
+
+<pre>
+javier@debian:~/Descargas$ ls
+clave.asc  Imágenes
+
+javier@debian:~/Descargas$ gpg --import clave.asc
+gpg: key 3E0DA17912B9A4F8: 2 firmas no comprobadas por falta de claves
+gpg: clave 3E0DA17912B9A4F8: clave pública "Álvaro Vaca Ferreras <avacaferreras@gmail.com>" importada
+gpg: Cantidad total procesada: 1
+gpg:               importadas: 1
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: nivel: 0  validez:   1  firmada:   0  confianza: 0-, 0q, 0n, 0m, 0f, 1u
+gpg: siguiente comprobación de base de datos de confianza el: 2022-10-21
+
+javier@debian:~/Descargas$ gpg --list-key
+/home/javier/.gnupg/pubring.kbx
+-------------------------------
+pub   rsa3072 2020-10-21 [SC] [caduca: 2022-10-21]
+      76270D5E766E0F22D70466BE6F7A456BC67662D3
+uid        [  absoluta ] Javier Pérez Hidalgo <javierperezhidalgo01@gmail.com>
+sub   rsa3072 2020-10-21 [E] [caduca: 2022-10-21]
+
+pub   rsa3072 2020-10-07 [SC] [caduca: 2022-10-07]
+      4C220919DD2364BED7D49C3215E1B16E8352B9BB
+uid        [desconocida] Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.com>
+sub   rsa3072 2020-10-07 [E] [caduca: 2022-10-07]
+
+pub   rsa3072 2020-10-13 [SC] [caduca: 2022-10-13]
+      B02B578465B0756DFD271C733E0DA17912B9A4F8
+uid        [desconocida] Álvaro Vaca Ferreras <avacaferreras@gmail.com>
+sub   rsa3072 2020-10-13 [E] [caduca: 2022-10-13]
+
+javier@debian:~/Descargas$ gpg --list-sig
+/home/javier/.gnupg/pubring.kbx
+-------------------------------
+...
+
+pub   rsa3072 2020-10-13 [SC] [caduca: 2022-10-13]
+      B02B578465B0756DFD271C733E0DA17912B9A4F8
+uid        [desconocida] Álvaro Vaca Ferreras <avacaferreras@gmail.com>
+sig 3        3E0DA17912B9A4F8 2020-10-13  Álvaro Vaca Ferreras <avacaferreras@gmail.com>
+sig          15E1B16E8352B9BB 2020-10-21  Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.com>
+sig          73986F40D4BB0593 2020-10-21  [ID de usuario no encontrado]
+sig          BEAECEA4DC2F7A96 2020-10-21  [ID de usuario no encontrado]
+sub   rsa3072 2020-10-13 [E] [caduca: 2022-10-13]
+sig          3E0DA17912B9A4F8 2020-10-13  Álvaro Vaca Ferreras <avacaferreras@gmail.com>
+
+...
+</pre>
+
+Vemos como hemos importado a nuestro anillo de claves la clave pública de Álvaro, y que además si miramos las firmas que tiene su clave pública, encontramos que está firmado por 3 personas, entre las que se encuentra mi compañro [Juanlu](https://www.instagram.com/juanlu_millan/). Nos identifica la firma de Juanlu ya que en mi anillo de claves. también poseo la clave pública de Juanlu.
+
+Voy a firmar la clave de Álvaro:
+
+<pre>
+javier@debian:~/Descargas$ gpg --edit-key 12B9A4F8
+gpg (GnuPG) 2.2.12; Copyright (C) 2018 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+
+pub  rsa3072/3E0DA17912B9A4F8
+     creado: 2020-10-13  caduca: 2022-10-13  uso: SC  
+     confianza: desconocido   validez: desconocido
+sub  rsa3072/8C88D2FAE94F5DDC
+     creado: 2020-10-13  caduca: 2022-10-13  uso: E   
+[desconocida] (1). Álvaro Vaca Ferreras <avacaferreras@gmail.com>
+
+gpg> sign
+
+pub  rsa3072/3E0DA17912B9A4F8
+     creado: 2020-10-13  caduca: 2022-10-13  uso: SC  
+     confianza: desconocido   validez: desconocido
+ Huella clave primaria: B02B 5784 65B0 756D FD27  1C73 3E0D A179 12B9 A4F8
+
+     Álvaro Vaca Ferreras <avacaferreras@gmail.com>
+
+Esta clave expirará el 2022-10-13.
+¿Está realmente seguro de querer firmar esta clave
+con su clave: "Javier Pérez Hidalgo <javierperezhidalgo01@gmail.com>" (6F7A456BC67662D3)?
+
+¿Firmar de verdad? (s/N) s
+
+gpg> save
+javier@debian:~/Descargas$ gpg --list-sign
+gpg: comprobando base de datos de confianza
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: nivel: 0  validez:   1  firmada:   1  confianza: 0-, 0q, 0n, 0m, 0f, 1u
+gpg: nivel: 1  validez:   1  firmada:   1  confianza: 1-, 0q, 0n, 0m, 0f, 0u
+gpg: siguiente comprobación de base de datos de confianza el: 2022-10-07
+/home/javier/.gnupg/pubring.kbx
+-------------------------------
+...
+
+pub   rsa3072 2020-10-13 [SC] [caduca: 2022-10-13]
+      B02B578465B0756DFD271C733E0DA17912B9A4F8
+uid        [   total   ] Álvaro Vaca Ferreras <avacaferreras@gmail.com>
+sig 3        3E0DA17912B9A4F8 2020-10-13  Álvaro Vaca Ferreras <avacaferreras@gmail.com>
+sig          15E1B16E8352B9BB 2020-10-21  Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.com>
+sig          73986F40D4BB0593 2020-10-21  [ID de usuario no encontrado]
+sig          BEAECEA4DC2F7A96 2020-10-21  [ID de usuario no encontrado]
+sig          6F7A456BC67662D3 2020-11-03  Javier Pérez Hidalgo <javierperezhidalgo01@gmail.com>
+sub   rsa3072 2020-10-13 [E] [caduca: 2022-10-13]
+sig          3E0DA17912B9A4F8 2020-10-13  Álvaro Vaca Ferreras <avacaferreras@gmail.com>
+
+...
+</pre>
+
+Vemos como se ha añadido una nueva firma, en este caso la mía. Por tanto, ahora simplemente nos falataría exportar esta clave de Álvaro y hacérsela llega para que él pueda actualizar su clave pública que ahora también posee mi firma.
+
+- **Tú te debes asegurar que tu clave pública es firmada por al menos tres compañeros de la clase.**
+
+Me he encargado de pasar mi clave a tres compañeros para que me la firmen. Lo podemos obseervar aquí:
+
+<pre>
+
+</pre>
 
 - **Una vez que firmes una clave se la tendrás que devolver a su dueño, para que otra persona se la firme.**
 
@@ -43,11 +176,11 @@ Huellas dactilares de la clave primaria: E8DD 5DA9 3B88 F08A DA1D  26BF 5141 3DD
 
 - **Asegúrate que te vuelves a bajar las claves públicas de tus compañeros que tengan las tres firmas.**
 
-
-
 **4. Muestra las firmas que tiene tu clave pública.**
 
-
+<pre>
+gpg --list-sign
+</pre>
 
 **5. Comprueba que ya puedes verificar sin “problemas” una firma recibida por una persona en la que confías.**
 

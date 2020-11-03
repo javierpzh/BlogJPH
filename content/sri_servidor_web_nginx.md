@@ -8,9 +8,43 @@ Tags: web, Nginx
 
 **1. Crea una máquina del cloud con una red pública. Añade la clave pública del profesor a la máquina. Instala el servidor web nginx en la máquina. Modifica la página `index.html` que viene por defecto y accede a ella desde un navegador.**
 
+Voy a añadir la clave pública de José Domingo que se encuentra en la [Wiki](https://dit.gonzalonazareno.org/redmine/projects/asir2/wiki/Claves_p%C3%BAblicas_de_los_profesores).
+
+Para ello la descargo previamente:
+
+<pre>
+debian@deb10-servidornginx:~$ wget https://dit.gonzalonazareno.org/redmine/attachments/download/1996/id_rsa.pub
+--2020-11-03 17:49:14--  https://dit.gonzalonazareno.org/redmine/attachments/download/1996/id_rsa.pub
+Resolving dit.gonzalonazareno.org (dit.gonzalonazareno.org)... 192.168.203.2
+Connecting to dit.gonzalonazareno.org (dit.gonzalonazareno.org)|192.168.203.2|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://dit.gonzalonazareno.org/redmine/login?back_url=https%3A%2F%2Fdit.gonzalonazareno.org%2Fredmine%2Fattachments%2Fdownload%2F1996%2Fid_rsa.pub [following]
+--2020-11-03 17:49:14--  https://dit.gonzalonazareno.org/redmine/login?back_url=https%3A%2F%2Fdit.gonzalonazareno.org%2Fredmine%2Fattachments%2Fdownload%2F1996%2Fid_rsa.pub
+Reusing existing connection to dit.gonzalonazareno.org:443.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘id_rsa.pub’
+
+id_rsa.pub                    [ <=>                                  ]   5.08K  --.-KB/s    in 0.001s  
+
+2020-11-03 17:49:14 (3.56 MB/s) - ‘id_rsa.pub’ saved [5199]
+
+debian@deb10-servidornginx:~$ ls
+id_rsa.pub
+</pre>
+
+Ahora la importo en el fichero `authorized_keys` de la instancia.
+
+<pre>
+echo `cat ./id_rsa.pub` >> .ssh/authorized_keys
+</pre>
+
 - **Entrega la ip flotante de la máquina para que el profesor pueda acceder a ella.**
 
+La IP de la instancia es la **172.22.200.116**
+
 - **Entrega una captura de pantalla accediendo a ella.**
+
 
 
 #### Virtual Hosting

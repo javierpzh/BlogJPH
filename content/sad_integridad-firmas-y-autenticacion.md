@@ -391,7 +391,59 @@ sig          6F7A456BC67662D3 2020-10-21  Javier Pérez Hidalgo <javierperezhida
 
 **6. Comprueba que puedes verificar con confianza una firma de una persona en las que no confías, pero sin embargo si confía otra persona en la que tu tienes confianza total.**
 
+Vamos a intentar verificar la firma de mi compañero Adri. En él tienen confianza total varias personas que yo tengo en mi anillo de claves con confianza, es decir, que personas a las que yo le he firmado sus claves, han firmado la clave de Adri, por tanto de manera indirecta, yo confío en Adri.
 
+Realizamos la prueba.
+
+Adri me ha pasado su clave pública y un documento firmado por él.
+
+Importo su clave:
+
+<pre>
+javier@debian:~/Descargas$ ls
+claveadri.asc  doc.gpg  Imágenes
+
+javier@debian:~/Descargas$ gpg --import claveadri.asc
+gpg: clave 73986F40D4BB0593: clave pública "Adrián Rodríguez Povea <arodriguezpovea@gmail.com>" importada
+gpg: Cantidad total procesada: 1
+gpg:               importadas: 1
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: nivel: 0  validez:   1  firmada:   2  confianza: 0-, 0q, 0n, 0m, 0f, 1u
+gpg: nivel: 1  validez:   2  firmada:   2  confianza: 2-, 0q, 0n, 0m, 0f, 0u
+gpg: siguiente comprobación de base de datos de confianza el: 2022-10-07
+
+javier@debian:~/Descargas$ gpg --list-sig
+/home/javier/.gnupg/pubring.kbx
+-------------------------------
+...
+
+pub   rsa4096 2020-10-14 [SC]
+      04EF48BD3DD780EF5ED977F973986F40D4BB0593
+uid        [no definida] Adrián Rodríguez Povea <arodriguezpovea@gmail.com>
+sig 3        73986F40D4BB0593 2020-10-14  Adrián Rodríguez Povea <arodriguezpovea@gmail.com>
+sig          BEAECEA4DC2F7A96 2020-10-21  Francisco Javier Martín Núñez <franjaviermn17100@gmail.com>
+sig          3E0DA17912B9A4F8 2020-10-21  Álvaro Vaca Ferreras <avacaferreras@gmail.com>
+sig          15E1B16E8352B9BB 2020-10-27  Juan Luis Millan Hidalgo <juanluismillanhidalgo@gmail.com>
+sub   rsa4096 2020-10-14 [E]
+sig          73986F40D4BB0593 2020-10-14  Adrián Rodríguez Povea <arodriguezpovea@gmail.com>
+</pre>
+
+Vemos las personas que confían en Adri, e intentamos verificar su firma con el documento que nos ha pasado:
+
+<pre>
+javier@debian:~/Descargas$ gpg --verify doc.gpg
+gpg: Firmado el mar 03 nov 2020 18:37:01 CET
+gpg:                usando RSA clave 04EF48BD3DD780EF5ED977F973986F40D4BB0593
+gpg: comprobando base de datos de confianza
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: nivel: 0  validez:   1  firmada:   2  confianza: 0-, 0q, 0n, 0m, 0f, 1u
+gpg: nivel: 1  validez:   2  firmada:   2  confianza: 1-, 0q, 0n, 0m, 1f, 0u
+gpg: nivel: 2  validez:   2  firmada:   0  confianza: 1-, 0q, 0n, 0m, 1f, 0u
+gpg: siguiente comprobación de base de datos de confianza el: 2022-10-07
+gpg: Firma correcta de "Adrián Rodríguez Povea <arodriguezpovea@gmail.com>" [total]
+</pre>
+
+Vemos como nos verifica la firma de Adri con confianza total a pesar de que no he firmado su clave. Esto es gracias a que yo tengo confianza total en una persona que sí tiene confianza total en Adri.
 
 
 ## Tarea 2: Correo seguro con evolution/thunderbird

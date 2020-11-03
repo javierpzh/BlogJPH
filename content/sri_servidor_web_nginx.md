@@ -6,22 +6,22 @@ Tags: web, Nginx
 
 
 
-Práctica: Servidor Web Nginx
+## Servidor Web Nginx
 
-    Tarea 1 (1 punto)(Obligatorio): Crea una máquina del cloud con una red pública. Añade la clave pública del profesor a la máquina. Instala el servidor web nginx en la máquina. Modifica la página index.html que viene por defecto y accede a ella desde un navegador.
-        Entrega la ip flotante de la máquina para que el profesor pueda acceder a ella.
-        Entrega una captura de pantalla accediendo a ella.
+**1. Crea una máquina del cloud con una red pública. Añade la clave pública del profesor a la máquina. Instala el servidor web nginx en la máquina. Modifica la página index.html que viene por defecto y accede a ella desde un navegador.**
+    **- Entrega la ip flotante de la máquina para que el profesor pueda acceder a ella.**
+    **- Entrega una captura de pantalla accediendo a ella.**
 
-Virtual HostingPermalink
+#### Virtual Hosting
 
-Queremos que nuestro servidor web ofrezca dos sitios web, teniendo en cuenta lo siguiente:
+**Queremos que nuestro servidor web ofrezca dos sitios web, teniendo en cuenta lo siguiente:**
 
-    Cada sitio web tendrá nombres distintos.
-    Cada sitio web compartirán la misma dirección IP y el mismo puerto (80).
+**- Cada sitio web tendrá nombres distintos.**
+- **Cada sitio web compartirán la misma dirección IP y el mismo puerto (80).**
 
-Los dos sitios web tendrán las siguientes características:
+**Los dos sitios web tendrán las siguientes características:**
 
-    El nombre de dominio del primero será www.iesgn.org, su directorio base será /srv/www/iesgn y contendrá una página llamada index.html, donde sólo se verá una bienvenida a la página del Instituto Gonzalo Nazareno.
+- **El nombre de dominio del primero será www.iesgn.org, su directorio base será /srv/www/iesgn y contendrá una página llamada index.html, donde sólo se verá una bienvenida a la página del Instituto Gonzalo Nazareno.**
     En el segundo sitio vamos a crear una página donde se pondrán noticias por parte de los departamento, el nombre de este sitio será departamentos.iesgn.org, y su directorio base será /srv/www/departamentos. En este sitio sólo tendremos una página inicial index.html, dando la bienvenida a la página de los departamentos del instituto.
 
     Tarea 2 (2 punto)(Obligatorio): Configura la resolución estática en los clientes y muestra el acceso a cada una de las páginas.

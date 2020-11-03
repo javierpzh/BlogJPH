@@ -45,6 +45,16 @@ La IP de la instancia es la **172.22.200.116**
 
 - **Entrega una captura de pantalla accediendo a ella.**
 
+He creado esta instancia con una imagen del *cloud* llamada *Debian Buster 10.6* y un sabor llamado *m1.mini*.
+
+Antes de instalar el servidor **Nginx**, voy a realizar una actualización de los repositorios, es decir, un `apt update`, pero si intentamos realizarlo, nos da un error que sinceramente desconozco el por qué, pero que he solventado comentando las líneas `src` en el fichero `/etc/apt/sources.list`.
+
+<pre>
+apt update && apt install nginx -y
+</pre>
+
+
+
 
 
 #### Virtual Hosting

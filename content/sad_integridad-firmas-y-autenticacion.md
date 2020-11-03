@@ -142,7 +142,13 @@ Esta clave expirará el 2022-10-13.
 con su clave: "Javier Pérez Hidalgo <javierperezhidalgo01@gmail.com>" (6F7A456BC67662D3)?
 
 ¿Firmar de verdad? (s/N) s
+</pre>
 
+Verificamos que queremos firmar la clave:
+
+![.](images/sad_integridad_firmas_y_autenticacion/firmarclave.png)
+
+<pre>
 gpg> save
 
 javier@debian:~/Descargas$ gpg --list-sign
@@ -169,17 +175,9 @@ sig          3E0DA17912B9A4F8 2020-10-13  Álvaro Vaca Ferreras <avacaferreras@g
 ...
 </pre>
 
-Verificamos que queremos firmar la clave:
-
-![.](images/sad_integridad_firmas_y_autenticacion/firmarclave.png)
-
 Observamos como se ha añadido una nueva firma, en este caso la mía. Por tanto, ahora simplemente nos faltaría exportar esta clave de Álvaro y hacérsela llegar para que él pueda actualizar su clave pública que ahora también posee mi firma.
 
-Me he encargado de pasar mi clave a tres compañeros para que me la firmen. Lo podemos observar aquí:
-
-<pre>
-
-</pre>
+Me he encargado de pasar mi clave a tres compañeros para que me la firmen.
 
 
 **4. Muestra las firmas que tiene tu clave pública.**

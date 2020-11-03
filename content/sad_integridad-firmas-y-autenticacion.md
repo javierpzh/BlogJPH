@@ -387,7 +387,16 @@ sig          6F7A456BC67662D3 2020-10-21  Javier Pérez Hidalgo <javierperezhida
 
 **5. Comprueba que ya puedes verificar sin “problemas” una firma recibida por una persona en la que confías.**
 
+Voy a intentar verificar un archivo firmado que me ha enviado mi compañero Fran:
 
+<pre>
+javier@debian:~/Descargas$ gpg --verify hola.txt.gpg
+gpg: Firmado el mar 03 nov 2020 20:29:02 CET
+gpg:                usando RSA clave D6BE9BF1C7D6A435BF1B9D38BEAECEA4DC2F7A96
+gpg: Firma correcta de "Francisco Javier Martín Núñez <franjaviermn17100@gmail.com>" [total]
+</pre>
+
+Lógicamente nos muestra un mensaje que nos informa de que la firma es correcta ya que tengo confianza total con él.
 
 **6. Comprueba que puedes verificar con confianza una firma de una persona en las que no confías, pero sin embargo si confía otra persona en la que tu tienes confianza total.**
 

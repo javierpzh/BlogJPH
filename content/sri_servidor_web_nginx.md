@@ -53,9 +53,38 @@ Antes de instalar el servidor **Nginx**, voy a realizar una actualización de lo
 apt update && apt install nginx -y
 </pre>
 
+<pre>
+root@deb10-servidornginx:~# cd /etc/nginx/sites-available/
 
+root@deb10-servidornginx:/etc/nginx/sites-available# ls
+default
 
+root@deb10-servidornginx:/etc/nginx/sites-available# cp default iesgn.conf
 
+root@deb10-servidornginx:/etc/nginx/sites-available# nano iesgn.conf
+</pre>
+
+<pre>
+server {
+        listen 80;
+        listen [::]:80;
+
+        server_name www.iesgn.org;
+
+        root /srv/www/iesgn;
+        index index.html;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+</pre>
+
+Creamos el enlace simbólico:
+
+<pre>
+ln -s /etc/nginx/sites-available/iesgn.conf /etc/nginx/sites-enabled/
+</pre>
 
 #### Virtual Hosting
 

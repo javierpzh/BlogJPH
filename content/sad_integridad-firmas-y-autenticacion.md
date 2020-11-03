@@ -33,15 +33,23 @@ Significa que la clave pública con la que hemos descifrado un archivo, no tiene
 
 - **Tu clave pública debe estar en un servidor de claves**
 
+- **Escribe tu fingerprint en un papel y dáselo a tu compañero, para que puede descargarse tu clave pública.**
+
+- **Te debes bajar al menos tres claves públicas de compañeros. Firma estas claves.**
+
+- **Tú te debes asegurar que tu clave pública es firmada por al menos tres compañeros de la clase.**
+
+- **Una vez que firmes una clave se la tendrás que devolver a su dueño, para que otra persona se la firme.**
+
+- **Cuando tengas las tres firmas sube la clave al servidor de claves y rellena tus datos en la tabla [Claves públicas PGP 2020-2021](https://dit.gonzalonazareno.org/redmine/projects/asir2/wiki/Claves_p%C3%BAblicas_PGP_2020-2021)**
+
+- **Asegúrate que te vuelves a bajar las claves públicas de tus compañeros que tengan las tres firmas.**
+
 Para exportar mi clave pública a un servidor de claves, en este caso al servidor `keys.gnupg.net`:
 
 <pre>
 gpg --keyserver keys.gnupg.net --send-key C67662D3
 </pre>
-
-- **Escribe tu fingerprint en un papel y dáselo a tu compañero, para que puede descargarse tu clave pública.**
-
-- **Te debes bajar al menos tres claves públicas de compañeros. Firma estas claves.**
 
 El comando para importar una clave pública desde un servidor de claves sería:
 
@@ -161,21 +169,16 @@ sig          3E0DA17912B9A4F8 2020-10-13  Álvaro Vaca Ferreras <avacaferreras@g
 ...
 </pre>
 
+firmarclave.png
+
 Observamos como se ha añadido una nueva firma, en este caso la mía. Por tanto, ahora simplemente nos faltaría exportar esta clave de Álvaro y hacérsela llegar para que él pueda actualizar su clave pública que ahora también posee mi firma.
 
-- **Tú te debes asegurar que tu clave pública es firmada por al menos tres compañeros de la clase.**
-
-Me he encargado de pasar mi clave a tres compañeros para que me la firmen. Lo podemos obseervar aquí:
+Me he encargado de pasar mi clave a tres compañeros para que me la firmen. Lo podemos observar aquí:
 
 <pre>
 
 </pre>
 
-- **Una vez que firmes una clave se la tendrás que devolver a su dueño, para que otra persona se la firme.**
-
-- **Cuando tengas las tres firmas sube la clave al servidor de claves y rellena tus datos en la tabla [Claves públicas PGP 2020-2021](https://dit.gonzalonazareno.org/redmine/projects/asir2/wiki/Claves_p%C3%BAblicas_PGP_2020-2021)**
-
-- **Asegúrate que te vuelves a bajar las claves públicas de tus compañeros que tengan las tres firmas.**
 
 **4. Muestra las firmas que tiene tu clave pública.**
 

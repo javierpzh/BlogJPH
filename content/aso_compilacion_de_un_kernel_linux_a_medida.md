@@ -18,7 +18,7 @@ Tags: compilar, kernel
 
 Voy a instalar el paquete `linux-image-4.19.0-12-amd64` que corresponde al kérnel **4.19.0-12**.
 
-Lo he descargado desde la [página oficial de Debian](https://packages.debian.org/buster/linux-image-4.19.0-12-amd64), desde este [enlace](http://security.debian.org/debian-security/pool/updates/main/l/linux-signed-amd64/linux-image-4.19.0-12-amd64_4.19.152-1_amd64.deb).
+Lo he descargado desde la [página oficial de Debian](https://packages.debian.org/buster/linux-source-4.19), desde este [enlace](http://security.debian.org/debian-security/pool/updates/main/l/linux/linux_4.19.152.orig.tar.xz).
 
 **2. Crea un directorio de trabajo (p.ej. mkdir ~/Linux)**
 
@@ -35,33 +35,36 @@ tar xf /usr/src/linux-source-... ~/Linux/
 Descargo y descomprimo el kérnel:
 
 <pre>
-
-root@buster:~# wget http://security.debian.org/debian-security/pool/updates/main/l/linux-signed-amd64/linux-image-4.19.0-12-amd64_4.19.152-1_amd64.deb
---2020-11-04 07:42:36--  http://security.debian.org/debian-security/pool/updates/main/l/linux-signed-amd64/linux-image-4.19.0-12-amd64_4.19.152-1_amd64.deb
-Resolving security.debian.org (security.debian.org)... 151.101.128.204, 151.101.192.204, 151.101.64.204, ...
-Connecting to security.debian.org (security.debian.org)|151.101.128.204|:80... connected.
+root@buster:/usr/src# wget http://security.debian.org/debian-security/pool/updates/main/l/linux/linux_4.19.152.orig.tar.xz
+--2020-11-04 08:23:20--  http://security.debian.org/debian-security/pool/updates/main/l/linux/linux_4.19.152.orig.tar.xz
+Resolving security.debian.org (security.debian.org)... 151.101.64.204, 151.101.128.204, 151.101.192.204, ...
+Connecting to security.debian.org (security.debian.org)|151.101.64.204|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 48261216 (46M) [application/x-debian-package]
-Saving to: ‘linux-image-4.19.0-12-amd64_4.19.152-1_amd64.deb’
+Length: 107539124 (103M) [application/x-xz]
+Saving to: ‘linux_4.19.152.orig.tar.xz’
 
-linux-image-4.19.0-12-amd 100%[=====================================>]  46.03M  11.2MB/s    in 4.3s    
+linux_4.19.152.orig.tar.x 100%[=====================================>] 102.56M  3.95MB/s    in 21s     
 
-2020-11-04 07:42:40 (10.8 MB/s) - ‘linux-image-4.19.0-12-amd64_4.19.152-1_amd64.deb’ saved [48261216/48261216]
+2020-11-04 08:23:41 (4.78 MB/s) - ‘linux_4.19.152.orig.tar.xz’ saved [107539124/107539124]
 
-root@buster:~# ls
-linux-image-4.19.0-12-amd64_4.19.152-1_amd64.deb
+root@buster:/usr/src# ls
+linux_4.19.152.orig.tar.xz
 
-root@buster:~# mkdir ~/kernelLinux/
+root@buster:/usr/src# cd
 
-root@buster:~# ls
-kernelLinux  linux-image-4.19.0-12-amd64_4.19.152-1_amd64.deb
-
-root@buster:~# dpkg -x linux-image-4.19.0-12-amd64_4.19.152-1_amd64.deb ./kernelLinux/
+root@buster:~# tar xf /usr/src/linux_4.19.152.orig.tar.xz --directory ~/kernelLinux/
 
 root@buster:~# cd kernelLinux/
 
 root@buster:~/kernelLinux# ls
-boot  lib  usr
+linux-4.19.152
+
+root@buster:~/kernelLinux# cd linux-4.19.152/
+
+root@buster:~/kernelLinux/linux-4.19.152# ls
+arch   COPYING	Documentation  fs	ipc	 kernel    MAINTAINERS	net	 scripts   tools
+block  CREDITS	drivers        include	Kbuild	 lib	   Makefile	README	 security  usr
+certs  crypto	firmware       init	Kconfig  LICENSES  mm		samples  sound	   virt
 </pre>
 
 

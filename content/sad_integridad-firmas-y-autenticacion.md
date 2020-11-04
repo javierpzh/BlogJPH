@@ -512,7 +512,11 @@ Se lo he enviado a mi compañero Álvaro, y este es el resultado que ha recibido
 
 **1. Para validar el contenido de la imagen CD, solo asegúrese de usar la herramienta apropiada para sumas de verificación. Para cada versión publicada existen archivos de suma de comprobación con algoritmos fuertes (SHA256 y SHA512); debería usar las herramientas sha256sum o sha512sum para trabajar con ellos.**
 
+Nos descargamos la ISO de Debian, para ello:
 
+<pre>
+wget https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.6.0-amd64-netinst.iso
+</pre>
 
 **2. Verifica que el contenido del hash que has utilizado no ha sido manipulado, usando la firma digital que encontrarás en el repositorio. Puedes encontrar una guía para realizarlo en este artículo: [How to verify an authenticity of downloaded Debian ISO images](https://linuxconfig.org/how-to-verify-an-authenticity-of-downloaded-debian-iso-images)**
 
@@ -527,15 +531,15 @@ Se lo he enviado a mi compañero Álvaro, y este es el resultado que ha recibido
 
 **1.¿Qué software utiliza `apt secure` para realizar la criptografía asimétrica?**
 
-
+**apt secure** utiliza GnuPG para realizar la criptografía asimétrica.
 
 **2.¿Para que sirve el comando `apt-key`? ¿Qué muestra el comando `apt-key list`?**
 
-
+**apt-key** es una herramienta que se usa para gestionar el anillo de claves de GPG de las claves de *apt*. El comando `apt-key list` muestra las claves públicas que tenemos en nuestro anillo de claves de confianza.
 
 **3.¿En qué fichero se guarda el anillo de claves que guarda la herramienta `apt-key`?**
 
-
+El anillo de claves de *apt* se guarda en el fichero `/etc/apt/trusted.gpg`.
 
 **4. ¿Qué contiene el archivo `Release` de un repositorio de paquetes?. ¿Y el archivo `Release.gpg`?. Puedes ver estos archivos en el repositorio `http://ftp.debian.org/debian/dists/Debian10.1/`. Estos archivos se descargan cuando hacemos un `apt update`.**
 

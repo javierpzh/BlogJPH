@@ -22,7 +22,9 @@ Lo he descargado desde la [página oficial de Debian](https://packages.debian.or
 
 **2. Crea un directorio de trabajo (p.ej. mkdir ~/Linux)**
 
-
+<pre>
+mkdir ~/kernelLinux/
+</pre>
 
 **3. Descomprime el código fuente del kérnel dentro del directorio de trabajo:**
 
@@ -30,7 +32,7 @@ Lo he descargado desde la [página oficial de Debian](https://packages.debian.or
 tar xf /usr/src/linux-source-... ~/Linux/
 </pre>
 
-Descargo y decomprimo el kérnel:
+Descargo y descomprimo el kérnel:
 
 <pre>
 

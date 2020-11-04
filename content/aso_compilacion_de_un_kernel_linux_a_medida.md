@@ -28,10 +28,6 @@ mkdir ~/kernelLinux/
 
 **3. Descomprime el código fuente del kérnel dentro del directorio de trabajo:**
 
-<pre>
-tar xf /usr/src/linux-source-... ~/Linux/
-</pre>
-
 Descargo y descomprimo el kérnel:
 
 <pre>

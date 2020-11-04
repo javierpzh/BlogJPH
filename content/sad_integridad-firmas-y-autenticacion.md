@@ -531,7 +531,7 @@ wget https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.6.0-amd
 
 **1.¿Qué software utiliza `apt secure` para realizar la criptografía asimétrica?**
 
-**apt secure** utiliza GnuPG para realizar la criptografía asimétrica.
+**apt secure** utiliza **GnuPG** para realizar la criptografía asimétrica.
 
 **2.¿Para que sirve el comando `apt-key`? ¿Qué muestra el comando `apt-key list`?**
 

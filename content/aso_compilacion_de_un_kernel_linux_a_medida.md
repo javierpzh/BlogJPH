@@ -16,7 +16,7 @@ Tags: compilar, kernel
 
 **1. Instala el paquete linux-source correspondiente al núcleo que estés usando en tu máquina**
 
-Voy a instalar el paquete `linux-image-4.19.0-12-amd64` que corresponde al kérnel **4.19.0-12**.
+Voy a instalar el paquete `linux-source-4.19 (4.19.152-1)` que corresponde al kérnel **4.19**.
 
 Lo he descargado desde la [página oficial de Debian](https://packages.debian.org/buster/linux-source-4.19), desde este [enlace](http://security.debian.org/debian-security/pool/updates/main/l/linux/linux_4.19.152.orig.tar.xz).
 

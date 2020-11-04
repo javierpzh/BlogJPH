@@ -481,11 +481,11 @@ Ya habríamos configurado el cliente para enviar correos firmados y cifrados.
 
 Voy a realizar una prueba de enviar un correo firmado. Previamente he marcado la primera opción mencionada antes.
 
-![.](images/sad_integridad_firmas_y_autenticacion/verificacioncorreofirmado.png)
+![.](images/sad_integridad_firmas_y_autenticacion/correofirmado.png)
 
 Nos pide la verificación de la clave:
 
-![.](images/sad_integridad_firmas_y_autenticacion/correofirmado.png)
+![.](images/sad_integridad_firmas_y_autenticacion/verificacioncorreofirmado.png)
 
 Se lo he enviado a mi compañero Álvaro, y este es el resultado que ha recibido él:
 

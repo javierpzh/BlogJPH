@@ -572,9 +572,11 @@ Ejecutaríamos un `apt update` y listo.
 
 **Vamos a estudiar como la criptografía nos ayuda a cifrar las comunicaciones que hacemos utilizando el protocolo *ssh*, y cómo nos puede servir también para conseguir que un cliente se autentifique contra el servidor. Responde las siguientes cuestiones:**
 
-**1. Explica los pasos que se producen entre el cliente y el servidor para que el protocolo cifre la información que se transmite? ¿Para qué se utiliza la criptografía simétrica? ¿Y la asimétrica?**
+**1. Explica los pasos que se producen entre el cliente y el servidor para que el protocolo cifre la información que se transmite. ¿Para qué se utiliza la criptografía simétrica? ¿Y la asimétrica?**
 
+- **Criptografía simétrica en SSH:** se utiliza para cifrar toda la comunicación de una sesión SSH. El cliente y el servidor deciden la clave privada utilizando un método acordado, y esta clave no se desvela.
 
+- **Criptografía asimétrica en SSH:** se utiliza para cifrar el intercambio de las claves simétricas comentadas arriba. Antes de conectarse las partes, éstas generan un par de claves temporales y comparten sus claves privadas, mediante las cuales, deciden la clave secreta compartida.
 
 **2. Explica los dos métodos principales de autentificación: por contraseña y utilizando un par de claves públicas y privadas.**
 

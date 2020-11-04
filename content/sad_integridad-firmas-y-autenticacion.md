@@ -580,7 +580,9 @@ Ejecutaríamos un `apt update` y listo.
 
 **2. Explica los dos métodos principales de autentificación: por contraseña y utilizando un par de claves públicas y privadas.**
 
-- **Autentificación por contraseña:** 
+- **Autentificación por contraseña:** este método es bastante sencillo y no tiene ningún tipo de misterio, simplemente si queremos realizar una conexión *ssh* por ejemplo al usuario *usuario1* de la máquina *100.100.100.100*, al introducir el comando `ssh usuario1@100.100.100.100` nos pedirá la contraseña del *usuario1* definido en esa máquina. Iniciamos sesión y ya habríamos realizado la conexión.
+
+- **Autentificación por par de claves:** este método de autentificación es bastante cómodo y práctica a la hora de acceder de manera habitual a máquinas remotas. Consiste en utilizar nuestras claves públicas-privadas para autentificarnos en la máquina sin necesidad de introducir ningún tipo de credenciales. Para realizar conexiones *ssh* de este tipo, necesitaremos introducir nuestra clave pública en la máquina remota a la que deseamos acceder, de manera que la próxima vez que accedamos, estaremos utilizando nuestra clave privada y nuestra clave pública para verificar que somos la persona autorizada a entrar en el sistema.
 
 **3. En el cliente para que sirve el contenido que se guarda en el fichero `~/.ssh/know_hosts`?**
 

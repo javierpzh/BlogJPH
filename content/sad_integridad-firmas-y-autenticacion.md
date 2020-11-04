@@ -553,7 +553,19 @@ Cuando realizamos un `apt update`, *apt* siempre realiza una descarga de los fic
 
 **6. Añade de forma correcta el repositorio de *Virtualbox* añadiendo la clave pública de Virtualbox como se indica en la [documentación](https://www.virtualbox.org/wiki/Linux_Downloads).**
 
+Para añadir el repositorio de Virtualbox con su clave pública, primeramente debemos añadir el repositorio a nuestro fichero `/etc/apt/sources.list`:
 
+<pre>
+deb https://download.virtualbox.org/virtualbox/debian buster contrib
+</pre>
+
+Y luego añadimos la clave pública:
+
+<pre>
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+</pre>
+
+Ejecutaríamos un `apt update` y listo.
 
 
 ## Tarea 5: Autentificación: ejemplo SSH

@@ -461,11 +461,43 @@ Vemos como nos verifica la firma de Adri con confianza total a pesar de que no h
 
 **1. Configura el cliente de correo evolution con tu cuenta de correo habitual**
 
-
+He añadido y sincronizado mi cuenta de correo electrónico `javierperezhidalgo01@gmail.com` en el cliente **Evolution**. No tiene ningún misterio por tanto no voy a explicar el proceso.
 
 **2. Añade a la cuenta las opciones de seguridad para poder enviar correos firmados con tu clave privada o cifrar los mensajes para otros destinatarios**
 
+Para asociar nuestra clave a esta cuenta de correo, nos desplazamos hasta las opciones de seguridad. Para ello, en la pestaña **Editar**, entramos en **Preferencias**, seleccionamos nuestra cuenta de correo y hacemos click en **Editar** y se nos abrirá un menú como este, en el que introduciremos nuestra clave:
 
+![.](images/sad_integridad_firmas_y_autenticacion/clavecorreo.png)
+
+Vemos que debajo del campo de la clave, nos aparecen estos dos apartados:
+
+- *Firmar siempre los mensajes salientes cuando se use esta cuenta*
+
+- *Cifrar siempre los mensajes salientes cuando se use esta cuenta*
+
+Si queremos enviar correos firmados, seleccionamos la primera opción, y si queremos enviar correos cifrados, seleccionamos la segunda opción.
+
+Ya habríamos configurado el cliente para enviar correos firmados y cifrados.
+
+Voy a realizar una prueba de enviar un correo firmado. Previamente he marcado la primera opción mencionada antes.
+
+![.](images/sad_integridad_firmas_y_autenticacion/verificacioncorreofirmado.png)
+
+Nos pide la verificación de la clave:
+
+![.](images/sad_integridad_firmas_y_autenticacion/correofirmado.png)
+
+Se lo he enviado a mi compañero Álvaro, y este es el resultado que ha recibido él:
+
+![.](images/sad_integridad_firmas_y_autenticacion/.png)
+
+Voy a realizar una prueba de enviar un correo cifrado. Previamente he marcado la segunda opción mencionada antes.
+
+![.](images/sad_integridad_firmas_y_autenticacion/correocifrado.png)
+
+Se lo he enviado a mi compañero Álvaro, y este es el resultado que ha recibido él:
+
+![.](images/sad_integridad_firmas_y_autenticacion/.png)
 
 **3. Envía y recibe varios mensajes con tus compañeros y comprueba el funcionamiento adecuado de GPG**
 

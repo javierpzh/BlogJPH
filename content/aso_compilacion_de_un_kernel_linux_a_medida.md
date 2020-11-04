@@ -70,6 +70,12 @@ certs  crypto	firmware       init	Kconfig  LICENSES  mm		samples  sound	   virt
 make oldconfig
 </pre>
 
+Es necesario revisar que tenemos instalado el paquete `build-essential` y todas sus dependencias. Este paquete incluye todo lo necesario a la hora de compilar. Para instalarlo:
+
+<pre>
+apt install build-essential -y
+</pre>
+
 **5. Cuenta el número de componentes que se han configurado para incluir en vmlinuz o como módulos.**
 
 

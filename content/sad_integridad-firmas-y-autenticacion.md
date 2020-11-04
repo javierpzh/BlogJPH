@@ -584,7 +584,7 @@ Ejecutaríamos un `apt update` y listo.
 
 - **Autentificación mediante par de claves:** este método de autentificación es bastante cómodo y práctico a la hora de acceder de manera habitual a máquinas remotas. Consiste en utilizar nuestras claves públicas-privadas para autentificarnos en la máquina sin necesidad de introducir ningún tipo de credenciales. Para realizar conexiones *ssh* de este tipo, necesitaremos introducir nuestra clave pública en la máquina remota a la que deseamos acceder, de manera que la próxima vez que accedamos, estaremos utilizando nuestra clave privada y nuestra clave pública para verificar que somos la persona autorizada a entrar en el sistema. Nuestra clave pública tendremos que añadirla en el fichero `.ssh/authorized_keys` del equipo remoto.
 
-**3. En el cliente para que sirve el contenido que se guarda en el fichero `~/.ssh/know_hosts`?**
+**3. En el cliente para que sirve el contenido que se guarda en el fichero `~/.ssh/known_hosts`?**
 
 
 

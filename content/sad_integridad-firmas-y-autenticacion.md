@@ -580,7 +580,7 @@ Ejecutaríamos un `apt update` y listo.
 
 **2. Explica los dos métodos principales de autentificación: por contraseña y utilizando un par de claves públicas y privadas.**
 
-
+- **Autentificación por contraseña:** 
 
 **3. En el cliente para que sirve el contenido que se guarda en el fichero `~/.ssh/know_hosts`?**
 

@@ -491,7 +491,7 @@ Se lo he enviado a mi compañero Álvaro, y este es el resultado que ha recibido
 
 ![.](images/sad_integridad_firmas_y_autenticacion/.png)
 
-Voy a realizar una prueba de enviar un correo cifrado. Previamente he marcado la segunda opción mencionada antes.
+Ahora voy a realizar una prueba de enviar un correo cifrado. Previamente he marcado la segunda opción mencionada antes.
 
 ![.](images/sad_integridad_firmas_y_autenticacion/correocifrado.png)
 

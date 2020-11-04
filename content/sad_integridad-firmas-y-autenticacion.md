@@ -543,11 +543,13 @@ El anillo de claves de *apt* se guarda en el fichero `/etc/apt/trusted.gpg`.
 
 **4. ¿Qué contiene el archivo `Release` de un repositorio de paquetes?. ¿Y el archivo `Release.gpg`?. Puedes ver estos archivos en el repositorio `http://ftp.debian.org/debian/dists/Debian10.1/`. Estos archivos se descargan cuando hacemos un `apt update`.**
 
+El archivo `Release` es el que está firmado por Debian y contiene una lista de los archivos junto con sus *hashes* para asegurarnos que los archivos no han sido modificados.
 
+El archivo `Release.gpg` se utiliza para comprobar criptograficamente la integridad del archivo `Release`.
 
 **5. Explica el proceso por el cual el sistema nos asegura que los ficheros que estamos descargando son legítimos.**
 
-
+Cuando realizamos un `apt update`, *apt* siempre realiza una descarga de los ficheros `Release.gpg` cuando estamos realizando la descarga de ficheros `Release`. Si no encuentra, la firma está mal, o no puede descargar el fichero `Release.gpg`, nos reportará un error adviertiéndonos de que el paquete, y todo su contenido, al que hace referencia ese fichero `Release`, son de una fuente sin autentificar.
 
 **6. Añade de forma correcta el repositorio de *Virtualbox* añadiendo la clave pública de Virtualbox como se indica en la [documentación](https://www.virtualbox.org/wiki/Linux_Downloads).**
 

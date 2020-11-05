@@ -489,7 +489,7 @@ Nos pide la verificación de la clave:
 
 Se lo he enviado a mi compañero Álvaro, y este es el resultado que ha recibido él:
 
-![.](images/sad_integridad_firmas_y_autenticacion/.png)
+![.](images/sad_integridad_firmas_y_autenticacion/resultadocorreofirmado.png)
 
 Ahora voy a realizar una prueba de enviar un correo cifrado. Previamente he marcado la segunda opción mencionada antes.
 
@@ -497,7 +497,7 @@ Ahora voy a realizar una prueba de enviar un correo cifrado. Previamente he marc
 
 Se lo he enviado a mi compañero Álvaro, y este es el resultado que ha recibido él:
 
-![.](images/sad_integridad_firmas_y_autenticacion/.png)
+![.](images/sad_integridad_firmas_y_autenticacion/resultadocorreocifrado.png)
 
 **3. Envía y recibe varios mensajes con tus compañeros y comprueba el funcionamiento adecuado de GPG**
 

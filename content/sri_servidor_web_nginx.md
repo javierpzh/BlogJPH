@@ -62,6 +62,24 @@ Last login: Tue Nov  3 17:54:49 2020 from 172.23.0.46
 debian@deb10-servidornginx:~$
 </pre>
 
+Hemos accedido a la instancia.
+
+#### Virtual Hosting
+
+**Queremos que nuestro servidor web ofrezca dos sitios web, teniendo en cuenta lo siguiente:**
+
+- **Cada sitio web tendrá nombres distintos.**
+
+- **Cada sitio web compartirán la misma dirección IP y el mismo puerto (80).**
+
+**Los dos sitios web tendrán las siguientes características:**
+
+- **El nombre de dominio del primero será `www.iesgn.org`, su directorio base será `/srv/www/iesgn` y contendrá una página llamada `index.html`, donde sólo se verá una bienvenida a la página del Instituto Gonzalo Nazareno.**
+
+- **En el segundo sitio vamos a crear una página donde se pondrán noticias por parte de los departamento, el nombre de este sitio será `departamentos.iesgn.org`, y su directorio base será `/srv/www/departamentos`. En este sitio sólo tendremos una página inicial `index.html`, dando la bienvenida a la página de los departamentos del instituto.**
+
+**2. Configura la resolución estática en los clientes y muestra el acceso a cada una de las páginas.**
+
 Antes de instalar el servidor **Nginx**, voy a realizar una actualización de los repositorios, es decir, un `apt update`, pero si intentamos realizarlo, nos da un error que sinceramente desconozco el por qué, pero que he solventado comentando las líneas `src` en el fichero `/etc/apt/sources.list`.
 
 <pre>
@@ -100,24 +118,6 @@ Creamos el enlace simbólico:
 <pre>
 ln -s /etc/nginx/sites-available/iesgn.conf /etc/nginx/sites-enabled/
 </pre>
-
-#### Virtual Hosting
-
-**Queremos que nuestro servidor web ofrezca dos sitios web, teniendo en cuenta lo siguiente:**
-
-- **Cada sitio web tendrá nombres distintos.**
-
-- **Cada sitio web compartirán la misma dirección IP y el mismo puerto (80).**
-
-
-**Los dos sitios web tendrán las siguientes características:**
-
-- **El nombre de dominio del primero será `www.iesgn.org`, su directorio base será `/srv/www/iesgn` y contendrá una página llamada `index.html`, donde sólo se verá una bienvenida a la página del Instituto Gonzalo Nazareno.**
-
-- **En el segundo sitio vamos a crear una página donde se pondrán noticias por parte de los departamento, el nombre de este sitio será `departamentos.iesgn.org`, y su directorio base será `/srv/www/departamentos`. En este sitio sólo tendremos una página inicial `index.html`, dando la bienvenida a la página de los departamentos del instituto.**
-
-**2. Configura la resolución estática en los clientes y muestra el acceso a cada una de las páginas.**
-
 
 
 

@@ -87,6 +87,8 @@ Antes de instalar el servidor **Nginx**, voy a realizar una actualización de lo
 apt update && apt install nginx -y
 </pre>
 
+Una vez tenemos instalado *Nginx*, vamos a configuralo. En primer lugar, voy a crear la configuración de las páginas que tenemos que servir, para ello creo los ficheros `iesgn.conf` y `departamentos.conf`:
+
 <pre>
 root@deb10-servidornginx:~# cd /etc/nginx/sites-available/
 
@@ -96,12 +98,17 @@ default
 root@deb10-servidornginx:/etc/nginx/sites-available# cp default iesgn.conf
 
 root@deb10-servidornginx:/etc/nginx/sites-available# nano iesgn.conf
+
+root@deb10-servidornginx:/etc/nginx/sites-available# cp iesgn.conf departamentos.conf
+
+root@deb10-servidornginx:/etc/nginx/sites-available# nano departamentos.conf
 </pre>
+
+Así quedaría el fichero `iesgn.conf`:
 
 <pre>
 server {
         listen 80;
-        listen [::]:80;
 
         root /srv/www/iesgn;
         index index.html index.htm index.nginx-debian.html;
@@ -114,12 +121,31 @@ server {
 }
 </pre>
 
+Y así el `departamentos.conf`:
+
+<pre>
+server {
+        listen 80;
+
+        root /srv/www/departamentos;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name departamentos.iesgn.org;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+</pre>
+
 Creamos los enlaces simbólicos a la ruta `/etc/nginx/sites-enabled/` para habilitar el servicio de ambas páginas:
 
 <pre>
 ln -s /etc/nginx/sites-available/iesgn.conf /etc/nginx/sites-enabled/
-
+ln -s /etc/nginx/sites-available/departamentos.conf /etc/nginx/sites-enabled/
 </pre>
+
+En segundo lugar, vamos a crear la estructura de directorios de las páginas, y vamos a crear los respectivos `index.html`:
 
 <pre>
 root@deb10-servidornginx:/srv# mkdir www

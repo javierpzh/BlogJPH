@@ -499,7 +499,7 @@ Se lo he enviado a mi compañero Álvaro, y este es el resultado que ha recibido
 
 ![.](images/sad_integridad_firmas_y_autenticacion/resultadocorreocifrado.png)
 
-Si nos fijamos en el resultado de ambos, el correo firmado nos dice que no está cifrado, y el cifrado que no está firmado, pero porque he decidido hacerlo así, y pero que sepamos que ambas opciones las podemos combinar sin ningún problema.
+Si nos fijamos en el resultado de ambos, el correo firmado nos dice que no está cifrado, y el cifrado que no está firmado, pero porque he decidido hacerlo así, pero que sepamos que ambas opciones las podemos combinar sin ningún problema.
 
 **3. Envía y recibe varios mensajes con tus compañeros y comprueba el funcionamiento adecuado de GPG**
 

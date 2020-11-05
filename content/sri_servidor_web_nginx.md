@@ -87,7 +87,9 @@ Antes de instalar el servidor **Nginx**, voy a realizar una actualización de lo
 apt update && apt install nginx -y
 </pre>
 
-Una vez tenemos instalado *Nginx*, vamos a configuralo. En primer lugar, voy a crear la configuración de las páginas que tenemos que servir, para ello creo los ficheros `iesgn.conf` y `departamentos.conf`:
+Antes de empezar con el proceso de configuración, apunto que voy a obviar cosas y no voy a dar tantos detalles ya que el proceso es muy parecido al del servidor **Apache** y en esos posts ya he dado los detalles suficientes. Si quieres ver los [posts de Apache](https://javierpzh.github.io/tag/apache.html).
+
+Una vez tenemos instalado *Nginx*, vamos a configurarlo. En primer lugar, voy a crear la configuración de las páginas que tenemos que servir, para ello creo los ficheros `iesgn.conf` y `departamentos.conf`:
 
 <pre>
 root@deb10-servidornginx:~# cd /etc/nginx/sites-available/
@@ -169,6 +171,18 @@ index.html
 ./iesgn:
 index.html
 </pre>
+
+
+
+
+
+
+<pre>
+172.22.200.116  www.iesgn.org
+172.22.200.116  departamentos.iesgn.org
+</pre>
+
+
 
 #### Mapeo de URL
 

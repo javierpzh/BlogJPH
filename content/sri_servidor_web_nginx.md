@@ -47,6 +47,21 @@ La IP de la instancia es la **172.22.200.116**
 
 He creado esta instancia con una imagen del *cloud* llamada *Debian Buster 10.6* y un sabor llamado *m1.mini*.
 
+<pre>
+javier@debian:~$ ssh debian@172.22.200.116
+Linux deb10-servidornginx 4.19.0-11-cloud-amd64 #1 SMP Debian 4.19.146-1 (2020-09-17) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Tue Nov  3 17:54:49 2020 from 172.23.0.46
+
+debian@deb10-servidornginx:~$
+</pre>
+
 Antes de instalar el servidor **Nginx**, voy a realizar una actualización de los repositorios, es decir, un `apt update`, pero si intentamos realizarlo, nos da un error que sinceramente desconozco el por qué, pero que he solventado comentando las líneas `src` en el fichero `/etc/apt/sources.list`.
 
 <pre>
@@ -69,10 +84,10 @@ server {
         listen 80;
         listen [::]:80;
 
-        server_name www.iesgn.org;
-
         root /srv/www/iesgn;
-        index index.html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name www.iesgn.org;
 
         location / {
                 try_files $uri $uri/ =404;

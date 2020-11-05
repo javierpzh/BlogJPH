@@ -586,7 +586,7 @@ Ejecutaríamos un `apt update` y listo.
 
 **3. En el cliente, ¿para qué sirve el contenido que se guarda en el fichero `~/.ssh/known_hosts`?**
 
-El fichero `.ssh/known_hosts` almacena las claves públicas de los servidores a los que se conecta un equipo, de modo que cuando nos volvemos a conectar, verifica si el servidor es quién dice ser y no se trata de un imitador.
+El fichero `.ssh/known_hosts` en el cliente, almacena las claves públicas de los servidores a los que se conecta este cliente, de modo que cuando nos volvemos a conectar, verifica si el servidor es quién dice ser y no se trata de un imitador.
 
 **4. ¿Qué significa este mensaje que aparece la primera vez que nos conectamos a un servidor?**
 

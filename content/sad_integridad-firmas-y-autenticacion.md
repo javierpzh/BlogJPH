@@ -584,9 +584,9 @@ Ejecutaríamos un `apt update` y listo.
 
 - **Autentificación mediante par de claves:** este método de autentificación es bastante cómodo y práctico a la hora de acceder de manera habitual a máquinas remotas. Consiste en utilizar nuestras claves públicas-privadas para autentificarnos en la máquina sin necesidad de introducir ningún tipo de credenciales. Para realizar conexiones *ssh* de este tipo, necesitaremos introducir nuestra clave pública en la máquina remota a la que deseamos acceder, de manera que la próxima vez que accedamos, estaremos utilizando nuestra clave privada y nuestra clave pública para verificar que somos la persona autorizada a entrar en el sistema. Nuestra clave pública tendremos que añadirla en el fichero `.ssh/authorized_keys` del equipo remoto.
 
-**3. En el cliente para que sirve el contenido que se guarda en el fichero `~/.ssh/known_hosts`?**
+**3. En el cliente, ¿para qué sirve el contenido que se guarda en el fichero `~/.ssh/known_hosts`?**
 
-
+El fichero `.ssh/known_hosts` almacena las claves públicas de los servidores a los que se conecta un equipo, de modo que cuando nos volvemos a conectar, verifica si el servidor es quién dice ser y no se trata de un imitador.
 
 **4. ¿Qué significa este mensaje que aparece la primera vez que nos conectamos a un servidor?**
 
@@ -621,3 +621,5 @@ ECDSA host key for 172.22.200.74 has changed and you have requested strict check
 
 
 **6.¿Qué guardamos y para qué sirve el fichero en el servidor `~/.ssh/authorized_keys`?**
+
+El fichero `.ssh/authorized_keys` en un servidor, almacena las claves públicas de los clientes que se pueden conectar a él mediante su clave privada. De esta manera, al introducir una clave pública en este fichero, la próxima vez que intentemos conectarnos, nos ahorraremos escribir la contraseña del usuario del servidor con el que queremos establecer la conexión.

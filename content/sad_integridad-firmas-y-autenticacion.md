@@ -461,9 +461,11 @@ Vemos como nos verifica la firma de Adri con confianza total a pesar de que no h
 
 **1. Configura el cliente de correo evolution con tu cuenta de correo habitual**
 
-He añadido y sincronizado mi cuenta de correo electrónico `javierperezhidalgo01@gmail.com` en el cliente **Evolution**. No tiene ningún misterio por tanto no voy a explicar el proceso.
-
 **2. Añade a la cuenta las opciones de seguridad para poder enviar correos firmados con tu clave privada o cifrar los mensajes para otros destinatarios**
+
+**3. Envía y recibe varios mensajes con tus compañeros y comprueba el funcionamiento adecuado de GPG**
+
+He añadido y sincronizado mi cuenta de correo electrónico `javierperezhidalgo01@gmail.com` en el cliente **Evolution**. No tiene ningún misterio por tanto no voy a explicar el proceso.
 
 Para asociar nuestra clave a esta cuenta de correo, nos desplazamos hasta las opciones de seguridad. Para ello, en la pestaña **Editar**, entramos en **Preferencias**, seleccionamos nuestra cuenta de correo y hacemos click en **Editar** y se nos abrirá un menú como este, en el que introduciremos nuestra clave:
 
@@ -500,10 +502,6 @@ Se lo he enviado a mi compañero Álvaro, y este es el resultado que ha recibido
 ![.](images/sad_integridad_firmas_y_autenticacion/resultadocorreocifrado.png)
 
 Si nos fijamos en el resultado de ambos, el correo firmado nos dice que no está cifrado, y el cifrado que no está firmado, pero porque he decidido hacerlo así, pero que sepamos que ambas opciones las podemos combinar sin ningún problema.
-
-**3. Envía y recibe varios mensajes con tus compañeros y comprueba el funcionamiento adecuado de GPG**
-
-
 
 
 ## Tarea 3: Integridad de ficheros

@@ -189,6 +189,13 @@ Si queremos visualizar las páginas en nuestra máquina anfitriona, añadimos es
 172.22.200.116  departamentos.iesgn.org
 </pre>
 
+Página `www.iesgn.org`:
+
+![.](images/sri_servidor_web_nginx/paginaiesgn.png)
+
+Página `departamentos.iesgn.org`:
+
+![.](images/sri_servidor_web_nginx/paginadepartamentos.png)
 
 
 #### Mapeo de URL

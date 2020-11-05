@@ -1,5 +1,5 @@
 Title: Integridad, firmas y autenticación
-Date: 2020/11/3
+Date: 2020/11/5
 Category: Seguridad y Alta Disponibilidad
 Header_Cover: theme/images/banner-seguridad.jpg
 Tags: GPG, cifrado, firmado, integridad, apt secure, SSH

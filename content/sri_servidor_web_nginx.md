@@ -8,6 +8,8 @@ Tags: web, Nginx
 
 **1. Crea una máquina del cloud con una red pública. Añade la clave pública del profesor a la máquina. Instala el servidor web nginx en la máquina. Modifica la página `index.html` que viene por defecto y accede a ella desde un navegador.**
 
+He creado esta instancia con una imagen del *cloud* llamada *Debian Buster 10.6* y un sabor llamado *m1.mini*.
+
 Voy a añadir la clave pública de José Domingo que se encuentra en la [Wiki](https://dit.gonzalonazareno.org/redmine/projects/asir2/wiki/Claves_p%C3%BAblicas_de_los_profesores).
 
 Para ello la descargo previamente:
@@ -45,8 +47,6 @@ La IP de la instancia es la **172.22.200.116**
 
 - **Entrega una captura de pantalla accediendo a ella.**
 
-He creado esta instancia con una imagen del *cloud* llamada *Debian Buster 10.6* y un sabor llamado *m1.mini*.
-
 <pre>
 javier@debian:~$ ssh debian@172.22.200.116
 Linux deb10-servidornginx 4.19.0-11-cloud-amd64 #1 SMP Debian 4.19.146-1 (2020-09-17) x86_64
@@ -63,6 +63,7 @@ debian@deb10-servidornginx:~$
 </pre>
 
 Hemos accedido a la instancia.
+
 
 #### Virtual Hosting
 
@@ -113,13 +114,35 @@ server {
 }
 </pre>
 
-Creamos el enlace simbólico:
+Creamos los enlaces simbólicos a la ruta `/etc/nginx/sites-enabled/` para habilitar el servicio de ambas páginas:
 
 <pre>
 ln -s /etc/nginx/sites-available/iesgn.conf /etc/nginx/sites-enabled/
+
 </pre>
 
+<pre>
+root@deb10-servidornginx:/srv# mkdir www
 
+root@deb10-servidornginx:/srv# cd www/
+
+root@deb10-servidornginx:/srv/www# mkdir iesgn departamentos
+
+root@deb10-servidornginx:/srv/www# ls
+departamentos  iesgn
+
+root@deb10-servidornginx:/srv/www# touch ./iesgn/index.html ./departamentos/index.html
+
+root@deb10-servidornginx:/srv/www# ls -R
+.:
+departamentos  iesgn
+
+./departamentos:
+index.html
+
+./iesgn:
+index.html
+</pre>
 
 #### Mapeo de URL
 

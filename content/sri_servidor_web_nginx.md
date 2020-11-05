@@ -176,6 +176,12 @@ index.html
 index.html
 </pre>
 
+Le cambiamos el propietario y grupo al directorio `/srv/www` y todos sus hijos a `www-data` que es el usuario de *Nginx*:
+
+<pre>
+chown -R www-data:www-data /srv/www
+</pre>
+
 En este punto, solo nos faltaría reiniciar el servicio:
 
 <pre>
@@ -204,9 +210,48 @@ Página `departamentos.iesgn.org`:
 
 **3. Cuando se entre a la dirección `www.iesgn.org` se redireccionará automáticamente a `www.iesgn.org/principal`, donde se mostrará el mensaje de bienvenida. En el directorio principal no se permite ver la lista de los ficheros, no se permite que se siga los enlaces simbólicos y no se permite negociación de contenido. Muestra al profesor el funcionamiento.**
 
+Creo el directorio `principal` y copio el `index.html`:
 
+<pre>
+root@deb10-servidornginx:/srv/www/iesgn# mkdir principal
+
+root@deb10-servidornginx:/srv/www/iesgn# cp index.html ./principal/
+</pre>
+
+Al crear un nuevo directorio se crea con el usuario que hemos ejecutado el comando, por tanto, tendremos que cambiar el propietario de este directorio. Yo recurro de nuevo el comando utilizado anteriormente ya que lo aplica a los subdirectorios hijos:
+
+<pre>
+chown -R www-data:www-data /srv/www
+</pre>
+
+Creo la redirección permanente, con la siguiente línea en el fichero de configuración `/etc/nginx/sites-available/iesgn.conf`:
+
+<pre>
+rewrite ^/$ /principal permanent;
+</pre>
+
+Si ahora accedemos a la ruta `www.iesgn.org` nos redirigirá automáticamente a `www.iesgn.org/principal`.
 
 **4. Si accedes a la página `www.iesgn.org/principal/documentos` se visualizarán los documentos que hay en `/srv/doc`. Por lo tanto se permitirá el listado de fichero y el seguimiento de enlaces simbólicos siempre que sean a ficheros o directorios cuyo dueño sea el usuario. Muestra al profesor el funcionamiento.**
+
+Creo el directorio `principal` y creo algunos documentos, no copio el `index.html` para que así nos muestre el listado de ficheros. Establezco de nuevo como propietario `www-data`:
+
+<pre>
+root@deb10-servidornginx:/srv# mkdir doc
+
+root@deb10-servidornginx:/srv# cd doc
+
+root@deb10-servidornginx:/srv/doc# touch ejemplo1.txt ejemplo2.txt ejemplo3.txt
+
+root@deb10-servidornginx:/srv/doc# ls
+ejemplo1.txt  ejemplo2.txt  ejemplo3.txt
+
+root@deb10-servidornginx:/srv/doc# cd ..
+
+root@deb10-servidornginx:/srv# chown -R www-data:www-data /srv/doc/
+</pre>
+
+
 
 
 

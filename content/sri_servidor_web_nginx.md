@@ -81,7 +81,11 @@ Hemos accedido a la instancia.
 
 **2. Configura la resolución estática en los clientes y muestra el acceso a cada una de las páginas.**
 
-Antes de instalar el servidor **Nginx**, voy a realizar una actualización de los repositorios, es decir, un `apt update`, pero si intentamos realizarlo, nos da un error que sinceramente desconozco el por qué, pero que he solventado comentando las líneas `src` en el fichero `/etc/apt/sources.list`.
+Antes de instalar el servidor web, en nuestro administrador de instancias, en mi caso, estoy utilizando una instancia del servicio de *cloud* de mi instituto, debemos abrir el **puerto 80 (HTTP)**, ya que sino no nos va a dejar acceder a las páginas que configuremos.
+
+![.](images/sri_servidor_web_nginx/puerto80.png)
+
+Para instalar el servidor **Nginx**, voy a realizar una actualización de los repositorios, es decir, un `apt update`, pero si intentamos realizarlo, nos da un error que sinceramente desconozco el por qué, pero que he solventado comentando las líneas `src` en el fichero `/etc/apt/sources.list`.
 
 <pre>
 apt update && apt install nginx -y
@@ -172,10 +176,13 @@ index.html
 index.html
 </pre>
 
+En este punto, solo nos faltaría reiniciar el servicio:
 
+<pre>
+systemctl restart nginx
+</pre>
 
-
-
+Si queremos visualizar las páginas en nuestra máquina anfitriona, añadimos estas líneas al fichero `/etc/hosts`:
 
 <pre>
 172.22.200.116  www.iesgn.org

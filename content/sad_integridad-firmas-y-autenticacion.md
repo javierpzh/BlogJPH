@@ -533,7 +533,7 @@ gpg: Cantidad total procesada: 1
 gpg:               importadas: 1
 </pre>
 
-Verificando los ficheros `SHA256SUMS.sign` y `SHA512SUMS.sign`, automáticamente nos dice que asume que los ficheros a los que hacemos referencia y donde se encuentran los datos firmados son `SHA256SUMS` y `SHA512SUMS`:
+Verificando los ficheros `SHA256SUMS.sign` y `SHA512SUMS.sign`, automáticamente nos dice que asume que los archivos a los que hacemos referencia y donde se encuentran los datos firmados son `SHA256SUMS` y `SHA512SUMS`:
 
 <pre>
 javier@debian:~/Descargas$ gpg --verify SHA256SUMS.sign

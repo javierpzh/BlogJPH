@@ -597,6 +597,8 @@ ECDSA key fingerprint is SHA256:7ZoNZPCbQTnDso1meVSNoKszn38ZwUI4i6saebbfL4M.
 Are you sure you want to continue connecting (yes/no)?
 </pre>
 
+
+
 **5. En ocasiones cuando estamos trabajando en el cloud, y reutilizamos una ip flotante nos aparece este mensaje:**
 
 <pre>
@@ -616,7 +618,6 @@ Offending ECDSA key in /home/jose/.ssh/known_hosts:103
  ssh-keygen -f "/home/jose/.ssh/known_hosts" -R "172.22.200.74"
 ECDSA host key for 172.22.200.74 has changed and you have requested strict checking.
 </pre>
-
 
 
 

@@ -234,7 +234,7 @@ Si ahora accedemos a la ruta `www.iesgn.org` nos redirigirá automáticamente a 
 
 **4. Si accedes a la página `www.iesgn.org/principal/documentos` se visualizarán los documentos que hay en `/srv/doc`. Por lo tanto se permitirá el listado de fichero y el seguimiento de enlaces simbólicos siempre que sean a ficheros o directorios cuyo dueño sea el usuario. Muestra al profesor el funcionamiento.**
 
-Creo el directorio `principal` y creo algunos documentos, no copio el `index.html` para que así nos muestre el listado de ficheros. Establezco de nuevo como propietario `www-data`:
+Creamos el directorio `principal` y creamos algunos documentos, no copio el `index.html` para que así nos muestre el listado de ficheros. Establecemos de nuevo como propietario `www-data`:
 
 <pre>
 root@deb10-servidornginx:/srv# mkdir doc
@@ -251,9 +251,18 @@ root@deb10-servidornginx:/srv/doc# cd ..
 root@deb10-servidornginx:/srv# chown -R www-data:www-data /srv/doc/
 </pre>
 
+Introducimos la siguiente línea en el fichero de configuración `/etc/nginx/sites-available/iesgn.conf` para configurar el **alias**:
 
+<pre>
+location /principal/documentos {
+                alias /srv/doc;
+                autoindex on;
+        }
+</pre>
 
+Accedemos a `www.iesgn.org/principal/documentos`:
 
+![.](images/sri_servidor_web_nginx/listaficheros.png)
 
 **5. En todo el host virtual se debe redefinir los mensajes de error de objeto no encontrado y no permitido. Para el ello se crearan dos ficheros html dentro del directorio error. Entrega las modificaciones necesarias en la configuración y una comprobación del buen funcionamiento.**
 

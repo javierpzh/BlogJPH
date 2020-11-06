@@ -357,9 +357,9 @@ Observamos que hemos eliminado 3200 módulos y casi 600 componentes enlazados es
 
 Una vez tenemos el fichero `.config` reducido, vamos a realizar la compilación generando un un paquete Debian, el cuál podremos instalar con la herramienta `dpkg -i`.
 
+El comando para realizar esta compilación es `make bindep-pkg`, pero esto nos realizaría la compilación con un solo hilo. Es decir, utilizaría un hilo en vez de todos los posibles que podría utilizar en función de cada procesador. En mi caso poseo de un **i7-9750H** que posee 6 núcleos y 12 hilos, por lo que estaría compilando con un solo hilo pudiendo realizar el proceso con 12 hilos, lo que disminuiría en una barbaridad el tiempo de compilación. Para establecer el número de hilos que van a llevar a cabo el proceso, introducimos la opción `-j` y el número de hilos.
 
-
-Primer intento de compilación:
+Voy a realizar el primer intento de compilación con 11 hilos:
 
 <pre>
 root@debian:~/kernelLinux/linux-4.19.152# make -j 11 bindeb-pkg
@@ -381,7 +381,7 @@ make[1]: *** [scripts/package/Makefile:80: bindeb-pkg] Error 3
 make: *** [Makefile:1393: bindeb-pkg] Error 2
 </pre>
 
-
+Me ha devuelto un mensaje de error que indica que me falta una dependencia llamada `bc`. La instalo y realizo el segundo intento:
 
 <pre>
 apt install bc -y
@@ -421,6 +421,8 @@ dpkg-buildpackage: fallo: debian/rules build subprocess returned exit status 2
 make[1]: *** [scripts/package/Makefile:80: bindeb-pkg] Error 2
 make: *** [Makefile:1393: bindeb-pkg] Error 2
 </pre>
+
+Me vuelve a reportar un fallo debido a falta de dependencias. Lo solucionaría instalando el paquete `libelf-dev`.
 
 <pre>
 apt install libelf-dev -y
@@ -524,13 +526,15 @@ make[1]: *** [scripts/package/Makefile:80: bindeb-pkg] Error 2
 make: *** [Makefile:1393: bindeb-pkg] Error 2
 </pre>
 
+¿Pensabais que iba a completar la compilación?
 
+Pues no, me reportaría por tercera vez un error de dependencias, por lo tanto, voy a llevar a cabo la instalación del paquete necesario:
 
 <pre>
 apt install libssl-dev -y
 </pre>
 
-Final de la primera compilación correcta:
+Esta vez ya sí completaría el proceso de compilación del fichero `.config`. Las últimas líneas tendrían este aspecto:
 
 <pre>
 dpkg-deb: construyendo el paquete `linux-headers-4.19.152' en `../linux-headers-4.19.152_4.19.152-1_amd64.deb'.
@@ -544,13 +548,31 @@ dpkg-genchanges: información: binary-only upload (no source code included)
 dpkg-buildpackage: información: subida sólo de binarios (no se incluye ninguna fuente)
 </pre>
 
+Vemos como nos ha creado correctamente una serie de archivos `.deb`, entre los cuáles se encuentra el llamado `linux-image-4.19.152_4.19.152-1_amd64.deb`, que es el que posteriormente vamos a instalar con `dpkg -i`.
+
 **9. Instala el núcleo resultando de la compilación, reinicia el equipo y comprueba que funciona adecuadamente.**
+
+Antes de instalar en mi equipo el paquete generado que contiene el kérnel, voy a mover el área de trabajo a mi usuario `javier`, donde debería haber estado desde el principio de la práctica, pero bueno, mejor darse cuenta de los fallos un poco tarde, pero corrigiéndolos y aprendiendo de ellos.
+
+<pre>
+root@debian:~# mv kernelLinux/ /home/javier/
+
+javier@debian:~$ sudo chown -R javier:javier kernelLinux/
+</pre>
+
+Muevo el directorio y cambio tanto su propietario, como su grupo a `javier`, lo que afectará a todos los subdirectorios y archivos que se encuentran dentro de `kernelLinux`.
+
+Instalo el nuevo kérnel:
 
 <pre>
 dpkg -i linux-image-4.19.152_4.19.152-1_amd64.deb
 </pre>
 
+Reinicio el sistema arrancando con este nueva kérnel y efectivamente, como era de esperar, el sistema corre perfectamente.
+
 **10. Si ha funcionado adecuadamente, utilizamos la configuración del paso anterior como punto de partida y vamos a reducir el tamaño del mismo, para ello vamos a seleccionar elemento a elemento.**
+
+Copiamos la configuración del kérnel reducido ya una vez, para seguir reduciendo su tamaño.
 
 <pre>
 cp /boot/config-4.19.152 .config
@@ -558,23 +580,13 @@ make clean
 make xconfig
 </pre>
 
+Instalamos los paquetes `pkg-config` y `qt4-dev-tools`, que son necesarios para utilizar la herramienta
+
 <pre>
-apt install pkg-config -y
+apt install pkg-config qt4-dev-tools -y
 </pre>
 
 <pre>
-apt install qt4-dev-tools -y
-</pre>
-
-<pre>
-root@debian:~# mv kernelLinux/ /home/javier/
-</pre>
-
-<pre>
-javier@debian:~$ sudo chown -R javier:javier kernelLinux/
-
-javier@debian:~/kernelLinux$ cd kernelLinux/linux-4.19.152/
-
 javier@debian:~/kernelLinux/linux-4.19.152$ make xconfig
 scripts/kconfig/qconf  Kconfig
 Gtk-Message: 12:47:43.343: Failed to load module "canberra-gtk-module"

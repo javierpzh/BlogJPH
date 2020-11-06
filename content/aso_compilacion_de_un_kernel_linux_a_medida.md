@@ -526,7 +526,9 @@ dpkg-genchanges: información: binary-only upload (no source code included)
 dpkg-buildpackage: información: subida sólo de binarios (no se incluye ninguna fuente)
 </pre>
 
-
+<pre>
+dpkg -i linux-image-4.19.152_4.19.152-1_amd64.deb
+</pre>
 
 **9. Instala el núcleo resultando de la compilación, reinicia el equipo y comprueba que funciona adecuadamente.**
 

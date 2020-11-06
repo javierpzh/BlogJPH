@@ -1,5 +1,5 @@
 Title: Compilación de un kérnel linux a medida
-Date: 2020/11/4
+Date: 2020/11/6
 Category: Administración de Sistemas Operativos
 Header_Cover: theme/images/banner-sistemas.jpg
 Tags: compilar, kernel
@@ -22,13 +22,17 @@ Lo he descargado desde la [página oficial de Debian](https://packages.debian.or
 
 **2. Crea un directorio de trabajo (p.ej. mkdir ~/Linux)**
 
+Creamos el directorio de trabajo.
+
+**Importante:** hay que crear el directorio con nuestro usuario personal, es decir, no como *root*. Yo lo he hecho con el usuario *root* y esto es algo que no debemos hacer. Para ello, luego muevo el directorio de trabajo a mi usuario.
+
 <pre>
 mkdir ~/kernelLinux/
 </pre>
 
 **3. Descomprime el código fuente del kérnel dentro del directorio de trabajo:**
 
-Descargo y descomprimo el kérnel:
+Descargo y descomprimo el kérnel en el directorio de trabajo que hemos creado previamente:
 
 <pre>
 root@debian:/usr/src# wget http://security.debian.org/debian-security/pool/updates/main/l/linux/linux_4.19.152.orig.tar.xz
@@ -49,7 +53,11 @@ linux-headers-4.19.0-11-amd64	linux-headers-4.19.0-12-common
 linux-headers-4.19.0-11-common	linux-kbuild-4.19
 
 root@debian:/usr/src# tar xf /usr/src/linux_4.19.152.orig.tar.xz --directory ~/kernelLinux/
+</pre>
 
+Nos movemos al directorio `~/kernelLinux`, que va a ser nuestro área de trabajo:
+
+<pre>
 root@debian:/usr/src# cd ~/kernelLinux/
 
 root@debian:~/kernelLinux# ls
@@ -72,7 +80,7 @@ Es necesario revisar que tenemos instalado el paquete `build-essential` y todas 
 apt install build-essential -y
 </pre>
 
- Si ejecutamos este comando:
+Si ejecutamos este comando:
 
 <pre>
 root@debian:~/kernelLinux/linux-4.19.152# make oldconfig
@@ -218,7 +226,7 @@ NTFS file system support (NTFS_FS) [N/m/y/?] (NEW) n
 
 **5. Cuenta el número de componentes que se han configurado para incluir en vmlinuz o como módulos.**
 
-Módulos:
+Vamos a contar el número de componentes que se van a incluir como módulos en el proceso de compilación y el número de componentes que se van a incluir en la parte estática:
 
 <pre>
 root@debian:~/kernelLinux/linux-4.19.152# grep "=m" .config | wc -l
@@ -228,7 +236,15 @@ root@debian:~/kernelLinux/linux-4.19.152# grep "=y" .config | wc -l
 2008
 </pre>
 
+Vemos que si realizáramos la compilación incluiríamos 3378 módulos, y 2008 componentes enlazados estáticamente.
+
+Son muchísimos componentes, por tanto vamos a reducir el número de éstos al máximo, intentando dejar los imprescindibles para el arranque de la máquina, esto es algo que lógicamente variará dependiendo del equipo y de los componentes del mismo.
+
 **6. Configura el núcleo en función de los módulos que está utilizando tu equipo (para no incluir en la compilación muchos controladores de dispositivos que no utiliza el equipo):**
+
+Vamos a realizar el primer proceso de eliminación de componentes, que nos va a reducir en una enorme cantidad el número de componentes que se van a incluir en nuestro fichero `.config`, que es el fichero sobre el que luego vamos a realizar la compilación.
+
+Esta primera parte, sí es igual para todos ya que lo que vamos a hacer con este comando, es seleccionar la configuración que estamos utilizando actualmente en el equipo y copiarla al fichero `.config`, es decir vamos a copiar todos los módulos que tengamos activos en el sistema, descartando los demás, pues se entiende que no están activos porque son prescindibles para nosotros. Esto lo realizaremos con el comando siguiente:
 
 <pre>
 root@debian:~/kernelLinux/linux-4.19.152# make localmodconfig
@@ -325,7 +341,7 @@ PCI sound devices (SND_PCI) [Y/n/?] y
 
 **7. Vuelve a contar el número de componentes que se han configurado para incluir en vmlinuz o como módulos.**
 
-Módulos:
+Si miramos de nuevo cuantos módulos y componentes de vmlinuz se incluirían ahora en el fichero `.config`:
 
 <pre>
 root@debian:~/kernelLinux/linux-4.19.152# grep "=m" .config | wc -l
@@ -335,11 +351,13 @@ root@debian:~/kernelLinux/linux-4.19.152# grep "=y" .config | wc -l
 1423
 </pre>
 
+Observamos que hemos eliminado 3200 módulos y casi 600 componentes enlazados estáticamente.
+
 **8. Realiza la primera compilación:**
 
-<pre>
-make -j <número de hilos> bindeb-pkg
-</pre>
+Una vez tenemos el fichero `.config` reducido, vamos a realizar la compilación generando un un paquete Debian, el cuál podremos instalar con la herramienta `dpkg -i`.
+
+
 
 Primer intento de compilación:
 

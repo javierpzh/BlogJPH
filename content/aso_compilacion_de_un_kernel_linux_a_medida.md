@@ -512,7 +512,19 @@ make: *** [Makefile:1393: bindeb-pkg] Error 2
 apt install libssl-dev -y
 </pre>
 
+Final de la primera compilación correcta:
 
+<pre>
+dpkg-deb: construyendo el paquete `linux-headers-4.19.152' en `../linux-headers-4.19.152_4.19.152-1_amd64.deb'.
+dpkg-deb: construyendo el paquete `linux-libc-dev' en `../linux-libc-dev_4.19.152-1_amd64.deb'.
+dpkg-deb: construyendo el paquete `linux-image-4.19.152' en `../linux-image-4.19.152_4.19.152-1_amd64.deb'.
+dpkg-deb: construyendo el paquete `linux-image-4.19.152-dbg' en `../linux-image-4.19.152-dbg_4.19.152-1_amd64.deb'.
+ dpkg-genbuildinfo --build=binary
+ dpkg-genchanges --build=binary >../linux-4.19.152_4.19.152-1_amd64.changes
+dpkg-genchanges: información: binary-only upload (no source code included)
+ dpkg-source --after-build .
+dpkg-buildpackage: información: subida sólo de binarios (no se incluye ninguna fuente)
+</pre>
 
 
 

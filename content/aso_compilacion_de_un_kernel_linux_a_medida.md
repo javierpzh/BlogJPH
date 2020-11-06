@@ -580,17 +580,22 @@ make clean
 make xconfig
 </pre>
 
-Instalamos los paquetes `pkg-config` y `qt4-dev-tools`, que son necesarios para utilizar la herramienta
+Instalamos los paquetes `pkg-config` y `qt4-dev-tools`, que son necesarios para ejecutar la herramienta gráfica (la cual utiliza las bibliotecas gráficas *Qt*) que vamos a utilizar para seguir con la configuración de nuestro núcleo. `pkg-config` es un sistema para gestionar las opciones de compilación y enlazado de las bibliotecas, funciona con *automake* y *autoconf*.
 
 <pre>
 apt install pkg-config qt4-dev-tools -y
 </pre>
 
+Abrimos esta herramienta gráfica con el comando:  
+
 <pre>
-javier@debian:~/kernelLinux/linux-4.19.152$ make xconfig
-scripts/kconfig/qconf  Kconfig
-Gtk-Message: 12:47:43.343: Failed to load module "canberra-gtk-module"
+make xconfig
 </pre>
+
+Quito:
+
+
+
 
 **11. Vuelve a contar el número de componentes que se han configurado para incluir en vmlinuz o como módulos.**
 

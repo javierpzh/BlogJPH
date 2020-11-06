@@ -210,7 +210,7 @@ Página `departamentos.iesgn.org`:
 
 **3. Cuando se entre a la dirección `www.iesgn.org` se redireccionará automáticamente a `www.iesgn.org/principal`, donde se mostrará el mensaje de bienvenida. En el directorio principal no se permite ver la lista de los ficheros, no se permite que se siga los enlaces simbólicos y no se permite negociación de contenido. Muestra al profesor el funcionamiento.**
 
-Creo el directorio `principal` y copio el `index.html`:
+Creamos el directorio `principal` y copiamos el `index.html`:
 
 <pre>
 root@deb10-servidornginx:/srv/www/iesgn# mkdir principal
@@ -224,7 +224,7 @@ Al crear un nuevo directorio se crea con el usuario que hemos ejecutado el coman
 chown -R www-data:www-data /srv/www
 </pre>
 
-Creo la redirección permanente, con la siguiente línea en el fichero de configuración `/etc/nginx/sites-available/iesgn.conf`:
+Creamos la redirección permanente, con la siguiente línea en el fichero de configuración `/etc/nginx/sites-available/iesgn.conf`:
 
 <pre>
 rewrite ^/$ /principal permanent;
@@ -234,7 +234,7 @@ Si ahora accedemos a la ruta `www.iesgn.org` nos redirigirá automáticamente a 
 
 **4. Si accedes a la página `www.iesgn.org/principal/documentos` se visualizarán los documentos que hay en `/srv/doc`. Por lo tanto se permitirá el listado de fichero y el seguimiento de enlaces simbólicos siempre que sean a ficheros o directorios cuyo dueño sea el usuario. Muestra al profesor el funcionamiento.**
 
-Creamos el directorio `principal` y creamos algunos documentos, no copio el `index.html` para que así nos muestre el listado de ficheros. Establecemos de nuevo como propietario `www-data`:
+Creamos el directorio `doc` y creamos algunos documentos, no copio el `index.html` para que así nos muestre el listado de ficheros. Establecemos de nuevo como propietario `www-data`:
 
 <pre>
 root@deb10-servidornginx:/srv# mkdir doc

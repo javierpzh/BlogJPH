@@ -594,6 +594,45 @@ make xconfig
 
 Quito:
 
+**Compiler: gcc**
+enable process_vm_readv/writev syscalls
+uselib syscall
+m_kernel.config support
+memory placement aware NUMA scheduler
+checkpoint/restore support
+initial RAM fylesystem and RAM disk (initramfs/initrd) support
+enable VM event counters for /proc/vmstat
+enable SLUB debugging support
+allow slab caches to be merged
+SLAB freelist randomization
+Harden slab freelist metadata
+SLUB per cpu
+profiling support
+**Timers subsystem**
+high resolution timer support
+**CPU/Task time and stats accounting**
+BSD process accounting
+export task/process statistics through netlink
+
+<pre>
+javier@debian:~/kernelLinux/linux-4.19.152$ grep "=m" .config | wc -l
+166
+
+javier@debian:~/kernelLinux/linux-4.19.152$ grep "=y" .config | wc -l
+1373
+</pre>
+
+<pre>
+make -j 12 bindeb-pkg
+</pre>
+
+<pre>
+sudo dpkg -i linux-image-4.19.152_4.19.152-1_amd64.deb
+</pre>
+
+
+
+
 
 
 

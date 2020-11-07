@@ -1,5 +1,5 @@
 Title: Compilación de un kérnel linux a medida
-Date: 2020/11/6
+Date: 2020/11/7
 Category: Administración de Sistemas Operativos
 Header_Cover: theme/images/banner-sistemas.jpg
 Tags: compilar, kernel
@@ -594,32 +594,88 @@ make xconfig
 
 Quito:
 
-**Compiler: gcc**
-enable process_vm_readv/writev syscalls
-uselib syscall
-m_kernel.config support
+**General setup**
 memory placement aware NUMA scheduler
 checkpoint/restore support
-initial RAM fylesystem and RAM disk (initramfs/initrd) support
 enable VM event counters for /proc/vmstat
-enable SLUB debugging support
 allow slab caches to be merged
 SLAB freelist randomization
 Harden slab freelist metadata
-SLUB per cpu
 profiling support
-**Timers subsystem**
-high resolution timer support
-**CPU/Task time and stats accounting**
-BSD process accounting
-export task/process statistics through netlink
+  **Timers subsystem**
+  high resolution timer support
+  **CPU/Task time and stats accounting**
+  BSD process accounting
+  export task/process statistics through netlink
+  **Control Group support**
+  swap controller
+  RDMA controller
+  freezer controller
+  cpuset controller
+**Processor type and features**
+AMD ACPI2Platform devices support
+old AMD GART IOMMU support
+IBM Calgary IOMMU support
+  **machine check/overheating reporting**
+  AMD MCE features
+enable vsyscall emulation
+  **CPU microcode loading support**
+  AMD microcode loading support
+  **linux guest support** entero
+**Power management and ACPI options**
+suspend to RAM and standby
+hibernation
+device power management core functionality
+power management timer support
+SFI (Simple Firmware Interface) Support
+**Firmware Drivers**
+Apple device properties
+virtualization
+**General architecture-dependent options**
+kprobes
+optimize very unlikely/likely branches
+stack protector buffer overflow detection
+use a virtually-mapped stack
+perform full reference count validation at the expense of speed
+**enable the block layer**
+  **partition types**
+  acorn partition support
+  alpha OSF partition support
+  amiga partition table support
+  atari partition table support
+  macintosh partition map support
+  **PC BIOS (MSDOS partition tables) support**
+    Solarix (x86) partition table support
+  sun partition tables support
+  karma partition support
+**Networking support**
+Network packet filtering framework
+QoS and/or fair queueing
+m_Bluetooth subsystem support
+RF switch subsystem support
+**Device Drivers**
+Macintosh device drivers
+Wireless LAN
+Wan interfaces support
+m_Hardware Monitoring support
+m_Sound card support
+Virtualization drivers
+**File systems**
+**Cryptographic API**
+Hardware crypto devices (Support for AMD secure processor)
+  **Asymmetric**
+  Support for PE file signature verification
+  **Certificates for signature checking**
+  Provide system-wide ring of blacklisted keys
+
+
 
 <pre>
 javier@debian:~/kernelLinux/linux-4.19.152$ grep "=m" .config | wc -l
-166
+145
 
 javier@debian:~/kernelLinux/linux-4.19.152$ grep "=y" .config | wc -l
-1373
+1215
 </pre>
 
 <pre>
@@ -627,7 +683,7 @@ make -j 12 bindeb-pkg
 </pre>
 
 <pre>
-sudo dpkg -i linux-image-4.19.152_4.19.152-1_amd64.deb
+sudo dpkg -i linux-image-4.19.152_4.19.152-10_amd64.deb
 </pre>
 
 

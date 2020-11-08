@@ -630,9 +630,9 @@ Quito:
     - power management timer support
         -   **ACPI (Advanced Configuration and Power Interface) Support** entero
     - SFI (Simple Firmware Interface) Support
-**Firmware Drivers**
-Apple device properties
-virtualization
+- **Firmware Drivers**
+    - Apple device properties
+    - virtualization
 **General architecture-dependent options**
 kprobes
 optimize very unlikely/likely branches

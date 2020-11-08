@@ -607,7 +607,7 @@ La opción `-j` indica el número de hilos de nuestro procesador que van a lleva
 Para instalar el paquete resultante `.deb`:
 
 <pre>
-sudo dpkg -i linux-image-4.19.152_4.19.152_amd64.deb
+sudo dpkg -i linux-image-4.19.152_4.19.152-1_amd64.deb
 </pre>
 
 **11. Vuelve a contar el número de componentes que se han configurado para incluir en vmlinuz o como módulos.**

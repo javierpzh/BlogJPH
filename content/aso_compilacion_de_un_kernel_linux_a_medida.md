@@ -594,7 +594,7 @@ make xconfig
 
 Quito:
 
-- **General setup**
+##### General setup
     - memory placement aware NUMA scheduler
     - checkpoint/restore support
     - enable VM event counters for /proc/vmstat
@@ -613,7 +613,7 @@ Quito:
         -   freezer controller
         -   cpuset controller
         -   Namespaces support
-- **Processor type and features**
+##### Processor type and features
     - AMD ACPI2Platform devices support
     - old AMD GART IOMMU support
     - IBM Calgary IOMMU support
@@ -623,23 +623,23 @@ Quito:
         -   **CPU microcode loading support**
         -   AMD microcode loading support
         -   **linux guest support** entero
-- **Power management and ACPI options**
+##### Power management and ACPI options
     - suspend to RAM and standby
     - hibernation
     - device power management core functionality
     - power management timer support
         -   **ACPI (Advanced Configuration and Power Interface) Support** entero
     - SFI (Simple Firmware Interface) Support
-- **Firmware Drivers**
+##### Firmware Drivers
     - Apple device properties
     - virtualization
-- **General architecture-dependent options**
+##### General architecture-dependent options
     - kprobes
     - optimize very unlikely/likely branches
     - stack protector buffer overflow detection
     - use a virtually-mapped stack
     - perform full reference count validation at the expense of speed
-- **Enable the block layer**
+##### Enable the block layer
     - **partition types**
     - acorn partition support
     - alpha OSF partition support
@@ -655,24 +655,24 @@ Quito:
     - **Memory Management options**
     - Allow for memory hot-add
     - Enable frontswap to cache swap pages if tmem is present
-- **Networking support**
+##### Networking support
     - Network packet filtering framework
     - QoS and/or fair queueing
     - Amateur Radio support
     - Wireless
     - m_Bluetooth subsystem support
     - RF switch subsystem support
-- **Device Drivers**
+##### Device Drivers
     - **Misc devices**
         - m_Intel Management Engine Interface
         - m_ME Enabled Intel Chipsets
     - **SCSI device support**
-            - **SCSI Transports**
-            - SCSI low-level drivers
-        - **Multiple devices driver support (RAID and LVM)**
-        - m_RAID support
-        - Fusion MPT device support
-        - Macintosh device drivers
+        - **SCSI Transports**
+        - SCSI low-level drivers
+      - **Multiple devices driver support (RAID and LVM)**
+      - m_RAID support
+      - Fusion MPT device support
+      - Macintosh device drivers
     - **Network device support**
     - Wireless LAN
     - Wan interfaces support
@@ -713,11 +713,11 @@ Quito:
         - Virtualization drivers
         - Staging Drivers
         - Platform support for Chrome hardware
-**File systems**
+##### File systems
 Network File Systems
   **Security options**
   NSA SELinux Support
-**Cryptographic API**
+##### Cryptographic API
 Hardware crypto devices (Support for AMD secure processor)
   **Asymmetric**
   Support for PE file signature verification
@@ -729,7 +729,7 @@ Hardware crypto devices (Support for AMD secure processor)
     **XZ decompression support**
     x86 BCJ filter decoder
   IRQ polling library
-**Kernel hacking**
+##### Kernel hacking
 Collect scheduler debbuging info
 Collect scheduler statistics
 Detect stack corruption on calls to schedule

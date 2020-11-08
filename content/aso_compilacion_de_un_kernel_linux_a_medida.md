@@ -705,7 +705,7 @@ Quito:
 - VGA text console
 - m_Sound card support
 - **HID Support**
-    - **USB support** entero
+    - **USB support**
 - LED Support
 - Accessibility support
 - Virtualization drivers

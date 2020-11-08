@@ -623,13 +623,13 @@ Quito:
         -   **CPU microcode loading support**
         -   AMD microcode loading support
         -   **linux guest support** entero
-**Power management and ACPI options**
-suspend to RAM and standby
-hibernation
-device power management core functionality
-power management timer support
-  **ACPI (Advanced Configuration and Power Interface) Support** entero
-SFI (Simple Firmware Interface) Support
+- **Power management and ACPI options**
+    - suspend to RAM and standby
+    - hibernation
+    - device power management core functionality
+    - power management timer support
+        -   **ACPI (Advanced Configuration and Power Interface) Support** entero
+    - SFI (Simple Firmware Interface) Support
 **Firmware Drivers**
 Apple device properties
 virtualization

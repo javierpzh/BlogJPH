@@ -375,7 +375,53 @@ Si accedemos a `www.iesgn.org/principal/ejemplo1.txt` (recordemos que antes conf
 
 **6. Añade al escenario otra máquina conectada por una red interna al servidor. A la URL `departamentos.iesgn.org/intranet` sólo se debe tener acceso desde el cliente de la red local, y no se pueda acceder desde la anfitriona por la red pública. A la URL `departamentos.iesgn.org/internet`, sin embargo, sólo se debe tener acceso desde la anfitriona por la red pública, y no desde la red local.**
 
+Vamos a crear una nueva *mv*, en mi caso voy a crear una nueva instancia en *Openstack*, pero a esta instancia no le voy a asignar ninguna IP pública, de manera que solo estará conectada a la red interna.
 
+Aquí vemos el resultado:
+
+![.](images/sri_servidor_web_nginx/instancia2.png)
+
+Ahora vamos a crear las páginas `departamentos.iesgn.org/intranet` y `departamentos.iesgn.org/internet`:
+
+<pre>
+root@deb10-servidornginx:/srv/www/departamentos# mkdir intranet internet
+
+root@deb10-servidornginx:/srv/www/departamentos# ls
+index.html  internet  intranet
+
+root@deb10-servidornginx:/srv/www/departamentos# cp index.html ./intranet/
+
+root@deb10-servidornginx:/srv/www/departamentos# cp index.html ./internet/
+</pre>
+
+En el fichero de configuración `/etc/nginx/sites-available/departamentos.conf` introducimos las siguientes líneas:
+
+<pre>
+location /intranet {
+        allow 10.0.0.0/24;
+        deny all;
+}
+
+location /internet {
+        allow 172.22.0.0/16;
+        allow 172.23.0.0/16;
+        deny all;
+}
+</pre>
+
+Reiniciamos el servicio:
+
+<pre>
+systemctl restart nginx
+</pre>
+
+Si ahora accedemos a `departamentos.iesgn.org/internet`:
+
+![.](images/sri_servidor_web_nginx/anfitrionainternet.png)
+
+Si ahora accedemos a `departamentos.iesgn.org/intranet`:
+
+![.](images/sri_servidor_web_nginx/anfitrionaintranet.png)
 
 **7. Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente.**
 

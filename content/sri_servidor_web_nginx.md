@@ -500,6 +500,8 @@ lynx departamentos.iesgn.org/internet
 lynx departamentos.iesgn.org/intranet
 </pre>
 
+- **Máquina conectada a la red local:**
+
     - Accedemos a `departamentos.iesgn.org/internet`:
 
     ![.](images/sri_servidor_web_nginx/redlocalinternet.png)

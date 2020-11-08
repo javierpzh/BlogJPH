@@ -346,6 +346,8 @@ root@deb10-servidornginx:/srv/www/iesgn/error# cp error404.html error403.html
 
 root@deb10-servidornginx:/srv/www/iesgn/error# ls
 error403.html  error404.html
+
+root@deb10-servidornginx:/srv/www/iesgn/error# chown -R www-data:www-data /srv/
 </pre>
 
 Introducimos las siguientes líneas en el fichero de configuración `/etc/nginx/sites-available/iesgn.conf` para configurar las página de errores, tanto para los errores *404*, como para los *403*:
@@ -365,7 +367,7 @@ Si ahora accedemos a `www.iesgn.org/principal/noexiste`:
 
 ![.](images/sri_servidor_web_nginx/error404.png)
 
-Si accedemos a `www.iesgn.org/principal/ejemplo1.txt`:
+Si accedemos a `www.iesgn.org/principal/ejemplo1.txt` (recordemos que antes configuramos que en esta página no se pudieran seguir los enlaces simbólicos):
 
 ![.](images/sri_servidor_web_nginx/error403.png)
 

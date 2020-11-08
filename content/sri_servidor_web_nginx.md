@@ -427,7 +427,43 @@ systemctl restart nginx
 
     ![.](images/sri_servidor_web_nginx/anfitrionaintranet.png)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 **7. Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente.**
+
+Vamos a crear la página `departamentos.iesgn.org/secreto`. Creamos el directorio `/srv/www/departamentos/secreto` y su respectivo `index.html`:
 
 <pre>
 root@deb10-servidornginx:/srv/www/departamentos# mkdir secreto
@@ -438,5 +474,14 @@ root@deb10-servidornginx:/srv/www/departamentos# cd secreto/
 
 root@deb10-servidornginx:/srv/www/departamentos/secreto# nano index.html
 </pre>
+
+Como queremos que a esta web solo puedan acceder determinados usuarios autorizados, en el fichero de configuración `/etc/nginx/sites-available/departamentos.conf`, vamos a establecer una **autentificación básica**:
+
+<pre>
+
+</pre>
+
+
+
 
 **8. Vamos a combinar el control de acceso (tarea 6) y la autentificación (tarea 7), y vamos a configurar el virtual host para que se comporte de la siguiente manera: el acceso a la URL `departamentos.iesgn.org/secreto` se hace forma directa desde la intranet, desde la red pública te pide la autentificación. Muestra el resultado al profesor.**

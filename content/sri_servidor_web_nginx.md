@@ -603,3 +603,5 @@ La opción **satisfy any** indica que debe cumplirse al menos un bloque para acc
 - **Máquina conectada a la red local:**
 
 ![.](images/sri_servidor_web_nginx/autentificacionautomatica.png)
+
+Vemos como desde la máquina que accede desde *internet* nos pide la autenticación, mientras que desde la máquina que accede desde la *intranet* lo hace de manera automática.

@@ -427,6 +427,8 @@ systemctl restart nginx
 
     ![.](images/sri_servidor_web_nginx/anfitrionaintranet.png)
 
+Vemos como nos deja acceder a la web `/internet` pero no a la web `/intranet`.
+
 - **Máquina conectada a la red local:**
 
 ¿Como accedemos a esta máquina?

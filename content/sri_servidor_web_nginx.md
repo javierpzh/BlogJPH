@@ -429,33 +429,57 @@ systemctl restart nginx
 
 - **Máquina conectada a la red local:**
 
+¿Como accedemos a esta máquina?
 
+Está claro que debemos acceder desde la máquina a la que sí podemos conectarnos desde la anfitriona, es decir, desde **Deb10-ServidorNginx**, pero si lo probamos:
 
+<pre>
+debian@deb10-servidornginx:~$ ssh debian@10.0.0.9
+The authenticity of host '10.0.0.9 (10.0.0.9)' can't be established.
+ECDSA key fingerprint is SHA256:ZBpyohTSOfc2xdR+hSTXvhq3LMRk6x8rlr0efamEQ3k.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '10.0.0.9' (ECDSA) to the list of known hosts.
+debian@10.0.0.9's password:
 
+debian@deb10-servidornginx:~$
+</pre>
 
+Nos pide la contraseña, la cuál no hemos establecido nosotros porque ni siquiera nos hemos llegado a conectar a esta máquina. En este punto, creo que todos tenemos claro que debemos tratar de establecer una conexión mediante nuestra clave privada, ya que todas las instancias que creamos están configuradas y poseen nuestra clave pública. Ya hemos visto que no nos ha dejado establecer la conexión mediante las claves públicas-privadas ya que la máquina **Deb10-ServidorNginx** no posee las claves de la anfitriona. Aquí la cuestión, que para esto existe la opción `-A`, que si la utilizamos al establecer la conexión desde la *máquina anfitriona* a la *Deb10-ServidorNginx*, ésta última nos va a heredar las claves de la primera, de forma que ya sí podríamos establecer una conexión mediante el par de claves con la máquina **Deb10-ServidorNginx2**.
 
+Nos conectamos a **Deb10-ServidorNginx** con este comando:
 
+<pre>
+javier@debian:~$ ssh -A debian@172.22.200.116
+Linux deb10-servidornginx 4.19.0-11-cloud-amd64 #1 SMP Debian 4.19.146-1 (2020-09-17) x86_64
 
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
 
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Sun Nov  8 10:53:28 2020 from 172.23.0.46
 
+debian@deb10-servidornginx:~$
+</pre>
 
+Y ahora nos conectamos a **Deb10-ServidorNginx2**:
 
+<pre>
+debian@deb10-servidornginx:~$ ssh debian@10.0.0.9
+Linux deb10-servidornginx2 4.19.0-11-cloud-amd64 #1 SMP Debian 4.19.146-1 (2020-09-17) x86_64
 
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
 
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
 
+debian@deb10-servidornginx2:~$
+</pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
+Ya habríamos resuelto el principal problema.
 
 
 

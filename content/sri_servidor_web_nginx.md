@@ -331,8 +331,43 @@ Vemos que podemos ver el contenido de los ficheros:
 
 **5. En todo el host virtual se debe redefinir los mensajes de error de objeto no encontrado y no permitido. Para el ello se crearan dos ficheros html dentro del directorio error. Entrega las modificaciones necesarias en la configuración y una comprobación del buen funcionamiento.**
 
+Creamos el directorio `error` dentro de `/srv/www/iesgn`, y creamos dos archivos llamados, `error404.html` y `error403.html`:
 
+<pre>
+root@deb10-servidornginx:/srv/www/iesgn# mkdir error
 
+root@deb10-servidornginx:/srv/www/iesgn# cd error/
+
+root@deb10-servidornginx:/srv/www/iesgn/error# cp ../index.html ./
+
+root@deb10-servidornginx:/srv/www/iesgn/error# mv index.html error404.html
+
+root@deb10-servidornginx:/srv/www/iesgn/error# cp error404.html error403.html
+
+root@deb10-servidornginx:/srv/www/iesgn/error# ls
+error403.html  error404.html
+</pre>
+
+Introducimos las siguientes líneas en el fichero de configuración `/etc/nginx/sites-available/iesgn.conf` para configurar las página de errores, tanto para los errores *404*, como para los *403*:
+
+<pre>
+error_page 404      /srv/www/error/error404.html;
+error_page 403      /srv/www/error/error403.html;
+</pre>
+
+Reiniciamos el servicio:
+
+<pre>
+systemctl restart nginx
+</pre>
+
+Si ahora accedemos a `www.iesgn.org/principal/noexiste`:
+
+![.](images/sri_servidor_web_nginx/error404.png)
+
+Si accedemos a `www.iesgn.org/principal/ejemplo1.txt`:
+
+![.](images/sri_servidor_web_nginx/error403.png)
 
 #### Autentificación, Autorización, y Control de Acceso
 

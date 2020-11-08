@@ -664,12 +664,12 @@ Quito:
     - RF switch subsystem support
 - **Device Drivers**
     - **Misc devices**
-    - m_Intel Management Engine Interface
-    - m_ME Enabled Intel Chipsets
+        - m_Intel Management Engine Interface
+        - m_ME Enabled Intel Chipsets
     - **SCSI device support**
-    - **SCSI Transports**
-    - SCSI low-level drivers
-    - **Multiple devices driver support (RAID and LVM)**
+        - **SCSI Transports**
+        - SCSI low-level drivers
+      - **Multiple devices driver support (RAID and LVM)**
     - m_RAID support
     - Fusion MPT device support
     - Macintosh device drivers
@@ -706,13 +706,13 @@ Quito:
     - **Console display driver support**
     - VGA text console
     - m_Sound card support
-  **HID Support**
-    **USB support** entero
-    LED Support
-    Accessibility support
-    Virtualization drivers
-    Staging Drivers
-    Platform support for Chrome hardware
+    - **HID Support**
+        - **USB support** entero
+        - LED Support
+        - Accessibility support
+        - Virtualization drivers
+        - Staging Drivers
+        - Platform support for Chrome hardware
 **File systems**
 Network File Systems
   **Security options**

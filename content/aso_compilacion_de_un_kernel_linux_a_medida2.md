@@ -594,25 +594,25 @@ make xconfig
 
 Quito:
 
-- **General setup**
-    - memory placement aware NUMA scheduler
-    - checkpoint/restore support
-    - enable VM event counters for /proc/vmstat
-    - allow slab caches to be merged
-    - SLAB freelist randomization
-    - Harden slab freelist metadata
-    - profiling support
-        -   **Timers subsystem**
-        -   high resolution timer support
-        -   **CPU/Task time and stats accounting**
-        -   BSD process accounting
-        -   export task/process statistics through netlink
-        -   **Control Group support**
-        -   swap controller
-        -   RDMA controller
-        -   freezer controller
-        -   cpuset controller
-        -   Namespaces support
+**General setup**
+memory placement aware NUMA scheduler
+checkpoint/restore support
+enable VM event counters for /proc/vmstat
+allow slab caches to be merged
+SLAB freelist randomization
+Harden slab freelist metadata
+profiling support
+  **Timers subsystem**
+  high resolution timer support
+  **CPU/Task time and stats accounting**
+  BSD process accounting
+  export task/process statistics through netlink
+  **Control Group support**
+  swap controller
+  RDMA controller
+  freezer controller
+  cpuset controller
+  Namespaces support
 **Processor type and features**
 AMD ACPI2Platform devices support
 old AMD GART IOMMU support

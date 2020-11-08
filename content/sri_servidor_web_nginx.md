@@ -508,7 +508,7 @@ lynx departamentos.iesgn.org/intranet
 
     ![.](images/sri_servidor_web_nginx/redlocalintranet.png)
 
-
+Vemos como nos deja acceder a la web `/intranet` pero no a la web `/internet`.
 
 
 

@@ -486,7 +486,7 @@ Ya habríamos resuelto el principal problema.
 Para visualizar la web en esta máquina debemos añadir al fichero `/etc/hosts` la línea:
 
 <pre>
-172.22.200.116  departamentos.iesgn.org
+10.0.0.3  departamentos.iesgn.org
 </pre>
 
 Instalamos la herramiento `lynx` para poder tener una especie de navegador en la terminal:

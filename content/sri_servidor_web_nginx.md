@@ -601,3 +601,5 @@ La opción **satisfy any** indica que debe cumplirse al menos un bloque para acc
 ![.](images/sri_servidor_web_nginx/autentificacion.png)
 
 - **Máquina conectada a la red local:**
+
+![.](images/sri_servidor_web_nginx/autentificacionautomatica.png)

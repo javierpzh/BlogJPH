@@ -640,21 +640,21 @@ Quito:
     - use a virtually-mapped stack
     - perform full reference count validation at the expense of speed
 - **Enable the block layer**
-  **partition types**
-  acorn partition support
-  alpha OSF partition support
-  amiga partition table support
-  atari partition table support
-  macintosh partition map support
-    **PC BIOS (MSDOS partition tables) support**
-    Solarix (x86) partition table support
-  SGI partition support
-  Ultrix partition table support
-  sun partition tables support
-  karma partition support
-  **Memory Management options**
-  Allow for memory hot-add
-  Enable frontswap to cache swap pages if tmem is present
+    - **partition types**
+    - acorn partition support
+    - alpha OSF partition support
+    - amiga partition table support
+    - atari partition table support
+    - macintosh partition map support
+        - **PC BIOS (MSDOS partition tables) support**
+        - Solarix (x86) partition table support
+    - SGI partition support
+    - Ultrix partition table support
+    - sun partition tables support
+    - karma partition support
+    - **Memory Management options**
+    - Allow for memory hot-add
+    - Enable frontswap to cache swap pages if tmem is present
 **Networking support**
 Network packet filtering framework
 QoS and/or fair queueing

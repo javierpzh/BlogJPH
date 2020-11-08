@@ -417,7 +417,7 @@ Reiniciamos el servicio:
 systemctl restart nginx
 </pre>
 
-- **Máquina anfitriona:**
+- **Máquina anfitriona conectada a internet:**
 
     - Accedemos a `departamentos.iesgn.org/internet`:
 
@@ -427,7 +427,7 @@ systemctl restart nginx
 
     ![.](images/sri_servidor_web_nginx/anfitrionaintranet.png)
 
-
+- **Máquina conectada a la red local:**
 
 
 
@@ -526,3 +526,25 @@ He hecho una prueba capturando el tráfico, en la que podemos ver como cualquier
 Si nos fijamos en la línea seleccionada, que hace referencia a la petición que hemos hecho con nuestras credenciales, podemos ver como nos muestra la contraseña.
 
 **8. Vamos a combinar el control de acceso (tarea 6) y la autentificación (tarea 7), y vamos a configurar el virtual host para que se comporte de la siguiente manera: el acceso a la URL `departamentos.iesgn.org/secreto` se hace forma directa desde la intranet, desde la red pública te pide la autentificación. Muestra el resultado al profesor.**
+
+Para combinar el control de acceso y que desde la `intranet` se acceda de manera automática a `departamentos.iesgn.org/secreto`, pero desde `internet` compruebe si somos un usuario autorizado, tenemos que incluir en el fichero `/etc/nginx/sites-available/departamentos.conf` esta directiva:
+
+<pre>
+location /secreto {
+                satisfy any;
+
+                allow 10.0.0.0/24;
+                deny all;
+
+                auth_basic "Introduzca sus datos";
+                auth_basic_user_file /srv/www/departamentos/secreto/.htpasswd;
+}
+</pre>
+
+La opción **satisfy any** indica que debe cumplirse al menos un bloque para acceder a la web. De manera, que primero se comprobará si el cliente pertenece a la red **10.0.0.0/24**, si es así, accederá automáticamente, y sino, le pedirá que se *loguee*, y si los datos introducidos son correctos, se accederá a la página, si los datos no son correctos, devolverá un error 403.
+
+- **Máquina anfitriona conectada a internet:**
+
+![.](images/sri_servidor_web_nginx/autentificacion.png)
+
+- **Máquina conectada a la red local:**

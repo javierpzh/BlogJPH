@@ -481,7 +481,11 @@ debian@deb10-servidornginx2:~$
 
 Ya habríamos resuelto el principal problema.
 
+Para visualizar la web en esta máquina debemos añadir al fichero `/etc/hosts` la línea:
 
+<pre>
+172.22.200.116  departamentos.iesgn.org
+</pre>
 
 
 

@@ -239,6 +239,7 @@ Creamos el fichero de prueba y el enlace simbólico:
 
 <pre>
 touch /home/debian/ejemplo1.txt
+
 ln -s /home/debian/ejemplo1.txt /srv/www/iesgn/principal/
 </pre>
 
@@ -259,7 +260,7 @@ index.html  principal
 ejemplo1.txt
 </pre>
 
-Tendremos que cambiar el propietario de este enlace simbólico. Yo recurro de nuevo el comando utilizado anteriormente ya que lo aplica a los subdirectorios y archivos hijos:
+Tendremos que cambiar el propietario de este enlace simbólico. Yo recurro de nuevo al comando utilizado anteriormente ya que lo aplica a los subdirectorios y archivos hijos:
 
 <pre>
 chown -R www-data:www-data /srv/www
@@ -310,18 +311,23 @@ root@deb10-servidornginx:/srv/doc# cd ..
 root@deb10-servidornginx:/srv# chown -R www-data:www-data /srv/doc/
 </pre>
 
-Introducimos la siguiente línea en el fichero de configuración `/etc/nginx/sites-available/iesgn.conf` para configurar el **alias**:
+Introducimos la siguiente línea en el fichero de configuración `/etc/nginx/sites-available/iesgn.conf` para configurar el **alias** y habilitar el listado de ficheros y el seguimiento de los enlaces simbólicos siempre que el dueño del enlace y del archivo sea el mismo:
 
 <pre>
 location /principal/documentos {
                 alias /srv/doc;
                 autoindex on;
+                disable_symlinks if_not_owner;
 }
 </pre>
 
 Accedemos a `www.iesgn.org/principal/documentos`:
 
 ![.](images/sri_servidor_web_nginx/listaficheros.png)
+
+Vemos que podemos ver el contenido de los ficheros:
+
+![.](images/sri_servidor_web_nginx/ejemplo1txt.png)
 
 **5. En todo el host virtual se debe redefinir los mensajes de error de objeto no encontrado y no permitido. Para el ello se crearan dos ficheros html dentro del directorio error. Entrega las modificaciones necesarias en la configuración y una comprobación del buen funcionamiento.**
 

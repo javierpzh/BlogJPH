@@ -489,7 +489,7 @@ Para visualizar la web en esta máquina debemos añadir al fichero `/etc/hosts` 
 10.0.0.3  departamentos.iesgn.org
 </pre>
 
-Instalamos la herramiento `lynx` para poder tener una especie de navegador en la terminal:
+Instalamos la herramienta `lynx` para poder tener una especie de navegador en la terminal:
 
 <pre>
 apt update && apt install lynx -y

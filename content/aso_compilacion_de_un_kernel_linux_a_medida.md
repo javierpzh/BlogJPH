@@ -633,13 +633,13 @@ Quito:
 - **Firmware Drivers**
     - Apple device properties
     - virtualization
-**General architecture-dependent options**
-kprobes
-optimize very unlikely/likely branches
-stack protector buffer overflow detection
-use a virtually-mapped stack
-perform full reference count validation at the expense of speed
-**Enable the block layer**
+- **General architecture-dependent options**
+    - kprobes
+    - optimize very unlikely/likely branches
+    - stack protector buffer overflow detection
+    - use a virtually-mapped stack
+    - perform full reference count validation at the expense of speed
+- **Enable the block layer**
   **partition types**
   acorn partition support
   alpha OSF partition support

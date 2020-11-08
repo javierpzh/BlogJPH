@@ -2,7 +2,7 @@ Title: Servidor Web Nginx
 Date: 2020/11/8
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
-Tags: web, Nginx
+Tags: web, Nginx, mapear, virtualhosting
 
 ## Servidor Web Nginx
 

@@ -663,49 +663,49 @@ Quito:
     - m_Bluetooth subsystem support
     - RF switch subsystem support
 - **Device Drivers**
-  **Misc devices**
-  m_Intel Management Engine Interface
-  m_ME Enabled Intel Chipsets
-  **SCSI device support**
-    **SCSI Transports**
-    SCSI low-level drivers
-    **Multiple devices driver support (RAID and LVM)**
-    m_RAID support
-  Fusion MPT device support
-  Macintosh device drivers
-  **Network device support**
-  Wireless LAN
-  Wan interfaces support
-  ISDN support
-  **Input device support**
-  Mouse interface
-  m_Joystick interface
-  m_Event interface
-  Joysticks/Gamepads
-  Tablets
-  Touchscreens
-  **GPIO Support**
-  m_Hardware Monitoring support
-  Generic Thermal sysfs driver
-  Watchdog Timer Support
-  **Graphics support**
-  VGA Arbitration
-  Laptop Hybrid Graphics - GPU switching support
-  Enable DisplayPort CEC-Tunneling-over-AUX- HDMI support
-  m_Nouveau  (NVIDIA) cards
-    **Graphics support (Intel 8xx/9xx/G3x/G4x/HD Graphics)**
-    Enable capturing GPU state following a hang
-    Always enable userptr support
-    **/dev/agpart (AGP Support)**
-    AMD Opteron/Athlon64 on-CPU GART support
-  /dev/agpgart (AGP support)
-  m_Direct Rendering Manager (XFree86 4.1.0 and higher DRI support) 115modulos copia
-    **Frame buffer Devices**
-    Support for frame buffer devices
-    Backlight & LCD device support
-      **Console display driver support**
-        VGA text console
-  m_Sound card support
+    - **Misc devices**
+    - m_Intel Management Engine Interface
+    - m_ME Enabled Intel Chipsets
+    - **SCSI device support**
+    - **SCSI Transports**
+    - SCSI low-level drivers
+    - **Multiple devices driver support (RAID and LVM)**
+    - m_RAID support
+    - Fusion MPT device support
+    - Macintosh device drivers
+    - **Network device support**
+    - Wireless LAN
+    - Wan interfaces support
+    - ISDN support
+    - **Input device support**
+    - Mouse interface
+    - m_Joystick interface
+    - m_Event interface
+    - Joysticks/Gamepads
+    - Tablets
+    - Touchscreens
+    - **GPIO Support**
+    - m_Hardware Monitoring support
+    - Generic Thermal sysfs driver
+    - Watchdog Timer Support
+    - **Graphics support**
+    - VGA Arbitration
+    - Laptop Hybrid Graphics - GPU switching support
+    - Enable DisplayPort CEC-Tunneling-over-AUX- HDMI support
+    - m_Nouveau  (NVIDIA) cards
+        - **Graphics support (Intel 8xx/9xx/G3x/G4x/HD Graphics)**
+        - Enable capturing GPU state following a hang
+        - Always enable userptr support
+        - **/dev/agpart (AGP Support)**
+        - AMD Opteron/Athlon64 on-CPU GART support
+    - /dev/agpgart (AGP support)
+    - m_Direct Rendering Manager (XFree86 4.1.0 and higher DRI support) 115modulos copia
+        - **Frame buffer Devices**
+        - Support for frame buffer devices
+    - Backlight & LCD device support
+    - **Console display driver support**
+    - VGA text console
+    - m_Sound card support
   **HID Support**
     **USB support** entero
     LED Support

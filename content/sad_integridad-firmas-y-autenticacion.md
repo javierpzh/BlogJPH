@@ -16,7 +16,19 @@ Tags: GPG, cifrado, firmado, integridad, apt secure, SSH
 
 **1. Manda un documento y la firma electrónica del mismo a un compañero. Verifica la firma que tu has recibido.**
 
+Previamente [Álvaro](https://www.instagram.com/whosalvr/) y yo nos hemos pasado nuestras claves públicas.
 
+Voy mandarle un documento y la firma de este a mi compañero Álvaro para que él realice también el ejercicio:
+
+<pre>
+javier@debian:~$ gpg --detach-sign practica.py
+
+javier@debian:~$ ls | grep 'practica'
+practica.py
+practica.py.sig
+</pre>
+
+Le envío estos archivos y él verifica la firma.
 
 **2. ¿Qué significa el mensaje que aparece en el momento de verificar la firma?**
 
@@ -67,7 +79,7 @@ gpg --export C67662D3 > javi.asc
 
 Cuando nos firmen la clave debemos importarla para actualizar la lista de firmas de la clave, y posteriormente volver a exportarla para que posea todas las firmas.
 
-Voy a importar la clave de mi compañero [Álvaro](https://www.instagram.com/whosalvr/) que previamente me ha pasado por correo electrónico y he descargado:
+Voy a importar la clave de mi compañero Álvaro que previamente me ha pasado por correo electrónico y he descargado:
 
 <pre>
 javier@debian:~/Descargas$ ls

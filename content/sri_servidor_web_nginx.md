@@ -509,7 +509,7 @@ Reiniciamos el servicio:
 systemctl restart nginx
 </pre>
 
-Accedemos a `http://departamentos.iesgn.org/secreto/`:
+Accedemos a `departamentos.iesgn.org/secreto/`:
 
 ![.](images/sri_servidor_web_nginx/autentificacion.png)
 

@@ -475,13 +475,54 @@ root@deb10-servidornginx:/srv/www/departamentos# cd secreto/
 root@deb10-servidornginx:/srv/www/departamentos/secreto# nano index.html
 </pre>
 
-Como queremos que a esta web solo puedan acceder determinados usuarios autorizados, en el fichero de configuración `/etc/nginx/sites-available/departamentos.conf`, vamos a establecer una **autentificación básica**:
+Como queremos que a esta web solo puedan acceder determinados usuarios autorizados, vamos a establecer una **autentificación básica**. Para hacer esto, debemos generar un fichero `.htpasswd` que va a ser el que contenga los usuarios con sus contraseñas, que pueden acceder a este sitio web.
+
+Para crear este fichero, necesitamos instalar el paquete `apache2-utils`, que es el que incluye la herramienta que necesitamos:
 
 <pre>
-
+apt install apache2-utils -y
 </pre>
 
+Generamos el fichero de contraseñas:
 
+<pre>
+root@deb10-servidornginx:/srv/www/departamentos/secreto# htpasswd -c /srv/www/departamentos/secreto/.htpasswd javier
+New password:
+Re-type new password:
+Adding password for user javier
+</pre>
 
+Si quisiéramos añadir un nuevo usuario, deberíamos introducir el mismo comando pero sin la opción `-c`, ya que sino, nos crearía un nuevo un archivo machacando el ya existente.
+
+Por último, en el fichero de configuración `/etc/nginx/sites-available/departamentos.conf`, vamos a especificar la autentificación básica que hemos creado:
+
+<pre>
+location /secreto {
+        auth_basic "Introduzca sus datos";
+        auth_basic_user_file /srv/www/departamentos/secreto/.htpasswd;
+}
+</pre>
+
+Reiniciamos el servicio:
+
+<pre>
+systemctl restart nginx
+</pre>
+
+Accedemos a `http://departamentos.iesgn.org/secreto/`:
+
+![.](images/sri_servidor_web_nginx/autentificacion.png)
+
+Vemos como nos pide unas credenciales para confirmar que estamos autorizados a visualizar esta web. Si introducimos los datos correctos:
+
+![.](images/sri_servidor_web_nginx/autentificacioncompletada.png)
+
+Al parecer todo es seguro y está bien, pero, ¿qué es lo último que deseamos cuando nos *logueamos* en una web? Exacto, que nuestras credenciales y nuestros datos no se conozcan y sean seguros, pues la **autenticación básica** no cuida esto, sino que envía nuestras contraseñas sin ningún tipo de cifrado y al descubierto, por lo que estamos totalmente expuestos.
+
+He hecho una prueba capturando el tráfico, en la que podemos ver como cualquiera que esté escuchando el tráfico de la red, podría ver nuestros datos.
+
+![.](images/sri_servidor_web_nginx/trafico.png)
+
+Si nos fijamos en la línea seleccionada, que hace referencia a la petición que hemos hecho con nuestras credenciales, podemos ver como nos muestra la contraseña.
 
 **8. Vamos a combinar el control de acceso (tarea 6) y la autentificación (tarea 7), y vamos a configurar el virtual host para que se comporte de la siguiente manera: el acceso a la URL `departamentos.iesgn.org/secreto` se hace forma directa desde la intranet, desde la red pública te pide la autentificación. Muestra el resultado al profesor.**

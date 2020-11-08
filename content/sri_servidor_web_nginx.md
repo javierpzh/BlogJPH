@@ -381,7 +381,7 @@ Aquí vemos el resultado:
 
 ![.](images/sri_servidor_web_nginx/instancia2.png)
 
-Ahora vamos a crear las páginas `departamentos.iesgn.org/intranet` y `departamentos.iesgn.org/internet`:
+Ahora vamos a crear las páginas `departamentos.iesgn.org/intranet` y `departamentos.iesgn.org/internet`, para ello creamos los directorios `/srv/www/departamentos/intranet` y `/srv/www/departamentos/internet`, y sus respectivos `index.html`:
 
 <pre>
 root@deb10-servidornginx:/srv/www/departamentos# mkdir intranet internet
@@ -392,6 +392,8 @@ index.html  internet  intranet
 root@deb10-servidornginx:/srv/www/departamentos# cp index.html ./intranet/
 
 root@deb10-servidornginx:/srv/www/departamentos# cp index.html ./internet/
+
+root@deb10-servidornginx:/srv/www/departamentos# chown -R www-data:www-data /srv/
 </pre>
 
 En el fichero de configuración `/etc/nginx/sites-available/departamentos.conf` introducimos las siguientes líneas:
@@ -415,16 +417,26 @@ Reiniciamos el servicio:
 systemctl restart nginx
 </pre>
 
-Si ahora accedemos a `departamentos.iesgn.org/internet`:
+- **Máquina anfitriona:**
+
+    - Accedemos a `departamentos.iesgn.org/internet`:
 
 ![.](images/sri_servidor_web_nginx/anfitrionainternet.png)
 
-Si ahora accedemos a `departamentos.iesgn.org/intranet`:
+    - Accedemos a `departamentos.iesgn.org/intranet`:
 
 ![.](images/sri_servidor_web_nginx/anfitrionaintranet.png)
 
 **7. Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente.**
 
+<pre>
+root@deb10-servidornginx:/srv/www/departamentos# mkdir secreto
 
+root@deb10-servidornginx:/srv/www/departamentos# cp index.html ./secreto/
+
+root@deb10-servidornginx:/srv/www/departamentos# cd secreto/
+
+root@deb10-servidornginx:/srv/www/departamentos/secreto# nano index.html
+</pre>
 
 **8. Vamos a combinar el control de acceso (tarea 6) y la autentificación (tarea 7), y vamos a configurar el virtual host para que se comporte de la siguiente manera: el acceso a la URL `departamentos.iesgn.org/secreto` se hace forma directa desde la intranet, desde la red pública te pide la autentificación. Muestra el resultado al profesor.**

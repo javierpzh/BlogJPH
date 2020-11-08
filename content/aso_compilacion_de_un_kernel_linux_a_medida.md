@@ -655,14 +655,14 @@ Quito:
     - **Memory Management options**
     - Allow for memory hot-add
     - Enable frontswap to cache swap pages if tmem is present
-**Networking support**
-Network packet filtering framework
-QoS and/or fair queueing
-Amateur Radio support
-Wireless
-m_Bluetooth subsystem support
-RF switch subsystem support
-**Device Drivers**
+- **Networking support**
+    - Network packet filtering framework
+    - QoS and/or fair queueing
+    - Amateur Radio support
+    - Wireless
+    - m_Bluetooth subsystem support
+    - RF switch subsystem support
+- **Device Drivers**
   **Misc devices**
   m_Intel Management Engine Interface
   m_ME Enabled Intel Chipsets

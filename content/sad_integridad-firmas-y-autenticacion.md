@@ -30,6 +30,21 @@ practica.py.sig
 
 Le envío estos archivos y él verifica la firma.
 
+He recibido por parte de Álvaro estos dos archivos: `empresa.pdf` y `empresa.pdf.sig`. Voy a comprobar la firma del archivo:
+
+<pre>
+javier@debian:~/Descargas$ ls
+empresa.pdf  empresa.pdf.sig  Imágenes
+
+javier@debian:~/Descargas$ gpg --verify empresa.pdf.sig
+gpg: asumiendo que los datos firmados están en 'empresa.pdf'
+gpg: Firmado el dom 08 nov 2020 18:09:19 CET
+gpg:                usando RSA clave B02B578465B0756DFD271C733E0DA17912B9A4F8
+gpg: Firma correcta de "Álvaro Vaca Ferreras <avacaferreras@gmail.com>" [total]
+</pre>
+
+Vemos como si intentamos verificar la firma electrónica del archivo, nos detecta automáticamente el archivo al que hace referencia y nos indica que la firma de Álvaro está correcta.
+
 **2. ¿Qué significa el mensaje que aparece en el momento de verificar la firma?**
 
 <pre>

@@ -512,8 +512,6 @@ lynx departamentos.iesgn.org/intranet
 
 Vemos como nos deja acceder a la web `/intranet` pero no a la web `/internet`.
 
-
-
 **7. Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente.**
 
 Vamos a crear la página `departamentos.iesgn.org/secreto`. Creamos el directorio `/srv/www/departamentos/secreto` y su respectivo `index.html`:

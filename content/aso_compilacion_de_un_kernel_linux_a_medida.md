@@ -613,16 +613,16 @@ Quito:
         -   freezer controller
         -   cpuset controller
         -   Namespaces support
-**Processor type and features**
-AMD ACPI2Platform devices support
-old AMD GART IOMMU support
-IBM Calgary IOMMU support
-  **machine check/overheating reporting**
-  AMD MCE features
-enable vsyscall emulation
-  **CPU microcode loading support**
-  AMD microcode loading support
-  **linux guest support** entero
+- **Processor type and features**
+    - AMD ACPI2Platform devices support
+    - old AMD GART IOMMU support
+    - IBM Calgary IOMMU support
+        -   **machine check/overheating reporting**
+        -   AMD MCE features
+    - enable vsyscall emulation
+        -   **CPU microcode loading support**
+        -   AMD microcode loading support
+        -   **linux guest support** entero
 **Power management and ACPI options**
 suspend to RAM and standby
 hibernation

@@ -716,32 +716,28 @@ Quito:
 - **Security options**
 - NSA SELinux Support
 ##### Cryptographic API
-Hardware crypto devices (Support for AMD secure processor)
-  **Asymmetric**
-  Support for PE file signature verification
-  **Certificates for signature checking**
-  Provide a keyring to which extra trustable keys may be added
-  Provide system-wide ring of blacklisted keys
-  **Library routines**
-  m_CRC16 functions
-    **XZ decompression support**
-    x86 BCJ filter decoder
-  IRQ polling library
+- Hardware crypto devices (Support for AMD secure processor)
+- **Asymmetric**
+- Support for PE file signature verification
+- **Certificates for signature checking**
+- Provide a keyring to which extra trustable keys may be added
+- Provide system-wide ring of blacklisted keys
+- **Library routines**
+- m_CRC16 functions
+    - **XZ decompression support**
+    - x86 BCJ filter decoder
+- IRQ polling library
 ##### Kernel hacking
-Collect scheduler debbuging info
-Collect scheduler statistics
-Detect stack corruption on calls to schedule
-Allow gcc to uninline functions marked 'inline'
-  **printk and dmesg options**
-  Enable dynamic printk() support
-  **Compile-time checks and compiler options**
-  Compile the kernel with debug info
-  **Memory Debugging**
-  Debug memory initialisation
-
-
-
-
+- Collect scheduler debbuging info
+- Collect scheduler statistics
+- Detect stack corruption on calls to schedule
+- Allow gcc to uninline functions marked 'inline'
+-   **printk and dmesg options**
+-   Enable dynamic printk() support
+-   **Compile-time checks and compiler options**
+-   Compile the kernel with debug info
+-   **Memory Debugging**
+-   Debug memory initialisation
 
 
 

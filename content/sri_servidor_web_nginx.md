@@ -487,6 +487,29 @@ Para visualizar la web en esta máquina debemos añadir al fichero `/etc/hosts` 
 172.22.200.116  departamentos.iesgn.org
 </pre>
 
+Instalamos la herramiento `lynx` para poder tener una especie de navegador en la terminal:
+
+<pre>
+apt update && apt install lynx -y
+</pre>
+
+Accedemos a las URL:
+
+<pre>
+lynx departamentos.iesgn.org/internet
+lynx departamentos.iesgn.org/intranet
+</pre>
+
+    - Accedemos a `departamentos.iesgn.org/internet`:
+
+    ![.](images/sri_servidor_web_nginx/redlocalinternet.png)
+
+    - Accedemos a `departamentos.iesgn.org/intranet`:
+
+    ![.](images/sri_servidor_web_nginx/redlocalintranet.png)
+
+
+
 
 
 **7. Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente.**

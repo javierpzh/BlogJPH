@@ -1,5 +1,5 @@
 Title: Servidor Web Nginx
-Date: 2020/11/3
+Date: 2020/11/8
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: web, Nginx
@@ -210,12 +210,10 @@ Página `departamentos.iesgn.org`:
 
 **3. Cuando se entre a la dirección `www.iesgn.org` se redireccionará automáticamente a `www.iesgn.org/principal`, donde se mostrará el mensaje de bienvenida. En el directorio principal no se permite ver la lista de los ficheros, no se permite que se siga los enlaces simbólicos y no se permite negociación de contenido. Muestra al profesor el funcionamiento.**
 
-Creamos el directorio `principal` y copiamos el `index.html`:
+Creamos el directorio `principal`:
 
 <pre>
 root@deb10-servidornginx:/srv/www/iesgn# mkdir principal
-
-root@deb10-servidornginx:/srv/www/iesgn# cp index.html ./principal/
 </pre>
 
 Al crear un nuevo directorio se crea con el usuario que hemos ejecutado el comando, por tanto, tendremos que cambiar el propietario de este directorio. Yo recurro de nuevo el comando utilizado anteriormente ya que lo aplica a los subdirectorios hijos:
@@ -224,13 +222,72 @@ Al crear un nuevo directorio se crea con el usuario que hemos ejecutado el coman
 chown -R www-data:www-data /srv/www
 </pre>
 
-Creamos la redirección permanente, con la siguiente línea en el fichero de configuración `/etc/nginx/sites-available/iesgn.conf`:
+Creamos la redirección, en este caso permanente, con la siguiente línea en el fichero de configuración `/etc/nginx/sites-available/iesgn.conf`:
 
 <pre>
 rewrite ^/$ /principal permanent;
 </pre>
 
-Si ahora accedemos a la ruta `www.iesgn.org` nos redirigirá automáticamente a `www.iesgn.org/principal`.
+Para que no se permita ver la lista de ficheros, ni se sigan los enlaces simbólicos, como nos pide el ejercicio, introducimos el siguiente bloque *location*:
+
+<pre>
+location /principal {
+                autoindex off;
+                disable_symlinks on;
+}
+</pre>
+
+Antes de crear el `index.html`, vamos a comprobar que estas opciones están funcionando correctamente.
+
+Para comprobar que no se muestra el listado de ficheros, vamos a crear un archivo `.txt` y vamos a crear un enlace simbólico sobre este archivo, así también comprobaremos que no se siguen los enlaces simbólicos.
+
+Creamos el fichero de prueba y el enlace simbólico:
+
+<pre>
+touch /home/debian/ejemplo1.txt
+ln -s /home/debian/ejemplo1.txt /srv/www/iesgn/principal/
+</pre>
+
+Vemos que hemos creado el enlace simbólico en `/srv/www/iesgn/principal`:
+
+<pre>
+root@deb10-servidornginx:/srv/www# ls -R
+.:
+departamentos  iesgn
+
+./departamentos:
+index.html
+
+./iesgn:
+index.html  principal
+
+./iesgn/principal:
+ejemplo1.txt
+</pre>
+
+Reiniciamos el servicio:
+
+<pre>
+systemctl restart nginx
+</pre>
+
+Vamos a acceder a la página `www.iesgn.org`:
+
+![.](images/sri_servidor_web_nginx/nolistado.png)
+
+Vemos como además de redirigirnos automáticamente a `www.iesgn.org/principal`, no nos muestra el listado de ficheros. Si probamos a acceder a `www.iesgn.org/principal/ejemplo1.txt`, para ver si nos permite seguir el enlace simbólico:
+
+![.](images/sri_servidor_web_nginx/noenlacessimbolicos.png)
+
+Vemos que tampoco nos deja, por tanto tendríamos la página bien configurada. Ahora vamos a añadir un `index.html`:
+
+<pre>
+root@deb10-servidornginx:/srv/www/iesgn# cp index.html ./principal/
+</pre>
+
+Si ahora accedemos a la ruta `www.iesgn.org` nos redirigirá automáticamente a `www.iesgn.org/principal` y nos mostrará está página:
+
+![.](images/sri_servidor_web_nginx/paginaprincipal.png)
 
 **4. Si accedes a la página `www.iesgn.org/principal/documentos` se visualizarán los documentos que hay en `/srv/doc`. Por lo tanto se permitirá el listado de fichero y el seguimiento de enlaces simbólicos siempre que sean a ficheros o directorios cuyo dueño sea el usuario. Muestra al profesor el funcionamiento.**
 
@@ -257,7 +314,7 @@ Introducimos la siguiente línea en el fichero de configuración `/etc/nginx/sit
 location /principal/documentos {
                 alias /srv/doc;
                 autoindex on;
-        }
+}
 </pre>
 
 Accedemos a `www.iesgn.org/principal/documentos`:

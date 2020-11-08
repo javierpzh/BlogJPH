@@ -667,12 +667,12 @@ Quito:
         - m_Intel Management Engine Interface
         - m_ME Enabled Intel Chipsets
     - **SCSI device support**
-        - **SCSI Transports**
-        - SCSI low-level drivers
-      - **Multiple devices driver support (RAID and LVM)**
-    - m_RAID support
-    - Fusion MPT device support
-    - Macintosh device drivers
+            - **SCSI Transports**
+            - SCSI low-level drivers
+        - **Multiple devices driver support (RAID and LVM)**
+        - m_RAID support
+        - Fusion MPT device support
+        - Macintosh device drivers
     - **Network device support**
     - Wireless LAN
     - Wan interfaces support

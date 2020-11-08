@@ -222,7 +222,7 @@ Creamos la redirección, en este caso permanente, con la siguiente línea en el 
 rewrite ^/$ /principal permanent;
 </pre>
 
-Para que no se permita ver la lista de ficheros, ni se sigan los enlaces simbólicos, como nos pide el ejercicio, introducimos el siguiente bloque *location*:
+Para que no se permita ver la lista de ficheros, ni se sigan los enlaces simbólicos, como nos pide el ejercicio, introducimos el siguiente bloque *location* en `/etc/nginx/sites-available/iesgn.conf`:
 
 <pre>
 location /principal {

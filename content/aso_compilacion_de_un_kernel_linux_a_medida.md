@@ -595,128 +595,126 @@ make xconfig
 Quito:
 
 ##### General setup
-    - memory placement aware NUMA scheduler
-    - checkpoint/restore support
-    - enable VM event counters for /proc/vmstat
-    - allow slab caches to be merged
-    - SLAB freelist randomization
-    - Harden slab freelist metadata
-    - profiling support
-        -   **Timers subsystem**
-        -   high resolution timer support
-        -   **CPU/Task time and stats accounting**
-        -   BSD process accounting
-        -   export task/process statistics through netlink
-        -   **Control Group support**
-        -   swap controller
-        -   RDMA controller
-        -   freezer controller
-        -   cpuset controller
-        -   Namespaces support
+- memory placement aware NUMA scheduler
+- checkpoint/restore support
+- enable VM event counters for /proc/vmstat
+- allow slab caches to be merged
+- SLAB freelist randomization
+- Harden slab freelist metadata
+- profiling support
+    -   **Timers subsystem**
+    -   high resolution timer support
+    -   **CPU/Task time and stats accounting**
+    -   BSD process accounting
+    -   export task/process statistics through netlink
+    -   **Control Group support**
+    -   swap controller
+    -   RDMA controller
+    -   freezer controller
+    -   cpuset controller
+    -   Namespaces support
 ##### Processor type and features
-    - AMD ACPI2Platform devices support
-    - old AMD GART IOMMU support
-    - IBM Calgary IOMMU support
-        -   **machine check/overheating reporting**
-        -   AMD MCE features
-    - enable vsyscall emulation
-        -   **CPU microcode loading support**
-        -   AMD microcode loading support
-        -   **linux guest support** entero
+- AMD ACPI2Platform devices support
+- old AMD GART IOMMU support
+- IBM Calgary IOMMU support
+    -   **machine check/overheating reporting**
+    -   AMD MCE features
+- enable vsyscall emulation
+    -   **CPU microcode loading support**
+    -   AMD microcode loading support
+    -   **linux guest support** entero
 ##### Power management and ACPI options
-    - suspend to RAM and standby
-    - hibernation
-    - device power management core functionality
-    - power management timer support
-        -   **ACPI (Advanced Configuration and Power Interface) Support** entero
-    - SFI (Simple Firmware Interface) Support
+- suspend to RAM and standby
+- hibernation
+- device power management core functionality
+- power management timer support
+    -   **ACPI (Advanced Configuration and Power Interface) Support** entero
+- SFI (Simple Firmware Interface) Support
 ##### Firmware Drivers
-    - Apple device properties
-    - virtualization
+- Apple device properties
+- virtualization
 ##### General architecture-dependent options
-    - kprobes
-    - optimize very unlikely/likely branches
-    - stack protector buffer overflow detection
-    - use a virtually-mapped stack
-    - perform full reference count validation at the expense of speed
+- kprobes
+- optimize very unlikely/likely branches
+- stack protector buffer overflow detection
+- use a virtually-mapped stack
+- perform full reference count validation at the expense of speed
 ##### Enable the block layer
-    - **partition types**
-    - acorn partition support
-    - alpha OSF partition support
-    - amiga partition table support
-    - atari partition table support
-    - macintosh partition map support
-        - **PC BIOS (MSDOS partition tables) support**
-        - Solarix (x86) partition table support
-    - SGI partition support
-    - Ultrix partition table support
-    - sun partition tables support
-    - karma partition support
-    - **Memory Management options**
-    - Allow for memory hot-add
-    - Enable frontswap to cache swap pages if tmem is present
+- **partition types**
+- acorn partition support
+- alpha OSF partition support
+- amiga partition table support
+- atari partition table support
+- macintosh partition map support
+    - **PC BIOS (MSDOS partition tables) support**
+    - Solarix (x86) partition table support
+- SGI partition support
+- Ultrix partition table support
+- sun partition tables support
+- karma partition support
+- **Memory Management options**
+- Allow for memory hot-add
+- Enable frontswap to cache swap pages if tmem is present
 ##### Networking support
-    - Network packet filtering framework
-    - QoS and/or fair queueing
-    - Amateur Radio support
-    - Wireless
-    - m_Bluetooth subsystem support
-    - RF switch subsystem support
+- Network packet filtering framework
+- QoS and/or fair queueing
+- Amateur Radio support
+- Wireless
+- m_Bluetooth subsystem support
+- RF switch subsystem support
 ##### Device Drivers
-    - **Misc devices**
-        - m_Intel Management Engine Interface
-        - m_ME Enabled Intel Chipsets
-    - **SCSI device support**
-        - **SCSI Transports**
-        - SCSI low-level drivers
-      - **Multiple devices driver support (RAID and LVM)**
-      - m_RAID support
-      - Fusion MPT device support
-      - Macintosh device drivers
-    - **Network device support**
-    - Wireless LAN
-    - Wan interfaces support
-    - ISDN support
-    - **Input device support**
-    - Mouse interface
-    - m_Joystick interface
-    - m_Event interface
-    - Joysticks/Gamepads
-    - Tablets
-    - Touchscreens
-    - **GPIO Support**
-    - m_Hardware Monitoring support
-    - Generic Thermal sysfs driver
-    - Watchdog Timer Support
-    - **Graphics support**
-    - VGA Arbitration
-    - Laptop Hybrid Graphics - GPU switching support
-    - Enable DisplayPort CEC-Tunneling-over-AUX- HDMI support
-    - m_Nouveau  (NVIDIA) cards
-        - **Graphics support (Intel 8xx/9xx/G3x/G4x/HD Graphics)**
-        - Enable capturing GPU state following a hang
-        - Always enable userptr support
-        - **/dev/agpart (AGP Support)**
-        - AMD Opteron/Athlon64 on-CPU GART support
-    - /dev/agpgart (AGP support)
-    - m_Direct Rendering Manager (XFree86 4.1.0 and higher DRI support) 115modulos copia
-        - **Frame buffer Devices**
-        - Support for frame buffer devices
-    - Backlight & LCD device support
+- **Misc devices**
+- m_Intel Management Engine Interface
+- m_ME Enabled Intel Chipsets
+- **SCSI device support**
+    - **SCSI Transports**
+    - SCSI low-level drivers
+    - **Multiple devices driver support (RAID and LVM)**
+    - m_RAID support
+    - Fusion MPT device support
+    - Macintosh device drivers
+- **Network device support**
+- Wireless LAN
+- Wan interfaces support
+- ISDN support
+- **Input device support**
+- Mouse interface
+- m_Joystick interface
+- m_Event interface
+- Joysticks/Gamepads
+- Tablets
+- Touchscreens
+- **GPIO Support**
+- m_Hardware Monitoring support
+- Generic Thermal sysfs driver
+- Watchdog Timer Support
+- **Graphics support**
+- VGA Arbitration
+- Laptop Hybrid Graphics - GPU switching support
+- Enable DisplayPort CEC-Tunneling-over-AUX- HDMI support
+- /dev/agpgart (AGP support)
+- m_Nouveau  (NVIDIA) cards
+    - **Graphics support (Intel 8xx/9xx/G3x/G4x/HD Graphics)**
+    - Enable capturing GPU state following a hang
+    - Always enable userptr support
+- m_Direct Rendering Manager (XFree86 4.1.0 and higher DRI support) 115modulos copia
+    - **Frame buffer Devices**
+    - Support for frame buffer devices
+- Backlight & LCD device support
     - **Console display driver support**
-    - VGA text console
-    - m_Sound card support
-    - **HID Support**
-        - **USB support** entero
-        - LED Support
-        - Accessibility support
-        - Virtualization drivers
-        - Staging Drivers
-        - Platform support for Chrome hardware
+- VGA text console
+- m_Sound card support
+- **HID Support**
+    - **USB support** entero
+- LED Support
+- Accessibility support
+- Virtualization drivers
+- Staging Drivers
+- Platform support for Chrome hardware
 ##### File systems
-Network File Systems
-  **Security options**
-  NSA SELinux Support
+- **Network File Systems**
+- **Security options**
+- NSA SELinux Support
 ##### Cryptographic API
 Hardware crypto devices (Support for AMD secure processor)
   **Asymmetric**

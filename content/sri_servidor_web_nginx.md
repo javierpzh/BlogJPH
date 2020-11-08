@@ -421,11 +421,11 @@ systemctl restart nginx
 
     - Accedemos a `departamentos.iesgn.org/internet`:
 
-![.](images/sri_servidor_web_nginx/anfitrionainternet.png)
+    ![.](images/sri_servidor_web_nginx/anfitrionainternet.png)
 
     - Accedemos a `departamentos.iesgn.org/intranet`:
 
-![.](images/sri_servidor_web_nginx/anfitrionaintranet.png)
+    ![.](images/sri_servidor_web_nginx/anfitrionaintranet.png)
 
 **7. Autentificación básica. Limita el acceso a la URL `departamentos.iesgn.org/secreto`. Comprueba las cabeceras de los mensajes HTTP que se intercambian entre el servidor y el cliente.**
 

@@ -116,6 +116,62 @@ Una vez aquí, antes de crear el nuevo registro
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/cnamecreado.png)
 
+Creamos el virtualhost en `/srv/www/aplicacionesiesgn`:
+
+<pre>
+root@vpsjavierpzh:/srv# mkdir www
+
+root@vpsjavierpzh:/srv# cd www/
+
+root@vpsjavierpzh:/srv/www# mkdir aplicacionesiesgn
+</pre>
+
+Creamos la redirección del virtualhost por defecto a este nuevo virtualhost. Para ello en el fichero de configuración del virtualhost por defecto, que es `/etc/nginx/sites-available/default`, añadimos la siguiente línea:
+
+<pre>
+rewrite ^/$ /srv/www/aplicacionesiesgn/principal permanent;
+</pre>
+
+Creamos el fichero de configuración de la nueva web que vamos a crear:
+
+<pre>
+root@vpsjavierpzh:/etc/nginx/sites-available# nano aplicacionesiesgn.conf
+</pre>
+
+Y dentro escribimos las siguientes líneas:
+
+<pre>
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /srv/www/aplicacionesiesgn;
+
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name www.iesgn15.es;
+
+        location / {
+                 try_files $uri $uri/ =404;
+        }
+}
+</pre>
+
+Creamos un enlace simbólico de este fichero a la ruta `sites-enabled` para que nos sirva la nueva web.
+
+<pre>
+ln -s /etc/nginx/sites-available/aplicacionesiesgn.conf /etc/nginx/sites-enabled/
+</pre>
+
+Vemos que nos lo ha creado bien:
+
+<pre>
+root@vpsjavierpzh:/etc/nginx/sites-available# ls -l /etc/nginx/sites-enabled/
+total 0
+lrwxrwxrwx 1 root root 49 Nov  9 18:44 aplicacionesiesgn.conf -> /etc/nginx/sites-available/aplicacionesiesgn.conf
+lrwxrwxrwx 1 root root 34 Nov  9 12:09 default -> /etc/nginx/sites-available/default
+</pre>
+
 **5. Cuando se acceda al virtualhost por defecto `default` nos tiene que redirigir al virtualhost que hemos creado en el punto anterior.**
 
 

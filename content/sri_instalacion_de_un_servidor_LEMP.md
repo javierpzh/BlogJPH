@@ -96,7 +96,15 @@ apt install php php-fpm -y
 
 **4. Crea un virtualhost al que vamos acceder con el nombre `www.iesgnXX.es`. Recuerda que tendrás que crear un registro `CNAME` en la zona DNS.**
 
+![.](images/sri_instalacion_de_un_servidor_LEMP/zonadnsovh.png)
 
+![.](images/sri_instalacion_de_un_servidor_LEMP/borrartxtpordefecto.png)
+
+![.](images/sri_instalacion_de_un_servidor_LEMP/cnameconfiguracion.png)
+
+![.](images/sri_instalacion_de_un_servidor_LEMP/cnamecrear.png)
+
+![.](images/sri_instalacion_de_un_servidor_LEMP/cnamecreado.png)
 
 **5. Cuando se acceda al virtualhost por defecto `default` nos tiene que redirigir al virtualhost que hemos creado en el punto anterior.**
 

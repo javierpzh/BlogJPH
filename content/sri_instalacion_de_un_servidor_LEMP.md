@@ -2,9 +2,11 @@ Title: Instalación de un servidor LEMP
 Date: 2020/11/9
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
-Tags: LEMP, Linux, Nginx, MySQL, MariaDB, PHP
+Tags: LEMP, Linux, Nginx, MySQL, MariaDB, PHP, OVH
 
 ## Instalación de un servidor LEMP
+
+**Esta tarea la vamos a realizar sobre el servidor OVH**
 
 **1. Instala un servidor web nginx**
 

@@ -184,6 +184,33 @@ rewrite ^/$ /principal permanent;
 
 **7. En la página `www.iesgnXX.es/principal` se debe mostrar una página web estática (utiliza alguna plantilla para que tenga hoja de estilo). En esta página debe aparecer tu nombre, y una lista de enlaces a las aplicaciones que vamos a ir desplegando posteriormente.**
 
+Hay muchas webs que nos ofrecen plantillas html5 para descargarnos. Yo he utilizado [html5up](https://html5up.net/). He decido descargarme [esta plantilla](https://html5up.net/hyperspace) en concreto. Vamos a realizar la descarga en nuestro directorio creado para la web:
+
+<pre>
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# wget http://www.mashup-template.com/assets/energy/energy-html.zip
+--2020-11-09 19:15:32--  http://www.mashup-template.com/assets/energy/energy-html.zip
+Resolving www.mashup-template.com (www.mashup-template.com)... 54.229.8.122, 34.253.22.180, 52.208.164.194, ...
+Connecting to www.mashup-template.com (www.mashup-template.com)|54.229.8.122|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 838261 (819K) [application/zip]
+Saving to: ‘energy-html.zip’
+
+energy-html.zip           100%[=====================================>] 818.61K  --.-KB/s    in 0.1s    
+
+2020-11-09 19:15:33 (7.50 MB/s) - ‘energy-html.zip’ saved [838261/838261]
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 **8. Configura el nuevo virtualhost, para que pueda ejecutar PHP. Determina que configuración tiene por defecto `php-fpm` (socket unix o socket TCP) para configurar nginx de forma adecuada.**

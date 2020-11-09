@@ -184,7 +184,7 @@ rewrite ^/$ /principal permanent;
 
 **7. En la página `www.iesgnXX.es/principal` se debe mostrar una página web estática (utiliza alguna plantilla para que tenga hoja de estilo). En esta página debe aparecer tu nombre, y una lista de enlaces a las aplicaciones que vamos a ir desplegando posteriormente.**
 
-Hay muchas webs que nos ofrecen plantillas html5 para descargarnos. Yo he utilizado [html5up](https://html5up.net/). He decido descargarme [esta plantilla](https://html5up.net/hyperspace) en concreto. Vamos a realizar la descarga en nuestro directorio creado para la web:
+Hay muchas webs que nos ofrecen plantillas html5 para descargarnos. Yo he utilizado [mashup-template](http://www.mashup-template.com/). He decido descargarme [esta plantilla](http://www.mashup-template.com/preview.html?template=energy) en concreto. Vamos a realizar la descarga en nuestro directorio creado para la web:
 
 <pre>
 root@vpsjavierpzh:/srv/www/aplicacionesiesgn# wget http://www.mashup-template.com/assets/energy/energy-html.zip

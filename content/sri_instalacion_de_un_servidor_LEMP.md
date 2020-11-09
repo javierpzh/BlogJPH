@@ -126,12 +126,6 @@ root@vpsjavierpzh:/srv# cd www/
 root@vpsjavierpzh:/srv/www# mkdir aplicacionesiesgn
 </pre>
 
-Creamos la redirección del virtualhost por defecto a este nuevo virtualhost. Para ello en el fichero de configuración del virtualhost por defecto, que es `/etc/nginx/sites-available/default`, añadimos la siguiente línea:
-
-<pre>
-rewrite ^/$ /srv/www/aplicacionesiesgn/principal permanent;
-</pre>
-
 Creamos el fichero de configuración de la nueva web que vamos a crear:
 
 <pre>
@@ -174,11 +168,19 @@ lrwxrwxrwx 1 root root 34 Nov  9 12:09 default -> /etc/nginx/sites-available/def
 
 **5. Cuando se acceda al virtualhost por defecto `default` nos tiene que redirigir al virtualhost que hemos creado en el punto anterior.**
 
+Creamos la redirección permanente del virtualhost por defecto a este nuevo virtualhost. Para ello en el fichero de configuración del virtualhost por defecto, que es `/etc/nginx/sites-available/default`, añadimos la siguiente línea:
 
+<pre>
+rewrite ^/$ /srv/www/aplicacionesiesgn permanent;
+</pre>
 
 **6. Cuando se acceda a `www.iesgnXX.es` se nos redigirá a la página `www.iesgnXX.es/principal`**
 
+Creamos la redirección permanente de `www.iesgn15.es` a `www.iesgn15.es/principal`. Para hacer este cambio, al igual que en el paso anterior, pero esta vez en el fichero de configuración `/etc/nginx/sites-available/aplicacionesiesgn.conf` añadimos la siguiente línea:
 
+<pre>
+rewrite ^/$ /principal permanent;
+</pre>
 
 **7. En la página `www.iesgnXX.es/principal` se debe mostrar una página web estática (utiliza alguna plantilla para que tenga hoja de estilo). En esta página debe aparecer tu nombre, y una lista de enlaces a las aplicaciones que vamos a ir desplegando posteriormente.**
 

@@ -358,11 +358,7 @@ systemctl restart nginx
 root@vpsjavierpzh:/srv/www/aplicacionesiesgn# nano info.php
 </pre>
 
-Escribimos dentro:
-
-<pre>
-<?php phpinfo(); ?>
-</pre>
+Escribimos dentro: `<?php phpinfo(); ?>`.
 
 <pre>
 chown -R www-data:www-data /srv/

@@ -693,7 +693,7 @@ Offending ECDSA key in /home/jose/.ssh/known_hosts:103
 ECDSA host key for 172.22.200.74 has changed and you have requested strict checking.
 </pre>
 
-Este mensaje aparece cuando intentamos conectarnos a un equipo remoto al que anteriormente nos habíamos conectado y habíamos guardado en nuestro fichero `.ssh/known_hosts`, y detectamos que ha cambiado su clave pública o su IP.
+Este mensaje aparece cuando intentamos conectarnos a un equipo remoto al que anteriormente nos habíamos conectado y habíamos guardado en nuestro fichero `.ssh/known_hosts`, y detectamos que ha cambiado su IP, por lo tanto nos avisa que el equipo guardado en nuestro fichero `.ssh/known_hosts` no coincide con el equipo al que estamos intentando conectarnos.
 
 **6.¿Qué guardamos y para qué sirve el fichero en el servidor `~/.ssh/authorized_keys`?**
 

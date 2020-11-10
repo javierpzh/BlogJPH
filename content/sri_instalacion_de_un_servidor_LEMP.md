@@ -135,13 +135,15 @@ Una vez tenemos el subdominio que queremos libre y utilizable, procedemos a crea
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/cnameconfiguracion.png)
 
-Vemos como nos avisa que vamos a crear un registro de tipo **CNAME**, cuyo dominio será **www.iesgn15.es** y su destino va a ser **vpsjavierpzh.iesgn15.es.**. Es importante no olvidar este último punto final si queremos utilizar la notación absoluta.
+Vemos como nos avisa que vamos a crear un registro de tipo **CNAME**, cuyo dominio será **www.iesgn15.es** y su destino va a ser **vpsjavierpzh.iesgn15.es.**. Es importante no olvidar este último punto final si queremos utilizar la notación absoluta. Este destino, 
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/cnamecrear.png)
 
 sss
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/cnamecreado.png)
+
+Una vez hemos realizado las modificaciones necesarias en la configuración del servidor, podemos pasar a configurar *Nginx*.
 
 Creamos el virtualhost en `/srv/www/aplicacionesiesgn`:
 

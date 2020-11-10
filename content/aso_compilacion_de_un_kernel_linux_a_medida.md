@@ -735,6 +735,7 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - LED Support
 - Accessibility support
 - Virtualization drivers
+- Virtio drivers
 - Staging Drivers
 - Platform support for Chrome hardware
 ##### File systems
@@ -742,6 +743,27 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - **Security options**
 - NSA SELinux Support
 ##### Cryptographic API
+- FIPS 200 compilance ppppppppppppppppppppppppppppp
+- m_ECDH algorithm ppppppppppppppppppppppppppppp
+- m_GF(2^128) multiplication functions ppppppppppppppppppppppppppppp
+- m_Null algorithms ppppppppppppppppppppppppppppp
+- m_Software async crypto daemon ppppppppppppppppppppppppppppp
+- m_CCM support ppppppppppppppppppppppppppppp
+- m_GCM/GMAC support ppppppppppppppppppppppppppppp
+- m_Sequence Number IV Generator ppppppppppppppppppppppppppppp
+- m_CTR support ppppppppppppppppppppppppppppp
+- m_ECB support ppppppppppppppppppppppppppppp
+- m_CMAC support ppppppppppppppppppppppppppppp
+- m_CRC32 PCLMULQDQ hardware acceleration ppppppppppppppppppppppppppppp
+- m_CRCT10DIF PCLMULQDQ hardware acceleration ppppppppppppppppppppppppppppp
+- m_GHASH digest algorithm ppppppppppppppppppppppppppppp
+- m_GHASH digest algorithm (CLMNUL-NI accelerated) ppppppppppppppppppppppppppppp
+- m_GHASH digest algorithm ppppppppppppppppppppppppppppp
+- m_AES cipher algorithms (AES-NI) ppppppppppppppppppppppppppppp
+- m_ARC4 cipher algorithm ppppppppppppppppppppppppppppp
+- LZO compression algorithm ppppppppppppppppppppppppppppp
+
+- m_NIST SP800-90A DRBG ppppppppppppppppppppppppppppp
 - Hardware crypto devices (Support for AMD secure processor)
 - **Asymmetric**
 - Support for PE file signature verification
@@ -750,6 +772,7 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - Provide system-wide ring of blacklisted keys
 - **Library routines**
 - m_CRC16 functions
+- m_CRC32c (Castagnoli, et al) Cyclic Redundancy-Check ppppppppppppppppppppppppppppp
     - **XZ decompression support**
     - x86 BCJ filter decoder
 - IRQ polling library

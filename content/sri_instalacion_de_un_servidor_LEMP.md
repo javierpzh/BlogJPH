@@ -208,7 +208,7 @@ Recordemos que el fichero de configuración del virtualhost por defecto, se encu
 En este archivo crearemos la redirección permanente del virtualhost por defecto a este nuevo virtualhost. Para ello añadimos la siguiente línea:
 
 <pre>
-rewrite ^/$ /srv/www/aplicacionesiesgn permanent;
+rewrite ^/$ "http://www.iesgn15.es" permanent;
 </pre>
 
 **6. Cuando se acceda a `www.iesgnXX.es` se nos redigirá a la página `www.iesgnXX.es/principal`**

@@ -269,6 +269,22 @@ Accedo a la [página](http://www.iesgn15.es)
 apt install php-mysql -y
 </pre>
 
+Buscamos en `/etc/php/7.3/fpm/php.ini`:
+
+<pre>
+;cgi.discard_path=1
+</pre>
+
+Sustituimos por:
+
+<pre>
+cgi.fix_pathinfo=0
+</pre>
+
+
+
+
+
 
 
 **9. Crea un fichero `info.php` que demuestre que está funcionando el servidor LEMP.**

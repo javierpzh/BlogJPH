@@ -381,12 +381,22 @@ Ya hemos configurado nuestro virtualhost para que funcione con *PHP*.
 
 **9. Crea un fichero `info.php` que demuestre que está funcionando el servidor LEMP.**
 
+Para ver que como efectivamente hemos configurado *PHP* en nuestra web servida por *Nginx*, vamos a crear un archivo llamado `info.php`:
+
 <pre>
 root@vpsjavierpzh:/srv/www/aplicacionesiesgn# nano info.php
 </pre>
 
-Escribimos dentro: `<?php phpinfo(); ?>`.
+Dentro de este archivo vamos a introducir la siguiente línea: `<?php phpinfo(); ?>`.
+
+Cambiamos de nuevo el propietario de este fichero y de todos los demás archivo y directorios que se encuentran dentro de `/srv` al usuario `www:data`.
 
 <pre>
 chown -R www-data:www-data /srv/
 </pre>
+
+Si nos dirigimos a la página `www.iesgn15.es/principal/info.php`:
+
+![.](images/sri_instalacion_de_un_servidor_LEMP/infophp.png)
+
+Esto significa que hemos configurado correctamente *PHP*.

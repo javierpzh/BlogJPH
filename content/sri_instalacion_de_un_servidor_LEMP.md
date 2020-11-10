@@ -257,6 +257,8 @@ Edito el `index.html`:
 root@vpsjavierpzh:/srv/www/aplicacionesiesgn# nano index.html
 </pre>
 
+Accedo a la [página](www.iesgn15.es)
+
 ![.](images/sri_instalacion_de_un_servidor_LEMP/wwwiesgn15es.png)
 
 

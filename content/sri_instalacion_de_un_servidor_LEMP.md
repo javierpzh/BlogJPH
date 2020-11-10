@@ -153,6 +153,8 @@ root@vpsjavierpzh:/srv# mkdir www
 root@vpsjavierpzh:/srv# cd www/
 
 root@vpsjavierpzh:/srv/www# mkdir aplicacionesiesgn
+
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# mkdir principal
 </pre>
 
 Creamos el fichero de configuración de la nueva web que vamos a crear, lo he llamado `aplicacionesiesgn.conf`. Recodemos que todos los ficheros de configuración deben estar en la ruta `/etc/nginx/sites-available`.
@@ -294,22 +296,28 @@ Archive:  energy-html.zip
   inflating: energy/sample/sample-page.html  
 
 root@vpsjavierpzh:/srv/www/aplicacionesiesgn# ls
-energy	energy-html.zip
+energy	energy-html.zip  principal
 
 root@vpsjavierpzh:/srv/www/aplicacionesiesgn# rm energy-html.zip
 
-root@vpsjavierpzh:/srv/www/aplicacionesiesgn# mv energy/* ./
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# mv energy/* principal/
 
-root@vpsjavierpzh:/srv/www/aplicacionesiesgn# ls
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# cd principal/
+
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn/principal# ls
 assets		 energy      main.bc58148c.js	  main.bc58148c.map  main.d8e0d294.css.gz
 components.html  index.html  main.bc58148c.js.gz  main.d8e0d294.css  sample
 </pre>
 
-Edito el `index.html`:
+Ya tenemos en nuestro directorio `principal` el contenido de esta nueva web estática.
+
+Voy a proceder a editar el `index.html` y adecuarlo a mis intereses:
 
 <pre>
 root@vpsjavierpzh:/srv/www/aplicacionesiesgn# nano index.html
 </pre>
+
+Una vez lo tenemos todo listo, debemos cambiar el propietario de todos estos nuevos archivos a `www:data`, que es el usuario que posee los permisos de lectura y escritura en *Nginx*.
 
 <pre>
 chown -R www-data:www-data /srv/

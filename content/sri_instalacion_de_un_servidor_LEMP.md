@@ -389,7 +389,7 @@ root@vpsjavierpzh:/srv/www/aplicacionesiesgn# nano info.php
 
 Dentro de este archivo vamos a introducir la siguiente línea: `<?php phpinfo(); ?>`.
 
-Cambiamos de nuevo el propietario de este fichero y de todos los demás archivo y directorios que se encuentran dentro de `/srv` al usuario `www:data`.
+Cambiamos de nuevo el propietario de este fichero y de todos los demás archivos y directorios que se encuentran dentro de `/srv` al usuario `www:data`.
 
 <pre>
 chown -R www-data:www-data /srv/

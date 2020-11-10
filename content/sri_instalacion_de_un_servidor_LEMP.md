@@ -261,10 +261,13 @@ Accedo a la [página](http://www.iesgn15.es)
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/wwwiesgn15es.png)
 
-
-
-
 **8. Configura el nuevo virtualhost, para que pueda ejecutar PHP. Determina que configuración tiene por defecto `php-fpm` (socket unix o socket TCP) para configurar nginx de forma adecuada.**
+
+
+
+<pre>
+apt install php-mysql -y
+</pre>
 
 
 

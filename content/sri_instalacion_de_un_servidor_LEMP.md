@@ -127,19 +127,19 @@ Para realizar este paso, nos dirigimos a nuestra zona DNS de OVH:
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/zonadnsovh.png)
 
-Una vez aquí, antes de crear el nuevo registro
+Una vez aquí, antes de crear el nuevo registro tenemos que eliminar el registro existente que hace uso del subdominio `www.iesgn15.es`. Este registro no lo he creado yo, sino que venía por defecto, y además es un registro de tipo **TXT**, es decir que no es importante y no afectará a ningún servicio, por tanto lo eliminamos:
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/borrartxtpordefecto.png)
 
-
+Una vez tenemos el subdominio que queremos libre y utilizable, procedemos a crear el nuevo registro como se puede ver en la siguiente imagen:
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/cnameconfiguracion.png)
 
-
+Vemos como nos avisa que vamos a crear un registro de tipo **CNAME**, cuyo dominio será **www.iesgn15.es** y su destino va a ser **vpsjavierpzh.iesgn15.es.**. Es importante no olvidar este último punto final si queremos utilizar la notación absoluta.
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/cnamecrear.png)
 
-
+sss
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/cnamecreado.png)
 

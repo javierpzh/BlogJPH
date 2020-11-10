@@ -660,7 +660,9 @@ Ejecutaríamos un `apt update` y listo.
 
 **3. En el cliente, ¿para qué sirve el contenido que se guarda en el fichero `~/.ssh/known_hosts`?**
 
-El fichero `.ssh/known_hosts` en el cliente, almacena las claves públicas de los servidores a los que se conecta este cliente, de modo que cuando nos volvemos a conectar, verifica si el servidor es quién dice ser y no se trata de un imitador.
+Cada servidor SSH dispone de un único ID secreto que se denomina *host key* que utiliza para identificarse ante los clientes. La primera vez que nos conectamos a una máquina remota el cliente obtiene y almacena la parte pública del *host key* en su fichero `.ssh/known_hosts`.
+
+El fichero `.ssh/known_hosts` en el cliente, almacena estas claves (*host keys*) de los servidores a los que se conecta este cliente, de modo que cuando nos volvemos a conectar, verifica si el servidor es quién dice ser y no se trata de un imitador.
 
 **4. ¿Qué significa este mensaje que aparece la primera vez que nos conectamos a un servidor?**
 
@@ -671,7 +673,7 @@ ECDSA key fingerprint is SHA256:7ZoNZPCbQTnDso1meVSNoKszn38ZwUI4i6saebbfL4M.
 Are you sure you want to continue connecting (yes/no)?
 </pre>
 
-Este mensaje nos aparece cuando intentamos conectarnos a un servidor que no conocemos. Si respondemos que *sí*, se copiara en el fichero `.ssh/known_hosts` del cliente, la clave pública de ese servidor, de forma que en conexiones posteriores podremos verificar la identidad del servidor, y si no es el mismo, el cliente rechazará la conexión.
+Este mensaje nos aparece cuando intentamos conectarnos a un servidor que no conocemos. Si respondemos que *sí*, se copiara en el fichero `.ssh/known_hosts` del cliente, el *host key* de ese servidor, de forma que en conexiones posteriores podremos verificar la identidad del servidor, y si no es el mismo, el cliente rechazará la conexión.
 
 **5. En ocasiones cuando estamos trabajando en el cloud, y reutilizamos una ip flotante nos aparece este mensaje:**
 
@@ -693,7 +695,7 @@ Offending ECDSA key in /home/jose/.ssh/known_hosts:103
 ECDSA host key for 172.22.200.74 has changed and you have requested strict checking.
 </pre>
 
-Este mensaje aparece cuando intentamos conectarnos a un equipo remoto al que anteriormente nos habíamos conectado y habíamos guardado en nuestro fichero `.ssh/known_hosts`, y detectamos que ha cambiado su IP, por lo tanto nos avisa que el equipo guardado en nuestro fichero `.ssh/known_hosts` no coincide con el equipo al que estamos intentando conectarnos.
+Este mensaje aparece cuando intentamos conectarnos a un equipo remoto al que anteriormente nos habíamos conectado y habíamos guardado su *host key* en nuestro fichero `.ssh/known_hosts`. Al intentar realizar la conexión, se detecta que esta IP que ya teníamos guardada en nuestro fichero, junto con el *host key* del anterior servidor, no coinciden con el nuevo *host key* de la nueva máquina, por lo tanto nos avisa que el equipo guardado en nuestro fichero `.ssh/known_hosts` no coincide con el equipo al que estamos intentando conectarnos.
 
 **6.¿Qué guardamos y para qué sirve el fichero en el servidor `~/.ssh/authorized_keys`?**
 

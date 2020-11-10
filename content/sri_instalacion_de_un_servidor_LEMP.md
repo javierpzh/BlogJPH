@@ -195,9 +195,13 @@ lrwxrwxrwx 1 root root 49 Nov  9 18:44 aplicacionesiesgn.conf -> /etc/nginx/site
 lrwxrwxrwx 1 root root 34 Nov  9 12:09 default -> /etc/nginx/sites-available/default
 </pre>
 
+Con estos pasos ya habríamos creado el nuevo virtualhost.
+
 **5. Cuando se acceda al virtualhost por defecto `default` nos tiene que redirigir al virtualhost que hemos creado en el punto anterior.**
 
-Creamos la redirección permanente del virtualhost por defecto a este nuevo virtualhost. Para ello en el fichero de configuración del virtualhost por defecto, que es `/etc/nginx/sites-available/default`, añadimos la siguiente línea:
+Recordemos que el fichero de configuración del virtualhost por defecto, se encuentra en `/etc/nginx/sites-available` con el nombre `default`.
+
+En este archivo crearemos la redirección permanente del virtualhost por defecto a este nuevo virtualhost. Para ello añadimos la siguiente línea:
 
 <pre>
 rewrite ^/$ /srv/www/aplicacionesiesgn permanent;
@@ -205,13 +209,13 @@ rewrite ^/$ /srv/www/aplicacionesiesgn permanent;
 
 **6. Cuando se acceda a `www.iesgnXX.es` se nos redigirá a la página `www.iesgnXX.es/principal`**
 
-Creamos la redirección permanente de `www.iesgn15.es` a `www.iesgn15.es/principal`. Para hacer este cambio, al igual que en el paso anterior, pero esta vez en el fichero de configuración `/etc/nginx/sites-available/aplicacionesiesgn.conf` añadimos la siguiente línea:
+Creamos la redirección permanente de `www.iesgn15.es` a `www.iesgn15.es/principal`. Para hacer este cambio, debemos editar el fichero de configuración `/etc/nginx/sites-available/aplicacionesiesgn.conf` y añadimos la siguiente línea:
 
 <pre>
 rewrite ^/$ /principal permanent;
 </pre>
 
-Queda así:
+Quedaría así:
 
 <pre>
 server {
@@ -232,7 +236,7 @@ server {
 }
 </pre>
 
-Reiniciamos el servicio:
+Reiniciamos el servicio para aplicar todos los cambios realizados en los ficheros de configuración:
 
 <pre>
 systemctl restart nginx
@@ -256,13 +260,13 @@ energy-html.zip           100%[=====================================>] 818.61K  
 2020-11-09 19:15:33 (7.50 MB/s) - ‘energy-html.zip’ saved [838261/838261]
 </pre>
 
-
+Nos ha descargado un archivo comprimido de tipo *.zip*, lo que significa que necesitamos una herramienta capaz de descomprimir este archivo. Para ello instalo la utilidad *zip*, que también incluye la utilidad *unzip*:
 
 <pre>
 apt install zip -y
 </pre>
 
-
+Hacemos uso de la utilidad *unzip* para descomprimir el fichero descargado:
 
 <pre>
 root@vpsjavierpzh:/srv/www/aplicacionesiesgn# unzip energy-html.zip

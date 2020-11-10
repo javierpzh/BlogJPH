@@ -257,6 +257,10 @@ Edito el `index.html`:
 root@vpsjavierpzh:/srv/www/aplicacionesiesgn# nano index.html
 </pre>
 
+<pre>
+chown -R www-data:www-data /srv/
+</pre>
+
 Accedo a la [página](http://www.iesgn15.es)
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/wwwiesgn15es.png)
@@ -281,10 +285,64 @@ Sustituimos por:
 cgi.fix_pathinfo=0
 </pre>
 
+Reiniciamos el servicio:
+
+<pre>
+systemctl restart php7.3-fpm
+</pre>
+
+Configuración *Nginx* para PHP:
+
+`/etc/nginx/sites-available/aplicacionesiesgn.conf`:
+
+<pre>
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /srv/www/aplicacionesiesgn;
+
+        index index.php index.html index.htm index.nginx-debian.html;
+
+        server_name www.iesgn15.es;
+
+        location / {
+                 try_files $uri $uri/ =404;
+        }
+
+        location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+        }
+}
+</pre>
+
+Vemos los cambios que hemos introducido:
+
+- Agregamos `index.php` como primer valor de nuestra directiva índice.
+
+- Agregamos un bloque que se va a encargar de descomentar las líneas **include** y **fastcgi_pass** de todos los ficheros **.php**. Esto es necesario para llevar a cabo el procesamiento real de PHP, ya que estas líneas manejan las solicitudes PHP.
+
+Reiniciamos el servicio:
+
+<pre>
+systemctl restart nginx
+</pre>
 
 
 
+<pre>
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# nano info.php
+</pre>
 
+Escribimos dentro:
 
+<pre>
+<?php phpinfo(); ?>
+</pre>
+
+<pre>
+chown -R www-data:www-data /srv/
+</pre>
 
 **9. Crea un fichero `info.php` que demuestre que está funcionando el servidor LEMP.**

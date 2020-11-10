@@ -34,6 +34,8 @@ apt update && apt install nginx -y
 
 **2. Instala un servidor de base de datos MariaDB. Ejecuta el programa necesario para asegurar el servicio, ya que lo vamos a tener corriendo en el entorno de producción.**
 
+Para instalar un servidor de base de datos **MySQL** o **MariaDB**, debemos instalar los siguientes paquetes:
+
 <pre>
 apt install mariadb-server mariadb-client -y
 </pre>
@@ -106,7 +108,11 @@ installation should now be secure.
 Thanks for using MariaDB!
 </pre>
 
+Ya tendríamos instalado nuestro servidor de base de datos *MySQL* y asegurado correctamente.
+
 **3. Instala un servidor de aplicaciones `php` `php-fpm`.**
+
+Para instalar un servidor de aplicaciones **PHP**, debemos instalar los siguientes paquetes:
 
 <pre>
 apt install php php-fpm -y

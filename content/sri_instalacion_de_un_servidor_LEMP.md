@@ -26,7 +26,7 @@ Antes de proceder a instalar algún paquete cuando creamos una nueva máquina, e
 apt update && apt upgrade -y && apt autoremove -y && apt autoclean
 </pre>
 
-Ahora sí instalamos el podemos instalar el paquete de *Nginx*:
+Ahora sí podemos instalar el paquete de *Nginx*:
 
 <pre>
 apt update && apt install nginx -y
@@ -135,7 +135,7 @@ Una vez tenemos el subdominio que queremos libre y utilizable, procedemos a crea
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/cnameconfiguracion.png)
 
-Vemos como nos avisa que vamos a crear un registro de tipo **CNAME**, cuyo dominio será **www.iesgn15.es** y su destino va a ser **vpsjavierpzh.iesgn15.es.**. Es importante no olvidar este último punto final si queremos utilizar la notación absoluta. Este destino que hemos añadido, correspondería a la dirección IP del servidor, lo que pasa es que en mi servidor tengo creado un registro de tipo **A** que apunta a esta dirección IP, por tanto hago uso de este registro. Por último, podemos apreciar que nos advierte que este cambio puede tardar en ser efectivo hasta 24 horas, así que no debemos preocuparnos si al instante no obtenemos el resultado obtenido.
+Vemos como nos avisa que vamos a crear un registro de tipo **CNAME**, cuyo dominio será **www.iesgn15.es** y su destino va a ser **vpsjavierpzh.iesgn15.es.** . Es importante no olvidar este último punto final si queremos utilizar la notación absoluta. Este destino que hemos añadido, correspondería a la dirección IP del servidor, lo que pasa es que en mi servidor tengo creado un registro de tipo **A** que apunta a esta dirección IP, por tanto hago uso de este registro. Por último, podemos apreciar que nos advierte que este cambio puede tardar en ser efectivo hasta 24 horas, así que no debemos preocuparnos si al instante no obtenemos el resultado obtenido.
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/cnamecrear.png)
 
@@ -153,6 +153,8 @@ root@vpsjavierpzh:/srv# mkdir www
 root@vpsjavierpzh:/srv# cd www/
 
 root@vpsjavierpzh:/srv/www# mkdir aplicacionesiesgn
+
+root@vpsjavierpzh:/srv/www# cd aplicacionesiesgn/
 
 root@vpsjavierpzh:/srv/www/aplicacionesiesgn# mkdir principal
 </pre>
@@ -384,7 +386,7 @@ Ya hemos configurado nuestro virtualhost para que funcione con *PHP*.
 Para ver que como efectivamente hemos configurado *PHP* en nuestra web servida por *Nginx*, vamos a crear un archivo llamado `info.php`:
 
 <pre>
-root@vpsjavierpzh:/srv/www/aplicacionesiesgn# nano info.php
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn/principal# nano info.php
 </pre>
 
 Dentro de este archivo vamos a introducir la siguiente línea: `<?php phpinfo(); ?>`.

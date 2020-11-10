@@ -182,6 +182,12 @@ Creamos la redirección permanente de `www.iesgn15.es` a `www.iesgn15.es/princip
 rewrite ^/$ /principal permanent;
 </pre>
 
+
+
+<pre>
+systemctl restart nginx
+</pre>
+
 **7. En la página `www.iesgnXX.es/principal` se debe mostrar una página web estática (utiliza alguna plantilla para que tenga hoja de estilo). En esta página debe aparecer tu nombre, y una lista de enlaces a las aplicaciones que vamos a ir desplegando posteriormente.**
 
 Hay muchas webs que nos ofrecen plantillas html5 para descargarnos. Yo he utilizado [mashup-template](http://www.mashup-template.com/). He decido descargarme [esta plantilla](http://www.mashup-template.com/preview.html?template=energy) en concreto. Vamos a realizar la descarga en nuestro directorio creado para la web:
@@ -202,13 +208,56 @@ energy-html.zip           100%[=====================================>] 818.61K  
 
 
 
+<pre>
+apt install zip -y
+</pre>
 
 
 
+<pre>
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# unzip energy-html.zip
+Archive:  energy-html.zip
+   creating: energy/
+   creating: energy/assets/
+  inflating: energy/assets/apple-icon-180x180.png  
+   creating: energy/assets/images/
+  inflating: energy/assets/images/img-01.jpg  
+  inflating: energy/assets/images/img-02.jpg  
+  inflating: energy/assets/images/img-03.jpg  
+  inflating: energy/assets/images/img-04.jpg  
+  inflating: energy/assets/images/img-05.jpg  
+  inflating: energy/assets/images/img-06.jpg  
+  inflating: energy/assets/images/img-08.jpg  
+  inflating: energy/assets/images/mashup-icon.svg  
+  inflating: energy/components.html  
+  inflating: energy/index.html       
+  inflating: energy/main.bc58148c.js  
+  inflating: energy/main.bc58148c.js.gz  
+  inflating: energy/main.bc58148c.map  
+  inflating: energy/main.d8e0d294.css  
+  inflating: energy/main.d8e0d294.css.gz  
+   creating: energy/sample/
+  inflating: energy/sample/sample-page.html  
 
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# ls
+energy	energy-html.zip
 
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# rm energy-html.zip
 
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# mv energy/* ./
 
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# ls
+assets		 energy      main.bc58148c.js	  main.bc58148c.map  main.d8e0d294.css.gz
+components.html  index.html  main.bc58148c.js.gz  main.d8e0d294.css  sample
+</pre>
+
+Edito el `index.html`:
+
+<pre>
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# nano index.html
+</pre>
+
+![.](images/sri_instalacion_de_un_servidor_LEMP/wwwiesgn15es.png)
 
 
 

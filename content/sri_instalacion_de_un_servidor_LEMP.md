@@ -145,7 +145,7 @@ Ya hemos creado el nuevo registro:
 
 Una vez hemos realizado las modificaciones necesarias en la configuración del servidor, podemos pasar a configurar *Nginx*.
 
-Creamos el virtualhost en `/srv/www/aplicacionesiesgn`:
+Lo primero sería crear el nuevo virtualhost, en mi caso lo voy a crear en la ruta `/srv/www/aplicacionesiesgn`:
 
 <pre>
 root@vpsjavierpzh:/srv# mkdir www
@@ -155,13 +155,13 @@ root@vpsjavierpzh:/srv# cd www/
 root@vpsjavierpzh:/srv/www# mkdir aplicacionesiesgn
 </pre>
 
-Creamos el fichero de configuración de la nueva web que vamos a crear:
+Creamos el fichero de configuración de la nueva web que vamos a crear, lo he llamado `aplicacionesiesgn.conf`. Recodemos que todos los ficheros de configuración deben estar en la ruta `/etc/nginx/sites-available`.
 
 <pre>
 root@vpsjavierpzh:/etc/nginx/sites-available# nano aplicacionesiesgn.conf
 </pre>
 
-Y dentro escribimos las siguientes líneas:
+Y dentro de este archivo escribimos las siguientes líneas:
 
 <pre>
 server {
@@ -186,7 +186,7 @@ Creamos un enlace simbólico de este fichero a la ruta `sites-enabled` para que 
 ln -s /etc/nginx/sites-available/aplicacionesiesgn.conf /etc/nginx/sites-enabled/
 </pre>
 
-Vemos que nos lo ha creado bien:
+Comprobamos que lo hemos creado bien:
 
 <pre>
 root@vpsjavierpzh:/etc/nginx/sites-available# ls -l /etc/nginx/sites-enabled/

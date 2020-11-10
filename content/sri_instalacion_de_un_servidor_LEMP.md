@@ -395,7 +395,7 @@ Cambiamos de nuevo el propietario de este fichero y de todos los demás archivos
 chown -R www-data:www-data /srv/
 </pre>
 
-Si nos dirigimos a la página `www.iesgn15.es/principal/info.php`:
+Si nos dirigimos a la página `[www.iesgn15.es/principal/info.php](www.iesgn15.es/principal/info.php)`:
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/infophp.png)
 

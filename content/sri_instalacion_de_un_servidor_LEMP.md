@@ -8,7 +8,25 @@ Tags: LEMP, Linux, Nginx, MySQL, MariaDB, PHP, OVH
 
 **Esta tarea la vamos a realizar sobre el servidor OVH**
 
+En esta práctica vamos a montar un **servidor LEMP**, que hace referencia a:
+
+- **L**inux, el sistema operativo
+
+- **(E)** Nginx, el servidor web
+
+- **M**ySQL/MariaDB, el gestor de bases de datos
+
+- **P**HP, el lenguaje de programación
+
 **1. Instala un servidor web nginx**
+
+Antes de proceder a instalar algún paquete cuando creamos una nueva máquina, en este caso una instancia, es muy recomendable actualizar el estado de la máquina, ya que generalmente estamos utilizando imágenes que puede que estén desactualizadas, por tanto, vamos a realizar una actualización de nuestros repositorios y paquetes, y vamos a deshacernos de todo aquello que ya no nos sea necesario:
+
+<pre>
+apt update && apt upgrade -y && apt autoremove -y && apt autoclean
+</pre>
+
+Ahora sí instalamos el podemos instalar el paquete de *Nginx*:
 
 <pre>
 apt update && apt install nginx -y

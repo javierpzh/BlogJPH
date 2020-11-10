@@ -331,33 +331,15 @@ Además de visualizar la nueva web, es importante fijarse en la URL y apreciar q
 
 **8. Configura el nuevo virtualhost, para que pueda ejecutar PHP. Determina que configuración tiene por defecto `php-fpm` (socket unix o socket TCP) para configurar nginx de forma adecuada.**
 
-
+Si queremos configurar este virtualhost para que ejecute *PHP*, debemos antes nada, instalar el paquete que se me ha olvidado instalar antes, y no es menos, que el paquete que nos permite que *PHP* funcione con *MySQL*:
 
 <pre>
 apt install php-mysql -y
 </pre>
 
-Buscamos en `/etc/php/7.3/fpm/php.ini`:
+Ahora sí, debemos dirigirnos a la configuración de este virtualhost de *Nginx*, es decir, al fichero `/etc/nginx/sites-available/aplicacionesiesgn.conf`, y añadirle las siguientes líneas para que ejecute PHP.
 
-<pre>
-;cgi.discard_path=1
-</pre>
-
-Sustituimos por:
-
-<pre>
-cgi.fix_pathinfo=0
-</pre>
-
-Reiniciamos el servicio:
-
-<pre>
-systemctl restart php7.3-fpm
-</pre>
-
-Configuración *Nginx* para PHP:
-
-`/etc/nginx/sites-available/aplicacionesiesgn.conf`:
+De manera que el fichero de configuración quedaría con este aspecto:
 
 <pre>
 server {
@@ -387,13 +369,15 @@ Vemos los cambios que hemos introducido:
 
 - Agregamos `index.php` como primer valor de nuestra directiva índice.
 
-- Agregamos un bloque que se va a encargar de descomentar las líneas **include** y **fastcgi_pass** de todos los ficheros **.php**. Esto es necesario para llevar a cabo el procesamiento real de PHP, ya que estas líneas manejan las solicitudes PHP.
+- Agregamos un bloque que se va a encargar de descomentar las líneas **include** y **fastcgi_pass** de todos los ficheros **.php**. Esto es necesario para llevar a cabo el procesamiento real de PHP, ya que estas líneas son las que manejan las solicitudes PHP.
 
 Reiniciamos el servicio:
 
 <pre>
 systemctl restart nginx
 </pre>
+
+Ya hemos configurado nuestro virtualhost para que funcione con *PHP*.
 
 **9. Crea un fichero `info.php` que demuestre que está funcionando el servidor LEMP.**
 

@@ -323,7 +323,7 @@ Una vez lo tenemos todo listo, debemos cambiar el propietario de todos estos nue
 chown -R www-data:www-data /srv/
 </pre>
 
-Accedo a la [página](http://www.iesgn15.es)
+Accedemos a la [página](http://www.iesgn15.es).
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/wwwiesgn15es.png)
 

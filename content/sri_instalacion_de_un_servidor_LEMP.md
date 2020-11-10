@@ -118,9 +118,12 @@ Para instalar un servidor de aplicaciones **PHP**, debemos instalar los siguient
 apt install php php-fpm -y
 </pre>
 
+Ya tendríamos instalado nuestro servidor de aplicaciones *PHP*.
+
 **4. Crea un virtualhost al que vamos acceder con el nombre `www.iesgnXX.es`. Recuerda que tendrás que crear un registro `CNAME` en la zona DNS.**
 
-Para realizar este paso, nos dirigimos a **nuestra zona DNS de OVH**:
+Vamos a crear un nuevo sitio web al que se accederá mediante la dirección `www.iesgn15.es`. Antes de empezar la configuración de *Nginx*, vamos a añadir un registro **CNAME** en nuestra **nuestra zona DNS de OVH**.
+Para realizar este paso, nos dirigimos a nuestra zona DNS de OVH:
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/zonadnsovh.png)
 

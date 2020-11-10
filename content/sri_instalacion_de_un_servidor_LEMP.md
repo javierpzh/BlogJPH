@@ -327,6 +327,8 @@ Accedo a la [página](http://www.iesgn15.es)
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/wwwiesgn15es.png)
 
+Además de visualizar la nueva web, es importante fijarse en la URL y apreciar que nos ha realizado la redirección a la página `/principal`, como configuramos en el paso anterior.
+
 **8. Configura el nuevo virtualhost, para que pueda ejecutar PHP. Determina que configuración tiene por defecto `php-fpm` (socket unix o socket TCP) para configurar nginx de forma adecuada.**
 
 

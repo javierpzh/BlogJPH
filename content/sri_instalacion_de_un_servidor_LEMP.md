@@ -135,11 +135,11 @@ Una vez tenemos el subdominio que queremos libre y utilizable, procedemos a crea
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/cnameconfiguracion.png)
 
-Vemos como nos avisa que vamos a crear un registro de tipo **CNAME**, cuyo dominio será **www.iesgn15.es** y su destino va a ser **vpsjavierpzh.iesgn15.es.**. Es importante no olvidar este último punto final si queremos utilizar la notación absoluta. Este destino, 
+Vemos como nos avisa que vamos a crear un registro de tipo **CNAME**, cuyo dominio será **www.iesgn15.es** y su destino va a ser **vpsjavierpzh.iesgn15.es.**. Es importante no olvidar este último punto final si queremos utilizar la notación absoluta. Este destino que hemos añadido, correspondería a una dirección IP, lo que pasa es que en mi servidor tengo creado un registro
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/cnamecrear.png)
 
-sss
+Ya hemos creado el nuevo registro:
 
 ![.](images/sri_instalacion_de_un_servidor_LEMP/cnamecreado.png)
 

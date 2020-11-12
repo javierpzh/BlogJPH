@@ -590,6 +590,31 @@ Cada vez que queramos realizar una nueva compilación, debemos limpiar el rastro
 make clean
 </pre>
 
+Esta es una salida de un `make clean`:
+
+<pre>
+javier@debian:~/kernelLinux/linux-4.19.152$ make clean
+  CLEAN   .
+  CLEAN   arch/x86/entry/vdso
+  CLEAN   arch/x86/kernel/cpu
+  CLEAN   arch/x86/kernel
+  CLEAN   arch/x86/purgatory
+  CLEAN   arch/x86/realmode/rm
+  CLEAN   arch/x86/lib
+  CLEAN   certs
+  CLEAN   drivers/scsi
+  CLEAN   drivers/tty/vt
+  CLEAN   lib/raid6
+  CLEAN   lib
+  CLEAN   security/apparmor
+  CLEAN   security/tomoyo
+  CLEAN   usr
+  CLEAN   arch/x86/boot/compressed
+  CLEAN   arch/x86/boot
+  CLEAN   arch/x86/tools
+  CLEAN   .tmp_versions
+</pre>
+
 Ahora sí podemos volver a iniciar el proceso de reducción del núcleo, y por tanto, abrimos la herramienta gráfica con el comando:  
 
 <pre>
@@ -621,6 +646,9 @@ sudo dpkg -i linux-image-4.19.152_4.19.152-1_amd64.deb
 En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación dejo una lista de todos los componentes eliminados. Si empieza por *m_* indica que se trata de un módulo:
 
 ##### General setup
+- Support for paging of anonymous memory (swap)
+- m_Kernel .config support
+- Automatic process group scheduling
 - memory placement aware NUMA scheduler
 - checkpoint/restore support
 - enable VM event counters for /proc/vmstat
@@ -628,34 +656,42 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - SLAB freelist randomization
 - Harden slab freelist metadata
 - profiling support
-    -   **Timers subsystem**
-    -   high resolution timer support
-    -   **CPU/Task time and stats accounting**
-    -   BSD process accounting
-    -   export task/process statistics through netlink
-    -   **Control Group support**
-    -   swap controller
-    -   RDMA controller
-    -   freezer controller
-    -   cpuset controller
-    -   Namespaces support
+-   **Timers subsystem**
+-   high resolution timer support
+-   **CPU/Task time and stats accounting**
+-   BSD process accounting
+-   export task/process statistics through netlink
+-   **Control Group support**
+-   swap controller
+-   RDMA controller
+-   freezer controller
+-   cpuset controller
+-   Namespaces support
 ##### Processor type and features
 - AMD ACPI2Platform devices support
 - old AMD GART IOMMU support
 - IBM Calgary IOMMU support
-    -   **machine check/overheating reporting**
+- x86 architectural random number generator
+-   **machine check/overheating reporting**
     -   AMD MCE features
 - enable vsyscall emulation
-    -   **CPU microcode loading support**
+-   **CPU microcode loading support**
     -   AMD microcode loading support
-    -   **linux guest support** entero
+- **Numa Memory Allocation and Scheduler Support**
+- **linux guest support** entero
 ##### Power management and ACPI options
 - suspend to RAM and standby
 - hibernation
 - device power management core functionality
 - power management timer support
-    -   **ACPI (Advanced Configuration and Power Interface) Support** entero
-- SFI (Simple Firmware Interface) Support
+- **ACPI (Advanced Configuration and Power Interface) Support** entero
+- **SFI (Simple Firmware Interface) Support**
+##### Bus Options (PCI etc.)
+- PCI IOV support
+- PCI PRI support
+- PCI PASID support
+- ISA-style DMA support
+  - **Support for PCI Hotplug**
 ##### Firmware Drivers
 - Apple device properties
 - virtualization
@@ -682,13 +718,16 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - Allow for memory hot-add
 - Enable frontswap to cache swap pages if tmem is present
 ##### Networking support
-- Network packet filtering framework
-- QoS and/or fair queueing
+- **Networking options**
+    - Network packet filtering framework
+    - QoS and/or fair queueing
 - Amateur Radio support
 - Wireless
 - m_Bluetooth subsystem support
 - RF switch subsystem support
 ##### Device Drivers
+- **Generic Driver Options**
+    - Connector - unified userspace <-> kernelspace linker
 - **Misc devices**
 - m_Intel Management Engine Interface
 - m_ME Enabled Intel Chipsets
@@ -704,13 +743,15 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - Wan interfaces support
 - ISDN support
 - **Input device support**
-- Mouse interface
+- m_Mouse interface
 - m_Joystick interface
-- m_Event interface
 - Joysticks/Gamepads
 - Tablets
 - Touchscreens
-- **GPIO Support**
+- **Character devices**
+    - **Serial drivers**
+    - m_Hardware Random Number Generator Core support
+- SPI support
 - m_Hardware Monitoring support
 - Generic Thermal sysfs driver
 - Watchdog Timer Support
@@ -723,7 +764,7 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
     - **Graphics support (Intel 8xx/9xx/G3x/G4x/HD Graphics)**
     - Enable capturing GPU state following a hang
     - Always enable userptr support
-- m_Direct Rendering Manager (XFree86 4.1.0 and higher DRI support) 115modulos copia
+- m_Direct Rendering Manager (XFree86 4.1.0 and higher DRI support)
     - **Frame buffer Devices**
     - Support for frame buffer devices
 - Backlight & LCD device support
@@ -743,27 +784,26 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - **Security options**
 - NSA SELinux Support
 ##### Cryptographic API
-- FIPS 200 compilance ppppppppppppppppppppppppppppp
-- m_ECDH algorithm ppppppppppppppppppppppppppppp
-- m_GF(2^128) multiplication functions ppppppppppppppppppppppppppppp
-- m_Null algorithms ppppppppppppppppppppppppppppp
-- m_Software async crypto daemon ppppppppppppppppppppppppppppp
-- m_CCM support ppppppppppppppppppppppppppppp
-- m_GCM/GMAC support ppppppppppppppppppppppppppppp
-- m_Sequence Number IV Generator ppppppppppppppppppppppppppppp
-- m_CTR support ppppppppppppppppppppppppppppp
-- m_ECB support ppppppppppppppppppppppppppppp
-- m_CMAC support ppppppppppppppppppppppppppppp
-- m_CRC32 PCLMULQDQ hardware acceleration ppppppppppppppppppppppppppppp
-- m_CRCT10DIF PCLMULQDQ hardware acceleration ppppppppppppppppppppppppppppp
-- m_GHASH digest algorithm ppppppppppppppppppppppppppppp
-- m_GHASH digest algorithm (CLMNUL-NI accelerated) ppppppppppppppppppppppppppppp
-- m_GHASH digest algorithm ppppppppppppppppppppppppppppp
-- m_AES cipher algorithms (AES-NI) ppppppppppppppppppppppppppppp
-- m_ARC4 cipher algorithm ppppppppppppppppppppppppppppp
-- LZO compression algorithm ppppppppppppppppppppppppppppp
-
-- m_NIST SP800-90A DRBG ppppppppppppppppppppppppppppp
+- FIPS 200 compilance
+- m_ECDH algorithm
+- m_GF(2^128) multiplication functions
+- m_Null algorithms
+- m_Software async crypto daemon
+- m_CCM support
+- m_GCM/GMAC support
+- m_Sequence Number IV Generator
+- m_CTR support
+- m_ECB support
+- m_CMAC support
+- m_CRC32 PCLMULQDQ hardware acceleration
+- m_CRCT10DIF PCLMULQDQ hardware acceleration
+- m_GHASH digest algorithm
+- m_GHASH digest algorithm (CLMNUL-NI accelerated)
+- m_GHASH digest algorithm
+- m_AES cipher algorithms (AES-NI)
+- m_ARC4 cipher algorithm
+- LZO compression algorithm
+- m_NIST SP800-90A DRBG
 - Hardware crypto devices (Support for AMD secure processor)
 - **Asymmetric**
 - Support for PE file signature verification
@@ -772,7 +812,7 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - Provide system-wide ring of blacklisted keys
 - **Library routines**
 - m_CRC16 functions
-- m_CRC32c (Castagnoli, et al) Cyclic Redundancy-Check ppppppppppppppppppppppppppppp
+- m_CRC32c (Castagnoli, et al) Cyclic Redundancy-Check
     - **XZ decompression support**
     - x86 BCJ filter decoder
 - IRQ polling library
@@ -792,10 +832,10 @@ Si cuento cuántos módulos y cuántos enlaces estáticos forman ahora el núcle
 
 <pre>
 javier@debian:~/kernelLinux/linux-4.19.152$ grep "=m" .config | wc -l
-87
+61
 
 javier@debian:~/kernelLinux/linux-4.19.152$ grep "=y" .config | wc -l
-969
+947
 </pre>
 
 Podemos observar que he conseguido reducir el número de componentes en una gran cantidad. Los módulos se han reducido a la mitad y he eliminado alrededor de 600 enlaces que se incluirán en *vmlinuz*.

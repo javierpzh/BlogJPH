@@ -57,7 +57,7 @@ Instancia:
 
 
 
-![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineaimagen.png)
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineaasociovolumen.png)
 
 
 

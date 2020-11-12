@@ -4,7 +4,11 @@ Category: Cloud Computing
 Header_Cover: theme/images/banner-hlc.jpg
 Tags: OpenStack
 
+**En esta tarea se va a crear el escenario de trabajo que se va a usar durante todo el curso, que va a constar inicialmente de 3 instancias con nombres relacionados con el libro "Don Quijote de la Mancha".**
 
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/escenario.png)
+
+**Pasos a realizar:**
 
 **1. Creación de la red interna:**
 

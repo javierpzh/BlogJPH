@@ -12,7 +12,7 @@ Tags: OpenStack
 
 **1. Creación de la red interna:**
 
-- **Nombre red interna de <nombre de usuario>**
+- **Nombre red interna de (nombre de usuario)**
 - **10.0.1.0/24**
 
 

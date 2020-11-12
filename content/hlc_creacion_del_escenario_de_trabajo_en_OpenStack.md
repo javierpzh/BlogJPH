@@ -90,11 +90,35 @@ Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 </pre>
 
+
+
+<pre>
+root@dulcinea:/home/debian# passwd debian
+New password:
+Retype new password:
+passwd: password updated successfully
+
+root@dulcinea:/home/debian# passwd root
+New password:
+Retype new password:
+passwd: password updated successfully
+</pre>
+
 - **Sancho:**
 
     - **Ubuntu 20.04 sobre volumen de 10GB con sabor m1.mini**
     - **Conectada a la red interna**
     - **Accesible indirectamente a través de dulcinea**
+
+Vamos a repetir el mismo proceso que con **Dulcinea**.
+
+Creamos el volumen:
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/volumenSanchocreado.png)
+
+Instancia:
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/sanchocreada.png)
 
 - **Quijote:**
 
@@ -102,7 +126,15 @@ permitted by applicable law.
     - **Conectada a la red interna**
     - **Accesible indirectamente a través de dulcinea**
 
+  Y por último repetimos el proceso para crear a **Quijote**.
 
+Creamos el volumen:
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/volumenQuijotecreado.png)
+
+Instancia:
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/quijotecreada.png)
 
 **3. Configuración de NAT en Dulcinea (Es necesario deshabilitar la seguridad en todos los puertos de dulcinea) [[https://youtu.be/jqfILWzHrS0]]**
 

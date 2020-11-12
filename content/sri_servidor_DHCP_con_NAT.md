@@ -5,7 +5,7 @@ Header_Cover: theme/images/banner-servicios.jpg
 Tags: servidor, DHCP, NAT, SNAT
 
 ## Teoría
-
+pppp
 **Tarea 1: Lee el documento [Teoría: Servidor DHCP](https://fp.josedomingo.org/serviciosgs/u02/dhcp.html) y explica el funcionamiento del servidor DHCP resumido en este [gráfico](https://fp.josedomingo.org/serviciosgs/u02/img/dhcp.png).**
 
 ![.](images/sri_servidor_dhcp_con_nat/dhcp.png)

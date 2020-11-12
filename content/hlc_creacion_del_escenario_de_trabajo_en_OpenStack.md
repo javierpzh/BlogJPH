@@ -73,6 +73,23 @@ Instancia:
 
 
 
+
+<pre>
+javier@debian:~$ ssh -A debian@172.22.200.174
+The authenticity of host '172.22.200.174 (172.22.200.174)' can't be established.
+ECDSA key fingerprint is SHA256:02tcuAKlKD7EDhB9XcFYBAXsFQ+j0cuD5cTXLoWZxHE.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '172.22.200.174' (ECDSA) to the list of known hosts.
+Linux dulcinea 4.19.0-11-cloud-amd64 #1 SMP Debian 4.19.146-1 (2020-09-17) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+</pre>
+
 - **Sancho:**
 
     - **Ubuntu 20.04 sobre volumen de 10GB con sabor m1.mini**

@@ -221,7 +221,7 @@ Retype new password:
 passwd: all authentication tokens updated successfully.
 </pre>
 
-**3. Configuración de NAT en Dulcinea (Es necesario deshabilitar la seguridad en todos los puertos de dulcinea) Ver este [vídeo](https://youtu.be/jqfILWzHrS0)**
+**3. Configuración de NAT en Dulcinea (Es necesario deshabilitar la seguridad en todos los puertos de dulcinea) Ver este [vídeo](https://youtu.be/jqfILWzHrS0).**
 
 
 

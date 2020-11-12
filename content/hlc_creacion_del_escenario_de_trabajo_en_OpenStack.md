@@ -15,6 +15,42 @@ Tags: OpenStack
 - **Nombre red interna de (nombre de usuario)**
 - **10.0.1.0/24**
 
+Creación de la red:
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/red.png)
+
+
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/redsubred.png)
+
+
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/confirmarred.png)
+
+
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/redcreada.png)
+
+Creación de **Dulcinea**:
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineanombre.png)
+
+
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineaimagen.png)
+
+
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineasabor.png)
+
+
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineared.png)
+
+
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineacreada.png)
+
 
 
 **2. Creación de las instancias:**

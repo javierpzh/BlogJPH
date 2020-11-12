@@ -31,9 +31,29 @@ Creación de la red:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/redcreada.png)
 
+
+
+**2. Creación de las instancias:**
+
+- **Dulcinea:**
+
+    - **Debian Buster sobre volumen de 10GB con sabor m1.mini**
+    - **Accesible directamente a través de la red externa y con una IP flotante**
+    - **Conectada a la red interna, de la que será la puerta de enlace**
+
 Creación de **Dulcinea**:
 
-![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineanombre.png)
+Creamos el volumen:
+
+[.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/volumenDulcinea.png)
+
+
+
+[.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/volumenDulcineacreado.png)
+
+Instancia:
+
+[.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineanombre.png)
 
 
 
@@ -52,14 +72,6 @@ Creación de **Dulcinea**:
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineacreada.png)
 
 
-
-**2. Creación de las instancias:**
-
-- **Dulcinea:**
-
-    - **Debian Buster sobre volumen de 10GB con sabor m1.mini**
-    - **Accesible directamente a través de la red externa y con una IP flotante**
-    - **Conectada a la red interna, de la que será la puerta de enlace**
 
 - **Sancho:**
 

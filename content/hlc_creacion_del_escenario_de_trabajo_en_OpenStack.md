@@ -45,15 +45,15 @@ Creación de **Dulcinea**:
 
 Creamos el volumen:
 
-[.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/volumenDulcinea.png)
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/volumenDulcinea.png)
 
 
 
-[.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/volumenDulcineacreado.png)
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/volumenDulcineacreado.png)
 
 Instancia:
 
-[.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineanombre.png)
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineanombre.png)
 
 
 

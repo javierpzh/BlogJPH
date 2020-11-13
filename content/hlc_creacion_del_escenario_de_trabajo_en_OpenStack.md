@@ -382,13 +382,24 @@ Si vemos de nuevo los detalles de **Dulcinea**:
 +-----------------------------+---------------------------------------------------------------------------------------+
 </pre>
 
-Podemos apreciar como ya no nos muestra que posee este grupo de seguridad y por tanto lo hemos eliminado.
+Podemos apreciar como ya no nos muestra el apartado **security_groups** ya que no posee ningún grupo de seguridad, lo que significa por tanto, que lo hemos eliminado.
 
 Si intentamos hacer un ping, o conectarnos mediante *SSH*:
 
 <pre>
+(openstack) javier@debian:~/openstack$ ping 172.22.200.174
+PING 172.22.200.174 (172.22.200.174) 56(84) bytes of data.
+^C
+--- 172.22.200.174 ping statistics ---
+5 packets transmitted, 0 received, 100% packet loss, time 106ms
 
+(openstack) javier@debian:~/openstack$ ssh debian@172.22.200.174
+^C
 </pre>
+
+Ya no responde y por tanto hemos perdido la conectividad a ella.
+
+
 
 **4.Definición de contraseña en todas las instancias (para poder modificarla desde consola en caso necesario)**
 

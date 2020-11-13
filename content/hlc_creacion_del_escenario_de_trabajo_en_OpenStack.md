@@ -384,7 +384,9 @@ Si vemos de nuevo los detalles de **Dulcinea**:
 
 Podemos apreciar como ya no nos muestra el apartado **security_groups** ya que no posee ningún grupo de seguridad, lo que significa por tanto, que lo hemos eliminado.
 
-Si intentamos hacer un ping, o conectarnos mediante *SSH*:
+Al eliminar el grupo de seguridad, se habilita un cortafuegos por defecto de *OpenStack*, que es la seguridad del puerto, que no permite el tráfico.
+
+Por tanto, si ahora intentamos hacer un ping, o conectarnos mediante *SSH*:
 
 <pre>
 (openstack) javier@debian:~/openstack$ ping 172.22.200.174
@@ -398,6 +400,32 @@ PING 172.22.200.174 (172.22.200.174) 56(84) bytes of data.
 </pre>
 
 Ya no responde y por tanto hemos perdido la conectividad a ella.
+
+Si miramos el puertos de esta máquina, que nos lo mostrará mediante su IP fija, (en caso de **Dulcinea** la IP fija es la **10.0.0.10**) podemos apreciar el **ID** del puerto, la **MAC**, ...
+Nos interesa el **ID** del puerto, ya que necesitamos utilizar el siguiente comando para deshabilitar la seguridad del puerto:
+
+<pre>
+(openstack) javier@debian:~/openstack$ openstack port set --disable-port-security ff9e0846-8ba8-42ec-b7be-bdb2b6279b1d
+</pre>
+
+Una vez hemos deshabilitado el cortafuegos que establece la seguridad del puerto, 
+
+<pre>
+
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

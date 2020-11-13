@@ -669,6 +669,7 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 -   Namespaces support
 ##### Processor type and features
 - AMD ACPI2Platform devices support
+- Intel SoC IOSF Sideband support for SoC platforms
 - old AMD GART IOMMU support
 - IBM Calgary IOMMU support
 - x86 architectural random number generator
@@ -679,6 +680,10 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
     -   AMD microcode loading support
 - **Numa Memory Allocation and Scheduler Support**
 - **linux guest support** entero
+- **Performance monitoring**
+- m_Intel uncore performance events
+- m_Intel rapl performance events
+- m_Intel cstate performance events
 ##### Power management and ACPI options
 - suspend to RAM and standby
 - hibernation
@@ -686,12 +691,20 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - power management timer support
 - **ACPI (Advanced Configuration and Power Interface) Support** entero
 - **SFI (Simple Firmware Interface) Support**
+- **CPU Frequency scaling**
+    - **CPU Frequency scaling**
+        - **CPU frequency transition statistics**
+- **CPU Idle**
+    - **CPU idle PM support** entero
 ##### Bus Options (PCI etc.)
 - PCI IOV support
 - PCI PRI support
 - PCI PASID support
 - ISA-style DMA support
   - **Support for PCI Hotplug**
+  - **Binary Emulations**
+      - **IA32 Emulation**
+      - x32 ABI for 64-bit mode
 ##### Firmware Drivers
 - Apple device properties
 - virtualization
@@ -709,7 +722,10 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - atari partition table support
 - macintosh partition map support
     - **PC BIOS (MSDOS partition tables) support**
+    - Minix subpartition support
     - Solarix (x86) partition table support
+    - Unixware slices support
+    - **Windows Logical Disk Manager (Dynamic Disk) support**
 - SGI partition support
 - Ultrix partition table support
 - sun partition tables support
@@ -719,6 +735,10 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - Enable frontswap to cache swap pages if tmem is present
 ##### Networking support
 - **Networking options**
+        - **Packet socket**
+        - **Unix domain sockets**
+        - Data Center Bridging support
+        - L3 Master device support
     - Network packet filtering framework
     - QoS and/or fair queueing
 - Amateur Radio support
@@ -743,18 +763,36 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - Wan interfaces support
 - ISDN support
 - **Input device support**
+- m_Sparse keymap support library
 - m_Mouse interface
 - m_Joystick interface
 - Joysticks/Gamepads
 - Tablets
 - Touchscreens
+    - **Hardware I/O ports**
+    - m_Raw accedd to serio ports
 - **Character devices**
+    - **Enable TTY**
+        - **Virtual terminal**
+            - Support for console on virtual terminal
+            - Support for binding and unbinding console drivers
+        - **Non-standard serial port support**
+        - Automatically load TTY Line Disciplines
+    - **I2C support** entero
     - **Serial drivers**
+    - Support for sharing serial interrupts
+    - Support RSA serial ports
+    - Support for Synopsys DesignWare 8250 quirks
+    - Support for serial ports in Intel MID platforms
     - m_Hardware Random Number Generator Core support
 - SPI support
+- PPS support
+    - **PTP clock support**
+    - PTP clock support
 - m_Hardware Monitoring support
 - Generic Thermal sysfs driver
 - Watchdog Timer Support
+- Voltage and Current Regulator Support
 - **Graphics support**
 - VGA Arbitration
 - Laptop Hybrid Graphics - GPU switching support
@@ -772,17 +810,38 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - VGA text console
 - m_Sound card support
 - **HID Support**
+    - **HID bus support**
+    - m_Generic HID driver
+        - **Special HID drivers**
+        - m_HID Multitouch panels
     - **USB support**
 - LED Support
 - Accessibility support
+- EDAC (Error Detection And Correction) reporting
+- Real Time Clock
+- DMA Engine support
 - Virtualization drivers
 - Virtio drivers
 - Staging Drivers
 - Platform support for Chrome hardware
+- Mailbox Hardware Support
+- IOMMU Hardware Support
+- **Generic Dynamic Voltage and Frequency Scaling (DVFS)**
+- Pulse-Width Modulation (PWM) Support
+- Generic powercap sysfs driver
 ##### File systems
+- m_Btrfs filesystems support
+- Quota support
+- Report quota messages through netlink interface
+- m_Kernel automonter support (supports v3, v4 and v5)
+- m_FUSE (Filesystem in Userspace) support
+- **Miscellaneius filesystems**
 - **Network File Systems**
 - **Security options**
 - NSA SELinux Support
+    - **TOMOYO Linux Support**
+    - **AppArmor support**
+    - **Yama support**
 ##### Cryptographic API
 - FIPS 200 compilance
 - m_ECDH algorithm
@@ -795,14 +854,17 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - m_CTR support
 - m_ECB support
 - m_CMAC support
+- m_CRC32 INTEL hardware acceleration
 - m_CRC32 PCLMULQDQ hardware acceleration
 - m_CRCT10DIF PCLMULQDQ hardware acceleration
 - m_GHASH digest algorithm
 - m_GHASH digest algorithm (CLMNUL-NI accelerated)
 - m_GHASH digest algorithm
+- m_AES cipher algorithms (x86_64)
 - m_AES cipher algorithms (AES-NI)
 - m_ARC4 cipher algorithm
 - LZO compression algorithm
+- m_Pseudo Random Number Generation for Cryptographic modules
 - m_NIST SP800-90A DRBG
 - Hardware crypto devices (Support for AMD secure processor)
 - **Asymmetric**
@@ -820,22 +882,45 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - Collect scheduler debbuging info
 - Collect scheduler statistics
 - Detect stack corruption on calls to schedule
+- Stack backtrace support
+- Verbose BUG() reporting (addds 70K)
+- Debug linked list manipulation
+- Memtest
+- Tigger a BUG when data corruption is detected
+- **Early printk**
+- Warn on W+X mappings at boot
+- Enable doublefault exception handler
 - Allow gcc to uninline functions marked 'inline'
--   **printk and dmesg options**
--   Enable dynamic printk() support
--   **Compile-time checks and compiler options**
--   Compile the kernel with debug info
--   **Memory Debugging**
--   Debug memory initialisation
+- Debug the x86 FPU code
+- **printk and dmesg options**
+    - Show timing information on printks
+    - Delay each boot printk message by N milliseconds
+    - Enable dynamic printk() support
+- **Compile-time checks and compiler options**
+    - Compile the kernel with debug info
+    - Enable __must_check logic
+    - Strip assembler-generated symbols during link
+    - Debug Filesystems
+    - Make section mismatch errors non-fatal
+- **Memory Debugging**
+    - Extend memmap on extra space for more information on page
+    - Poison pages after freeing
+    - Debug memory initialisation
+- **Debug Lockups and Hangs**
+    - Detect Soft Lockups
+    - Detect Hard Lockups
+    - Detect Hung Tasks
+- Tracers
+- Runtime Testing
 
 Si cuento cuántos módulos y cuántos enlaces estáticos forman ahora el núcleo:
 
 <pre>
 javier@debian:~/kernelLinux/linux-4.19.152$ grep "=m" .config | wc -l
-61
+35
 
 javier@debian:~/kernelLinux/linux-4.19.152$ grep "=y" .config | wc -l
-947
+792
 </pre>
 
 Podemos observar que he conseguido reducir el número de componentes en una gran cantidad. Los módulos se han reducido a la mitad y he eliminado alrededor de 600 enlaces que se incluirán en *vmlinuz*.

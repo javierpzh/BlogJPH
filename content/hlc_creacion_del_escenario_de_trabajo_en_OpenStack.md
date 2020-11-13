@@ -15,6 +15,12 @@ Tags: OpenStack
 - **Nombre red interna de (nombre de usuario)**
 - **10.0.1.0/24**
 
+Levantamos la VPN:
+
+<pre>
+systemctl start openvpn.service
+</pre>
+
 Creación de la red:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/red.png)
@@ -221,13 +227,19 @@ Retype new password:
 passwd: all authentication tokens updated successfully.
 </pre>
 
-**3. Configuración de NAT en Dulcinea (Es necesario deshabilitar la seguridad en todos los puertos de dulcinea) Ver este [vídeo](https://youtu.be/jqfILWzHrS0).**
+**3. Configuración de NAT en Dulcinea (Es necesario deshabilitar la seguridad en todos los puertos de Dulcinea) Ver este [vídeo](https://youtu.be/jqfILWzHrS0).**
+
+Para hacer NAT en **Dulcinea** hacia **Quijote** y **Sancho**, tenemos que modificar el grupo de seguridad de **Dulcinea** y deshabilitar la seguridad de todos sus puertos, es decir, quitarle las reglas de cortafuegos, para luego añadirle nuestra propia regla de `iptables`.
+
+Para ello tenemos que configurar *OpenStack* para administrar nuestro proyecto desde la línea de comandos, que es desde donde vamos a realizar este proceso.
+
+Vamos a crear un entorno virtual y trabajaremos desde aquí. Es necesario instalar estos paquetes:
 
 <pre>
 apt install python-virtualenv python3-pip -y
 </pre>
 
-Creamos un entorno virtual:
+Creamos nuestro entorno virtual:
 
 <pre>
 javier@debian:~/openstack$ python3 -m venv openstack
@@ -237,7 +249,7 @@ javier@debian:~/openstack$ source openstack/bin/activate
 (openstack) javier@debian:~/openstack$
 </pre>
 
-
+Una vez estemos en nuestro entorno virtual, vamos a realizar la instalación del paquete `python-openstackclient`, que es el que necesitamos para administrar nuestra cuenta de *OpenStack*. Antes de realizar la instalación recomiendo actualizar la herramienta `pip`.
 
 <pre>
 (openstack) javier@debian:~/openstack$ pip install --upgrade pip
@@ -245,19 +257,33 @@ javier@debian:~/openstack$ source openstack/bin/activate
 (openstack) javier@debian:~/openstack$ pip install python-openstackclient
 </pre>
 
+Una vez tenemos instalado este paquete, nos quedaría vincular nuestra cuenta. Para llevar a cabo el proceso de vinculación, debemos dirigirnos desde el navegador hacia el gestor de nuestro proyecto, e irnos al apartado de **Acceso y seguridad** y **Acceso a la API**. Obtendremos esta salida:
 
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/accesoalaAPI.png)
+
+Podemos observar que nos muestra unos ficheros para descargar, debemos hacer click en el llamado **Descargar fichero RC de OpenStack v3**. Una vez descargado, lo movemos al directorio donde hemos creado el entorno virtual.
+
+<pre>
+(openstack) javier@debian:~/openstack$ ls
+ openstack  'Proyecto de javier.perezh-openrc.sh'
+</pre>
+
+En mi caso, el archivo descargado recibe el nombre **Proyecto de javier.perezh-openrc.sh**, y en él, vamos a introducir la siguiente línea, donde especificaremos la ruta donde se encuentra el certificado del Gonzalo Nazareno, que es la entidad que maneja los proyectos de *OpenStack*, entre los cuáles se encuentra el mío.
 
 <pre>
 export OS_CACERT=/etc/ssl/certs/gonzalonazareno.crt
 </pre>
 
-
+En este punto, ya podríamos iniciar el proceso de vinculación desde la terminal. Ejecutamos el siguiente comando para verificar nuestras credenciales e iniciar sesión.
 
 <pre>
-(openstack) javier@debian:~/openstack$ sudo systemctl start openvpn.service
-[sudo] password for javier:
 (openstack) javier@debian:~/openstack$ source 'Proyecto de javier.perezh-openrc.sh'
 Please enter your OpenStack Password for project Proyecto de javier.perezh as user javier.perezh:
+</pre>
+
+Si hemos introducido correctamente la contraseña, ya podríamos administrar nuestro proyecto desde la terminal. Por ejemplo, podemos listar nuestras instancias:
+
+<pre>
 (openstack) javier@debian:~/openstack$ openstack server list
 +--------------------------------------+----------------------+--------+---------------------------------------------------------------------------------------+--------------------------+---------+
 | ID                                   | Name                 | Status | Networks                                                                              | Image                    | Flavor  |

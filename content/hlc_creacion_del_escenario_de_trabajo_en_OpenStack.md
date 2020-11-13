@@ -296,7 +296,7 @@ Si hemos introducido correctamente la contraseña, ya podríamos administrar nue
 +--------------------------------------+----------------------+--------+---------------------------------------------------------------------------------------+--------------------------+---------+
 </pre>
 
-
+Vemos como nos muestra las instancias creadas, entre las cuáles se encuentran las tres que formarán el escenario, **Quijote**, **Sancho** y **Dulcinea**. 
 
 <pre>
 

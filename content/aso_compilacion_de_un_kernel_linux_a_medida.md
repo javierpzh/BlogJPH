@@ -647,12 +647,16 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 
 ##### General setup
 - Support for paging of anonymous memory (swap)
+- POSIX Message Queues
+- CPU isolation
+- Kernel->user space relay support (formerly relayfs)
 - m_Kernel .config support
 - Automatic process group scheduling
 - memory placement aware NUMA scheduler
-- checkpoint/restore support
-- enable VM event counters for /proc/vmstat
-- allow slab caches to be merged
+- Checkpoint/restore support
+- Enable VM event counters for /proc/vmstat
+- Enable SLUB debugging support
+- Allow slab caches to be merged
 - SLAB freelist randomization
 - Harden slab freelist metadata
 - profiling support
@@ -662,28 +666,44 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 -   BSD process accounting
 -   export task/process statistics through netlink
 -   **Control Group support**
--   swap controller
--   RDMA controller
--   freezer controller
--   cpuset controller
--   Namespaces support
+    - Swap controller
+    - RDMA controller
+    - Freezer controller
+    - Cpuset controller
+    - Support for eBPF programs attached to cgroups
+- **Namespaces support** entero
 ##### Processor type and features
 - AMD ACPI2Platform devices support
 - Intel SoC IOSF Sideband support for SoC platforms
+- Single-depth WCHAN output
+- Enable DMI scannning
+- **Multi-core scheduler support** entero
+- Reroute for broken boot IRQs
+- Machine Check / overheating reporting
 - old AMD GART IOMMU support
 - IBM Calgary IOMMU support
-- x86 architectural random number generator
--   **machine check/overheating reporting**
-    -   AMD MCE features
-- enable vsyscall emulation
--   **CPU microcode loading support**
-    -   AMD microcode loading support
+- **Machine Check/overheating reporting**
+    - AMD MCE features
+- Enable vsyscall emulation
+- **CPU microcode loading support** entero
 - **Numa Memory Allocation and Scheduler Support**
-- **linux guest support** entero
-- **Performance monitoring**
-- m_Intel uncore performance events
-- m_Intel rapl performance events
-- m_Intel cstate performance events
+- x86 architectural random number generator
+- Supervisor Mode Access Prevention
+- Intel User Mode Instruction Prevention
+- Intel MPX (Memory Protection Extensions)
+- Intel Memory Protection Keys
+- Enable seccomp to safely compute untrusted bytecode
+- kexec system call
+- kexec file based system call
+- Verify kernel signature during kexec_file_load() syscall
+- kernel crash dumps
+- **Build a relocatable kernel**
+- Enable the LDT (local descriptor table)
+    - **Linux guest support** entero
+    - **Performance monitoring**
+        - m_Intel uncore performance events
+        - m_Intel rapl performance events
+        - m_Intel cstate performance events
 ##### Power management and ACPI options
 - suspend to RAM and standby
 - hibernation
@@ -694,9 +714,14 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - **CPU Frequency scaling**
     - **CPU Frequency scaling**
         - **CPU frequency transition statistics**
+    - 'schedutil' cpufreq policy governor
+    - Intel P state control
 - **CPU Idle**
     - **CPU idle PM support** entero
 ##### Bus Options (PCI etc.)
+- **PCI Express Port Bus support** entero
+- Message Signaled Interrupts (MSI and MSI-X)
+- Enable PCI quirk workarounds
 - PCI IOV support
 - PCI PRI support
 - PCI PASID support
@@ -714,8 +739,17 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - stack protector buffer overflow detection
 - use a virtually-mapped stack
 - perform full reference count validation at the expense of speed
+- **Enable loadable modulo support**
+    - Module versioning support
 ##### Enable the block layer
-- **partition types**
+- Block layer SG support v4
+- Block layer SG support v4 helper lib
+- Block layer data integrity support
+- Zoned block device support
+- Block layer bio throttling support
+- Enable support for block device writeback throttling
+- Logic for interfacing with Opal enabled SEDs
+- **Partition Types**
 - acorn partition support
 - alpha OSF partition support
 - amiga partition table support
@@ -731,16 +765,24 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - sun partition tables support
 - karma partition support
 - **Memory Management options**
+- Sparse Memory virtual memmap
 - Allow for memory hot-add
+- Allow for memory compaction
+- **Transparent Hugepage Support** entero
 - Enable frontswap to cache swap pages if tmem is present
 ##### Networking support
 - **Networking options**
-        - **Packet socket**
-        - **Unix domain sockets**
-        - Data Center Bridging support
-        - L3 Master device support
+    - Transformation sub policy support
+    - Transformation migrate database
+    - Security Marking
+    - Data Center Bridging support
+    - L3 Master device support
     - Network packet filtering framework
     - QoS and/or fair queueing
+    - Network priority cgroup
+    - Network classid cgroup
+    - enable BPF Just In Time compiler
+    - enable BPF STREAM_PARSER
 - Amateur Radio support
 - Wireless
 - m_Bluetooth subsystem support
@@ -748,20 +790,35 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 ##### Device Drivers
 - **Generic Driver Options**
     - Connector - unified userspace <-> kernelspace linker
+    - **NVME Support**
+    - NVMe multipath support
 - **Misc devices**
 - m_Intel Management Engine Interface
 - m_ME Enabled Intel Chipsets
 - **SCSI device support**
-    - **SCSI Transports**
-    - SCSI low-level drivers
+    - SCSI device support
+    - Verbose SCSI error reporting (kernel size += 36K)
+    - SCSI logging facility
+    - Asynchronous SCSI sacnning
+        - **SCSI Transports**
+        - **SCSI low-level drivers**
+        - **SCSI Device Handlers**
+    - **Serial ATA and Parallel ATA drivers (libata)** entero
+        - Verbose ATA error reporting
+        - **ATA SFF support (for legacy IDE and PATA)**
     - **Multiple devices driver support (RAID and LVM)**
     - m_RAID support
     - Fusion MPT device support
     - Macintosh device drivers
 - **Network device support**
-- Wireless LAN
-- Wan interfaces support
-- ISDN support
+    - **Network core driver support** entero
+    - **FDDI driver support** entero
+    - **HIPPI driver support** entero
+    - **m_MDIO bus device drivers** entero
+    - **m_PHY Device support and infrastructure** entero
+    - Wireless LAN
+    - Wan interfaces support
+    - ISDN support
 - **Input device support**
 - m_Sparse keymap support library
 - m_Mouse interface
@@ -785,6 +842,8 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
     - Support for Synopsys DesignWare 8250 quirks
     - Support for serial ports in Intel MID platforms
     - m_Hardware Random Number Generator Core support
+    - **m_IPMI top-level message handler** entero
+    - **m_TPM Hardware Support** entero
 - SPI support
 - PPS support
     - **PTP clock support**
@@ -793,6 +852,9 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - Generic Thermal sysfs driver
 - Watchdog Timer Support
 - Voltage and Current Regulator Support
+- **GPIO Support**
+    - **Multifunction device drivers**
+        - m_Intel Low Power Subsystem support in PCI mode
 - **Graphics support**
 - VGA Arbitration
 - Laptop Hybrid Graphics - GPU switching support
@@ -810,11 +872,11 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - VGA text console
 - m_Sound card support
 - **HID Support**
-    - **HID bus support**
-    - m_Generic HID driver
-        - **Special HID drivers**
-        - m_HID Multitouch panels
-    - **USB support**
+    - **HID bus support** entero
+    - **USB support** entero
+    - **DMABUF options**
+        - Explicit Syncrhonization Framework
+    - X86 Platform Specific Device Drivers
 - LED Support
 - Accessibility support
 - EDAC (Error Detection And Correction) reporting
@@ -826,9 +888,14 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - Platform support for Chrome hardware
 - Mailbox Hardware Support
 - IOMMU Hardware Support
-- **Generic Dynamic Voltage and Frequency Scaling (DVFS)**
-- Pulse-Width Modulation (PWM) Support
-- Generic powercap sysfs driver
+- **SOC (System On Chip) specific Drivers**
+    - **Generic Dynamic Voltage and Frequency Scaling (DVFS)**
+        - Pulse-Width Modulation (PWM) Support
+        - Generic powercap sysfs driver
+    - **PHY Subsystem**
+        - PHY Core
+    - **Android**
+        - **Android Drivers**
 ##### File systems
 - m_Btrfs filesystems support
 - Quota support
@@ -863,8 +930,10 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - m_AES cipher algorithms (x86_64)
 - m_AES cipher algorithms (AES-NI)
 - m_ARC4 cipher algorithm
+- Deflate compression algorithm ppppppppppppppppppppppppp
 - LZO compression algorithm
 - m_Pseudo Random Number Generation for Cryptographic modules
+- Jitterentropy Non-Deterministic Random Number Generator ppppppppppppppppppppppppp
 - m_NIST SP800-90A DRBG
 - Hardware crypto devices (Support for AMD secure processor)
 - **Asymmetric**
@@ -917,10 +986,10 @@ Si cuento cuántos módulos y cuántos enlaces estáticos forman ahora el núcle
 
 <pre>
 javier@debian:~/kernelLinux/linux-4.19.152$ grep "=m" .config | wc -l
-35
+17
 
 javier@debian:~/kernelLinux/linux-4.19.152$ grep "=y" .config | wc -l
-792
+676
 </pre>
 
 Podemos observar que he conseguido reducir el número de componentes en una gran cantidad. Los módulos se han reducido a la mitad y he eliminado alrededor de 600 enlaces que se incluirán en *vmlinuz*.

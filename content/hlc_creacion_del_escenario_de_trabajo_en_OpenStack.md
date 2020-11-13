@@ -96,20 +96,6 @@ Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 </pre>
 
-
-
-<pre>
-root@dulcinea:/home/debian# passwd debian
-New password:
-Retype new password:
-passwd: password updated successfully
-
-root@dulcinea:/home/debian# passwd root
-New password:
-Retype new password:
-passwd: password updated successfully
-</pre>
-
 - **Sancho:**
 
     - **Ubuntu 20.04 sobre volumen de 10GB con sabor m1.mini**
@@ -169,20 +155,6 @@ See "man sudo_root" for details.
 ubuntu@sancho:~$
 </pre>
 
-
-
-<pre>
-root@sancho:/home/ubuntu# passwd ubuntu
-New password:
-Retype new password:
-passwd: password updated successfully
-
-root@sancho:/home/ubuntu# passwd root
-New password:
-Retype new password:
-passwd: password updated successfully
-</pre>
-
 - **Quijote:**
 
     - **CentOS 7 sobre volumen de 10GB con sabor m1.mini**
@@ -209,22 +181,6 @@ Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added '10.0.1.4' (ECDSA) to the list of known hosts.
 
 [centos@quijote ~]$
-</pre>
-
-
-
-<pre>
-[root@quijote centos]# passwd centos
-Changing password for user centos.
-New password:
-Retype new password:
-passwd: all authentication tokens updated successfully.
-
-[root@quijote centos]# passwd root
-Changing password for user root.
-New password:
-Retype new password:
-passwd: all authentication tokens updated successfully.
 </pre>
 
 **3. Configuración de NAT en Dulcinea (Es necesario deshabilitar la seguridad en todos los puertos de Dulcinea) Ver este [vídeo](https://youtu.be/jqfILWzHrS0).**
@@ -424,6 +380,7 @@ PING 172.22.200.174 (172.22.200.174) 56(84) bytes of data.
 --- 172.22.200.174 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 5ms
 rtt min/avg/max/mdev = 77.683/91.631/116.705/17.768 ms
+
 (openstack) javier@debian:~/openstack$ ssh debian@172.22.200.174
 Linux dulcinea 4.19.0-11-cloud-amd64 #1 SMP Debian 4.19.146-1 (2020-09-17) x86_64
 
@@ -439,9 +396,17 @@ debian@dulcinea:~$
 
 Vemos que **Dulcinea** es completamente accesible.
 
+También vamos a deshabilitar la seguridad del puerto cuya IP es la que posee **Dulcinea** de la red interna, es decir, la **10.0.1.5**.
+
+<pre>
+(openstack) javier@debian:~/openstack$ openstack port set --disable-port-security bad04056-63b4-4d73-afb0-fac3b9137699
+</pre>
+
 **4.Definición de contraseña en todas las instancias (para poder modificarla desde consola en caso necesario)**
 
-Dulcinea:
+Vamos a establecerle contraseñas a los usuarios, tanto al usuario sin privilegios como a *root*, de las tres instancias. Normalmente no nos va a ser necesario ya que accedemos mediante el par de claves, pero es muy recomendable para poder acceder a ellas si fuera necesario mediante la consola. Para ello vamos a utilizar la herramienta `passwd`.
+
+**Dulcinea:**
 
 <pre>
 root@dulcinea:/home/debian# passwd debian
@@ -455,7 +420,7 @@ Retype new password:
 passwd: password updated successfully
 </pre>
 
-Sancho:
+**Sancho:**
 
 <pre>
 root@sancho:/home/ubuntu# passwd ubuntu
@@ -469,7 +434,7 @@ Retype new password:
 passwd: password updated successfully
 </pre>
 
-Quijote:
+**Quijote:**
 
 <pre>
 [root@quijote centos]# passwd centos
@@ -487,6 +452,8 @@ passwd: all authentication tokens updated successfully.
 
 **5. Modificación de las instancias sancho y quijote para que usen direccionamiento estático y dulcinea como puerta de enlace**
 
+Para realizar este paso, en **Dulcinea** debemos habilitar el **bit de forward** y añadir la regla de `iptables` necesaria.
+
 <pre>
 root@dulcinea:~# nano /etc/sysctl.conf
 
@@ -495,6 +462,41 @@ net.ipv4.ip_forward = 1
 
 root@dulcinea:~# iptables -t nat -A POSTROUTING -s 10.0.1.0/24 -o eth1 -j MASQUERADE
 </pre>
+
+**Sancho**
+
+Para establecer el direccionamiento estático debemos editar el fichero `/etc/network/interfaces`.
+
+<pre>
+nano /etc/network/interfaces
+</pre>
+
+En este archivo tendremos que asignar una dirección IP fija en la interfaz de red ****, que es la que está utilizando esta máquina.
+
+<pre>
+auto eth0
+iface eth0 inet static
+address 10.0.1.10
+netmask 255.255.255.0
+network 10.0.1.0
+broadcast 10.0.1.255
+gateway 10.0.1.5
+</pre>
+
+
+
+**Sancho**
+
+Vamos a cambiar la puerta de enlace y vamos a establecer la IP de **Dulcinea** para que salga por esta, que a su vez hará NAT para que posea conectividad al exterior.
+
+
+
+
+
+
+
+
+
 
 **6. Modificación de la subred de la red interna, deshabilitando el servidor DHCP**
 

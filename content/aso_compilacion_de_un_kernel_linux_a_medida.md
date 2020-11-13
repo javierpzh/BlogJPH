@@ -930,10 +930,10 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - m_AES cipher algorithms (x86_64)
 - m_AES cipher algorithms (AES-NI)
 - m_ARC4 cipher algorithm
-- Deflate compression algorithm ppppppppppppppppppppppppp
+- Deflate compression algorithm
 - LZO compression algorithm
 - m_Pseudo Random Number Generation for Cryptographic modules
-- Jitterentropy Non-Deterministic Random Number Generator ppppppppppppppppppppppppp
+- Jitterentropy Non-Deterministic Random Number Generator
 - m_NIST SP800-90A DRBG
 - Hardware crypto devices (Support for AMD secure processor)
 - **Asymmetric**

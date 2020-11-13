@@ -476,7 +476,7 @@ En este archivo tendremos que asignar una dirección IP fija en la interfaz de r
 <pre>
 auto eth0
 iface eth0 inet static
-address 10.0.1.10
+address 10.0.1.8
 netmask 255.255.255.0
 network 10.0.1.0
 broadcast 10.0.1.255

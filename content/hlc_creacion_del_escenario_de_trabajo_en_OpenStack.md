@@ -733,7 +733,49 @@ Guardamos los cambios y ya tendríamos deshabilitado el servidor DHCP de nuestra
 
 **8. Creación del usuario profesor en todas las instancias. Usuario que puede utilizar sudo sin contraseña**
 
+**Dulcinea:**
 
+<pre>
+root@dulcinea:~# useradd -m profesor
+
+root@dulcinea:~# passwd profesor
+New password:
+Retype new password:
+passwd: password updated successfully
+
+root@dulcinea:~# ls /home/
+debian	profesor
+</pre>
+
+**Sancho:**
+
+<pre>
+root@sancho:~# useradd -m profesor
+
+root@sancho:~# passwd profesor
+New password:
+Retype new password:
+passwd: password updated successfully
+
+root@sancho:~# ls /home/
+profesor  ubuntu
+</pre>
+
+**Quijote:**
+
+<pre>
+[root@quijote ~]# adduser profesor
+
+[root@quijote ~]# passwd profesor
+Changing password for user profesor.
+New password:
+BAD PASSWORD: The password contains the user name in some form
+Retype new password:
+passwd: all authentication tokens updated successfully.
+
+[root@quijote ~]# ls /home/
+centos  profesor
+</pre>
 
 **9. Copia de las claves públicas de todos los profesores en las instancias para que puedan acceder con el usuario profesor**
 

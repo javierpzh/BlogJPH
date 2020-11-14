@@ -25,7 +25,7 @@ Creación de la red:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/red.png)
 
-
+Deshabilitamos la puerta de enlace ya que no nos va hacer falta debido a que vamos a poner a *Dulcinea*.
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/redsubred.png)
 
@@ -663,7 +663,69 @@ Podemos ver como efectivamente nos ha aplicado la configuración, poseemos una I
 
 **6. Modificación de la subred de la red interna, deshabilitando el servidor DHCP**
 
+Esta modificación, la podemos llevar a cabo en nuestro gestor de proyectos de *OpenStack* desde el navegador, pero como ya tenemos configurada el administrador de *OpenStack* desde la terminal, vamos a probar a hacerlo desde aquí.
 
+Listamos todas nuestra redes:
+
+<pre>
+(openstack) javier@debian:~/openstack$ openstack network list
++--------------------------------------+------------------------------+----------------------------------------------------------------------------+
+| ID                                   | Name                         | Subnets                                                                    |
++--------------------------------------+------------------------------+----------------------------------------------------------------------------+
+| 446d94eb-183a-4f34-a05c-2dacc6cd3a54 | red de javier.perezh         | 98c0ae2f-d2ee-48a3-9122-f1369a6e99b3                                       |
+| 49812d85-8e7a-4c31-baa2-d427692f6568 | ext-net                      | 158bbe3e-3c98-485e-8042-ba6402111ea6, 6218710b-aa05-46f7-b198-7639efe3da95 |
+| 789a71de-1aff-4d0e-ade4-f0dc4a921e64 | red interna de javier.perezh | 625d5c66-aa76-4887-af3c-18053b943b5a                                       |
++--------------------------------------+------------------------------+----------------------------------------------------------------------------+
+</pre>
+
+Si vemos los detalles de nuestra red interna obtenemos:
+
+<pre>
+(openstack) javier@debian:~/openstack$ openstack network show 789a71de-1aff-4d0e-ade4-f0dc4a921e64
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | UP                                   |
+| availability_zone_hints   |                                      |
+| availability_zones        | nova                                 |
+| created_at                | 2020-11-12T10:19:58Z                 |
+| description               |                                      |
+| dns_domain                | None                                 |
+| id                        | 789a71de-1aff-4d0e-ade4-f0dc4a921e64 |
+| ipv4_address_scope        | None                                 |
+| ipv6_address_scope        | None                                 |
+| is_default                | None                                 |
+| is_vlan_transparent       | None                                 |
+| mtu                       | 8950                                 |
+| name                      | red interna de javier.perezh         |
+| port_security_enabled     | True                                 |
+| project_id                | 678e0304a62c445ba78d3b825cb4f1ab     |
+| provider:network_type     | None                                 |
+| provider:physical_network | None                                 |
+| provider:segmentation_id  | None                                 |
+| qos_policy_id             | None                                 |
+| revision_number           | 8                                    |
+| router:external           | Internal                             |
+| segments                  | None                                 |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   | 625d5c66-aa76-4887-af3c-18053b943b5a |
+| tags                      |                                      |
+| updated_at                | 2020-11-14T11:45:33Z                 |
++---------------------------+--------------------------------------+
+</pre>
+
+Pero nos encontramos con que no podemos apreciar ningún apartado que nos indique nada del servidor DHCP. He estado buscando un poco por internet pero no he conseguido averiguar nada. De hecho, ni siquiera sé si esta opción la podemos configurar desde aquí, aunque obviamente pienso que sí, por ello he intentado este proceso.
+
+Dicho esto, nos dirigimos a nuestro proyecto de *OpenStack* en el navegador, a este apartado:
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/redinternajavier.perezh.png)
+
+Seleccionamos la opción **Editar subred**, y se nos abrirá esta ventana en la que tendremos que desmarcar la opción llamada **Habilitar DHCP**.
+
+![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dhcpdesactivado.png)
+
+Guardamos los cambios y ya tendríamos deshabilitado el servidor DHCP de nuestra red interna.
 
 **7. Utilización de ssh-agent para acceder a las instancias**
 

@@ -15,29 +15,31 @@ Tags: OpenStack
 - **Nombre red interna de (nombre de usuario)**
 - **10.0.1.0/24**
 
-Levantamos la VPN:
+Vamos a llevar a cabo la creación de la red interna **10.0.1.0/24**, a la cuál pertenecerán las máquinas **Dulcinea**, **Sancho** y **Quijote**.
+
+Antes de nada, para trabajar con el *cloud* tendremos que levantar la VPN:
 
 <pre>
 systemctl start openvpn.service
 </pre>
 
-Creación de la red:
+Una vez estemos dentro de nuestro gestor de proyectos de **OpenStack**, empezaremos la creación de la red. Nos dirigimos al apartado **Redes**, y seleccionamos la opción **+ Crear red**:
+
+Se nos abre esta ventana en la que estableceremos la configuración de la nueva red:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/red.png)
 
-Deshabilitamos la puerta de enlace ya que no nos va hacer falta debido a que vamos a poner a *Dulcinea*.
+Indicamos la dirección de la red y deshabilitamos la puerta de enlace ya que no nos va hacer falta debido a que vamos a poner a *Dulcinea* como *gateway*:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/redsubred.png)
 
-
+Dejamos marcada la opción de **Habilitar DHCP** que viene de manera predeterminada, para que de esta forma, nos dé una dirección IP de manera automática cuando levantemos las instancias.
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/confirmarred.png)
 
-
+Y esta sería la red que hemos creado:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/redcreada.png)
-
-
 
 **2. Creación de las instancias:**
 

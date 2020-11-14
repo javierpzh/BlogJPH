@@ -878,7 +878,7 @@ Y fin, esto hará que cuando el usuario *profesor* haga uso de `sudo`, no le pid
 
 **9. Copia las claves públicas de todos los profesores en las instancias para que puedan acceder con el usuario profesor**
 
-
+He copiado todas las claves públicas de los profesores al fichero `.ssh/authorized_keys` del usuario *profesor*.
 
 **10. Realiza una actualización completa de todos los servidores**
 

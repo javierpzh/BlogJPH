@@ -246,9 +246,9 @@ Si hemos introducido correctamente la contraseña, ya podríamos administrar nue
 +--------------------------------------+----------------------+--------+---------------------------------------------------------------------------------------+--------------------------+---------+
 | ID                                   | Name                 | Status | Networks                                                                              | Image                    | Flavor  |
 +--------------------------------------+----------------------+--------+---------------------------------------------------------------------------------------+--------------------------+---------+
-| c7f6c834-1eeb-402a-9ed2-5ce1cb1246a2 | Quijote              | ACTIVE | red interna de javier.perezh=10.0.1.4                                                 | N/A (booted from volume) | m1.mini |
-| bff8a1d9-01d8-4835-9513-fb49290f11ed | Sancho               | ACTIVE | red interna de javier.perezh=10.0.1.8                                                 | N/A (booted from volume) | m1.mini |
-| 1e501c2a-69dd-40ea-9d89-8fb97a355b27 | Dulcinea             | ACTIVE | red de javier.perezh=10.0.0.10, 172.22.200.174; red interna de javier.perezh=10.0.1.5 | N/A (booted from volume) | m1.mini |
+| 07edce9e-38af-45a5-b1bc-a9df951575cc | Quijote              | ACTIVE | red interna de javier.perezh=10.0.1.7                                                 | N/A (booted from volume) | m1.mini |
+| 044c375b-d088-4165-8668-a55775f9fabb | Sancho               | ACTIVE | red interna de javier.perezh=10.0.1.8                                                 | N/A (booted from volume) | m1.mini |
+| 73f609c8-9724-4e54-818d-a9bdf0cb43fe | Dulcinea             | ACTIVE | red de javier.perezh=10.0.0.8, 172.22.200.183; red interna de javier.perezh=10.0.1.11 | N/A (booted from volume) | m1.mini |
 | 1228132f-73ae-4ccf-9216-bf17fab31d12 | Deb10-ServidorNginx2 | ACTIVE | red de javier.perezh=10.0.0.9                                                         | N/A (booted from volume) | m1.mini |
 | 70264938-6486-4db0-af71-89d0037f3d54 | Deb10-ServidorNginx  | ACTIVE | red de javier.perezh=10.0.0.3, 172.22.200.116                                         | N/A (booted from volume) | m1.mini |
 +--------------------------------------+----------------------+--------+---------------------------------------------------------------------------------------+--------------------------+---------+
@@ -272,16 +272,16 @@ Primeramente. vamos a ver los detalles de esta instancia:
 | OS-EXT-STS:power_state      | Running                                                                               |
 | OS-EXT-STS:task_state       | None                                                                                  |
 | OS-EXT-STS:vm_state         | active                                                                                |
-| OS-SRV-USG:launched_at      | 2020-11-12T11:02:24.000000                                                            |
+| OS-SRV-USG:launched_at      | 2020-11-14T17:44:11.000000                                                            |
 | OS-SRV-USG:terminated_at    | None                                                                                  |
 | accessIPv4                  |                                                                                       |
 | accessIPv6                  |                                                                                       |
-| addresses                   | red de javier.perezh=10.0.0.10, 172.22.200.174; red interna de javier.perezh=10.0.1.5 |
+| addresses                   | red de javier.perezh=10.0.0.8, 172.22.200.183; red interna de javier.perezh=10.0.1.11 |
 | config_drive                |                                                                                       |
-| created                     | 2020-11-12T11:02:01Z                                                                  |
+| created                     | 2020-11-14T17:43:42Z                                                                  |
 | flavor                      | m1.mini (12)                                                                          |
 | hostId                      | 1cd650c7bff842c92682e8bc3d0d184f4ddcc2e41fc41ae8487eeb6a                              |
-| id                          | 1e501c2a-69dd-40ea-9d89-8fb97a355b27                                                  |
+| id                          | 73f609c8-9724-4e54-818d-a9bdf0cb43fe                                                  |
 | image                       | N/A (booted from volume)                                                              |
 | key_name                    | msi_debian_clave_publica                                                              |
 | name                        | Dulcinea                                                                              |
@@ -291,9 +291,9 @@ Primeramente. vamos a ver los detalles de esta instancia:
 | security_groups             | name='default'                                                                        |
 |                             | name='default'                                                                        |
 | status                      | ACTIVE                                                                                |
-| updated                     | 2020-11-12T11:02:24Z                                                                  |
+| updated                     | 2020-11-14T17:44:12Z                                                                  |
 | user_id                     | fc6228f3de9b2e4abfc00a526192e37c323cde31412ffd98d1bf7c584915f35a                      |
-| volumes_attached            | id='9bd08310-3e86-4146-b70f-68950c86749f'                                             |
+| volumes_attached            | id='dab6f14b-ec83-4d5a-9940-0f4bb35f864a'                                             |
 +-----------------------------+---------------------------------------------------------------------------------------+
 </pre>
 
@@ -317,16 +317,16 @@ Si vemos de nuevo los detalles de **Dulcinea**:
 | OS-EXT-STS:power_state      | Running                                                                               |
 | OS-EXT-STS:task_state       | None                                                                                  |
 | OS-EXT-STS:vm_state         | active                                                                                |
-| OS-SRV-USG:launched_at      | 2020-11-12T11:02:24.000000                                                            |
+| OS-SRV-USG:launched_at      | 2020-11-14T17:44:11.000000                                                            |
 | OS-SRV-USG:terminated_at    | None                                                                                  |
 | accessIPv4                  |                                                                                       |
 | accessIPv6                  |                                                                                       |
-| addresses                   | red de javier.perezh=10.0.0.10, 172.22.200.174; red interna de javier.perezh=10.0.1.5 |
+| addresses                   | red de javier.perezh=10.0.0.8, 172.22.200.183; red interna de javier.perezh=10.0.1.11 |
 | config_drive                |                                                                                       |
-| created                     | 2020-11-12T11:02:01Z                                                                  |
+| created                     | 2020-11-14T17:43:42Z                                                                  |
 | flavor                      | m1.mini (12)                                                                          |
 | hostId                      | 1cd650c7bff842c92682e8bc3d0d184f4ddcc2e41fc41ae8487eeb6a                              |
-| id                          | 1e501c2a-69dd-40ea-9d89-8fb97a355b27                                                  |
+| id                          | 73f609c8-9724-4e54-818d-a9bdf0cb43fe                                                  |
 | image                       | N/A (booted from volume)                                                              |
 | key_name                    | msi_debian_clave_publica                                                              |
 | name                        | Dulcinea                                                                              |
@@ -334,9 +334,9 @@ Si vemos de nuevo los detalles de **Dulcinea**:
 | project_id                  | 678e0304a62c445ba78d3b825cb4f1ab                                                      |
 | properties                  |                                                                                       |
 | status                      | ACTIVE                                                                                |
-| updated                     | 2020-11-12T11:02:24Z                                                                  |
+| updated                     | 2020-11-14T17:44:12Z                                                                  |
 | user_id                     | fc6228f3de9b2e4abfc00a526192e37c323cde31412ffd98d1bf7c584915f35a                      |
-| volumes_attached            | id='9bd08310-3e86-4146-b70f-68950c86749f'                                             |
+| volumes_attached            | id='dab6f14b-ec83-4d5a-9940-0f4bb35f864a'                                             |
 +-----------------------------+---------------------------------------------------------------------------------------+
 </pre>
 
@@ -347,23 +347,43 @@ Al eliminar el grupo de seguridad, se habilita un cortafuegos por defecto de *Op
 Por tanto, si ahora intentamos hacer un ping, o conectarnos mediante *SSH*:
 
 <pre>
-(openstack) javier@debian:~/openstack$ ping 172.22.200.174
-PING 172.22.200.174 (172.22.200.174) 56(84) bytes of data.
+(openstack) javier@debian:~/openstack$ ping 172.22.200.183
+PING 172.22.200.183 (172.22.200.183) 56(84) bytes of data.
 ^C
---- 172.22.200.174 ping statistics ---
+--- 172.22.200.183 ping statistics ---
 5 packets transmitted, 0 received, 100% packet loss, time 106ms
 
-(openstack) javier@debian:~/openstack$ ssh debian@172.22.200.174
+(openstack) javier@debian:~/openstack$ ssh debian@172.22.200.183
 ^C
 </pre>
 
 Ya no responde y por tanto hemos perdido la conectividad a ella.
 
-Si miramos el puertos de esta máquina, que nos lo mostrará mediante su IP fija, (en caso de **Dulcinea** la IP fija es la **10.0.0.10**) podemos apreciar el **ID** del puerto, la **MAC**, ...
-Nos interesa el **ID** del puerto, ya que necesitamos utilizar el siguiente comando para deshabilitar la seguridad del puerto:
+Si miramos la lista de los puertos:
 
 <pre>
-(openstack) javier@debian:~/openstack$ openstack port set --disable-port-security ff9e0846-8ba8-42ec-b7be-bdb2b6279b1d
+(openstack) javier@debian:~/openstack$ openstack port list
++--------------------------------------+------+-------------------+--------------------------------------------------------------------------+--------+
+| ID                                   | Name | MAC Address       | Fixed IP Addresses                                                       | Status |
++--------------------------------------+------+-------------------+--------------------------------------------------------------------------+--------+
+| 17545123-581b-4ed5-8884-96ae771eb5d3 |      | fa:16:3e:75:b4:33 | ip_address='10.0.0.3', subnet_id='98c0ae2f-d2ee-48a3-9122-f1369a6e99b3'  | ACTIVE |
+| 2531063e-74f3-44d3-a268-0d2868599eee |      | fa:16:3e:2b:1c:c7 | ip_address='10.0.0.8', subnet_id='98c0ae2f-d2ee-48a3-9122-f1369a6e99b3'  | ACTIVE |
+| 450cc85b-f8a2-41a5-94b2-36ef74505a04 |      | fa:16:3e:5c:a3:2c | ip_address='10.0.0.9', subnet_id='98c0ae2f-d2ee-48a3-9122-f1369a6e99b3'  | ACTIVE |
+| 4b74d3ee-c877-4c20-820d-69e502c51034 |      | fa:16:3e:28:24:d0 | ip_address='10.0.0.2', subnet_id='98c0ae2f-d2ee-48a3-9122-f1369a6e99b3'  | ACTIVE |
+| 50c06762-bfce-499f-95b3-ef3a3708f906 |      | fa:16:3e:4b:ab:f9 | ip_address='10.0.0.1', subnet_id='98c0ae2f-d2ee-48a3-9122-f1369a6e99b3'  | ACTIVE |
+| 5e26175a-0a8e-4a5e-b3be-ba324a77d111 |      | fa:16:3e:f3:9b:bf | ip_address='10.0.1.1', subnet_id='87427d1a-bd9d-400a-935b-02c56aaf7748'  | ACTIVE |
+| 806f2c56-3e2f-402e-8508-794875c6476d |      | fa:16:3e:ba:a3:5e | ip_address='10.0.1.7', subnet_id='87427d1a-bd9d-400a-935b-02c56aaf7748'  | ACTIVE |
+| e1517753-2766-4856-a1aa-9f6df4e70d8d |      | fa:16:3e:24:f3:f9 | ip_address='10.0.1.11', subnet_id='87427d1a-bd9d-400a-935b-02c56aaf7748' | ACTIVE |
+| e225a306-9713-4e4a-bd14-888c01479784 |      | fa:16:3e:84:9b:94 | ip_address='10.0.1.8', subnet_id='87427d1a-bd9d-400a-935b-02c56aaf7748'  | ACTIVE |
++--------------------------------------+------+-------------------+--------------------------------------------------------------------------+--------+
+</pre>
+
+Sabiendo que **Dulcinea** posee dos puertos, y estos corresponden a las IPs de *Dulcinea*, es decir, la **10.0.0.8** y la **10.0.1.11**, podemos apreciar el **ID** de cada uno de los puertos, las **MAC**, ...
+Nos interesan los **ID** de los puertos, ya que necesitamos utilizar el siguiente comando para deshabilitar la seguridad de estos puertos:
+
+<pre>
+(openstack) javier@debian:~/openstack$ openstack port set --disable-port-security 2531063e-74f3-44d3-a268-0d2868599eee
+(openstack) javier@debian:~/openstack$ openstack port set --disable-port-security e1517753-2766-4856-a1aa-9f6df4e70d8d
 </pre>
 
 Una vez hemos deshabilitado el cortafuegos que establece la seguridad del puerto, la máquina vuelve a estar accesible, ya que ahora la máquina tiene abiertos todo el rango de puertos completo, porque ahora no posee ningún cortafuegos.
@@ -373,17 +393,17 @@ Obviamente esto, no es recomendable en situaciones donde la máquina no se encue
 Si volvemos a hacerle ping y a intentar una conexión mediante *SSH*:
 
 <pre>
-(openstack) javier@debian:~/openstack$ ping 172.22.200.174
-PING 172.22.200.174 (172.22.200.174) 56(84) bytes of data.
-64 bytes from 172.22.200.174: icmp_seq=1 ttl=61 time=80.5 ms
-64 bytes from 172.22.200.174: icmp_seq=2 ttl=61 time=117 ms
-64 bytes from 172.22.200.174: icmp_seq=3 ttl=61 time=77.7 ms
+(openstack) javier@debian:~/openstack$ ping 172.22.200.183
+PING 172.22.200.183 (172.22.200.183) 56(84) bytes of data.
+64 bytes from 172.22.200.183: icmp_seq=1 ttl=61 time=94.7 ms
+64 bytes from 172.22.200.183: icmp_seq=2 ttl=61 time=181 ms
+64 bytes from 172.22.200.183: icmp_seq=3 ttl=61 time=111 ms
 ^C
---- 172.22.200.174 ping statistics ---
+--- 172.22.200.183 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 5ms
-rtt min/avg/max/mdev = 77.683/91.631/116.705/17.768 ms
+rtt min/avg/max/mdev = 94.691/128.790/180.895/37.426 ms
 
-(openstack) javier@debian:~/openstack$ ssh debian@172.22.200.174
+(openstack) javier@debian:~/openstack$ ssh -A debian@172.22.200.183
 Linux dulcinea 4.19.0-11-cloud-amd64 #1 SMP Debian 4.19.146-1 (2020-09-17) x86_64
 
 The programs included with the Debian GNU/Linux system are free software;
@@ -392,17 +412,12 @@ individual files in /usr/share/doc/*/copyright.
 
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
-Last login: Thu Nov 12 11:26:50 2020 from 172.23.0.46
+Last login: Sat Nov 14 17:48:05 2020 from 172.23.0.46
+
 debian@dulcinea:~$
 </pre>
 
 Vemos que **Dulcinea** es completamente accesible.
-
-También vamos a deshabilitar la seguridad del puerto cuya IP es la que posee **Dulcinea** de la red interna, es decir, la **10.0.1.5**.
-
-<pre>
-(openstack) javier@debian:~/openstack$ openstack port set --disable-port-security bad04056-63b4-4d73-afb0-fac3b9137699
-</pre>
 
 **4.Definición de contraseña en todas las instancias (para poder modificarla desde consola en caso necesario)**
 
@@ -456,12 +471,24 @@ passwd: all authentication tokens updated successfully.
 
 Para realizar este paso, en **Dulcinea** debemos habilitar el **bit de forward** y añadir la regla de `iptables` necesaria.
 
+Para habilitar el **bit de forward** de manera permanente necesitamos editar el siguiente fichero de configuración:
+
 <pre>
 root@dulcinea:~# nano /etc/sysctl.conf
+</pre>
 
+Dentro de este, debemos buscar la línea `#net.ipv4.ip_forward=1` y descomentarla.
+
+Ejecutamos el siguiente comando para aplicar los cambios:
+
+<pre>
 root@dulcinea:~# sysctl -p /etc/sysctl.conf
 net.ipv4.ip_forward = 1
+</pre>
 
+Nos faltaría añadir la regla de *iptables* necesaria, para ello vamos a visualizar nuestras interfaces de red:
+
+<pre>
 root@dulcinea:~# ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -470,19 +497,23 @@ root@dulcinea:~# ip a
     inet6 ::1/128 scope host
        valid_lft forever preferred_lft forever
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8950 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether fa:16:3e:f0:c8:77 brd ff:ff:ff:ff:ff:ff
-    inet 10.0.0.10/24 brd 10.0.0.255 scope global dynamic eth0
-       valid_lft 74650sec preferred_lft 74650sec
-    inet6 fe80::f816:3eff:fef0:c877/64 scope link
+    link/ether fa:16:3e:2b:1c:c7 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.0.8/24 brd 10.0.0.255 scope global dynamic eth0
+       valid_lft 83294sec preferred_lft 83294sec
+    inet6 fe80::f816:3eff:fe2b:1cc7/64 scope link
        valid_lft forever preferred_lft forever
 3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8950 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether fa:16:3e:ab:e3:8d brd ff:ff:ff:ff:ff:ff
-    inet 10.0.1.5/24 brd 10.0.1.255 scope global dynamic eth1
-       valid_lft 73883sec preferred_lft 73883sec
-    inet6 fe80::f816:3eff:feab:e38d/64 scope link
+    link/ether fa:16:3e:24:f3:f9 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.1.11/24 brd 10.0.1.255 scope global dynamic eth1
+       valid_lft 83294sec preferred_lft 83294sec
+    inet6 fe80::f816:3eff:fe24:f3f9/64 scope link
        valid_lft forever preferred_lft forever
+</pre>
 
-root@dulcinea:~# iptables -t nat -A POSTROUTING -s 10.0.1.0/24 -o eth0 -j MASQUERADE
+Queremos que todo el tráfico que provenga de la red **10.0.1.0/24**, sea reconducido hacia la interfaz **eth0** para que así salga por esta, por tanto la regla a añadir es:
+
+<pre>
+iptables -t nat -A POSTROUTING -s 10.0.1.0/24 -o eth0 -j MASQUERADE
 </pre>
 
 Hemos habilitado el **bit de forward** y hemos añadido la regla de `iptables` que necesitamos para que todo el tráfico que provenga de la red **10.0.1.0/24**, salga por la interfaz **eth0**, que es la red que se conecta con el exterior, por tanto ya habríamos configurado lo necesario en **Dulcinea**.
@@ -500,11 +531,10 @@ En este fichero vamos a escribir la siguiente configuración:
 <pre>
 auto eth1
 iface eth1 inet static
-address 10.0.1.5
+address 10.0.1.11
 netmask 255.255.255.0
 network 10.0.1.0
 broadcast 10.0.1.255
-gateway 10.0.0.1
 </pre>
 
 En este bloque indicamos que la interfaz **eth1** que es la que se conecta a nuestra red interna, posea una dirección IP estática, le estamos asignando la **10.0.1.5**, cuya máscara de red es una **255.255.255.0**.
@@ -532,7 +562,7 @@ network:
         ens3:
             dhcp4: true
             match:
-                macaddress: fa:16:3e:17:7d:15
+                macaddress: fa:16:3e:84:9b:94
             mtu: 8950
             set-name: ens3
 </pre>
@@ -546,9 +576,9 @@ network:
         ens3:
             dhcp4: no
             addresses: [10.0.1.8/24]
-            gateway4: 10.0.1.5
+            gateway4: 10.0.1.11
             nameservers:
-              addresses: [10.0.1.5, 8.8.8.8]
+              addresses: [10.0.1.11, 8.8.8.8]
 </pre>
 
 
@@ -571,7 +601,7 @@ Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-48-generic x86_64)
 
 ...
 
-Last login: Sat Nov 14 10:04:52 2020 from 10.0.1.5
+Last login: Sat Nov 14 18:41:41 2020 from 10.0.1.11
 
 ubuntu@sancho:~$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
@@ -581,26 +611,25 @@ ubuntu@sancho:~$ ip a
     inet6 ::1/128 scope host
        valid_lft forever preferred_lft forever
 2: ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
-    link/ether fa:16:3e:17:7d:15 brd ff:ff:ff:ff:ff:ff
+    link/ether fa:16:3e:84:9b:94 brd ff:ff:ff:ff:ff:ff
     inet 10.0.1.8/24 brd 10.0.1.255 scope global ens3
        valid_lft forever preferred_lft forever
-    inet6 fe80::f816:3eff:fe17:7d15/64 scope link
+    inet6 fe80::f816:3eff:fe84:9b94/64 scope link
        valid_lft forever preferred_lft forever
 
 ubuntu@sancho:~$ ip r
-default via 10.0.1.5 dev ens3 proto static
+default via 10.0.1.11 dev ens3 proto static
 10.0.1.0/24 dev ens3 proto kernel scope link src 10.0.1.8
 
 ubuntu@sancho:~$ ping www.google.es
-PING www.google.es (216.58.209.67) 56(84) bytes of data.
-64 bytes from mad07s22-in-f3.1e100.net (216.58.209.67): icmp_seq=1 ttl=112 time=44.5 ms
-64 bytes from mad07s22-in-f3.1e100.net (216.58.209.67): icmp_seq=2 ttl=112 time=43.5 ms
+PING www.google.es (216.58.215.131) 56(84) bytes of data.
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=1 ttl=112 time=43.2 ms
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=2 ttl=112 time=43.7 ms
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=3 ttl=112 time=43.5 ms
 ^C
 --- www.google.es ping statistics ---
-2 packets transmitted, 2 received, 0% packet loss, time 1001ms
-rtt min/avg/max/mdev = 43.542/44.002/44.463/0.460 ms
-
-ubuntu@sancho:~$
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 43.235/43.478/43.727/0.200 ms
 </pre>
 
 Podemos ver como efectivamente nos ha aplicado la configuración, poseemos una IP estática y la puerta de enlace es la IP de *Dulcinea*, y además comprobamos que poseemos conectividad al exterior, y podemos disfrutar de una resolución de nombres satisfactoria.
@@ -618,27 +647,27 @@ En este archivo nos encontramos con esta configuración predeterminada:
 <pre>
 BOOTPROTO=dhcp
 DEVICE=eth0
-HWADDR=fa:16:3e:84:6d:fb
+HWADDR=fa:16:3e:ba:a3:5e
 MTU=8950
 ONBOOT=yes
 TYPE=Ethernet
 USERCTL=no
 </pre>
 
-Debemos sustituirlo por este bloque, en el que indicamos que en el apartado **BOOTPROTO**, la IP ahora se establece como estática, y el **DHCP4** pasa a ser desactivado, que la IP estática que le estamos asignando es la **10.0.1.4**, cuya máscara de red es una **255.255.255.0**, que la puerta de enlace es la **10.0.1.5**, es decir, la IP de *Dulcinea*, y que utilice esos **DNS** indicados. Es importante establecer en el apartado **ONBOOT** el valor *yes*, ya que esto hará que esta configuración se active en cada inicio del sistema.
+Debemos sustituirlo por este bloque, en el que indicamos que en el apartado **BOOTPROTO**, la IP ahora se establece como estática, y el **DHCP4** pasa a ser desactivado, que la IP estática que le estamos asignando es la **10.0.1.7**, cuya máscara de red es una **255.255.255.0**, que la puerta de enlace es la **10.0.1.11**, es decir, la IP de *Dulcinea*, y que utilice esos **DNS** indicados. Es importante establecer en el apartado **ONBOOT** el valor *yes*, ya que esto hará que esta configuración se active en cada inicio del sistema.
 
 <pre>
-OTPROTO=static
+BOOTPROTO=static
 DEVICE=eth0
-HWADDR=fa:16:3e:84:6d:fb
+HWADDR=fa:16:3e:ba:a3:5e
 MTU=8950
 ONBOOT=yes
 TYPE=Ethernet
 USERCTL=no
-IPADDR=10.0.1.4
+IPADDR=10.0.1.7
 NETMASK=255.255.255.0
-GATEWAY=10.0.1.5
-DNS1=10.0.1.5
+GATEWAY=10.0.1.11
+DNS1=10.0.1.11
 DNS2=8.8.8.8
 </pre>
 
@@ -652,11 +681,11 @@ También reinicio la máquina para verificar que en cada inicio se aplicará est
 
 <pre>
 [root@quijote ~]# reboot
-Connection to 10.0.1.4 closed by remote host.
-Connection to 10.0.1.4 closed.
+Connection to 10.0.1.7 closed by remote host.
+Connection to 10.0.1.7 closed.
 
-debian@dulcinea:~$ ssh centos@10.0.1.4
-Last login: Sat Nov 14 11:29:18 2020 from gateway
+debian@dulcinea:~$ ssh centos@10.0.1.7
+Last login: Sat Nov 14 18:43:37 2020 from gateway
 
 [centos@quijote ~]$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
@@ -666,27 +695,25 @@ Last login: Sat Nov 14 11:29:18 2020 from gateway
     inet6 ::1/128 scope host
        valid_lft forever preferred_lft forever
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8950 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether fa:16:3e:84:6d:fb brd ff:ff:ff:ff:ff:ff
-    inet 10.0.1.4/24 brd 10.0.1.255 scope global eth0
+    link/ether fa:16:3e:ba:a3:5e brd ff:ff:ff:ff:ff:ff
+    inet 10.0.1.7/24 brd 10.0.1.255 scope global eth0
        valid_lft forever preferred_lft forever
-    inet6 fe80::f816:3eff:fe84:6dfb/64 scope link
+    inet6 fe80::f816:3eff:feba:a35e/64 scope link
        valid_lft forever preferred_lft forever
 
 [centos@quijote ~]$ ip r
-default via 10.0.1.5 dev eth0
-10.0.1.0/24 dev eth0 proto kernel scope link src 10.0.1.4
+default via 10.0.1.11 dev eth0
+10.0.1.0/24 dev eth0 proto kernel scope link src 10.0.1.7
 
 [centos@quijote ~]$ ping www.google.es
 PING www.google.es (216.58.215.131) 56(84) bytes of data.
-64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=1 ttl=112 time=42.9 ms
-64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=2 ttl=112 time=43.1 ms
-64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=3 ttl=112 time=43.3 ms
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=1 ttl=112 time=43.4 ms
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=2 ttl=112 time=43.5 ms
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=3 ttl=112 time=43.1 ms
 ^C
 --- www.google.es ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2002ms
-rtt min/avg/max/mdev = 42.997/43.144/43.313/0.129 ms
-
-[centos@quijote ~]$
+3 packets transmitted, 3 received, 0% packet loss, time 2001ms
+rtt min/avg/max/mdev = 43.142/43.386/43.550/0.244 ms
 </pre>
 
 Podemos ver como efectivamente nos ha aplicado la configuración, poseemos una IP estática y la puerta de enlace es la IP de *Dulcinea*, y además comprobamos que poseemos conectividad al exterior, y podemos disfrutar de una resolución de nombres satisfactoria.

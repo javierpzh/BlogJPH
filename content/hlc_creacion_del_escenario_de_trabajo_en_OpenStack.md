@@ -930,6 +930,13 @@ dpkg-reconfigure tzdata
 
 
 <pre>
+root@dulcinea:~# date
+Sat 14 Nov 2020 08:51:41 PM CET
+</pre>
+
+
+
+<pre>
 apt install ntpdate
 </pre>
 
@@ -937,6 +944,13 @@ apt install ntpdate
 
 <pre>
 dpkg-reconfigure tzdata
+</pre>
+
+
+
+<pre>
+root@sancho:~# date
+Sat Nov 14 20:51:44 CET 2020
 </pre>
 
 
@@ -954,5 +968,5 @@ yum install ntp
 
 
 <pre>
-dpkg-reconfigure tzdata
+tzselect
 </pre>

@@ -1,5 +1,5 @@
 Title: Compilación de un kérnel linux a medida
-Date: 2020/11/7
+Date: 2020/11/14
 Category: Administración de Sistemas Operativos
 Header_Cover: theme/images/banner-sistemas.jpg
 Tags: compilar, kernel
@@ -635,14 +635,16 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 ##### General setup
 - Support for paging of anonymous memory (swap)
 - POSIX Message Queues
+- Auditing support
 - CPU isolation
 - Kernel->user space relay support (formerly relayfs)
 - m_Kernel .config support
 - Automatic process group scheduling
 - memory placement aware NUMA scheduler
 - Checkpoint/restore support
+- Enable bpf() system call
+- Enable rseq() system call
 - Enable VM event counters for /proc/vmstat
-- Enable SLUB debugging support
 - Allow slab caches to be merged
 - SLAB freelist randomization
 - Harden slab freelist metadata
@@ -659,7 +661,13 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
     - Cpuset controller
     - Support for eBPF programs attached to cgroups
 - **Namespaces support** entero
+- **Configure standard kernel features (expert users)**
+    - BUG() support
+    - Enable PC-Speaker suport
 ##### Processor type and features
+- DMA memory allocation support
+- Symmetric multi-processing support
+- Avoid speculative indirect branches in kernel
 - AMD ACPI2Platform devices support
 - Intel SoC IOSF Sideband support for SoC platforms
 - Single-depth WCHAN output
@@ -699,8 +707,7 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - **ACPI (Advanced Configuration and Power Interface) Support** entero
 - **SFI (Simple Firmware Interface) Support**
 - **CPU Frequency scaling**
-    - **CPU Frequency scaling**
-        - **CPU frequency transition statistics**
+    - **CPU Frequency scaling** entero
     - 'schedutil' cpufreq policy governor
     - Intel P state control
 - **CPU Idle**
@@ -751,11 +758,16 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - Ultrix partition table support
 - sun partition tables support
 - karma partition support
+- **IO Schedulers**
+- MQ deadline I/O scheduler
+- **Executable file formats**
+- Enable core dump support
 - **Memory Management options**
 - Sparse Memory virtual memmap
 - Allow for memory hot-add
 - Allow for memory compaction
-- **Transparent Hugepage Support** entero
+    - **Transparent Hugepage Support** entero
+- Low (Up to 2x) density storage for compressed pages
 - Enable frontswap to cache swap pages if tmem is present
 ##### Networking support
 - **Networking options**
@@ -766,6 +778,7 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
     - L3 Master device support
     - Network packet filtering framework
     - QoS and/or fair queueing
+    - MultiProtocol Label Switching
     - Network priority cgroup
     - Network classid cgroup
     - enable BPF Just In Time compiler
@@ -889,9 +902,14 @@ En mi caso, esto es lo máximo que he podido reducir el kérnel. A continuación
 - Report quota messages through netlink interface
 - m_Kernel automonter support (supports v3, v4 and v5)
 - m_FUSE (Filesystem in Userspace) support
+- **Pseudo filesystems**
+    - Include /proc/<pid>/task/<tid>/children file
+    - HugeTLB file system support
 - **Miscellaneius filesystems**
 - **Network File Systems**
 - **Security options**
+- Restrict unprivileged access to the kernel syslog
+- Enable different security models
 - NSA SELinux Support
     - **TOMOYO Linux Support**
     - **AppArmor support**
@@ -973,10 +991,10 @@ Si cuento cuántos módulos y cuántos enlaces estáticos forman ahora el núcle
 
 <pre>
 javier@debian:~/kernelLinux/linux-4.19.152$ grep "=m" .config | wc -l
-17
+16
 
 javier@debian:~/kernelLinux/linux-4.19.152$ grep "=y" .config | wc -l
-676
+615
 </pre>
 
-Podemos observar que he conseguido reducir el número de componentes en una gran cantidad. Los módulos se han reducido de 170 hasta 17, es decir, 10 veces menos y he eliminado alrededor de 800 enlaces que se incluirán en *vmlinuz*.
+Podemos observar que he conseguido reducir el número de componentes en una gran cantidad. Los módulos se han reducido de 170 hasta 16, es decir, más de 10 veces menos y he eliminado más de 800 enlaces que se incluirán en *vmlinuz*.

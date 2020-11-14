@@ -419,7 +419,7 @@ debian@dulcinea:~$
 
 Vemos que **Dulcinea** es completamente accesible.
 
-**4.Definición de contraseña en todas las instancias (para poder modificarla desde consola en caso necesario)**
+**4. Definición de contraseña en todas las instancias (para poder modificarla desde consola en caso necesario).**
 
 Vamos a establecerle contraseñas a los usuarios, tanto al usuario sin privilegios como a *root*, de las tres instancias. Normalmente no nos va a ser necesario ya que accedemos mediante el par de claves, pero es muy recomendable para poder acceder a ellas si fuera necesario mediante la consola. Para ello vamos a utilizar la herramienta `passwd`.
 
@@ -467,7 +467,7 @@ Retype new password:
 passwd: all authentication tokens updated successfully.
 </pre>
 
-**5. Modificación de las instancias sancho y quijote para que usen direccionamiento estático y dulcinea como puerta de enlace**
+**5. Modificación de las instancias sancho y quijote para que usen direccionamiento estático y dulcinea como puerta de enlace.**
 
 Para realizar este paso, en **Dulcinea** debemos habilitar el **bit de forward** y añadir la regla de `iptables` necesaria.
 
@@ -732,7 +732,7 @@ rtt min/avg/max/mdev = 43.142/43.386/43.550/0.244 ms
 
 Podemos ver como efectivamente nos ha aplicado la configuración, poseemos una IP estática y la puerta de enlace es la IP de *Dulcinea*, y además comprobamos que poseemos conectividad al exterior, y podemos disfrutar de una resolución de nombres satisfactoria.
 
-**6. Modificación de la subred de la red interna, deshabilitando el servidor DHCP**
+**6. Modificación de la subred de la red interna, deshabilitando el servidor DHCP.**
 
 Esta modificación, la podemos llevar a cabo en nuestro gestor de proyectos de *OpenStack* desde el navegador, pero como ya tenemos configurada el administrador de *OpenStack* desde la terminal, vamos a probar a hacerlo desde aquí.
 
@@ -798,11 +798,11 @@ Seleccionamos la opción **Editar subred**, y se nos abrirá esta ventana en la 
 
 Guardamos los cambios y ya tendríamos deshabilitado el servidor DHCP de nuestra red interna.
 
-**7. Utilización de ssh-agent para acceder a las instancias**
+**7. Utilización de `ssh-agent` para acceder a las instancias.**
 
 
 
-**8. Creación del usuario profesor en todas las instancias. Usuario que puede utilizar sudo sin contraseña**
+**8. Creación del usuario profesor en todas las instancias. Usuario que puede utilizar sudo sin contraseña.**
 
 **Dulcinea:**
 
@@ -876,11 +876,11 @@ profesor ALL=(ALL) NOPASSWD: ALL
 
 Y fin, esto hará que cuando el usuario *profesor* haga uso de `sudo`, no le pida contraseña alguna.
 
-**9. Copia las claves públicas de todos los profesores en las instancias para que puedan acceder con el usuario profesor**
+**9. Copia las claves públicas de todos los profesores en las instancias para que puedan acceder con el usuario profesor.**
 
 He copiado todas las claves públicas de los profesores al fichero `.ssh/authorized_keys` del usuario *profesor*.
 
-**10. Realiza una actualización completa de todos los servidores**
+**10. Realiza una actualización completa de todos los servidores.**
 
 Para realizar una actualización de todos los paquetes instalados en cada sistema, empleamos estos comandos:
 
@@ -906,7 +906,7 @@ yum update
 
 Cuando se ejecuta este comando, `yum` comenzará a comprobar en sus repositorios si existe una versión actualizada del software que el sistema tiene instalado actualmente. Una vez que revisa la lista de repositorios y nos informa de que paquetes se pueden actualizar, introducimos `y` y pulsando *intro* se nos actualizarán todos los paquetes.
 
-**11. Configura el servidor con el nombre de dominio <nombre-usuario>.gonzalonazareno.org**
+**11. Configura el servidor con el nombre de dominio *<nombre-usuario>.gonzalonazareno.org*.**
 
 **Dulcinea:**
 
@@ -927,11 +927,11 @@ hostnamectl set-hostname quijote.javierpzh.gonzalonazareno.org
 </pre>
 
 
-**12. Hasta que no esté configurado el servidor DNS, incluye resolución estática en las tres instancias tanto usando nombre completo como hostname**
+**12. Hasta que no esté configurado el servidor DNS, incluye resolución estática en las tres instancias tanto usando nombre completo como hostname.**
 
 
 
-**13. Asegúrate que el servidor tiene sincronizado su reloj utilizando un servidor NTP externo**
+**13. Asegúrate que el servidor tiene sincronizado su reloj utilizando un servidor NTP externo.**
 
 **Dulcinea:**
 

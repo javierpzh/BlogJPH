@@ -518,6 +518,8 @@ iptables -t nat -A POSTROUTING -s 10.0.1.0/24 -o eth0 -j MASQUERADE
 
 Hemos habilitado el **bit de forward** y hemos añadido la regla de `iptables` que necesitamos para que todo el tráfico que provenga de la red **10.0.1.0/24**, salga por la interfaz **eth0**, que es la red que se conecta con el exterior, por tanto ya habríamos configurado lo necesario en **Dulcinea**.
 
+**Importante:** es muy recomendable instalar el paquete `iptables-persistent`, ya que esto hará que en cada arranque del sistema las reglas que hemos configurado se levanten automáticamente.
+
 **Dulcinea**
 
 Vamos a establecerle una IP estática. Como se trata de un sistema operativo *Debian*, debemos editar el fichero `/etc/network/interfaces`.
@@ -922,17 +924,35 @@ hostnamectl set-hostname quijote.javierpzh.gonzalonazareno.org
 **Dulcinea:**
 
 <pre>
-apt install ntp
+dpkg-reconfigure tzdata
+</pre>
+
+
+
+<pre>
+apt install ntpdate
 </pre>
 
 **Sancho:**
 
 <pre>
-apt install ntp
+dpkg-reconfigure tzdata
+</pre>
+
+
+
+<pre>
+apt install ntpdate
 </pre>
 
 **Quijote:**
 
 <pre>
 yum install ntp
+</pre>
+
+
+
+<pre>
+dpkg-reconfigure tzdata
 </pre>

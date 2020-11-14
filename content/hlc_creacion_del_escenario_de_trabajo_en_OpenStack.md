@@ -577,42 +577,89 @@ Podemos ver como efectivamente nos ha aplicado la configuración, poseemos una I
 
 **Quijote**
 
-Para establecer el direccionamiento estático en **CentOS 7**, debemos editar el fichero `/etc/network/interfaces`.
+Para establecer el direccionamiento estático en **CentOS 7**, debemos editar el fichero `/etc/sysconfig/network-scripts/ifcfg-eth0`. En *CentOS* por defecto no viene instalado el editor de texto `nano`, que es el que suelo utilizar y el que más me gusta, por tanto tenemos que utilizar `vi`, de momento...
 
 <pre>
-less /etc/sysconfig/network-scripts/
+[root@quijote ~]# vi /etc/sysconfig/network-scripts/ifcfg-eth0
 </pre>
 
-En este archivo tendremos que asignar una dirección IP fija en la interfaz de red **eth0**, que es la que está utilizando esta máquina.
+En este archivo nos encontramos con esta configuración predeterminada:
 
 <pre>
-auto eth0
-iface eth0 inet static
-address 10.0.1.4
-netmask 255.255.255.0
-network 10.0.1.0
-broadcast 10.0.1.255
-gateway 10.0.1.5
+BOOTPROTO=dhcp
+DEVICE=eth0
+HWADDR=fa:16:3e:84:6d:fb
+MTU=8950
+ONBOOT=yes
+TYPE=Ethernet
+USERCTL=no
+</pre>
+
+Debemos sustituirlo por este bloque, en el que indicamos que en el apartado **BOOTPROTO**, la IP ahora se establece como estática, y el **DHCP4** pasa a ser desactivado, que la IP estática que le estamos asignando es la **10.0.1.4**, cuya máscara de red es una **255.255.255.0**, que la puerta de enlace es la **10.0.1.5**, es decir, la IP de *Dulcinea*, y que utilice esos **DNS** indicados. Es importante establecer en el apartado **ONBOOT** el valor *yes*, ya que esto hará que esta configuración se active en cada inicio del sistema.
+
+<pre>
+OTPROTO=static
+DEVICE=eth0
+HWADDR=fa:16:3e:84:6d:fb
+MTU=8950
+ONBOOT=yes
+TYPE=Ethernet
+USERCTL=no
+IPADDR=10.0.1.4
+NETMASK=255.255.255.0
+GATEWAY=10.0.1.5
+DNS1=10.0.1.5
+DNS2=8.8.8.8
 </pre>
 
 Reiniciamos y aplicamos los cambios en las interfaces de red:
 
 <pre>
-systemctl restart networking
+systemctl restart network.service
 </pre>
 
-**Sancho**
+También reinicio la máquina para verificar que en cada inicio se aplicará esta configuración:
 
-Vamos a cambiar la puerta de enlace y vamos a establecer la IP de **Dulcinea** para que salga por esta, que a su vez hará NAT para que posea conectividad al exterior.
+<pre>
+[root@quijote ~]# reboot
+Connection to 10.0.1.4 closed by remote host.
+Connection to 10.0.1.4 closed.
 
+debian@dulcinea:~$ ssh centos@10.0.1.4
+Last login: Sat Nov 14 11:29:18 2020 from gateway
 
+[centos@quijote ~]$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8950 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether fa:16:3e:84:6d:fb brd ff:ff:ff:ff:ff:ff
+    inet 10.0.1.4/24 brd 10.0.1.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::f816:3eff:fe84:6dfb/64 scope link
+       valid_lft forever preferred_lft forever
 
+[centos@quijote ~]$ ip r
+default via 10.0.1.5 dev eth0
+10.0.1.0/24 dev eth0 proto kernel scope link src 10.0.1.4
 
+[centos@quijote ~]$ ping www.google.es
+PING www.google.es (216.58.215.131) 56(84) bytes of data.
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=1 ttl=112 time=42.9 ms
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=2 ttl=112 time=43.1 ms
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=3 ttl=112 time=43.3 ms
+^C
+--- www.google.es ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2002ms
+rtt min/avg/max/mdev = 42.997/43.144/43.313/0.129 ms
 
+[centos@quijote ~]$
+</pre>
 
-
-
-
+Podemos ver como efectivamente nos ha aplicado la configuración, poseemos una IP estática y la puerta de enlace es la IP de *Dulcinea*, y además comprobamos que poseemos conectividad al exterior, y podemos disfrutar de una resolución de nombres satisfactoria.
 
 **6. Modificación de la subred de la red interna, deshabilitando el servidor DHCP**
 

@@ -55,7 +55,7 @@ Vamos a crear las instancias a partir de un volumen con una imagen, por tanto, c
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/volumenDulcinea.png)
 
-*Dulcinea* incorporará un sistema **Debian Buster 10.6**
+*Dulcinea* incorporará un sistema **Debian Buster 10.6**.
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/volumenDulcineacreado.png)
 
@@ -105,7 +105,7 @@ debian@dulcinea:~$
     - **Conectada a la red interna**
     - **Accesible indirectamente a través de dulcinea**
 
-Vamos a repetir el mismo proceso que con **Dulcinea**.
+Vamos a repetir el mismo proceso para crear la máquina *Sancho* que incorporará un sistema **Ubuntu 20.04**.
 
 Creamos el volumen:
 
@@ -164,7 +164,7 @@ ubuntu@sancho:~$
     - **Conectada a la red interna**
     - **Accesible indirectamente a través de dulcinea**
 
-Y por último repetimos el proceso para crear a **Quijote**.
+Y por último repetimos el proceso para crear a **Quijote** que incorporará un sistema **CentOS 7**.
 
 Creamos el volumen:
 

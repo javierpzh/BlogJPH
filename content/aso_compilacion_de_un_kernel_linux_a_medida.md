@@ -998,3 +998,5 @@ javier@debian:~/kernelLinux/linux-4.19.152$ grep "=y" .config | wc -l
 </pre>
 
 Podemos observar que he conseguido reducir el número de componentes en una gran cantidad. Los módulos se han reducido de 170 hasta 16, es decir, más de 10 veces menos y he eliminado más de 800 enlaces que se incluirán en *vmlinuz*.
+
+Puedes descargar el fichero `.deb` [aquí](images/aso_compilacion_de_un_kernel_linux_a_medida/linux-image-4.19.152_4.19.152-103_amd64.deb).

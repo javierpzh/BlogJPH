@@ -1,5 +1,5 @@
 Title: Creación del escenario de trabajo en OpenStack
-Date: 2020/11/12
+Date: 2020/11/14
 Category: Cloud Computing
 Header_Cover: theme/images/banner-hlc.jpg
 Tags: OpenStack

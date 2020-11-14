@@ -735,6 +735,8 @@ Guardamos los cambios y ya tendríamos deshabilitado el servidor DHCP de nuestra
 
 **Dulcinea:**
 
+Para crear un usuario en *Debian*, tenemos que hacer uso del comando `useradd`, pero bien, si queremos que en el nuevo usuario se creen las carpetas automáticamente en el directorio `/home` debemos introducir la opción `-m`:
+
 <pre>
 root@dulcinea:~# useradd -m profesor
 
@@ -747,7 +749,11 @@ root@dulcinea:~# ls /home/
 debian	profesor
 </pre>
 
+También le he asignando una contraseña que es **profesor**, por si alguna vez nos es necesaria, aunque normalmente no nos hará falta ya que accederemos mediante claves públicas-privadas.
+
 **Sancho:**
+
+Para crear un usuario en *Ubuntu*, seguimos el mismo proceso que para *Debian*.
 
 <pre>
 root@sancho:~# useradd -m profesor
@@ -763,6 +769,8 @@ profesor  ubuntu
 
 **Quijote:**
 
+Para crear un usuario en *CentOS*, hacemos uso del comando `adduser`, que a diferencia de `useradd`, sí nos crea las carpetas automáticamente en el directorio `/home`:
+
 <pre>
 [root@quijote ~]# adduser profesor
 
@@ -777,7 +785,27 @@ passwd: all authentication tokens updated successfully.
 centos  profesor
 </pre>
 
-**9. Copia de las claves públicas de todos los profesores en las instancias para que puedan acceder con el usuario profesor**
+Bien, ya habríamos creado todos los usuarios **profesor** en todas las instancias, y solo nos quedaría configurarlas para que este usuario pueda hacer uso de `sudo` sin tener que introducir la contraseña.
+
+Este proceso va a ser el mismo en todos los sistemas.
+
+Editamos el fichero `/etc/sudoers`:
+
+<pre>
+nano /etc/sudoers
+</pre>
+
+Recordemos que en *CentOS* no está instalado por defecto `nano`, por tanto o lo descargamos o utilizamos `vi`.
+
+Debajo de la línea `root ALL=(ALL) ALL`, introducimos la siguiente línea:
+
+<pre>
+profesor ALL=(ALL) NOPASSWD: ALL
+</pre>
+
+Y fin, esto hará que cuando el usuario *profesor* haga uso de `sudo`, no le pida contraseña alguna.
+
+**9. Copia las claves públicas de todos los profesores en las instancias para que puedan acceder con el usuario profesor**
 
 
 

@@ -485,6 +485,34 @@ root@dulcinea:~# iptables -t nat -A POSTROUTING -s 10.0.1.0/24 -o eth0 -j MASQUE
 
 Hemos habilitado el **bit de forward** y hemos añadido la regla de `iptables` que necesitamos para que todo el tráfico que provenga de la red **10.0.1.0/24**, salga por la interfaz **eth0**, que es la red que se conecta con el exterior, por tanto ya habríamos configurado lo necesario en **Dulcinea**.
 
+**Dulcinea**
+
+Vamos a establecerle una IP estática. Como se trata de un sistema operativo *Debian*, debemos editar el fichero `/etc/network/interfaces`.
+
+<pre>
+nano /etc/network/interfaces
+</pre>
+
+En este fichero vamos a escribir la siguiente configuración:
+
+<pre>
+auto eth1
+iface eth1 inet static
+address 10.0.1.5
+netmask 255.255.255.0
+network 10.0.1.0
+broadcast 10.0.1.255
+gateway 10.0.0.1
+</pre>
+
+En este bloque indicamos que la interfaz **eth1** que es la que se conecta a nuestra red interna, posea una dirección IP estática, le estamos asignando la **10.0.1.5**, cuya máscara de red es una **255.255.255.0**.
+
+Reiniciamos y aplicamos los cambios en las interfaces de red:
+
+<pre>
+systemctl restart networking
+</pre>
+
 **Sancho**
 
 Para establecer el direccionamiento estático en **Ubuntu**, debemos editar el fichero `/etc/netplan/50-cloud-init.yaml`.

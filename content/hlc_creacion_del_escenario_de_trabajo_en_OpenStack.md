@@ -487,35 +487,97 @@ Hemos habilitado el **bit de forward** y hemos añadido la regla de `iptables` q
 
 **Sancho**
 
-Para establecer el direccionamiento estático debemos editar el fichero `/etc/network/interfaces`.
+Para establecer el direccionamiento estático en **Ubuntu**, debemos editar el fichero `/etc/netplan/50-cloud-init.yaml`.
 
 <pre>
-nano /etc/network/interfaces
+nano /etc/netplan/50-cloud-init.yaml
 </pre>
 
-En este archivo tendremos que asignar una dirección IP fija en la interfaz de red **eth0**, que es la que está utilizando esta máquina.
+En este fichero nos encontramos con esta configuración predeterminada:
 
 <pre>
-auto ens3
-iface ens3 inet static
-address 10.0.1.8
-netmask 255.255.255.0
-network 10.0.1.0
-broadcast 10.0.1.255
-gateway 10.0.1.5
+network:
+    version: 2
+    ethernets:
+        ens3:
+            dhcp4: true
+            match:
+                macaddress: fa:16:3e:17:7d:15
+            mtu: 8950
+            set-name: ens3
 </pre>
+
+Debemos sustituirlo por este bloque, en el que indicamos que el **DHCP4** pasa a ser desactivado, que la IP estática que le estamos asignando es la **10.0.1.8**, cuya máscara de red es una **255.255.255.0**, de ahí el **/24**, que la puerta de enlace es la **10.0.1.5**, es decir, la IP de *Dulcinea*, y que utilice esos **DNS** indicados.
+
+<pre>
+network:
+    version: 2
+    ethernets:
+        ens3:
+            dhcp4: no
+            addresses: [10.0.1.8/24]
+            gateway4: 10.0.1.5
+            nameservers:
+              addresses: [10.0.1.5, 8.8.8.8]
+</pre>
+
 
 Reiniciamos y aplicamos los cambios en las interfaces de red:
 
 <pre>
-systemctl restart networking
+netplan apply
 </pre>
 
+También reinicio la máquina para verificar que en cada inicio se aplicará esta configuración:
 
+<pre>
+root@sancho:~# reboot
+
+root@sancho:~# Connection to 10.0.1.8 closed by remote host.
+Connection to 10.0.1.8 closed.
+
+debian@dulcinea:~$ ssh ubuntu@10.0.1.8
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-48-generic x86_64)
+
+...
+
+Last login: Sat Nov 14 10:04:52 2020 from 10.0.1.5
+
+ubuntu@sancho:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether fa:16:3e:17:7d:15 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.1.8/24 brd 10.0.1.255 scope global ens3
+       valid_lft forever preferred_lft forever
+    inet6 fe80::f816:3eff:fe17:7d15/64 scope link
+       valid_lft forever preferred_lft forever
+
+ubuntu@sancho:~$ ip r
+default via 10.0.1.5 dev ens3 proto static
+10.0.1.0/24 dev ens3 proto kernel scope link src 10.0.1.8
+
+ubuntu@sancho:~$ ping www.google.es
+PING www.google.es (216.58.209.67) 56(84) bytes of data.
+64 bytes from mad07s22-in-f3.1e100.net (216.58.209.67): icmp_seq=1 ttl=112 time=44.5 ms
+64 bytes from mad07s22-in-f3.1e100.net (216.58.209.67): icmp_seq=2 ttl=112 time=43.5 ms
+^C
+--- www.google.es ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 43.542/44.002/44.463/0.460 ms
+
+ubuntu@sancho:~$
+</pre>
+
+Podemos ver como efectivamente nos ha aplicado la configuración, poseemos una IP estática y la puerta de enlace es la IP de *Dulcinea*, y además comprobamos que poseemos conectividad al exterior, y podemos disfrutar de una resolución de nombres satisfactoria.
 
 **Quijote**
 
-Para establecer el direccionamiento estático debemos editar el fichero `/etc/network/interfaces`.
+Para establecer el direccionamiento estático en **CentOS 7**, debemos editar el fichero `/etc/network/interfaces`.
 
 <pre>
 less /etc/sysconfig/network-scripts/

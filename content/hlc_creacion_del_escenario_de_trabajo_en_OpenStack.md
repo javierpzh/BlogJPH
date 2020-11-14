@@ -75,7 +75,7 @@ Y por último, le asignamos las redes a las que va a pertenecer esta máquina.
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineared.png)
 
-*Dulcinea* necesita de conectividad al exterior, ya que con ella vamos a hacer NAT, por tanto le asignamos una IP flotante. El resultado de la máquina creada sería este:
+*Dulcinea* necesita conectividad al exterior, ya que con ella vamos a hacer NAT, por tanto le asignamos una IP flotante. El resultado de la máquina creada sería este:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineacreada.png)
 

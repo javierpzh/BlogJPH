@@ -880,6 +880,22 @@ Processing triggers for ntp (1:4.2.8p12+dfsg-4) ...
 Processing triggers for libc-bin (2.28-10) ...
 </pre>
 
+**Sancho:**
+
+<pre>
+apt update && apt upgrade -y
+</pre>
+
+**Quijote:**
+
+Recordemos que en *CentOS* no se utiliza por defecto `apt`, sino que se sustituye por `yum`.
+
+<pre>
+yum update
+</pre>
+
+Cuando se ejecuta este comando, `yum` comenzará a comprobar en sus repositorios si existe una versión actualizada del software que el sistema tiene instalado actualmente. Una vez que revisa la lista de repositorios y nos informa de que paquetes se pueden actualizar, introducimos `y` y pulsando *intro* se nos actualizarán todos los paquetes.
+
 **11. Configura el servidor con el nombre de dominio <nombre-usuario>.gonzalonazareno.org**
 
 

@@ -531,12 +531,20 @@ nano /etc/network/interfaces
 En este fichero vamos a escribir la siguiente configuración:
 
 <pre>
-auto eth1
+# The normal eth0
+allow-hotplug eth0
+iface eth0 inet static
+address 10.0.0.8
+netmask 255.255.255.0
+gateway 10.0.0.1
+
+# Additional interfaces, just in case we're using
+# multiple networks
+
+allow-hotplug eth1
 iface eth1 inet static
 address 10.0.1.11
 netmask 255.255.255.0
-network 10.0.1.0
-broadcast 10.0.1.255
 </pre>
 
 En este bloque indicamos que la interfaz **eth1** que es la que se conecta a nuestra red interna, posea una dirección IP estática, le estamos asignando la **10.0.1.5**, cuya máscara de red es una **255.255.255.0**.

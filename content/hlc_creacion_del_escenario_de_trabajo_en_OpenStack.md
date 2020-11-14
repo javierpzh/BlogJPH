@@ -894,6 +894,23 @@ Cuando se ejecuta este comando, `yum` comenzará a comprobar en sus repositorios
 
 **11. Configura el servidor con el nombre de dominio <nombre-usuario>.gonzalonazareno.org**
 
+**Dulcinea:**
+
+<pre>
+hostnamectl set-hostname dulcinea.javierpzh.gonzalonazareno.org
+</pre>
+
+**Sancho:**
+
+<pre>
+hostnamectl set-hostname sancho.javierpzh.gonzalonazareno.org
+</pre>
+
+**Quijote:**
+
+<pre>
+hostnamectl set-hostname quijote.javierpzh.gonzalonazareno.org
+</pre>
 
 
 **12. Hasta que no esté configurado el servidor DNS, incluye resolución estática en las tres instancias tanto usando nombre completo como hostname**
@@ -901,3 +918,21 @@ Cuando se ejecuta este comando, `yum` comenzará a comprobar en sus repositorios
 
 
 **13. Asegúrate que el servidor tiene sincronizado su reloj utilizando un servidor NTP externo**
+
+**Dulcinea:**
+
+<pre>
+apt install ntp
+</pre>
+
+**Sancho:**
+
+<pre>
+apt install ntp
+</pre>
+
+**Quijote:**
+
+<pre>
+yum install ntp
+</pre>

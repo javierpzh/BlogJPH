@@ -49,38 +49,37 @@ Y esta sería la red que hemos creado:
     - **Accesible directamente a través de la red externa y con una IP flotante**
     - **Conectada a la red interna, de la que será la puerta de enlace**
 
-Creación de **Dulcinea**:
+Vamos a realizar el proceso de la creación de **Dulcinea**. Esta máquina hará de puerta de enlace para el resto de máquinas de la red *10.0.1.0/24*.
 
-Creamos el volumen:
+Vamos a crear las instancias a partir de un volumen con una imagen, por tanto, creamos el volumen:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/volumenDulcinea.png)
 
-
+*Dulcinea* incorporará un sistema **Debian Buster 10.6**
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/volumenDulcineacreado.png)
 
-Instancia:
+Una vez hemos creado el volumen, podemos crear la instancia a partir de éste. Asignamos un nombre a la instancia:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineanombre.png)
 
-
+Establecemos que el origen de arranque sea el volumen creado previamente:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineaasociovolumen.png)
 
-
+Como **Sabor** indicamos que tenga un **m1.mini**.
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineasabor.png)
 
-
+Y por último, le asignamos las redes a las que va a pertenecer esta máquina.
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineared.png)
 
-
+*Dulcinea* necesita de conectividad al exterior, ya que con ella vamos a hacer NAT, por tanto le asignamos una IP flotante. El resultado de la máquina creada sería este:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/dulcineacreada.png)
 
-
-
+Comprobamos que nos podemos conectar a *Dulcinea* mediante nuestro par de claves, ya que tengo configurado para que todas las instancias que se creen posean mi clave pública, para así yo poder identificarme con mi clave privada. Introduzco la opción `-A`, que sirve para que la máquina *Dulcinea*, nos herede las claves de la primera, de forma que así podremos establecer una conexión mediante el par de claves con las máquinas *Sancho* y *Quijote*.
 
 <pre>
 javier@debian:~$ ssh -A debian@172.22.200.183
@@ -112,11 +111,11 @@ Creamos el volumen:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/volumenSanchocreado.png)
 
-Instancia:
+El resultado de la instancia creada sería este:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/sanchocreada.png)
 
-
+Comprobamos que desde *Dulcinea* nos podemos conectar a esta nueva máquina:
 
 <pre>
 debian@dulcinea:~$ ssh ubuntu@10.0.1.8
@@ -165,17 +164,17 @@ ubuntu@sancho:~$
     - **Conectada a la red interna**
     - **Accesible indirectamente a través de dulcinea**
 
-  Y por último repetimos el proceso para crear a **Quijote**.
+Y por último repetimos el proceso para crear a **Quijote**.
 
 Creamos el volumen:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/volumenQuijotecreado.png)
 
-Instancia:
+El resultado de la instancia creada sería este:
 
 ![.](images/hlc_creacion_del_escenario_de_trabajo_en_OpenStack/quijotecreada.png)
 
-
+Comprobamos que desde *Dulcinea* nos podemos conectar a esta nueva máquina:
 
 <pre>
 debian@dulcinea:~$ ssh centos@10.0.1.7

@@ -939,6 +939,54 @@ hostnamectl set-hostname quijote.javierpzh.gonzalonazareno.org
 
 **12. Hasta que no esté configurado el servidor DNS, incluye resolución estática en las tres instancias tanto usando nombre completo como hostname.**
 
+**Dulcinea:**
+
+Para configurar la resolución estática de las instancias, debemos modificar el fichero `/etc/hosts` y añadir estas líneas:
+
+<pre>
+127.0.1.1 dulcinea.javierpzh.gonzalonazareno.org dulcinea dulcinea.novalocal
+127.0.0.1 localhost
+
+10.0.1.8 sancho.javierpzh.gonzalonazareno.org sancho
+10.0.1.7 quijote.javierpzh.gonzalonazareno.org quijote
+</pre>
+
+Me he dado cuenta de una cosa al reiniciar la máquina *Dulcinea*, y es que en cada inicio se restablece el fichero `/etc/hosts`. Para cambiar este funcionamiento, tenemos que dirigirnos al fichero `/etc/cloud/cloud.cfg` y buscar esta línea:
+
+<pre>
+manage_etc_hosts: true
+</pre>
+
+Le cambiamos el valor a *false*:
+
+<pre>
+manage_etc_hosts: false
+</pre>
+
+Y ya habríamos configurado la resolución estática en *Dulcinea*.
+
+**Sancho:**
+
+Para configurar la resolución estática de las instancias, debemos modificar el fichero `/etc/hosts` y añadir estas líneas:
+
+<pre>
+127.0.1.1 sancho.javierpzh.gonzalonazareno.org sancho
+127.0.0.1 localhost
+
+10.0.1.3 dulcinea.javierpzh.gonzalonazareno.org dulcinea
+10.0.1.7 quijote.javierpzh.gonzalonazareno.org quijote
+</pre>
+
+**Quijote:**
+
+Para configurar la resolución estática de las instancias, debemos modificar el fichero `/etc/hosts` y añadir estas líneas:
+
+<pre>
+127.0.1.1 quijote.javierpzh.gonzalonazareno.org quijote
+10.0.1.3 dulcinea.javierpzh.gonzalonazareno.org dulcinea
+10.0.1.8 sancho.javierpzh.gonzalonazareno.org sancho
+</pre>
+
 
 
 **13. Asegúrate que el servidor tiene sincronizado su reloj utilizando un servidor NTP externo.**

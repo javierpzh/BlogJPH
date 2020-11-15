@@ -548,7 +548,7 @@ gateway 10.0.0.1
 
 allow-hotplug eth1
 iface eth1 inet static
-address 10.0.1.11
+address 10.0.1.3
 netmask 255.255.255.0
 </pre>
 
@@ -556,7 +556,7 @@ En este bloque indicamos que:
 
 - La interfaz **eth0** que es la que se conecta a la red **10.0.0.0/24**, posea una dirección IP estática, le estamos asignando la que se nos ha establecido por DHCP, la **10.0.0.8**, cuya máscara de red es una **255.255.255.0**, y cuya puerta de salida es la **10.0.0.1**.
 
-- La interfaz **eth1** que es la que se conecta a nuestra red interna, posea una dirección IP estática, le estamos asignando la que se nos ha establecido por DHCP, la **10.0.1.11**, cuya máscara de red es una **255.255.255.0**.
+- La interfaz **eth1** que es la que se conecta a nuestra red interna, posea una dirección IP estática, le estamos asignando la que se nos ha establecido por DHCP, la **10.0.1.3**, cuya máscara de red es una **255.255.255.0**.
 
 Reiniciamos y aplicamos los cambios en las interfaces de red:
 
@@ -586,7 +586,7 @@ network:
             set-name: ens3
 </pre>
 
-Debemos sustituirlo por este bloque, en el que indicamos que el **DHCP4** pasa a ser desactivado, que la IP estática que le estamos asignando es la **10.0.1.8**, cuya máscara de red es una **255.255.255.0**, de ahí el **/24**, que la puerta de enlace es la **10.0.1.5**, es decir, la IP de *Dulcinea*, y que utilice esos **DNS** indicados.
+Debemos sustituirlo por este bloque, en el que indicamos que el **DHCP4** pasa a ser desactivado, que la IP estática que le estamos asignando es la **10.0.1.8**, cuya máscara de red es una **255.255.255.0**, de ahí el **/24**, que la puerta de enlace es la **10.0.1.3**, es decir, la IP de *Dulcinea*, y que utilice esos **DNS** indicados.
 
 <pre>
 network:
@@ -599,7 +599,7 @@ network:
             mtu: 8950
             set-name: ens3
             addresses: [10.0.1.8/24]
-            gateway4: 10.0.1.11
+            gateway4: 10.0.1.3
             nameservers:
               addresses: [10.0.1.11, 8.8.8.8]
 </pre>
@@ -620,11 +620,11 @@ root@sancho:~# Connection to 10.0.1.8 closed by remote host.
 Connection to 10.0.1.8 closed.
 
 debian@dulcinea:~$ ssh ubuntu@10.0.1.8
-Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-48-generic x86_64)
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-53-generic x86_64)
 
 ...
 
-Last login: Sat Nov 14 18:41:41 2020 from 10.0.1.11
+Last login: Sat Nov 14 18:41:41 2020 from 10.0.1.3
 
 ubuntu@sancho:~$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
@@ -633,7 +633,7 @@ ubuntu@sancho:~$ ip a
        valid_lft forever preferred_lft forever
     inet6 ::1/128 scope host
        valid_lft forever preferred_lft forever
-2: ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+2: ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8950 qdisc fq_codel state UP group default qlen 1000
     link/ether fa:16:3e:84:9b:94 brd ff:ff:ff:ff:ff:ff
     inet 10.0.1.8/24 brd 10.0.1.255 scope global ens3
        valid_lft forever preferred_lft forever
@@ -641,18 +641,18 @@ ubuntu@sancho:~$ ip a
        valid_lft forever preferred_lft forever
 
 ubuntu@sancho:~$ ip r
-default via 10.0.1.11 dev ens3 proto static
+default via 10.0.1.3 dev ens3 proto static
 10.0.1.0/24 dev ens3 proto kernel scope link src 10.0.1.8
 
 ubuntu@sancho:~$ ping www.google.es
-PING www.google.es (216.58.215.131) 56(84) bytes of data.
-64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=1 ttl=112 time=43.2 ms
-64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=2 ttl=112 time=43.7 ms
-64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=3 ttl=112 time=43.5 ms
+PING www.google.es (172.217.168.163) 56(84) bytes of data.
+64 bytes from mad07s10-in-f3.1e100.net (172.217.168.163): icmp_seq=1 ttl=112 time=43.2 ms
+64 bytes from mad07s10-in-f3.1e100.net (172.217.168.163): icmp_seq=2 ttl=112 time=43.9 ms
+64 bytes from mad07s10-in-f3.1e100.net (172.217.168.163): icmp_seq=3 ttl=112 time=43.2 ms
 ^C
 --- www.google.es ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2003ms
-rtt min/avg/max/mdev = 43.235/43.478/43.727/0.200 ms
+rtt min/avg/max/mdev = 43.166/43.438/43.925/0.345 ms
 </pre>
 
 Podemos ver como efectivamente nos ha aplicado la configuración, poseemos una IP estática y la puerta de enlace es la IP de *Dulcinea*, y además comprobamos que poseemos conectividad al exterior, y podemos disfrutar de una resolución de nombres satisfactoria.
@@ -677,7 +677,7 @@ TYPE=Ethernet
 USERCTL=no
 </pre>
 
-Debemos sustituirlo por este bloque, en el que indicamos que en el apartado **BOOTPROTO**, la IP ahora se establece como estática, y el **DHCP4** pasa a ser desactivado, que la IP estática que le estamos asignando es la **10.0.1.7**, cuya máscara de red es una **255.255.255.0**, que la puerta de enlace es la **10.0.1.11**, es decir, la IP de *Dulcinea*, y que utilice esos **DNS** indicados. Es importante establecer en el apartado **ONBOOT** el valor *yes*, ya que esto hará que esta configuración se active en cada inicio del sistema.
+Debemos sustituirlo por este bloque, en el que indicamos que en el apartado **BOOTPROTO**, la IP ahora se establece como estática, y el **DHCP4** pasa a ser desactivado, que la IP estática que le estamos asignando es la **10.0.1.7**, cuya máscara de red es una **255.255.255.0**, que la puerta de enlace es la **10.0.1.3**, es decir, la IP de *Dulcinea*, y que utilice esos **DNS** indicados. Es importante establecer en el apartado **ONBOOT** el valor *yes*, ya que esto hará que esta configuración se active en cada inicio del sistema.
 
 <pre>
 BOOTPROTO=static
@@ -689,8 +689,8 @@ TYPE=Ethernet
 USERCTL=no
 IPADDR=10.0.1.7
 NETMASK=255.255.255.0
-GATEWAY=10.0.1.11
-DNS1=10.0.1.11
+GATEWAY=10.0.1.3
+DNS1=10.0.1.3
 DNS2=8.8.8.8
 </pre>
 
@@ -708,6 +708,7 @@ Connection to 10.0.1.7 closed by remote host.
 Connection to 10.0.1.7 closed.
 
 debian@dulcinea:~$ ssh centos@10.0.1.7
+
 Last login: Sat Nov 14 18:43:37 2020 from gateway
 
 [centos@quijote ~]$ ip a
@@ -725,18 +726,18 @@ Last login: Sat Nov 14 18:43:37 2020 from gateway
        valid_lft forever preferred_lft forever
 
 [centos@quijote ~]$ ip r
-default via 10.0.1.11 dev eth0
+default via 10.0.1.3 dev eth0
 10.0.1.0/24 dev eth0 proto kernel scope link src 10.0.1.7
 
 [centos@quijote ~]$ ping www.google.es
-PING www.google.es (216.58.215.131) 56(84) bytes of data.
-64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=1 ttl=112 time=43.4 ms
-64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=2 ttl=112 time=43.5 ms
-64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=3 ttl=112 time=43.1 ms
+PING www.google.es (216.58.209.67) 56(84) bytes of data.
+64 bytes from mad07s22-in-f3.1e100.net (216.58.209.67): icmp_seq=1 ttl=112 time=43.2 ms
+64 bytes from mad07s22-in-f3.1e100.net (216.58.209.67): icmp_seq=2 ttl=112 time=43.8 ms
+64 bytes from mad07s22-in-f3.1e100.net (216.58.209.67): icmp_seq=3 ttl=112 time=43.9 ms
 ^C
 --- www.google.es ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2001ms
-rtt min/avg/max/mdev = 43.142/43.386/43.550/0.244 ms
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 43.254/43.695/43.971/0.397 ms
 </pre>
 
 Podemos ver como efectivamente nos ha aplicado la configuración, poseemos una IP estática y la puerta de enlace es la IP de *Dulcinea*, y además comprobamos que poseemos conectividad al exterior, y podemos disfrutar de una resolución de nombres satisfactoria.

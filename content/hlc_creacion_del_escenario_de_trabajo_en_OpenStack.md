@@ -601,7 +601,7 @@ network:
             addresses: [10.0.1.8/24]
             gateway4: 10.0.1.3
             nameservers:
-              addresses: [10.0.1.11, 8.8.8.8]
+              addresses: [10.0.1.3, 8.8.8.8]
 </pre>
 
 

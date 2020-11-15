@@ -589,7 +589,11 @@ network:
     version: 2
     ethernets:
         ens3:
-            dhcp4: no
+            dhcp4: false
+            match:
+                macaddress: fa:16:3e:84:9b:94
+            mtu: 8950
+            set-name: ens3
             addresses: [10.0.1.8/24]
             gateway4: 10.0.1.11
             nameservers:
@@ -603,7 +607,7 @@ Reiniciamos y aplicamos los cambios en las interfaces de red:
 netplan apply
 </pre>
 
-También reinicio la máquina para verificar que en cada inicio se aplicará esta configuración:
+También reinicio la máquina para verificar que en cada inicio se aplicará esta configuración (aunque realmente es lo mismo):
 
 <pre>
 root@sancho:~# reboot

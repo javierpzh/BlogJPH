@@ -939,9 +939,17 @@ hostnamectl set-hostname quijote.javierpzh.gonzalonazareno.org
 
 **12. Hasta que no esté configurado el servidor DNS, incluye resolución estática en las tres instancias tanto usando nombre completo como hostname.**
 
+Para configurar la resolución estática de las instancias, debemos modificar el fichero `/etc/hosts` y añadir unas líneas con este aspecto:
+
+<pre>
+XXX.XXX.XXX.XXX nombre
+</pre>
+
+Esto lo que hace, es que cuando intentemos resolver un nombre, busca en este fichero si tiene su dirección IP guardada, por lo que nos facilita y nos acomoda mucho el trabajo.
+
 **Dulcinea:**
 
-Para configurar la resolución estática de las instancias, debemos modificar el fichero `/etc/hosts` y añadir estas líneas:
+Añadimos estas líneas:
 
 <pre>
 127.0.1.1 dulcinea.javierpzh.gonzalonazareno.org dulcinea dulcinea.novalocal
@@ -967,7 +975,7 @@ Y ya habríamos configurado la resolución estática en *Dulcinea*.
 
 **Sancho:**
 
-Para configurar la resolución estática de las instancias, debemos modificar el fichero `/etc/hosts` y añadir estas líneas:
+Añadimos estas líneas:
 
 <pre>
 127.0.1.1 sancho.javierpzh.gonzalonazareno.org sancho
@@ -979,7 +987,7 @@ Para configurar la resolución estática de las instancias, debemos modificar el
 
 **Quijote:**
 
-Para configurar la resolución estática de las instancias, debemos modificar el fichero `/etc/hosts` y añadir estas líneas:
+Añadimos estas líneas:
 
 <pre>
 127.0.1.1 quijote.javierpzh.gonzalonazareno.org quijote
@@ -987,56 +995,74 @@ Para configurar la resolución estática de las instancias, debemos modificar el
 10.0.1.8 sancho.javierpzh.gonzalonazareno.org sancho
 </pre>
 
-
-
 **13. Asegúrate que el servidor tiene sincronizado su reloj utilizando un servidor NTP externo.**
 
 **Dulcinea:**
 
+Para configurar nuestro reloj utilizando un servidor **NTP** externo, introducimos el siguiente comando y seleccionamos la configuración que nos interese:
+
 <pre>
 dpkg-reconfigure tzdata
 </pre>
 
-
-
-<pre>
-root@dulcinea:~# date
-Sat 14 Nov 2020 08:51:41 PM CET
-</pre>
-
-
+Comprobamos que tenemos la hora correcta y el servidor **NTP** activo y sincronizado:
 
 <pre>
-apt install ntpdate
+root@dulcinea:~# timedatectl
+               Local time: Sat 2020-11-14 21:51:13 CET
+           Universal time: Sat 2020-11-14 20:51:13 UTC
+                 RTC time: Sat 2020-11-14 20:51:14
+                Time zone: Europe/Madrid (CET, +0100)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
 </pre>
 
 **Sancho:**
 
+Para configurar nuestro reloj utilizando un servidor **NTP** externo, introducimos el siguiente comando y seleccionamos la configuración que nos interese:
+
 <pre>
 dpkg-reconfigure tzdata
 </pre>
 
-
-
-<pre>
-root@sancho:~# date
-Sat Nov 14 20:51:44 CET 2020
-</pre>
-
-
+Comprobamos que tenemos la hora correcta y el servidor **NTP** activo y sincronizado:
 
 <pre>
-apt install ntpdate
+root@sancho:~# timedatectl
+               Local time: Sat 2020-11-14 21:53:48 CET
+           Universal time: Sat 2020-11-14 20:53:48 UTC
+                 RTC time: Sat 2020-11-14 20:53:49    
+                Time zone: Europe/Madrid (CET, +0100)
+System clock synchronized: yes                        
+              NTP service: active                     
+          RTC in local TZ: no
 </pre>
 
 **Quijote:**
 
-<pre>
-yum install ntp
-</pre>
-
-
+Para configurar nuestro reloj utilizando un servidor **NTP** externo, introducimos el siguiente comando y seleccionamos la configuración que nos interese:
 
 <pre>
 tzselect
+</pre>
+
+Comprobamos que tenemos la hora correcta y el servidor **NTP** activo y sincronizado:
+
+<pre>
+[root@quijote ~]# timedatectl
+      Local time: Sat 2020-11-14 21:56:25 CET
+  Universal time: Sat 2020-11-14 20:56:25 UTC
+        RTC time: Sat 2020-11-14 20:56:26
+       Time zone: UTC (CET, +0100)
+     NTP enabled: yes
+NTP synchronized: yes
+ RTC in local TZ: no
+      DST active: no
+ Last DST change: DST ended at
+                  Sun 2020-10-25 02:59:59 CEST
+                  Sun 2020-10-25 02:00:00 CET
+ Next DST change: DST begins (the clock jumps one hour forward) at
+                  Sun 2021-03-28 01:59:59 CET
+                  Sun 2021-03-28 03:00:00 CEST
 </pre>

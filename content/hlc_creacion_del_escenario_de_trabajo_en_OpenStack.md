@@ -808,11 +808,7 @@ Seleccionamos la opción **Editar subred**, y se nos abrirá esta ventana en la 
 
 Guardamos los cambios y ya tendríamos deshabilitado el servidor DHCP de nuestra red interna.
 
-**7. Utilización de `ssh-agent` para acceder a las instancias.**
-
-
-
-**8. Creación del usuario profesor en todas las instancias. Usuario que puede utilizar sudo sin contraseña.**
+**7. Creación del usuario profesor en todas las instancias. Usuario que puede utilizar sudo sin contraseña.**
 
 **Dulcinea:**
 
@@ -886,11 +882,11 @@ profesor ALL=(ALL) NOPASSWD: ALL
 
 Y fin, esto hará que cuando el usuario *profesor* haga uso de `sudo`, no le pida contraseña alguna.
 
-**9. Copia las claves públicas de todos los profesores en las instancias para que puedan acceder con el usuario profesor.**
+**8. Copia las claves públicas de todos los profesores en las instancias para que puedan acceder con el usuario profesor.**
 
 He copiado todas las claves públicas de los profesores al fichero `.ssh/authorized_keys` del usuario *profesor*.
 
-**10. Realiza una actualización completa de todos los servidores.**
+**9. Realiza una actualización completa de todos los servidores.**
 
 Para realizar una actualización de todos los paquetes instalados en cada sistema, empleamos estos comandos:
 
@@ -916,28 +912,7 @@ yum update
 
 Cuando se ejecuta este comando, `yum` comenzará a comprobar en sus repositorios si existe una versión actualizada del software que el sistema tiene instalado actualmente. Una vez que revisa la lista de repositorios y nos informa de que paquetes se pueden actualizar, introducimos `y` y pulsando *intro* se nos actualizarán todos los paquetes.
 
-**11. Configura el servidor con el nombre de dominio *nombre-usuario.gonzalonazareno.org*.**
-
-**Dulcinea:**
-
-<pre>
-hostnamectl set-hostname dulcinea.javierpzh.gonzalonazareno.org
-</pre>
-
-**Sancho:**
-
-<pre>
-hostnamectl set-hostname sancho.javierpzh.gonzalonazareno.org
-</pre>
-
-**Quijote:**
-
-<pre>
-hostnamectl set-hostname quijote.javierpzh.gonzalonazareno.org
-</pre>
-
-
-**12. Hasta que no esté configurado el servidor DNS, incluye resolución estática en las tres instancias tanto usando nombre completo como hostname.**
+**10. Hasta que no esté configurado el servidor DNS, incluye resolución estática en las tres instancias tanto usando nombre completo como hostname.**
 
 Para configurar la resolución estática de las instancias, debemos modificar el fichero `/etc/hosts` y añadir unas líneas con este aspecto:
 
@@ -995,7 +970,7 @@ Añadimos estas líneas:
 10.0.1.8 sancho.javierpzh.gonzalonazareno.org sancho
 </pre>
 
-**13. Asegúrate que el servidor tiene sincronizado su reloj utilizando un servidor NTP externo.**
+**11. Asegúrate que el servidor tiene sincronizado su reloj utilizando un servidor NTP externo.**
 
 **Dulcinea:**
 

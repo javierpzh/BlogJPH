@@ -165,7 +165,20 @@ Vemos como también hemos añadido el repositorio *CentOSPlus*.
 
 **5. Explica qué comando utilizarías para ver la información del paquete kernel instalado.**
 
+Para ver que versiones de kernel tenemos instaladas:
 
+<pre>
+[root@quijote ~]# rpm -q kernel
+kernel-3.10.0-1127.el7.x86_64
+kernel-3.10.0-1160.2.2.el7.x86_64
+</pre>
+
+Para ver que versión de kernel estamos utilizando ahora mismo:
+
+<pre>
+[root@quijote ~]# uname -a
+Linux quijote.novalocal 3.10.0-1160.2.2.el7.x86_64 #1 SMP Tue Oct 20 16:53:08 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+</pre>
 
 **6. Instala el repositorio adicional "elrepo" e instala el último núcleo disponible del mismo (5.9.X).**
 

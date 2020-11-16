@@ -220,8 +220,59 @@ repolist: 24,413
 
 Se ha añadido correctamente.
 
-Para instalar el último kérnel que esté disponible en este repositorio, 
+Para instalar el último kérnel que esté disponible en este repositorio,
 
+Recordemos que estamos utilizando esta versión de kérnel:
+
+<pre>
+[root@quijote ~]# uname -r
+3.10.0-1160.2.2.el7.x86_64
+</pre>
+
+Si los paquetes de kérnel disponibles con el siguiente comando:
+
+<pre>
+[root@quijote ~]# yum --disablerepo="*" --enablerepo="elrepo-kernel" list available
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * elrepo-kernel: mirror.pit.teraswitch.com
+elrepo-kernel                                                                    | 2.9 kB  00:00:00     
+elrepo-kernel/primary_db                                                         | 1.9 MB  00:00:01     
+Available Packages
+elrepo-release.noarch                               7.0-5.el7.elrepo                       elrepo-kernel
+kernel-lt.x86_64                                    4.4.243-1.el7.elrepo                   elrepo-kernel
+kernel-lt-devel.x86_64                              4.4.243-1.el7.elrepo                   elrepo-kernel
+kernel-lt-doc.noarch                                4.4.243-1.el7.elrepo                   elrepo-kernel
+kernel-lt-headers.x86_64                            4.4.243-1.el7.elrepo                   elrepo-kernel
+kernel-lt-tools.x86_64                              4.4.243-1.el7.elrepo                   elrepo-kernel
+kernel-lt-tools-libs.x86_64                         4.4.243-1.el7.elrepo                   elrepo-kernel
+kernel-lt-tools-libs-devel.x86_64                   4.4.243-1.el7.elrepo                   elrepo-kernel
+kernel-ml.x86_64                                    5.9.8-1.el7.elrepo                     elrepo-kernel
+kernel-ml-devel.x86_64                              5.9.8-1.el7.elrepo                     elrepo-kernel
+kernel-ml-doc.noarch                                5.9.8-1.el7.elrepo                     elrepo-kernel
+kernel-ml-headers.x86_64                            5.9.8-1.el7.elrepo                     elrepo-kernel
+kernel-ml-tools.x86_64                              5.9.8-1.el7.elrepo                     elrepo-kernel
+kernel-ml-tools-libs.x86_64                         5.9.8-1.el7.elrepo                     elrepo-kernel
+kernel-ml-tools-libs-devel.x86_64                   5.9.8-1.el7.elrepo                     elrepo-kernel
+perf.x86_64                                         5.9.8-1.el7.elrepo                     elrepo-kernel
+python-perf.x86_64                                  5.9.8-1.el7.elrepo                     elrepo-kernel
+</pre>
+
+Podemos ver como la versión de kérnel más reciente es la **5.9.8**, mientras que la que estamos utilizando actualmente es la **3.10.0**.
+
+Procedemos a la instalación de este kernel ejecutando lo siguiente:
+
+<pre>
+yum --enablerepo=elrepo-kernel install kernel-ml
+<pre>
+
+Aceptamos la descarga y la instalación de los paquetes. Cuando finalice el proceso, reiniciamos el sistema.
+
+Comprobamos de nuevo la versión de kérnel que estamos utilizando:
+
+<pre>
+
+</pre>
 
 **7. Busca las versiones disponibles para instalar del núcleo linux e instala la más nueva.**
 

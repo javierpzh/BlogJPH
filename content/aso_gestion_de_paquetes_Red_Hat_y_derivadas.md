@@ -182,6 +182,45 @@ Linux quijote.novalocal 3.10.0-1160.2.2.el7.x86_64 #1 SMP Tue Oct 20 16:53:08 UT
 
 **6. Instala el repositorio adicional "elrepo" e instala el último núcleo disponible del mismo (5.9.X).**
 
+El primer paso para habilitar este repositorio consiste en importar la llave GPG. Esto hará que `yum` lo considere fiable a la hora de instalar paquetes del mismo:
+
+<pre>
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+</pre>
+
+Ahora, lo habilitamos con el siguiente comando:
+
+<pre>
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+</pre>
+
+Listamos de nuevo los repositorios activos:
+
+<pre>
+[root@quijote ~]# yum repolist
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirror.airenetworks.es
+ * centosplus: mirror.airenetworks.es
+ * elrepo: mirror.cedia.org.ec
+ * epel: mirror.nextlayer.at
+ * extras: mirror.airenetworks.es
+ * updates: mirror.airenetworks.es
+elrepo                                                                           | 2.9 kB  00:00:00     
+elrepo/primary_db                                                                | 481 kB  00:00:00     
+repo id                        repo name                                                          status
+base/7/x86_64                  CentOS-7 - Base                                                    10,072
+centosplus/7/x86_64            CentOS-7 - Plus                                                      0+34
+elrepo                         ELRepo.org Community Enterprise Linux Repository - el7                130
+epel/x86_64                    Extra Packages for Enterprise Linux 7 - x86_64                     13,470
+extras/7/x86_64                CentOS-7 - Extras                                                     448
+updates/7/x86_64               CentOS-7 - Updates                                                    293
+repolist: 24,413
+</pre>
+
+Se ha añadido correctamente.
+
+Para instalar el último kérnel que esté disponible en este repositorio, 
 
 
 **7. Busca las versiones disponibles para instalar del núcleo linux e instala la más nueva.**

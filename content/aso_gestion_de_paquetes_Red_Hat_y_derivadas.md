@@ -266,12 +266,21 @@ Procedemos a la instalación de este kernel ejecutando lo siguiente:
 yum --enablerepo=elrepo-kernel install kernel-ml
 <pre>
 
-Aceptamos la descarga y la instalación de los paquetes. Cuando finalice el proceso, reiniciamos el sistema.
+Aceptamos la descarga y la instalación de los paquetes.
 
-Comprobamos de nuevo la versión de kérnel que estamos utilizando:
+Una vez instalado tenemos que configurar para que seleccione este kérnel de manera predeterminada, para ello editamos el fichero `/etc/default/grub` y cambiamos el valor de la línea **GRUB_DEFAULT** a **0**.
+
+Ejecutamos la siguiente línea para actualizar la configuración de GRUB:
 
 <pre>
+grub2-mkconfig -o /boot/grub2/grub.cfg
+</pre>
 
+Reiniciamos el sistema. Comprobamos de nuevo la versión de kérnel que estamos utilizando:
+
+<pre>
+[root@quijote ~]# uname -r
+5.9.8-1.el7.elrepo.x86_64
 </pre>
 
 **7. Busca las versiones disponibles para instalar del núcleo linux e instala la más nueva.**

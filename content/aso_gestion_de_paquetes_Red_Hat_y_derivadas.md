@@ -111,10 +111,44 @@ Ya hemos instalado el repositorio **EPEL**.
 
 El repositorio **CentOSPlus** contiene paquetes que son mejoras para los paquetes en los repositorios *CentOS base* + *CentOS updates*. Estos paquetes no son parte de la distribución mayor y extienden la funcionalidad a costa de la compatibilidad con el proveedor.
 
-Para instalar el repositorio **CentOSPlus** tenemos que descargar un archivo con extensión *.rpm* y después instalarlo. Para descargar el archivo *.rpm* ejecutamos el siguiente comando:
+Para instalar el repositorio **CentOSPlus** tenemos que editar el fichero `/etc/yum.repos.d/CentOS-Base.repo` y sustituir el bloque de *CentOSPlus* que viene por defecto por este otro:
+
+<pre>
+#additional packages that extend functionality of existing packages
+[centosplus]
+name=CentOS-$releasever - Plus
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=centosplus
+#baseurl=http://mirror.centos.org/centos/$releasever/centosplus/$basearch/
+gpgcheck=1
+enabled=1
+gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-centos5
+includepkgs=postfix-*
+exclude=postfix-*plus* 
+</pre>
 
 
-
+<pre>
+[root@quijote ~]# yum repolist
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirror.airenetworks.es
+ * centosplus: mirror.airenetworks.es
+ * epel: mirror.etf.bg.ac.rs
+ * extras: mirror.airenetworks.es
+ * updates: mirror.airenetworks.es
+base                                                                             | 3.6 kB  00:00:00     
+centosplus                                                                       | 2.9 kB  00:00:00     
+extras                                                                           | 2.9 kB  00:00:00     
+updates                                                                          | 2.9 kB  00:00:00     
+centosplus/7/x86_64/primary_db                                                   | 1.2 MB  00:00:00     
+repo id                            repo name                                                      status
+base/7/x86_64                      CentOS-7 - Base                                                10,072
+centosplus/7/x86_64                CentOS-7 - Plus                                                  0+34
+epel/x86_64                        Extra Packages for Enterprise Linux 7 - x86_64                 13,470
+extras/7/x86_64                    CentOS-7 - Extras                                                 448
+updates/7/x86_64                   CentOS-7 - Updates                                                293
+repolist: 24,283
+</pre>
 
 
 

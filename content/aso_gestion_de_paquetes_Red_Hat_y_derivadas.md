@@ -60,6 +60,10 @@ updates/7/x86_64                                CentOS-7 - Updates              
 repolist: 10,813
 </pre>
 
+El repositorio **EPEL (Extra Packages for Enterprise Linux)** es un repositorio de paquetes de código abierto y gratuitos. Estos repositorios nos permiten instalar aplicaciones que no están incluidas por defecto en los repositorios base de *CentOS* y que contiene gran cantidad de herramientas para administración de redes, herramientas de sysadmin, monitorización, ...
+
+Los repositorios *EPEL* están mantenidos por el equipo **Fedora** siguiendo todas las directrices de calidad y compatibilidad por lo que podemos agregar este repositorio con total tranquilidad.
+
 Para instalar el repositorio **EPEL** tenemos que descargar un archivo con extensión *.rpm* y después instalarlo. Para descargar el archivo *.rpm* ejecutamos el siguiente comando:
 
 - Centos 7.0: `wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm`
@@ -102,6 +106,25 @@ extras/7/x86_64                   CentOS-7 - Extras                             
 updates/7/x86_64                  CentOS-7 - Updates                                                 293
 repolist: 24,283
 </pre>
+
+Ya hemos instalado el repositorio **EPEL**.
+
+El repositorio **CentOSPlus** contiene paquetes que son mejoras para los paquetes en los repositorios *CentOS base* + *CentOS updates*. Estos paquetes no son parte de la distribución mayor y extienden la funcionalidad a costa de la compatibilidad con el proveedor.
+
+Para instalar el repositorio **CentOSPlus** tenemos que descargar un archivo con extensión *.rpm* y después instalarlo. Para descargar el archivo *.rpm* ejecutamos el siguiente comando:
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

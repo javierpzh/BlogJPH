@@ -123,9 +123,16 @@ gpgcheck=1
 enabled=1
 gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-centos5
 includepkgs=postfix-*
-exclude=postfix-*plus* 
+exclude=postfix-*plus*
 </pre>
 
+Ejecutamos el siguiente comando para adicionar lo siguiente a las secciones *[base]* y *[update]* correspondientes en el fichero `/etc/yum.repos.d/CentOS-Base.repo`, de forma que no obtenga paquetes *postfix* desde allí nunca más:
+
+<pre>
+exclude=postfix-*
+</pre>
+
+Si listamos de nuevo los repositorios activos:
 
 <pre>
 [root@quijote ~]# yum repolist
@@ -150,17 +157,7 @@ updates/7/x86_64                   CentOS-7 - Updates                           
 repolist: 24,283
 </pre>
 
-
-
-
-
-
-
-
-
-
-
-
+Vemos como también hemos añadido el repositorio *CentOSPlus*.
 
 **4. Instala el paquete que proporciona el programa dig, explicando los pasos que has dado para encontrarlo.**
 

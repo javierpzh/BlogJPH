@@ -24,6 +24,12 @@ DNS2=X.X.X.X
 DNSX=X.X.X.X
 </pre>
 
+Reiniciamos y aplicamos los cambios en las interfaces de red:
+
+<pre>
+systemctl restart network.service
+</pre>
+
 **2. Actualiza el sistema a las versiones más recientes de los paquetes instalados.**
 
 

@@ -32,7 +32,13 @@ systemctl restart network.service
 
 **2. Actualiza el sistema a las versiones más recientes de los paquetes instalados.**
 
+Para realizar una actualización de todos los paquetes instalados en el sistema, empleamos este comando:
 
+<pre>
+yum update
+</pre>
+
+Cuando se ejecuta este comando, `yum` comenzará a comprobar en sus repositorios si existe una versión actualizada del software que el sistema tiene instalado actualmente. Una vez que revisa la lista de repositorios y nos informa de que paquetes se pueden actualizar, introducimos `y` y pulsando *intro* se nos actualizarán todos los paquetes.
 
 **3. Instala los repositorios adicionales EPEL y CentOSPlus.**
 

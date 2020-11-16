@@ -264,7 +264,7 @@ Procedemos a la instalación de este kernel ejecutando lo siguiente:
 
 <pre>
 yum --enablerepo=elrepo-kernel install kernel-ml
-<pre>
+</pre>
 
 Aceptamos la descarga y la instalación de los paquetes.
 

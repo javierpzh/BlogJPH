@@ -133,7 +133,7 @@ Vemos que ya hemos firmado y guardado el documento firmado:
 
 Ya dispongo de los documentos firmados, llamados `documentofirmadoautofirma.txt_signed.csig` y `documentofirmadovalide.txt.csig`, y se lo envío a mi compañero [Álvaro](https://www.instagram.com/whosalvr/).
 
-**2. Tu debes recibir otro documento firmado por un compañero y utilizando las herramientas anteriores debes visualizar la firma (Visualizar Firma) y (Verificar Firma). ¿Puedes verificar la firma aunque no tengas la clave pública de tu compañero?, ¿Es necesario estar conectado a internet para hacer la validación de la firma?. Razona tus respuestas.**
+**2. Tu debes recibir otro documento firmado por un compañero y utilizando las herramientas anteriores debes visualizar la firma (Visualizar Firma) y (Verificar Firma). ¿Puedes verificar la firma aunque no tengas la clave pública de tu compañero? ¿Es necesario estar conectado a internet para hacer la validación de la firma? Razona tus respuestas.**
 
 
 

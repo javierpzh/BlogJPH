@@ -18,7 +18,7 @@ Nos dirigimos al menú de **Preferencias** del navegador, y en el apartado de **
 
 **2. Muestra una captura de pantalla donde se vea las preferencias del navegador donde se ve instalado tu certificado.**
 
-![.](images/certificados_digitales_HTTPS/certinstalado.png)
+![.](images/sad_certificados_digitales_HTTPS/certinstalado.png)
 
 **3. ¿Cómo puedes hacer una copia de tu certificado? ¿Como vas a realizar la copia de seguridad de tu certificado? Razona la respuesta.**
 

@@ -107,20 +107,31 @@ Vemos que ya hemos firmado y guardado el documento firmado:
 
 Con **Valide**:
 
-Para firmar un documento con mi certificado y el programa *Valide*,
+Para firmar un documento con mi certificado y el programa *Valide*, nos dirigimos a la página de *VALIDe* y al apartado **[Realizar Firma](https://valide.redsara.es/valide/firmar/ejecutar.html)**.
 
 ![.](images/sad_certificados_digitales_HTTPS/validepagfirmar.png)
 
+Seleccionamos el documento que deseamos firmar:
+
 ![.](images/sad_certificados_digitales_HTTPS/valideseleccfichero.png)
+
+Seleccionamos con que certificado queremos firmar el documento:
 
 ![.](images/sad_certificados_digitales_HTTPS/valideselecccert.png)
 
+Vemos que ya hemos firmado el documento pero aún no lo hemos guardado en nuestro equipo:
+
 ![.](images/sad_certificados_digitales_HTTPS/valideficherofirm.png)
+
+Guardamos el fichero ya firmado con nuestro certificado:
 
 ![.](images/sad_certificados_digitales_HTTPS/valideguardarficherofirm.png)
 
+Vemos que ya hemos firmado y guardado el documento firmado:
+
 ![.](images/sad_certificados_digitales_HTTPS/valideficherofirmyguardado.png)
 
+Ya dispongo de los documentos firmados, llamados `documentofirmadoautofirma.txt_signed.csig` y `documentofirmadovalide.txt.csig`, y se lo envío a mi compañero [Álvaro](https://www.instagram.com/whosalvr/).
 
 **2. Tu debes recibir otro documento firmado por un compañero y utilizando las herramientas anteriores debes visualizar la firma (Visualizar Firma) y (Verificar Firma). ¿Puedes verificar la firma aunque no tengas la clave pública de tu compañero?, ¿Es necesario estar conectado a internet para hacer la validación de la firma?. Razona tus respuestas.**
 

@@ -63,9 +63,11 @@ Una vez descargado y descomprimido, instalamos el paquete `.deb`:
 sudo dpkg -i AutoFirma_1_6_5.deb
 </pre>
 
-Y ya tendríamos instalado **Autofirma**.
+Y ya tendríamos instalado **Autofirma**. Comprobamos que lo podemos abrir:
 
+![.](images/sad_certificados_digitales_HTTPS/autofirma.png)
 
+Para validar nuestro certificado, nos dirigimos a la página de **VALIDe** y
 
 #### Tarea 3: Firma electrónica
 

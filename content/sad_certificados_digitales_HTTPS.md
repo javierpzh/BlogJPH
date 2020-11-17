@@ -154,7 +154,13 @@ Me dirijo a la web llamada **[Consulta tus puntos](https://sede.dgt.gob.es/es/pe
 
 Vemos que tenemos distintas posibilidades para identificarnos, yo selecciono **Certificado Electrónico**. Como tengo instalado mi certificado en este navegador, me lo reconoce automáticamente y me pregunta si quiero acceder:
 
-![.](images/sad_certificados_digitales_HTTPS/.png)
+![.](images/sad_certificados_digitales_HTTPS/dgtcert.png)
+
+Le digo que sí y automáticamente nos hemos identificado con nuestra certificado digital y nos proporciona la siguiente información:
+
+![.](images/sad_certificados_digitales_HTTPS/dgtdentro.png)
+
+Sale este mensaje porque aún no me he sacado el carnet jajajaja.
 
 ## HTTPS / SSL
 

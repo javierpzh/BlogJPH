@@ -144,10 +144,17 @@ Ya dispongo de los documentos firmados, llamados `documentofirmadoautofirma.txt_
 
 #### Tarea 4: Autentificación
 
-**1. Utilizando tu certificado accede a alguna página de la administración pública )cita médica, becas, puntos del carnet,…). Entrega capturas de pantalla donde se demuestre el acceso a ellas.**
+**1. Utilizando tu certificado accede a alguna página de la administración pública (cita médica, becas, puntos del carnet,…). Entrega capturas de pantalla donde se demuestre el acceso a ellas.**
 
+Voy a intentar consultar mis puntos del carnet de conducir, utilizando mi certificado digital.
 
+Me dirijo a la web llamada **[Consulta tus puntos](https://sede.dgt.gob.es/es/permisos-de-conducir/consulta-tus-puntos/#)** de la DGT, y aquí indico que me voy a identificar mediante **Clave**:
 
+![.](images/sad_certificados_digitales_HTTPS/dgtconsultatuspuntos.png)
+
+Vemos que tenemos distintas posibilidades para identificarnos, yo selecciono **Certificado Electrónico**. Como tengo instalado mi certificado en este navegador, me lo reconoce automáticamente y me pregunta si quiero acceder:
+
+![.](images/sad_certificados_digitales_HTTPS/.png)
 
 ## HTTPS / SSL
 

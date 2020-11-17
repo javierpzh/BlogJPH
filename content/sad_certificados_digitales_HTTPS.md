@@ -83,7 +83,7 @@ Seleccionamos nuestro certificado y hacemos *click* en **Validar**, y obtendremo
 
 **1. Utilizando la página *VALIDe* y el programa *Autofirma*, firma un documento con tu certificado y envíalo por correo a un compañero.**
 
-Firmar *Autofirma*:
+Para firmar un documento con mi certificado y el programa *Autofirma*,
 
 ![.](images/sad_certificados_digitales_HTTPS/autofirmaseleccfichero.png)
 
@@ -94,7 +94,7 @@ Firmar *Autofirma*:
 ![.](images/sad_certificados_digitales_HTTPS/autofirmaficherofirm.png)
 
 
-Firmar *Valide*:
+Para firmar un documento con mi certificado y el programa *Valide*,
 
 ![.](images/sad_certificados_digitales_HTTPS/validepagfirmar.png)
 

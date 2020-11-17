@@ -20,7 +20,7 @@ Nos dirigimos al menú de **Preferencias** del navegador, y en el apartado de **
 
 ![.](images/certificados_digitales_HTTPS/certinstalado.png)
 
-**3. ¿Cómo puedes hacer una copia de tu certificado?, ¿Como vas a realizar la copia de seguridad de tu certificado?. Razona la respuesta.**
+**3. ¿Cómo puedes hacer una copia de tu certificado? ¿Como vas a realizar la copia de seguridad de tu certificado? Razona la respuesta.**
 
 
 

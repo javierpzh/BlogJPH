@@ -135,7 +135,12 @@ Ya dispongo de los documentos firmados, llamados `documentofirmadoautofirma.txt_
 
 **2. Tu debes recibir otro documento firmado por un compañero y utilizando las herramientas anteriores debes visualizar la firma (Visualizar Firma) y (Verificar Firma). ¿Puedes verificar la firma aunque no tengas la clave pública de tu compañero? ¿Es necesario estar conectado a internet para hacer la validación de la firma? Razona tus respuestas.**
 
-
+countryName_default="ES"
+stateOrProvinceName_default="Sevilla"
+localityName_default="Dos Hermanas"
+organizationName_default="javierpzh.io"
+organizationalUnitName_default="ES"
+emailAddress_default="javierperezhidalgo01@gmail.com"
 
 **3. Entre dos compañeros, firmar los dos un documento, verificar la firma para comprobar que está firmado por los dos.**
 
@@ -180,6 +185,80 @@ Sale este mensaje porque aún no me he sacado el carnet jajajaja.
 
 **1. Crear su autoridad certificadora (generar el certificado digital de la CA). Mostrar el fichero de configuración de la AC.**
 
+<pre>
+mkdir CA
+cd CA/
+mkdir ./{certsdb,certreqs,crl,private}
+chmod 700 ./private
+touch ./index.txt
+cp /usr/lib/ssl/openssl.cnf ./
+nano openssl.cnf
+</pre>
+
+<pre>
+root@https:~/CA#  openssl req -new -newkey rsa:2048 -keyout private/cakey.pem -out careq.pem -config ./openssl.cnf
+Generating a RSA private key
+....+++++
+...................................................................+++++
+writing new private key to 'private/cakey.pem'
+Enter PEM pass phrase:
+Verifying - Enter PEM pass phrase:
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [ES]:
+State or Province Name (full name) [Sevilla]:
+Locality Name (eg, city) [Dos Hermanas]:
+Organization Name (eg, company) [JavierPerez Corp]:
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:javier.debian
+Email Address []:javierperezhidalgo01@gmail.com
+</pre>
+
+<pre>
+root@https:~/CA# openssl ca -create_serial -out cacert.pem -days 365 -keyfile private/cakey.pem -selfsign -extensions v3_ca -config ./openssl.cnf -infiles careq.pem
+Using configuration from ./openssl.cnf
+Enter pass phrase for private/cakey.pem:
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number:
+            39:3b:f1:7f:26:a2:a3:45:6a:a7:14:34:43:9c:3d:71:af:e9:14:da
+        Validity
+            Not Before: Nov 17 17:35:09 2020 GMT
+            Not After : Nov 17 17:35:09 2021 GMT
+        Subject:
+            countryName               = ES
+            stateOrProvinceName       = Sevilla
+            organizationName          = JavierPerez Corp
+            commonName                = javier.debian
+            emailAddress              = javierperezhidalgo01@gmail.com
+        X509v3 extensions:
+            X509v3 Subject Key Identifier:
+                1E:B9:11:73:F5:2A:8A:CC:DC:C8:B5:00:C7:63:E8:96:08:20:EF:D2
+            X509v3 Authority Key Identifier:
+                keyid:1E:B9:11:73:F5:2A:8A:CC:DC:C8:B5:00:C7:63:E8:96:08:20:EF:D2
+
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+Certificate is to be certified until Nov 17 17:35:09 2021 GMT (365 days)
+Sign the certificate? [y/n]:y
+
+
+1 out of 1 certificate requests certified, commit? [y/n]y
+Write out database with 1 new entries
+Data Base Updated
+</pre>
+
+<pre>
+cp /home/javi/javierpzh_key.pem /certreqs
+</pre>
+
 
 
 **2. Debe recibir el fichero CSR (Solicitud de Firmar un Certificado) de su compañero, debe firmarlo y enviar el certificado generado a su compañero.**
@@ -195,19 +274,66 @@ Sale este mensaje porque aún no me he sacado el carnet jajajaja.
 
 **1. Crea una clave privada RSA de 4096 bits para identificar el servidor.**
 
-
+<pre>
+root@https:~/CA# openssl genrsa -aes128 -out javierpzh.pem 4096
+Generating RSA private key, 4096 bit long modulus (2 primes)
+..............................................................++++
+..........................................................................................................................................................................................................................++++
+e is 65537 (0x010001)
+Enter pass phrase for javierpzh.pem:
+Verifying - Enter pass phrase for javierpzh.pem:
+</pre>
 
 **2. Utiliza la clave anterior para generar un CSR, considerando que deseas acceder al servidor tanto con el FQDN (`tunombre.iesgn.org`) como con el nombre de host (implica el uso de las extensiones `Alt Name`).**
 
+<pre>
+root@https:~/CA# openssl req -new -key javierpzh.pem -out ./javierpzh.csr
+Enter pass phrase for javierpzh.pem:
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:ES
+State or Province Name (full name) [Some-State]:Sevilla
+Locality Name (eg, city) []:Dos Hermanas
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:AlvaroVaca Corp
+Organizational Unit Name (eg, section) []:Informatica
+Common Name (e.g. server FQDN or YOUR name) []:javierpzh.iesgn.org
+Email Address []:javierperezhidalgo01@gmail.com
 
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+root@https:~/CA# scp javierpzh.csr javi@172.22.200.186:/home/javi/
+javi@172.22.200.186's password:
+javierpzh.csr                                                         100% 1801   911.7KB/s   00:00    
+
+root@https:~/CA#
+</pre>
 
 **3. Envía la solicitud de firma a la entidad certificadora (su compañero).**
 
-
+<pre>
+root@https:~/CA# scp javierpzh.csr javi@172.22.200.186:/home/javi/
+javi@172.22.200.186's password:
+javierpzh.csr                                                         100% 1801   911.7KB/s   00:00    
+</pre>
 
 **4. Recibe como respuesta un certificado X.509 para el servidor firmado y el certificado de la autoridad certificadora.**
 
+<pre>
+root@https:~/CA# scp javi@172.22.200.186:/home/javi/javierpzh.crt ./
+javi@172.22.200.186's password:
+javierpzh.crt                                                         100% 6284     1.9MB/s   00:00    
 
+root@https:~/CA# scp javi@172.22.200.186:/home/javi/cacert.pem ./
+javi@172.22.200.186's password:
+cacert.pem                                                            100% 4658     1.7MB/s   00:00    
+</pre>
 
 **5. Configura tu servidor web con https en el puerto 443, haciendo que las peticiones http se redireccionen a https (forzar https).**
 

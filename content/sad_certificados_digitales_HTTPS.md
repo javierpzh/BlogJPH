@@ -10,7 +10,9 @@ Tags: Criptografía, Certificado digital, HTTPS
 
 **1. Una vez que hayas obtenido tu certificado, explica brevemente como se instala en tu navegador favorito.**
 
+En mi caso utilizo **Mozilla Firefox**, por tanto lo voy a instalar en este navegador.
 
+Nos dirigimos al menú de **Preferencias** del navegador, y en el apartado de **Privacidad & Seguridad**, nos desplazamos hasta la último opción, llamada **Certificados**.
 
 **2. Muestra una captura de pantalla donde se vea las preferencias del navegador donde se ve instalado tu certificado.**
 

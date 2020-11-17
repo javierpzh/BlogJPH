@@ -40,6 +40,33 @@ Para exportar nuestra clave pública, debemos hacer doble *click* en nuestro cer
 
 **1. Instala en tu ordenador el software [autofirma](https://firmaelectronica.gob.es/Home/Descargas.html) y desde la página de VALIDe valida tu certificado. Muestra capturas de pantalla donde se comprueba la validación.**
 
+Para instalar **Autofirma** sobre *Debian*, tenemos que tener en cuenta que necesitamos tener instalado **Java**. Para instalar *Java* ejecutamos:
+
+<pre>
+sudo apt install default-jdk openjdk-11-jdk libnss3-tools -y
+</pre>
+
+Verificamos la versión instalada:
+
+<pre>
+javier@debian:~/Descargas/AutoFirma_Linux$ java -version
+openjdk version "11.0.9" 2020-10-20
+OpenJDK Runtime Environment (build 11.0.9+11-post-Debian-1deb10u1)
+OpenJDK 64-Bit Server VM (build 11.0.9+11-post-Debian-1deb10u1, mixed mode, sharing)
+</pre>
+
+Ahora nos descargamos el programa de instalación de *Autofirma* desde este [enlace](https://firmaelectronica.gob.es/Home/Descargas.html).
+
+Una vez descargado y descomprimido, instalamos el paquete `.deb`:
+
+<pre>
+sudo dpkg -i AutoFirma_1_6_5.deb
+</pre>
+
+Y ya tendríamos instalado **Autofirma**.
+
+
+
 #### Tarea 3: Firma electrónica
 
 **1. Utilizando la página VALIDe y el programa autofirma, firma un documento con tu certificado y envíalo por correo a un compañero.**

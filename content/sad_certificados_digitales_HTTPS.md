@@ -61,9 +61,9 @@ Tags: Criptografía, Certificado digital, HTTPS
 
 **Para hacer esta práctica puedes buscar información en internet, algunos enlaces interesantes:**
 
-- Phil’s X509/SSL Guide
-- How to setup your own CA with OpenSSL
-- Crear autoridad certificadora (CA) y certificados autofirmados en Linux
+- [Phil’s X509/SSL Guide](https://www.phildev.net/ssl/)
+- [How to setup your own CA with OpenSSL](https://gist.github.com/Soarez/9688998)
+- [Crear autoridad certificadora (CA) y certificados autofirmados en Linux](https://blog.guillen.io/2018/09/29/crear-autoridad-certificadora-ca-y-certificados-autofirmados-en-linux/)
 
 **El alumno que hace de Autoridad Certificadora deberá entregar una documentación donde explique los siguientes puntos:**
 

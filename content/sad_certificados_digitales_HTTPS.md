@@ -25,8 +25,11 @@ Nos dirigimos al menú de **Preferencias** del navegador, y en el apartado de **
 En la ventana de la imagen anterior, si seleccionamos nuestro certificado, y seleccionamos la opción **Hacer copia...** y elegimos una ruta en nuestro PC, habremos hecho una copia del certificado instalado.
 
 ...
+
 ...
+
 ...
+
 ...
 
 **4. Investiga como exportar la clave pública de tu certificado.**
@@ -67,7 +70,14 @@ Y ya tendríamos instalado **Autofirma**. Comprobamos que lo podemos abrir:
 
 ![.](images/sad_certificados_digitales_HTTPS/autofirma.png)
 
-Para validar nuestro certificado, nos dirigimos a la página de **VALIDe** y al apartado **[Validar Certificado](https://valide.redsara.es/valide/validarCertificado/ejecutar.html)**
+Para validar nuestro certificado, nos dirigimos a la página de **VALIDe** y al apartado **[Validar Certificado](https://valide.redsara.es/valide/validarCertificado/ejecutar.html)**. Seleccionamos el certificado mediante el software de *Autofirma*:
+
+ ![.](images/sad_certificados_digitales_HTTPS/certautofirma.png)
+
+Seleccionamos nuestro certificado y hacemos *click* en **Validar**, y obtendremos una respuesta sobre sí el certificado es válido o no. En mi caso:
+
+![.](images/sad_certificados_digitales_HTTPS/certvalido.png)
+
 
 #### Tarea 3: Firma electrónica
 

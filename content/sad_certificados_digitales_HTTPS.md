@@ -22,11 +22,18 @@ Nos dirigimos al menú de **Preferencias** del navegador, y en el apartado de **
 
 **3. ¿Cómo puedes hacer una copia de tu certificado? ¿Como vas a realizar la copia de seguridad de tu certificado? Razona la respuesta.**
 
+En la ventana de la imagen anterior, si seleccionamos nuestro certificado, y seleccionamos la opción **Hacer copia...** y elegimos una ruta en nuestro PC, habremos hecho una copia del certificado instalado.
 
+...
+...
+...
+...
 
 **4. Investiga como exportar la clave pública de tu certificado.**
 
+Para exportar nuestra clave pública, debemos hacer doble *click* en nuestro certificado, y se nos abrirá una nueva pestaña con la información del certificado. Nos dirigimos hasta el apartado **Información de clave pública** y aquí encontraremos nuestra clave pública y ya podremos exportarla y compartirla:
 
+![.](images/sad_certificados_digitales_HTTPS/infoclavepublica.png)
 
 
 #### Tarea 2: Validación del certificado

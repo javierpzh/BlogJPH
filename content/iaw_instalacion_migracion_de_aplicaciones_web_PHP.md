@@ -483,8 +483,39 @@ Enter password:
 root@buster:~# ls
 backupdrupal.sql  backupnextcloud.sql
 
-root@buster:~# 
+root@buster:~#
 </pre>
+
+Vamos a comprimir todos los archivos del directorio `/srv/www/nextcloud`, ya que en él se encuentran todos los datos de la aplicación web:
+
+<pre>
+root@buster:/srv/www# tar -cf ./nextclouddat.tar.gz ./nextcloud/* /root/
+tar: Removing leading `/' from member names
+tar: Removing leading `/' from hard link targets
+
+root@buster:~# ls
+backupdrupal.sql  backupnextcloud.sql  nextclouddat.tar.gz  tar.gz
+</pre>
+
+
+
+<pre>
+root@buster:~# scp ./backupnextcloud.sql debian@vpsjavierpzh.iesgn15.es:/home/debian/
+debian@vpsjavierpzh.iesgn15.es's password:
+backupnextcloud.sql                                                   100%  137KB 776.4KB/s   00:00    
+
+root@buster:~# scp ./nextclouddat.tar.gz debian@vpsjavierpzh.iesgn15.es:/home/debian/
+debian@vpsjavierpzh.iesgn15.es's password:
+nextclouddat.tar.gz                                                   100%  528MB   8.4MB/s   01:02    
+
+root@buster:~#
+</pre>
+
+
+<pre>
+
+</pre>
+
 
 **3. Instala en un ordenador el cliente de *Nextcloud* y realiza la configuración adecuada para acceder a "tu nube".**
 

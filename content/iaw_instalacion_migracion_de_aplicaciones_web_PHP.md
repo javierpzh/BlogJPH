@@ -12,10 +12,10 @@ Antes de realizar la migración necesitamos preparar nuestro entorno de producci
 
 **1. La aplicación se tendrá que migrar a un nuevo virtualhost al que se accederá con el nombre `portal.iesgnXX.es.`**
 
-En nuestro entorno en producción, vamos a crear este nuevo *virtualhost*. Para ello antes que nada creamos la ruta donde vamos a almacenar esta aplicación, en mi caso dentro de `/srv/www/`:
+En nuestro entorno en producción, vamos a crear este nuevo *virtualhost*. Para ello antes que nada creamos la ruta donde vamos a almacenar esta aplicación, en mi caso dentro de `/srv/www/aplicacionesiesgn/`:
 
 <pre>
-root@vpsjavierpzh:/srv/www# mkdir drupal
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# mkdir drupal
 </pre>
 
 Ahora debemos crear el fichero de configuración de *Nginx* que utilizará esta aplicación. Nos desplazamos a `/etc/nginx/sites-available/`, y podemos copiar el fichero por defecto para tener la estructura, en mi caso ya tengo un *virtualhost* creado y utilizo el fichero de este:
@@ -32,7 +32,7 @@ server {
         listen 80;
         listen [::]:80;
 
-        root /srv/www/drupal;
+        root /srv/www/aplicacionesiesgn/drupal;
 
         index index.php index.html index.htm index.nginx-debian.html;
 
@@ -127,7 +127,154 @@ root@vpsjavierpzh:~#
 
 **4. Realiza la migración de la aplicación.**
 
+Para realizar la migración, debemos llevarnos todos los archivos de *Drupal* desde el entorno de desarrollo hasta el entorno de producción. Para ello vamos a copiar los archivos con `scp`, pero primero vamos a comprimir todos los datos en un archivo:
 
+<pre>
+root@buster:/var/www/html# tar -cf ./drupaldat.tar.gz ./drupal/*
+</pre>
+
+<pre>
+root@buster:/var/www/html# scp ./drupaldat.tar.gz debian@vpsjavierpzh.iesgn15.es:
+</pre>
+
+Muevo este archivo al directorio que he creado para guardar esta aplicación:
+
+<pre>
+root@vpsjavierpzh:/home/debian/drupal# mv * /srv/www/aplicacionesiesgn/drupal/
+</pre>
+
+Ahora voy a pasar la copia de seguridad al servidor de OVH que es lo último que falta:
+
+<pre>
+root@buster:~# scp backupdrupal.sql debian@vpsjavierpzh.iesgn15.es:/home/debian/drupal/
+debian@vpsjavierpzh.iesgn15.es's password:
+backupdrupal.sql                                                      100% 8165KB  63.9KB/s   02:07
+
+root@buster:~#
+</pre>
+
+Y por último restauramos la copia de seguridad en nuestro servidor de base de datos del entorno de producción:
+
+<pre>
+mysql -u user_drupal -p bd_drupal < backupdrupal.sql
+</pre>
+
+Si entramos y vemos las tablas de esta base de datos:
+
+<pre>
+root@vpsjavierpzh:/home/debian/drupal# mysql -u user_drupal -p bd_drupal
+Enter password:
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 74
+Server version: 10.3.25-MariaDB-0+deb10u1 Debian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [bd_drupal]> show tables;
++----------------------------------+
+| Tables_in_bd_drupal              |
++----------------------------------+
+| batch                            |
+| block_content                    |
+| block_content__body              |
+| block_content_field_data         |
+| block_content_field_revision     |
+| block_content_revision           |
+| block_content_revision__body     |
+| cache_bootstrap                  |
+| cache_config                     |
+| cache_container                  |
+| cache_data                       |
+| cache_default                    |
+| cache_discovery                  |
+| cache_dynamic_page_cache         |
+| cache_entity                     |
+| cache_menu                       |
+| cache_page                       |
+| cache_render                     |
+| cachetags                        |
+| comment                          |
+| comment__comment_body            |
+| comment_entity_statistics        |
+| comment_field_data               |
+| config                           |
+| file_managed                     |
+| file_usage                       |
+| history                          |
+| key_value                        |
+| key_value_expire                 |
+| locale_file                      |
+| locales_location                 |
+| locales_source                   |
+| locales_target                   |
+| menu_link_content                |
+| menu_link_content_data           |
+| menu_link_content_field_revision |
+| menu_link_content_revision       |
+| menu_tree                        |
+| node                             |
+| node__body                       |
+| node__comment                    |
+| node__field_image                |
+| node__field_tags                 |
+| node_access                      |
+| node_field_data                  |
+| node_field_revision              |
+| node_revision                    |
+| node_revision__body              |
+| node_revision__comment           |
+| node_revision__field_image       |
+| node_revision__field_tags        |
+| path_alias                       |
+| path_alias_revision              |
+| queue                            |
+| router                           |
+| search_dataset                   |
+| search_index                     |
+| search_total                     |
+| semaphore                        |
+| sequences                        |
+| sessions                         |
+| shortcut                         |
+| shortcut_field_data              |
+| shortcut_set_users               |
+| taxonomy_index                   |
+| taxonomy_term__parent            |
+| taxonomy_term_data               |
+| taxonomy_term_field_data         |
+| taxonomy_term_field_revision     |
+| taxonomy_term_revision           |
+| taxonomy_term_revision__parent   |
+| user__roles                      |
+| user__user_picture               |
+| users                            |
+| users_data                       |
+| users_field_data                 |
+| watchdog                         |
++----------------------------------+
+77 rows in set (0.001 sec)
+
+MariaDB [bd_drupal]>
+</pre>
+
+Vemos que hemos restaurado la copia de seguridad correctamente.
+
+Ahora nos faltaría crear un registro **CNAME** en nuestra zona DNS del servidor **OVH** como este:
+
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/cnamecrear.png)
+
+Creamos:
+
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/cnamecreado.png)
+
+Si accedemos a la dirección `portal.iesgn15.es`:
+
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/drupalovh.png)
 
 **5. Asegúrate que las URL limpias de *Drupal* siguen funcionando en *Nginx*.**
 

@@ -477,7 +477,13 @@ Vamos a realizar la migración de esta aplicación instalada previamente a nuest
 Lo primero que haremos será realizar una copia de seguridad de la base de datos, para restaurarla en el servidor de OVH. Para ello:
 
 <pre>
+root@buster:~# mysqldump -u user_nextcloud -p bd_nextcloud > backupnextcloud.sql
+Enter password:
 
+root@buster:~# ls
+backupdrupal.sql  backupnextcloud.sql
+
+root@buster:~# 
 </pre>
 
 **3. Instala en un ordenador el cliente de *Nextcloud* y realiza la configuración adecuada para acceder a "tu nube".**

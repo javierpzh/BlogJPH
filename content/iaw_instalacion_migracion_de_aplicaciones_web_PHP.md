@@ -489,9 +489,11 @@ root@buster:~#
 Vamos a comprimir todos los archivos del directorio `/srv/www/nextcloud`, ya que en él se encuentran todos los datos de la aplicación web:
 
 <pre>
-root@buster:/srv/www# tar -cf ./nextclouddat.tar.gz ./nextcloud/* /root/
+root@buster:/srv/www# tar -cf ./nextclouddat.tar.gz ./nextcloud/*
 tar: Removing leading `/' from member names
 tar: Removing leading `/' from hard link targets
+
+root@buster:/srv/www# mv nextclouddat.tar.gz /root/
 
 root@buster:~# ls
 backupdrupal.sql  backupnextcloud.sql  nextclouddat.tar.gz  tar.gz

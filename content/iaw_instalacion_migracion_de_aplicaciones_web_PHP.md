@@ -386,6 +386,60 @@ Si probamos entrar ahora a la dirección `www.jpnextcloud.com` nos muestra:
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmvinstalador.png)
 
 
+<pre>
+root@buster:/var/www/html/nextcloud# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 36
+Server version: 10.3.25-MariaDB-0+deb10u1 Debian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| anchor             |
+| drupal             |
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+5 rows in set (0.014 sec)
+
+MariaDB [(none)]> CREATE DATABASE bd_nextcloud;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> CREATE USER 'user_nextcloud' IDENTIFIED BY 'martaguapa7';
+Query OK, 0 rows affected (0.005 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON bd_nextcloud.* TO 'user_nextcloud';
+Query OK, 0 rows affected (0.002 sec)
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| anchor             |
+| bd_nextcloud       |
+| drupal             |
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]> exit
+Bye
+</pre>
+
+Vemos como hemos creado una nueva base de datos y un usuario con los correspondientes permisos sobre esta base de datos. Ahora introducimos estos datos en el instalador:
+
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmvinstalando.png)
+
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmvinstalado.png)
 
 
 

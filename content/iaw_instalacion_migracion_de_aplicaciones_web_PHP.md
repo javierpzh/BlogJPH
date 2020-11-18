@@ -316,6 +316,8 @@ Se puede ver como efectivamente la URL de la aplicación `portal.iesgn15.es`.
 
 **1. Instala la aplicación web *Nextcloud* en tu entorno de desarrollo.**
 
+Vamos a instalar la aplicación **Nextcloud** en un servidor web **Apache** de nuestro entorno de desarrollo para posteriormente realizar la migración a un servidor web **Nginx** en nuestro entorno de producción.
+
 Nos descargamos *Nextcloud* desde su [página oficial](https://nextcloud.com/install/) con el siguiente comando:
 
 <pre>
@@ -340,16 +342,19 @@ Vamos a descomprimir el archivo descargado:
 root@buster:/home/vagrant# unzip nextcloud-20.0.1.zip
 </pre>
 
+La carpeta descomprimida la trasladamos al directorio donde vamos a almacenar nuestra aplicación web, en mi caso es dentro de `/srv/www/`, y le vamos a asignar como propietario de los archivos
+
 <pre>
-root@buster:/home/vagrant# mv nextcloud /var/www/html/
+root@buster:/home/vagrant# mv nextcloud /srv/www/
 
-root@buster:/home/vagrant# ls /var/www/html/nextcloud/
-3rdparty  config       core	   index.php  ocm-provider  public.php	robots.txt  updater
-apps	  console.php  cron.php    lib	      ocs	    remote.php	status.php  version.php
-AUTHORS   COPYING      index.html  occ	      ocs-provider  resources	themes
+root@buster:/home/vagrant# ls /srv/www/nextcloud/
+3rdparty  config       core	 index.html  occ	   ocs-provider  resources   themes
+apps	  console.php  cron.php  index.php   ocm-provider  public.php	 robots.txt  updater
+AUTHORS   COPYING      data	 lib	     ocs	   remote.php	 status.php  version.php
 
-root@buster:/var/www/html/nextcloud# chown -R www-data:www-data /var/www/html/
+root@buster:/home/vagrant# chown -R www-data:www-data /srv/www/
 </pre>
+
 
 
 <pre>
@@ -358,7 +363,20 @@ root@buster:/etc/apache2/sites-available# cp anchor.conf nextcloud.conf
 root@buster:/etc/apache2/sites-available# nano nextcloud.conf
 </pre>
 
+<pre>
+<\VirtualHost *:80\>
 
+        ServerName www.jpnextcloud.com
+        ServerAdmin webmaster@localhost
+        DocumentRoot /srv/www/nextcloud
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+<\/VirtualHost\>
+</pre>
+
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
 <pre>
 root@buster:/etc/apache2/sites-available# a2ensite nextcloud.conf
@@ -412,7 +430,7 @@ MariaDB [(none)]> SHOW DATABASES;
 MariaDB [(none)]> CREATE DATABASE bd_nextcloud;
 Query OK, 1 row affected (0.001 sec)
 
-MariaDB [(none)]> CREATE USER 'user_nextcloud' IDENTIFIED BY 'martaguapa7';
+MariaDB [(none)]> CREATE USER 'user_nextcloud' IDENTIFIED BY 'pass_nextcloud';
 Query OK, 0 rows affected (0.005 sec)
 
 MariaDB [(none)]> GRANT ALL PRIVILEGES ON bd_nextcloud.* TO 'user_nextcloud';
@@ -435,9 +453,13 @@ MariaDB [(none)]> exit
 Bye
 </pre>
 
-Vemos como hemos creado una nueva base de datos y un usuario con los correspondientes permisos sobre esta base de datos. Ahora introducimos estos datos en el instalador:
+Vemos como hemos creado una nueva base de datos y un usuario con los correspondientes permisos sobre esta base de datos. Ahora introducimos estos datos en el instalador.
+
+
 
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmvinstalando.png)
+
+
 
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmvinstalado.png)
 

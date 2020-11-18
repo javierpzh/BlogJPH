@@ -387,7 +387,7 @@ To activate the new configuration, you need to run:
 root@buster:/etc/apache2/sites-available# systemctl reload apache2
 </pre>
 
-Añadimos a nuestro `/etc/hosts` la línea que corresponde ....
+Mi entorno de desarrollo se trata de una máquina virtual *Vagrant*, por tanto para visualizar este sitio web, necesito añadir en el fichero `/etc/hosts` de mi máquina la línea que corresponda.
 
 Si nos dirigimos al navegador a la dirección `www.jpnextcloud.com` nos muestra:
 

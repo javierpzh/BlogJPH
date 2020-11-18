@@ -289,7 +289,7 @@ Ahora nos faltaría crear un registro **CNAME** en nuestra zona DNS del servidor
 
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/cnamecrear.png)
 
-Creamos:
+Lo creamos:
 
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/cnamecreado.png)
 

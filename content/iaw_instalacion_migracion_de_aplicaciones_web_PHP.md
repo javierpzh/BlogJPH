@@ -35,8 +35,8 @@ server {
         server_name portal.iesgn15.es;
 
         location / {
-                 try_files $uri $uri/ =404;
-        }
+                         try_files $uri $uri/ /index.php?$args;
+                }
 
         location ~ \.php$ {
         include snippets/fastcgi-php.conf;
@@ -65,7 +65,11 @@ systemctl restart nginx.service
 
 **2. Vamos a nombrar el servicio de base de datos que tenemos en producción. Como es un servicio interno no la vamos a nombrar en la zona DNS, la vamos a nombrar usando resolución estática. El nombre del servicio de base de datos se debe llamar: `bd.iesgnXX.es`.**
 
+Para nombrar el servicio de la base de datos mediante resolución estática, debemos añadir al fichero `/etc/hosts` del servidor de OVH la siguiente línea:
 
+<pre>
+127.0.0.1       bd.iesgn15.es
+</pre>
 
 **3. Por lo tanto los recursos que deberás crear en la base de datos serán (respeta los nombres):**
 
@@ -123,20 +127,20 @@ root@vpsjavierpzh:~#
 
 **4. Realiza la migración de la aplicación.**
 
-Para realizar la migración, debemos llevarnos todos los archivos de *Drupal* desde el entorno de desarrollo hasta el entorno de producción. Para ello vamos a copiar los archivos con `scp`, pero primero vamos a comprimir todos los datos en un archivo:
+Para realizar la migración, debemos llevarnos todos los archivos de *Drupal* desde el entorno de desarrollo hasta el entorno de producción. Para ello vamos a copiar los archivos con `scp`, pero primero vamos a comprimir todos los datos en un solo archivo:
 
 <pre>
 root@buster:/var/www/html# tar -cf ./drupaldat.tar.gz ./drupal/*
 </pre>
 
 <pre>
-root@buster:/var/www/html# scp ./drupaldat.tar.gz debian@vpsjavierpzh.iesgn15.es:
+root@buster:/var/www/html# scp ./drupaldat.tar.gz debian@vpsjavierpzh.iesgn15.es:/home/debian/
 </pre>
 
 Muevo este archivo al directorio donde vamos a almacenar esta aplicación:
 
 <pre>
-root@vpsjavierpzh:/home/debian/drupal# mv * /srv/www/aplicacionesiesgn/
+root@vpsjavierpzh:/home/debian# mv drupaldat.tar.gz /srv/www/aplicacionesiesgn/
 </pre>
 
 Y descomprimimos el fichero obteniendo como resultado:
@@ -161,7 +165,7 @@ chown -R www-data:www-data /srv/
 Ya tenemos los datos de *Drupal* en el entorno de producción por lo tanto nos faltaría restaurar la copia de seguridad en el servidor de OVH. Para ello primero pasamos la copia:
 
 <pre>
-root@buster:~# scp backupdrupal.sql debian@vpsjavierpzh.iesgn15.es:/home/debian/drupal/
+root@buster:~# scp backupdrupal.sql debian@vpsjavierpzh.iesgn15.es:/home/debian/
 debian@vpsjavierpzh.iesgn15.es's password:
 backupdrupal.sql                                                      100% 8165KB  63.9KB/s   02:07
 
@@ -289,19 +293,6 @@ Creamos:
 
 Si accedemos a la dirección `portal.iesgn15.es`:
 
-(
-(
-(
-(
-(
-<pre>
-apt install php-gd php-xml
-</pre>
-)
-)
-)
-)
-)
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/drupalovh.png)
 
 **5. Asegúrate que las URL limpias de *Drupal* siguen funcionando en *Nginx*.**

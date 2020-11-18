@@ -373,10 +373,17 @@ Añadimos a nuestro `/etc/hosts` la línea que corresponde ....
 
 Si nos dirigimos al navegador a la dirección `www.jpnextcloud.com` nos muestra:
 
-![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmv.png)
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmvfaltan.png)
 
 
 
+<pre>
+apt install php-{mysql,zip,curl,mbstring,xml}
+</pre>
+
+Si probamos entrar ahora a la dirección `www.jpnextcloud.com` nos muestra:
+
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmvinstalador.png)
 
 
 

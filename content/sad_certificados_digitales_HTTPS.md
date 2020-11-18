@@ -196,10 +196,10 @@ nano openssl.cnf
 </pre>
 
 <pre>
-root@https:~/CA#  openssl req -new -newkey rsa:2048 -keyout private/cakey.pem -out careq.pem -config ./openssl.cnf
+root@https:~/CA# openssl req -new -newkey rsa:2048 -keyout private/cakey.pem -out careq.pem -config ./openssl.cnf
 Generating a RSA private key
-....+++++
-...................................................................+++++
+............................................+++++
+..............................................................................+++++
 writing new private key to 'private/cakey.pem'
 Enter PEM pass phrase:
 Verifying - Enter PEM pass phrase:
@@ -215,9 +215,11 @@ Country Name (2 letter code) [ES]:
 State or Province Name (full name) [Sevilla]:
 Locality Name (eg, city) [Dos Hermanas]:
 Organization Name (eg, company) [JavierPerez Corp]:
-Organizational Unit Name (eg, section) []:
+Organizational Unit Name (eg, section) [Informatica]:
 Common Name (e.g. server FQDN or YOUR name) []:javier.debian
 Email Address []:javierperezhidalgo01@gmail.com
+
+root@https:~/CA#
 </pre>
 
 <pre>
@@ -228,67 +230,110 @@ Check that the request matches the signature
 Signature ok
 Certificate Details:
         Serial Number:
-            39:3b:f1:7f:26:a2:a3:45:6a:a7:14:34:43:9c:3d:71:af:e9:14:da
+            0a:7b:37:65:ef:20:c3:8c:e9:00:00:d2:54:7c:35:69:7c:0b:29:3d
         Validity
-            Not Before: Nov 17 17:35:09 2020 GMT
-            Not After : Nov 17 17:35:09 2021 GMT
+            Not Before: Nov 17 18:43:27 2020 GMT
+            Not After : Nov 17 18:43:27 2021 GMT
         Subject:
             countryName               = ES
             stateOrProvinceName       = Sevilla
             organizationName          = JavierPerez Corp
+            organizationalUnitName    = Informatica
             commonName                = javier.debian
             emailAddress              = javierperezhidalgo01@gmail.com
         X509v3 extensions:
             X509v3 Subject Key Identifier:
-                1E:B9:11:73:F5:2A:8A:CC:DC:C8:B5:00:C7:63:E8:96:08:20:EF:D2
+                92:F5:19:9E:24:0D:30:B0:83:14:FA:D5:74:BC:25:79:0F:9F:19:CD
             X509v3 Authority Key Identifier:
-                keyid:1E:B9:11:73:F5:2A:8A:CC:DC:C8:B5:00:C7:63:E8:96:08:20:EF:D2
+                keyid:92:F5:19:9E:24:0D:30:B0:83:14:FA:D5:74:BC:25:79:0F:9F:19:CD
 
             X509v3 Basic Constraints: critical
                 CA:TRUE
-Certificate is to be certified until Nov 17 17:35:09 2021 GMT (365 days)
+Certificate is to be certified until Nov 17 18:43:27 2021 GMT (365 days)
 Sign the certificate? [y/n]:y
 
 
 1 out of 1 certificate requests certified, commit? [y/n]y
 Write out database with 1 new entries
 Data Base Updated
+
+root@https:~/CA#
 </pre>
+
+
+**2. Debe recibir el fichero CSR (Solicitud de Firmar un Certificado) de su compañero, debe firmarlo y enviar el certificado generado a su compañero.**
 
 <pre>
 cp /home/javi/javierpzh_key.pem /certreqs
 </pre>
 
+<pre>
+root@https:~/CA# openssl ca -config openssl.cnf -out certsdb/alvaro.crt -infiles certreqs/alvaro.csr
+Using configuration from openssl.cnf
+Enter pass phrase for /root/CA/private/cakey.pem:
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number:
+            0a:7b:37:65:ef:20:c3:8c:e9:00:00:d2:54:7c:35:69:7c:0b:29:3e
+        Validity
+            Not Before: Nov 17 18:48:00 2020 GMT
+            Not After : Nov 17 18:48:00 2021 GMT
+        Subject:
+            countryName               = ES
+            stateOrProvinceName       = Sevilla
+            organizationName          = JavierPerez Corp
+            organizationalUnitName    = Informatica
+            commonName                = alvaro.iesgn.org
+            emailAddress              = avacaferreras@gmail.com
+        X509v3 extensions:
+            X509v3 Basic Constraints:
+                CA:FALSE
+            Netscape Comment:
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier:
+                6C:6E:4C:23:03:A7:E9:64:DC:0B:F3:5B:79:97:9A:2C:BE:FB:3D:22
+            X509v3 Authority Key Identifier:
+                keyid:92:F5:19:9E:24:0D:30:B0:83:14:FA:D5:74:BC:25:79:0F:9F:19:CD
+
+Certificate is to be certified until Nov 17 18:48:00 2021 GMT (365 days)
+Sign the certificate? [y/n]:y
 
 
-**2. Debe recibir el fichero CSR (Solicitud de Firmar un Certificado) de su compañero, debe firmarlo y enviar el certificado generado a su compañero.**
+1 out of 1 certificate requests certified, commit? [y/n]y
+Write out database with 1 new entries
+Data Base Updated
 
+root@https:~/CA#
+</pre>
 
+<pre>
+root@https:~/CA# cp certsdb/alvaro.crt /home/alvaro/
+</pre>
 
 **3. ¿Qué otra información debes aportar a tu compañero para que éste configure de forma adecuada su servidor web con el certificado generado?**
 
-
-
+<pre>
+root@https:~/CA# cp cacert.pem /home/alvaro/
+</pre>
 
 **El alumno que hace de administrador del servidor web, debe entregar una documentación que describa los siguientes puntos:**
 
 **1. Crea una clave privada RSA de 4096 bits para identificar el servidor.**
 
 <pre>
-root@https:~/CA# openssl genrsa -aes128 -out javierpzh.pem 4096
+root@https:~# openssl genrsa 4096 > /etc/ssl/private/javi.key
 Generating RSA private key, 4096 bit long modulus (2 primes)
-..............................................................++++
-..........................................................................................................................................................................................................................++++
+................................................................................................................................................++++
+............................++++
 e is 65537 (0x010001)
-Enter pass phrase for javierpzh.pem:
-Verifying - Enter pass phrase for javierpzh.pem:
+root@https:~#
 </pre>
 
 **2. Utiliza la clave anterior para generar un CSR, considerando que deseas acceder al servidor tanto con el FQDN (`tunombre.iesgn.org`) como con el nombre de host (implica el uso de las extensiones `Alt Name`).**
 
 <pre>
-root@https:~/CA# openssl req -new -key javierpzh.pem -out ./javierpzh.csr
-Enter pass phrase for javierpzh.pem:
+root@https:~# openssl req -new -key /etc/ssl/private/javi.key -out ./javi.csr
 You are about to be asked to enter information that will be incorporated
 into your certificate request.
 What you are about to enter is what is called a Distinguished Name or a DN.
@@ -308,31 +353,28 @@ Please enter the following 'extra' attributes
 to be sent with your certificate request
 A challenge password []:
 An optional company name []:
-root@https:~/CA# scp javierpzh.csr javi@172.22.200.186:/home/javi/
-javi@172.22.200.186's password:
-javierpzh.csr                                                         100% 1801   911.7KB/s   00:00    
 
-root@https:~/CA#
+root@https:~#
 </pre>
 
 **3. Envía la solicitud de firma a la entidad certificadora (su compañero).**
 
 <pre>
-root@https:~/CA# scp javierpzh.csr javi@172.22.200.186:/home/javi/
+root@https:~# scp javi.csr javi@172.22.200.186:/home/javi/
 javi@172.22.200.186's password:
-javierpzh.csr                                                         100% 1801   911.7KB/s   00:00    
+javi.csr                                                              100% 1801   980.4KB/s   00:00
 </pre>
 
 **4. Recibe como respuesta un certificado X.509 para el servidor firmado y el certificado de la autoridad certificadora.**
 
 <pre>
-root@https:~/CA# scp javi@172.22.200.186:/home/javi/javierpzh.crt ./
+root@https:~# scp javi@172.22.200.186:/home/javi/javier.crt ./
 javi@172.22.200.186's password:
-javierpzh.crt                                                         100% 6284     1.9MB/s   00:00    
+javier.crt                                                            100% 6284     1.9MB/s   00:00
 
 root@https:~/CA# scp javi@172.22.200.186:/home/javi/cacert.pem ./
 javi@172.22.200.186's password:
-cacert.pem                                                            100% 4658     1.7MB/s   00:00    
+cacert.pem                                                            100% 4658     1.7MB/s   00:00
 </pre>
 
 **5. Configura tu servidor web con https en el puerto 443, haciendo que las peticiones http se redireccionen a https (forzar https).**

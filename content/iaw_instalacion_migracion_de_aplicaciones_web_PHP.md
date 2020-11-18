@@ -6,8 +6,48 @@ Tags: Apache, PHP, Nginx, Drupal, Nextcloud
 
 ### Realizar la migración de la aplicación Drupal que tienes instalada en el entorno de desarrollo a nuestro entorno de producción, para ello ten en cuenta lo siguiente:
 
+Cuando me refiero al entorno de producción, estoy haciendo referencia a un servidor de OVH.
+
+Antes de realizar la migración necesitamos preparar nuestro entorno de producción instalando todos los paquetes necesarios, como pueden ser `php`, `mysql`, ... para poder migrar *Drupal* de manera correcta. En mi caso tengo listo el entorno de producción, ya que en él lleve a cabo la instalación de un *servidor LEMP* que es lo que al fin y al cabo vamos a utilizar. Si quieres ver como instalar un *servidor LEMP* puedes verlo [aquí](https://javierpzh.github.io/instalacion-de-un-servidor-lemp.html).
+
 **1. La aplicación se tendrá que migrar a un nuevo virtualhost al que se accederá con el nombre `portal.iesgnXX.es.`**
 
+En nuestro entorno en producción, vamos a crear este nuevo *virtualhost*. Para ello antes que nada creamos la ruta donde vamos a almacenar esta aplicación, en mi caso dentro de `/srv/www/`:
+
+<pre>
+root@vpsjavierpzh:/srv/www# mkdir drupal
+</pre>
+
+Ahora debemos crear el fichero de configuración de *Nginx* que utilizará esta aplicación. Nos desplazamos a `/etc/nginx/sites-available/`, y podemos copiar el fichero por defecto para tener la estructura, en mi caso ya tengo un *virtualhost* creado y utilizo el fichero de este:
+
+<pre>
+root@vpsjavierpzh:/etc/nginx/sites-available# cp aplicacionesiesgn.conf drupal.conf
+root@vpsjavierpzh:/etc/nginx/sites-available# nano drupal.conf
+</pre>
+
+Edito el fichero de configuración de *Drupal* y queda de tal manera: 
+
+<pre>
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /srv/www/drupal;
+
+        index index.php index.html index.htm index.nginx-debian.html;
+
+        server_name portal.iesgn15.es;
+
+        location / {
+                 try_files $uri $uri/ =404;
+        }
+
+        location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+        }
+}
+</pre>
 
 
 **2. Vamos a nombrar el servicio de base de datos que tenemos en producción. Como es un servicio interno no la vamos a nombrar en la zona DNS, la vamos a nombrar usando resolución estática. El nombre del servicio de base de datos se debe llamar: `bd.iesgnXX.es`.**

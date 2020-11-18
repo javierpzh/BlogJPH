@@ -299,11 +299,17 @@ Si accedemos a la dirección `portal.iesgn15.es`:
 
 **5. Asegúrate que las URL limpias de *Drupal* siguen funcionando en *Nginx*.**
 
+Para que *Drupal* utilice las URLs limpias debemos añadir esta línea en su fichero de configuración, es decir, en `/etc/nginx/sites-available/drupal.conf`:
 
+<pre>
+try_files $uri /index.php?dir=$uri;
+</pre>
 
 **6. La aplicación debe estar disponible en la URL: `portal.iesgnXX.es` (Sin ningún directorio).**
 
+Se puede ver como efectivamente la URL de la aplicación `portal.iesgn15.es`.
 
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/drupalovh.png)
 
 
 ### Instalación / migración de la aplicación Nextcloud

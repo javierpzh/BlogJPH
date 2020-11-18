@@ -387,21 +387,7 @@ To activate the new configuration, you need to run:
 root@buster:/etc/apache2/sites-available# systemctl reload apache2
 </pre>
 
-Mi entorno de desarrollo se trata de una máquina virtual *Vagrant*, por tanto para visualizar este sitio web, necesito añadir en el fichero `/etc/hosts` de mi máquina la línea que corresponda.
 
-Si nos dirigimos al navegador a la dirección `www.jpnextcloud.com` nos muestra:
-
-![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmvfaltan.png)
-
-
-
-<pre>
-apt install php-{mysql,zip,curl,mbstring,xml}
-</pre>
-
-Si probamos entrar ahora a la dirección `www.jpnextcloud.com` nos muestra:
-
-![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmvinstalador.png)
 
 
 <pre>
@@ -452,6 +438,24 @@ MariaDB [(none)]> SHOW DATABASES;
 MariaDB [(none)]> exit
 Bye
 </pre>
+
+Mi entorno de desarrollo se trata de una máquina virtual *Vagrant*, por tanto para visualizar este sitio web, necesito añadir en el fichero `/etc/hosts` de mi máquina la línea que corresponda.
+
+Si nos dirigimos al navegador a la dirección `www.jpnextcloud.com` nos muestra:
+
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmvfaltan.png)
+
+Vemos que *Nextcloud* necesita una serie de extensiones *PHP*. Para instalar todas las extensiones necesarias:
+
+<pre>
+apt install php-{mysql,zip,curl,mbstring,xml}
+</pre>
+
+Si probamos a entrar ahora a la dirección `www.jpnextcloud.com` nos muestra:
+
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmvinstalador.png)
+
+
 
 Vemos como hemos creado una nueva base de datos y un usuario con los correspondientes permisos sobre esta base de datos. Ahora introducimos estos datos en el instalador.
 

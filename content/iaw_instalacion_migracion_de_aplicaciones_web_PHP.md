@@ -12,11 +12,7 @@ Antes de realizar la migración necesitamos preparar nuestro entorno de producci
 
 **1. La aplicación se tendrá que migrar a un nuevo virtualhost al que se accederá con el nombre `portal.iesgnXX.es.`**
 
-En nuestro entorno en producción, vamos a crear este nuevo *virtualhost*. Para ello antes que nada creamos la ruta donde vamos a almacenar esta aplicación, en mi caso dentro de `/srv/www/aplicacionesiesgn/`:
-
-<pre>
-root@vpsjavierpzh:/srv/www/aplicacionesiesgn# mkdir drupal
-</pre>
+En nuestro entorno en producción, vamos a crear este nuevo *virtualhost*. Para ello antes que nada creamos la ruta donde vamos a almacenar esta aplicación, en mi caso dentro de `/srv/www/aplicacionesiesgn/`.
 
 Ahora debemos crear el fichero de configuración de *Nginx* que utilizará esta aplicación. Nos desplazamos a `/etc/nginx/sites-available/`, y podemos copiar el fichero por defecto para tener la estructura, en mi caso ya tengo un *virtualhost* creado y utilizo el fichero de este:
 
@@ -137,13 +133,32 @@ root@buster:/var/www/html# tar -cf ./drupaldat.tar.gz ./drupal/*
 root@buster:/var/www/html# scp ./drupaldat.tar.gz debian@vpsjavierpzh.iesgn15.es:
 </pre>
 
-Muevo este archivo al directorio que he creado para guardar esta aplicación:
+Muevo este archivo al directorio donde vamos a almacenar esta aplicación:
 
 <pre>
-root@vpsjavierpzh:/home/debian/drupal# mv * /srv/www/aplicacionesiesgn/drupal/
+root@vpsjavierpzh:/home/debian/drupal# mv * /srv/www/aplicacionesiesgn/
 </pre>
 
-Ahora voy a pasar la copia de seguridad al servidor de OVH que es lo último que falta:
+Y descomprimimos el fichero obteniendo como resultado:
+
+<pre>
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# tar -xvf drupaldat.tar.gz
+
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# cd drupal/
+
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn/drupal# ls
+autoload.php   core		  INSTALL.txt  profiles    sites       vendor
+composer.json  example.gitignore  LICENSE.txt  README.txt  themes      web.config
+composer.lock  index.php	  modules      robots.txt  update.php
+</pre>
+
+Nos faltaría simplemente cambiar el propietario de todos estos nuevos archivos a `www:data`, que es el usuario que posee los permisos de lectura y escritura en Nginx.
+
+<pre>
+chown -R www-data:www-data /srv/
+</pre>
+
+Ya tenemos los datos de *Drupal* en el entorno de producción por lo tanto nos faltaría restaurar la copia de seguridad en el servidor de OVH. Para ello primero pasamos la copia:
 
 <pre>
 root@buster:~# scp backupdrupal.sql debian@vpsjavierpzh.iesgn15.es:/home/debian/drupal/
@@ -153,7 +168,7 @@ backupdrupal.sql                                                      100% 8165K
 root@buster:~#
 </pre>
 
-Y por último restauramos la copia de seguridad en nuestro servidor de base de datos del entorno de producción:
+Y por último restauramos la copia de seguridad en nuestro servidor de base de datos de OVH:
 
 <pre>
 mysql -u user_drupal -p bd_drupal < backupdrupal.sql
@@ -274,6 +289,19 @@ Creamos:
 
 Si accedemos a la dirección `portal.iesgn15.es`:
 
+(
+(
+(
+(
+(
+<pre>
+apt install php-gd php-xml
+</pre>
+)
+)
+)
+)
+)
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/drupalovh.png)
 
 **5. Asegúrate que las URL limpias de *Drupal* siguen funcionando en *Nginx*.**

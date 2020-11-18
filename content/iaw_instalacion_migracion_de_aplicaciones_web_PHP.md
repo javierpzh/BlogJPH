@@ -342,7 +342,7 @@ Vamos a descomprimir el archivo descargado:
 root@buster:/home/vagrant# unzip nextcloud-20.0.1.zip
 </pre>
 
-La carpeta descomprimida la trasladamos al directorio donde vamos a almacenar nuestra aplicación web, en mi caso es dentro de `/srv/www/`, y le vamos a asignar como propietario de los archivos
+La carpeta descomprimida la trasladamos al directorio donde vamos a almacenar nuestra aplicación web, en mi caso es dentro de `/srv/www/`, y le vamos a asignar como propietario de los archivos al usuario `www-data` que es el adecuado.
 
 <pre>
 root@buster:/home/vagrant# mv nextcloud /srv/www/
@@ -355,13 +355,15 @@ AUTHORS   COPYING      data	 lib	     ocs	   remote.php	 status.php  version.php
 root@buster:/home/vagrant# chown -R www-data:www-data /srv/www/
 </pre>
 
-
+Una vez hecho esto, tendríamos que crear un fichero de configuración que nos mostrará la página, para ello creamos uno en `/etc/apache2/sites-available/`. En mi caso, copio uno ya existente para tener la plantilla, ustedes podéis utilizar el fichero `000-default.conf`.
 
 <pre>
 root@buster:/etc/apache2/sites-available# cp anchor.conf nextcloud.conf
 
 root@buster:/etc/apache2/sites-available# nano nextcloud.conf
 </pre>
+
+El fichero `/etc/apache2/sites-available/nextcloud.conf` quedaría así:
 
 <pre>
 <\VirtualHost *:80\>
@@ -378,6 +380,8 @@ root@buster:/etc/apache2/sites-available# nano nextcloud.conf
 
 **Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
+Habilitamos la página:
+
 <pre>
 root@buster:/etc/apache2/sites-available# a2ensite nextcloud.conf
 Enabling site nextcloud.
@@ -387,8 +391,7 @@ To activate the new configuration, you need to run:
 root@buster:/etc/apache2/sites-available# systemctl reload apache2
 </pre>
 
-
-
+Por último, nos quedaría crear un usuario y una base de datos, para que *Nextcloud* guarde sus datos:
 
 <pre>
 root@buster:/var/www/html/nextcloud# mysql -u root -p
@@ -438,6 +441,8 @@ MariaDB [(none)]> SHOW DATABASES;
 MariaDB [(none)]> exit
 Bye
 </pre>
+
+Vemos que hemos creado un nuevo usuario con privilegios de la nueva base de datos.
 
 Mi entorno de desarrollo se trata de una máquina virtual *Vagrant*, por tanto para visualizar este sitio web, necesito añadir en el fichero `/etc/hosts` de mi máquina la línea que corresponda.
 

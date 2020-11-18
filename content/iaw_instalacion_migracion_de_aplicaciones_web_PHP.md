@@ -474,7 +474,7 @@ Una vez finalizado el proceso podemos ver como ya hemos instalado esta aplicaci�
 
 
 
-**3. Instala en un ordenador el cliente de nextcloud y realiza la configuración adecuada para acceder a "tu nube".**
+**3. Instala en un ordenador el cliente de *Nextcloud* y realiza la configuración adecuada para acceder a "tu nube".**
 
 
 

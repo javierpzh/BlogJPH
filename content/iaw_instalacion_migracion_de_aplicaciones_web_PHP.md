@@ -25,7 +25,7 @@ root@vpsjavierpzh:/etc/nginx/sites-available# cp aplicacionesiesgn.conf drupal.c
 root@vpsjavierpzh:/etc/nginx/sites-available# nano drupal.conf
 </pre>
 
-Edito el fichero de configuración de *Drupal* y queda de tal manera: 
+Edito el fichero de configuración de *Drupal* y queda de tal manera:
 
 <pre>
 server {
@@ -49,6 +49,23 @@ server {
 }
 </pre>
 
+Como podemos apreciar, a esta aplicación se accederá con la URL: `portal.iesgn15.es` como nos pide el ejercicio. Ya solo nos quedaría habilitar el servicio de este sitio web mediante la creación de un **enlace simbólico** a la ruta `/etc/nginx/sites-enabled/`:
+
+<pre>
+root@vpsjavierpzh:/etc/nginx/sites-available# ln -s /etc/nginx/sites-available/drupal.conf /etc/nginx/sites-enabled/
+
+root@vpsjavierpzh:/etc/nginx/sites-available# ls -l /etc/nginx/sites-enabled/
+total 0
+lrwxrwxrwx 1 root root 49 Nov  9 18:44 aplicacionesiesgn.conf -> /etc/nginx/sites-available/aplicacionesiesgn.conf
+lrwxrwxrwx 1 root root 34 Nov  9 12:09 default -> /etc/nginx/sites-available/default
+lrwxrwxrwx 1 root root 38 Nov 18 08:06 drupal.conf -> /etc/nginx/sites-available/drupal.conf
+</pre>
+
+Como hemos realizado cambios en la configuración de *Nginx* debemos reiniciar el servicio:
+
+<pre>
+systemctl restart nginx.service
+</pre>
 
 **2. Vamos a nombrar el servicio de base de datos que tenemos en producción. Como es un servicio interno no la vamos a nombrar en la zona DNS, la vamos a nombrar usando resolución estática. El nombre del servicio de base de datos se debe llamar: `bd.iesgnXX.es`.**
 
@@ -61,15 +78,65 @@ server {
 - **Usuario: `user_drupal`**
 - **Password: `pass_drupal`**
 
+<pre>
+root@vpsjavierpzh:~# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 65
+Server version: 10.3.25-MariaDB-0+deb10u1 Debian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [(none)]> CREATE DATABASE bd_drupal;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> CREATE USER 'user_drupal' IDENTIFIED BY 'pass_drupal';
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON bd_drupal.* TO 'user_drupal';
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| bd_drupal          |
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [(none)]> exit
+Bye
+
+root@vpsjavierpzh:~#
+</pre>
+
 **4. Realiza la migración de la aplicación.**
 
 
 
-**5. Asegurate que las URL limpias de drupal siguen funcionando en nginx.**
+**5. Asegúrate que las URL limpias de *Drupal* siguen funcionando en *Nginx*.**
 
 
 
 **6. La aplicación debe estar disponible en la URL: `portal.iesgnXX.es` (Sin ningún directorio).**
+
+
+
 
 ### Instalación / migración de la aplicación Nextcloud
 

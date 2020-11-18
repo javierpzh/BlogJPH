@@ -453,7 +453,7 @@ Si nos dirigimos al navegador a la dirección `www.jpnextcloud.com` nos muestra:
 Vemos que *Nextcloud* necesita una serie de extensiones *PHP*. Para instalar todas las extensiones necesarias:
 
 <pre>
-apt install php-{mysql,zip,curl,mbstring,xml}
+apt install php-{mysql,zip,curl,mbstring,xml} -y
 </pre>
 
 Si probamos a entrar ahora a la dirección `www.jpnextcloud.com` nos muestra:

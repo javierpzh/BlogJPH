@@ -316,6 +316,73 @@ Se puede ver como efectivamente la URL de la aplicación `portal.iesgn15.es`.
 
 **1. Instala la aplicación web *Nextcloud* en tu entorno de desarrollo.**
 
+Nos descargamos *Nextcloud* desde su [página oficial](https://nextcloud.com/install/) con el siguiente comando:
+
+<pre>
+root@buster:/home/vagrant# wget https://download.nextcloud.com/server/releases/nextcloud-20.0.1.zip
+--2020-11-18 17:08:17--  https://download.nextcloud.com/server/releases/nextcloud-20.0.1.zip
+Resolving download.nextcloud.com (download.nextcloud.com)... 95.217.64.181, 2a01:4f9:2a:3119::181
+Connecting to download.nextcloud.com (download.nextcloud.com)|95.217.64.181|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 142691943 (136M) [application/zip]
+Saving to: ‘nextcloud-20.0.1.zip’
+
+nextcloud-20.0.1.zip      100%[=====================================>] 136.08M  10.7MB/s    in 16s     
+
+2020-11-18 17:08:34 (8.26 MB/s) - ‘nextcloud-20.0.1.zip’ saved [142691943/142691943]
+
+root@buster:/home/vagrant#
+</pre>
+
+Vamos a descomprimir el archivo descargado:
+
+<pre>
+root@buster:/home/vagrant# unzip nextcloud-20.0.1.zip
+</pre>
+
+<pre>
+root@buster:/home/vagrant# mv nextcloud /var/www/html/
+
+root@buster:/home/vagrant# ls /var/www/html/nextcloud/
+3rdparty  config       core	   index.php  ocm-provider  public.php	robots.txt  updater
+apps	  console.php  cron.php    lib	      ocs	    remote.php	status.php  version.php
+AUTHORS   COPYING      index.html  occ	      ocs-provider  resources	themes
+
+root@buster:/var/www/html/nextcloud# chown -R www-data:www-data /var/www/html/
+</pre>
+
+
+<pre>
+root@buster:/etc/apache2/sites-available# cp anchor.conf nextcloud.conf
+
+root@buster:/etc/apache2/sites-available# nano nextcloud.conf
+</pre>
+
+
+
+<pre>
+root@buster:/etc/apache2/sites-available# a2ensite nextcloud.conf
+Enabling site nextcloud.
+To activate the new configuration, you need to run:
+  systemctl reload apache2
+
+root@buster:/etc/apache2/sites-available# systemctl reload apache2
+</pre>
+
+Añadimos a nuestro `/etc/hosts` la línea que corresponde ....
+
+Si nos dirigimos al navegador a la dirección `www.jpnextcloud.com` nos muestra:
+
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmv.png)
+
+
+
+
+
+
+
+
+
 
 
 **2. Realiza la migración al servidor en producción, para que la aplicación sea accesible en la URL: `www.iesgnXX.es/cloud`**

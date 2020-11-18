@@ -133,6 +133,8 @@ Para realizar la migración, debemos llevarnos todos los archivos de *Drupal* de
 root@buster:/var/www/html# tar -cf ./drupaldat.tar.gz ./drupal/*
 </pre>
 
+Lo pasamos al servidor de OVH:
+
 <pre>
 root@buster:/var/www/html# scp ./drupaldat.tar.gz debian@vpsjavierpzh.iesgn15.es:/home/debian/
 </pre>

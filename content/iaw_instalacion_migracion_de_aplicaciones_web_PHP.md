@@ -472,7 +472,13 @@ Una vez finalizado el proceso podemos ver como ya hemos instalado esta aplicaci�
 
 **2. Realiza la migración al servidor en producción, para que la aplicación sea accesible en la URL: `www.iesgnXX.es/cloud`**
 
+Vamos a realizar la migración de esta aplicación instalada previamente a nuestro entorno de desarrollo, pero ahora en vez de trabajar con *Apache* haremos que trabaje con *Nginx*.
 
+Lo primero que haremos será realizar una copia de seguridad de la base de datos, para restaurarla en el servidor de OVH. Para ello:
+
+<pre>
+
+</pre>
 
 **3. Instala en un ordenador el cliente de *Nextcloud* y realiza la configuración adecuada para acceder a "tu nube".**
 

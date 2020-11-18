@@ -474,7 +474,7 @@ Una vez finalizado el proceso podemos ver como ya hemos instalado esta aplicaci�
 
 Vamos a realizar la migración de esta aplicación instalada previamente a nuestro entorno de desarrollo, pero ahora en vez de trabajar con *Apache* haremos que trabaje con *Nginx*.
 
-Lo primero que haremos será realizar una copia de seguridad de la base de datos, para restaurarla en el servidor de OVH. Para ello:
+Lo primero que haremos será realizar una copia de seguridad de la base de datos que tenemos en el servidor de desarrollo, para restaurarla en el servidor de OVH. Para ello:
 
 <pre>
 root@buster:~# mysqldump -u user_nextcloud -p bd_nextcloud > backupnextcloud.sql
@@ -499,7 +499,7 @@ root@buster:~# ls
 backupdrupal.sql  backupnextcloud.sql  nextclouddat.tar.gz  tar.gz
 </pre>
 
-
+Pasamos la copia de seguridad y los datos comprimidos al servidor de OVH:
 
 <pre>
 root@buster:~# scp ./backupnextcloud.sql debian@vpsjavierpzh.iesgn15.es:/home/debian/
@@ -513,18 +513,17 @@ nextclouddat.tar.gz                                                   100%  528M
 root@buster:~#
 </pre>
 
+Una vez en el entorno de producción, vamos a descomprimir los archivos de *Nextcloud* en el directorio `/srv/www/aplicacionesiesgn/`:
 
 <pre>
 root@vpsjavierpzh:/home/debian# mv nextclouddat.tar.gz /srv/www/aplicacionesiesgn/
 
 root@vpsjavierpzh:/home/debian# cd /srv/www/aplicacionesiesgn/
 
-root@vpsjavierpzh:/srv/www/aplicacionesiesgn#tar -xvf nextclouddat.tar.gz
+root@vpsjavierpzh:/srv/www/aplicacionesiesgn# tar -xvf nextclouddat.tar.gz
 
 root@vpsjavierpzh:/srv/www/aplicacionesiesgn# ls
 drupal	nextcloud  nextclouddat.tar.gz	principal
-
-root@vpsjavierpzh:/srv/www/aplicacionesiesgn# rm nextclouddat.tar.gz
 
 root@vpsjavierpzh:/srv/www/aplicacionesiesgn# ls nextcloud/
 3rdparty  config       core	 index.html  occ	   ocs-provider  resources   themes
@@ -532,7 +531,13 @@ apps	  console.php  cron.php  index.php   ocm-provider  public.php	 robots.txt  
 AUTHORS   COPYING      data	 lib	     ocs	   remote.php	 status.php  version.php
 </pre>
 
+Debemos cambiar el propietario a `www-data`:
 
+<pre>
+chown -R www-data:www-data /srv/
+</pre>
+
+Es el momento de crear la base de datos y el correspondiente usuario que utilizará *Nextcloud*:
 
 <pre>
 root@vpsjavierpzh:/srv/www/aplicacionesiesgn# mysql -u root -p
@@ -584,17 +589,155 @@ MariaDB [(none)]> exit
 Bye
 </pre>
 
+Vemos que hemos creado correctamente el usuario y la base de datos y ahora ya podemos restaurar la copia de seguridad:
+
+<pre>
+root@vpsjavierpzh:/home/debian# mysql -u user_nextcloud -p bd_nextcloud < backupnextcloud.sql
+Enter password:
+
+root@vpsjavierpzh:/home/debian# mysql -u user_nextcloud -p bd_nextcloud
+Enter password:
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 326
+Server version: 10.3.25-MariaDB-0+deb10u1 Debian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [bd_nextcloud]> show tables;
++-----------------------------+
+| Tables_in_bd_nextcloud      |
++-----------------------------+
+| oc_accounts                 |
+| oc_activity                 |
+| oc_activity_mq              |
+| oc_addressbookchanges       |
+| oc_addressbooks             |
+| oc_appconfig                |
+| oc_authtoken                |
+| oc_bruteforce_attempts      |
+| oc_calendar_invitations     |
+| oc_calendar_reminders       |
+| oc_calendar_resources       |
+| oc_calendar_resources_md    |
+| oc_calendar_rooms           |
+| oc_calendar_rooms_md        |
+| oc_calendarchanges          |
+| oc_calendarobjects          |
+| oc_calendarobjects_props    |
+| oc_calendars                |
+| oc_calendarsubscriptions    |
+| oc_cards                    |
+| oc_cards_properties         |
+| oc_collres_accesscache      |
+| oc_collres_collections      |
+| oc_collres_resources        |
+| oc_comments                 |
+| oc_comments_read_markers    |
+| oc_credentials              |
+| oc_dav_cal_proxy            |
+| oc_dav_shares               |
+| oc_direct_edit              |
+| oc_directlink               |
+| oc_federated_reshares       |
+| oc_file_locks               |
+| oc_filecache                |
+| oc_filecache_extended       |
+| oc_files_trash              |
+| oc_flow_checks              |
+| oc_flow_operations          |
+| oc_flow_operations_scope    |
+| oc_group_admin              |
+| oc_group_user               |
+| oc_groups                   |
+| oc_jobs                     |
+| oc_login_flow_v2            |
+| oc_mail_accounts            |
+| oc_mail_aliases             |
+| oc_mail_attachments         |
+| oc_mail_classifiers         |
+| oc_mail_coll_addresses      |
+| oc_mail_mailboxes           |
+| oc_mail_messages            |
+| oc_mail_recipients          |
+| oc_migrations               |
+| oc_mimetypes                |
+| oc_mounts                   |
+| oc_notifications            |
+| oc_notifications_pushtokens |
+| oc_oauth2_access_tokens     |
+| oc_oauth2_clients           |
+| oc_preferences              |
+| oc_privacy_admins           |
+| oc_properties               |
+| oc_recent_contact           |
+| oc_richdocuments_assets     |
+| oc_richdocuments_direct     |
+| oc_richdocuments_wopi       |
+| oc_schedulingobjects        |
+| oc_share                    |
+| oc_share_external           |
+| oc_storages                 |
+| oc_systemtag                |
+| oc_systemtag_group          |
+| oc_systemtag_object_mapping |
+| oc_talk_bridges             |
+| oc_talk_commands            |
+| oc_talk_guests              |
+| oc_talk_participants        |
+| oc_talk_rooms               |
+| oc_talk_signaling           |
+| oc_text_documents           |
+| oc_text_sessions            |
+| oc_text_steps               |
+| oc_trusted_servers          |
+| oc_twofactor_backupcodes    |
+| oc_twofactor_providers      |
+| oc_user_status              |
+| oc_user_transfer_owner      |
+| oc_users                    |
+| oc_vcategory                |
+| oc_vcategory_to_object      |
+| oc_webauthn                 |
+| oc_whats_new                |
++-----------------------------+
+92 rows in set (0.001 sec)
+
+MariaDB [bd_nextcloud]> exit
+Bye
+</pre>
+
+Vemos que la hemos restaurado satisfactoriamente, por tanto, ya tendríamos todos los datos disponibles en el entorno de producción, por lo que nos faltaría crear el sitio web.
+
+Para crear el sitio web, creamos su fichero de configuración, lo enlazamos simbólicamente a la ruta `/etc/nginx/sites-enabled/` para que esté disponible para *Nginx*:
 
 <pre>
 root@vpsjavierpzh:/etc/nginx/sites-available# cp drupal.conf nextcloud.conf
 
 root@vpsjavierpzh:/etc/nginx/sites-available# nano nextcloud.conf
+
+root@vpsjavierpzh:/etc/nginx/sites-available# ln -s /etc/nginx/sites-available/nextcloud.conf /etc/nginx/sites-enabled/
+
+root@vpsjavierpzh:/etc/nginx/sites-available# ls -l /etc/nginx/sites-enabled/
+total 0
+lrwxrwxrwx 1 root root 49 Nov  9 18:44 aplicacionesiesgn.conf -> /etc/nginx/sites-available/aplicacionesiesgn.conf
+lrwxrwxrwx 1 root root 34 Nov 18 16:31 default -> /etc/nginx/sites-available/default
+lrwxrwxrwx 1 root root 38 Nov 18 08:06 drupal.conf -> /etc/nginx/sites-available/drupal.conf
+lrwxrwxrwx 1 root root 41 Nov 18 19:13 nextcloud.conf -> /etc/nginx/sites-available/nextcloud.conf
 </pre>
 
+Reiniciamos el servicio:
 
 <pre>
-
+systemctl restart nginx
 </pre>
+
+
+
 
 
 **3. Instala en un ordenador el cliente de *Nextcloud* y realiza la configuración adecuada para acceder a "tu nube".**

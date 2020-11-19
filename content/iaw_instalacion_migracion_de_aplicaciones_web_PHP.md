@@ -744,28 +744,6 @@ Accedemos a la dirección `http://www.iesgn15.es/cloud/` y obtenemos este result
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudovh.png)
 
 
-server {
-        listen 80;
-        listen [::]:80;
-
-        root /srv/www/aplicacionesiesgn;
-
-        index index.php index.html index.htm index.nginx-debian.html;
-
-        server_name www.iesgn15.es;
-
-        rewrite ^/$ /principal permanent;
-
-        location / {
-                 try_files $uri $uri/ =404;
-        }
-
-        location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
-        }
-
-}
 
 
 
@@ -776,6 +754,7 @@ server {
 
 
 
+<pre>
 upstream php-handler {
 	server unix:/run/php/php7.3-fpm.sock;
 }
@@ -888,10 +867,33 @@ fastcgi_hide_header X-Powered-By;
     		}
     }
 }
+</pre>
 
 
-
-
+<pre>
+<?php
+$CONFIG = array (
+  'instanceid' => 'occb96siynsl',
+  'passwordsalt' => '5A/7E474U9dFg2k16Pvdy9hZRdo/J8',
+  'secret' => 'oVy6H5qJtp6WJ37nVspZF06HuiwhyhMqd5WhAnxEW4AhK5/h',
+  'trusted_domains' =>
+  array (
+    0 => 'www.iesgn15.es',
+  ),
+  'datadirectory' => '/srv/www/aplicacionesiesgn/cloud/data',
+  'dbtype' => 'mysql',
+  'version' => '20.0.1.1',
+  'overwrite.cli.url' => 'http://www.iesgn15.es/cloud',
+  'dbname' => 'bd_nextcloud',
+  'dbhost' => 'bd.iesgn15.es:3306',
+  'dbport' => '',
+  'dbtableprefix' => 'oc_',
+  'mysql.utf8mb4' => true,
+  'dbuser' => 'user_nextcloud',
+  'dbpassword' => 'pass_nextcloud',
+  'installed' => true,
+);
+</pre>
 
 
 

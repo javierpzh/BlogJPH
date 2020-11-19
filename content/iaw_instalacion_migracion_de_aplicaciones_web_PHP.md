@@ -513,7 +513,13 @@ nextclouddat.tar.gz                                                   100%  528M
 root@buster:~#
 </pre>
 
-Una vez en el entorno de producción, vamos a descomprimir los archivos de *Nextcloud* en el directorio `/srv/www/aplicacionesiesgn/`:
+Una vez en el entorno de producción, vamos a instalar las extensiones de *PHP* que requiere *Nextcloud*:
+
+<pre>
+apt install php-{mysql,zip,curl,mbstring,xml} -y
+</pre>
+
+Ahora vamos a descomprimir los archivos de *Nextcloud* en el directorio `/srv/www/aplicacionesiesgn/`:
 
 <pre>
 root@vpsjavierpzh:/home/debian# mv nextclouddat.tar.gz /srv/www/aplicacionesiesgn/
@@ -736,7 +742,9 @@ Reiniciamos el servicio:
 systemctl restart nginx
 </pre>
 
+Accedemos a la dirección `http://www.iesgn15.es/cloud/` y obtenemos este resultado:
 
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudovh.png)
 
 
 

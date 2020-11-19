@@ -453,7 +453,7 @@ Si nos dirigimos al navegador a la dirección `www.jpnextcloud.com` nos muestra:
 Vemos que *Nextcloud* necesita una serie de extensiones *PHP*. Para instalar todas las extensiones necesarias:
 
 <pre>
-apt install php-{mysql,zip,curl,mbstring,xml} -y
+apt install php-{mysql,zip,curl,mbstring,xml,gd} -y
 </pre>
 
 Si probamos a entrar ahora a la dirección `www.jpnextcloud.com` nos muestra:
@@ -516,7 +516,7 @@ root@buster:~#
 Una vez en el entorno de producción, vamos a instalar las extensiones de *PHP* que requiere *Nextcloud*:
 
 <pre>
-apt install php-{mysql,zip,curl,mbstring,xml} -y
+apt install php-{mysql,zip,curl,mbstring,xml,gd} -y
 </pre>
 
 Ahora vamos a descomprimir los archivos de *Nextcloud* en el directorio `/srv/www/aplicacionesiesgn/`:

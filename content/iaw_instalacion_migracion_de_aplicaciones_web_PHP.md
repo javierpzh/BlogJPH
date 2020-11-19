@@ -576,9 +576,6 @@ Query OK, 0 rows affected (0.001 sec)
 MariaDB [(none)]> GRANT ALL PRIVILEGES ON bd_nextcloud.* TO 'user_nextcloud';
 Query OK, 0 rows affected (0.002 sec)
 
-MariaDB [(none)]> flush privileges;
-Query OK, 0 rows affected (0.001 sec)
-
 MariaDB [(none)]> SHOW DATABASES;
 +--------------------+
 | Database           |
@@ -745,6 +742,22 @@ systemctl restart nginx
 Accedemos a la dirección `http://www.iesgn15.es/cloud/` y obtenemos este resultado:
 
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudovh.png)
+
+
+
+
+'trusted_domains' =>
+  array (
+    0 => '127.0.0.1',
+  ),
+
+
+
+
+
+
+
+
 
 
 

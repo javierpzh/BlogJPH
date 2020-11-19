@@ -770,6 +770,38 @@ server {
 
 
 
+
+
+
+
+
+
+upstream php-handler {
+	server unix:/run/php/php7.3-fpm.sock;
+}
+
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /srv/www/aplicacionesiesgn;
+
+        index index.php index.html index.htm index.nginx-debian.html;
+
+        server_name www.iesgn15.es;
+
+        rewrite ^/$ /principal permanent;
+
+        location / {
+                 try_files $uri $uri/ =404;
+        }
+
+        location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+        }
+
+
 add_header X-Content-Type-Options nosniff;
 add_header X-XSS-Protection "1; mode=block";
 add_header X-Robots-Tag none;
@@ -778,33 +810,6 @@ add_header X-Permitted-Cross-Domain-Policies none;
 add_header Referrer-Policy no-referrer;
 
 fastcgi_hide_header X-Powered-By;
-
-
-upstream php-handler {
-    server unix:/run/php/php7.3-fpm.sock;
-}
-
-server {
-      listen 80 ;
-      listen [::]:80 ;
-
-      root /srv/www/aplicacionesiesgn;
-
-      index index.php index.html index.htm index.nginx-debian.html;
-
-      server_name www.iesgn15.es;
-
-      rewrite ^/$ /principal permanent;
-
-      location / {
-         try_files $uri $uri/ =404;
-       }
-
-       location ~ \.php$ {
-         include snippets/fastcgi-php.conf;
-         fastcgi_pass unix:/run/php/php7.3-fpm.sock;
-      }
-
 
 
       location = /robots.txt {
@@ -881,7 +886,6 @@ server {
     			# Optional: Don't log access to other asse
     			access_log off;
     		}
-    }
     }
 }
 

@@ -462,9 +462,7 @@ Si probamos a entrar ahora a la dirección `www.jpnextcloud.com` nos muestra:
 
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmvinstalador.png)
 
-
-
-Vemos como hemos creado una nueva base de datos y un usuario con los correspondientes permisos sobre esta base de datos. Ahora introducimos estos datos en el instalador y comenzará la instalación de *Nextcloud*.
+Introducimos los datos del administrador y de nuestra base de datos en el instalador y comenzará la instalación de *Nextcloud*.
 
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudmvinstalando.png)
 

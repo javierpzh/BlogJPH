@@ -135,12 +135,27 @@ Ya dispongo de los documentos firmados, llamados `documentofirmadoautofirma.txt_
 
 **2. Tu debes recibir otro documento firmado por un compañero y utilizando las herramientas anteriores debes visualizar la firma (Visualizar Firma) y (Verificar Firma). ¿Puedes verificar la firma aunque no tengas la clave pública de tu compañero? ¿Es necesario estar conectado a internet para hacer la validación de la firma? Razona tus respuestas.**
 
-countryName_default="ES"
-stateOrProvinceName_default="Sevilla"
-localityName_default="Dos Hermanas"
-organizationName_default="javierpzh.io"
-organizationalUnitName_default="ES"
-emailAddress_default="javierperezhidalgo01@gmail.com"
+He recibido de Álvaro los documentos `ficheroautofirma.txt_signed.csig` y `ficherovalide.txt_signed.csig`.
+
+Con **Autofirma**:
+
+En el programa *Autofirma* seleccionamos la opción **Ver firma**:
+
+![.](images/sad_certificados_digitales_HTTPS/autofirmaverificarfirma.png)
+
+Seleccionamos el fichero del cuál queremos ver la firma:
+
+![.](images/sad_certificados_digitales_HTTPS/autofirmaverificarfirmaseleccfichero.png)
+
+Nos sale que está firmado por Álvaro:
+
+![.](images/sad_certificados_digitales_HTTPS/autofirmafirmaverificada.png)
+
+Con **Valide**:
+
+
+
+
 
 **3. Entre dos compañeros, firmar los dos un documento, verificar la firma para comprobar que está firmado por los dos.**
 

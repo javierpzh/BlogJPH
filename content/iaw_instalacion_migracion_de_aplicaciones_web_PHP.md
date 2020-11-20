@@ -2,7 +2,7 @@ Title: Instalación/migración de aplicaciones web PHP
 Date: 2020/11/20
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
-Tags: LEMP, Linux, Nginx, MySQL, MariaDB, PHP, Apache, Drupal, Nextcloud
+Tags: LEMP, Linux, Nginx, MySQL, MariaDB, PHP, Apache, Drupal, Nextcloud, migraciones
 
 ### Realizar la migración de la aplicación Drupal que tienes instalada en el entorno de desarrollo a nuestro entorno de producción, para ello ten en cuenta lo siguiente:
 
@@ -903,5 +903,30 @@ Vemos que ya podemos *loguearnos* correctamente. Si accedemos con nuestro usuari
 
 
 
+<pre>
+apt install nextcloud-desktop -y
+</pre>
 
-**Documenta de la forma más precisa posible cada uno de los pasos que has dado, y entrega pruebas de funcionamiento para comprobar el proceso que has realizado.**
+Si abrimos la aplicación de escritorio y seguimos estos pasos:
+
+- Pulsamos el botón **Entrar**.
+
+- Introducimos la dirección del servidor: **http://www.iesgn15.es/cloud**.
+
+- Iniciamos sesión con nuestra cuenta.
+
+- Elegimos la carpeta a sincronizar: `/home/javier/Nextcloud`.
+
+Y ya habríamos terminado de configurar *Nextcloud Client*.
+
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudclient.png)
+
+Si vemos el contenido de la carpeta `/home/javier/Nextcloud`:
+
+<pre>
+javier@debian:~/Nextcloud$ ls
+ Documents             'Nextcloud Manual.pdf'   Photos                          Talk
+'Nextcloud intro.mp4'   Nextcloud.png          'Reasons to use Nextcloud.pdf'
+</pre>
+
+Vemos que se ha sincronizado correctamente con nuestra nube.

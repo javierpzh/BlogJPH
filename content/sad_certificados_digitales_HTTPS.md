@@ -176,21 +176,30 @@ Vemos que sale firmado por ambos.
 
 **1. Utilizando tu certificado accede a alguna página de la administración pública (cita médica, becas, puntos del carnet,…). Entrega capturas de pantalla donde se demuestre el acceso a ellas.**
 
-Voy a intentar consultar mis puntos del carnet de conducir, utilizando mi certificado digital.
+Voy a intentar consultar mis trámites abiertos en el Ministerio de Educación, utilizando mi certificado digital.
 
-Me dirijo a la web llamada **[Consulta tus puntos](https://sede.dgt.gob.es/es/permisos-de-conducir/consulta-tus-puntos/#)** de la DGT, y aquí indico que me voy a identificar mediante **Clave**:
+Me dirijo a la web llamada **[Sede Electrónica](https://sede.educacion.gob.es/portada.html)**, y aquí indico que deseo acceder a mis trámites:
 
-![.](images/sad_certificados_digitales_HTTPS/dgtconsultatuspuntos.png)
+![.](images/sad_certificados_digitales_HTTPS/sedeelectronica.png)
 
-Vemos que tenemos distintas posibilidades para identificarnos, yo selecciono **Certificado Electrónico**. Como tengo instalado mi certificado en este navegador, me lo reconoce automáticamente y me pregunta si quiero acceder:
+Vemos que tenemos distintas posibilidades para identificarnos, yo selecciono **Clave**:
 
-![.](images/sad_certificados_digitales_HTTPS/dgtcert.png)
+![.](images/sad_certificados_digitales_HTTPS/sedeelectronicaacceso.png)
+
+En esta ventana selecciono **Certificado Electrónico**.
+
+![.](images/sad_certificados_digitales_HTTPS/sedeelectronicacertdigital.png)
+
+Como tengo instalado mi certificado en este navegador, me lo reconoce automáticamente y me pregunta si quiero acceder:
+
+![.](images/sad_certificados_digitales_HTTPS/sedeelectronicaverificacion.png)
 
 Le digo que sí y automáticamente nos hemos identificado con nuestra certificado digital y nos proporciona la siguiente información:
 
-![.](images/sad_certificados_digitales_HTTPS/dgtdentro.png)
+![.](images/sad_certificados_digitales_HTTPS/sedeelectronicapag.png)
 
-Sale este mensaje porque aún no me he sacado el carnet jajajaja.
+Podemos ver que hemos accedido correctamente y podemos ver la solicitud de mi beca por ejemplo, y que en la parte inferior nos sale un mensaje que nos indica que he accedido mediante clave (certificado digital).
+
 
 ## HTTPS / SSL
 

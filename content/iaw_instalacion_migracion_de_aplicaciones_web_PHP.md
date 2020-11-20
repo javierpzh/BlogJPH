@@ -496,7 +496,7 @@ tar: Removing leading `/' from hard link targets
 root@buster:/srv/www# mv nextclouddat.tar.gz /root/
 
 root@buster:~# ls
-backupdrupal.sql  backupnextcloud.sql  nextclouddat.tar.gz  tar.gz
+backupdrupal.sql  backupnextcloud.sql  nextclouddat.tar.gz
 </pre>
 
 Pasamos la copia de seguridad y los datos comprimidos al servidor de OVH:
@@ -716,7 +716,7 @@ Bye
 
 Vemos que la hemos restaurado satisfactoriamente, por tanto, ya tendríamos todos los datos disponibles en el entorno de producción, por lo que nos faltaría crear el sitio web.
 
-Para crear el sitio web, creamos su fichero de configuración, lo enlazamos simbólicamente a la ruta `/etc/nginx/sites-enabled/` para que esté disponible para *Nginx*:
+Para crear el sitio web, creamos su fichero de configuración y lo enlazamos simbólicamente a la ruta `/etc/nginx/sites-enabled/` para que esté disponible para *Nginx*:
 
 <pre>
 root@vpsjavierpzh:/etc/nginx/sites-available# cp drupal.conf nextcloud.conf

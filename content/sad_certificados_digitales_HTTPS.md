@@ -207,7 +207,7 @@ Podemos ver que hemos accedido correctamente y podemos ver la solicitud de mi be
 
 #### Tarea 1: Certificado autofirmado
 
-**Esta práctica la vamos a realizar con un compañero. En un primer momento un alumno creará una Autoridad Certficadora y firmará un certificado para la página del otro alumno. Posteriormente se volverá a realizar la práctica con los roles cambiados.**
+**Esta práctica la vamos a realizar con un compañero. En un primer momento un alumno creará una Autoridad Certificadora y firmará un certificado para la página del otro alumno. Posteriormente se volverá a realizar la práctica con los roles cambiados.**
 
 **Para hacer esta práctica puedes buscar información en internet, algunos enlaces interesantes:**
 

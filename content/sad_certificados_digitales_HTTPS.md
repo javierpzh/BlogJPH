@@ -219,17 +219,78 @@ Podemos ver que hemos accedido correctamente y podemos ver la solicitud de mi be
 
 **1. Crear su autoridad certificadora (generar el certificado digital de la CA). Mostrar el fichero de configuración de la AC.**
 
-Para crear una **Autoridad Certificadora** debemos crear esta estructura de directorios con esta serie de permisos: 
+Para crear una **Autoridad Certificadora** debemos crear esta estructura de directorios con esta serie de permisos y ficheros:
 
 <pre>
-mkdir CA
-cd CA/
-mkdir ./{certsdb,certreqs,crl,private}
-chmod 700 ./private
-touch ./index.txt
-cp /usr/lib/ssl/openssl.cnf ./
-nano openssl.cnf
+root@https:~# mkdir CA
+root@https:~# cd CA/
+root@https:~/CA# mkdir ./{certsdb,certreqs,crl,private}
+root@https:~/CA# chmod 700 ./private
+root@https:~/CA# touch ./index.txt
+root@https:~/CA# cp /usr/lib/ssl/openssl.cnf ./
+root@https:~/CA# nano openssl.cnf
 </pre>
+
+Vemos que hemos copiado el fichero `openssl.cnf`, y en él tendremos que editar las siguientes líneas y corregir las rutas, para que se use el directorio creado previamente para la Autoridad Certficadora.
+
+<pre>
+[ CA_default ]
+
+dir             = /root/CA              # Where everything is kept
+certs           = $dir/certsdb          # Where the issued certs are kept
+crl_dir         = $dir/crl              # Where the issued crl are kept
+database        = $dir/index.txt        # database index file.
+
+                                        # several certs with same subject.
+new_certs_dir   = $certs                # default place for new certs.
+
+certificate     = $dir/cacert.pem       # The CA certificate
+serial          = $dir/serial           # The current serial number
+crlnumber       = $dir/crlnumber        # the current crl number
+                                        # must be commented out to leave a V1 CRL
+crl             = $dir/crl.pem          # The current CRL
+private_key     = $dir/private/cakey.pem# The private key
+</pre>
+
+`openssl.cnf`
+
+[ req_distinguished_name ]
+countryName                     = Country Name (2 letter code)
+countryName_default             = ES
+countryName_min                 = 2
+countryName_max                 = 2
+
+stateOrProvinceName             = State or Province Name (full name)
+stateOrProvinceName_default     = Sevilla
+
+localityName                    = Locality Name (eg, city)
+localityName_default            = Dos Hermanas
+
+0.organizationName              = Organization Name (eg, company)
+0.organizationName_default      = JavierPerez Corp
+
+organizationalUnitName          = Organizational Unit Name (eg, section)
+organizationalUnitName_default  = Informatica
+
+commonName                      = Common Name (e.g. server FQDN or YOUR name)
+commonName_max                  = 64
+
+emailAddress                    = Email Address
+emailAddress_max                = 64
+</pre>
+
+Y comentando el siguiente bloque `openssl.cnf`:
+
+<pre>
+[ req_attributes ]
+#challengePassword              = A challenge password
+#challengePassword_min          = 4
+#challengePassword_max          = 20
+
+#unstructuredName               = An optional company name
+</pre>
+
+Vamos a generar una
 
 <pre>
 root@https:~/CA# openssl req -new -newkey rsa:2048 -keyout private/cakey.pem -out careq.pem -config ./openssl.cnf
@@ -299,9 +360,13 @@ root@https:~/CA#
 
 **2. Debe recibir el fichero CSR (Solicitud de Firmar un Certificado) de su compañero, debe firmarlo y enviar el certificado generado a su compañero.**
 
+He creado un usuario llamado `alvaro`.
+
 <pre>
 cp /home/javi/javierpzh_key.pem /certreqs
 </pre>
+
+
 
 <pre>
 root@https:~/CA# openssl ca -config openssl.cnf -out certsdb/alvaro.crt -infiles certreqs/alvaro.csr
@@ -349,6 +414,8 @@ root@https:~/CA# cp certsdb/alvaro.crt /home/alvaro/
 
 **3. ¿Qué otra información debes aportar a tu compañero para que éste configure de forma adecuada su servidor web con el certificado generado?**
 
+Como yo estoy actuando como Autoridad Certificadora, le tengo que enviar a Álvaro el certificado de la entidad.
+
 <pre>
 root@https:~/CA# cp cacert.pem /home/alvaro/
 </pre>
@@ -356,6 +423,8 @@ root@https:~/CA# cp cacert.pem /home/alvaro/
 **El alumno que hace de administrador del servidor web, debe entregar una documentación que describa los siguientes puntos:**
 
 **1. Crea una clave privada RSA de 4096 bits para identificar el servidor.**
+
+Lo primero que hay que hacer es generar una clave privada:
 
 <pre>
 root@https:~# openssl genrsa 4096 > /etc/ssl/private/javi.key
@@ -367,6 +436,10 @@ root@https:~#
 </pre>
 
 **2. Utiliza la clave anterior para generar un CSR, considerando que deseas acceder al servidor tanto con el FQDN (`tunombre.iesgn.org`) como con el nombre de host (implica el uso de las extensiones `Alt Name`).**
+
+Con la clave generada anteriormente, voy a generar un fichero `.csr` que tendré que enviar a Álvaro para que él me devuelva un fichero `.crt` firmado por su Autoridad Certficadora, con el cuál yo podré disponer de **https** en mi sitio web.
+
+A la hora de generar el fichero `.csr` indico en los parámetros que previamente ha configurado Álvaro a la hora de crear su CA, los valores que me corresponden a mí, respetando los apartados, **Organization Name** y **Organizational Unit Name**, que debo poner los valores que Álvaro haya especificado en el fichero *openssl.cnf* de su Autoridad Certificadora.
 
 <pre>
 root@https:~# openssl req -new -key /etc/ssl/private/javi.key -out ./javi.csr
@@ -395,6 +468,10 @@ root@https:~#
 
 **3. Envía la solicitud de firma a la entidad certificadora (su compañero).**
 
+Álvaro también me ha creado un usuario en su máquina, al cuál yo tengo acceso, para que le envíe el fichero *.csr*, y próximamente pueda moverme el fichero *.crt* que me devuelva junto con el certificado de su CA.
+
+Le envío mi *.csr*.
+
 <pre>
 root@https:~# scp javi.csr javi@172.22.200.186:/home/javi/
 javi@172.22.200.186's password:
@@ -402,6 +479,8 @@ javi.csr                                                              100% 1801 
 </pre>
 
 **4. Recibe como respuesta un certificado X.509 para el servidor firmado y el certificado de la autoridad certificadora.**
+
+Copio de la máquina de Álvaro el fichero *.crt* y el llamado *cacert.pem* que es el certificado de su autoridad certificadora.
 
 <pre>
 root@https:~# scp javi@172.22.200.186:/home/javi/javier.crt ./
@@ -415,6 +494,11 @@ cacert.pem                                                            100% 4658 
 
 **5. Configura tu servidor web con https en el puerto 443, haciendo que las peticiones http se redireccionen a https (forzar https).**
 
+Lo primero que debemos hacer, como estamos trabajando en el *cloud*, es decir, en *OpenStack*, sería abrir el puerto **443**, que corresponde a **https**.
+
+Lo abro:
+
+![.](images/sad_certificados_digitales_HTTPS/puerto443.png)
 
 
 **6. Instala ahora un servidor nginx, y realiza la misma configuración que anteriormente para que se sirva la página con HTTPS.**

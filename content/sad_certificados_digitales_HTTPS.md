@@ -494,7 +494,7 @@ cacert.pem                                                            100% 4658 
 
 **5. Configura tu servidor web con *https* en el puerto 443, haciendo que las peticiones *http* se redireccionen a *https* (forzar *https*).**
 
-Lo primero que debemos hacer, como estamos trabajando en el *cloud*, es decir, en *OpenStack*, sería abrir el puerto **443**, que corresponde a ***https***.
+Lo primero que debemos hacer, como estamos trabajando en el *cloud*, es decir, en *OpenStack*, sería abrir el puerto **443**, que corresponde a **https**.
 
 Lo abro:
 

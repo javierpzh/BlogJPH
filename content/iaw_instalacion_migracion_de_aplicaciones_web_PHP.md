@@ -901,7 +901,7 @@ Vemos que ya podemos *loguearnos* correctamente. Si accedemos con nuestro usuari
 
 **3. Instala en un ordenador el cliente de *Nextcloud* y realiza la configuración adecuada para acceder a "tu nube".**
 
-
+Para instalar el cliente de *Nextcloud*:
 
 <pre>
 apt install nextcloud-desktop -y

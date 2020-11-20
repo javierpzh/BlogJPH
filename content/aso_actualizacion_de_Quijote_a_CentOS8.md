@@ -1,4 +1,4 @@
-Title: Actualización de quijote a CentOS8
+Title: Actualización de CentOS 7 a CentOS 8
 Category: Administración de Sistemas Operativos
 Date: 2020/11/20
 Header_Cover: theme/images/banner-sistemas.jpg

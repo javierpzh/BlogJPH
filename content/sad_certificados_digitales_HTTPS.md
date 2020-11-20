@@ -165,7 +165,9 @@ Nos sale que también está firmado por Álvaro:
 
 **3. Entre dos compañeros, firmar los dos un documento, verificar la firma para comprobar que está firmado por los dos.**
 
+Tanto yo como Álvaro hemos firmado el mismo documento, por tanto si verificamos la firma de éste:
 
+![.](images/sad_certificados_digitales_HTTPS/autofirmafirmadelosdosverificada.png)
 
 
 #### Tarea 4: Autentificación

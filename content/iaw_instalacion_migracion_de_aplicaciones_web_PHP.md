@@ -899,15 +899,6 @@ Vemos que ya podemos *loguearnos* correctamente. Si accedemos con nuestro usuari
 
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudovhdentro.png)
 
-
-
-
-
-
-
-
-
-
 **3. Instala en un ordenador el cliente de *Nextcloud* y realiza la configuración adecuada para acceder a "tu nube".**
 
 

@@ -743,16 +743,9 @@ Accedemos a la dirección `http://www.iesgn15.es/cloud/` y obtenemos este result
 
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudovh.png)
 
+Esto es porque tanto el fichero de configuración del virtualhost *Nextcloud*, como el fichero `(nextcloud)/config/config.php` no están bien configurados:
 
-
-
-
-
-
-
-
-
-
+El fichero `/etc/nginx/sites-available/nextcloud.conf` debe quedar así:
 
 <pre>
 upstream php-handler {
@@ -869,6 +862,9 @@ fastcgi_hide_header X-Powered-By;
 }
 </pre>
 
+**Atención:** a esta configuración hay que sustituirle en las rutas, la palabra `cloud`, por el nombre que tenga vuestro directorio de *Nextcloud*, que suele ser `nextcloud`, pero yo lo he modificado.
+
+Y el fichero `(nextcloud)/config/config.php` debe quedar así:
 
 <pre>
 <?php

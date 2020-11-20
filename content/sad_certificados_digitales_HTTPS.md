@@ -14,7 +14,7 @@ Una vez hemos solicitado y descargado nuestro certificado digital, se nos guarda
 
 En mi caso utilizo **Mozilla Firefox**, por tanto lo voy a instalar en este navegador.
 
-Nos dirigimos al menú de **Preferencias** del navegador, y en el apartado de **Privacidad & Seguridad**, nos desplazamos hasta la último opción, llamada **Certificados**. Aquí hacremos *click* en **Ver certificados** y se nos abrirá una pequeña ventana en la que tendremos distintas secciones. Nos interesa la sección **Sus certificados**, y aquí haremos *click* en **Importar** y se nos abrirá una ventana donde tendremos que seleccionar el certificado que hemos descargado antes, y con esto, ya tendremos instalado nuestro certificado en nuestro navegador.
+Nos dirigimos al menú de **Preferencias** del navegador, y en el apartado de **Privacidad & Seguridad**, nos desplazamos hasta la último opción, llamada **Certificados**. Aquí haremos *click* en **Ver certificados** y se nos abrirá una pequeña ventana en la que tendremos distintas secciones. Nos interesa la sección **Sus certificados**, y aquí haremos *click* en **Importar** y se nos abrirá una ventana donde tendremos que seleccionar el certificado que hemos descargado antes, y con esto, ya tendremos instalado nuestro certificado en nuestro navegador.
 
 **2. Muestra una captura de pantalla donde se vea las preferencias del navegador donde se ve instalado tu certificado.**
 

@@ -500,5 +500,16 @@ Lo abro:
 
 ![.](images/sad_certificados_digitales_HTTPS/puerto443.png)
 
+Hecho esto, tenemos que almacenar los ficheros *.crt* y *.pem* en unas rutas específicas, que son , por tanto los movemos:
+
+<pre>
+root@https:~# ls
+CA  javi.csr  javier.crt  cacert.pem
+
+root@https:~# mv cacert.pem /etc/ssl/certs/
+
+root@https:~# mv javier.crt /etc/ssl/certs/
+</pre>
+
 
 **6. Instala ahora un servidor Nginx, y realiza la misma configuración que anteriormente para que se sirva la página con *HTTPS*.**

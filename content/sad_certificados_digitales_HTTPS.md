@@ -153,9 +153,15 @@ Nos sale que está firmado por Álvaro:
 
 Con **Valide**:
 
+Para verificar la firma de un documento y el programa *Valide*, nos dirigimos a la página de *VALIDe* y al apartado **[Validar Firma](https://valide.redsara.es/valide/validarFirma/ejecutar.html)**.
 
+Seleccionamos el fichero del cuál queremos ver la firma:
 
+![.](images/sad_certificados_digitales_HTTPS/valideverificarfirma.png)
 
+Nos sale que también está firmado por Álvaro:
+
+![.](images/sad_certificados_digitales_HTTPS/validefirmaverificada.png)
 
 **3. Entre dos compañeros, firmar los dos un documento, verificar la firma para comprobar que está firmado por los dos.**
 

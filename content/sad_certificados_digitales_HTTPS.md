@@ -219,6 +219,8 @@ Podemos ver que hemos accedido correctamente y podemos ver la solicitud de mi be
 
 **1. Crear su autoridad certificadora (generar el certificado digital de la CA). Mostrar el fichero de configuración de la AC.**
 
+Para crear una **Autoridad Certificadora** debemos crear esta estructura de directorios con esta serie de permisos: 
+
 <pre>
 mkdir CA
 cd CA/

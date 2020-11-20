@@ -741,7 +741,7 @@ systemctl restart nginx
 
 Accedemos a la dirección `http://www.iesgn15.es/cloud/` y obtenemos este resultado:
 
-![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudovh.png)
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudovhmal.png)
 
 Esto es porque tanto el fichero de configuración del virtualhost *Nextcloud*, como el fichero `(nextcloud)/config/config.php` no están bien configurados:
 
@@ -891,10 +891,13 @@ $CONFIG = array (
 );
 </pre>
 
+Si probamos de nuevo a acceder a `http://www.iesgn15.es/cloud/`:
 
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudovh.png)
 
+Vemos que ya podemos *loguearnos* correctamente. Si accedemos con nuestro usuario:
 
-
+![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/nextcloudovhdentro.png)
 
 
 

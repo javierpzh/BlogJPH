@@ -492,7 +492,7 @@ javi@172.22.200.186's password:
 cacert.pem                                                            100% 4658     1.7MB/s   00:00
 </pre>
 
-**5. Configura tu servidor web con https en el puerto 443, haciendo que las peticiones http se redireccionen a https (forzar https).**
+**5. Configura tu servidor web con *https* en el puerto 443, haciendo que las peticiones *http* se redireccionen a *https* (forzar *https*).**
 
 Lo primero que debemos hacer, como estamos trabajando en el *cloud*, es decir, en *OpenStack*, sería abrir el puerto **443**, que corresponde a **https**.
 
@@ -501,4 +501,4 @@ Lo abro:
 ![.](images/sad_certificados_digitales_HTTPS/puerto443.png)
 
 
-**6. Instala ahora un servidor nginx, y realiza la misma configuración que anteriormente para que se sirva la página con HTTPS.**
+**6. Instala ahora un servidor Nginx, y realiza la misma configuración que anteriormente para que se sirva la página con *HTTPS*.**

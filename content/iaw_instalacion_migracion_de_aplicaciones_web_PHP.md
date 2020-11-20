@@ -299,10 +299,12 @@ Si accedemos a la dirección `portal.iesgn15.es`:
 
 **5. Asegúrate que las URL limpias de *Drupal* siguen funcionando en *Nginx*.**
 
-Para que *Drupal* utilice las URLs limpias debemos añadir esta línea en su fichero de configuración, es decir, en `/etc/nginx/sites-available/drupal.conf`:
+Para que *Drupal* utilice las URLs limpias debemos añadir este bloque en su fichero de configuración, es decir, en `/etc/nginx/sites-available/drupal.conf`:
 
 <pre>
-try_files $uri /index.php?dir=$uri;
+location / {
+    try_files $uri /index.php?$query_string;
+}
 </pre>
 
 **6. La aplicación debe estar disponible en la URL: `portal.iesgnXX.es` (Sin ningún directorio).**

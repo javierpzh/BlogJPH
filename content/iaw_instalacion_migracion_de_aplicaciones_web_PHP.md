@@ -1,5 +1,5 @@
 Title: Instalación/migración de aplicaciones web PHP
-Date: 2020/11/18
+Date: 2020/11/20
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: LEMP, Linux, Nginx, MySQL, MariaDB, PHP, Apache, Drupal, Nextcloud
@@ -8,7 +8,7 @@ Tags: LEMP, Linux, Nginx, MySQL, MariaDB, PHP, Apache, Drupal, Nextcloud
 
 Cuando me refiero al entorno de producción, estoy haciendo referencia a un servidor de OVH.
 
-Antes de realizar la migración necesitamos preparar nuestro entorno de producción instalando todos los paquetes necesarios, como pueden ser `php`, `mysql`, ... para poder migrar *Drupal* de manera correcta. En mi caso tengo listo el entorno de producción, ya que en él lleve a cabo la instalación de un *servidor LEMP* que es lo que al fin y al cabo vamos a utilizar. Si quieres ver como instalar un *servidor LEMP* puedes verlo [aquí](https://javierpzh.github.io/instalacion-de-un-servidor-lemp.html).
+Antes de realizar la migración necesitamos preparar nuestro entorno de producción instalando todos los paquetes necesarios, como pueden ser `php`, `mysql`, ... para poder migrar *Drupal* de manera correcta. En mi caso tengo listo el entorno de producción, ya que en él llevé a cabo la instalación de un *servidor LEMP* que es lo que al fin y al cabo vamos a utilizar. Si quieres ver como instalar un *servidor LEMP* puedes verlo [aquí](https://javierpzh.github.io/instalacion-de-un-servidor-lemp.html).
 
 **1. La aplicación se tendrá que migrar a un nuevo virtualhost al que se accederá con el nombre `portal.iesgnXX.es.`**
 
@@ -285,7 +285,7 @@ MariaDB [bd_drupal]>
 
 Vemos que hemos restaurado la copia de seguridad correctamente.
 
-Ahora nos faltaría crear un registro **CNAME** en nuestra zona DNS del servidor **OVH** como este:
+Por último nos faltaría crear un registro **CNAME**, para que nos muestre esta paǵina, en nuestra zona DNS del servidor **OVH**, como este:
 
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/cnamecrear.png)
 

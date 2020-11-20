@@ -285,7 +285,7 @@ MariaDB [bd_drupal]>
 
 Vemos que hemos restaurado la copia de seguridad correctamente.
 
-Por último nos faltaría crear un registro **CNAME**, para que nos muestre esta paǵina, en nuestra zona DNS del servidor **OVH**, como este:
+Por último nos faltaría crear un registro **CNAME**, para que nos muestre esta paǵina, en nuestra zona DNS del servidor **OVH**. En mi caso, como destino pongo `vpsjavierpzh.iesgn15.es` en vez de una dirección IP, ya que tengo creado un registro de tipo **A** que apunta a esta IP.
 
 ![.](images/iaw_instalacion_migracion_de_aplicaciones_web_PHP/cnamecrear.png)
 

@@ -1,4 +1,4 @@
-Title: Instalación/migración de aplicaciones web PHP
+Title: Instalación / migración de aplicaciones web PHP
 Date: 2020/11/20
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg

@@ -169,6 +169,8 @@ Tanto yo como Álvaro hemos firmado el mismo documento, por tanto si verificamos
 
 ![.](images/sad_certificados_digitales_HTTPS/autofirmafirmadelosdosverificada.png)
 
+Vemos que sale firmado por ambos.
+
 
 #### Tarea 4: Autentificación
 

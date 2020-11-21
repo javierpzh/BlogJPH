@@ -551,8 +551,8 @@ El fichero de configuración de mi *virtualhost* quedaría así:
 
 
 <pre>
-<IfModule mod_ssl.c>
-	<VirtualHost _default_:443>
+...
+
 		ServerAdmin webmaster@localhost
 
 		ServerName javierpzh.iesgn.org
@@ -586,17 +586,7 @@ El fichero de configuración de mi *virtualhost* quedaría así:
 		#SSLCACertificatePath /etc/ssl/certs/
 		#SSLCACertificateFile /etc/apache2/ssl.crt/ca-bundle.crt
 
-
-		<FilesMatch "\.(cgi|shtml|phtml|php)$">
-				SSLOptions +StdEnvVars
-		</FilesMatch>
-		<Directory /usr/lib/cgi-bin>
-				SSLOptions +StdEnvVars
-		</Directory>
-
-	</VirtualHost>
-</IfModule>
-
+...
 </pre>
 
 

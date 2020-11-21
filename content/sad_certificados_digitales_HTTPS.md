@@ -573,7 +573,7 @@ Ahora, en el fichero de configuración de la página con *https*, debemos introd
 		SSLCertificateFile	/etc/ssl/certs/javier.crt
 		SSLCertificateKeyFile /etc/ssl/private/javi.key
 
-	  SSLCertificateChainFile /etc/ssl/private/cacert.pem
+    SSLCertificateChainFile /etc/ssl/private/cacert.pem
 
 ...
 </pre>
@@ -590,7 +590,15 @@ root@https:/etc/apache2/sites-available# systemctl restart apache2
 
 Ya tendríamos nuestro sitio web configurado para que utilice *https* pero en nuestro navegador no poseemos el certificado de la autoridad certificadora que nos ha firmado, por tanto debemos añadir su certificado.
 
+Para instalar el certificado en nuestro navegador, *Firefox* en mi caso, nos dirigimos a **Preferencias**, a la sección **Privacidad & Seguridad**, y al apartado **Certificados**, *clickamos* en **Ver certificados** y nos sale una ventana como esta:
+
 ![.](images/sad_certificados_digitales_HTTPS/caalvaroimportar.png)
+
+Seleccionamos **Importar**:
+
+
+
+
 
 
 **6. Instala ahora un servidor Nginx, y realiza la misma configuración que anteriormente para que se sirva la página con *HTTPS*.**

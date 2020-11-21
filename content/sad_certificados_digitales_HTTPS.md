@@ -223,11 +223,17 @@ Para crear una **Autoridad Certificadora** debemos crear esta estructura de dire
 
 <pre>
 root@https:~# mkdir CA
+
 root@https:~# cd CA/
+
 root@https:~/CA# mkdir ./{certsdb,certreqs,crl,private}
+
 root@https:~/CA# chmod 700 ./private
+
 root@https:~/CA# touch ./index.txt
+
 root@https:~/CA# cp /usr/lib/ssl/openssl.cnf ./
+
 root@https:~/CA# nano openssl.cnf
 </pre>
 
@@ -444,7 +450,7 @@ root@https:~#
 
 **2. Utiliza la clave anterior para generar un CSR, considerando que deseas acceder al servidor tanto con el FQDN (`tunombre.iesgn.org`) como con el nombre de host (implica el uso de las extensiones `Alt Name`).**
 
-Con la clave generada anteriormente, voy a generar un fichero `.csr` que tendré que enviar a Álvaro para que él me devuelva un fichero `.crt` firmado por su Autoridad Certficadora, con el cuál yo podré disponer de **https** en mi sitio web.
+Con la clave generada anteriormente, voy a generar un fichero `.csr` que tendré que enviar a Álvaro para que él me devuelva un fichero `.crt` firmado por su Autoridad Certificadora, con el cuál yo podré disponer de **https** en mi sitio web.
 
 A la hora de generar el fichero `.csr` indico en los parámetros que previamente ha configurado Álvaro a la hora de crear su CA, los valores que me corresponden a mí, respetando los apartados, **Organization Name** y **Organizational Unit Name**, que debo poner los valores que Álvaro haya especificado en el fichero *openssl.cnf* de su Autoridad Certificadora.
 

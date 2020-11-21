@@ -550,6 +550,12 @@ El fichero de configuración de mi *virtualhost* quedaría así:
 
 **Atención:** a esta configuración hay que eliminarle los carácteres \, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
+Ahora, en el fichero de configuración de la página con *https*, debemos introducir una serie de líneas como estas:
+
+- **SSLCertificateFile:** indica donde se encuentra nuestro fichero *.crt* firmado por la autoridad.
+- **SSLCertificateKeyFile:** indica donde se encuentra nuestra clave privada mediante la cuál generemos el archivo *.csr*.
+- **SSLCertificateChainFile:** indica donde se encuentra el certificado de la autoridad certificadora.
+
 <pre>
 ...
 
@@ -572,6 +578,7 @@ El fichero de configuración de mi *virtualhost* quedaría así:
 ...
 </pre>
 
+Una vez configurado, debemos habilitar la página e iniciar el **módulo SSL** de *Apache*:
 
 <pre>
 root@https:/etc/apache2/sites-available# a2ensite default-ssl.conf
@@ -580,5 +587,8 @@ root@https:/etc/apache2/sites-available# a2enmod ssl
 
 root@https:/etc/apache2/sites-available# systemctl restart apache2
 </pre>
+
+Ya tendríamos nuestro sitio web configurado para que utilice *https* pero  
+
 
 **6. Instala ahora un servidor Nginx, y realiza la misma configuración que anteriormente para que se sirva la página con *HTTPS*.**

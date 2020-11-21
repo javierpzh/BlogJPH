@@ -609,3 +609,13 @@ Si ahora nos dirigimos a la dirección `javierpzh.iesgn.org`:
 Vemos que nos ha redirigido automáticamente por *https* y además que podemos ver como tenemos la confianza de la entidad de Álvaro.
 
 **6. Instala ahora un servidor Nginx, y realiza la misma configuración que anteriormente para que se sirva la página con *HTTPS*.**
+
+Vamos realizar el mismo proceso pero con un servidor web **Nginx**. En este proceso, voy a ser más directo y voy a utilizar los mismos ficheros que en el apartado anterior, ya que únicamente nos hace falta configurar *Nginx*.
+
+En primer lugar vamos a parar el servicio de *Apache*:
+
+<pre>
+
+</pre>
+
+Instalamos *Nginx*

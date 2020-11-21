@@ -239,7 +239,7 @@ root@https:~/CA# nano openssl.cnf
 
 Vemos que hemos copiado el fichero `openssl.cnf`, y en él tendremos que editar las siguientes líneas y corregir las rutas, para que se use el directorio creado previamente para la Autoridad Certificadora.
 
-En este bloque indicamos que el directorio se encuentra en `/root/CA/`, que los certificados se van a guardar en `$dir/certsdb`,  la variable `$dir` ha referencia si nos fijamos a `/root/CA`, el certificado de la autoridad certificadora se va a encontrar en el directorio con el nombre `cacert.pem`, ...
+En este bloque indicamos que el directorio se encuentra en `/root/CA`, que los certificados se van a guardar en `$dir/certsdb`,  la variable `$dir` ha referencia si nos fijamos a `/root/CA`, el certificado de la autoridad certificadora se va a encontrar en el directorio con el nombre `cacert.pem`, ...
 
 <pre>
 [ CA_default ]

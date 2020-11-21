@@ -288,7 +288,7 @@ emailAddress                    = Email Address
 emailAddress_max                = 64
 </pre>
 
-Ya nos encontramos frente al último bloque a editar en este fichero `openssl.cnf`, y simplemente se trata en buscar las siguientes líneas y comentarlas, ya que a mí no me interesan, esto es según las necesidades y lo que busque cada uno:
+Ya nos encontramos frente al último bloque a editar en este fichero `openssl.cnf`, y simplemente se trata de buscar las siguientes líneas y comentarlas, ya que a mí no me interesan, esto es según las necesidades y lo que busque cada uno:
 
 <pre>
 [ req_attributes ]
@@ -445,6 +445,7 @@ Generating RSA private key, 4096 bit long modulus (2 primes)
 ................................................................................................................................................++++
 ............................++++
 e is 65537 (0x010001)
+
 root@https:~#
 </pre>
 
@@ -481,7 +482,7 @@ root@https:~#
 
 **3. Envía la solicitud de firma a la entidad certificadora (su compañero).**
 
-Álvaro también me ha creado un usuario en su máquina, al cuál yo tengo acceso, para que le envíe el fichero *.csr*, y próximamente pueda copiarme, el fichero *.crt* que me devuelva junto con el certificado de su CA, a mi máquina.
+Álvaro también me ha creado un usuario en su máquina, al cuál yo tengo acceso, para que le envíe mi fichero *.csr*, y próximamente pueda copiarme, el fichero *.crt* que me devuelva junto con el certificado de su CA, a mi máquina.
 
 Le envío mi *.csr*:
 
@@ -513,7 +514,7 @@ Lo abro:
 
 ![.](images/sad_certificados_digitales_HTTPS/puerto443.png)
 
-Hecho esto, tenemos que almacenar los ficheros *.crt* y *.pem* en unas rutas específicas, que son .............................., por tanto los movemos:
+Hecho esto, tenemos que almacenar los ficheros *.crt* y *.pem* en la ruta `/etc/ssl/certs/`, por tanto los movemos:
 
 <pre>
 root@https:~# ls

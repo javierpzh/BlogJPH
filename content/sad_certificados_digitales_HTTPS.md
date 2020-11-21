@@ -533,7 +533,7 @@ Redirect / https://javierpzh.iesgn.org/
 El fichero de configuración de mi *virtualhost* quedaría así:
 
 <pre>
-<VirtualHost *:80>
+<\VirtualHost *:80>
 
         ServerName javierpzh.iesgn.org
 

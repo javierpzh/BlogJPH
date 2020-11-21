@@ -588,7 +588,9 @@ root@https:/etc/apache2/sites-available# a2enmod ssl
 root@https:/etc/apache2/sites-available# systemctl restart apache2
 </pre>
 
-Ya tendríamos nuestro sitio web configurado para que utilice *https* pero  
+Ya tendríamos nuestro sitio web configurado para que utilice *https* pero en nuestro navegador no poseemos el certificado de la autoridad certificadora que nos ha firmado, por tanto debemos añadir su certificado.
+
+![.](images/sad_certificados_digitales_HTTPS/caalvaroimportar.png)
 
 
 **6. Instala ahora un servidor Nginx, y realiza la misma configuración que anteriormente para que se sirva la página con *HTTPS*.**

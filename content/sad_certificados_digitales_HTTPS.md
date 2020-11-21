@@ -556,7 +556,7 @@ Si nos fijamos en la ruta del **DocumentRoot**, vemos que he almacenado la pági
 Ahora, en el fichero de configuración de la página con *https*, debemos introducir una serie de líneas como estas:
 
 - **SSLCertificateFile:** indica donde se encuentra nuestro fichero *.crt* firmado por la autoridad.
-- **SSLCertificateKeyFile:** indica donde se encuentra nuestra clave privada mediante la cuál generemos el archivo *.csr*.
+- **SSLCertificateKeyFile:** indica donde se encuentra nuestra clave privada mediante la cuál generamos el archivo *.csr*.
 - **SSLCertificateChainFile:** indica donde se encuentra el certificado de la autoridad certificadora.
 
 <pre>

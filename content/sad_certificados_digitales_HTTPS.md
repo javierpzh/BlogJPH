@@ -615,7 +615,11 @@ Vamos realizar el mismo proceso pero con un servidor web **Nginx**. En este proc
 En primer lugar vamos a parar el servicio de *Apache*:
 
 <pre>
-
+systemctl stop apache2
 </pre>
 
-Instalamos *Nginx*
+Instalamos *Nginx*:
+
+<pre>
+apt install nginx -y
+</pre>

@@ -481,9 +481,9 @@ root@https:~#
 
 **3. Envía la solicitud de firma a la entidad certificadora (su compañero).**
 
-Álvaro también me ha creado un usuario en su máquina, al cuál yo tengo acceso, para que le envíe el fichero *.csr*, y próximamente pueda moverme el fichero *.crt* que me devuelva junto con el certificado de su CA.
+Álvaro también me ha creado un usuario en su máquina, al cuál yo tengo acceso, para que le envíe el fichero *.csr*, y próximamente pueda copiarme, el fichero *.crt* que me devuelva junto con el certificado de su CA, a mi máquina.
 
-Le envío mi *.csr*.
+Le envío mi *.csr*:
 
 <pre>
 root@https:~# scp javi.csr javi@172.22.200.186:/home/javi/
@@ -513,7 +513,7 @@ Lo abro:
 
 ![.](images/sad_certificados_digitales_HTTPS/puerto443.png)
 
-Hecho esto, tenemos que almacenar los ficheros *.crt* y *.pem* en unas rutas específicas, que son , por tanto los movemos:
+Hecho esto, tenemos que almacenar los ficheros *.crt* y *.pem* en unas rutas específicas, que son .............................., por tanto los movemos:
 
 <pre>
 root@https:~# ls
@@ -522,6 +522,81 @@ CA  javi.csr  javier.crt  cacert.pem
 root@https:~# mv cacert.pem /etc/ssl/certs/
 
 root@https:~# mv javier.crt /etc/ssl/certs/
+</pre>
+
+Tenemos que configurar *Apache* para que utilice los ficheros necesarios y verifique y fuerce el *https*. Primero vamos a editar el fichero de configuración del *virtualhost* de la página que hemos creado, y vamos a crear una redirección a *https* para que siempre accedamos por aquí. Introduzco esta línea:
+
+<pre>
+Redirect / https://javierpzh.iesgn.org/
+</pre>
+
+El fichero de configuración de mi *virtualhost* quedaría así:
+
+<pre>
+<VirtualHost *:80>
+
+        ServerName javierpzh.iesgn.org
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+
+        Redirect / https://javierpzh.iesgn.org/
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
+</pre>
+
+
+
+<pre>
+<IfModule mod_ssl.c>
+	<VirtualHost _default_:443>
+		ServerAdmin webmaster@localhost
+
+		ServerName javierpzh.iesgn.org
+
+		DocumentRoot /var/www/html
+
+		ErrorLog ${APACHE_LOG_DIR}/error.log
+		CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+		SSLEngine on
+
+		SSLCertificateFile	/etc/ssl/certs/javier.crt
+		SSLCertificateKeyFile /etc/ssl/private/javi.key
+
+		#   Server Certificate Chain:
+		#   Point SSLCertificateChainFile at a file containing the
+		#   concatenation of PEM encoded CA certificates which form the
+		#   certificate chain for the server certificate. Alternatively
+		#   the referenced file can be the same as SSLCertificateFile
+		#   when the CA certificates are directly appended to the server
+		#   certificate for convinience.
+		#SSLCertificateChainFile /etc/apache2/ssl.crt/server-ca.crt
+
+		#   Certificate Authority (CA):
+		#   Set the CA certificate verification path where to find CA
+		#   certificates for client authentication or alternatively one
+		#   huge file containing all of them (file must be PEM encoded)
+		#   Note: Inside SSLCACertificatePath you need hash symlinks
+		#		 to point to the certificate files. Use the provided
+		#		 Makefile to update the hash symlinks after changes.
+		#SSLCACertificatePath /etc/ssl/certs/
+		#SSLCACertificateFile /etc/apache2/ssl.crt/ca-bundle.crt
+
+
+		<FilesMatch "\.(cgi|shtml|phtml|php)$">
+				SSLOptions +StdEnvVars
+		</FilesMatch>
+		<Directory /usr/lib/cgi-bin>
+				SSLOptions +StdEnvVars
+		</Directory>
+
+	</VirtualHost>
+</IfModule>
+
 </pre>
 
 

@@ -1,5 +1,5 @@
 Title: Certificados digitales. HTTPS
-Date: 2020/11/17
+Date: 2020/11/21
 Category: Seguridad y Alta Disponibilidad
 Header_Cover: theme/images/banner-seguridad.jpg
 Tags: Criptografía, Certificado digital, HTTPS, SSL, Apache, Nginx

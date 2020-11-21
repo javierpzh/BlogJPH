@@ -594,7 +594,7 @@ Para instalar el certificado en nuestro navegador, *Firefox* en mi caso, nos dir
 
 ![.](images/sad_certificados_digitales_HTTPS/caalvaroimportar.png)
 
-Seleccionamos **Importar**, e importamos el fichero *cacert.pem*:
+Seleccionamos **Importar ...**, e importamos el fichero *cacert.pem*:
 
 ![.](images/sad_certificados_digitales_HTTPS/caalvaroconfiar.png)
 

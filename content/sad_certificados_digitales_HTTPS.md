@@ -231,7 +231,9 @@ root@https:~/CA# cp /usr/lib/ssl/openssl.cnf ./
 root@https:~/CA# nano openssl.cnf
 </pre>
 
-Vemos que hemos copiado el fichero `openssl.cnf`, y en él tendremos que editar las siguientes líneas y corregir las rutas, para que se use el directorio creado previamente para la Autoridad Certficadora.
+Vemos que hemos copiado el fichero `openssl.cnf`, y en él tendremos que editar las siguientes líneas y corregir las rutas, para que se use el directorio creado previamente para la Autoridad Certificadora.
+
+En este bloque indicamos que el directorio se encuentra en `/root/CA/`, que los certificados se van a guardar en `$dir/certsdb`,  la variable `$dir` ha referencia si nos fijamos a `/root/CA`, el certificado de la autoridad certificadora se va a encontrar en el directorio con el nombre `cacert.pem`, ...
 
 <pre>
 [ CA_default ]
@@ -252,8 +254,9 @@ crl             = $dir/crl.pem          # The current CRL
 private_key     = $dir/private/cakey.pem# The private key
 </pre>
 
-`openssl.cnf`
+El siguiente bloque a tener en cuenta en el fichero `openssl.cnf` es el siguiente, y en él vamos a introducir los datos de la autoridad certificadora.
 
+<pre>
 [ req_distinguished_name ]
 countryName                     = Country Name (2 letter code)
 countryName_default             = ES
@@ -279,7 +282,7 @@ emailAddress                    = Email Address
 emailAddress_max                = 64
 </pre>
 
-Y comentando el siguiente bloque `openssl.cnf`:
+Ya nos encontramos frente al último bloque a editar en este fichero `openssl.cnf`, y simplemente se trata en buscar las siguientes líneas y comentarlas, ya que a mí no me interesan, esto es según las necesidades y lo que busque cada uno:
 
 <pre>
 [ req_attributes ]
@@ -290,7 +293,7 @@ Y comentando el siguiente bloque `openssl.cnf`:
 #unstructuredName               = An optional company name
 </pre>
 
-Vamos a generar una
+Una vez tenemos creada nuestra autoridad certificadora, vamos a generar una
 
 <pre>
 root@https:~/CA# openssl req -new -newkey rsa:2048 -keyout private/cakey.pem -out careq.pem -config ./openssl.cnf
@@ -408,17 +411,21 @@ Data Base Updated
 root@https:~/CA#
 </pre>
 
+El fichero *.crt* obtenido, que es el fichero firmado por mi autoridad certificadora, se lo copio a Álvaro al usuario que he creado para él.
+
 <pre>
 root@https:~/CA# cp certsdb/alvaro.crt /home/alvaro/
 </pre>
 
 **3. ¿Qué otra información debes aportar a tu compañero para que éste configure de forma adecuada su servidor web con el certificado generado?**
 
-Como yo estoy actuando como Autoridad Certificadora, le tengo que enviar a Álvaro el certificado de la entidad.
+Como yo estoy actuando como Autoridad Certificadora, le tengo que enviar a Álvaro el certificado de la entidad certificadora. Al igual que su *.crt*, se lo dejo en el usuario de mi máquina que he creado para que acceda él.
 
 <pre>
 root@https:~/CA# cp cacert.pem /home/alvaro/
 </pre>
+
+Por tanto, una vez hecho esto, Álvaro ya podría visualizar su página con *https*.
 
 **El alumno que hace de administrador del servidor web, debe entregar una documentación que describa los siguientes puntos:**
 

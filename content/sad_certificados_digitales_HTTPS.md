@@ -551,6 +551,8 @@ El fichero de configuración de mi *virtualhost* quedaría así:
 
 **Atención:** a esta configuración hay que eliminarle los carácteres \, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
+Si nos fijamos en la ruta del **DocumentRoot**, vemos que he almacenado la página en `/var/www/html`, esto no es lo adecuado pero como solo estoy haciendo estas pruebas y realmente esta estructura no va a tener ninguna funcionalidad en un futuro, lo hago así por comodidad y rapidez. Recomiendo usar la ruta `/srv/www/...` para almacenar datos de sitios webs.
+
 Ahora, en el fichero de configuración de la página con *https*, debemos introducir una serie de líneas como estas:
 
 - **SSLCertificateFile:** indica donde se encuentra nuestro fichero *.crt* firmado por la autoridad.

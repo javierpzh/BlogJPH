@@ -594,11 +594,18 @@ Para instalar el certificado en nuestro navegador, *Firefox* en mi caso, nos dir
 
 ![.](images/sad_certificados_digitales_HTTPS/caalvaroimportar.png)
 
-Seleccionamos **Importar**:
+Seleccionamos **Importar**, e importamos el fichero *cacert.pem*:
 
+![.](images/sad_certificados_digitales_HTTPS/caalvaroconfiar.png)
 
+Ya hemos importado el certificado de la entidad de Álvaro:
 
+![.](images/sad_certificados_digitales_HTTPS/caalvaroinstalado.png)
 
+Si ahora nos dirigimos a la dirección `javierpzh.iesgn.org`:
 
+![.](images/sad_certificados_digitales_HTTPS/httpsapache.png)
+
+Vemos que nos ha redirigido automáticamente por *https* y además que podemos ver como tenemos la confianza de la entidad de Álvaro.
 
 **6. Instala ahora un servidor Nginx, y realiza la misma configuración que anteriormente para que se sirva la página con *HTTPS*.**

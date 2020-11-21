@@ -545,7 +545,7 @@ El fichero de configuración de mi *virtualhost* quedaría así:
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-</VirtualHost>
+<\/VirtualHost>
 </pre>
 
 

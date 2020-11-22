@@ -144,4 +144,22 @@ CentOS Linux release 8.2.2004 (Core)
 [root@quijote ~]#
 </pre>
 
-Vemos como hemos actualizado nuestro sistema y ahora está corriendo *CentOS 8*, por tanto la actulización de *Quijote* habría terminado:
+Vemos como hemos actualizado nuestro sistema y ahora está corriendo *CentOS 8*, por tanto la actulización de *Quijote* habría terminado.
+
+Para finalizar, vamos a probar a hacer un ping a `www.google.es`, para asegurarnos que tiene conexión a internet y además hace uso de la resolución de nombres:
+
+<pre>
+[root@quijote ~]# ping www.google.es
+PING www.google.es (172.217.17.3) 56(84) bytes of data.
+64 bytes from mad07s09-in-f3.1e100.net (172.217.17.3): icmp_seq=1 ttl=112 time=43.7 ms
+64 bytes from mad07s09-in-f3.1e100.net (172.217.17.3): icmp_seq=2 ttl=112 time=64.5 ms
+64 bytes from mad07s09-in-f3.1e100.net (172.217.17.3): icmp_seq=3 ttl=112 time=44.0 ms
+^C
+--- www.google.es ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 43.773/50.790/64.546/9.727 ms
+
+[root@quijote ~]#
+</pre>
+
+Efectivamente, obtenemos la respuesta esperada.

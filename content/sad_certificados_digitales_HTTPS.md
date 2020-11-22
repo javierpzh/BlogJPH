@@ -231,7 +231,19 @@ root@https:~/CA# cp /usr/lib/ssl/openssl.cnf ./
 root@https:~/CA# nano openssl.cnf
 </pre>
 
-Vemos que hemos copiado el fichero `openssl.cnf`, y en él tendremos que editar las siguientes líneas y corregir las rutas, para que se use el directorio creado previamente para la Autoridad Certificadora.
+Los directorios que hemos creado:
+
+- **certsdb:** En él se almacenarán los certificados firmados.
+
+- **certreqs:** En él se almacenarán los ficheros *.csr*.
+
+- **crl:** En él se almacenarán los certificados revocados.
+
+- **private:** En él se almacenará la clave privada de la CA. Por eso mismo, le hemos establecido permisos 700, para que solo pueda acceder el propietario.
+
+El fichero `inedx.txt` actuará de base de datos.
+
+Vemos que también hemos copiado el fichero `openssl.cnf`, y en él tendremos que editar las siguientes líneas y corregir las rutas, para que se use el directorio creado previamente para la Autoridad Certificadora.
 
 En este bloque indicamos que el directorio se encuentra en `/root/CA`, que los certificados se van a guardar en `$dir/certsdb`,  la variable `$dir` ha referencia si nos fijamos a `/root/CA`, el certificado de la autoridad certificadora se va a encontrar en el directorio con el nombre `cacert.pem`, ...
 
@@ -254,7 +266,7 @@ crl             = $dir/crl.pem          # The current CRL
 private_key     = $dir/private/cakey.pem# The private key
 </pre>
 
-El siguiente bloque a tener en cuenta en el fichero `openssl.cnf` es el siguiente, y en él vamos a introducir los datos de la autoridad certificadora.
+El siguiente bloque a tener en cuenta en el fichero `openssl.cnf` es el siguiente, y en él vamos a introducir los datos básicos de la autoridad certificadora.
 
 <pre>
 [ req_distinguished_name ]
@@ -293,7 +305,7 @@ Ya nos encontramos frente al último bloque a editar en este fichero `openssl.cn
 #unstructuredName               = An optional company name
 </pre>
 
-Una vez tenemos creada nuestra autoridad certificadora, vamos a generar una
+Una vez tenemos creada nuestra autoridad certificadora, vamos a generar un par de claves, y un fichero *.csr* que luego vamos a firmar con la propia CA:
 
 <pre>
 root@https:~/CA# openssl req -new -newkey rsa:2048 -keyout private/cakey.pem -out careq.pem -config ./openssl.cnf
@@ -321,6 +333,8 @@ Email Address []:javierperezhidalgo01@gmail.com
 
 root@https:~/CA#
 </pre>
+
+Firmamos nuestro propio fichero *.csr* con nuestra propia entidad certificadora. Esto lo hacemos para generar un fichero *.crt* que es el que vamos a enviar a nuestros clientes como certificado de la CA.
 
 <pre>
 root@https:~/CA# openssl ca -create_serial -out cacert.pem -days 365 -keyfile private/cakey.pem -selfsign -extensions v3_ca -config ./openssl.cnf -infiles careq.pem
@@ -360,16 +374,15 @@ Data Base Updated
 root@https:~/CA#
 </pre>
 
+Nos ha generado un fichero `cacert.pem` que es el certificado de la autoridad certificadora.
 
 **2. Debe recibir el fichero CSR (Solicitud de Firmar un Certificado) de su compañero, debe firmarlo y enviar el certificado generado a su compañero.**
 
-He creado un usuario llamado `alvaro`.
+He creado en mi máquina un usuario llamado `alvaro`, al que tiene acceso mi compañero para que me traslade su fichero *.csr*.
 
-<pre>
-cp /home/javi/javierpzh_key.pem /certreqs
-</pre>
+Una vez tenemos a nuestra disposición el fichero que queremos firmar, debemos moverlo a la carpeta `certreqs` creada anteriormente.
 
-
+Ahora procedemos a firmar el documento y a generar el *.crt*.
 
 <pre>
 root@https:~/CA# openssl ca -config openssl.cnf -out certsdb/alvaro.crt -infiles certreqs/alvaro.csr
@@ -413,17 +426,9 @@ root@https:~/CA#
 
 El fichero *.crt* obtenido, que es el fichero firmado por mi autoridad certificadora, se lo copio a Álvaro al usuario que he creado para él.
 
-<pre>
-root@https:~/CA# cp certsdb/alvaro.crt /home/alvaro/
-</pre>
-
 **3. ¿Qué otra información debes aportar a tu compañero para que éste configure de forma adecuada su servidor web con el certificado generado?**
 
-Como yo estoy actuando como Autoridad Certificadora, le tengo que enviar a Álvaro el certificado de la entidad certificadora. Al igual que su *.crt*, se lo dejo en el usuario de mi máquina que he creado para que acceda él.
-
-<pre>
-root@https:~/CA# cp cacert.pem /home/alvaro/
-</pre>
+Como yo estoy actuando como Autoridad Certificadora, le tengo que enviar a mi compañero el certificado de la entidad certificadora. Al igual que su *.crt*, se lo dejo en el usuario de mi máquina que he creado para que acceda él.
 
 Por tanto, una vez hecho esto, Álvaro ya podría visualizar su página con *https*.
 
@@ -447,7 +452,7 @@ root@https:~#
 
 Con la clave generada anteriormente, voy a generar un fichero `.csr` que tendré que enviar a Álvaro para que él me devuelva un fichero `.crt` firmado por su Autoridad Certificadora, con el cuál yo podré disponer de **https** en mi sitio web.
 
-A la hora de generar el fichero `.csr` indico en los parámetros que previamente ha configurado Álvaro a la hora de crear su CA, los valores que me corresponden a mí, respetando los apartados, **Organization Name** y **Organizational Unit Name**, que debo poner los valores que Álvaro haya especificado en el fichero *openssl.cnf* de su Autoridad Certificadora.
+A la hora de generar el fichero `.csr` nos pedirá unos valores que debemos rellenar para identificar el certificado, respetando los apartados, **County Name**, **Locality Name**, **Organization Name** y **Organizational Unit Name**, que debo poner los valores que Álvaro haya especificado en el fichero *openssl.cnf* de su Autoridad Certificadora. En los apartados **Common Name** y **Email Address** debemos introducir nuestros datos personales, ya que eso es lo que diferenciara los distintos certificados.
 
 <pre>
 root@https:~# openssl req -new -key /etc/ssl/private/javi.key -out ./javi.csr
@@ -551,7 +556,7 @@ Ahora, en el fichero de configuración de la página con *https*, debemos introd
 
 - **SSLCertificateFile:** indica donde se encuentra nuestro fichero *.crt* firmado por la autoridad.
 - **SSLCertificateKeyFile:** indica donde se encuentra nuestra clave privada mediante la cuál generamos el archivo *.csr*.
-- **SSLCertificateChainFile:** indica donde se encuentra el certificado de la autoridad certificadora.
+- **SSLCACertificateFile:** indica donde se encuentra el certificado de la autoridad certificadora.
 
 <pre>
 ...
@@ -570,7 +575,7 @@ Ahora, en el fichero de configuración de la página con *https*, debemos introd
 		SSLCertificateFile	/etc/ssl/certs/javier.crt
 		SSLCertificateKeyFile /etc/ssl/private/javi.key
 
-    SSLCertificateChainFile /etc/ssl/private/cacert.pem
+    SSLCACertificateFile /etc/ssl/private/cacert.pem
 
 ...
 </pre>

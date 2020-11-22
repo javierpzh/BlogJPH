@@ -22,15 +22,9 @@ Nos dirigimos al menú de **Preferencias** del navegador, y en el apartado de **
 
 **3. ¿Cómo puedes hacer una copia de tu certificado? ¿Como vas a realizar la copia de seguridad de tu certificado? Razona la respuesta.**
 
-En la ventana de la imagen anterior, si seleccionamos nuestro certificado, y seleccionamos la opción **Hacer copia...** y elegimos una ruta en nuestro PC, habremos hecho una copia del certificado instalado.
+El proceso para crear una copia del certificado en bastante sencilla.
 
-...
-
-...
-
-...
-
-...
+En la ventana de la imagen anterior, seleccionamos nuestro certificado, y seleccionamos la opción **Hacer copia...**, se nos abrirá una ventana donde debemos especificar en que ruta de nuestro PC queremos guardar esta copia, hecho esto, nos pedirá introducir una contraseña para poder restaurar esta copia en otro navegador/dispositivo. Con esto ya habremos hecho una copia del certificado instalado.
 
 **4. Investiga como exportar la clave pública de tu certificado.**
 

@@ -241,7 +241,7 @@ Los directorios que hemos creado:
 
 - **private:** En él se almacenará la clave privada de la CA. Por eso mismo, le hemos establecido permisos 700, para que solo pueda acceder el propietario.
 
-El fichero `inedx.txt` actuará de base de datos.
+El fichero `index.txt` actuará como base de datos.
 
 Vemos que también hemos copiado el fichero `openssl.cnf`, y en él tendremos que editar las siguientes líneas y corregir las rutas, para que se use el directorio creado previamente para la Autoridad Certificadora.
 
@@ -305,7 +305,7 @@ Ya nos encontramos frente al último bloque a editar en este fichero `openssl.cn
 #unstructuredName               = An optional company name
 </pre>
 
-Una vez tenemos creada nuestra autoridad certificadora, vamos a generar un par de claves, y un fichero *.csr* que luego vamos a firmar con la propia CA:
+Una vez tenemos creada nuestra autoridad certificadora, vamos a generar un par de claves, y un fichero *.csr* que luego vamos a firmar con nuestra propia CA:
 
 <pre>
 root@https:~/CA# openssl req -new -newkey rsa:2048 -keyout private/cakey.pem -out careq.pem -config ./openssl.cnf
@@ -555,7 +555,9 @@ Si nos fijamos en la ruta del **DocumentRoot**, vemos que he almacenado la pági
 Ahora, en el fichero de configuración de la página con *https*, debemos introducir una serie de líneas como estas:
 
 - **SSLCertificateFile:** indica donde se encuentra nuestro fichero *.crt* firmado por la autoridad.
+
 - **SSLCertificateKeyFile:** indica donde se encuentra nuestra clave privada mediante la cuál generamos el archivo *.csr*.
+
 - **SSLCACertificateFile:** indica donde se encuentra el certificado de la autoridad certificadora.
 
 <pre>

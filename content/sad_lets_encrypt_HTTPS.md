@@ -46,3 +46,12 @@ Tags: HTTPS, Let's Encrypt
 
 
 **7. Modifica la configuración del cliente de *Nextcloud* para comprobar que sigue en funcionamiento con HTTPS.**
+
+
+
+
+#### Recursos interesantes
+
+- [¿Qué es Let’s Encrypt y como configurarlo?](https://medium.com/@alonsus91/que-es-lets-encrypt-y-como-configurarlo-dae155f62a57)
+
+- [¿Cómo funciona Let's Encrypt?](https://letsencrypt.org/es/how-it-works/)

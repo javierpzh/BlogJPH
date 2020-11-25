@@ -13,7 +13,7 @@ Para comprobar la versión de *CentOS* que tenemos instalada en este momento:
 CentOS Linux release 7.8.2003 (Core)
 </pre>
 
-Lo primero que debemos si queremos subir de *CentOS 7* a *CentOS 8*, sería instalar el repositorio **EPEL** (Extra Packages Enterprise Linux). Recordemos que el gestor de paquetes predeterminado es *CentOS 7* es `yum`.
+Lo primero que tenemos que realizar si queremos subir de *CentOS 7* a *CentOS 8*, sería instalar el repositorio **EPEL** (Extra Packages Enterprise Linux). Recordemos que el gestor de paquetes predeterminado es *CentOS 7* es `yum`.
 
 <pre>
 yum install epel-release -y

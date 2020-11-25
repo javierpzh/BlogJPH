@@ -192,19 +192,21 @@ Podemos ver como automáticamente, nos ha añadido las líneas que nos establece
 
 **6. Comprueba que las páginas son accesible por HTTPS y visualiza los detalles del certificado que has creado.**
 
-![.](images/www.iesgn15.es.png)
+Accedemos a *www.iesgn15.es*:
 
+![.](images/sad_lets_encrypt_HTTPS/www.iesgn15.es.png)
 
+Accedemos a *portal.iesgn15.es*:
 
-![.](images/portal.iesgn15.es.png)
+![.](images/sad_lets_encrypt_HTTPS/portal.iesgn15.es.png)
 
+Accedemos a *www.iesgn15.es/cloud*, que es la dirección de la aplicación *Nextcloud*:
 
+![.](images/sad_lets_encrypt_HTTPS/nextcloud.png)
 
-![.](images/nextcloud.png)
+Si vemos los detalles del certificado:
 
-
-
-![.](images/certificado.png)
+![.](images/sad_lets_encrypt_HTTPS/certificado.png)
 
 **7. Modifica la configuración del cliente de *Nextcloud* para comprobar que sigue en funcionamiento con HTTPS.**
 

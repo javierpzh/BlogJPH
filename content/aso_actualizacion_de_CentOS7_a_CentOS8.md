@@ -138,7 +138,7 @@ CentOS Linux release 8.2.2004 (Core)
 3.10.0-1127.el7.x86_64
 </pre>
 
-Vemos como hemos actualizado nuestro sistema y ahora está corriendo *CentOS 8*, por tanto la actulización de *Quijote* habría terminado.
+Vemos como hemos actualizado nuestro sistema y nuestro kérnel y ahora está corriendo *CentOS 8*, por tanto la actualización de *Quijote* habría terminado.
 
 Para finalizar, vamos a probar a hacer un ping a `www.google.es`, para asegurarnos que tiene conexión a internet y además hace uso de la resolución de nombres:
 

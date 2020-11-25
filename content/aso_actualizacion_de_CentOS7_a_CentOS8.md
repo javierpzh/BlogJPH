@@ -42,13 +42,13 @@ package-cleanup --leaves
 En *CentOS 8*, el gestor de paquetes predeterminado no es `yum`, sino que se utiliza `dnf`, por tanto vamos a instalarlo, aunque realmente podemos seguir utilizando `yum` sin problemas, o conviviendo con los dos:
 
 <pre>
-yum install dnf
+yum install dnf -y
 </pre>
 
 Como ya hemos instalado y tenemos disponible el nuevo gestor de paquetes, podemos prescindir de `yum`. En mi caso ya no me interesa, por eso me deshago de él, pero si lo queremos conservar podemos saltarnos este paso.
 
 <pre>
-dnf remove yum yum-metadata-parser
+dnf remove yum yum-metadata-parser -y
 
 rm -rf /etc/yum
 </pre>
@@ -77,13 +77,13 @@ Eliminamos los archivos temporales innecesarios.
 dnf clean all
 </pre>
 
-Ahora es el paso de eliminar el kérnel de *CentOS 7* que lógicamente no vamos a utilizar más ya que luego vamos a instalar el nuevo kérnel:
+Ahora es el paso de eliminar el kérnel de *CentOS 7*, que lógicamente no vamos a utilizar más ya que luego vamos a instalar el nuevo kérnel:
 
 <pre>
 rpm -e `rpm -q kernel`
 </pre>
 
-Se nos van a presentar varios conflictos, para resolverlos también removemos este paquete:
+Se nos van a presentar varios conflictos, para resolverlos también nos deshacemos de este paquete:
 
 <pre>
 rpm -e --nodeps sysvinit-tools

@@ -29,7 +29,7 @@ Tags: HTTPS, Let's Encrypt
 
 
 
-**3. Utiliza dos ficheros de configuración de *Nginx*: uno para la configuración del *virtualhost* HTTP y otro para la configuración del *virtualhost* HTTPS.**
+**3. Utiliza dos ficheros de configuración de *Nginx*: uno para la configuración del *virtualhost* *HTTP* y otro para la configuración del *virtualhost* *HTTPS*.**
 
 Yo he utilizado solo un fichero de configuración para cada *virtualhost*, ya que *Nginx* te permite establecer en el mismo fichero, las configuraciones de *http* y *https*, por lo que, es una tontería crear dos ficheros si podemos utilizar uno.
 
@@ -151,7 +151,7 @@ root@vpsjavierpzh:/etc/nginx/sites-available#
 </pre>
 
 
-**4. Realiza una redirección o una reescritura para que cuando accedas a HTTP te redirija al sitio HTTPS.**
+**4. Realiza una redirección o una reescritura para que cuando accedas a *HTTP* te redirija al sitio *HTTPS*.**
 
 Al escoger el *plugin* de *Nginx*, el propio **Certbot** te pregunta si quieres que también te cree la redirección permanente para que siempre se acceda a la página por *HTTPS*. Vamos a echarle un vistazo a las líneas que configura. Al final de nuestro fichero de configuración del *virtualhost* ha añadido:
 
@@ -214,7 +214,7 @@ Nos dirigimos ahora a nuestro cliente de *Nextcloud*, que recordemos que está c
 
 ![.](images/sad_lets_encrypt_HTTPS/nextcloudcliente.png)
 
-Vemos como a pesar de no estar configurado para que use *HTTPS*, nos redirige automáticamente gracias a la redirección permanente que hemos creado, por tanto no haría falta volver a configurarlo para que use *HTTPS*.
+Vemos como a pesar de no estar configurado para que use *HTTPS*, nos redirige automáticamente gracias a la redirección permanente que hemos creado, por tanto no haría falta volver a configurarlo.
 
 
 #### Recursos interesantes

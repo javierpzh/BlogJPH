@@ -77,13 +77,13 @@ Eliminamos los archivos temporales innecesarios.
 dnf clean all
 </pre>
 
-Ahora es el paso de eliminar el kérnel de *CentOS 7*:
+Ahora es el paso de eliminar el kérnel de *CentOS 7* que lógicamente no vamos a utilizar más ya que luego vamos a instalar el nuevo kérnel:
 
 <pre>
 rpm -e `rpm -q kernel`
 </pre>
 
-Varios paquetes nos harán entrar en conflictos con ellos, por tanto también los removemos:
+Se nos van a presentar varios conflictos, para resolverlos también removemos este paquete:
 
 <pre>
 rpm -e --nodeps sysvinit-tools
@@ -104,7 +104,7 @@ rpm -e --justdb --nodeps vim-minimal
 dnf upgrade --best --allowerasing rpm
 </pre>
 
-Para terminar, nos quedaría instalar el kérnel del nuevo *CentOS 8*:
+Una vez finalizada exitosamente la actualización, para terminar, nos quedaría instalar el kérnel del nuevo *CentOS 8*:
 
 <pre>
 dnf install -y kernel-core
@@ -122,13 +122,14 @@ Reiniciamos el sistema:
 reboot
 </pre>
 
-Si miramos de nuevo la versión de *CentOS*:
+Si miramos de nuevo la versión de *CentOS* y la versión de kérnel que estamos utilizando:
 
 <pre>
 [root@quijote ~]# cat /etc/redhat-release
 CentOS Linux release 8.2.2004 (Core)
 
-[root@quijote ~]#
+[root@quijote ~]# uname -r
+3.10.0-1127.el7.x86_64
 </pre>
 
 Vemos como hemos actualizado nuestro sistema y ahora está corriendo *CentOS 8*, por tanto la actulización de *Quijote* habría terminado.

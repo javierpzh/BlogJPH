@@ -50,21 +50,24 @@ Como ya hemos instalado y tenemos disponible el nuevo gestor de paquetes, podemo
 <pre>
 dnf remove yum yum-metadata-parser
 
-rm -Rf /etc/yum
+rm -rf /etc/yum
 </pre>
 
 Vamos a llevar a cabo una actualización de todos los paquetes del sistema:
 
 <pre>
-dnf upgrade
+dnf upgrade -y
 </pre>
 
 Ha llegado el momento de iniciar la actualización y de instalar los paquetes necesarios para *CentOS 8* que encontramos en los repositorios oficiales. Los instalamos:
 
 <pre>
 dnf install \
+
 http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-repos-8.2-2.2004.0.2.el8.x86_64.rpm \
+
 http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-release-8.2-2.2004.0.2.el8.x86_64.rpm \
+
 http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-gpg-keys-8.2-2.2004.0.2.el8.noarch.rpm
 </pre>
 

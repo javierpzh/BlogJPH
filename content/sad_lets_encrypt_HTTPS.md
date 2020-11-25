@@ -210,7 +210,11 @@ Si vemos los detalles del certificado:
 
 **7. Modifica la configuración del cliente de *Nextcloud* para comprobar que sigue en funcionamiento con HTTPS.**
 
-Si nos dirigimos ahora a nuestro cliente de *Nextcloud*, que recordemos que está configurado para la dirección **
+Nos dirigimos ahora a nuestro cliente de *Nextcloud*, que recordemos que está configurado para la dirección `http://www.iesgn15.es/cloud`:
+
+![.](images/sad_lets_encrypt_HTTPS/nextcloudcliente.png)
+
+Vemos como a pesar de no estar configurado para que use *HTTPS*, nos redirige automáticamente gracias a la redirección permanente que hemos creado, por tanto no haría falta volver a configurarlo para que use *HTTPS*.
 
 
 #### Recursos interesantes

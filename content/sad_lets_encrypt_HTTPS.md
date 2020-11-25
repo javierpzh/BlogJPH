@@ -8,7 +8,23 @@ Tags: HTTPS, Let's Encrypt
 
 **1. Vamos a utilizar el servicio `https://letsencrypt.org` para solicitar los certificados de nuestras páginas.**
 
+Si queremos llevar a cabo la solicitud de los certificados para nuestras páginas dispongan de *HTTPS* verificado por *Let's Encryt*, tenemos que instalar el siguiente paquete:
 
+<pre>
+apt install certbot
+</pre>
+
+Como además, yo voy a hacer uso del *plugin* de *Nginx* para que **Certbot** además de solicitarnos, nos configure los ficheros de configuración de los distintos *virtualhost*, instalo este paquete:
+
+<pre>
+apt install python3-certbot-nginx
+</pre>
+
+Para solicitar el certificado y que lo instale el propio *Certbot*:
+
+<pre>
+certbot --nginx
+</pre>
 
 **2. Explica detenidamente cómo se solicita un certificado en *Let's Encrypt*. En tu explicación deberás responder a estas preguntas:**
 

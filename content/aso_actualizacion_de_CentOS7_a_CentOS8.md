@@ -125,7 +125,7 @@ Reiniciamos el sistema:
 reboot
 </pre>
 
-Al intentar conectarme de nuevo a la máquina no me dejaba, y dirigiéndome a la consola de *OpenStack*, porque recordemos que *Quijote* es una instancia de mi proyecto, pude comprobar como el fichero de configuración que establecía la IP de la interfaz *eth0* estática, se había reiniciado. Volví a configurar el fichero `touch /etc/cloud/cloud-init.disabled`:
+Al intentar conectarme de nuevo a la máquina mediante *SSH* no me dejaba, y dirigiéndome a la consola de *OpenStack*, porque recordemos que *Quijote* es una instancia de mi proyecto, pude comprobar como el fichero de configuración que establecía la IP de la interfaz *eth0* estática, se había reiniciado. Volví a configurar el fichero `/etc/sysconfig/network-scripts/ifcfg-eth0`:
 
 <pre>
 BOOTPROTO=static
@@ -150,7 +150,7 @@ systemctl restart network.service
 
 Y probé a acceder de nuevo, ahora lógicamente sí accedí mediante *SSH* a través de *Dulcinea*.
 
-Reinicié la máquina y comprobé como volvía a perder la configuración como yo suponía que iba a pasar. Configuré de nuevo el fichero `touch /etc/cloud/cloud-init.disabled` y procedí a crear el siguiente fichero para evitar que los cambios se perdieran en cada inicio del sistema:
+Reinicié la máquina y comprobé como volvía a perder la configuración como yo suponía que iba a pasar. Configuré de nuevo el fichero `/etc/sysconfig/network-scripts/ifcfg-eth0` y procedí a crear el siguiente fichero para evitar que los cambios se perdieran en cada inicio del sistema:
 
 <pre>
 touch /etc/cloud/cloud-init.disabled

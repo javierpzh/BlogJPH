@@ -1,6 +1,6 @@
 Title: Actualización de CentOS 7 a CentOS 8
 Category: Administración de Sistemas Operativos
-Date: 2020/11/20
+Date: 2020/11/22
 Header_Cover: theme/images/banner-sistemas.jpg
 Tags: Actualización, CentOS7, CentOS8
 

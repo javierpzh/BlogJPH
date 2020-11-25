@@ -56,13 +56,16 @@ rm -Rf /etc/yum
 Vamos a llevar a cabo una actualización de todos los paquetes del sistema:
 
 <pre>
-dnf update
+dnf upgrade
 </pre>
 
 Ha llegado el momento de iniciar la actualización y de instalar los paquetes necesarios para *CentOS 8* que encontramos en los repositorios oficiales. Los instalamos:
 
 <pre>
-dnf install http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-repos-8.2-2.2004.0.1.el8.x86_64.rpm http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-release-8.2-2.2004.0.1.el8.x86_64.rpm http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-gpg-keys-8.2-2.2004.0.1.el8.noarch.rpm
+dnf install \
+http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-repos-8.2-2.2004.0.2.el8.x86_64.rpm \
+http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-release-8.2-2.2004.0.2.el8.x86_64.rpm \
+http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-gpg-keys-8.2-2.2004.0.2.el8.noarch.rpm
 </pre>
 
 Toca actualizar de nuevo el repositorio *EPEL*:

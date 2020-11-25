@@ -929,7 +929,7 @@ Añadimos estas líneas:
 127.0.0.1 localhost
 
 10.0.1.8 sancho.javierpzh.gonzalonazareno.org sancho
-10.0.1.7 quijote.javierpzh.gonzalonazareno.org quijote
+10.0.1.13 quijote.javierpzh.gonzalonazareno.org quijote
 </pre>
 
 Me he dado cuenta de una cosa al reiniciar la máquina *Dulcinea*, y es que en cada inicio se restablece el fichero `/etc/hosts`. Para cambiar este funcionamiento, tenemos que dirigirnos al fichero `/etc/cloud/cloud.cfg` y buscar esta línea:
@@ -955,7 +955,7 @@ Añadimos estas líneas:
 127.0.0.1 localhost
 
 10.0.1.3 dulcinea.javierpzh.gonzalonazareno.org dulcinea
-10.0.1.7 quijote.javierpzh.gonzalonazareno.org quijote
+10.0.1.13 quijote.javierpzh.gonzalonazareno.org quijote
 </pre>
 
 **Quijote:**

@@ -62,19 +62,13 @@ dnf upgrade -y
 Ha llegado el momento de iniciar la actualización y de instalar los paquetes necesarios para *CentOS 8* que encontramos en los repositorios oficiales. Los instalamos:
 
 <pre>
-dnf install \
-
-http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-repos-8.2-2.2004.0.2.el8.x86_64.rpm \
-
-http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-release-8.2-2.2004.0.2.el8.x86_64.rpm \
-
-http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-gpg-keys-8.2-2.2004.0.2.el8.noarch.rpm
+dnf install \http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-repos-8.2-2.2004.0.2.el8.x86_64.rpm \http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-release-8.2-2.2004.0.2.el8.x86_64.rpm \http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/centos-gpg-keys-8.2-2.2004.0.2.el8.noarch.rpm
 </pre>
 
 Toca actualizar de nuevo el repositorio *EPEL*:
 
 <pre>
-dnf upgrade -y epel-release
+dnf upgrade epel-release -y
 </pre>
 
 Eliminamos los archivos temporales innecesarios.
@@ -98,7 +92,7 @@ rpm -e --nodeps sysvinit-tools
 Y por fin, empezamos la actualización a *CentOS 8*:
 
 <pre>
-dnf -y --releasever=8 --allowerasing --setopt=deltarpm=false distro-sync
+dnf --releasever=8 --allowerasing --setopt=deltarpm=false distro-sync
 </pre>
 
 Puede que varios paquetes relacionados con **Python**, nos produzcan conflictos, así que para resolverlo, desinstalamos el paquete con este comando:
@@ -116,13 +110,13 @@ dnf -y --releasever=8 --allowerasing --setopt=deltarpm=false distro-sync
 Una vez finalizada exitosamente la actualización, para terminar, nos quedaría instalar el kérnel del nuevo *CentOS 8*:
 
 <pre>
-dnf install -y kernel-core
+dnf install kernel-core -y
 </pre>
 
 Y por último, vamos a instalar los paquetes mínimos del sistema:
 
 <pre>
-dnf -y groupupdate "Core" "Minimal Install" --allowerasing --skip-broken
+dnf groupupdate "Core" "Minimal Install" -y
 </pre>
 
 Reiniciamos el sistema:

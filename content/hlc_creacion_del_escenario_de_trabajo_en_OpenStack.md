@@ -905,7 +905,7 @@ apt update && apt upgrade -y
 Recordemos que en *CentOS* no se utiliza por defecto `apt`, sino que se sustituye por `yum`.
 
 <pre>
-yum update
+yum update -y
 </pre>
 
 Cuando se ejecuta este comando, `yum` comenzará a comprobar en sus repositorios si existe una versión actualizada del software que el sistema tiene instalado actualmente. Una vez que revisa la lista de repositorios y nos informa de que paquetes se pueden actualizar, introducimos `y` y pulsando *intro* se nos actualizarán todos los paquetes.

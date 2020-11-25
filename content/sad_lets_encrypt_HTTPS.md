@@ -29,7 +29,7 @@ Tags: HTTPS, Let's Encrypt
 
 
 
-**3. Utiliza dos ficheros de configuración de *Nginx*: uno para la configuración del *virtualhost* HTTP y otro para la configuración del virtualhost HTTPS.**
+**3. Utiliza dos ficheros de configuración de *Nginx*: uno para la configuración del *virtualhost* HTTP y otro para la configuración del *virtualhost* HTTPS.**
 
 
 

@@ -125,21 +125,74 @@ Reiniciamos el sistema:
 reboot
 </pre>
 
-Si miramos de nuevo la versión de *CentOS* y la versión de kérnel que estamos utilizando:
+Al intentar conectarme de nuevo a la máquina no me dejaba, y dirigiéndome a la consola de *OpenStack*, porque recordemos que *Quijote* es una instancia de mi proyecto, pude comprobar como el fichero de configuración que establecía la IP de la interfaz *eth0* estática, se había reiniciado. Volví a configurar el fichero `touch /etc/cloud/cloud-init.disabled`:
+
+<pre>
+BOOTPROTO=static
+DEVICE=eth0
+HWADDR=fa:16:3e:5c:3d:c5
+MTU=8950
+ONBOOT=yes
+TYPE=Ethernet
+USERCTL=no
+IPADDR=10.0.1.13
+NETMASK=255.255.255.0
+GATEWAY=10.0.1.3
+DNS1=10.0.1.3
+DNS2=8.8.8.8
+</pre>
+
+Reinicié el servicio:
+
+<pre>
+systemctl restart network.service
+</pre>
+
+Y probé a acceder de nuevo, ahora lógicamente sí accedí mediante *SSH* a través de *Dulcinea*.
+
+Reinicié la máquina y comprobé como volvía a perder la configuración como yo suponía que iba a pasar. Configuré de nuevo el fichero `touch /etc/cloud/cloud-init.disabled` y procedí a crear el siguiente fichero para evitar que los cambios se perdieran en cada inicio del sistema:
+
+<pre>
+touch /etc/cloud/cloud-init.disabled
+</pre>
+
+Con esto solucioné mi principal problema.
+
+Ahora, si miramos de nuevo la versión de *CentOS* y la versión de kérnel que estamos utilizando:
 
 <pre>
 [root@quijote ~]# cat /etc/redhat-release
 CentOS Linux release 8.2.2004 (Core)
 
 [root@quijote ~]# uname -r
-3.10.0-1127.el7.x86_64
+4.18.0-193.28.1.el8_2.x86_64
 </pre>
 
 Vemos como hemos actualizado nuestro sistema y nuestro kérnel y ahora está corriendo *CentOS 8*, por tanto la actualización de *Quijote* habría terminado.
 
-Para finalizar, vamos a probar a hacer un ping a `www.google.es`, para asegurarnos que tiene conexión a internet y además hace uso de la resolución de nombres:
+Para finalizar, vamos a probar a hacer un ping a *Dulcinea*, *Sancho* y `www.google.es`, para asegurarnos que funciona correctamente la resolución estática y tiene conexión a internet, además de hacer uso de la resolución de nombres:
 
 <pre>
+[root@quijote ~]# ping dulcinea
+PING dulcinea.javierpzh.gonzalonazareno.org (10.0.1.3) 56(84) bytes of data.
+64 bytes from dulcinea.javierpzh.gonzalonazareno.org (10.0.1.3): icmp_seq=1 ttl=64 time=0.712 ms
+64 bytes from dulcinea.javierpzh.gonzalonazareno.org (10.0.1.3): icmp_seq=2 ttl=64 time=0.693 ms
+64 bytes from dulcinea.javierpzh.gonzalonazareno.org (10.0.1.3): icmp_seq=3 ttl=64 time=0.685 ms
+^C
+--- dulcinea.javierpzh.gonzalonazareno.org ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 37ms
+rtt min/avg/max/mdev = 0.685/0.696/0.712/0.032 ms
+
+[root@quijote ~]# ping sancho
+PING sancho.javierpzh.gonzalonazareno.org (10.0.1.8) 56(84) bytes of data.
+64 bytes from sancho.javierpzh.gonzalonazareno.org (10.0.1.8): icmp_seq=1 ttl=64 time=2.13 ms
+64 bytes from sancho.javierpzh.gonzalonazareno.org (10.0.1.8): icmp_seq=2 ttl=64 time=1.20 ms
+64 bytes from sancho.javierpzh.gonzalonazareno.org (10.0.1.8): icmp_seq=3 ttl=64 time=0.743 ms
+^C
+--- sancho.javierpzh.gonzalonazareno.org ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 5ms
+rtt min/avg/max/mdev = 0.743/1.357/2.132/0.578 ms
+
 [root@quijote ~]# ping www.google.es
 PING www.google.es (172.217.17.3) 56(84) bytes of data.
 64 bytes from mad07s09-in-f3.1e100.net (172.217.17.3): icmp_seq=1 ttl=112 time=43.7 ms
@@ -149,8 +202,19 @@ PING www.google.es (172.217.17.3) 56(84) bytes of data.
 --- www.google.es ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2003ms
 rtt min/avg/max/mdev = 43.773/50.790/64.546/9.727 ms
-
-[root@quijote ~]#
 </pre>
 
-Efectivamente, obtenemos la respuesta esperada.
+Efectivamente, obtenemos la respuesta esperada. Antes de terminar, quise comprobar si el reloj se encontraba sincronizado, ya que esto también lo configuré en *CentOS 7*:
+
+<pre>
+[root@quijote ~]# timedatectl
+               Local time: Wed 2020-11-25 19:05:32 UTC
+           Universal time: Wed 2020-11-25 19:05:32 UTC
+                 RTC time: Wed 2020-11-25 19:05:31
+                Time zone: UTC (UTC, +0000)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+</pre>
+
+De nuevo, la respuesta es la correcta, así que hemos terminado la actualización a *CentOS 8* de manera satisfactoria.

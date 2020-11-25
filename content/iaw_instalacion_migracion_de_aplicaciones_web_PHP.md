@@ -745,7 +745,7 @@ Accedemos a la dirección `http://www.iesgn15.es/cloud/` y obtenemos este result
 
 Esto es porque tanto el fichero de configuración del virtualhost *Nextcloud*, como el fichero `.../(nextcloud)/config/config.php` no están bien configurados:
 
-El fichero `/etc/nginx/sites-available/nextcloud.conf` debe quedar así:
+El fichero `/etc/nginx/sites-available/nextcloud.conf`, en mi caso, el fichero `/etc/nginx/sites-available/aplicacionesiesgn.conf`, ya que quiero que se acceda mediante la dirección `www.iesgn15.es/cloud`, debe quedar así:
 
 <pre>
 upstream php-handler {
@@ -836,7 +836,7 @@ fastcgi_hide_header X-Powered-By;
     			fastcgi_request_buffering off;
     		}
 
-            location ~ ^\/nextcloud\/(?:updater|oc[ms]-provider)(?:$|\/) {
+            location ~ ^\/cloud\/(?:updater|oc[ms]-provider)(?:$|\/) {
     			try_files $uri/ =404;
     			index index.php;
     		}

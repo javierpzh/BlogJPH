@@ -98,13 +98,16 @@ Y por fin, empezamos la actualización a *CentOS 8*:
 dnf -y --releasever=8 --allowerasing --setopt=deltarpm=false distro-sync
 </pre>
 
-Puede que varios paquetes relacionados con **Python**, nos produzcan conflictos, así que para resolverlos utilizamos estos comandos:
+Puede que varios paquetes relacionados con **Python**, nos produzcan conflictos, así que para resolverlo, desinstalamos el paquete con este comando:
 
 <pre>
-rpm -e --justdb python36-rpmconf-1.0.22-1.el7.noarch rpmconf-1.0.22-1.el7.noarch
-rpm -e --justdb --nodeps python3-setuptools-39.2.0-10.el7.noarch
-rpm -e --justdb --nodeps vim-minimal
-dnf upgrade --best --allowerasing rpm
+dnf remove python36-rpmconf-1.0.22-1.el7.noarch
+</pre>
+
+Ejecutamos de nuevo el comando para iniciar la actualización:
+
+<pre>
+dnf -y --releasever=8 --allowerasing --setopt=deltarpm=false distro-sync
 </pre>
 
 Una vez finalizada exitosamente la actualización, para terminar, nos quedaría instalar el kérnel del nuevo *CentOS 8*:

@@ -104,7 +104,7 @@ Puede que varios paquetes relacionados con **Python**, nos produzcan conflictos,
 dnf remove python36-rpmconf-1.0.22-1.el7.noarch
 </pre>
 
-Ejecutamos de nuevo el comando para iniciar la actualización:
+Ejecutamos de nuevo el comando para iniciar la actualización y ahora sí debe terminar de manera correcta:
 
 <pre>
 dnf -y --releasever=8 --allowerasing --setopt=deltarpm=false distro-sync

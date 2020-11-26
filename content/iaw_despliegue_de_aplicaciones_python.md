@@ -41,9 +41,26 @@ Ya en el entorno virtual, actualizamos `pip` e instalamos el fichero `requiremen
 (django) javier@debian:~/entornos_virtuales/django_tutorial$ pip install -r requirements.txt
 </pre>
 
-- **Comprueba que vamos a trabajar con una base de datos sqlite (`django_tutorial/settings.py`). ¿Cómo se llama la base de datos que vamos a crear?**
+- **Comprueba que vamos a trabajar con una base de datos *sqlite* (`django_tutorial/settings.py`). ¿Cómo se llama la base de datos que vamos a crear?**
 
+Para realizar esta comprobación, vamos a inspeccionar las líneas del fichero `settings.py`.
 
+<pre>
+nano django_tutorial/settings.py
+</pre>
+
+Ahora debemos buscar el siguiente bloque:
+
+<pre>
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+</pre>
+
+En él podemos ver como efectivamente, trabajaremos con una base de datos *sqlite*, que recibirá el nombre **`db.sqlite3`**.
 
 - **Crea la base de datos: `python3 manage.py migrate`. A partir del modelo de datos se crean las tablas de la base de datos.**
 

@@ -8,13 +8,38 @@ Tags: Django, Python, virtualenv
 
 **Vamos a desarrollar la aplicación del [tutorial de django 3.1](https://docs.djangoproject.com/en/3.1/intro/tutorial01/). Vamos a configurar tu equipo como entorno de desarrollo para trabajar con la aplicación, para ello:**
 
-- **Realiza un fork del repositorio de GitHub: `https://github.com/josedom24/django_tutorial`.**
+- **Realiza un *fork* del repositorio de GitHub: `https://github.com/josedom24/django_tutorial`.**
 
 
 
 - **Crea un entorno virtual de *python3* e instala las dependencias necesarias para que funcione el proyecto (fichero `requirements.txt`).**
 
+Tras hacer el *fork* del repositorio, vamos a clonarlo y a crear dentro de la carpeta que obtendremos un entorno virtual en el que trabajaremos:
 
+<pre>
+javier@debian:~/entornos_virtuales$ git clone git@github.com:javierpzh/django_tutorial.git
+Clonando en 'django_tutorial'...
+remote: Enumerating objects: 37, done.
+remote: Counting objects: 100% (37/37), done.
+remote: Compressing objects: 100% (32/32), done.
+remote: Total 129 (delta 4), reused 24 (delta 3), pack-reused 92
+Recibiendo objetos: 100% (129/129), 4.25 MiB | 1002.00 KiB/s, listo.
+Resolviendo deltas: 100% (28/28), listo.
+
+javier@debian:~/entornos_virtuales$ cd django_tutorial/
+
+javier@debian:~/entornos_virtuales/django_tutorial$ python3 -m venv django
+
+javier@debian:~/entornos_virtuales/django_tutorial$ source django/bin/activate
+</pre>
+
+Ya en el entorno virtual, actualizamos `pip` e instalamos el fichero `requirements.txt` que nos instalara de manera automática todos los paquetes que se incluyan en él.
+
+<pre>
+(django) javier@debian:~/entornos_virtuales/django_tutorial$ pip install --upgrade pip
+
+(django) javier@debian:~/entornos_virtuales/django_tutorial$ pip install -r requirements.txt
+</pre>
 
 - **Comprueba que vamos a trabajar con una base de datos sqlite (`django_tutorial/settings.py`). ¿Cómo se llama la base de datos que vamos a crear?**
 

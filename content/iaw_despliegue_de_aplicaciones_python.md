@@ -123,7 +123,19 @@ Si introducimos las credenciales que hemos especificado a la hora de la creació
 
 - **Crea dos preguntas, con posibles respuestas.**
 
+Para crear una pregunta nueva, debemos dirigirnos a la sección **POLLS** y en el apartado **Questions** hacemos *click* en el botón **Add**.
 
+Nos aparecerá un menú como este que rellenaremos con los datos que deseemos:
+
+![.](images/iaw_despliegue_de_aplicaciones_python/django_pregunta1.png)
+
+Voy a crear la segunda pregunta:
+
+![.](images/iaw_despliegue_de_aplicaciones_python/django_pregunta2.png)
+
+Y con esto ya habríamos creado las dos preguntas con las respuestas. Aquí lo podemos ver:
+
+![.](images/iaw_despliegue_de_aplicaciones_python/django_preguntas_creadas.png)
 
 - **Comprueba en el navegador que la aplicación está funcionando, accede a la url `\polls`.**
 

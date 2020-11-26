@@ -217,7 +217,7 @@ System clock synchronized: yes
           RTC in local TZ: no
 </pre>
 
-Vemos como nos muestra que el reloj se encuentra sincronizado, pero si nos fijamos la zona horaria que está utilizando no es la que yo quisiera, que me interesa que se sincronice con la zona `Europe/Madrid (CET, +0100)`. Para realizar este cambio vamos a utilizar el siguiente comando:
+Vemos como nos muestra que el reloj se encuentra sincronizado, pero si nos fijamos la zona horaria que está utilizando no es la que yo quisiera, ya que me interesa que se sincronice con la zona `Europe/Madrid (CET, +0100)`. Para realizar este cambio vamos a utilizar el siguiente comando:
 
 <pre>
 [root@quijote ~]# timedatectl set-timezone Europe/Madrid

@@ -1,4 +1,4 @@
-Title: Despliegue de aplicaciones python
+Title: Despliegue de aplicaciones Python
 Date: 2020/11/26
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg

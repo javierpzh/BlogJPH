@@ -217,4 +217,23 @@ System clock synchronized: yes
           RTC in local TZ: no
 </pre>
 
-De nuevo, la respuesta es la correcta, así que hemos terminado la actualización a *CentOS 8* de manera satisfactoria.
+Vemos como nos muestra que el reloj se encuentra sincronizado, pero si nos fijamos la zona horaria que está utilizando no es la que yo quisiera, que me interesa que se sincronice con la zona `Europe/Madrid (CET, +0100)`. Para realizar este cambio vamos a utilizar el siguiente comando:
+
+<pre>
+[root@quijote ~]# timedatectl set-timezone Europe/Madrid
+</pre>
+
+Si miramos de nuevo el reloj:
+
+<pre>
+[root@quijote ~]# timedatectl status
+               Local time: Wed 2020-11-25 20:08:49 CET
+           Universal time: Wed 2020-11-25 19:08:49 UTC
+                 RTC time: Wed 2020-11-25 19:08:48
+                Time zone: Europe/Madrid (CET, +0100)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+</pre>
+
+Ahora sí, vamos que la respuesta es la correcta, así que hemos terminado la actualización a *CentOS 8* de manera satisfactoria.

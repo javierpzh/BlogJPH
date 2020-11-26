@@ -8,7 +8,7 @@ Tags: Django, Python, virtualenv
 
 **Vamos a desarrollar la aplicación del [tutorial de django 3.1](https://docs.djangoproject.com/en/3.1/intro/tutorial01/). Vamos a configurar tu equipo como entorno de desarrollo para trabajar con la aplicación, para ello:**
 
-- **Realiza un fork del repositorio de GitHub: https://github.com/josedom24/django_tutorial.**
+- **Realiza un fork del repositorio de GitHub: `https://github.com/josedom24/django_tutorial`.**
 
 
 
@@ -66,7 +66,7 @@ Tags: Django, Python, virtualenv
 apt install python3-mysqldb
 </pre>
 
-Y en el entorno virtual:
+**Y en el entorno virtual:**
 
 <pre>
 pip install mysql-connector-python

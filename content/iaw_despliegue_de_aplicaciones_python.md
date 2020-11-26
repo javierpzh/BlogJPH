@@ -131,7 +131,7 @@ DATABASES = {
 
 **3. Vamos a crear una nueva tabla en la base de datos, para ello sigue los siguientes pasos:**
 
-    - **Añade un nuevo modelo al fichero `polls/models.py`:**
+- **Añade un nuevo modelo al fichero `polls/models.py`:**
 
 <pre>
 class Categoria(models.Model):
@@ -142,31 +142,32 @@ class Categoria(models.Model):
 		return self.Abr+" - "+self.Nombre 		
 </pre>
 
-    - **Crea una nueva migración: `python3 manage.py makemigrations`.**
+- **Crea una nueva migración: `python3 manage.py makemigrations`.**
 
 
 
-    - **Y realiza la migración: `python3 manage.py migrate`**
+- **Y realiza la migración: `python3 manage.py migrate`**
 
-    - **Añade el nuevo modelo al sitio de administración de django:**
+- **Añade el nuevo modelo al sitio de administración de django:**
 
-    **Para ello cambia la siguiente línea en el fichero `polls/admin.py`:**
+**Para ello cambia la siguiente línea en el fichero `polls/admin.py`:**
 
 <pre>
 from .models import Choice, Question
 </pre>
-    **Por esta otra:**
+
+**Por esta otra:**
 
 <pre>
 from .models import Choice, Question, Categoria
 </pre>
 
-    **Y añade al final la siguiente línea:**
+**Y añade al final la siguiente línea:**
 
 <pre>
 admin.site.register(Categoria)
 </pre>
 
-    - **Despliega el cambio producido al crear la nueva tabla en el entorno de producción.**
+- **Despliega el cambio producido al crear la nueva tabla en el entorno de producción.**
 
 **Explica los cambios que has realizado en el entorno de desarrollo y cómo lo has desplegado en producción para cada una de las modificaciones.**

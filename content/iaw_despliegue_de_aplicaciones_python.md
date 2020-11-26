@@ -139,7 +139,9 @@ Y con esto ya habríamos creado las dos preguntas con las respuestas. Aquí lo p
 
 - **Comprueba en el navegador que la aplicación está funcionando, accede a la url `\polls`.**
 
+Después de haber generado las dos nuevas preguntas, si nos dirigimos a la dirección `http://127.0.0.1:8000/polls`, podemos ver que nos aparecen ambas:
 
+![.](images/iaw_despliegue_de_aplicaciones_python/django_polls.png)
 
 
 **En este momento, muestra al profesor la aplicación funcionando. Entrega una documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**

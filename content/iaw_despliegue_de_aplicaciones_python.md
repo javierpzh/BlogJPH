@@ -91,7 +91,33 @@ Ya habríamos creado el nuevo administrador.
 
 - **Ejecuta el servidor web de desarrollo y entra en la zona de administración (`\admin`) para comprobar que los datos se han añadido correctamente.**
 
+Es momento de intentar acceder con el usuario administrador creado:
 
+Ejecutamos el servidor web con este comando:
+
+<pre>
+(django) javier@debian:~/entornos_virtuales/django_tutorial$ python manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+November 26, 2020 - 12:56:30
+Django version 3.1.3, using settings 'django_tutorial.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+...
+</pre>
+
+Ahora nos dirigimos al navegador e introducimos la dirección de *localhost* y el puerto *8000* para visualizar esta página, es decir, accedemos a `http://127.0.0.1:8000/`. Como queremos entrar en la zona de administración, la dirección será `http://127.0.0.1:8000/admin`.
+
+Nos debe aparecer una interfaz como esta:
+
+![.](images/iaw_despliegue_de_aplicaciones_python/django_admin.png)
+
+Si introducimos las credenciales que hemos especificado a la hora de la creación del usuario administrador, accederemos a esta web:
+
+![.](images/iaw_despliegue_de_aplicaciones_python/django_admin_dentro.png)
 
 - **Crea dos preguntas, con posibles respuestas.**
 

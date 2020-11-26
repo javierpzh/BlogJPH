@@ -41,6 +41,8 @@ Ya en el entorno virtual, actualizamos `pip` e instalamos el fichero `requiremen
 (django) javier@debian:~/entornos_virtuales/django_tutorial$ pip install -r requirements.txt
 </pre>
 
+Hecho esto, tenemos nuestro área de trabajo listo.
+
 - **Comprueba que vamos a trabajar con una base de datos *sqlite* (`django_tutorial/settings.py`). ¿Cómo se llama la base de datos que vamos a crear?**
 
 Para realizar esta comprobación, vamos a inspeccionar las líneas del fichero `settings.py`.

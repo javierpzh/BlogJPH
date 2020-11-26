@@ -109,7 +109,9 @@ Quit the server with CONTROL-C.
 ...
 </pre>
 
-Ahora nos dirigimos al navegador e introducimos la dirección de *localhost* y el puerto *8000* para visualizar esta página, es decir, accedemos a `http://127.0.0.1:8000/`. Como queremos entrar en la zona de administración, la dirección será `http://127.0.0.1:8000/admin`.
+En el momento que introducimos este comando y dejamos el proceso ejecutándose en la terminal podemos acceder a la página.
+
+Nos dirigimos al navegador e introducimos la dirección de *localhost* y el puerto *8000* para visualizar esta página, es decir, accedemos a `http://127.0.0.1:8000/`. Como queremos entrar en la zona de administración, la dirección será `http://127.0.0.1:8000/admin`.
 
 Nos debe aparecer una interfaz como esta:
 

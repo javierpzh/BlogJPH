@@ -12,7 +12,7 @@ Tags: Django, Python, virtualenv
 
 
 
-- **Crea un entorno virtual de python3 e instala las dependencias necesarias para que funcione el proyecto (fichero `requirements.txt`).**
+- **Crea un entorno virtual de *python3* e instala las dependencias necesarias para que funcione el proyecto (fichero `requirements.txt`).**
 
 
 
@@ -48,11 +48,11 @@ Tags: Django, Python, virtualenv
 
 **Vamos a realizar el despliegue de nuestra aplicación en un entorno de producción, para ello vamos a utilizar una instancia del cloud, sigue los siguientes pasos:**
 
-- **Instala en el servidor los servicios necesarios (apache2). Instala el módulo de apache2 para ejecutar código python.**
+- **Instala en el servidor los servicios necesarios (*Apache2*). Instala el módulo de *Apache* para ejecutar código *Python*.**
 
 
 
-- **Clona el repositorio en el DocumentRoot de tu virtualhost.**
+- **Clona el repositorio en el *DocumentRoot* de tu *virtualhost*.**
 
 
 
@@ -60,7 +60,7 @@ Tags: Django, Python, virtualenv
 
 
 
-- **Instala el módulo que permite que python trabaje con mysql:**
+- **Instala el módulo que permite que *Python* trabaje con *MySQL*:**
 
 <pre>
 apt install python3-mysqldb
@@ -72,11 +72,11 @@ apt install python3-mysqldb
 pip install mysql-connector-python
 </pre>
 
-- **Crea una base de datos y un usuario en mysql.**
+- **Crea una base de datos y un usuario en *MySQL*.**
 
 
 
-- **Configura la aplicación para trabajar con mysql, para ello modifica la configuración de la base de datos en el archivo `settings.py`:**
+- **Configura la aplicación para trabajar con *MySQL*, para ello modifica la configuración de la base de datos en el archivo `settings.py`:**
 
 <pre>
 DATABASES = {
@@ -99,11 +99,11 @@ DATABASES = {
 
 
 
-- **Configura un virtualhost en apache2 con la configuración adecuada para que funcione la aplicación. El punto de entrada de nuestro servidor será `django_tutorial/django_tutorial/wsgi.py`. Puedes guiarte por el [Ejercicio: Desplegando aplicaciones flask](https://fp.josedomingo.org/iawgs/u03/flask.html), por la documentación de *Django*: [How to use Django with Apache and mod_wsgi](https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/modwsgi/),…**
+- **Configura un *virtualhost* en *Apache* con la configuración adecuada para que funcione la aplicación. El punto de entrada de nuestro servidor será `django_tutorial/django_tutorial/wsgi.py`. Puedes guiarte por el [Ejercicio: Desplegando aplicaciones flask](https://fp.josedomingo.org/iawgs/u03/flask.html), por la documentación de *Django*: [How to use Django with Apache and mod_wsgi](https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/modwsgi/),…**
 
 
 
-- **Debes asegurarte que el contenido estático se está sirviendo: ¿Se muestra la imagen de fondo de la aplicación? ¿Se ve de forma adecuada la hoja de estilo de la zona de administración?. Para arreglarlo puedes encontrar documentación en [How to use Django with Apache and mod_wsgi](https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/modwsgi/).**
+- **Debes asegurarte que el contenido estático se está sirviendo: ¿Se muestra la imagen de fondo de la aplicación? ¿Se ve de forma adecuada la hoja de estilo de la zona de administración? Para arreglarlo puedes encontrar documentación en [How to use Django with Apache and mod_wsgi](https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/modwsgi/).**
 
 
 
@@ -123,11 +123,13 @@ DATABASES = {
 
 **Vamos a realizar cambios en el entorno de desarrollo y posteriormente vamos a subirlas a producción. Vamos a realizar tres modificaciones (entrega una captura de pantalla donde se ven cada una de ellas). Recuerda que primero lo haces en el entrono de desarrollo, y luego tendrás que llevar los cambios a producción:**
 
-**1. Modifica la página inicial donde se ven las encuestas para que aparezca tu nombre: Para ello modifica el archivo django_tutorial/polls/templates/polls/index.html.**
+**1. Modifica la página inicial donde se ven las encuestas para que aparezca tu nombre: Para ello modifica el archivo `django_tutorial/polls/templates/polls/index.html`.**
 
 
 
 **2. Modifica la imagen de fondo que se ve la aplicación.**
+
+
 
 **3. Vamos a crear una nueva tabla en la base de datos, para ello sigue los siguientes pasos:**
 

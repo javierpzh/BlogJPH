@@ -33,13 +33,14 @@ javier@debian:~/entornos_virtuales/django_tutorial$ python3 -m venv django
 javier@debian:~/entornos_virtuales/django_tutorial$ source django/bin/activate
 </pre>
 
-Ya en el entorno virtual, actualizamos `pip` e instalamos el fichero `requirements.txt` que nos instalara de manera automática todos los paquetes que se incluyan en él.
+Ya en el entorno virtual, actualizamos `pip` e instalamos el fichero `requirements.txt` que nos instalará de manera automática todos los paquetes que se incluyan en él.
 
 <pre>
 (django) javier@debian:~/entornos_virtuales/django_tutorial$ pip install --upgrade pip
 
 (django) javier@debian:~/entornos_virtuales/django_tutorial$ pip install -r requirements.txt
 </pre>
+
 
 - **Comprueba que vamos a trabajar con una base de datos *sqlite* (`django_tutorial/settings.py`). ¿Cómo se llama la base de datos que vamos a crear?**
 

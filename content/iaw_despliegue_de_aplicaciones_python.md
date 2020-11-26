@@ -153,8 +153,6 @@ Elegimos una respuesta:
 
 Y podemos observar como nos ha contabilizado el valor de la nueva respuesta.
 
-**En este momento, muestra al profesor la aplicación funcionando. Entrega una documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**
-
 
 ## Tarea 2: Entorno de producción
 

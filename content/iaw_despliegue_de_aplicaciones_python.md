@@ -143,6 +143,15 @@ Después de haber generado las dos nuevas preguntas, si nos dirigimos a la direc
 
 ![.](images/iaw_despliegue_de_aplicaciones_python/django_polls.png)
 
+Si hacemos *click* en cualquiera de ellas:
+
+![.](images/iaw_despliegue_de_aplicaciones_python/django_polls_pregunta1.png)
+
+Elegimos una respuesta:
+
+![.](images/iaw_despliegue_de_aplicaciones_python/django_polls_pregunta1_respondida.png)
+
+Y podemos observar como nos ha contabilizado el valor de la nueva respuesta.
 
 **En este momento, muestra al profesor la aplicación funcionando. Entrega una documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**
 

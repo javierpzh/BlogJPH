@@ -1,5 +1,5 @@
 Title: Despliegue de aplicaciones Python
-Date: 2020/11/26
+Date: 2020/11/30
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: Django, Python, virtualenv

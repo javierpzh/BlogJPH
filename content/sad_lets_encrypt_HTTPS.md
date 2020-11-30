@@ -212,7 +212,18 @@ Podemos ver como automáticamente, nos ha añadido las líneas que nos establece
 
 **5. Comprueba que se ha creado una tarea *cron* que renueva el certificado cada 3 meses.**
 
+Vamos a comprobar que *Certbot* también nos ha creado una tarea *cron* que renovará los certificados de manera automática cada 3 meses. Para ello visualizamos el fichero `/etc/cron.d/certbot`:
 
+<pre>
+root@vpsjavierpzh:~# cat /etc/cron.d/certbot
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+0 */12 * * * root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(43200))' && certbot -q renew
+</pre>
+
+Estas líneas lo que hacen es comprobar cada 12 horas como indica ahí, (12 horas = 43200 segundos), si al certificado le quedan menos de 30 días de validez, y si es así, lo renueva.
 
 **6. Comprueba que las páginas son accesible por *HTTPS* y visualiza los detalles del certificado que has creado.**
 

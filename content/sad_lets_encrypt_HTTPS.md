@@ -210,7 +210,7 @@ Podemos ver como automáticamente, nos ha añadido las líneas que nos establece
 
 
 
-**6. Comprueba que las páginas son accesible por HTTPS y visualiza los detalles del certificado que has creado.**
+**6. Comprueba que las páginas son accesible por *HTTPS* y visualiza los detalles del certificado que has creado.**
 
 Accedemos a `www.iesgn15.es`:
 
@@ -228,7 +228,7 @@ Si vemos los detalles del certificado:
 
 ![.](images/sad_lets_encrypt_HTTPS/certificado.png)
 
-**7. Modifica la configuración del cliente de *Nextcloud* para comprobar que sigue en funcionamiento con HTTPS.**
+**7. Modifica la configuración del cliente de *Nextcloud* para comprobar que sigue en funcionamiento con *HTTPS*.**
 
 Nos dirigimos ahora a nuestro cliente de *Nextcloud*, que recordemos que está configurado para la dirección `http://www.iesgn15.es/cloud`:
 

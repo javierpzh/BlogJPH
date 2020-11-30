@@ -8,7 +8,7 @@ Tags: HTTPS, Let's Encrypt
 
 **1. Vamos a utilizar el servicio `https://letsencrypt.org` para solicitar los certificados de nuestras páginas.**
 
-Si queremos llevar a cabo la solicitud de los certificados para nuestras páginas dispongan de *HTTPS* verificado por *Let's Encryt*, tenemos que instalar el siguiente paquete:
+Si queremos llevar a cabo la solicitud de los certificados para nuestras páginas dispongan de *HTTPS* verificado por *Let's Encrypt*, tenemos que instalar el siguiente paquete:
 
 <pre>
 apt install certbot
@@ -30,19 +30,23 @@ certbot --nginx
 
 **¿Qué función tiene el cliente ACME?**
 
+**ACME**, siglas de *Automatic Certificate Management Environment*, es un protocolo que lleva a cabo el agente *Certbot* y consiste en dos pasos:
 
+- Primero, se lleva a cabo la **validación del dominio**, hay que decir antes que nada, que al instalar *Certbot*, éste generará un par de claves para comunicarse con la CA. Este primer paso, no es más sino que demostrar a la autoridad certificadora que la página que estamos intentando validar es nuestra o somos los administradores de ella. Para este proceso, *Let's Encrypt* nos posibilita dos retos a realizar, el llamado *HTTP-01 Challenger*, consiste en colocar un archivo con un determinado contenido en una ruta específica que nos indique *Let's Encrypt*, si verifican que dicho archivo es correcto, la validación se lleva a cabo, y también disponemos del llamado *DNS-01 Challenger*, que consiste en crear un registro en la zona DNS con una determinada información.
+
+- En segundo lugar, se lleva a cabo la **solicitud del certificado**. Cuando hemos realizado el paso anterior, *Certbot* envía una solcitud de firma, es decir, un fichero *.csr*, a *Let's Encrypt*, y este verifica la firma mediante las claves públicas-privadas generadas al inicio y si es correcta firma el certificado y se lo envía a *Certbot*.
 
 **¿Qué configuración se realiza en el servidor web?**
 
+En el servidor web tenemos que configurar el fichero de configuración del *virtualhost* a validar y especificarle las rutas donde se encontrarán tanto el certificado, como la clave privada mediante el cuál se generó el fichero *.csr*.
 
+**¿Qué pruebas realiza *Let's Encrypt* para asegurar que somos los administradores del sitio web?**
 
-**¿Qué pruebas realiza *Let's Encrypt* para asegurar que somos los administrados del sitio web?**
-
-
+Comentado anteriormente.
 
 **¿Se puede usar el DNS para verificar que somos administradores del sitio?**
 
-
+Como he comentado anteriormente, sí, y de hecho es un método que nos permitirá al validar un dominio, que todos sus subdominios estén validados también, ya que mediante DNS habrá podido comprobar que somos realmente los administradores del sitio.
 
 
 **3. Utiliza dos ficheros de configuración de *Nginx*: uno para la configuración del *virtualhost* *HTTP* y otro para la configuración del *virtualhost* *HTTPS*.**

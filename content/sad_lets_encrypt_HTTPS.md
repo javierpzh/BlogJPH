@@ -49,7 +49,9 @@ certbot --nginx
 
 Yo he utilizado solo un fichero de configuración para cada *virtualhost*, ya que *Nginx* te permite establecer en el mismo fichero, las configuraciones de *http* y *https*, por lo que, es una tontería crear dos ficheros si podemos utilizar uno.
 
-`www.iesgn15.es`:
+Nos disponemos a pedir los certificados y a ver el proceso que nos enseña *Certbot*.
+
+En primer lugar, voy a solicitar el certificado para la web `www.iesgn15.es`:
 
 <pre>
 root@vpsjavierpzh:/etc/nginx/sites-available# certbot --nginx
@@ -111,7 +113,10 @@ IMPORTANT NOTES:
 root@vpsjavierpzh:/etc/nginx/sites-available#
 </pre>
 
-`portal.iesgn15.es`:
+Vemos que a la hora de ejecutar el comando, nos identifica todos los *virtualhost* que poseemos, y tan solo tenemos que seleccionar para cual queremos el certificado. Acto seguido, nos pregunta si queremos que el certificado se renueve de manera automática, también nos pregunta si queremos que el propio *Certbot* nos realice toda la configuración en el fichero de configuración del *virtualhost*.
+
+
+De nuevo realizo el mismo proceso, esta vez para el *virtualhost* `portal.iesgn15.es`:
 
 <pre>
 root@vpsjavierpzh:/etc/nginx/sites-available# certbot --nginx
@@ -197,7 +202,6 @@ server {
 
 
 }
-
 </pre>
 
 Podemos ver como automáticamente, nos ha añadido las líneas que nos establecen la configuración de los certificados y nos ha creado la redirección hacia *HTTPS*.

@@ -219,7 +219,7 @@ Successfully installed pip-20.3
 - **Instala el módulo que permite que *Python* trabaje con *MySQL*:**
 
 <pre>
-apt install python3-mysqldb
+apt install python3-mysqldb -y
 </pre>
 
 **Y en el entorno virtual:**

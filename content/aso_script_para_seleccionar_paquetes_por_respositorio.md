@@ -24,7 +24,7 @@ Tags: script
 He realizado este script:
 
 <pre>
-#! /bin/bash
+#!/bin/bash
 
 # Script que introduciéndole como parámetro el nombre de un repositorio, muestra como salida los paquetes de ese repositorio que están instalados en la máquina.
 

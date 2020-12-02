@@ -813,7 +813,7 @@ Guardamos los cambios y ya tendríamos deshabilitado el servidor DHCP de nuestra
 Para crear un usuario en *Debian*, tenemos que hacer uso del comando `useradd`, pero bien, si queremos que en el nuevo usuario se creen las carpetas automáticamente en el directorio `/home` debemos introducir la opción `-m`:
 
 <pre>
-root@dulcinea:~# useradd -m profesor
+root@dulcinea:~# useradd profesor -m -s /bin/bash
 
 root@dulcinea:~# passwd profesor
 New password:
@@ -831,7 +831,7 @@ También le he asignando una contraseña que es **profesor**, por si alguna vez 
 Para crear un usuario en *Ubuntu*, seguimos el mismo proceso que para *Debian*.
 
 <pre>
-root@sancho:~# useradd -m profesor
+root@sancho:~# useradd profesor -m -s /bin/bash
 
 root@sancho:~# passwd profesor
 New password:
@@ -883,6 +883,8 @@ Y fin, esto hará que cuando el usuario *profesor* haga uso de `sudo`, no le pid
 **8. Copia las claves públicas de todos los profesores en las instancias para que puedan acceder con el usuario profesor.**
 
 He copiado todas las claves públicas de los profesores al fichero `.ssh/authorized_keys` del usuario *profesor*.
+
+**Importante:** hay que cambiar los permisos de la carpeta `.ssh` a 700, y del fichero `authorized_keys` a 600.
 
 **9. Realiza una actualización completa de todos los servidores.**
 

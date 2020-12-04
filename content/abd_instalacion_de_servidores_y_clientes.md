@@ -113,29 +113,24 @@ Ahora vamos a permitir el acceso remoto al servidor. Para ello debemos dirigirno
 listen_addresses = '*'
 </pre>
 
-Nos quedaría modificar un fichero de configuración para terminar de habilitar el acceso remoto. Tenemos que editar el fichero `/etc/postgresql/11/main/pg_hba.conf` y en la línea que hace referencia a las direcciones *IPv4*, modificar el valor **127.0.0.1/32** por **all**, de manera que quedaría ási:
+Nos quedaría modificar un fichero de configuración para terminar de habilitar el acceso remoto. Tenemos que editar el fichero `/etc/postgresql/11/main/pg_hba.conf` y en la línea que hace referencia a las direcciones *IPv4*, modificar el valor **127.0.0.1/32** por **all**, de manera que quedaría así:
 
 <pre>
 # IPv4 local connections:
 host    all             all             all            md5
 </pre>
 
+Ya hemos configurado todo lo necesario para poder acceder remotamente a nuestro servidor *PostgreSQL*. Vamos a dirigirnos a la máquina virtual y vamos a instalar el cliente y a intentar acceder remotamente a la base de datos *empresa*:
+
+<pre>
+
+</pre>
+
+
+
+
+
 ![.](images/abd_instalacion_de_servidores_y_clientes/postgresqlaplicacionweb.png)
-
-<pre>
-
-</pre>
-
-
-<pre>
-
-</pre>
-
-
-
-<pre>
-
-</pre>
 
 
 - **Instalación de una herramienta de administración web para MongoDB y prueba desde un cliente remoto.**

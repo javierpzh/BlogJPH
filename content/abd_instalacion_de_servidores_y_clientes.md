@@ -192,7 +192,7 @@ Si accedemos a la dirección `.../phppgadmin` en nuestro navegador e iniciamos s
 
 ![.](images/abd_instalacion_de_servidores_y_clientes/postgresqlaplicacionweb.png)
 
-Podemos ver como nuestra aplicación nos muestra las bases de datos existentes, y podemos eliminarlas, modificarlas y establecer privilegios, entre otras cosas. 
+Podemos ver como nuestra aplicación nos muestra las bases de datos existentes en el servidor, y podemos eliminarlas, modificarlas y establecer privilegios, entre otras cosas, ya que también podemos realizar consultas, ... 
 
 - **Instalación de una herramienta de administración web para MongoDB y prueba desde un cliente remoto.**
 

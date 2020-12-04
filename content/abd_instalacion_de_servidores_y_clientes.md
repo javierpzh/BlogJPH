@@ -123,8 +123,41 @@ host    all             all             all            md5
 Ya hemos configurado todo lo necesario para poder acceder remotamente a nuestro servidor *PostgreSQL*. Vamos a dirigirnos a la máquina virtual y vamos a instalar el cliente y a intentar acceder remotamente a la base de datos *empresa*:
 
 <pre>
-
+apt install postgresql-client -y
 </pre>
+
+Intentamos acceder de manera remota. Utilizamos los parámetros **-h** para indicar la dirección IP del servidor, **-U** para indicar el usuario y **-d** para indicar la base de datos:
+
+<pre>
+root@buster:/etc/apache2/conf-available# psql -h 172.22.201.25 -U debian -d empresa
+Password for user debian:
+psql (11.9 (Debian 11.9-0+deb10u1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type "help" for help.
+
+empresa=# \d
+          List of relations
+ Schema |   Name    | Type  | Owner  
+--------+-----------+-------+--------
+ public | empleados | table | debian
+ public | productos | table | debian
+ public | tiendas   | table | debian
+(3 rows)
+
+empresa=# select * from tiendas;
+ codigo |      nombre       | especialidad | localizacion
+--------+-------------------+--------------+--------------
+ 000001 | Javi s Pet        | Animales     | Sevilla
+ 000002 | Javi s Sport      | Deportes     | Cordoba
+ 000003 | Javi s Food       | Comida       | Granada
+ 000004 | Javi s Technology | Tecnologia   | Cadiz
+ 000005 | Javi s Clothes    | Ropa         | Huelva
+(5 rows)
+</pre>
+
+Vemos como tenemos acceso remoto y tenemos acceso a los datos almacenados.
+
+En este punto, solo nos quedaría configurar la aplicación web.
 
 
 

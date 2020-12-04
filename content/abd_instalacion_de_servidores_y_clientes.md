@@ -1,7 +1,7 @@
 Title: Instalación de Servidores y Clientes
 Date: 2020/12/04
 Category: Administración de Base de Datos
-Header_Cover: theme/images/banner-basededatos.jpg
+Header_Cover: theme/images/banner-basededatos.png
 Tags: Base de Datos, Oracle, MySQL, PostgreSQL, MongoDB
 
 **Con esta práctica aprenderéis la instalación y configuración de distintos servidores y clientes de bases de datos.**

@@ -48,7 +48,18 @@ root@servidor-postgresql:~# pg_isready
 /var/run/postgresql:5432 - accepting connections
 </pre>
 
-Una vez instalado se crea un nuevo usuario llamado *postgres* que tiene rol de superusuario.
+Una vez instalado se crea un nuevo usuario llamado *postgres* que tiene rol de superusuario. Vamos a asignarle una contraseña por cuestión de seguridad:
+
+<pre>
+postgres@servidor-postgresql:/root$ psql postgres
+psql (11.9 (Debian 11.9-0+deb10u1))
+Type "help" for help.
+
+postgres=# ALTER ROLE postgres PASSWORD 'contraseña';
+ALTER ROLE
+
+postgres=#
+</pre>
 
 Vamos a crear un nuevo rol, y debemos hacerlo a través de este usuario.
 
@@ -63,21 +74,30 @@ Shall the new role be a superuser? (y/n) y
 Ahora creamos una base de datos con el mismo nombre que el rol que hemos creado y nos conectamos:
 
 <pre>
-debian@servidor-postgresql:~$ createdb debian
-
 debian@servidor-postgresql:~$ psql
 psql (11.9 (Debian 11.9-0+deb10u1))
 Type "help" for help.
 
-debian=#
+debian=# ALTER ROLE debian PASSWORD 'contraseña';
+
+debian=# CREATE DATABASE empresa;
+CREATE DATABASE
+
+debian=# GRANT ALL PRIVILEGES ON DATABASE empresa TO debian;
+GRANT
+
+debian=# \c empresa
+You are now connected to database "empresa" as user "debian".
+
+empresa=#
 </pre>
 
 Vamos a crear unas tablas y unos registros, para ello, utilizamos el siguiente [script](images/abd_instalacion_de_servidores_y_clientes/scriptpostgresql.txt).
 
-Si comprobamos las tablas y los registros:
+Si comprobamos las tablas:
 
 <pre>
-debian=# \d
+empresa=# \d
           List of relations
  Schema |   Name    | Type  | Owner  
 --------+-----------+-------+--------
@@ -85,10 +105,22 @@ debian=# \d
  public | productos | table | debian
  public | tiendas   | table | debian
 (3 rows)
-
-debian=#
 </pre>
 
+Ahora vamos a permitir el acceso remoto al servidor. Para ello debemos dirigirnos al fichero `/etc/postgresql/11/main/postgresql.conf` y descomentamos la línea *listen_addresses = 'localhost'* y sustituimos el valor *localhost* por la dirección que queremos que se conecte remotamente o si queremos habilitar conexiones desde todas las direcciones, establecemos el valor *****. En mi caso, la línea quedaría así:
+
+<pre>
+listen_addresses = '*'
+</pre>
+
+Nos quedaría modificar un fichero de configuración para terminar de habilitar el acceso remoto. Tenemos que editar el fichero `/etc/postgresql/11/main/pg_hba.conf` y en la línea que hace referencia a las direcciones *IPv4*, modificar el valor **127.0.0.1/32** por **all**, de manera que quedaría ási:
+
+<pre>
+# IPv4 local connections:
+host    all             all             all            md5
+</pre>
+
+![.](images/abd_instalacion_de_servidores_y_clientes/postgresqlaplicacionweb.png)
 
 <pre>
 

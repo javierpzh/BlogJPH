@@ -31,7 +31,7 @@ Tags: Base de Datos, Oracle, MySQL, PostgreSQL, MongoDB
 
 
 
-- **Realización de una aplicación web en cualquier lenguaje que conecte con un servidor Postgres tras autenticarse y muestre alguna información almacenada en el mismo.**
+- **Realización de una aplicación web en cualquier lenguaje que conecte con un servidor PostgreSQL tras autenticarse y muestre alguna información almacenada en el mismo.**
 
 Primeramente voy a instalar un servidor PostgreSQL en una instancia del cloud, para luego acceder de manera remota desde una máquina virtual donde haré la aplicación web.
 
@@ -192,6 +192,7 @@ Si accedemos a la dirección `.../phppgadmin` en nuestro navegador e iniciamos s
 
 ![.](images/abd_instalacion_de_servidores_y_clientes/postgresqlaplicacionweb.png)
 
+Podemos ver como nuestra aplicación nos muestra las bases de datos existentes, y podemos eliminarlas, modificarlas y establecer privilegios, entre otras cosas. 
 
 - **Instalación de una herramienta de administración web para MongoDB y prueba desde un cliente remoto.**
 

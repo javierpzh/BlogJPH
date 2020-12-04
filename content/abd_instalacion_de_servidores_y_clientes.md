@@ -5,11 +5,17 @@ Header_Cover: theme/images/banner-basededatos.jpg
 Tags: Base de Datos, Oracle, MySQL, PostgreSQL, MongoDB
 
 **Con esta práctica aprenderéis la instalación y configuración de distintos servidores y clientes de bases de datos.**
+
 **Tras la instalación de cada servidor,  debe crearse una base de datos con al menos tres tablas o colecciones y poblarse de datos adecuadamente. Debe crearse un usuario y dotarlo de los privilegios necesarios para acceder remotamente a los datos. Se proporcionará esta información al resto de los miembros del grupo.**
+
 **Los clientes deben estar siempre en máquinas diferentes de los respectivos servidores a los que acceden.**
+
 **Se documentará todo el proceso de configuración de los servidores.**
+
 **Se aportarán pruebas del funcionamiento remoto de cada uno de los clientes.**
+
 **Se aportará el código de las aplicaciones realizadas y prueba de funcionamiento de las mismas.**
+
 
 **El trabajo constará de las siguientes partes:**
 

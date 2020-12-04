@@ -159,9 +159,36 @@ Vemos como tenemos acceso remoto y tenemos acceso a los datos almacenados.
 
 En este punto, solo nos quedaría configurar la aplicación web.
 
+Para servir una página web lógicamente necesitamos un servidor web. Yo he decidido utilizar *Apache*:
 
+<pre>
+apt install apache2 apache2-utils -y
+</pre>
 
+Instalamos los paquetes necesarios para poder acceder desde una aplicación web:
 
+<pre>
+apt install php libapache2-mod-php php-cli php-pgsql phppgadmin -y
+</pre>
+
+En este punto solo nos quedaría hacer unas pequeñas modificaciones en algunos ficheros de configuración.
+
+El primer cambio debemos hacerlo en el fichero `/etc/apache2/conf-available/phppgadmin.conf` y comentar la línea **Require local**.
+
+Después de hacer esto, en el fichero `/etc/phppgadmin/config.inc.php` debemos buscar la siguiente línea:
+
+<pre>
+$conf['extra_login_security'] = true;
+</pre>
+
+Tenemos que asegurarnos que su valor sea igual a **true**, y añadir estas líneas que indican la dirección del servidor y el puerto de la máquina remota:
+
+<pre>
+$conf['servers'][1]['host'] = '172.22.201.25';
+$conf['servers'][1]['port'] = 5432;
+</pre>
+
+Si accedemos a la dirección `.../phppgadmin` en nuestro navegador e iniciamos sesión con las credenciales de nuestro usuario de la base de datos, obtendremos un resultado como éste:
 
 ![.](images/abd_instalacion_de_servidores_y_clientes/postgresqlaplicacionweb.png)
 

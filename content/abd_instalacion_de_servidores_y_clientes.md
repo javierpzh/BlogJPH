@@ -37,6 +37,58 @@ Primeramente voy a instalar un servidor PostgreSQL en una instancia del cloud, p
 
 Instalo en la instancia el servidor:
 
+<pre>
+apt install postgresql-11 -y
+</pre>
+
+Para verificar si la base de datos *PostgreSQL* está inicializada y verificar el estado de conexión del servidor utilizamos este comando:
+
+<pre>
+root@servidor-postgresql:~# pg_isready
+/var/run/postgresql:5432 - accepting connections
+</pre>
+
+Una vez instalado se crea un nuevo usuario llamado *postgres* que tiene rol de superusuario, por tanto si queremos crear un nuevo usuario, debemos hacerlo a través de este usuario.
+
+Utilizamos el argumento *--interactive* para que nos pregunte si el nuevo usuario será administrador o no:
+
+<pre>
+debian@servidor-postgresql:~$ sudo -u postgres createuser --interactive
+Enter name of role to add: debian
+Shall the new role be a superuser? (y/n) y
+</pre>
+
+
 
 
 - **Instalación de una herramienta de administración web para MongoDB y prueba desde un cliente remoto.**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

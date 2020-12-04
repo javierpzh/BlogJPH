@@ -48,9 +48,11 @@ root@servidor-postgresql:~# pg_isready
 /var/run/postgresql:5432 - accepting connections
 </pre>
 
-Una vez instalado se crea un nuevo usuario llamado *postgres* que tiene rol de superusuario, por tanto si queremos crear un nuevo usuario, debemos hacerlo a través de este usuario.
+Una vez instalado se crea un nuevo usuario llamado *postgres* que tiene rol de superusuario.
 
-Utilizamos el argumento *--interactive* para que nos pregunte si el nuevo usuario será administrador o no:
+Vamos a crear un nuevo rol, y debemos hacerlo a través de este usuario.
+
+Utilizamos el argumento *--interactive* para que nos pregunte si el nuevo rol será de administrador o no:
 
 <pre>
 debian@servidor-postgresql:~$ sudo -u postgres createuser --interactive
@@ -58,7 +60,50 @@ Enter name of role to add: debian
 Shall the new role be a superuser? (y/n) y
 </pre>
 
+Ahora creamos una base de datos con el mismo nombre que el rol que hemos creado y nos conectamos:
 
+<pre>
+debian@servidor-postgresql:~$ createdb debian
+
+debian@servidor-postgresql:~$ psql
+psql (11.9 (Debian 11.9-0+deb10u1))
+Type "help" for help.
+
+debian=#
+</pre>
+
+Vamos a crear unas tablas y unos registros, para ello, utilizamos el siguiente [script](images/abd_instalacion_de_servidores_y_clientes/scriptpostgresql.txt).
+
+Si comprobamos las tablas y los registros:
+
+<pre>
+debian=# \d
+          List of relations
+ Schema |   Name    | Type  | Owner  
+--------+-----------+-------+--------
+ public | empleados | table | debian
+ public | productos | table | debian
+ public | tiendas   | table | debian
+(3 rows)
+
+debian=#
+</pre>
+
+
+<pre>
+
+</pre>
+
+
+<pre>
+
+</pre>
+
+
+
+<pre>
+
+</pre>
 
 
 - **Instalación de una herramienta de administración web para MongoDB y prueba desde un cliente remoto.**

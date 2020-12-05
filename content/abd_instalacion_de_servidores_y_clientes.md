@@ -21,7 +21,44 @@ Tags: Base de Datos, Oracle, MySQL, PostgreSQL, MongoDB
 
 - **Instalación de un servidor de ORACLE 19c**
 
+<pre>
+SQL*Plus: Release 19.0.0.0.0 - Production on Sßb Dic 5 19:04:22 2020
+Version 19.3.0.0.0
 
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Introduzca el nombre de usuario: system
+Introduzca la contrase±a:
+Hora de ┌ltima Conexi¾n Correcta: Sßb Dic 05 2020 18:50:15 +01:00
+
+Conectado a:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+SQL> CREATE USER c##javier IDENTIFIED BY contraseña;
+
+Usuario creado.
+
+SQL> GRANT ALL PRIVILEGES TO c##javier;
+
+Concesi¾n terminada correctamente.
+
+SQL>
+</pre>
+
+Voy a crear una serie de tablas de prueba y a insertarle unos pocos registros a partir de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptoracle.txt).
+
+<pre>
+C:\Users\javier>lsnrctl start
+
+LSNRCTL for 64-bit Windows: Version 19.0.0.0.0 - Production on 05-DIC-2020 18:59:49
+
+Copyright (c) 1991, 2019, Oracle.  All rights reserved.
+
+TNS-01106: El listener que utiliza el nombre de listener LISTENER ya ha sido iniciado
+
+C:\Users\javier>
+</pre>
 
 - **Instalación de un servidor MySQL y configuración para permitir el acceso remoto desde la red local.**
 

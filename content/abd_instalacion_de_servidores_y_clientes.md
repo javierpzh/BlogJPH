@@ -33,7 +33,7 @@ Tags: Base de Datos, Oracle, MySQL, PostgreSQL, MongoDB
 
 - **Realización de una aplicación web en cualquier lenguaje que conecte con un servidor PostgreSQL tras autenticarse y muestre alguna información almacenada en el mismo.**
 
-Primeramente voy a instalar un servidor PostgreSQL en una instancia del cloud, para luego acceder de manera remota desde una máquina virtual donde haré la aplicación web.
+Primeramente voy a instalar un servidor PostgreSQL en una instancia del *cloud*, para luego acceder de manera remota desde una máquina virtual donde haré la aplicación web.
 
 Instalo en la instancia el servidor:
 

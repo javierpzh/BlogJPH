@@ -21,6 +21,48 @@ Tags: Base de Datos, Oracle, MySQL, PostgreSQL, MongoDB
 
 - **Instalación de un servidor de ORACLE 19c**
 
+Vamos a llevar a cabo la instalación de **Oracle** en su versión **19c**. Esta instalación se hará sobre un sistema **Windows 10**.
+
+Lo primero que debemos hacer, sería descargarnos el paquete de instalación desde la [web oficial de Oracle](https://www.oracle.com/es/database/technologies/oracle-database-software-downloads.html#19c), para realizar la descarga nos hará falta estar registrados como usuarios de *Oracle*.
+
+Una vez descargado el archivo *.zip*, tenemos que extraerlo y ahora empezaremos el proceso de instalación.
+
+Debemos buscar en el directorio resultante este ejecutable llamado **setup**:
+
+![.](images/abd_instalacion_de_servidores_y_clientes/oracle_setup.png)
+
+Lo abrimos con permisos de administrador y se nos abrirá esta ventana que quedará cargando:
+
+![.](images/abd_instalacion_de_servidores_y_clientes/oracle_setupcargando.png)
+
+Una vez haya terminado de cargar el instalador de *Oracle*, se nos abrirá este asistente en el que configuraremos todos los parámetros de los que queremos disponer en nuestro nuevo servidor de base de datos.
+
+![.](images/abd_instalacion_de_servidores_y_clientes/oracle_instalacion1.png)
+
+Seleccionamos de que tipo de sistema queremos disponer, en mi caso, selecciono ......
+
+![.](images/abd_instalacion_de_servidores_y_clientes/oracle_instalacion2.png)
+
+Este paso es bastante importante, pues debemos establecer la contraseña de administrador que poseerá nuestro nuevo *Oracle*:
+
+![.](images/abd_instalacion_de_servidores_y_clientes/oracle_instalacion4.png)
+
+En este punto, nos redacta un resumen de las preferencias que hemos escogido, y después de esto, ya comenzará el proceso de instalación:
+
+![.](images/abd_instalacion_de_servidores_y_clientes/oracle_instalacion5.png)
+
+Una vez terminada la instalación, obtendremos esta ventana:
+
+![.](images/abd_instalacion_de_servidores_y_clientes/oracle_instalacion6.png)
+
+Bien, ya hemos instalado el servidor *Oracle* en nuestro sistema, vamos a acceder a él. Para ello vamos a abrir la aplicación **SQLPlus**. También podemos acceder a través de nuestro **cmd** con el comando:
+
+<pre>
+sqlplus
+</pre>
+
+Yo accedo mediante esta segunda opción. Como es la primera vez que vamos a acceder, debemos hacerlo mediante el usuario **system** que nos lo crea por defecto y es administrador. Una vez en él, crearé un usuario personal y le asignaré permisos:
+
 <pre>
 SQL*Plus: Release 19.0.0.0.0 - Production on Sßb Dic 5 19:04:22 2020
 Version 19.3.0.0.0
@@ -46,7 +88,15 @@ Concesi¾n terminada correctamente.
 SQL>
 </pre>
 
-Voy a crear una serie de tablas de prueba y a insertarle unos pocos registros a partir de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptoracle.txt).
+Ya tenemos nuestro usuario disponible, en mi caso, voy a acceder a él y a crear una serie de tablas de prueba y a insertarle unos pocos registros a partir de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptoracle.txt).
+
+- **Instalación de un servidor MySQL y configuración para permitir el acceso remoto desde la red local.**
+
+
+
+- **Prueba desde un cliente remoto de SQL*Plus.**
+
+
 
 <pre>
 C:\Users\javier>lsnrctl start
@@ -60,17 +110,11 @@ TNS-01106: El listener que utiliza el nombre de listener LISTENER ya ha sido ini
 C:\Users\javier>
 </pre>
 
-- **Instalación de un servidor MySQL y configuración para permitir el acceso remoto desde la red local.**
-
-
-
-- **Prueba desde un cliente remoto de SQL*Plus.**
-
 
 
 - **Realización de una aplicación web en cualquier lenguaje que conecte con un servidor PostgreSQL tras autenticarse y muestre alguna información almacenada en el mismo.**
 
-Primeramente voy a instalar un servidor PostgreSQL en una instancia del *cloud*, para luego acceder de manera remota desde una máquina virtual donde haré la aplicación web.
+Primeramente voy a instalar un servidor **PostgreSQL** en una instancia del *cloud*, para luego acceder de manera remota desde una máquina virtual donde haré la aplicación web.
 
 Instalo en la instancia el servidor:
 

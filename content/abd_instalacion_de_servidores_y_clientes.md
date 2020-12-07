@@ -193,6 +193,104 @@ installation should now be secure.
 Thanks for using MariaDB!
 </pre>
 
+Creo un usuario propio y le asigno privilegios:
+
+<pre>
+root@servidor:/home/vagrant# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 59
+Server version: 10.3.27-MariaDB-0+deb10u1 Debian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE USER javier IDENTIFIED BY 'contraseña';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO 'javier';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> exit
+Bye
+</pre>
+
+Probamos a acceder al nuevo usuario:
+
+<pre>
+vagrant@servidor:~$ mysql -u javier -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 64
+Server version: 10.3.27-MariaDB-0+deb10u1 Debian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]>
+</pre>
+
+Una vez en el nuevo usuario, vamos a crear una base de datos de prueba llamada *empresa*:
+
+<pre>
+MariaDB [(none)]> create database empresa;
+Query OK, 1 row affected (0.000 sec)
+
+MariaDB [(none)]> use empresa;
+Database changed
+
+MariaDB [empresa]>
+</pre>
+
+En esta base de datos voy a crear una serie de tablas y a introducirle unos registros de prueba a través de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptmysql.txt).
+
+Vemos las tablas y algunos de los registros creados:
+
+<pre>
+MariaDB [empresa]> show tables;
++-------------------+
+| Tables_in_empresa |
++-------------------+
+| Empleados         |
+| Productos         |
+| Tiendas           |
++-------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [empresa]> select * from Tiendas;
++--------+-------------------+--------------+--------------+
+| Codigo | Nombre            | Especialidad | Localizacion |
++--------+-------------------+--------------+--------------+
+| 000001 | Javi s Pet        | Animales     | Sevilla      |
+| 000002 | Javi s Sport      | Deportes     | Cordoba      |
+| 000003 | Javi s Food       | Comida       | Granada      |
+| 000004 | Javi s Technology | Tecnologia   | Cadiz        |
+| 000005 | Javi s Clothes    | Ropa         | Huelva       |
++--------+-------------------+--------------+--------------+
+5 rows in set (0.000 sec)
+
+MariaDB [empresa]>
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

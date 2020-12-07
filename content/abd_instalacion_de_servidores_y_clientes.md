@@ -19,7 +19,7 @@ Tags: Base de Datos, Oracle, MySQL, PostgreSQL, MongoDB
 
 **El trabajo constará de las siguientes partes:**
 
-- **Instalación de un servidor de ORACLE 19c**
+#### Instalación de un servidor de ORACLE 19c
 
 Vamos a llevar a cabo la instalación de **Oracle** en su versión **19c**. Esta instalación se hará sobre un sistema **Windows 10**, que se ejecuraá en una máquina virtual conectada en mod puente a mi red local.
 
@@ -95,7 +95,7 @@ SQL>
 
 Ya tenemos nuestro usuario disponible, en mi caso, voy a acceder a él y a crear una serie de tablas de prueba y a insertarle unos pocos registros a partir de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptoracle.txt).
 
-- **Instalación de un servidor MySQL y configuración para permitir el acceso remoto desde la red local.**
+#### Instalación de un servidor MySQL y configuración para permitir el acceso remoto desde la red local
 
 Para realizar este ejercicio he decidido crear dos máquinas virtuales conectadas en modo puente a mi red local, las dos poseen un sistema **Debian 10**, y una actuará como servidor y la otra como cliente. Las he creado con **Vagrant**, con el siguiente fichero *Vagrantfile*:
 
@@ -118,6 +118,12 @@ Vagrant.configure("2") do |config|
 
 end
 </pre>
+
+Las direcciones IP de ambas máquinas son:
+
+- **Servidor:** 192.168.0.32
+
+- **Cliente:** 192.168.0.33
 
 Primeramente nos dirigimos a la máquina *servidor*, e instalamos el servidor **MySQL**:
 
@@ -193,96 +199,36 @@ installation should now be secure.
 Thanks for using MariaDB!
 </pre>
 
-Creo un usuario propio, le asigno privilegios y especifico que sea accesible desde cualquier dirección IP:
+Es el turno de crear un usuario propio, asignarle privilegios y especificarle que sea accesible solo desde mi red local, es decir, desde cualquier dirección IP dentro de **192.168.0.XXX**. Para hacer esto debemos conectarnos como *root*:
 
 <pre>
-root@servidor:/home/vagrant# mysql -u root -p
+root@servidor:~# mysql -u root -p
 Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 59
+Your MariaDB connection id is 39
 Server version: 10.3.27-MariaDB-0+deb10u1 Debian 10
 
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-MariaDB [(none)]> CREATE USER 'javier'@'%' IDENTIFIED BY 'contraseña';
+MariaDB [(none)]> CREATE USER 'javier'@'192.168.0.*' IDENTIFIED BY 'contraseña';
 Query OK, 0 rows affected (0.001 sec)
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO 'javier'@'%';
-Query OK, 0 rows affected (0.001 sec)
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO 'javier'@'192.168.0.*';
+Query OK, 0 rows affected (0.000 sec)
 
 MariaDB [(none)]> exit
 Bye
 </pre>
 
-Probamos a acceder al nuevo usuario:
-
-<pre>
-vagrant@servidor:~$ mysql -u javier -p
-Enter password:
-Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 64
-Server version: 10.3.27-MariaDB-0+deb10u1 Debian 10
-
-Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-MariaDB [(none)]>
-</pre>
-
-Una vez en el nuevo usuario, vamos a crear una base de datos de prueba llamada *empresa*:
-
-<pre>
-MariaDB [(none)]> create database empresa;
-Query OK, 1 row affected (0.000 sec)
-
-MariaDB [(none)]> use empresa;
-Database changed
-
-MariaDB [empresa]>
-</pre>
-
-En esta base de datos voy a crear una serie de tablas y a introducirle unos registros de prueba a través de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptmysql.txt).
-
-Vemos las tablas y algunos de los registros creados:
-
-<pre>
-MariaDB [empresa]> show tables;
-+-------------------+
-| Tables_in_empresa |
-+-------------------+
-| Empleados         |
-| Productos         |
-| Tiendas           |
-+-------------------+
-3 rows in set (0.001 sec)
-
-MariaDB [empresa]> select * from Tiendas;
-+--------+-------------------+--------------+--------------+
-| Codigo | Nombre            | Especialidad | Localizacion |
-+--------+-------------------+--------------+--------------+
-| 000001 | Javi s Pet        | Animales     | Sevilla      |
-| 000002 | Javi s Sport      | Deportes     | Cordoba      |
-| 000003 | Javi s Food       | Comida       | Granada      |
-| 000004 | Javi s Technology | Tecnologia   | Cadiz        |
-| 000005 | Javi s Clothes    | Ropa         | Huelva       |
-+--------+-------------------+--------------+--------------+
-5 rows in set (0.000 sec)
-
-MariaDB [empresa]>
-</pre>
-
-Una vez tenemos creado nuestro usuario, con una serie de datos, tenemos que configurar el acceso remoto y probar a acceder a estos datos desde el cliente.
-
-Para configurar el acceso remoto a nuestro servidor *MySQL*, tenemos que modificar el fichero de configuración `/etc/mysql/mariadb.conf.d/50-server.cnf` y buscar la línea `bind-address = 127.0.0.1` y sustituirla por la siguiente:
+Una vez tenemos el usuario al que accederemos remotamente, nos quedaría configurar el acceso remoto a nuestro servidor *MySQL*, para ello, debemos modificar el fichero de configuración `/etc/mysql/mariadb.conf.d/50-server.cnf` y buscar la línea `bind-address = 127.0.0.1` y sustituirla por la siguiente:
 
 <pre>
 bind-address = 0.0.0.0
 </pre>
 
-Esto hará que el servidor escuche las peticiones que provienen de todas las direcciones IP, a diferencia del punto anterior, que estaba configurado para que solo escuchara en *localhost*.
+Esto hará que el servidor escuche las peticiones que provienen de todas las interfaces, a diferencia del punto anterior, que estaba configurado para que solo escuchara en *localhost*.
 
 Hecho esto podemos dirigirnos al **cliente**, donde vamos a instalar el cliente *MySQL*:
 
@@ -314,14 +260,35 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 MariaDB [(none)]>
 </pre>
 
-Vamos a visualizar los registros de la tabla *Tiendas*:
+Una vez en el nuevo usuario, vamos a crear una base de datos de prueba llamada *empresa*:
 
 <pre>
+MariaDB [(none)]> create database empresa;
+Query OK, 1 row affected (0.001 sec)
+
 MariaDB [(none)]> use empresa;
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
 
 Database changed
+MariaDB [empresa]>
+</pre>
+
+En esta base de datos voy a crear una serie de tablas y a introducirle unos registros de prueba a través de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptmysql.txt).
+
+Vemos las tablas y algunos de los registros creados:
+
+<pre>
+MariaDB [empresa]> show tables;
++-------------------+
+| Tables_in_empresa |
++-------------------+
+| Empleados         |
+| Productos         |
+| Tiendas           |
++-------------------+
+3 rows in set (0.002 sec)
+
 MariaDB [empresa]> select * from Tiendas;
 +--------+-------------------+--------------+--------------+
 | Codigo | Nombre            | Especialidad | Localizacion |
@@ -339,7 +306,7 @@ MariaDB [empresa]>
 
 El resultado es el esperado, y por tanto, ya hemos terminado este ejercicio donde hemos configurado el acceso desde un cliente a un servidor remoto *MySQL*.
 
-- **Prueba desde un cliente remoto de SQL*Plus.**
+#### Prueba desde un cliente remoto de SQL*Plus
 
 He creado otra máquina virtual con **Windows 10**, que en este caso, actuará como cliente que accederá al servidor creado anteriormente. También está conectada en modo puente a mi red doméstica, por lo que tiene totalmente accesible al servidor y viceversa. En esta segunda máquina he instalado *Oracle* de igual manera que en la primera.
 
@@ -359,7 +326,7 @@ C:\Users\javier>
 
 
 
-- **Realización de una aplicación web en cualquier lenguaje que conecte con un servidor PostgreSQL tras autenticarse y muestre alguna información almacenada en el mismo.**
+#### Realización de una aplicación web en cualquier lenguaje que conecte con un servidor PostgreSQL tras autenticarse y muestre alguna información almacenada en el mismo
 
 Primeramente voy a instalar un servidor **PostgreSQL** en una instancia del *cloud*, para luego acceder de manera remota desde una máquina virtual donde haré la aplicación web.
 
@@ -522,34 +489,4 @@ Si accedemos a la dirección `.../phppgadmin` en nuestro navegador e iniciamos s
 
 Podemos ver como nuestra aplicación nos muestra las bases de datos existentes en el servidor, y podemos eliminarlas, modificarlas y establecer privilegios, entre otras cosas, ya que también podemos realizar consultas, ...
 
-- **Instalación de una herramienta de administración web para MongoDB y prueba desde un cliente remoto.**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.
+#### Instalación de una herramienta de administración web para MongoDB y prueba desde un cliente remoto

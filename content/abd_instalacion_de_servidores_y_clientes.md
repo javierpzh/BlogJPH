@@ -97,6 +97,54 @@ Ya tenemos nuestro usuario disponible, en mi caso, voy a acceder a él y a crear
 
 - **Instalación de un servidor MySQL y configuración para permitir el acceso remoto desde la red local.**
 
+Para realizar este ejercicio he decidido crear dos máquinas virtuales conectadas en modo puente a mi red local, las dos poseen un sistema **Debian 10**, y una actuará como servidor y la otra como cliente. Las he creado con **Vagrant**, con el siguiente fichero *Vagrantfile*:
+
+<pre>
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define :servidor do |servidor|
+        servidor.vm.box="debian/buster64"
+        servidor.vm.hostname="servidor"
+	servidor.vm.network :public_network, :bridge=>"wlo1"
+  end
+
+  config.vm.define :cliente do |cliente|
+        cliente.vm.box="debian/buster64"
+        cliente.vm.hostname="cliente"
+	cliente.vm.network :public_network, :bridge=>"wlo1"
+  end
+
+end
+</pre>
+
+Primeramente nos dirigimos a la máquina *servidor*, e instalamos el servidor **MySQL**:
+
+<pre>
+
+</pre>
+
+Una vez lo hemos instalado, vamos a configurar una serie de opciones con el comando `mysql_secure_installation`. Vamos a especificarle una **contraseña de root**, vamos a **eliminar los usuarios anónimos**, vamos a especificar que queremos **activar el acceso remoto** a la base de datos, en resumen, vamos a restablecer la base de datos, con nuestras preferencias. Esta es una manera de asegurar el servicio. Aquí muestro el proceso:
+
+<pre>
+
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 - **Prueba desde un cliente remoto de SQL*Plus.**

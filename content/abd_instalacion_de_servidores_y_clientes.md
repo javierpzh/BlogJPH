@@ -125,7 +125,7 @@ Primeramente nos dirigimos a la máquina *servidor*, e instalamos el servidor **
 apt install mariadb-server -y
 </pre>
 
-Una vez lo hemos instalado, vamos a configurar una serie de opciones con el comando `mysql_secure_installation`. Vamos a especificarle una **contraseña de root**, vamos a **eliminar los usuarios anónimos**, vamos a especificar que queremos **activar el acceso remoto** a la base de datos, en resumen, vamos a restablecer la base de datos, con nuestras preferencias. Esta es una manera de asegurar el servicio. Aquí muestro el proceso:
+Una vez lo hemos instalado, vamos a configurar una serie de opciones con el comando `mysql_secure_installation`. Vamos a especificarle una **contraseña de root**, vamos a **eliminar los usuarios anónimos**, vamos a especificar que queremos **desactivar el acceso remoto** a la base de datos, en resumen, vamos a restablecer la base de datos, con nuestras preferencias. Esta es una manera de asegurar el servicio. Aquí muestro el proceso:
 
 <pre>
 root@servidor:/home/vagrant# mysql_secure_installation
@@ -166,7 +166,7 @@ Remove anonymous users? [Y/n] y
 Normally, root should only be allowed to connect from 'localhost'.  This
 ensures that someone cannot guess at the root password from the network.
 
-Disallow root login remotely? [Y/n] n
+Disallow root login remotely? [Y/n] y
  ... skipping.
 
 By default, MariaDB comes with a database named 'test' that anyone can
@@ -193,7 +193,7 @@ installation should now be secure.
 Thanks for using MariaDB!
 </pre>
 
-Creo un usuario propio y le asigno privilegios:
+Creo un usuario propio, le asigno privilegios y especifico que sea accesible desde cualquier dirección IP:
 
 <pre>
 root@servidor:/home/vagrant# mysql -u root -p
@@ -206,10 +206,10 @@ Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-MariaDB [(none)]> CREATE USER javier IDENTIFIED BY 'contraseña';
+MariaDB [(none)]> CREATE USER 'javier'@'%' IDENTIFIED BY 'contraseña';
 Query OK, 0 rows affected (0.001 sec)
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO 'javier';
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO 'javier'@'%';
 Query OK, 0 rows affected (0.001 sec)
 
 MariaDB [(none)]> exit
@@ -276,40 +276,68 @@ MariaDB [empresa]>
 
 Una vez tenemos creado nuestro usuario, con una serie de datos, tenemos que configurar el acceso remoto y probar a acceder a estos datos desde el cliente.
 
+Para configurar el acceso remoto a nuestro servidor *MySQL*, tenemos que modificar el fichero de configuración `/etc/mysql/mariadb.conf.d/50-server.cnf` y buscar la línea `bind-address = 127.0.0.1` y sustituirla por la siguiente:
 
+<pre>
+bind-address = 0.0.0.0
+</pre>
 
+Esto hará que el servidor escuche las peticiones que provienen de todas las direcciones IP, a diferencia del punto anterior, que estaba configurado para que solo escuchara en *localhost*.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-**Cliente**:
+Hecho esto podemos dirigirnos al **cliente**, donde vamos a instalar el cliente *MySQL*:
 
 <pre>
 apt install mariadb-client -y
 </pre>
 
+Una vez instalado, vamos a intentar acceder al usuario **javier** que hemos creado en el servidor. Recordemos que la dirección IP del servidor es la **192.168.0.32**, por tanto, para conectarnos, vamos a emplear este comando:
 
+<pre>
+mysql -h 192.168.0.32 -u javier -p
+</pre>
 
+El parámetro **-h** indica la dirección del servidor, y los parámetros **-u** y **-p**, como ya sabemos, indican el usuario y la autenticación mediante contraseña.
 
+Obtenemos este resultado:
 
+<pre>
+vagrant@cliente:~$ mysql -h 192.168.0.32 -u javier -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 40
+Server version: 10.3.27-MariaDB-0+deb10u1 Debian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]>
+</pre>
+
+Vamos a visualizar los registros de la tabla *Tiendas*:
+
+<pre>
+MariaDB [(none)]> use empresa;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [empresa]> select * from Tiendas;
++--------+-------------------+--------------+--------------+
+| Codigo | Nombre            | Especialidad | Localizacion |
++--------+-------------------+--------------+--------------+
+| 000001 | Javi s Pet        | Animales     | Sevilla      |
+| 000002 | Javi s Sport      | Deportes     | Cordoba      |
+| 000003 | Javi s Food       | Comida       | Granada      |
+| 000004 | Javi s Technology | Tecnologia   | Cadiz        |
+| 000005 | Javi s Clothes    | Ropa         | Huelva       |
++--------+-------------------+--------------+--------------+
+5 rows in set (0.001 sec)
+
+MariaDB [empresa]>
+</pre>
+
+El resultado es el esperado, y por tanto, ya hemos terminado este ejercicio donde hemos configurado el acceso desde un cliente a un servidor remoto *MySQL*.
 
 - **Prueba desde un cliente remoto de SQL*Plus.**
 

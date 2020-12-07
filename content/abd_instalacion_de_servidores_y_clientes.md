@@ -274,6 +274,8 @@ MariaDB [empresa]> select * from Tiendas;
 MariaDB [empresa]>
 </pre>
 
+Una vez tenemos creado nuestro usuario, con una serie de datos, tenemos que configurar el acceso remoto y probar a acceder a estos datos desde el cliente.
+
 
 
 

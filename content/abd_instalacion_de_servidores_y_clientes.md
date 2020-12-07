@@ -21,7 +21,7 @@ Tags: Base de Datos, Oracle, MySQL, PostgreSQL, MongoDB
 
 - **Instalación de un servidor de ORACLE 19c**
 
-Vamos a llevar a cabo la instalación de **Oracle** en su versión **19c**. Esta instalación se hará sobre un sistema **Windows 10**.
+Vamos a llevar a cabo la instalación de **Oracle** en su versión **19c**. Esta instalación se hará sobre un sistema **Windows 10**, que se ejecuraá en una máquina virtual conectada en mod puente a mi red local.
 
 Lo primero que debemos hacer, sería descargarnos el paquete de instalación desde la [web oficial de Oracle](https://www.oracle.com/es/database/technologies/oracle-database-software-downloads.html#19c), para realizar la descarga nos hará falta estar registrados como usuarios de *Oracle*.
 
@@ -39,7 +39,7 @@ Una vez haya terminado de cargar el instalador de *Oracle*, se nos abrirá este 
 
 ![.](images/abd_instalacion_de_servidores_y_clientes/oracle_instalacion1.png)
 
-Seleccionamos de que tipo de sistema queremos disponer, en mi caso, selecciono ......
+Seleccionamos de que tipo de sistema queremos disponer, en mi caso, selecciono la *clase de escritorio* ya que, si seleccionara la *case servidor*, el propio *Oracle* nos realizaría todo el proceso de configuración para el acceso remoto, y esto prefiero mostrar como hacerlo manualmente.
 
 ![.](images/abd_instalacion_de_servidores_y_clientes/oracle_instalacion2.png)
 
@@ -64,7 +64,12 @@ sqlplus
 Yo accedo mediante esta segunda opción. Como es la primera vez que vamos a acceder, debemos hacerlo mediante el usuario **system** que nos lo crea por defecto y es administrador. Una vez en él, crearé un usuario personal y le asignaré permisos:
 
 <pre>
-SQL*Plus: Release 19.0.0.0.0 - Production on Sßb Dic 5 19:04:22 2020
+Microsoft Windows [Versión 10.0.19042.572]
+(c) 2020 Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\javier>sqlplus
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Lun Dic 7 16:43:18 2020
 Version 19.3.0.0.0
 
 Copyright (c) 1982, 2019, Oracle.  All rights reserved.
@@ -96,7 +101,9 @@ Ya tenemos nuestro usuario disponible, en mi caso, voy a acceder a él y a crear
 
 - **Prueba desde un cliente remoto de SQL*Plus.**
 
+He creado otra máquina virtual con **Windows 10**, que en este caso, actuará como cliente que accederá al servidor creado anteriormente. También está conectada en modo puente a mi red doméstica, por lo que tiene totalmente accesible al servidor y viceversa. En esta segunda máquina he instalado *Oracle* de igual manera que en la primera.
 
+**Servidor**:
 
 <pre>
 C:\Users\javier>lsnrctl start

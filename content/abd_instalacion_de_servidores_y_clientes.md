@@ -260,7 +260,7 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 MariaDB [(none)]>
 </pre>
 
-Una vez en el nuevo usuario, vamos a crear una base de datos de prueba llamada *empresa*:
+Hemos accedido a nuestro servidor con el nuevo usuario, ahora vamos a crear una base de datos de prueba llamada *empresa*:
 
 <pre>
 MariaDB [(none)]> create database empresa;

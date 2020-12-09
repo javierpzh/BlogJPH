@@ -649,10 +649,39 @@ config  0.000GB
 local   0.000GB
 </pre>
 
-Nos conectamos a la base de datos **empresa_mongo** que acabamos de crear:
+Ahora vamos a crear la nueva base de datos que recibirá el nombre de **empresa_mongo**:
+
+<pre>
+/> use empresa_mongodb
+switched to db empresa_mongodb
+</pre>
+
+Vemos como nos indican mediante un mensaje, que hemos cambiado a trabajar con esta nueva base de datos, que supuestamente debería haber creado.
+
+Para asegurarnos que la ha creado, vamos a volver a listar las bases de datos existentes:
+
+<pre>
+/> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+</pre>
+
+Vaya, no aparece **empresa_mongo**. Aquí viene un apunte importante. *MongoDB* detecta las bases de datos que contienen algún registro en ellas, de manera que si una base de datos se encuentra vacía, no la muestra.
+
+Me gustaría hacer un apunte un poco fuera del guión, y es que, en realidad, en *MongoDB* al no ser una base de datos relacional, las bases de datos no reciben este nombre como tal, sino que se llaman **Colecciones** y sus registros, **Documentos**. Nos parecerá un poco extraño, ya que seguramente estemos más habituados a las bases de datos relacionales, que son las que hemos visto en los ejercicios anteriores.
+
+Una vez dentro de esta nueva *colección*, primeramente vamos a crear un nuevo usuario, para así no tener que trabajar con el administrador.
+
+<pre>
+/> db.createUser({user: "javier_empresario", pwd: "contraseña", roles: ["dbOwner"]})
+Successfully added user: { "user" : "javier_empresario", "roles" : [ "dbOwner" ] }
+</pre>
+
+vamos a insertarle algunos documentos a través de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptmongodb.txt).
+
+
 
 <pre>
 
 </pre>
-
-Una vez dentro, vamos a crear las tablas y a insertarle los registros a través de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptmongodb.txt).

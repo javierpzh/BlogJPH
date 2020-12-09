@@ -533,7 +533,7 @@ apt install gnupg -y
 wget https://www.mongodb.org/static/pgp/server-4.4.asc -qO- | sudo apt-key add -
 </pre>
 
-nano /etc/apt/sources.list.d/mongodb-org.list
+`/etc/apt/sources.list.d/mongodb-org.list`:
 
 <pre>
 deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main
@@ -694,6 +694,85 @@ switched to db empresa_mongodb
 
 Es el momento de crear algunas *colecciones* e insertarle algunos *documentos*. Lo llevaré a cabo a través de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptmongodb.txt).
 
-<pre>
+En este punto, vamos a configurar el acceso remoto para intentar acceder a estos datos desde la máquina **cliente**.
 
+Para hacer esto, debemos modificar el fichero `/etc/mongod.conf` y buscar el bloque llamado **Network interfaces** y sustituirle el valor del campo *bindIP*, que por defecto tendrá el valor *127.0.0.1*, es decir *localhost*. Si queremos permitir el acceso remoto, debe quedar así:
+
+<pre>
+# network interfaces
+net:
+  port: 27017
+  bindIp: 0.0.0.0
+</pre>
+
+Después de esto, hay que reiniciar el servicio:
+
+<pre>
+systemctl restart mongod
+</pre>
+
+Desde la máquina cliente:
+
+<pre>
+root@cliente:~# mongo --host 192.168.0.39 --authenticationDatabase "empresa_mongodb" -u javier_empresario -p
+MongoDB shell version v4.4.2
+Enter password:
+connecting to: mongodb://192.168.0.39:27017/?authSource=empresa_mongodb&compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("4b97badb-bc4c-4479-b843-e6da44c97f51") }
+MongoDB server version: 4.4.2
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+	https://docs.mongodb.com/
+Questions? Try the MongoDB Developer Community Forums
+	https://community.mongodb.com
+
+/> show dbs
+empresa_mongodb  0.000GB
+
+/> use empresa_mongodb
+switched to db empresa_mongodb
+
+/> show collections
+Empleados
+Estudios
+Productos
+
+/> db.Productos.find().pretty()
+{
+	"_id" : ObjectId("5fd10b94364af274079c314b"),
+	"Nombre" : "Javi s Phone 1",
+	"Tipo" : "Telefono",
+	"Descripcion" : "4,7 Pulgadas, Procesador 4 nucleos, 2 GB RAM",
+	"Precio" : 175
+}
+{
+	"_id" : ObjectId("5fd10b95364af274079c314c"),
+	"Nombre" : "Javi s Phone 2",
+	"Tipo" : "Telefono",
+	"Descripcion" : "5,8 Pulgadas, Procesador 6 nucleos, 4 GB RAM",
+	"Precio" : 390
+}
+{
+	"_id" : ObjectId("5fd10b95364af274079c314d"),
+	"Nombre" : "Javi s Phone 3",
+	"Tipo" : "Telefono",
+	"Descripcion" : "6,1 Pulgadas, Procesador 8 nucleos, 6 GB RAM",
+	"Precio" : 600
+}
+{
+	"_id" : ObjectId("5fd10b95364af274079c314e"),
+	"Nombre" : "Javi s PC 1",
+	"Tipo" : "Ordenador",
+	"Descripcion" : "15,7 Pulgadas, Procesador 6 nucleos 12 hilos, 16 GB RAM",
+	"Precio" : 950
+}
+{
+	"_id" : ObjectId("5fd10b95364af274079c314f"),
+	"Nombre" : "Javi s PC 2",
+	"Tipo" : "Ordenador",
+	"Descripcion" : "13,7 Pulgadas, Procesador 4 nucleos 8 hilos, 8 GB RAM",
+	"Precio" : 450
+}
+/>
 </pre>

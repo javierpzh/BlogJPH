@@ -669,9 +669,9 @@ local   0.000GB
 
 Vaya, no aparece **empresa_mongodb**. Aquí viene un apunte importante. *MongoDB* detecta las bases de datos que contienen algún registro en ellas, de manera que si una base de datos se encuentra vacía, no la muestra.
 
-Me gustaría hacer un apunte un poco fuera del guión, y es que, en realidad, en *MongoDB* al no ser una base de datos relacional, las bases de datos no reciben este nombre como tal, sino que se llaman **Colecciones** y sus registros, **Documentos**. Nos parecerá un poco extraño, ya que seguramente estemos más habituados a las bases de datos relacionales, que son las que hemos visto en los ejercicios anteriores.
+Me gustaría hacer un apunte un poco fuera del guión, y es que, en realidad, en *MongoDB* al no ser una base de datos relacional, las tablas de las bases de datos no reciben este nombre como tal, sino que se llaman **Colecciones** y sus registros, **Documentos**. Nos parecerá un poco extraño, ya que seguramente estemos más habituados a las bases de datos relacionales, que son las que hemos visto en los ejercicios anteriores.
 
-Una vez dentro de esta nueva *colección*, primeramente vamos a crear un nuevo usuario, para así no tener que trabajar con el administrador.
+Una vez dentro de esta nueva base de datos, primeramente vamos a crear un nuevo usuario, para así no tener que trabajar con el administrador.
 
 <pre>
 /> db.createUser({user: "javier_empresario", pwd: "contraseña", roles: ["dbOwner"]})
@@ -692,9 +692,7 @@ MongoDB server version: 4.4.2
 switched to db empresa_mongodb
 </pre>
 
-Es el momento de insertarle algunos documentos a través de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptmongodb.txt).
-
-
+Es el momento de crear algunas *colecciones* e insertarle algunos *documentos*. Lo llevaré a cabo a través de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptmongodb.txt).
 
 <pre>
 

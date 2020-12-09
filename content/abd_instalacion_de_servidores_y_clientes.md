@@ -649,7 +649,7 @@ config  0.000GB
 local   0.000GB
 </pre>
 
-Ahora vamos a crear la nueva base de datos que recibirá el nombre de **empresa_mongo**:
+Ahora vamos a crear la nueva base de datos que recibirá el nombre de **empresa_mongodb**:
 
 <pre>
 /> use empresa_mongodb
@@ -667,7 +667,7 @@ config  0.000GB
 local   0.000GB
 </pre>
 
-Vaya, no aparece **empresa_mongo**. Aquí viene un apunte importante. *MongoDB* detecta las bases de datos que contienen algún registro en ellas, de manera que si una base de datos se encuentra vacía, no la muestra.
+Vaya, no aparece **empresa_mongodb**. Aquí viene un apunte importante. *MongoDB* detecta las bases de datos que contienen algún registro en ellas, de manera que si una base de datos se encuentra vacía, no la muestra.
 
 Me gustaría hacer un apunte un poco fuera del guión, y es que, en realidad, en *MongoDB* al no ser una base de datos relacional, las bases de datos no reciben este nombre como tal, sino que se llaman **Colecciones** y sus registros, **Documentos**. Nos parecerá un poco extraño, ya que seguramente estemos más habituados a las bases de datos relacionales, que son las que hemos visto en los ejercicios anteriores.
 
@@ -678,7 +678,19 @@ Una vez dentro de esta nueva *colección*, primeramente vamos a crear un nuevo u
 Successfully added user: { "user" : "javier_empresario", "roles" : [ "dbOwner" ] }
 </pre>
 
-vamos a insertarle algunos documentos a través de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptmongodb.txt).
+Salimos y entramos con el usuario **javier_empresario**. En este caso, como hemos especificado que este usuario solo pueda acceder a la base de datos **empresa_mongodb**, tendremos que hacer uso del parámetro **--authenticationDatabase** que indica a que **colección** nos conectaremos:
+
+<pre>
+root@servidor:~# mongo --authenticationDatabase "empresa_mongodb" -u javier_empresario -p
+MongoDB shell version v4.4.2
+Enter password:
+connecting to: mongodb://127.0.0.1:27017/?authSource=empresa_mongodb&compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("40c042b7-2ca1-4089-a234-b708db8e888b") }
+MongoDB server version: 4.4.2
+/>
+</pre>
+
+Es el momento de insertarle algunos documentos a través de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptmongodb.txt).
 
 
 

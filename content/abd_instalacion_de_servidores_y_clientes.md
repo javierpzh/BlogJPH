@@ -1,5 +1,5 @@
 Title: Instalación de Servidores y Clientes de bases de datos
-Date: 2020/12/04
+Date: 2020/12/08
 Category: Administración de Base de Datos
 Header_Cover: theme/images/banner-basededatos.png
 Tags: Base de Datos, Oracle, MySQL, PostgreSQL, MongoDB
@@ -492,3 +492,37 @@ Si accedemos a la dirección `.../phppgadmin` en nuestro navegador e iniciamos s
 Podemos ver como nuestra aplicación nos muestra las bases de datos existentes en el servidor, y podemos eliminarlas, modificarlas y establecer privilegios, entre otras cosas, ya que también podemos realizar consultas, ...
 
 #### Instalación de una herramienta de administración web para MongoDB y prueba desde un cliente remoto
+
+Lo primero que voy a hacer, sería crear las dos máquinas virtuales con las que vamos a trabajar en este ejercicio. Como siempre, una actuará como servidor y la otra como cliente. Las dos *mv* están creadas con **Vagrant** con un sistema **Debian 10**, y conectadas a la misma red local. Este es el fichero *Vagrantfile*:
+
+<pre>
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define :servidor do |servidor|
+        servidor.vm.box="debian/buster64"
+        servidor.vm.hostname="servidor"
+    servidor.vm.network :public_network, :bridge=>"wlo1"
+  end
+
+  config.vm.define :cliente do |cliente|
+        cliente.vm.box="debian/buster64"
+        cliente.vm.hostname="cliente"
+    cliente.vm.network :public_network, :bridge=>"wlo1"
+  end
+
+end
+</pre>
+
+Las direcciones IP de ambas máquinas son:
+
+- **Servidor:** 192.168.0.39
+
+- **Cliente:** 192.168.0.40
+
+Una vez tenemos operativas ambas máquinas, nos dirigimos a la que va a tener el rol de **servidor**, y procedemos con la instalación de **MongoDB**:
+
+<pre>
+
+</pre>

@@ -1,5 +1,5 @@
 Title: Despliegue de aplicaciones Python
-Date: 2020/11/30
+Date: 2020/12/09
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: Django, Python, virtualenv
@@ -10,17 +10,17 @@ Tags: Django, Python, virtualenv
 
 - **Realiza un *fork* del repositorio de GitHub: `https://github.com/josedom24/django_tutorial`.**
 
-
-
 - **Crea un entorno virtual de *python3* e instala las dependencias necesarias para que funcione el proyecto (fichero `requirements.txt`).**
 
-Tras hacer el *fork* del repositorio, vamos a clonarlo y a crear dentro de la carpeta que obtendremos un entorno virtual en el que trabajaremos:
+Tras hacer el *fork* del repositorio, vamos a clonarlo y a crear dentro de la carpeta que obtendremos, un entorno virtual en el que trabajaremos:
 
 Para crear un entorno virtual necesitamos tener instalado este paquete:
 
 <pre>
 apt install python3-venv -y
 </pre>
+
+Una vez lo tenemos instalado, vamos a clonar el repositorio y a crear el entorno virtual:
 
 <pre>
 javier@debian:~/entornos_virtuales$ git clone git@github.com:javierpzh/django_tutorial.git

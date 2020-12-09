@@ -678,7 +678,7 @@ Una vez dentro de esta nueva *colección*, primeramente vamos a crear un nuevo u
 Successfully added user: { "user" : "javier_empresario", "roles" : [ "dbOwner" ] }
 </pre>
 
-Salimos y entramos con el usuario **javier_empresario**. En este caso, como hemos especificado que este usuario solo pueda acceder a la base de datos **empresa_mongodb**, tendremos que hacer uso del parámetro **--authenticationDatabase** que indica a que **colección** nos conectaremos:
+Salimos y entramos con el usuario **javier_empresario**. En este caso, como este usuario ha sido creado en la base de datos **empresa_mongodb**, tendremos que hacer uso del parámetro **--authenticationDatabase** e indicar donde se encuentra el nuevo usuario. Acto después seleccionamos usar **empresa_mongodb**:
 
 <pre>
 root@servidor:~# mongo --authenticationDatabase "empresa_mongodb" -u javier_empresario -p
@@ -687,7 +687,9 @@ Enter password:
 connecting to: mongodb://127.0.0.1:27017/?authSource=empresa_mongodb&compressors=disabled&gssapiServiceName=mongodb
 Implicit session: session { "id" : UUID("40c042b7-2ca1-4089-a234-b708db8e888b") }
 MongoDB server version: 4.4.2
-/>
+
+/> use empresa_mongodb
+switched to db empresa_mongodb
 </pre>
 
 Es el momento de insertarle algunos documentos a través de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptmongodb.txt).

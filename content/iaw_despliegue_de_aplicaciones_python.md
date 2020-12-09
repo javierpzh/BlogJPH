@@ -348,6 +348,35 @@ Superuser created successfully.
 
 - **Configura un *virtualhost* en *Apache* con la configuración adecuada para que funcione la aplicación. El punto de entrada de nuestro servidor será `django_tutorial/django_tutorial/wsgi.py`. Puedes guiarte por el [Ejercicio: Desplegando aplicaciones flask](https://fp.josedomingo.org/iawgs/u03/flask.html), por la documentación de *Django*: [How to use Django with Apache and mod_wsgi](https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/modwsgi/),…**
 
+<pre>
+apt install libapache2-mod-wsgi-py3
+</pre>
+
+Activamos el módulo que acabamos de instalar:
+
+<pre>
+a2enmod wsgi
+</pre>
+
+Creación del fichero WSGI
+
+Lo primero que vamos a hacer es crear el fichero **WSGI**, que vamos a llamar `app.wsgi` y estará en mi caso, en `/srv/www/django_tutorial` y tendrá el siguiente contenido:
+
+<pre>
+from app import app as application
+</pre>
+
+El primer `app` corresponde con el nombre del módulo, es decir del fichero del programa, en nuestro caso se llama `app.py`. El segundo `app` corresponde a la aplicación flask creada en `app.py: app = Flask(__name__)`. Importamos la aplicación flask, pero la llamamos `application` necesario para que el servidor web pueda enviarle peticiones.
+
+**configuración de Apache2**:
+
+En el fichero de configuración de nuestro *virtualhost*:
+
+<pre>
+
+</pre>
+
+
 
 
 - **Debes asegurarte que el contenido estático se está sirviendo: ¿Se muestra la imagen de fondo de la aplicación? ¿Se ve de forma adecuada la hoja de estilo de la zona de administración? Para arreglarlo puedes encontrar documentación en [How to use Django with Apache and mod_wsgi](https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/modwsgi/).**

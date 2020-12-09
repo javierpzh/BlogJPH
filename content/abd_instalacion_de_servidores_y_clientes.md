@@ -583,3 +583,76 @@ The server generated these startup warnings when booting:
 ---
 />
 </pre>
+
+Una vez hemos accedido al servidor, lo primero que debemos hacer es crear un usuario administrador con contraseña. Para hacer esto, nos conectamos a la base de datos **admin**:
+
+<pre>
+/> use admin
+switched to db admin
+/>
+</pre>
+
+Y una vez aquí, creamos el usuario con la siguiente línea:
+
+<pre>
+/> db.createUser({user: "javier", pwd: "contraseña", roles: [{role: "root", db: "admin"}]})
+Successfully added user: {
+	"user" : "javier",
+	"roles" : [
+		{
+			"role" : "root",
+			"db" : "admin"
+		}
+	]
+}
+/>
+</pre>
+
+Vemos como hemos creado correctamente el usuario administrador. Antes de acceder con este usuario, vamos a modificar el fichero de configuración de *MongoDB*, que se encuentra en `/etc/mongod.conf`. Para aumentar la seguridad, debemos descomentar la línea `security:` y añadirle la siguiente directiva, esto hará que al intentar acceder a cualquier base de datos, nos pida una autenticación *usuario/contraseña*. La línea debe quedar así:
+
+<pre>
+security:
+  authorization: enabled
+</pre>
+
+Después de esto, hay que reiniciar el servicio:
+
+<pre>
+systemctl restart mongod
+</pre>
+
+Ahora sí, probamos a acceder con este nuevo usuario:
+
+<pre>
+root@servidor:~# mongo -u javier
+MongoDB shell version v4.4.2
+Enter password:
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("66ad3221-76d2-4e5f-b88b-1a3759309f58") }
+MongoDB server version: 4.4.2
+...
+/>
+</pre>
+
+Accedemos exitosamente a nuestro nuevo usuario. Si nos fijamos, hemos vuelto a hacer uso del parámetro **-u** para indicar el usuario.
+
+Una vez tenemos nuestro nuevo usuario vamos a crear una base de datos de prueba y vamos crear algunas tablas que rellenaremos con una serie de registros.
+
+¿Recordáis que antes para acceder a la base de datos **admin**, hicimos uso del comando `use`? Bien, pues para crear una nueva base de datos, actuamos de igual manera, de forma que `use` buscará entre las bases de datos existentes la que hemos introducido, y en el caso de que no exista ninguna, la creará automáticamente.
+
+Sabiendo esto, vamos a listar las bases de datos que ya existen en nuestro servidor:
+
+<pre>
+/> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+</pre>
+
+Nos conectamos a la base de datos **empresa_mongo** que acabamos de crear:
+
+<pre>
+
+</pre>
+
+Una vez dentro, vamos a crear las tablas y a insertarle los registros a través de este [script](images/abd_instalacion_de_servidores_y_clientes/scriptmongodb.txt).

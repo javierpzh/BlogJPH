@@ -484,10 +484,12 @@ Accedemos a la página `/admin`:
 
 **1. Modifica la página inicial donde se ven las encuestas para que aparezca tu nombre: Para ello modifica el archivo `django_tutorial/polls/templates/polls/index.html`.**
 
+Vamos a realizar la modificación en el entorno de desarrollo y luego la subiríamos al entorno de producción.
+
 Modificamos el fichero:
 
 <pre>
-nano django_tutorial/polls/templates/polls/index.html
+(django) javier@debian:~/entornos_virtuales/django_tutorial$ nano polls/templates/polls/index.html
 </pre>
 
 He introducido esta línea en él:
@@ -498,9 +500,39 @@ He introducido esta línea en él:
 
 **Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
-Si accedemos ahora la página `/polls`:
+Si accedemos ahora la página `/polls` en el entorno de desarrollo:
+
+![.](images/iaw_despliegue_de_aplicaciones_python/django_polls_desarrollo_nombre.png)
+
+Vemos que el cambio lo hemos realizado correctamente, por tanto, podríamos llevárnoslo al entorno de producción. Para hacer esto:
+
+<pre>
+(django) javier@debian:~/entornos_virtuales/django_tutorial$ git commit -am "cambio"
+[master 7853b02] cambio
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+(django) javier@debian:~/entornos_virtuales/django_tutorial$ git push
+...
+</pre>
+
+Tan solo nos quedaría descargar los cambios en el entorno de producción:
+
+<pre>
+(django2) root@aplicacion-python:/srv/www/django_tutorial# git pull
+...
+</pre>
+
+Reiniciamos el servicio:
+
+<pre>
+systemctl restart apache2.service
+</pre>
+
+Si accedemos ahora la página `/polls` en el entorno de producción:
 
 ![.](images/iaw_despliegue_de_aplicaciones_python/django_polls_produccion_nombre.png)
+
+Ya habríamos subido el cambio.
 
 **2. Modifica la imagen de fondo que se ve la aplicación.**
 

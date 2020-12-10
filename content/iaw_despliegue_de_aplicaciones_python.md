@@ -230,9 +230,7 @@ Instalamos el módulo para que *MySQL* trabaje con *Python* con este comando:
 apt install python3-mysqldb -y
 </pre>
 
-**Y en el entorno virtual:**
-
-Instalamos el módulo para que *MySQL* funcione con *Python* en el entorno virtual con este comando:
+En el entorno virtual también tenemos que instalar el módulo para que *MySQL* trabaje con *Python*:
 
 <pre>
 pip install mysql-connector-python

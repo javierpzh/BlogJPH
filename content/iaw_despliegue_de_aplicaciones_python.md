@@ -627,6 +627,8 @@ Running migrations:
 
 - **Despliega el cambio producido al crear la nueva tabla en el entorno de producción.**
 
+Vamos a subir los cambios desde el entorno de desarrollo:
+
 <pre>
 (django) javier@debian:~/entornos_virtuales/django_tutorial$ git add *
 ...
@@ -638,7 +640,7 @@ Running migrations:
 ...
 </pre>
 
-
+Y por último, nos bajamos los cambios al entorno de producción:
 
 <pre>
 (django2) root@aplicacion-python:/srv/www/django_tutorial# git pull
@@ -647,6 +649,6 @@ Running migrations:
 (django2) root@aplicacion-python:/srv/www/django_tutorial# systemctl restart apache2.service
 </pre>
 
-Si accedemos a la página `/admin`:
+Si accedemos a la página `/admin` del entorno de producción:
 
 ![.](images/iaw_despliegue_de_aplicaciones_python/django_polls_produccion_categorias.png)

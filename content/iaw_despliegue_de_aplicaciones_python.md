@@ -571,6 +571,8 @@ Ya habríamos subido el cambio.
 
 - **Añade un nuevo modelo al fichero `polls/models.py`:**
 
+Añadimos al fichero `polls/models.py` de nuestro entorno de desarrollo el siguiente bloque:
+
 <pre>
 class Categoria(models.Model):
 	Abr = models.CharField(max_length=4)
@@ -582,30 +584,65 @@ class Categoria(models.Model):
 
 - **Crea una nueva migración: `python3 manage.py makemigrations`.**
 
-
+<pre>
+(django) javier@debian:~/entornos_virtuales/django_tutorial$ python3 manage.py makemigrations
+Migrations for 'polls':
+  polls/migrations/0002_categoria.py
+    - Create model Categoria
+</pre>
 
 - **Y realiza la migración: `python3 manage.py migrate`**
 
+<pre>
+(django) javier@debian:~/entornos_virtuales/django_tutorial$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, polls, sessions
+Running migrations:
+  Applying polls.0002_categoria... OK
+</pre>
+
 - **Añade el nuevo modelo al sitio de administración de django:**
 
-**Para ello cambia la siguiente línea en el fichero `polls/admin.py`:**
+    - **Para ello cambia la siguiente línea en el fichero `polls/admin.py`:**
 
-<pre>
-from .models import Choice, Question
-</pre>
+    <pre>
+    from .models import Choice, Question
+    </pre>
 
-**Por esta otra:**
+    - **Por esta otra:**
 
-<pre>
-from .models import Choice, Question, Categoria
-</pre>
+    <pre>
+    from .models import Choice, Question, Categoria
+    </pre>
 
-**Y añade al final la siguiente línea:**
+    - **Y añade al final la siguiente línea:**
 
-<pre>
-admin.site.register(Categoria)
-</pre>
+    <pre>
+    admin.site.register(Categoria)
+    </pre>
 
 - **Despliega el cambio producido al crear la nueva tabla en el entorno de producción.**
 
-**Explica los cambios que has realizado en el entorno de desarrollo y cómo lo has desplegado en producción para cada una de las modificaciones.**
+<pre>
+(django) javier@debian:~/entornos_virtuales/django_tutorial$ git add *
+...
+
+(django) javier@debian:~/entornos_virtuales/django_tutorial$ git commit -am "cambio"
+...
+
+(django) javier@debian:~/entornos_virtuales/django_tutorial$ git push
+...
+</pre>
+
+
+
+<pre>
+(django2) root@aplicacion-python:/srv/www/django_tutorial# git pull
+...
+
+(django2) root@aplicacion-python:/srv/www/django_tutorial# systemctl restart apache2.service
+</pre>
+
+Si accedemos a la página `/admin`:
+
+![.](images/iaw_despliegue_de_aplicaciones_python/django_polls_produccion_categorias.png)

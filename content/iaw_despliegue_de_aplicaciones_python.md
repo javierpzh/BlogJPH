@@ -522,12 +522,6 @@ Tan solo nos quedaría descargar los cambios en el entorno de producción:
 ...
 </pre>
 
-Reiniciamos el servicio:
-
-<pre>
-systemctl restart apache2.service
-</pre>
-
 Si accedemos ahora la página `/polls` en el entorno de producción:
 
 ![.](images/iaw_despliegue_de_aplicaciones_python/django_polls_produccion_nombre.png)
@@ -536,7 +530,42 @@ Ya habríamos subido el cambio.
 
 **2. Modifica la imagen de fondo que se ve la aplicación.**
 
+Vamos a realizar la modificación en el entorno de desarrollo y luego la subiríamos al entorno de producción.
 
+La imagen que se está sirviendo actualmente, se encuentra en la ruta `/polls/static/polls/images/` con el nombre `background.jpg`. Para no complicarme mucho y no tener que tocar la hoja de estilo, voy a renombrar esta imagen y asignarle a la nueva imagen su nombre.
+
+<pre>
+(django) javier@debian:~/entornos_virtuales/django_tutorial/polls/static/polls/images$ mv background.jpg background2.jpg
+</pre>
+
+Una vez hemos insertado en esa ruta la nueva imagen, vamos a visualizar la página `polls`:
+
+![.](images/iaw_despliegue_de_aplicaciones_python/django_polls_desarrollo_imagen.png)
+
+Vemos que el cambio lo hemos realizado correctamente, por tanto, podríamos llevárnoslo al entorno de producción. Para hacer esto:
+
+<pre>
+(django) javier@debian:~/entornos_virtuales/django_tutorial$ git commit -am "cambio"
+[master 8bf76d8] cambio
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rewrite polls/static/polls/images/background.jpg (92%)
+
+(django) javier@debian:~/entornos_virtuales/django_tutorial$ git push
+...
+</pre>
+
+Tan solo nos quedaría descargar los cambios en el entorno de producción:
+
+<pre>
+(django2) root@aplicacion-python:/srv/www/django_tutorial# git pull
+...
+</pre>
+
+Si accedemos ahora la página `/polls` en el entorno de producción:
+
+![.](images/iaw_despliegue_de_aplicaciones_python/django_polls_produccion_imagen.png)
+
+Ya habríamos subido el cambio.
 
 **3. Vamos a crear una nueva tabla en la base de datos, para ello sigue los siguientes pasos:**
 

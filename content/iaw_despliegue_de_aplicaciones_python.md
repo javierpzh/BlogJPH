@@ -224,7 +224,7 @@ Successfully installed pip-20.3
 
 - **Instala el módulo que permite que *Python* trabaje con *MySQL*:**
 
-Instalamos el módulo para que *MySQL* funcione con *Python* con este comando:
+Instalamos el módulo para que *MySQL* trabaje con *Python* con este comando:
 
 <pre>
 apt install python3-mysqldb -y

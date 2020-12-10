@@ -143,7 +143,7 @@ Y con esto ya habríamos creado las dos preguntas con las respuestas. Aquí lo p
 
 ![.](images/iaw_despliegue_de_aplicaciones_python/django_preguntas_creadas.png)
 
-- **Comprueba en el navegador que la aplicación está funcionando, accede a la url `\polls`.**
+- **Comprueba en el navegador que la aplicación está funcionando, accede a la URL `\polls`.**
 
 Después de haber generado las dos nuevas preguntas, si nos dirigimos a la dirección `http://127.0.0.1:8000/polls`, podemos ver que nos aparecen ambas:
 
@@ -367,9 +367,9 @@ MariaDB [db_django]>
 
 Efectivamente, hemos migrados los datos a nuestra nueva base de datos.
 
-- **Crea un usuario administrador: `python3 manage.py createsuperuser`.**
+- **Crea un usuario administrador:**
 
-Creamos el nuevo usuario administrador:
+Creamos el nuevo usuario administrador con el siguiente comando:
 
 <pre>
 (django2) root@aplicacion-python:/srv/www/django_tutorial# python3 manage.py createsuperuser
@@ -582,7 +582,9 @@ class Categoria(models.Model):
 		return self.Abr+" - "+self.Nombre 		
 </pre>
 
-- **Crea una nueva migración: `python3 manage.py makemigrations`.**
+- **Crea una nueva migración:**
+
+Creamos una nueva migración con el siguiente comando:
 
 <pre>
 (django) javier@debian:~/entornos_virtuales/django_tutorial$ python3 manage.py makemigrations
@@ -591,7 +593,9 @@ Migrations for 'polls':
     - Create model Categoria
 </pre>
 
-- **Y realiza la migración: `python3 manage.py migrate`**
+- **Y realiza la migración:**
+
+Realizamos la migración:
 
 <pre>
 (django) javier@debian:~/entornos_virtuales/django_tutorial$ python manage.py migrate

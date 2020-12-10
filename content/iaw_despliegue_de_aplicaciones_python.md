@@ -303,7 +303,7 @@ DATABASES = {
         'USER': 'django',
         'PASSWORD': 'djangopassword',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '3306',
     }
 }
 </pre>
@@ -419,8 +419,17 @@ El fichero de configuración de nuestro *virtualhost* debe ser algo así:
 </VirtualHost>
 </pre>
 
+Reiniciamos el servicio para que se apliquen los cambios:
+
+<pre>
+
+</pre>
+
+Si probamos a acceder a la dirección de la web, en mi caso `172.22.200.253/admin`:
+
 ![.](images/iaw_despliegue_de_aplicaciones_python/django_admin_produccion.png)
 
+Vemos como nos muestra la aplicación pero sin su hoja de estilo.
 
 - **Debes asegurarte que el contenido estático se está sirviendo: ¿Se muestra la imagen de fondo de la aplicación? ¿Se ve de forma adecuada la hoja de estilo de la zona de administración? Para arreglarlo puedes encontrar documentación en [How to use Django with Apache and mod_wsgi](https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/modwsgi/).**
 

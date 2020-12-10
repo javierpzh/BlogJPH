@@ -97,8 +97,6 @@ Ya habríamos creado el nuevo administrador.
 
 - **Ejecuta el servidor web de desarrollo y entra en la zona de administración (`\admin`) para comprobar que los datos se han añadido correctamente.**
 
-Es momento de intentar acceder con el usuario administrador creado:
-
 Ejecutamos el servidor web con este comando:
 
 <pre>

@@ -536,7 +536,7 @@ La imagen que se está sirviendo actualmente, se encuentra en la ruta `/polls/st
 (django) javier@debian:~/entornos_virtuales/django_tutorial/polls/static/polls/images$ mv background.jpg background2.jpg
 </pre>
 
-Una vez hemos insertado en esa ruta la nueva imagen, vamos a visualizar la página `polls`:
+Una vez hemos insertado en esa ruta la nueva imagen, vamos a visualizar la página `/polls`:
 
 ![.](images/iaw_despliegue_de_aplicaciones_python/django_polls_desarrollo_imagen.png)
 

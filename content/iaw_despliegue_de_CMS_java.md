@@ -22,7 +22,7 @@ Tags: CMS, Java
 
 
 
-#### Realiza la configuración necesaria en Apache2 y tomcat (**utilizando el protocolo AJP**) para que la aplicación sea servida por el servidor web.
+#### Realiza la configuración necesaria en Apache2 y tomcat (utilizando el protocolo AJP) para que la aplicación sea servida por el servidor web.
 
 
 

@@ -530,7 +530,7 @@ Ya habríamos subido el cambio.
 
 Vamos a realizar la modificación en el entorno de desarrollo y luego la subiríamos al entorno de producción.
 
-La imagen que se está sirviendo actualmente, se encuentra en la ruta `/polls/static/polls/images/` con el nombre `background.jpg`. Para no complicarme mucho y no tener que tocar la hoja de estilo, voy a renombrar esta imagen y asignarle a la nueva imagen su nombre.
+La imagen que se está sirviendo actualmente, se encuentra en la ruta `/polls/static/polls/images` con el nombre `background.jpg`. Para no complicarme mucho y no tener que tocar la hoja de estilo, voy a renombrar esta imagen y asignarle a la nueva imagen su nombre.
 
 <pre>
 (django) javier@debian:~/entornos_virtuales/django_tutorial/polls/static/polls/images$ mv background.jpg background2.jpg

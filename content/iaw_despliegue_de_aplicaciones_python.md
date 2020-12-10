@@ -2,7 +2,7 @@ Title: Despliegue de aplicaciones Python
 Date: 2020/12/09
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
-Tags: Django, Python, virtualenv
+Tags: Django, Python, virtualenv, git
 
 ## Tarea 1: Entorno de desarrollo
 

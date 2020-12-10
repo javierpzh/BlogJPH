@@ -435,6 +435,18 @@ Vemos como nos muestra la aplicación pero sin su hoja de estilo.
 
 - **Debes asegurarte que el contenido estático se está sirviendo: ¿Se muestra la imagen de fondo de la aplicación? ¿Se ve de forma adecuada la hoja de estilo de la zona de administración? Para arreglarlo puedes encontrar documentación en [How to use Django with Apache and mod_wsgi](https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/modwsgi/).**
 
+Como hemos visto en el apartado anterior, la web no poseía hojas de estilo, por lo que debemos llevar a cabo una serie de pasos para solucionar esto.
+
+En primer lugar, para 'arreglar' la página `admin`, debemos dirigirnos a la ruta `/lib/python3.7/site-packages/django/contrib/admin/static` de nuestro entorno virtual y mover la carpeta **admin** junto a todos sus archivos a la ruta `/srv/www/django_tutorial/polls/static/`.
+
+Hecho esto, si accedemos de nuevo a la página `/admin`:
+
+![.](images/iaw_despliegue_de_aplicaciones_python/django_admin_produccion_conestilo.png)
+
+Ahora sí apreciamos la hoja de estilo.
+
+En este punto, aún nos faltaría solucionar el fallo para apreciar también la hojsa de estilo de `/polls`. Para ello debemos añadir en nuestro fichero de configuración del *virtualhost* el siguiente contenido:
+
 <pre>
 Alias /static/ /srv/www/django_tutorial/polls/static/
 
@@ -444,6 +456,12 @@ Alias /static/ /srv/www/django_tutorial/polls/static/
 </pre>
 
 **Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
+
+Si accedemos ahora la página `/polls`:
+
+![.](images/iaw_despliegue_de_aplicaciones_python/django_polls_produccion.png)
+
+Vemos como también poseemos hoja de estilo.
 
 - **Desactiva en la configuración (fichero `settings.py`) el modo *debug* a *False*. Para que los errores de ejecución no den información sensible de la aplicación.**
 

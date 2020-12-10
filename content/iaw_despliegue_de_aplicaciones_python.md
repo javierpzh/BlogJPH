@@ -193,7 +193,7 @@ Vamos a configurar el fichero del *virtualhost*, yo utilizo el por defecto, aunq
 root@aplicacion-python:/etc/apache2/sites-available# nano 000-default.conf
 </pre>
 
-En dicho fichero cambiamos la línea del *DocumentRoot* por la siguiente, esto sirve para indicar donde se encuentran los datos de nuestra aplicación:
+En dicho fichero cambiamos la línea del *DocumentRoot* por la siguiente, esto sirve para indicar donde se encuentran los datos de nuestra aplicación, es decir, el repositorio que hemos clonado anteriormente:
 
 <pre>
 DocumentRoot /srv/www/django_tutorial

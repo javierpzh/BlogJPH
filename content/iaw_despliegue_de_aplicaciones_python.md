@@ -394,15 +394,32 @@ Ahora activamos el módulo que acabamos de instalar:
 a2enmod wsgi
 </pre>
 
-**configuración de Apache2**:
+Hecho esto, es hora de pasar con la configuración de Apache2, mejor dicho, del *virtualhost*:
 
-En el fichero de configuración de nuestro *virtualhost*:
+El fichero de configuración de nuestro *virtualhost* debe ser algo así:
 
 <pre>
+<VirtualHost *:80>
 
+	ServerAdmin webmaster@localhost
+	DocumentRoot /srv/www/django_tutorial
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+	WSGIDaemonProcess django_app user=www-data group=www-data processes=1 threads=5 python-path=/srv/www/django_tutorial:/srv/www/django_tutorial/django2/lib/python3.7/site-packages
+	WSGIScriptAlias / /srv/www/django_tutorial/django_tutorial/wsgi.py
+
+	<Directory /srv/www/django_tutorial>
+	   WSGIProcessGroup django_app
+     WSGIApplicationGroup %{GLOBAL}
+     Require all granted
+	</Directory>
+
+</VirtualHost>
 </pre>
 
-
+![.](images/iaw_despliegue_de_aplicaciones_python/django_admin_produccion.png)
 
 
 - **Debes asegurarte que el contenido estático se está sirviendo: ¿Se muestra la imagen de fondo de la aplicación? ¿Se ve de forma adecuada la hoja de estilo de la zona de administración? Para arreglarlo puedes encontrar documentación en [How to use Django with Apache and mod_wsgi](https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/modwsgi/).**

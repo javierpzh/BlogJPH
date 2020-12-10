@@ -409,9 +409,9 @@ El fichero de configuración de nuestro *virtualhost* debe ser algo así:
 	WSGIScriptAlias / /srv/www/django_tutorial/django_tutorial/wsgi.py
 
 	<\Directory /srv/www/django_tutorial\>
-	   WSGIProcessGroup django_app
-     WSGIApplicationGroup %{GLOBAL}
-     Require all granted
+    WSGIProcessGroup django_app
+    WSGIApplicationGroup %{GLOBAL}
+    Require all granted
 	<\/Directory\>
 
 <\/VirtualHost\>

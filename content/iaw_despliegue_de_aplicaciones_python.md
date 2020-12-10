@@ -443,7 +443,7 @@ Hecho esto, si accedemos de nuevo a la página `/admin`:
 
 Ahora sí apreciamos la hoja de estilo.
 
-En este punto, aún nos faltaría solucionar el fallo para apreciar también la hojsa de estilo de `/polls`. Para ello debemos añadir en nuestro fichero de configuración del *virtualhost* el siguiente contenido:
+En este punto, aún nos faltaría solucionar el fallo para apreciar también la hoja de estilo de `/polls`. Para ello debemos añadir en nuestro fichero de configuración del *virtualhost* el siguiente contenido:
 
 <pre>
 Alias /static/ /srv/www/django_tutorial/polls/static/

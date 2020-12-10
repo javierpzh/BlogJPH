@@ -399,7 +399,7 @@ Hecho esto, es hora de pasar con la configuración de Apache2, mejor dicho, del 
 El fichero de configuración de nuestro *virtualhost* debe ser algo así:
 
 <pre>
-<VirtualHost *:80>
+<\VirtualHost *:80\>
 
 	ServerAdmin webmaster@localhost
 	DocumentRoot /srv/www/django_tutorial
@@ -410,19 +410,21 @@ El fichero de configuración de nuestro *virtualhost* debe ser algo así:
 	WSGIDaemonProcess django_app user=www-data group=www-data processes=1 threads=5 python-path=/srv/www/django_tutorial:/srv/www/django_tutorial/django2/lib/python3.7/site-packages
 	WSGIScriptAlias / /srv/www/django_tutorial/django_tutorial/wsgi.py
 
-	<Directory /srv/www/django_tutorial>
+	<\Directory /srv/www/django_tutorial\>
 	   WSGIProcessGroup django_app
      WSGIApplicationGroup %{GLOBAL}
      Require all granted
-	</Directory>
+	<\/Directory\>
 
-</VirtualHost>
+<\/VirtualHost\>
 </pre>
+
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
 Reiniciamos el servicio para que se apliquen los cambios:
 
 <pre>
-
+systemctl restart apache2.service
 </pre>
 
 Si probamos a acceder a la dirección de la web, en mi caso `172.22.200.253/admin`:
@@ -433,7 +435,15 @@ Vemos como nos muestra la aplicación pero sin su hoja de estilo.
 
 - **Debes asegurarte que el contenido estático se está sirviendo: ¿Se muestra la imagen de fondo de la aplicación? ¿Se ve de forma adecuada la hoja de estilo de la zona de administración? Para arreglarlo puedes encontrar documentación en [How to use Django with Apache and mod_wsgi](https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/modwsgi/).**
 
+<pre>
+Alias /static/ /srv/www/django_tutorial/polls/static/
 
+<\Directory /srv/www/django_tutorial/polls/static\>
+  Require all granted
+<\/Directory\>
+</pre>
+
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
 - **Desactiva en la configuración (fichero `settings.py`) el modo *debug* a *False*. Para que los errores de ejecución no den información sensible de la aplicación.**
 

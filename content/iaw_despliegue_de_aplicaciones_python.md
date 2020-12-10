@@ -484,9 +484,23 @@ Accedemos a la página `/admin`:
 
 **1. Modifica la página inicial donde se ven las encuestas para que aparezca tu nombre: Para ello modifica el archivo `django_tutorial/polls/templates/polls/index.html`.**
 
+Modificamos el fichero:
+
 <pre>
 nano django_tutorial/polls/templates/polls/index.html
 </pre>
+
+He introducido esta línea en él:
+
+<pre>
+<\h1\>Javier Pérez Hidalgo<\/h1\>
+</pre>
+
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
+
+Si accedemos ahora la página `/polls`:
+
+![.](images/iaw_despliegue_de_aplicaciones_python/django_polls_produccion_nombre.png)
 
 **2. Modifica la imagen de fondo que se ve la aplicación.**
 

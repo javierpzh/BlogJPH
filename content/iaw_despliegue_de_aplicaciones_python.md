@@ -652,3 +652,5 @@ Y por último, nos bajamos los cambios al entorno de producción:
 Si accedemos a la página `/admin` del entorno de producción:
 
 ![.](images/iaw_despliegue_de_aplicaciones_python/django_polls_produccion_categorias.png)
+
+Vemos como efectivamente hemos añadido en la sección *POLLS* el apartado **Categorias**.

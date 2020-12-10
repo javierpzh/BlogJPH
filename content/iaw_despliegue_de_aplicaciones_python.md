@@ -392,7 +392,7 @@ Ahora activamos el módulo que acabamos de instalar:
 a2enmod wsgi
 </pre>
 
-Hecho esto, es hora de pasar con la configuración de Apache2, mejor dicho, del *virtualhost*:
+Hecho esto, es hora de pasar con la configuración de *Apache2*, mejor dicho, del *virtualhost*:
 
 El fichero de configuración de nuestro *virtualhost* debe ser algo así:
 

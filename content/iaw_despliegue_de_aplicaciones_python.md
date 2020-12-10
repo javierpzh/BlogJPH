@@ -463,16 +463,19 @@ Si accedemos ahora la página `/polls`:
 
 Vemos como también poseemos hoja de estilo.
 
-- **Desactiva en la configuración (fichero `settings.py`) el modo *debug* a *False*. Para que los errores de ejecución no den información sensible de la aplicación.**
+- **Desactiva en la configuración (fichero `django_tutorial/settings.py`) el modo *debug* a *False*. Para que los errores de ejecución no den información sensible de la aplicación.**
 
+Editamos el fichero `django_tutorial/settings.py` y la línea queda así:
 
+<pre>
+DEBUG = False
+</pre>
 
 - **Muestra la página funcionando. En la zona de administración se debe ver de forma adecuada la hoja de estilo.**
 
+Accedemos a la página `/admin`:
 
-
-**En este momento, muestra al profesor la aplicación funcionando. Entrega una documentación resumida donde expliques los pasos fundamentales para realizar esta tarea.**
-
+![.](images/iaw_despliegue_de_aplicaciones_python/django_admin_produccion_conestilo.png)
 
 
 ## Tarea 3: Modificación de nuestra aplicación

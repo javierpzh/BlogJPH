@@ -164,6 +164,8 @@ Y podemos observar como nos ha contabilizado el valor de la nueva respuesta.
 
 - **Instala en el servidor los servicios necesarios (*Apache2*). Instala el módulo de *Apache* para ejecutar código *Python*.**
 
+Instalamos el servidor web que vamos a utilizar, en esta ocasión, un *Apache2*, además del módulo correspondiente para que ejecute *Python*:
+
 <pre>
 apt install apache2 libapache2-mod-wsgi -y
 </pre>

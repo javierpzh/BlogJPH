@@ -601,21 +601,21 @@ Running migrations:
   Applying polls.0002_categoria... OK
 </pre>
 
-- **Añade el nuevo modelo al sitio de administración de django:**
+- **Añade el nuevo modelo al sitio de administración de *Django*:**
 
-    - **Para ello cambia la siguiente línea en el fichero `polls/admin.py`:**
+    - Para ello cambia la siguiente línea en el fichero `polls/admin.py`:
 
     <pre>
     from .models import Choice, Question
     </pre>
 
-    - **Por esta otra:**
+    - Por esta otra:
 
     <pre>
     from .models import Choice, Question, Categoria
     </pre>
 
-    - **Y añade al final la siguiente línea:**
+    - Y añade al final la siguiente línea:
 
     <pre>
     admin.site.register(Categoria)

@@ -339,7 +339,7 @@ $TTL	86400
 $ORIGIN iesgn.org.
 
 javierpzh	IN      A       192.168.150.10
-scorreos	IN	    A	      192.168.150.11
+scorreos	IN	    A	      192.168.150.200
 </pre>
 
 Reiniciamos el servidor DNS para que se apliquen los nuevos cambios:
@@ -356,12 +356,12 @@ root@debian:~# dig mx iesgn.org
 ; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> mx iesgn.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 52568
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 27223
 ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 3
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
-; COOKIE: 1d0e34d23bf8ed16c5e3c0d75fd373ab4e759fd36bfbc60d (good)
+; COOKIE: ec721cf5598d6a9fc228c0005fd38b75a7ed2cc8a2faefe4 (good)
 ;; QUESTION SECTION:
 ;iesgn.org.			IN	MX
 
@@ -372,12 +372,12 @@ iesgn.org.		86400	IN	MX	10 scorreos.iesgn.org.
 iesgn.org.		86400	IN	NS	javierpzh.iesgn.org.
 
 ;; ADDITIONAL SECTION:
-scorreos.iesgn.org.	86400	IN	A	192.168.150.11
+scorreos.iesgn.org.	86400	IN	A	192.168.150.200
 javierpzh.iesgn.org.	86400	IN	A	192.168.150.10
 
 ;; Query time: 0 msec
 ;; SERVER: 192.168.150.10#53(192.168.150.10)
-;; WHEN: vie dic 11 14:27:07 CET 2020
+;; WHEN: vie dic 11 17:57:31 CET 2020
 ;; MSG SIZE  rcvd: 147
 
 root@debian:~#
@@ -403,8 +403,8 @@ $TTL	86400
 $ORIGIN iesgn.org.
 
 javierpzh	IN      A       192.168.150.10
-scorreos	IN	    A	      192.168.150.11
-sftp		  IN	    A	      192.168.160.12
+scorreos	IN	    A	      192.168.150.200
+sftp		  IN	    A	      192.168.150.201
 </pre>
 
 Reiniciamos el servidor DNS para que se apliquen los nuevos cambios:
@@ -421,17 +421,17 @@ root@debian:~# dig sftp.iesgn.org
 ; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> sftp.iesgn.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 13426
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 36434
 ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
-; COOKIE: 03cd65335db63026ad8bb5585fd373f4f487e15622701c21 (good)
+; COOKIE: 0fabe9ffc844e5d0399b7b345fd38b8ac57e6e1b28ea0bdb (good)
 ;; QUESTION SECTION:
 ;sftp.iesgn.org.			IN	A
 
 ;; ANSWER SECTION:
-sftp.iesgn.org.		86400	IN	A	192.168.160.12
+sftp.iesgn.org.		86400	IN	A	192.168.150.201
 
 ;; AUTHORITY SECTION:
 iesgn.org.		86400	IN	NS	javierpzh.iesgn.org.
@@ -441,7 +441,7 @@ javierpzh.iesgn.org.	86400	IN	A	192.168.150.10
 
 ;; Query time: 0 msec
 ;; SERVER: 192.168.150.10#53(192.168.150.10)
-;; WHEN: vie dic 11 14:28:20 CET 2020
+;; WHEN: vie dic 11 17:57:53 CET 2020
 ;; MSG SIZE  rcvd: 127
 
 root@debian:~#
@@ -467,8 +467,8 @@ $TTL	86400
 $ORIGIN iesgn.org.
 
 javierpzh	IN      A       192.168.150.10
-scorreos	IN	    A	      192.168.150.11
-sftp		  IN	    A	      192.168.160.12
+scorreos	IN	    A	      192.168.150.200
+sftp		  IN	    A	      192.168.150.201
 cliente		IN	    A	      192.168.0.26
 </pre>
 
@@ -490,8 +490,8 @@ $TTL	86400
 $ORIGIN iesgn.org.
 
 javierpzh	     IN      A       192.168.150.10
-scorreos	     IN	     A	     192.168.150.11
-sftp		       IN	     A	     192.168.160.12
+scorreos	     IN	     A	     192.168.150.200
+sftp		       IN	     A	     192.168.150.201
 cliente		     IN	     A	     192.168.0.26
 www		         IN      A	     192.168.150.10
 departamentos	 IN    	 A	     192.168.150.10
@@ -521,8 +521,8 @@ $TTL	86400
 $ORIGIN iesgn.org.
 
 javierpzh	     IN      A       192.168.150.10
-scorreos	     IN	     A	     192.168.150.11
-sftp		       IN	     A	     192.168.160.12
+scorreos	     IN	     A	     192.168.150.200
+sftp		       IN	     A	     192.168.150.201
 cliente		     IN	     A	     192.168.0.26
 www		         IN      CNAME	 javierpzh
 departamentos	 IN    	 CNAME	 javierpzh
@@ -542,12 +542,12 @@ root@debian:~# dig www.iesgn.org
 ; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> www.iesgn.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 52134
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 5478
 ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 1, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
-; COOKIE: 38e55684e79f4a02eba13a8b5fd3781dc6b3bc3dbe796b5e (good)
+; COOKIE: eda2332198272cdf60febed55fd38ba7b6024adf329d5449 (good)
 ;; QUESTION SECTION:
 ;www.iesgn.org.			IN	A
 
@@ -560,7 +560,7 @@ iesgn.org.		86400	IN	NS	javierpzh.iesgn.org.
 
 ;; Query time: 0 msec
 ;; SERVER: 192.168.150.10#53(192.168.150.10)
-;; WHEN: vie dic 11 14:46:05 CET 2020
+;; WHEN: vie dic 11 17:58:22 CET 2020
 ;; MSG SIZE  rcvd: 124
 
 ------------------------------------------------------------------------
@@ -570,12 +570,12 @@ root@debian:~# dig departamentos.iesgn.org
 ; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> departamentos.iesgn.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 42769
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12032
 ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 1, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
-; COOKIE: 050b332e3831fa1e289be87e5fd3784100e9cde59b90ae69 (good)
+; COOKIE: 7f93d61aeb4c0efc522158cd5fd38bbbd4312d4adf9d1116 (good)
 ;; QUESTION SECTION:
 ;departamentos.iesgn.org.	IN	A
 
@@ -588,10 +588,8 @@ iesgn.org.		86400	IN	NS	javierpzh.iesgn.org.
 
 ;; Query time: 0 msec
 ;; SERVER: 192.168.150.10#53(192.168.150.10)
-;; WHEN: vie dic 11 14:46:41 CET 2020
+;; WHEN: vie dic 11 17:58:42 CET 2020
 ;; MSG SIZE  rcvd: 134
-
-root@debian:~#
 </pre>
 
 Lógicamente como he comentado antes, funciona.
@@ -619,12 +617,12 @@ $TTL	604800
 ;
 @	IN	NS	javierpzh.iesgn.org.
 
-$ORIGIN 168.192.in-addr.arpa.
+$ORIGIN 150.168.192.in-addr.arpa.
 
-10.150	IN	PTR	  javierpzh.iesgn.org.
-11.150	IN	PTR	  scorreos.iesgn.org.
-12.150	IN	PTR	  sftp.iesgn.org
-26.0	  IN	PTR	  cliente.iesgn.org
+10	IN	PTR	  javierpzh.iesgn.org.
+200	IN	PTR	  scorreos.iesgn.org.
+201	IN	PTR	  sftp.iesgn.org
+26  IN	PTR	  cliente.iesgn.org
 </pre>
 
 Reiniciamos el servidor DNS para que se apliquen los nuevos cambios:
@@ -636,30 +634,72 @@ systemctl restart bind9
 Para comprobar que funciona la resolución inversa, vamos a hacer una consulta inversa. Para hacer esto utilizamos el comando `dig -x (IP)`:
 
 <pre>
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
+root@debian:~# dig -x 192.168.150.10
+
+; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> -x 192.168.150.10
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 44927
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: 3becf8105587fe516606f84b5fd38c12b82f225369f578b9 (good)
+;; QUESTION SECTION:
+;10.150.168.192.in-addr.arpa.	IN	PTR
+
+;; ANSWER SECTION:
+10.150.168.192.in-addr.arpa. 604800 IN	PTR	javierpzh.iesgn.org.
+
+;; AUTHORITY SECTION:
+150.168.192.in-addr.arpa. 604800 IN	NS	javierpzh.iesgn.org.
+
+;; ADDITIONAL SECTION:
+javierpzh.iesgn.org.	86400	IN	A	192.168.150.10
+
+;; Query time: 0 msec
+;; SERVER: 192.168.150.10#53(192.168.150.10)
+;; WHEN: vie dic 11 18:00:09 CET 2020
+;; MSG SIZE  rcvd: 147
+
+root@debian:~#
 </pre>
 
+Parece que el servidor resuelve consultas inversas, pero vamos a hacer una prueba más realizando otra consulta inversa, esta vez al servidor de correos.
 
+<pre>
+root@debian:~# dig -x 192.168.150.200
 
+; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> -x 192.168.150.200
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 29504
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
 
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: 779a6650f4f0623f495f51185fd38c25ceac5c00a3b27e45 (good)
+;; QUESTION SECTION:
+;200.150.168.192.in-addr.arpa.	IN	PTR
 
+;; ANSWER SECTION:
+200.150.168.192.in-addr.arpa. 604800 IN	PTR	scorreos.iesgn.org.
+
+;; AUTHORITY SECTION:
+150.168.192.in-addr.arpa. 604800 IN	NS	javierpzh.iesgn.org.
+
+;; ADDITIONAL SECTION:
+javierpzh.iesgn.org.	86400	IN	A	192.168.150.10
+
+;; Query time: 0 msec
+;; SERVER: 192.168.150.10#53(192.168.150.10)
+;; WHEN: vie dic 11 18:00:27 CET 2020
+;; MSG SIZE  rcvd: 157
+
+root@debian:~#
+</pre>
+
+Vemos que también funciona correctamente, por lo que este ejercicio estaría terminado.
 
 
 #### Tarea 3: Realiza las consultas dig/nslookup desde los clientes preguntando por los siguientes:**

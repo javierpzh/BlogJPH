@@ -39,14 +39,14 @@ Hemos finalizado este primer ejercicio.
 
 #### 2. Creación de las instancias:
 
-- **freston:**
+- **Freston:**
 
     - **Debian Buster sobre volumen de 10GB con sabor m1.mini**
     - **Conectada a la red interna**
     - **Accesible indirectamente a través de dulcinea**
     - **IP estática**
 
-Antes de crear la propia instancia en sí, vamos a crear el volumen sobre el que posteriormente generaremos la instancia **freston**. Para ello he creado un volumen con estas preferencias:
+Antes de crear la propia instancia en sí, vamos a crear el volumen sobre el que posteriormente generaremos la instancia **Freston**. Para ello he creado un volumen con estas preferencias:
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearvolumenfreston.png)
 
@@ -80,7 +80,7 @@ Aquí podemos ver como hemos creado esta instancia correctamente y que pertenece
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearfrestonfin.png)
 
-Vamos a probar a acceder a **freston** a través de *Dulcinea*:
+Vamos a probar a acceder a **Freston** a través de *Dulcinea*:
 
 <pre>
 debian@dulcinea:~$ ssh debian@10.0.1.6
@@ -113,7 +113,7 @@ debian@freston:~$ ip a
 debian@freston:~$
 </pre>
 
-Vemos como efectivamente hemos accedido a **freston**.
+Vemos como efectivamente hemos accedido a **Freston**.
 
 Es el momento de realizar las configuraciones necesarias en esta nueva máquina.
 
@@ -224,11 +224,44 @@ rtt min/avg/max/mdev = 45.578/75.632/128.400/37.432 ms
 
 Ahora sí resuelve por nombres, por lo que ya habríamos terminado las configuraciones de red.
 
-Vamos a pasar ahora a
+Vamos a pasar ahora a configurar la resolución estática, para ello editamos el fichero `/etc/hosts`:
 
+<pre>
+nano /etc/hosts
+</pre>
 
+La resolución estática lo que hace, es que cuando intentemos resolver un nombre, busca en este fichero si tiene su dirección IP guardada, por lo que nos facilita y nos acomoda mucho el trabajo.
 
+Añadimos estas líneas:
 
+<pre>
+127.0.1.1 freston.javierpzh.gonzalonazareno.org freston freston.novalocal
+127.0.0.1 localhost
+
+10.0.1.11 dulcinea.javierpzh.gonzalonazareno.org dulcinea
+10.0.1.8 sancho.javierpzh.gonzalonazareno.org sancho
+10.0.1.13 quijote.javierpzh.gonzalonazareno.org quijote
+</pre>
+
+Me he dado cuenta de una cosa al reiniciar la máquina *Freston*, y es que en cada inicio se restablece el fichero `/etc/hosts`. Para cambiar este funcionamiento, tenemos que dirigirnos al fichero `/etc/cloud/cloud.cfg` y buscar esta línea:
+
+<pre>
+manage_etc_hosts: true
+</pre>
+
+Le cambiamos el valor a *false*:
+
+<pre>
+manage_etc_hosts: false
+</pre>
+
+Y ya habríamos configurado la resolución estática en *Freston*.
+
+También he añadido la línea correspondiente a las máquinas *Dulcinea*, *Sancho* y *Quijote*, para que ellas también puedan hacer uso de la resolución estática con *Freston*. Les he añadido esta línea:
+
+<pre>
+10.0.1.6 freston.javierpzh.gonzalonazareno.org freston
+</pre>
 
 
 #### 3. Modificación de la ubicación de quijote

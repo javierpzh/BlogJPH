@@ -222,6 +222,10 @@ PING www.google.es (216.58.211.35) 56(84) bytes of data.
 rtt min/avg/max/mdev = 45.578/75.632/128.400/37.432 ms
 </pre>
 
+Ahora sí resuelve por nombres, por lo que ya habríamos terminado las configuraciones de red.
+
+Vamos a pasar ahora a
+
 
 
 

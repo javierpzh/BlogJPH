@@ -308,6 +308,71 @@ Aquí podemos ver el resultado:
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/dulcinearedDMZ.png)
 
+Vamos a comprobar que realmente podemos acceder a *Quijote* a través de *Dulcinea*:
+
+<pre>
+debian@dulcinea:~$ ssh centos@10.0.2.6
+The authenticity of host '10.0.2.6 (10.0.2.6)' can't be established.
+ECDSA key fingerprint is SHA256:E66o30JGSL5dZglKXltZaOAzuVHOWZUqdopacdi72m8.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '10.0.2.6' (ECDSA) to the list of known hosts.
+Last login: Sat Dec 12 23:33:20 2020 from 10.0.1.11
+
+[centos@quijote ~]$
+</pre>
+
+Efectivamente la respuesta es positiva.
+
+Por último, vamos a establecer estas nuevas direcciones que han obtenido *Dulcinea* y *Quijote* como estáticas.
+
+En el caso de **Dulcinea**:
+
+<pre>
+debian@dulcinea:~# ip a
+
+...
+
+4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8950 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether fa:16:3e:8d:98:da brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.10/24 brd 10.0.2.255 scope global dynamic eth2
+       valid_lft 85985sec preferred_lft 85985sec
+    inet6 fe80::f816:3eff:fe8d:98da/64 scope link
+       valid_lft forever preferred_lft forever
+</pre>
+
+Vemos que ha obtenido por *DHCP* la dirección **10.0.2.10** en la interfaz **eth2**, por lo tanto esta le vamos a asignar de manera estática.
+
+Editamos el fichero `/etc/network/interfaces`:
+
+<pre>
+nano /etc/network/interfaces
+</pre>
+
+Quedaría de tal forma el bloque de la interfaz *eth2*:
+
+<pre>
+allow-hotplug eth2
+iface eth2 inet static
+address 10.0.2.10
+netmask 255.255.255.0
+</pre>
+
+Reiniciamos y aplicamos los cambios en las interfaces de red:
+
+<pre>
+systemctl restart networking
+</pre>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

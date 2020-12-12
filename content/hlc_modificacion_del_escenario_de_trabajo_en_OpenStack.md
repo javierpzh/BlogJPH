@@ -302,7 +302,11 @@ Y una vez hecho esto, en el mismo menú de opciones, debemos seleccionar **Conec
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/quijoteredDMZ.png)
 
+Recordemos, que a las instancias *Sancho*, *Quijote* y *Freston*, accedemos mediante *Dulcinea*, por lo que, si queremos acceder a *Quijote*, debe tener conexión con *Dulcinea*, y esto solo es posible si añadimos una nueva interfaz a *Dulcinea* para que también pertenezca a la **red DMZ**, por lo que también la vamos a añadir.
 
+Aquí podemos ver el resultado:
+
+![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/dulcinearedDMZ.png)
 
 
 

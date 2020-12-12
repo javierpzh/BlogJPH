@@ -119,6 +119,26 @@ Es el momento de realizar las configuraciones necesarias en esta nueva máquina.
 
 En primer lugar vamos a asignarle una **dirección IP estática**.
 
+<pre>
+nano /etc/network/interfaces
+</pre>
+
+
+
+<pre>
+allow-hotplug eth0
+iface eth0 inet static
+address 10.0.1.6
+netmask 255.255.255.0
+gateway 10.0.1.11
+</pre>
+
+
+
+<pre>
+systemctl restart networking
+</pre>
+
 
 
 

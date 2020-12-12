@@ -34,6 +34,7 @@ Hecho esto, ya tendríamos nuestra red DMZ creada, como podemos observar:
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearDMZ4.png)
 
+Hemos finalizado este primer ejercicio.
 
 #### 2. Creación de las instancias:
 

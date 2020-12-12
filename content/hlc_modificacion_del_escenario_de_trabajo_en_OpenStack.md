@@ -263,6 +263,17 @@ También he añadido la línea correspondiente a las máquinas *Dulcinea*, *Sanc
 10.0.1.6 freston.javierpzh.gonzalonazareno.org freston
 </pre>
 
+Por último, vamos a configurar nuestro reloj utilizando un servidor **NTP** externo, introducimos el siguiente comando y seleccionamos la configuración que nos interese:
+
+<pre>
+dpkg-reconfigure tzdata
+</pre>
+
+Comprobamos que tenemos la hora correcta y el servidor **NTP** activo y sincronizado:
+
+<pre>
+
+</pre>
 
 #### 3. Modificación de la ubicación de quijote
 

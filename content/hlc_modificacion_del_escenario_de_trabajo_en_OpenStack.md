@@ -437,13 +437,49 @@ Para terminar de trabajar en *Dulcinea*, vamos a corregir la resolución estáti
 
 En este punto, vamos a pasar a la máquina **Quijote**:
 
+<pre>
+[centos@quijote ~]$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+3: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8950 qdisc fq_codel state UP group default qlen 1000
+    link/ether fa:16:3e:b6:48:45 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.6/24 brd 10.0.2.255 scope global dynamic noprefixroute eth0
+       valid_lft 84200sec preferred_lft 84200sec
+    inet6 fe80::275d:a225:a9a0:a43f/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+</pre>
 
+Para establecer el direccionamiento estático en *CentOS 8*, debemos editar el fichero `/etc/sysconfig/network-scripts/ifcfg-eth0`:
 
+<pre>
+nano /etc/sysconfig/network-scripts/ifcfg-eth0
+</pre>
 
+En él, vamos a sustituir el bloque existente por este, en el que indicamos que la IP estática que le estamos asignando es la **10.0.2.6**, cuya máscara de red es una **255.255.255.0**, que la puerta de enlace es la **10.0.2.10**, es decir, la IP de *Dulcinea* en esta red, y que utilice esos **DNS** indicados. Es importante establecer en el apartado **ONBOOT** el valor *yes*, ya que esto hará que esta configuración se active en cada inicio del sistema.
 
+<pre>
+BOOTPROTO=static
+DEVICE=eth0
+HWADDR=fa:16:3e:5c:3d:c5
+ONBOOT=yes
+TYPE=Ethernet
+USERCTL=no
+IPADDR=10.0.2.6
+NETMASK=255.255.255.0
+GATEWAY=10.0.2.10
+DNS1=10.0.2.10
+DNS2=8.8.8.8
+</pre>
 
+Reiniciamos y aplicamos los cambios en las interfaces de red:
 
-
+<pre>
+systemctl restart network.service
+</pre>
 
 
 

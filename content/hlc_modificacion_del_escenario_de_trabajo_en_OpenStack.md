@@ -52,7 +52,7 @@ Una vez ha terminado el proceso de creación del nuevo volumen, obtenemos como r
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearvolumenfrestonfin.png)
 
-
+Ahora sí, es momento de crear la nueva instancia. 
 
 
 

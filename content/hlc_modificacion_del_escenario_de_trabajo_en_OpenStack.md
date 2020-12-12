@@ -4,6 +4,8 @@ Category: Cloud Computing
 Header_Cover: theme/images/banner-hlc.jpg
 Tags: OpenStack
 
+**En este *post* voy a realizar modificaciones sobre un escenario de *OpenStack* que fue creado anteriormente y cuya explicación se encuentra en [este post](https://javierpzh.github.io/creacion-del-escenario-de-trabajo-en-openstack.html), por si quieres saber más al respecto.**
+
 **Vamos a modificar el escenario que tenemos actualmente en OpenStack para que se adecúe a la realización de todas las prácticas en todos los módulos de 2º, en particular para que tenga una estructura más real a la de varios equipos detrás de un cortafuegos, separando los servidores en dos redes: red interna y DMZ. Para ello vamos a reutilizar todo lo hecho hasta ahora y añadiremos una máquina más: Frestón**
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/escenario2.png)
@@ -72,7 +74,7 @@ En el primer apartado de este asistente, indicamos el nombre que poseerá nuestr
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearfreston4.png)
 
-
+Aquí podemos ver como hemos creado esta instancia correctamente y que pertenece a la red interna, ya que posee una dirección **10.0.1.7**
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearfrestonfin.png)
 

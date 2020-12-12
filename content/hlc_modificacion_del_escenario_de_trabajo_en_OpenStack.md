@@ -17,6 +17,10 @@ Tags: OpenStack
 
 #### 2. Creación de las instancias:
 
+Antes de crear la propia instancia en sí, vamos a crear el volumen sobre el que posteriormente generaremos la instancia **freston**. Para ello he creado un volumen con estas preferencias:
+
+![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearvolumenfreston.png)
+
 - **freston:**
 
     - **Debian Buster sobre volumen de 10GB con sabor m1.mini**

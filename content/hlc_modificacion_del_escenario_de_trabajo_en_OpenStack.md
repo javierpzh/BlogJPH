@@ -42,12 +42,43 @@ Antes de crear la propia instancia en sí, vamos a crear el volumen sobre el que
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearvolumenfreston.png)
 
+Una vez ha terminado el proceso de creación del nuevo volumen, obtenemos como resultado:
+
+![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearvolumenfrestonfin.png)
+
+
 - **freston:**
 
     - **Debian Buster sobre volumen de 10GB con sabor m1.mini**
     - **Conectada a la red interna**
     - **Accesible indirectamente a través de dulcinea**
     - **IP estática**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #### 3. Modificación de la ubicación de quijote

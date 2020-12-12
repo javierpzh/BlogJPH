@@ -294,7 +294,7 @@ Para llevar a cabo esta modificación, nos dirigimos a nuestro panel de administ
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/menu.png)
 
-Seleccionamos la interfaz a desconectar, en este caso la interfaz conectada a la res interna:
+Seleccionamos la interfaz a desconectar, en este caso la interfaz conectada a la red interna:
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/desconectarredinterna.png)
 

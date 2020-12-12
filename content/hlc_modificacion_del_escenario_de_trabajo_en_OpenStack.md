@@ -484,28 +484,20 @@ systemctl restart network.service
 Vamos a comprobar las direcciones:
 
 <pre>
-
+3: eth0:  mtu 8950 qdisc fq_codel state UP group default qlen 1000
+    link/ether fa:16:3e:b6:48:45 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.6/24 brd 10.0.2.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::275d:a225:a9a0:a43f/64 scope link
+       valid_lft forever preferred_lft forever
 </pre>
 
+Nos encontramos la interfaz con la configuración correcta.
 
+Para terminar la tarea, vamos a modificar el fichero `/etc/hosts` de esta máquina *Quijote* para corregir la resolución estática de *Dulcinea* que ahora ha cambiado de IP para esta red. Sustituimos la antigua línea que hacía referencia a *Dulcinea* por esta:
 
+<pre>
+10.0.2.10 dulcinea.javierpzh.gonzalonazareno.org dulcinea
+</pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.
+Con esto, habríamos terminado todo el proceso de modificaciones.

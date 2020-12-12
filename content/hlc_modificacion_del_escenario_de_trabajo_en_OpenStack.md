@@ -272,8 +272,17 @@ dpkg-reconfigure tzdata
 Comprobamos que tenemos la hora correcta y el servidor **NTP** activo y sincronizado:
 
 <pre>
-
+root@freston:~# timedatectl
+               Local time: Sat 2020-12-12 23:36:24 CET
+           Universal time: Sat 2020-12-12 22:36:24 UTC
+                 RTC time: Sat 2020-12-12 22:36:25
+                Time zone: Europe/Madrid (CET, +0100)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
 </pre>
+
+Ahora sí, hemos terminado todas las configuraciones en *Freston*.
 
 #### 3. Modificación de la ubicación de quijote
 

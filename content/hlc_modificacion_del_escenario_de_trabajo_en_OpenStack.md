@@ -117,13 +117,13 @@ Vemos como efectivamente hemos accedido a **freston**.
 
 Es el momento de realizar las configuraciones necesarias en esta nueva máquina.
 
-En primer lugar vamos a asignarle una **dirección IP estática**.
+En primer lugar vamos a asignarle una **dirección IP estática**. Para ello editamos el fichero `/etc/network/interfaces`:
 
 <pre>
 nano /etc/network/interfaces
 </pre>
 
-
+En él, establecemos un bloque como este, en el que indicamos que la interfaz **eth0** (la que está conectada a la red interna), posea una dirección IP estática, cuya dirección es la **10.0.1.6**, cuya máscara de red es una 255.255.255.0, es decir, una **/24**, que la puerta de enlace es la **10.0.1.11**, es decir, la IP de *Dulcinea*, y que utilice esos DNS indicados.
 
 <pre>
 allow-hotplug eth0
@@ -133,21 +133,94 @@ netmask 255.255.255.0
 gateway 10.0.1.11
 </pre>
 
-
+Reiniciamos y aplicamos los cambios en las interfaces de red:
 
 <pre>
 systemctl restart networking
 </pre>
 
+Vamos a ver si se ha aplicado correctamente la configuración deseada:
 
+<pre>
+debian@freston:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8950 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether fa:16:3e:4a:d0:53 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.1.6/24 brd 10.0.1.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::f816:3eff:fe4a:d053/64 scope link
+       valid_lft forever preferred_lft forever
 
+debian@freston:~$ ip r
+default via 10.0.1.11 dev eth0 onlink
+10.0.1.0/24 dev eth0 proto kernel scope link src 10.0.1.6
+169.254.169.254 via 10.0.1.1 dev eth0
 
+debian@freston:~$ ping 10.0.0.1
+PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+64 bytes from 10.0.0.1: icmp_seq=1 ttl=63 time=1.63 ms
+64 bytes from 10.0.0.1: icmp_seq=2 ttl=63 time=1.60 ms
+64 bytes from 10.0.0.1: icmp_seq=3 ttl=63 time=1.50 ms
+^C
+--- 10.0.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 6ms
+rtt min/avg/max/mdev = 1.499/1.575/1.628/0.071 ms
 
+debian@freston:~$ ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=111 time=43.3 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=111 time=42.8 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=111 time=43.8 ms
+^C
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 5ms
+rtt min/avg/max/mdev = 42.825/43.297/43.751/0.448 ms
 
+debian@freston:~$ ping www.google.es
+ping: www.google.es: Temporary failure in name resolution
+</pre>
 
+Podemos observar como todos los cambios se han aplicado, como además ya poseemos conexión a internet, pero aún no podemos hacer uso de la resolución de nombres.
 
+Esto se debe a que, esta instancia, posee un fichero `/etc/resolv.conf` que se genera de manera dinámica, por lo que debemos buscar alguna forma de indicarle a ese fichero que utilice los servidores DNS de los que queremos hacer uso.
 
+Para hacer esto, tendemos que modificar el fichero `/etc/resolvconf/resolv.conf.d/base` e indicar ahí las direcciones de los servidores DNS, y así incluirá a estos en cada arranque/reinicio.
 
+<pre>
+nano /etc/resolvconf/resolv.conf.d/base
+</pre>
+
+En mi caso, he añadido el **10.0.1.11**, es decir, *Dulcinea*, y el **8.8.8.8**, que pertenece a *Google*, por lo que el fichero quedaría así:
+
+<pre>
+nameserver 10.0.1.11
+nameserver 8.8.8.8
+</pre>
+
+Reiniciamos de nuevo y aplicamos los cambios:
+
+<pre>
+systemctl restart networking
+</pre>
+
+Y volvemos a intentar hacer uso de la resolución de nombres:
+
+<pre>
+debian@freston:~$ ping www.google.es
+PING www.google.es (216.58.211.35) 56(84) bytes of data.
+64 bytes from muc03s14-in-f3.1e100.net (216.58.211.35): icmp_seq=1 ttl=112 time=128 ms
+64 bytes from muc03s14-in-f3.1e100.net (216.58.211.35): icmp_seq=2 ttl=112 time=52.9 ms
+64 bytes from muc03s14-in-f3.1e100.net (216.58.211.35): icmp_seq=3 ttl=112 time=45.6 ms
+^C
+--- www.google.es ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 5ms
+rtt min/avg/max/mdev = 45.578/75.632/128.400/37.432 ms
+</pre>
 
 
 

@@ -17,7 +17,7 @@ Tags: OpenStack
 
 Vamos a crear una nueva red, en esta caso, una **red DMZ**, que se situará entre la red interna y la externa.
 
-Para crearla, nos dirigimos hacia nuestro panel de administración de *OpenStack* y nos situamos en la sección de **Redes**. Una vez aquí, *clickamos* en el botón llamado **+ Crear red**, y se nos abrirá un menú, donde debemos indicar las características de la red que queremos crear:
+Para crearla, nos dirigimos a nuestro panel de administración de *OpenStack* y nos situamos en la sección de **Redes**. Una vez aquí, *clickamos* en el botón llamado **+ Crear red**, y se nos abrirá un menú, donde debemos indicar las características de la red que queremos crear:
 
 En el primer apartado de este asistente, indicamos el nombre que poseerá nuestra nueva red:
 
@@ -288,17 +288,19 @@ Ahora sí, hemos terminado todas las configuraciones en *Freston*.
 
 - **Pasa de la red interna a la DMZ y su direccionamiento tiene que modificarse apropiadamente**
 
+Es hora de realizar el último cambio del ejercicio, y no es más que cambiar la ubicación de la máquina **Quijote** a la nueva red **DMZ**, ya que actualmente pertenece a la red interna.
+
+Para llevar a cabo esta modificación, nos dirigimos a nuestro panel de administración de *OpenStack* y nos situamos en la sección de **Instancias**. Una vez aquí, *clickamos* en la pequeña flecha del final, y se nos desplegará este menú de opciones, donde debemos seleccionar **Desconectar interfaz**:
+
+![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/menu.png)
 
 
 
+![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/desconectarredinterna.png)
 
 
 
-
-
-
-
-
+![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/quijoteredDMZ.png)
 
 
 

@@ -287,3 +287,27 @@ Ahora sí, hemos terminado todas las configuraciones en *Freston*.
 #### 3. Modificación de la ubicación de quijote
 
 - **Pasa de la red interna a la DMZ y su direccionamiento tiene que modificarse apropiadamente**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

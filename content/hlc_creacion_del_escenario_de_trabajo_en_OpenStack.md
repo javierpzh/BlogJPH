@@ -546,7 +546,7 @@ gateway 10.0.0.1
 
 allow-hotplug eth1
 iface eth1 inet static
-address 10.0.1.3
+address 10.0.1.11
 netmask 255.255.255.0
 </pre>
 
@@ -554,7 +554,7 @@ En este bloque indicamos que:
 
 - La interfaz **eth0** que es la que se conecta a la red **10.0.0.0/24**, posea una dirección IP estática, le estamos asignando la que se nos ha establecido por DHCP, la **10.0.0.8**, cuya máscara de red es una **255.255.255.0**, y cuya puerta de salida es la **10.0.0.1**.
 
-- La interfaz **eth1** que es la que se conecta a nuestra red interna, posea una dirección IP estática, le estamos asignando la que se nos ha establecido por DHCP, la **10.0.1.3**, cuya máscara de red es una **255.255.255.0**.
+- La interfaz **eth1** que es la que se conecta a nuestra red interna, posea una dirección IP estática, le estamos asignando la que se nos ha establecido por DHCP, la **10.0.1.11**, cuya máscara de red es una **255.255.255.0**.
 
 Reiniciamos y aplicamos los cambios en las interfaces de red:
 
@@ -584,7 +584,7 @@ network:
             set-name: ens3
 </pre>
 
-Debemos sustituirlo por este bloque, en el que indicamos que el **DHCP4** pasa a ser desactivado, que la IP estática que le estamos asignando es la **10.0.1.8**, cuya máscara de red es una **255.255.255.0**, de ahí el **/24**, que la puerta de enlace es la **10.0.1.3**, es decir, la IP de *Dulcinea*, y que utilice esos **DNS** indicados.
+Debemos sustituirlo por este bloque, en el que indicamos que el **DHCP4** pasa a ser desactivado, que la IP estática que le estamos asignando es la **10.0.1.8**, cuya máscara de red es una **255.255.255.0**, de ahí el **/24**, que la puerta de enlace es la **10.0.1.11**, es decir, la IP de *Dulcinea*, y que utilice esos **DNS** indicados.
 
 <pre>
 network:
@@ -597,9 +597,9 @@ network:
             mtu: 8950
             set-name: ens3
             addresses: [10.0.1.8/24]
-            gateway4: 10.0.1.3
+            gateway4: 10.0.1.11
             nameservers:
-              addresses: [10.0.1.3, 8.8.8.8]
+              addresses: [10.0.1.11, 8.8.8.8]
 </pre>
 
 
@@ -622,7 +622,7 @@ Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-53-generic x86_64)
 
 ...
 
-Last login: Sat Nov 14 18:41:41 2020 from 10.0.1.3
+Last login: Sat Nov 14 18:41:41 2020 from 10.0.1.11
 
 ubuntu@sancho:~$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
@@ -639,7 +639,7 @@ ubuntu@sancho:~$ ip a
        valid_lft forever preferred_lft forever
 
 ubuntu@sancho:~$ ip r
-default via 10.0.1.3 dev ens3 proto static
+default via 10.0.1.11 dev ens3 proto static
 10.0.1.0/24 dev ens3 proto kernel scope link src 10.0.1.8
 
 ubuntu@sancho:~$ ping www.google.es
@@ -675,7 +675,7 @@ TYPE=Ethernet
 USERCTL=no
 </pre>
 
-Debemos sustituirlo por este bloque, en el que indicamos que en el apartado **BOOTPROTO**, la IP ahora se establece como estática, y el **DHCP4** pasa a ser desactivado, que la IP estática que le estamos asignando es la **10.0.1.13**, cuya máscara de red es una **255.255.255.0**, que la puerta de enlace es la **10.0.1.3**, es decir, la IP de *Dulcinea*, y que utilice esos **DNS** indicados. Es importante establecer en el apartado **ONBOOT** el valor *yes*, ya que esto hará que esta configuración se active en cada inicio del sistema.
+Debemos sustituirlo por este bloque, en el que indicamos que en el apartado **BOOTPROTO**, la IP ahora se establece como estática, y el **DHCP4** pasa a ser desactivado, que la IP estática que le estamos asignando es la **10.0.1.13**, cuya máscara de red es una **255.255.255.0**, que la puerta de enlace es la **10.0.1.11**, es decir, la IP de *Dulcinea*, y que utilice esos **DNS** indicados. Es importante establecer en el apartado **ONBOOT** el valor *yes*, ya que esto hará que esta configuración se active en cada inicio del sistema.
 
 <pre>
 BOOTPROTO=static
@@ -687,8 +687,8 @@ TYPE=Ethernet
 USERCTL=no
 IPADDR=10.0.1.13
 NETMASK=255.255.255.0
-GATEWAY=10.0.1.3
-DNS1=10.0.1.3
+GATEWAY=10.0.1.11
+DNS1=10.0.1.11
 DNS2=8.8.8.8
 </pre>
 
@@ -724,7 +724,7 @@ Last login: Sat Nov 14 18:43:37 2020 from gateway
        valid_lft forever preferred_lft forever
 
 [centos@quijote ~]$ ip r
-default via 10.0.1.3 dev eth0
+default via 10.0.1.11 dev eth0
 10.0.1.0/24 dev eth0 proto kernel scope link src 10.0.1.13
 
 [centos@quijote ~]$ ping www.google.es
@@ -956,7 +956,7 @@ Añadimos estas líneas:
 127.0.1.1 sancho.javierpzh.gonzalonazareno.org sancho
 127.0.0.1 localhost
 
-10.0.1.3 dulcinea.javierpzh.gonzalonazareno.org dulcinea
+10.0.1.11 dulcinea.javierpzh.gonzalonazareno.org dulcinea
 10.0.1.13 quijote.javierpzh.gonzalonazareno.org quijote
 </pre>
 
@@ -966,7 +966,7 @@ Añadimos estas líneas:
 
 <pre>
 127.0.1.1 quijote.javierpzh.gonzalonazareno.org quijote
-10.0.1.3 dulcinea.javierpzh.gonzalonazareno.org dulcinea
+10.0.1.11 dulcinea.javierpzh.gonzalonazareno.org dulcinea
 10.0.1.8 sancho.javierpzh.gonzalonazareno.org sancho
 </pre>
 

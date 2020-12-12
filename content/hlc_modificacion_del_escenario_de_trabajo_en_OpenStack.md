@@ -16,15 +16,15 @@ Tags: OpenStack
 
 Vamos a crear una nueva red, en esta caso, una red DMZ, que se situará entre la red interna y la externa.
 
-Para crearla, nos dirigimos hacia nuestro panel de administración de *OpenStack* y nos situamos en el apartado **Redes**. Una vez aquí, *clickamos* en el botón llamado **+ Crear red**, y se nos abrirá un menú como el siguiente, donde debemos indicar las características de la red que queremos crear:
+Para crearla, nos dirigimos hacia nuestro panel de administración de *OpenStack* y nos situamos en la sección de **Redes**. Una vez aquí, *clickamos* en el botón llamado **+ Crear red**, y se nos abrirá un menú como el siguiente, donde debemos indicar las características de la red que queremos crear:
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearDMZ1.png)
 
-
+En este primer apartado, indicamos el nombre que poseerá nuestra nueva red.
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearDMZ2.png)
 
-
+En segundo lugar, indicamos la dirección de la red
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearDMZ3.png)
 

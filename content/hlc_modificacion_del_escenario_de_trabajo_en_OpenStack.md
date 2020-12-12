@@ -363,9 +363,71 @@ Reiniciamos y aplicamos los cambios en las interfaces de red:
 systemctl restart networking
 </pre>
 
+Vamos a comprobar las direcciones:
 
+<pre>
+root@dulcinea:~# ip a
 
+...
 
+4: eth2: <BROADCAST,MULTICAST> mtu 8950 qdisc pfifo_fast state DOWN group default qlen 1000
+    link/ether fa:16:3e:8d:98:da brd ff:ff:ff:ff:ff:ff
+</pre>
+
+Anda, la interfaz *eth2*, se encuentra en estado **DOWN**, es decir, apagada. Por defecto esta interfaz no se va a levantar en cada arranque, por lo que tendríamos que hacer uso del comando `ifup eth2` cada vez que quisiéramos hacer uso de esta interfaz. Esto no es lo que estamos buscando, por tanto, vamos a encontrar una solución.
+
+Vamos a editar el fichero `/etc/network/interfaces.d/*`:
+
+<pre>
+nano /etc/network/interfaces.d/*
+</pre>
+
+En él nos vamos a encontrar:
+
+<pre>
+auto lo
+iface lo inet loopback
+    dns-nameservers 192.168.202.2
+
+auto eth0
+iface eth0 inet dhcp
+    mtu 8950
+
+auto eth1
+iface eth1 inet dhcp
+    mtu 8950
+</pre>
+
+Vemos como no apreciamos ninguna referencia sobre la interfaz *eth2*, por lo que vamos a añadir este bloque:
+
+<pre>
+auto eth2
+iface eth2 inet dhcp
+    mtu 8950
+</pre>
+
+En este punto, reiniciamos de nuevo:
+
+<pre>
+systemctl restart networking
+</pre>
+
+Y comprobamos de nuevo las direcciones:
+
+<pre>
+root@dulcinea:~# ip a
+
+...
+
+4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8950 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether fa:16:3e:8d:98:da brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.10/24 brd 10.0.2.255 scope global eth2
+       valid_lft forever preferred_lft forever
+    inet6 fe80::f816:3eff:fe8d:98da/64 scope link
+       valid_lft forever preferred_lft forever
+</pre>
+
+Ahora sí nos encontramos con la interfaz en estado **UP** y con la configuración correcta.
 
 
 

@@ -16,19 +16,23 @@ Tags: OpenStack
 
 Vamos a crear una nueva red, en esta caso, una red DMZ, que se situará entre la red interna y la externa.
 
-Para crearla, nos dirigimos hacia nuestro panel de administración de *OpenStack* y nos situamos en la sección de **Redes**. Una vez aquí, *clickamos* en el botón llamado **+ Crear red**, y se nos abrirá un menú como el siguiente, donde debemos indicar las características de la red que queremos crear:
+Para crearla, nos dirigimos hacia nuestro panel de administración de *OpenStack* y nos situamos en la sección de **Redes**. Una vez aquí, *clickamos* en el botón llamado **+ Crear red**, y se nos abrirá un menú, donde debemos indicar las características de la red que queremos crear:
+
+En el primer apartado de este asistente, indicamos el nombre que poseerá nuestra nueva red:
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearDMZ1.png)
 
-En este primer apartado, indicamos el nombre que poseerá nuestra nueva red.
+En segundo lugar, indicamos las direcciones de red que abarcará, y deshabilitaremos la puerta de enlace ya que no nos va hacer falta debido a que vamos a poner a Dulcinea como *gateway*:
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearDMZ2.png)
 
-En segundo lugar, indicamos la dirección de la red
+Por último, vamos a dejar marcada la opción de **Habilitar DHCP** que viene de manera predeterminada, para que de esta forma, nos dé una dirección IP de manera automática cuando levantemos la instancia.
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearDMZ3.png)
 
+Hecho esto, ya tendríamos nuestra red DMZ creada, como podemos observar:
 
+![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearDMZ4.png)
 
 
 #### 2. Creación de las instancias:

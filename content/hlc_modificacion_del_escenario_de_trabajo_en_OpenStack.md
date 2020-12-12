@@ -298,7 +298,7 @@ Seleccionamos la interfaz a desconectar, en este caso la interfaz conectada a la
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/desconectarredinterna.png)
 
-Y una vez hecho esto, en el mismo menú de opciones, debemos seleccionar **Conectar interfaz**,  y seleccionar la **red DMZ**:
+Y una vez hecho esto, en el mismo menú de opciones, debemos seleccionar **Conectar interfaz**,  y seleccionar la **red DMZ**. Vemos como ahora *Quijote*, posee una dirección IP **10.0.2.6**.
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/quijoteredDMZ.png)
 

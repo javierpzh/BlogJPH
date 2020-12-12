@@ -113,7 +113,11 @@ debian@freston:~$ ip a
 debian@freston:~$
 </pre>
 
+Vemos como efectivamente hemos accedido a **freston**.
 
+Es el momento de realizar las configuraciones necesarias en esta nueva máquina.
+
+En primer lugar vamos a asignarle una **dirección IP estática**.
 
 
 

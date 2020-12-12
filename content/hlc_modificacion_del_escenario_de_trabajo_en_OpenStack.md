@@ -481,7 +481,11 @@ Reiniciamos y aplicamos los cambios en las interfaces de red:
 systemctl restart network.service
 </pre>
 
+Vamos a comprobar las direcciones:
 
+<pre>
+
+</pre>
 
 
 

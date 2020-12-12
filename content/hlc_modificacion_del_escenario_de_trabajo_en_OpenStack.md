@@ -429,6 +429,31 @@ root@dulcinea:~# ip a
 
 Ahora sí nos encontramos con la interfaz en estado **UP** y con la configuración correcta.
 
+Para terminar de trabajar en *Dulcinea*, vamos a corregir la resolución estática de nombres, ya que la IP de *Quijote* ha cambiado. En el fichero `/etc/hosts` sustituimos la antigua línea que hacía referencia a *Quijote* por esta:
+
+<pre>
+10.0.2.6 quijote.javierpzh.gonzalonazareno.org quijote
+</pre>
+
+En este punto, vamos a pasar a la máquina **Quijote**:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

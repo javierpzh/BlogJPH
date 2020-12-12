@@ -62,15 +62,15 @@ En el primer apartado de este asistente, indicamos el nombre que poseerá nuestr
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearfreston1.png)
 
-
+Ahora establecemos que el origen de arranque sea el volumen creado previamente:
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearfreston2.png)
 
-
+Como **Sabor** indicamos que tenga un **m1.mini**.
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearfreston3.png)
 
-
+Y por último, le asignamos la red a la que va a pertenecer esta máquina.
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/crearfreston4.png)
 

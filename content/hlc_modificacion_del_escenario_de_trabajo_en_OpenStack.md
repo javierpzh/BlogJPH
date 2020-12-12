@@ -288,17 +288,17 @@ Ahora sí, hemos terminado todas las configuraciones en *Freston*.
 
 - **Pasa de la red interna a la DMZ y su direccionamiento tiene que modificarse apropiadamente**
 
-Es hora de realizar el último cambio del ejercicio, y no es más que cambiar la ubicación de la máquina **Quijote** a la nueva red **DMZ**, ya que actualmente pertenece a la red interna.
+Es hora de realizar el último cambio del ejercicio, y no es más que cambiar la ubicación de la máquina **Quijote** a la nueva **red DMZ**, ya que actualmente pertenece a la red interna.
 
 Para llevar a cabo esta modificación, nos dirigimos a nuestro panel de administración de *OpenStack* y nos situamos en la sección de **Instancias**. Una vez aquí, *clickamos* en la pequeña flecha del final, y se nos desplegará este menú de opciones, donde debemos seleccionar **Desconectar interfaz**:
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/menu.png)
 
-
+Seleccionamos la interfaz a desconectar, en este caso la interfaz conectada a la res interna:
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/desconectarredinterna.png)
 
-
+Y una vez hecho esto, en el mismo menú de opciones, debemos seleccionar **Conectar interfaz**,  y seleccionar la **red DMZ**:
 
 ![.](images/hlc_modificacion_del_escenario_de_trabajo_en_OpenStack/quijoteredDMZ.png)
 

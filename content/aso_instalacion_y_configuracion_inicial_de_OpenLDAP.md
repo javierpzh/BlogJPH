@@ -130,7 +130,22 @@ La respuesta de este apartado afectará cuando desinstalemos el paquete `slapd`,
 
 Yo respondo que sí.
 
+Vamos con la última pregunta. Nos informa que en el directorio `/var/lib/ldap` existe la configuración previa de la que se ha creado anteriormente, y nos da la opción de remover esa configuración y sustituila por esta nueva.
 
+<pre>
+┌──────────────────────────────────────┤ Configuring slapd ├───────────────────────────────────────┐
+│                                                                                                  │
+│ There are still files in /var/lib/ldap which will probably break the configuration process. If   │
+│ you enable this option, the maintainer scripts will move the old database files out of the way   │
+│ before creating a new database.                                                                  │
+│                                                                                                  │
+│ Move old database?                                                                               │
+│                                                                                                  │
+│                            <\Yes\>                               <\No\>                          │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+</pre>
 
+En mi caso, respondo que sí.
 
 .

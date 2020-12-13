@@ -470,7 +470,129 @@ Ahora sí nos encontramos con la interfaz en estado **UP** y con la configuraci�
 
 Recordemos que *Dulcinea* es la máquina que hace de *router*, por lo que todas las conexiones pasan por ella, y es la que se encarga de redirigir las peticiones.
 
-En el primer [post](https://javierpzh.github.io/creacion-del-escenario-de-trabajo-en-openstack.html), configuramos una regla de *iptables* para que recondujera las peticiones provenientes de la red *10.0.1.0/24* hacia la interfaz **eth0** que es mediante la que está conectada al exterior. Pero esta regla obviamente no nos sirve para que *Quijote* que ahora pertenece a la red *10.0.2.0/24*, posea conexción a internet, por lo que tenemos que crear una nueva regla para esta red:
+En el primer [post](https://javierpzh.github.io/creacion-del-escenario-de-trabajo-en-openstack.html), configuramos una regla de *iptables* para que recondujera las peticiones provenientes de la red *10.0.1.0/24* hacia la interfaz **eth0** que es mediante la que está conectada al exterior. Pero esta regla obviamente no nos sirve para que *Quijote* que ahora pertenece a la red *10.0.2.0/24*, posea conexión a internet, por lo que tenemos que crear una nueva regla para esta red:
+
+Si lo recordamos, para hacer **NAT** en **Dulcinea** y que así **Quijote** tenga acceso a internet, tenemos que modificar el grupo de seguridad de *Dulcinea* y deshabilitar la seguridad de todos sus puertos, es decir, quitarle las reglas de cortafuegos, para luego añadirle nuestra propia regla de `iptables`.
+
+Para ello tenemos que configurar *OpenStack* para administrar nuestro proyecto desde la línea de comandos, que es desde donde vamos a realizar este proceso.
+
+Primeramente. vamos a ver los detalles de esta instancia:
+
+<pre>
+(openstack) javier@debian:~/entornos_virtuales/openstack$ openstack server show Dulcinea
++-----------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| Field                       | Value                                                                                                                 |
++-----------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| OS-DCF:diskConfig           | AUTO                                                                                                                  |
+| OS-EXT-AZ:availability_zone | nova                                                                                                                  |
+| OS-EXT-STS:power_state      | Running                                                                                                               |
+| OS-EXT-STS:task_state       | None                                                                                                                  |
+| OS-EXT-STS:vm_state         | active                                                                                                                |
+| OS-SRV-USG:launched_at      | 2020-11-14T17:44:11.000000                                                                                            |
+| OS-SRV-USG:terminated_at    | None                                                                                                                  |
+| accessIPv4                  |                                                                                                                       |
+| accessIPv6                  |                                                                                                                       |
+| addresses                   | red de javier.perezh=10.0.0.8, 172.22.200.183; red interna de javier.perezh=10.0.1.11; DMZ de javier.perezh=10.0.2.10 |
+| config_drive                |                                                                                                                       |
+| created                     | 2020-11-14T17:43:42Z                                                                                                  |
+| flavor                      | m1.mini (12)                                                                                                          |
+| hostId                      | 1cd650c7bff842c92682e8bc3d0d184f4ddcc2e41fc41ae8487eeb6a                                                              |
+| id                          | 73f609c8-9724-4e54-818d-a9bdf0cb43fe                                                                                  |
+| image                       |                                                                                                                       |
+| key_name                    | msi_debian_clave_publica                                                                                              |
+| name                        | Dulcinea                                                                                                              |
+| progress                    | 0                                                                                                                     |
+| project_id                  | 678e0304a62c445ba78d3b825cb4f1ab                                                                                      |
+| properties                  |                                                                                                                       |
+| security_groups             | name='default'                                                                                                        |
+| status                      | ACTIVE                                                                                                                |
+| updated                     | 2020-11-22T11:38:44Z                                                                                                  |
+| user_id                     | fc6228f3de9b2e4abfc00a526192e37c323cde31412ffd98d1bf7c584915f35a                                                      |
+| volumes_attached            | id='dab6f14b-ec83-4d5a-9940-0f4bb35f864a'                                                                             |
++-----------------------------+-----------------------------------------------------------------------------------------------------------------------+
+</pre>
+
+Vemos como efectivamente posee el grupo de seguridad `default` comentando anteriormente.
+
+Procedemos a eliminar este grupo de seguridad:
+
+<pre>
+(openstack) javier@debian:~/entornos_virtuales/openstack$ openstack server remove security group Dulcinea default
+</pre>
+
+Si vemos de nuevo los detalles de **Dulcinea**:
+
+<pre>
+(openstack) javier@debian:~/entornos_virtuales/openstack$ openstack server show Dulcinea
++-----------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| Field                       | Value                                                                                                                 |
++-----------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| OS-DCF:diskConfig           | AUTO                                                                                                                  |
+| OS-EXT-AZ:availability_zone | nova                                                                                                                  |
+| OS-EXT-STS:power_state      | Running                                                                                                               |
+| OS-EXT-STS:task_state       | None                                                                                                                  |
+| OS-EXT-STS:vm_state         | active                                                                                                                |
+| OS-SRV-USG:launched_at      | 2020-11-14T17:44:11.000000                                                                                            |
+| OS-SRV-USG:terminated_at    | None                                                                                                                  |
+| accessIPv4                  |                                                                                                                       |
+| accessIPv6                  |                                                                                                                       |
+| addresses                   | red de javier.perezh=10.0.0.8, 172.22.200.183; red interna de javier.perezh=10.0.1.11; DMZ de javier.perezh=10.0.2.10 |
+| config_drive                |                                                                                                                       |
+| created                     | 2020-11-14T17:43:42Z                                                                                                  |
+| flavor                      | m1.mini (12)                                                                                                          |
+| hostId                      | 1cd650c7bff842c92682e8bc3d0d184f4ddcc2e41fc41ae8487eeb6a                                                              |
+| id                          | 73f609c8-9724-4e54-818d-a9bdf0cb43fe                                                                                  |
+| image                       |                                                                                                                       |
+| key_name                    | msi_debian_clave_publica                                                                                              |
+| name                        | Dulcinea                                                                                                              |
+| progress                    | 0                                                                                                                     |
+| project_id                  | 678e0304a62c445ba78d3b825cb4f1ab                                                                                      |
+| properties                  |                                                                                                                       |
+| status                      | ACTIVE                                                                                                                |
+| updated                     | 2020-11-22T11:38:44Z                                                                                                  |
+| user_id                     | fc6228f3de9b2e4abfc00a526192e37c323cde31412ffd98d1bf7c584915f35a                                                      |
+| volumes_attached            | id='dab6f14b-ec83-4d5a-9940-0f4bb35f864a'                                                                             |
++-----------------------------+-----------------------------------------------------------------------------------------------------------------------+
+</pre>
+
+Podemos apreciar como ya no nos muestra el apartado **security_groups** ya que no posee ningún grupo de seguridad, lo que significa por tanto, que lo hemos eliminado.
+
+Al eliminar el grupo de seguridad, se habilita un cortafuegos por defecto de *OpenStack*, que es la seguridad del puerto, que no permite el tráfico.
+
+Tenemos que deshabilitar la seguridad del puerto mediante el cual *Dulcinea* está conectada a la red **10.0.2.0/24**, recordemos que está conectada mediante la dirección **10.0.2.10**. Si miramos la lista de los puertos:
+
+<pre>
+(openstack) javier@debian:~/entornos_virtuales/openstack$ openstack port list
++--------------------------------------+------------------------------------------------+-------------------+--------------------------------------------------------------------------+--------+
+| ID                                   | Name                                           | MAC Address       | Fixed IP Addresses                                                       | Status |
++--------------------------------------+------------------------------------------------+-------------------+--------------------------------------------------------------------------+--------+
+| 07c0dbe5-af6c-4be4-9087-7525d0fe4edf |                                                | fa:16:3e:79:62:a5 | ip_address='10.0.2.1', subnet_id='a3961a3c-d8bf-40c8-a1d9-0939bd2e01fd'  | ACTIVE |
+| 0f26b5cf-2d67-49bc-bdd4-b2fd6d2910e4 |                                                | fa:16:3e:8c:8f:15 | ip_address='10.0.1.1', subnet_id='87427d1a-bd9d-400a-935b-02c56aaf7748'  | ACTIVE |
+| 2531063e-74f3-44d3-a268-0d2868599eee |                                                | fa:16:3e:2b:1c:c7 | ip_address='10.0.0.8', subnet_id='98c0ae2f-d2ee-48a3-9122-f1369a6e99b3'  | ACTIVE |
+| 2a4cd134-aad2-4d5d-9a22-8cdcdc745d52 |                                                | fa:16:3e:7c:f2:76 | ip_address='10.0.0.3', subnet_id='98c0ae2f-d2ee-48a3-9122-f1369a6e99b3'  | ACTIVE |
+| 338db52a-895b-4dcd-a85f-ad1706b26beb | prueba_cortafuegos-r1_network_ext-27wokbxnx23j | fa:16:3e:2b:d4:7e | ip_address='10.0.0.16', subnet_id='98c0ae2f-d2ee-48a3-9122-f1369a6e99b3' | DOWN   |
+| 382e2ad1-1645-4963-a913-68c82e260662 |                                                | fa:16:3e:f3:86:31 | ip_address='10.0.0.9', subnet_id='98c0ae2f-d2ee-48a3-9122-f1369a6e99b3'  | ACTIVE |
+| 4552e4e4-b593-47b2-8d7f-ea1d0b503d7d |                                                | fa:16:3e:b6:48:45 | ip_address='10.0.2.6', subnet_id='a3961a3c-d8bf-40c8-a1d9-0939bd2e01fd'  | ACTIVE |
+| 4b74d3ee-c877-4c20-820d-69e502c51034 |                                                | fa:16:3e:28:24:d0 | ip_address='10.0.0.2', subnet_id='98c0ae2f-d2ee-48a3-9122-f1369a6e99b3'  | ACTIVE |
+| 50c06762-bfce-499f-95b3-ef3a3708f906 |                                                | fa:16:3e:4b:ab:f9 | ip_address='10.0.0.1', subnet_id='98c0ae2f-d2ee-48a3-9122-f1369a6e99b3'  | ACTIVE |
+| a0ea0fd0-91a9-4727-ba3f-b0e764dc0e23 |                                                | fa:16:3e:8d:98:da | ip_address='10.0.2.10', subnet_id='a3961a3c-d8bf-40c8-a1d9-0939bd2e01fd' | ACTIVE |
+| e1517753-2766-4856-a1aa-9f6df4e70d8d |                                                | fa:16:3e:24:f3:f9 | ip_address='10.0.1.11', subnet_id='87427d1a-bd9d-400a-935b-02c56aaf7748' | ACTIVE |
+| e225a306-9713-4e4a-bd14-888c01479784 |                                                | fa:16:3e:84:9b:94 | ip_address='10.0.1.8', subnet_id='87427d1a-bd9d-400a-935b-02c56aaf7748'  | ACTIVE |
+| f1b3ec4a-e9fb-4d4a-9b6f-276dbb460786 |                                                | fa:16:3e:4a:d0:53 | ip_address='10.0.1.6', subnet_id='87427d1a-bd9d-400a-935b-02c56aaf7748'  | ACTIVE |
++--------------------------------------+------------------------------------------------+-------------------+--------------------------------------------------------------------------+--------+
+</pre>
+
+Nos interesa el ID del puerto, ya que necesitamos utilizar el siguiente comando para deshabilitar la seguridad de este puerto:
+
+<pre>
+(openstack) javier@debian:~/entornos_virtuales/openstack$ openstack port set --disable-port-security a0ea0fd0-91a9-4727-ba3f-b0e764dc0e23
+</pre>
+
+Una vez hemos deshabilitado el cortafuegos que establece la seguridad del puerto, la máquina vuelve a estar accesible, ya que ahora la máquina tiene abiertos todo el rango de puertos completo, porque ahora no posee ningún cortafuegos.
+
+Obviamente esto, no es recomendable en situaciones donde la máquina no se encuentre en un entorno que tengamos controlado, yo lo hago porque *Dulcinea* se encuentra en una nube privada, además de que vamos a establecer un cortafuegos desde dentro de la instancia.
+
+Ahora volvemos a *Dulcinea* y creamos la regla de `iptables` necesaria:
 
 <pre>
 iptables -t nat -A POSTROUTING -s 10.0.2.0/24 -o eth0 -j MASQUERADE

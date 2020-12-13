@@ -470,7 +470,7 @@ Ahora sí nos encontramos con la interfaz en estado **UP** y con la configuraci�
 
 Recordemos que *Dulcinea* es la máquina que hace de *router*, por lo que todas las conexiones pasan por ella, y es la que se encarga de redirigir las peticiones.
 
-En el primer [post](https://javierpzh.github.io/creacion-del-escenario-de-trabajo-en-openstack.html), configuramos una regla de *iptables* para que recondujera las peticiones provenientes de la red *10.0.1.0/24* hacia la interfaz **eth0** que es mediante la que está conectada al exterior. Pero esta regla obviamente no nos sirve para que *Quijote* que ahora pertenece a la red *10.0.2.0/24*, posea conexión a internet, por lo que tenemos que crear una nueva regla para esta red:
+En el primer [post](https://javierpzh.github.io/creacion-del-escenario-de-trabajo-en-openstack.html), configuramos una regla de *iptables* para que recondujera las peticiones provenientes de la red *10.0.1.0/24* hacia la interfaz **eth0** que es mediante la que está conectada al exterior. Pero esta regla obviamente no nos sirve para que *Quijote* que ahora pertenece a la red *10.0.2.0/24*, posea conexión a internet, por lo que tenemos que crear una nueva regla para esta red.
 
 Si lo recordamos, para hacer **NAT** en **Dulcinea** y que así **Quijote** tenga acceso a internet, tenemos que modificar el grupo de seguridad de *Dulcinea* y deshabilitar la seguridad de todos sus puertos, es decir, quitarle las reglas de cortafuegos, para luego añadirle nuestra propia regla de `iptables`.
 

@@ -128,6 +128,8 @@ La respuesta de este apartado afectará cuando desinstalemos el paquete `slapd`,
 └───────────────────────────────────────────────────────────────┘
 </pre>
 
+Yo respondo que sí.
+
 
 
 

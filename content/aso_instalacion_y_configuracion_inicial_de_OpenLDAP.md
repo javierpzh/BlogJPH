@@ -114,7 +114,7 @@ Acto seguido, tendremos que indicar que tipo de motor de base de datos vamos a u
 └───────────────────────────────────────────────────────────────────────────────────────────────────┘
 </pre>
 
-
+La respuesta de este apartado afectará cuando desinstalemos el paquete `slapd`, ya que si marcamos que sí, al hacer un `apt remove --purge slapd` se eliminará también la base de datos asociada al *servidor LDAP*.
 
 <pre>
 ┌─────────────────────┤ Configuring slapd ├─────────────────────┐
@@ -123,7 +123,7 @@ Acto seguido, tendremos que indicar que tipo de motor de base de datos vamos a u
 │                                                               │
 │ Do you want the database to be removed when slapd is purged?  │
 │                                                               │
-│                <\Ye\s>                   <\No\>               │
+│                <\Yes\>                   <\No\>               │
 │                                                               │
 └───────────────────────────────────────────────────────────────┘
 </pre>

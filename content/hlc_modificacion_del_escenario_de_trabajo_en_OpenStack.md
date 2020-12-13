@@ -498,12 +498,12 @@ Para establecer el direccionamiento estático en *CentOS 8*, debemos editar el f
 nano /etc/sysconfig/network-scripts/ifcfg-eth0
 </pre>
 
-En él, vamos a sustituir el bloque existente por este, en el que indicamos que la IP estática que le estamos asignando es la **10.0.2.6**, cuya máscara de red es una **255.255.255.0**, que la puerta de enlace es la **10.0.2.10**, es decir, la IP de *Dulcinea* en esta red, y que utilice esos **DNS** indicados. Es importante establecer en el apartado **ONBOOT** el valor *yes*, ya que esto hará que esta configuración se active en cada inicio del sistema.
+En él, vamos a sustituir el bloque existente por este, en el que indicamos que la IP estática que le estamos asignando es la **10.0.2.6**, cuya máscara de red es una **255.255.255.0**, que la puerta de enlace es la **10.0.2.10**, es decir, la IP de *Dulcinea* en esta red, y que utilice esos **DNS** indicados. Parece que ya hemos terminado toda la configuración necesaria pero no, ya que si nos fijamos bien, la **dirección de hardware** de la interfaz, ha cambiado también, por lo que también debemos modificar el valor del apartado **HWADDR** por el nuevo valor *fa:16:3e:b6:48:45*. Es importante establecer en el apartado **ONBOOT** el valor *yes*, ya que esto hará que esta configuración se active en cada inicio del sistema.
 
 <pre>
 BOOTPROTO=static
 DEVICE=eth0
-HWADDR=fa:16:3e:5c:3d:c5
+HWADDR=fa:16:3e:b6:48:45
 ONBOOT=yes
 TYPE=Ethernet
 USERCTL=no
@@ -523,11 +523,15 @@ systemctl restart network.service
 Vamos a comprobar las direcciones:
 
 <pre>
-3: eth0:  mtu 8950 qdisc fq_codel state UP group default qlen 1000
+[root@quijote ~]# ip a
+
+...
+
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether fa:16:3e:b6:48:45 brd ff:ff:ff:ff:ff:ff
-    inet 10.0.2.6/24 brd 10.0.2.255 scope global eth0
+    inet 10.0.2.6/24 brd 10.0.2.255 scope global noprefixroute eth0
        valid_lft forever preferred_lft forever
-    inet6 fe80::275d:a225:a9a0:a43f/64 scope link
+    inet6 fe80::f816:3eff:feb6:4845/64 scope link
        valid_lft forever preferred_lft forever
 </pre>
 

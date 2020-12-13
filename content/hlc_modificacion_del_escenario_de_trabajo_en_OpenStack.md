@@ -284,7 +284,7 @@ System clock synchronized: yes
 
 Ahora sí, hemos terminado todas las configuraciones en *Freston*.
 
-Aunque antes de salir de esta máquina, aún me quedaría algo por hacer, y no es más que llevar a cao la creación del usuario **profesor**, usuario que puede utilizar sudo sin contraseña.
+Aunque antes de salir de esta máquina, aún me quedaría algo por hacer, y no es más que llevar a cabo la creación del usuario **profesor**, usuario que puede utilizar `sudo` sin contraseña.
 
 Para crear un usuario en *Debian*, tenemos que hacer uso del comando `useradd`, pero bien, si queremos que en el nuevo usuario se creen las carpetas automáticamente en el directorio `/home` debemos introducir la opción `-m`:
 

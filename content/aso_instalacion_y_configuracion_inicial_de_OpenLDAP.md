@@ -1,7 +1,7 @@
 Title: Instalación y configuración inicial de OpenLDAP
 Date: 2020/12/13
 Category: Administración de Sistemas Operativos
-Header_Cover: theme/images/banner-sistemas.png
+Header_Cover: theme/images/banner-sistemas.jpg
 Tags: LDAP, OpenStack
 
 
@@ -27,7 +27,7 @@ Durante la instalación, se nos abrirá esta ventana emergente donde nos pedirá
 │                                                                        │
 │ ______________________________________________________________________ │
 │                                                                        │
-│                                 <Ok>                                   │
+│                                 <\Ok\>                                 │
 │                                                                        │
 └────────────────────────────────────────────────────────────────────────┘
 </pre>
@@ -40,7 +40,7 @@ Los archivos de configuración del servidor **LDAP** se almacenan en la carpeta 
 dpkg-reconfigure slapd
 </pre>
 
-Lo primero que nos pregunta el asistente es si deseamos omitir la configuración del servidor LDAP:
+Se nos abrirá un asistente y en primer lugar nos preguntara si deseamos omitir la configuración del *servidor LDAP*:
 
 <pre>
 ┌───────────────────────────────────┤ Configuring slapd ├───────────────────────────────────┐
@@ -49,13 +49,26 @@ Lo primero que nos pregunta el asistente es si deseamos omitir la configuración
 │                                                                                           │
 │ Omit OpenLDAP server configuration?                                                       │
 │                                                                                           │
-│                          <Yes>                             <No>                           │
+│                          <\Yes\>                             <\No\>                       │
 │                                                                                           │
 └───────────────────────────────────────────────────────────────────────────────────────────┘
 </pre>
 
+Respondemos que no, ya que precisamente lo que queremos es configurar el *servidor LDAP*.
 
-
+<pre>
+┌───────────────────────────────────┤ Configuring slapd ├────────────────────────────────────┐
+│ The DNS domain name is used to construct the base DN of the LDAP directory. For example,   │
+│ 'foo.example.org' will create the directory with 'dc=foo, dc=example, dc=org' as base DN.  │
+│                                                                                            │
+│ DNS domain name:                                                                           │
+│                                                                                            │
+│ javierpzh.gonzalonazareno.org_____________________________________________________________ │
+│                                                                                            │
+│                                           <\Ok\>                                           │
+│                                                                                            │
+└────────────────────────────────────────────────────────────────────────────────────────────┘
+</pre>
 
 
 

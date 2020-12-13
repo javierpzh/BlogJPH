@@ -263,7 +263,13 @@ También he añadido la línea correspondiente a las máquinas *Dulcinea*, *Sanc
 10.0.1.6 freston.javierpzh.gonzalonazareno.org freston
 </pre>
 
-Por último, vamos a configurar nuestro reloj utilizando un servidor **NTP** externo, introducimos el siguiente comando y seleccionamos la configuración que nos interese:
+Por último, vamos a configurar nuestro reloj utilizando un servidor **NTP** externo, pero nos encontraremos con que tendremos conflictos entre los servicios `systemd-timesyncd` y `ntpd`. En mi caso voy a desinstalar el paquete `ntp` para solucionar el problema:
+
+<pre>
+apt remove --purge ntp -y
+</pre>
+
+Hecho esto, introducimos el siguiente comando y seleccionamos la configuración que nos interese:
 
 <pre>
 dpkg-reconfigure tzdata

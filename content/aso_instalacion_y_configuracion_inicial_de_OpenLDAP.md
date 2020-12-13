@@ -148,4 +148,15 @@ Vamos con la última pregunta. Nos informa que en el directorio `/var/lib/ldap` 
 
 En mi caso, respondo que sí.
 
-.
+Y ya, vemos como se cierra el asistente y habría terminado el proceso de configuración inicial de *LDAP*:
+
+<pre>
+root@freston:~# dpkg-reconfigure slapd
+  Backing up /etc/ldap/slapd.d in /var/backups/slapd-2.4.47+dfsg-3+deb10u4... done.
+  Moving old database directory to /var/backups:
+  - directory unknown... done.
+  Creating initial configuration... done.
+  Creating LDAP directory... done.
+
+root@freston:~#
+</pre>

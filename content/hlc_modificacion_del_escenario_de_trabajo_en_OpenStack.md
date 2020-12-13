@@ -501,3 +501,11 @@ Para terminar la tarea, vamos a modificar el fichero `/etc/hosts` de esta máqui
 </pre>
 
 Con esto, habríamos terminado todo el proceso de modificaciones.
+
+Antes de finalizar el *post*, me gustaría aclarar que aunque no haya comentado nada de cambiar los ficheros `/etc/hosts` de las máquinas *Sancho* y *Freston*, si queremos seguir utilizando la resolución estática en estas máquinas a la hora de hacer referencia a *Quijote*, debemos modificar la línea que hace referencia a *Quijote*, por esta otra:
+
+<pre>
+10.0.2.6 quijote.javierpzh.gonzalonazareno.org quijote
+</pre>
+
+Y a lo mejor alguien se pregunta, como se conectarían estas máquinas con *Quijote* si no se encuentran en la misma red, pues bien, al estar todas conectadas a *Dulcinea*, realizan una conexión hacia esta, y la propia *Dulcinea* las hace conectar con *Quijote*. El mismo proceso se llevaría a cabo en el caso de que fuese *Quijote* el que quisiese conectar con *Sancho* o *Freston*.

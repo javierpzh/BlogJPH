@@ -884,7 +884,7 @@ Y fin, esto hará que cuando el usuario *profesor* haga uso de `sudo`, no le pid
 
 He copiado todas las claves públicas de los profesores al fichero `.ssh/authorized_keys` del usuario *profesor*.
 
-**Importante:** hay que cambiar los permisos de la carpeta `.ssh` a 700, y del fichero `authorized_keys` a 600.
+**Importante:** hay que cambiar los permisos de la carpeta `.ssh` a *700*, y del fichero `authorized_keys` a *600*.
 
 **9. Realiza una actualización completa de todos los servidores.**
 

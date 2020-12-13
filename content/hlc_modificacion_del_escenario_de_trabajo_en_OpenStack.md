@@ -468,6 +468,22 @@ root@dulcinea:~# ip a
 
 Ahora sí nos encontramos con la interfaz en estado **UP** y con la configuración correcta.
 
+Recordemos que *Dulcinea* es la máquina que hace de *router*, por lo que todas las conexiones pasan por ella, y es la que se encarga de redirigir las peticiones.
+
+En el primer [post](https://javierpzh.github.io/creacion-del-escenario-de-trabajo-en-openstack.html), configuramos una regla de *iptables* para que recondujera las peticiones provenientes de la red *10.0.1.0/24* hacia la interfaz **eth0** que es mediante la que está conectada al exterior. Pero esta regla obviamente no nos sirve para que *Quijote* que ahora pertenece a la red *10.0.2.0/24*, posea conexción a internet, por lo que tenemos que crear una nueva regla para esta red:
+
+<pre>
+iptables -t nat -A POSTROUTING -s 10.0.2.0/24 -o eth0 -j MASQUERADE
+</pre>
+
+**Importante:** es muy recomendable instalar el paquete `iptables-persistent`, ya que esto hará que en cada arranque del sistema las reglas que hemos configurado se levanten automáticamente, siempre y cuando las guardemos en el fichero `/etc/iptables/rules.v4`. Por tanto vamos a guardar esta regla para que se levente en cada inicio:
+
+<pre>
+iptables-save > /etc/iptables/rules.v4
+</pre>
+
+Lógicamente tenemos habilitado el **bit de forward**, ya que en el primer *post* lo establecimos a *1* de manera permanente.
+
 Para terminar de trabajar en *Dulcinea*, vamos a corregir la resolución estática de nombres, ya que la IP de *Quijote* ha cambiado. En el fichero `/etc/hosts` sustituimos la antigua línea que hacía referencia a *Quijote* por esta:
 
 <pre>
@@ -503,6 +519,7 @@ En él, vamos a sustituir el bloque existente por este, en el que indicamos que 
 <pre>
 BOOTPROTO=static
 DEVICE=eth0
+MTU=8950
 HWADDR=fa:16:3e:b6:48:45
 ONBOOT=yes
 TYPE=Ethernet
@@ -527,7 +544,7 @@ Vamos a comprobar las direcciones:
 
 ...
 
-2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8950 qdisc fq_codel state UP group default qlen 1000
     link/ether fa:16:3e:b6:48:45 brd ff:ff:ff:ff:ff:ff
     inet 10.0.2.6/24 brd 10.0.2.255 scope global noprefixroute eth0
        valid_lft forever preferred_lft forever

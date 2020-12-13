@@ -304,8 +304,15 @@ También le he asignando una contraseña que es **profesor**, por si alguna vez 
 
 He copiado todas las claves públicas de los profesores al fichero `.ssh/authorized_keys` del usuario *profesor*.
 
+<pre>
+mkdir .ssh
 
+nano .ssh/authorized_keys
 
+chmod 700 .ssh/
+
+chmod 600 .ssh/authorized_keys
+</pre>
 
 **Importante:** hay que cambiar los permisos de la carpeta `.ssh` a *700*, y del fichero `authorized_keys` a *600*.
 

@@ -8,7 +8,12 @@ Tags: CMS, Java
 
 #### Indica la aplicación escogida y su funcionalidad
 
-.
+He decidido escoger el **CMS escrito en Java**, llamado **Guacamole**.
+
+*Apache Guacamole* es una herramienta libre que nos permite conectarnos remotamente a un servidor mediante el navegador web sin necesidad de usar un cliente.
+
+Gracias a HTML5, una vez tengamos instalado y configurado *Apache Guacamole*, tan solo tenemos que conectarnos mediante el navegador web para empezar a trabajar remotamente.
+
 
 #### Escribe una guía de los pasos fundamentales para realizar la instalación
 

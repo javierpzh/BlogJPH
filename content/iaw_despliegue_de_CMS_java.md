@@ -29,6 +29,12 @@ Gracias a HTML5, una vez tengamos instalado y configurado *Apache Guacamole*, ta
 
 6. Buscar información sobre el **proxy.ajp** en **Apache2** y realizar la configuración necesaria.
 
+A continuación vamos a realizar la instalación de *tomcat 9* y de la aplicación en sí.
+
+
+
+En primer lugar, debemos instalar **Tomcat**, en mi caso, voy a instalar la versión *9*
+
 
 #### ¿Has necesitado instalar alguna librería? ¿Has necesitado instalar un conector de una base de datos?
 

@@ -161,7 +161,7 @@ root@freston:~# dpkg-reconfigure slapd
 root@freston:~#
 </pre>
 
-Si hacemos uso del comando `slapcat` nos mostraría un volcado en bruto de los objetos que tiene ahora mismo el *servidor LDAP*:
+Si hacemos uso del comando `slapcat` nos mostraría, en formato **LDIF**, un volcado en bruto de los objetos que tiene ahora mismo el *servidor LDAP*:
 
 <pre>
 root@freston:~# slapcat
@@ -288,29 +288,4 @@ modifyTimestamp: 20201214095528Z
 root@freston:~#
 </pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.
+En la salida del comando, podemos apreciar como se han creado estos dos nuevos objetos **Personas** y **Grupos**.

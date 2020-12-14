@@ -31,9 +31,57 @@ Gracias a HTML5, una vez tengamos instalado y configurado *Apache Guacamole*, ta
 
 A continuación vamos a realizar la instalación de *tomcat 9* y de la aplicación en sí.
 
+Antes de nada, necesitaremos un equipo donde trabajar. Yo voy a instalar una máquina virtual, y para ello, voy a utilizar *Vagrant*. He creado este *Vagrantfile*:
+
+<pre>
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "debian/buster64"
+
+  config.vm.network "private_network", ip: "192.168.200.20"
+
+  config.vm.memory = «2048»
+
+end
+</pre>
+
+Una vez estamos en nuestro equipo de trabajo, en primer lugar, debemos instalar **Tomcat**, en mi caso, voy a instalar la versión *9*
 
 
-En primer lugar, debemos instalar **Tomcat**, en mi caso, voy a instalar la versión *9*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #### ¿Has necesitado instalar alguna librería? ¿Has necesitado instalar un conector de una base de datos?

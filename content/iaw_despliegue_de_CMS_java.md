@@ -48,9 +48,15 @@ end
 
 Una vez estamos en nuestro equipo de trabajo, en primer lugar, debemos instalar **Tomcat**, en mi caso, voy a instalar la versión *9*
 
+<pre>
+apt install default-jdk -y
+</pre>
 
 
 
+<pre>
+apt install tomcat9 -y
+</pre>
 
 
 

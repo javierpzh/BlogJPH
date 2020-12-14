@@ -66,8 +66,11 @@ Para comprobar el funcionamiento de una forma más visual, podemos conectarnos d
 
 Vemos que está funcionando correctamente.
 
-En este punto, ya podemos descargar el fichero `.war`
+En este punto, ya podemos descargar el fichero `.war`.
 
+¿Alguien se pregunta qué es un fichero `.war`?
+
+Un fichero `.war` es una aplicación web que permite a *Tomcat* acceder a su utilización. El fichero `.war` tiene que ser descomprimido para ser leído.
 
 
 

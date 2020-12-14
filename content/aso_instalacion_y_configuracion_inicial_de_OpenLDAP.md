@@ -1,5 +1,5 @@
 Title: Instalación y configuración inicial de OpenLDAP
-Date: 2020/12/13
+Date: 2020/12/14
 Category: Administración de Sistemas Operativos
 Header_Cover: theme/images/banner-sistemas.jpg
 Tags: LDAP, OpenStack

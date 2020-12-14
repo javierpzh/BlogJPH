@@ -2,7 +2,7 @@ Title: Despliegue de CMS Java
 Date: 2020/12/14
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
-Tags: CMS, Java
+Tags: CMS, Java, Tomcat
 
 **En esta práctica vamos a desplegar un [CMS escrito en Java](https://java-source.net/open-source/content-managment-systems). Puedes escoger la aplicación que vas a desplegar de CMS escritos en Java o de [Aplicaciones Java en Bitnami](https://bitnami.com/tag/java).**
 

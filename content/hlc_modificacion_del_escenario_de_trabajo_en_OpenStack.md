@@ -741,3 +741,5 @@ Antes de finalizar el *post*, me gustaría aclarar que aunque no haya comentado 
 </pre>
 
 Y a lo mejor alguien se pregunta, como se conectarían estas máquinas con *Quijote* si no se encuentran en la misma red, pues bien, al estar todas conectadas a *Dulcinea*, realizan una conexión hacia esta, y la propia *Dulcinea* las hace conectar con *Quijote*. El mismo proceso se llevaría a cabo en el caso de que fuese *Quijote* el que quisiese conectar con *Sancho* o *Freston*.
+
+Se me ha olvidado comentarlo, pero como tenemos configuradas todas las direcciones IP de las distintas máquinas, podemos deshabilitar los servidores *DHCP* de las distintas redes, tanto de la red interna, como de la red *DMZ*.

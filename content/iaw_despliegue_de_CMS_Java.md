@@ -127,16 +127,11 @@ apt install libwebp-dev -y
 </pre>
 
 
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
+Ahora nos vamos a descargar el paquete correspondiente al servidor:
+
+<pre>
+wget http://archive.apache.org/dist/guacamole/0.9.14/source/guacamole-server-0.9.14.tar.gz
+</pre>
 
 
 

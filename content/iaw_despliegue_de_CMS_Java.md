@@ -48,11 +48,13 @@ end
 
 Una vez estamos en nuestro equipo de trabajo, en primer lugar, debemos instalar **Tomcat**, en mi caso, voy a instalar la versión *9*
 
+*Tomcat* requiere que **Java** esté instalado en el servidor para poder ejecutar cualquier código de aplicación web *Java*.
+
 <pre>
 apt install default-jdk -y
 </pre>
 
-
+Instalado *Java*, ya podemos proceder a instalar *Tomcat*. Para ello:
 
 <pre>
 apt install tomcat9 -y

@@ -130,7 +130,7 @@ La respuesta de este apartado afectará cuando desinstalemos el paquete `slapd`,
 
 Yo respondo que sí.
 
-Vamos con la última pregunta. Nos informa que en el directorio `/var/lib/ldap` existe la configuración previa de la que se ha creado anteriormente, y nos da la opción de remover esa configuración y sustituila por esta nueva.
+Vamos con la última pregunta. Nos informa que en el directorio `/var/lib/ldap` existe la configuración previa de la que se ha creado anteriormente, y nos da la opción de remover esa configuración y sustituirla por esta nueva.
 
 <pre>
 ┌──────────────────────────────────────┤ Configuring slapd ├───────────────────────────────────────┐
@@ -172,24 +172,60 @@ objectClass: organization
 o: javierpzh.gonzalonazareno.org
 dc: javierpzh
 structuralObjectClass: organization
-entryUUID: caecef7c-d189-103a-852d-3549c02d4651
+entryUUID: 138073ec-d23b-103a-9a84-cf984c8cb121
 creatorsName: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
-createTimestamp: 20201213122346Z
-entryCSN: 20201213122346.946704Z#000000#000#000000
+createTimestamp: 20201214093249Z
+entryCSN: 20201214093249.630601Z#000000#000#000000
 modifiersName: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
-modifyTimestamp: 20201213122346Z
+modifyTimestamp: 20201214093249Z
 
 dn: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
 objectClass: simpleSecurityObject
 objectClass: organizationalRole
 cn: admin
 description: LDAP administrator
-userPassword:: e1NTSEF9QnlCSVZIVmh2WW43dUFqWnJoN1NOVThKc2MxWXVmSkY=
+userPassword:: e1NTSEF9NVFZcjVrK25sMFlEWVhmbHB1MEhETG9YRTVVZEhpU0U=
 structuralObjectClass: organizationalRole
-entryUUID: caf34c14-d189-103a-852e-3549c02d4651
+entryUUID: 138393ce-d23b-103a-9a85-cf984c8cb121
 creatorsName: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
-createTimestamp: 20201213122346Z
-entryCSN: 20201213122346.988494Z#000000#000#000000
+createTimestamp: 20201214093249Z
+entryCSN: 20201214093249.651148Z#000000#000#000000
 modifiersName: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
-modifyTimestamp: 20201213122346Z
+modifyTimestamp: 20201214093249Z
 </pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

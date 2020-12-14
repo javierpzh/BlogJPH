@@ -24,9 +24,11 @@ El proceso de instalación la verdad que es de lo más trivial que he llegado a 
 
 Una vez ya había instalado *VMWare ESXi*, volví a la BIOS para modificar de nuevo la secuencia de arranque y poner en primer lugar la unidad de almacenamiento *SATA*.
 
-Al iniciar el sistema, nos aparece una ventana en la que nos indica la dirección IP, que
+Al iniciar el sistema, nos aparece una ventana en la que nos indica la dirección IP, que tenemos que introducir desde un navegador, para descargar las herramientas necesarias para llevar a cabo la gestión remota.
 
+Descargué la aplicación llamada ``
 
+![.](images/)
 
 
 

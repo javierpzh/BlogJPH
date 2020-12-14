@@ -66,26 +66,78 @@ Para comprobar el funcionamiento de una forma más visual, podemos conectarnos d
 
 Vemos que está funcionando correctamente.
 
+Ahora vamos a comenzar la instalación de **Apache Guacamole**, para ello vamos a instalar los paquetes mínimos necesarios:
+
+<pre>
+apt install build-essential libcairo2-dev libjpeg62-turbo-dev libpng-dev libtool-bin libossp-uuid-dev -y
+</pre>
+
+Acabo de comentar que iba a instalar los paquetes necesarios. Esto es porque en función de los protocolos que queramos utilizar, vamos a instalar una serie de paquetes u otros (podemos instalarlos todos y trabajarán de manera conjunta sin problemas).
+
+En mi caso, voy a instalar los paquetes necesarios para el soporte de **SSH**:
+
+<pre>
+apt install libpango1.0-dev libssh2-1-dev -y
+</pre>
+
+Como vamos a utilizar *SSH*, también nos es necesario el soporte de **OpenSSL**.
+
+Aquí dejo también los paquetes a instalar para cada protocolo, por si estás interesado en instalarlos:
+
+- Soporte para **OpenSSL**:
+
+<pre>
+apt install libssl-dev -y
+</pre>
+
+- Soporte para **RDP**:
+
+<pre>
+apt install libfreerdp-dev -y
+</pre>
+
+- Soporte para **telnet**:
+
+<pre>
+apt install libpango1.0-dev libtelnet-dev -y
+</pre>
+
+- Soporte para **Guacenc**:
+
+<pre>
+apt install libavcodec-dev libavutil-dev libswscale-dev -y
+</pre>
+
+- Soporte para **VNC** y **audio**:
+
+<pre>
+apt install libvncserver-dev libpulse-dev -y
+</pre>
+
+- Soporte para **Ogg Vorbis**:
+
+<pre>
+apt install libvorbis-dev -y
+</pre>
+
+- Soporte para **WebP**:
+
+<pre>
+apt install libwebp-dev -y
+</pre>
+
+
+
+
+
+
+
+
 En este punto, ya podemos descargar el fichero `.war`.
 
 ¿Alguien se pregunta qué es un fichero `.war`?
 
 Un fichero `.war` es una aplicación web que permite a *Tomcat* acceder a su utilización. El fichero `.war` tiene que ser descomprimido para ser leído.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

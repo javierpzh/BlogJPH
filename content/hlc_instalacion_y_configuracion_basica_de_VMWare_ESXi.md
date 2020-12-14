@@ -28,7 +28,7 @@ Al iniciar el sistema, nos aparece una ventana en la que nos indica la direcció
 
 Descargué la aplicación llamada ``
 
-![.](images/)
+![.](images/hlc_instalacion_y_configuracion_basica_de_VMWare_ESXi/vmwareweb.png)
 
 
 

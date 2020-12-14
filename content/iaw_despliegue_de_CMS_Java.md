@@ -64,7 +64,9 @@ Para comprobar el funcionamiento de una forma más visual, podemos conectarnos d
 
 ![.](images/iaw_despliegue_de_CMS_Java/tomcat8080.png)
 
+Vemos que está funcionando correctamente.
 
+En este punto, ya podemos descargar el fichero `.war`
 
 
 

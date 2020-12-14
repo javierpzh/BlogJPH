@@ -60,9 +60,9 @@ Instalado *Java*, ya podemos proceder a instalar *Tomcat*. Para ello:
 apt install tomcat9 -y
 </pre>
 
+Para comprobar el funcionamiento de una forma más visual, podemos conectarnos desde un navegador web mediante la dirección IP de la máquina especificando el puerto **8080**:
 
-
-
+![.](images/iaw_despliegue_de_CMS_Java/tomcat8080.png)
 
 
 

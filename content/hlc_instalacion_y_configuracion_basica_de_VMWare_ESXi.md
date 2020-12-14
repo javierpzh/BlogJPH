@@ -30,7 +30,7 @@ Al iniciar el sistema, nos aparece una ventana en la que nos indica la direcció
 
 Descargué e instalé la aplicación llamada `vSphere Client`.
 
-
+![.](images/hlc_instalacion_y_configuracion_basica_de_VMWare_ESXi/vSphereClient.png)
 
 
 

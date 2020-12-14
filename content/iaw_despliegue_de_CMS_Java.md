@@ -66,7 +66,35 @@ Para comprobar el funcionamiento de una forma más visual, podemos conectarnos d
 
 Vemos que está funcionando correctamente.
 
+En este punto, ya podemos descargar el fichero `.war`.
 
+¿Alguien se pregunta qué es un fichero `.war`?
+
+Un fichero `.war` es una aplicación web que permite a *Tomcat* acceder a su utilización. El fichero `.war` tiene que ser descomprimido para ser leído.
+
+
+
+
+
+
+
+
+
+#### ¿Has necesitado instalar alguna librería? ¿Has necesitado instalar un conector de una base de datos?
+
+.
+
+#### Entrega una captura de pantalla donde se vea la aplicación funcionando
+
+.
+
+#### Realiza la configuración necesaria en Apache2 y tomcat (utilizando el protocolo AJP) para que la aplicación sea servida por el servidor web
+
+.
+
+#### Entrega una captura de pantalla donde se vea la aplicación funcionando servida por Apache2
+
+.
 
 
 
@@ -197,43 +225,3 @@ Una vez terminada la instalación, actualizamos las librerías instaladas en el 
 <pre>
 ldconfig
 </pre>
-
-
-
-
-
-
-
-
-
-
-
-En este punto, ya podemos descargar el fichero `.war`.
-
-¿Alguien se pregunta qué es un fichero `.war`?
-
-Un fichero `.war` es una aplicación web que permite a *Tomcat* acceder a su utilización. El fichero `.war` tiene que ser descomprimido para ser leído.
-
-
-
-
-
-
-
-
-
-#### ¿Has necesitado instalar alguna librería? ¿Has necesitado instalar un conector de una base de datos?
-
-.
-
-#### Entrega una captura de pantalla donde se vea la aplicación funcionando
-
-.
-
-#### Realiza la configuración necesaria en Apache2 y tomcat (utilizando el protocolo AJP) para que la aplicación sea servida por el servidor web
-
-.
-
-#### Entrega una captura de pantalla donde se vea la aplicación funcionando servida por Apache2
-
-.

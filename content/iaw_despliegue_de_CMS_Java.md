@@ -66,6 +66,41 @@ Para comprobar el funcionamiento de una forma más visual, podemos conectarnos d
 
 Vemos que está funcionando correctamente.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+
 Ahora vamos a comenzar la instalación de **Apache Guacamole**, para ello vamos a instalar los paquetes mínimos necesarios:
 
 <pre>

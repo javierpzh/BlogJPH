@@ -12,7 +12,7 @@ Tags: CMS, Java
 
 #### Escribe una guía de los pasos fundamentales para realizar la instalación
 
-1. Instalar tomcat 9.
+1. Instalar *tomcat 9*.
 
 2. Comprobar el accso al puerto 8080.
 
@@ -20,7 +20,7 @@ Tags: CMS, Java
 
 4. Acceder a la aplicación.
 
-5. Configurar el fichero `/etc/tomcat9/server.xml`.
+5. Configurar el fichero `/etc/tomcat9/server.xml` para activar el conector `ajp`.
 
 6. Buscar información sobre el **proxy.ajp** en **Apache2** y realizar la configuración necesaria.
 

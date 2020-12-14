@@ -46,9 +46,9 @@ Vagrant.configure("2") do |config|
 end
 </pre>
 
-Una vez estamos en nuestro equipo de trabajo, en primer lugar, debemos instalar **Tomcat**, en mi caso, voy a instalar la versión *9*
+Una vez estamos en nuestro equipo de trabajo, en primer lugar, debemos instalar **Tomcat**, en mi caso, voy a instalar la versión *9*.
 
-*Tomcat* requiere que **Java** esté instalado en el servidor para poder ejecutar cualquier código de aplicación web *Java*.
+*Tomcat* requiere que **Java** esté instalado para poder ejecutar cualquier código de aplicación web *Java*.
 
 <pre>
 apt install default-jdk -y

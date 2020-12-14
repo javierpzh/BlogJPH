@@ -19,7 +19,7 @@ Gracias a HTML5, una vez tengamos instalado y configurado *Apache Guacamole*, ta
 
 1. Instalar *tomcat 9*.
 
-2. Comprobar el accso al puerto 8080.
+2. Comprobar el acceso al puerto 8080.
 
 3. Buscar un archivo `.war` y almacenarlo en la ruta `/var/lib/tomcat9/webapp`.
 

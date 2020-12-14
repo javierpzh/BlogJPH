@@ -26,10 +26,9 @@ Una vez ya había instalado *VMWare ESXi*, volví a la BIOS para modificar de nu
 
 Al iniciar el sistema, nos aparece una ventana en la que nos indica la dirección IP, que tenemos que introducir desde un navegador, para descargar las herramientas necesarias para llevar a cabo la gestión remota.
 
-Descargué la aplicación llamada ``
-
 ![.](images/hlc_instalacion_y_configuracion_basica_de_VMWare_ESXi/vmwareweb.png)
 
+Descargué e instalé la aplicación llamada `vSphere Client`.
 
 
 

@@ -69,7 +69,7 @@ Vemos que está funcionando correctamente.
 Ahora vamos a comenzar la instalación de **Apache Guacamole**, para ello vamos a instalar los paquetes mínimos necesarios:
 
 <pre>
-apt install build-essential libcairo2-dev libjpeg62-turbo-dev libpng-dev libtool-bin libossp-uuid-dev -y
+apt install build-essential gcc libcairo2-dev libjpeg62-turbo-dev libpng-dev libtool-bin libossp-uuid-dev -y
 </pre>
 
 Acabo de comentar que iba a instalar los paquetes necesarios. Esto es porque en función de los protocolos que queramos utilizar, vamos a instalar una serie de paquetes u otros (podemos instalarlos todos y trabajarán de manera conjunta sin problemas).
@@ -132,6 +132,29 @@ Ahora nos vamos a descargar el paquete correspondiente al servidor:
 <pre>
 wget http://archive.apache.org/dist/guacamole/0.9.14/source/guacamole-server-0.9.14.tar.gz
 </pre>
+
+Lo descomprimimos:
+
+<pre>
+tar -xzf guacamole-server-0.9.14.tar.gz
+</pre>
+
+Dentro del directorio `/guacamole-server-0.9.14`, ejecutamos el configurador automático. Si nos da algún error, será señal de que nos faltan algunas librerías necesarias:
+
+<pre>
+./configure --with-init-dir=/etc/init.d
+</pre>
+
+
+
+<pre>
+
+</pre>
+
+
+
+
+
 
 
 

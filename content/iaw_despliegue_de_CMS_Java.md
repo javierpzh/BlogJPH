@@ -21,7 +21,7 @@ Gracias a HTML5, una vez tengamos instalado y configurado *Apache Guacamole*, ta
 
 2. Comprobar el acceso al puerto 8080.
 
-3. Buscar un archivo `.war` y almacenarlo en la ruta `/var/lib/tomcat9/webapp`.
+3. Buscar un archivo `.war` y almacenarlo en la ruta `/var/lib/tomcat9/webapps`.
 
 4. Acceder a la aplicación.
 
@@ -72,12 +72,30 @@ En este punto, ya podemos descargar el fichero `.war`.
 
 Un fichero `.war` es una aplicación web que permite a *Tomcat* acceder a su utilización. El fichero `.war` tiene que ser descomprimido para ser leído.
 
+Nos descargamos el fichero `.war` de la [página oficial de Apache Guacamole](https://guacamole.apache.org/releases/). En mi caso, descargo la última versión, que en este momento es la **1.2.0**. La he descargado desde mi máquina y la he pasado mediante `scp` a la máquina virtual *Vagrant*, aquí podemos ver que ya lo tenemos:
+
+<pre>
+root@buster:~# ls
+guacamole-1.2.0.war
+</pre>
 
 
 
+<pre>
+root@buster:~# mv guacamole-1.2.0.war /var/lib/tomcat9/webapps
+
+root@buster:~# ls /var/lib/tomcat9/webapps/
+guacamole-1.2.0  guacamole-1.2.0.war  ROOT
+
+root@buster:~# ls /var/lib/tomcat9/webapps/guacamole-1.2.0
+app	   guacamole-common-js	guacamole.min.css  index.html	META-INF	       WEB-INF
+fonts	   guacamole.css	guacamole.min.js   layouts	relocateParameters.js
+generated  guacamole.js		images		   license.txt	translations
+</pre>
 
 
 
+![.](images/iaw_despliegue_de_CMS_Java/guacamole8080.png)
 
 
 #### ¿Has necesitado instalar alguna librería? ¿Has necesitado instalar un conector de una base de datos?

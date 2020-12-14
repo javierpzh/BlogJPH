@@ -102,13 +102,13 @@ root@buster:/var/lib/tomcat9/webapps# ls
 guacamole  guacamole-1.2.0.war	ROOT
 </pre>
 
-Me he dado cuenta, que al cambiarle el nombre, fichero `.war` vuelve a generar otra vez la carpeta `guacamole-1.2.0`. Parece ser que al cambiarle el nombre, este fichero detecta que la carpeta no está creada y la vuelve a originar de manera automática. Para solucionar esto, he eliminado el fichero `.war` y el nuevo directorio, de manera que ahora solo poseo el directorio `guacamole`.
+Me he dado cuenta, que al cambiarle el nombre, el fichero `.war` vuelve a generar otra vez la carpeta `guacamole-1.2.0`. Parece ser que al cambiarle el nombre, este fichero detecta que la carpeta no está creada y la vuelve a originar de manera automática. Para solucionar esto, he eliminado el fichero `.war` y el nuevo directorio, de manera que ahora solo poseo el directorio `guacamole`.
 
 Hecho esto, vamos a probar a acceder a la dirección `192.168.200.20:8080/guacamole`:
 
 ![.](images/iaw_despliegue_de_CMS_Java/guacamole8080.png)
 
-
+Vemos que podemos acceder a la aplicación.
 
 
 

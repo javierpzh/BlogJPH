@@ -194,10 +194,9 @@ modifiersName: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
 modifyTimestamp: 20201214093249Z
 </pre>
 
+Por último, vamos a crear dos unidades organizativas, una destinada a las **Personas** y otra para **Grupos**.
 
-
-
-`unidadesorganizativas.ldif`:
+Para esto, he creado un fichero `.ldif` llamado `unidadesorganizativas.ldif` que posee este aspecto:
 
 <pre>
 dn: ou=Personas,dc=javierpzh,dc=gonzalonazareno,dc=org

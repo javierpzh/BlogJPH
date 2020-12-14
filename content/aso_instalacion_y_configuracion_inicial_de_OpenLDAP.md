@@ -197,11 +197,96 @@ modifyTimestamp: 20201214093249Z
 
 
 
+`unidadesorganizativas.ldif`:
 
+<pre>
+dn: ou=Personas,dc=javierpzh,dc=gonzalonazareno,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: Personas
 
+dn: ou=Grupos,dc=javierpzh,dc=gonzalonazareno,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: Grupos
+</pre>
 
+Para cargar la configuración de este nuevo fichero, debemos hacer uso del siguiente comando:
 
+<pre>
+ldapadd -x -D 'cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org' -W -f unidadesorganizativas.ldif
+</pre>
 
+Aquí vemos el proceso:
+
+<pre>
+root@freston:~# ldapadd -x -D 'cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org' -W -f unidadesorganizativas.ldif
+Enter LDAP Password:
+adding new entry "ou=Personas,dc=javierpzh,dc=gonzalonazareno,dc=org"
+
+adding new entry "ou=Grupos,dc=javierpzh,dc=gonzalonazareno,dc=org"
+</pre>
+
+Podemos ver como nos pide introducir la contraseña del administrador, y una vez la hayamos introducido, veremos dos líneas como mensaje de la creación de estas nuevas unidades organizativas.
+
+Si ahora volvemos a hacer uso del comando `slapcat`:
+
+<pre>
+root@freston:~# slapcat
+dn: dc=javierpzh,dc=gonzalonazareno,dc=org
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: javierpzh.gonzalonazareno.org
+dc: javierpzh
+structuralObjectClass: organization
+entryUUID: 138073ec-d23b-103a-9a84-cf984c8cb121
+creatorsName: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
+createTimestamp: 20201214093249Z
+entryCSN: 20201214093249.630601Z#000000#000#000000
+modifiersName: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
+modifyTimestamp: 20201214093249Z
+
+dn: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: LDAP administrator
+userPassword:: e1NTSEF9NVFZcjVrK25sMFlEWVhmbHB1MEhETG9YRTVVZEhpU0U=
+structuralObjectClass: organizationalRole
+entryUUID: 138393ce-d23b-103a-9a85-cf984c8cb121
+creatorsName: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
+createTimestamp: 20201214093249Z
+entryCSN: 20201214093249.651148Z#000000#000#000000
+modifiersName: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
+modifyTimestamp: 20201214093249Z
+
+dn: ou=Personas,dc=javierpzh,dc=gonzalonazareno,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: Personas
+structuralObjectClass: organizationalUnit
+entryUUID: 3d9e1f28-d23e-103a-83fb-cbbecae82d26
+creatorsName: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
+createTimestamp: 20201214095528Z
+entryCSN: 20201214095528.779588Z#000000#000#000000
+modifiersName: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
+modifyTimestamp: 20201214095528Z
+
+dn: ou=Grupos,dc=javierpzh,dc=gonzalonazareno,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: Grupos
+structuralObjectClass: organizationalUnit
+entryUUID: 3da4c88c-d23e-103a-83fc-cbbecae82d26
+creatorsName: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
+createTimestamp: 20201214095528Z
+entryCSN: 20201214095528.823265Z#000000#000#000000
+modifiersName: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
+modifyTimestamp: 20201214095528Z
+
+root@freston:~#
+</pre>
 
 
 

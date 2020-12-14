@@ -145,10 +145,22 @@ Dentro del directorio `/guacamole-server-0.9.14`, ejecutamos el configurador aut
 ./configure --with-init-dir=/etc/init.d
 </pre>
 
-
+Cuando termina el proceso, y observamos que todo ha ido según lo previsto, es el momento de compilar:
 
 <pre>
+make
+</pre>
 
+Una vez terminada la compilación, ya podemos instalar **guacamole-server**:
+
+<pre>
+make install
+</pre>
+
+Una vez terminada la instalación, actualizamos las librerías instaladas en el sistema:
+
+<pre>
+ldconfig
 </pre>
 
 

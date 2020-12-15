@@ -785,6 +785,26 @@ Vemos que también funciona correctamente, por lo que este ejercicio estaría te
 
 He creado una segunda instancia en el *cloud*, también con un sistema *Debian Buster*, para que actúe como **esclavo**. Posee la dirección **172.22.201.12**.
 
+En esta nueva máquina, he vuelto a realizar los mismos pasos previos que llevé a cabo con la primera instancia. Su **hostname** será **afrodita** y su **FQDN**, **afrodita.iesgn.org**.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #### Tarea 4: Documenta los siguientes apartados:

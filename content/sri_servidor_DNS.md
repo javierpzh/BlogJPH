@@ -787,7 +787,11 @@ He creado una segunda instancia en el *cloud*, también con un sistema *Debian B
 
 En esta nueva máquina, he vuelto a realizar los mismos pasos previos que llevé a cabo con la primera instancia. Su **hostname** será **afrodita** y su **FQDN**, **afrodita.iesgn.org**.
 
+Instalamos el servidor DNS:
 
+<pre>
+apt install bind9 -y
+</pre>
 
 
 

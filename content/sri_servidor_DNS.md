@@ -335,9 +335,9 @@ zone "iesgn.org" {
         file "/var/cache/bind/db.iesgn.org";
 };
 
-zone "150.168.192.in-addr.arpa" {
+zone "200.22.172.in-addr.arpa" {
         type master;
-        file "/var/cache/bind/db.192.168.150";
+        file "/var/cache/bind/db.200.22.172";
 };
 </pre>
 
@@ -345,12 +345,36 @@ Vamos a explicar las líneas que acabamos de añadir.
 
 En primer lugar, hemos escrito una línea que hacer referencia a un archivo llamado `zones.rfc1918`, que es un fichero de configuración de las zonas privadas que queremos definir.
 
-Los bloques definen la zona `iesgn.org` con su correspondiente **zona inversa**, además vemos como hemos especificado que actúen como **maestro**.
+Los bloques definen las zonas de las que el servidor tiene autoridad, la **zona de resolución directa** `iesgn.org` con su correspondiente **zona de resolución inversa** `200.22.172.in-addr.arpa`, además vemos como hemos especificado que actúen como **maestro**.
 
-Una vez explicado, vamos a empezar con las modificaciones. En primer lugar, debemos comentar en el fichero `/etc/bind/zones.rfc1918` la siguiente línea:
+Una vez explicado, tenemos que dirigirnos al fichero `/etc/bind/named.conf.options`, y aquí debemos introducir las siguientes líneas:
 
 <pre>
-zone "168.192.in-addr.arpa" { type master; file "/etc/bind/db.empty"; };
+recursion yes;
+allow-recursion { any; };
+listen-on { any; };
+allow-transfer { none; };
+</pre>
+
+De manera, que el fichero `/etc/bind/named.conf.options` quedaría así:
+
+<pre>
+options {
+        directory "/var/cache/bind";
+
+        dnssec-validation auto;
+
+        listen-on-v6 { any; };
+
+        recursion yes;
+
+        allow-recursion { any; };
+
+        listen-on { any; };
+
+        allow-transfer { none; };
+
+};
 </pre>
 
 Ahora, vamos a configurar las zonas que definimos en el paso anterior. En mi caso copio el fichero `/etc/bind/db.empty` para utilizarlo como plantilla del nuevo archivo de configuración de esta zona **iesgn.org**.

@@ -18,18 +18,7 @@ Las dos páginas servidas por *Apache2* las he creado pero voy a omitir su expli
 
 **Instala el servidor DNS *dnsmasq* en `pandora.iesgn.org` y configúralo para que los clientes puedan conocer los nombres necesarios.**
 
-He creado una máquina virtual con *Vagrant* que será la que actuará como **servidor**, mediante el siguiente fichero *Vagrantfile*:
-
-<pre>
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
-Vagrant.configure("2") do |config|
-  config.vm.box = "debian/buster64"
-  config.vm.hostname = "DNS"
-  config.vm.network :private_network, ip: "192.168.150.10"
-end
-</pre>
+He creado una instancia en el *cloud* de **OpenStack** que será la máquina que actuará como **servidor**, posee una dirección IP **172.22.200.174**.
 
 Una vez en ella, lo primero que debemos hacer es instalar el siguiente paquete:
 
@@ -43,20 +32,17 @@ Para comenzar a configurar el servidor *dnsmasq*, empezaremos por descomentar la
 strict-order
 </pre>
 
+En este fichero, también debemos buscar la directiva **interface**, descomentarla y establecerle como valor, la interfaz de red de nuestra máquina, en mi caso es la **eth0**, de manera que el resultado sería este:
+
+<pre>
+interface=eth0
+</pre>
+
+Con esto, ya habríamos terminado la configuración del servicio `dnsmasq`.
+
 #### Tarea 1: Modifica los clientes para que utilicen el nuevo servidor DNS. Realiza una consulta a `www.iesgn.org`, y a `www.josedomingo.org`. Realiza una prueba de funcionamiento para comprobar que el servidor *dnsmasq* funciona como caché DNS. Muestra el fichero hosts del cliente para demostrar que no estás utilizando resolución estática. Realiza una consulta directa al servidor *dnsmasq*. ¿Se puede realizar resolución inversa?**
 
 He creado una segunda máquina virtual con *Vagrant* que será la que actuará como **cliente**, mediante el siguiente fichero *Vagrantfile*:
-
-<pre>
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
-Vagrant.configure("2") do |config|
-  config.vm.box = "debian/buster64"
-  config.vm.hostname = "debian"
-  config.vm.network :private_network, ip: "192.168.150.50"
-end
-</pre>
 
 Una vez en el cliente, vamos a instalar el paquete `dnsutils`, para poder hacer uso de la herramienta `dig`:
 

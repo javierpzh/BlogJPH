@@ -291,15 +291,15 @@ Vemos que nos ha respondido de nuevo nuestro servidor DNS, por lo que también p
 
 #### Tarea 2: Realiza la instalación y configuración del servidor *bind9* con las características anteriormente señaladas. Entrega las zonas que has definido. Muestra al profesor su funcionamiento.**
 
-Antes de desinstalar el servidor DNS, vamos a realizar de nuevo una consulta a `www.josedomingo.org` para ver que servidor DNS nos responde ahora:
+Una vez hemos desinstalado el servidor **dnsmasq**, antes de instalar el servidor DNS **bind9**, vamos a realizar de nuevo una consulta a `www.josedomingo.org` para ver que servidor DNS nos responde ahora:
 
 <pre>
-root@debian:~# dig www.josedomingo.org
+javier@debian:~$ dig www.josedomingo.org
 
 ; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> www.josedomingo.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21525
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 54806
 ;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
@@ -308,15 +308,13 @@ root@debian:~# dig www.josedomingo.org
 ;www.josedomingo.org.		IN	A
 
 ;; ANSWER SECTION:
-www.josedomingo.org.	900	IN	CNAME	playerone.josedomingo.org.
-playerone.josedomingo.org. 548	IN	A	137.74.161.90
+www.josedomingo.org.	900	IN	CNAME	endor.josedomingo.org.
+endor.josedomingo.org.	900	IN	A	37.187.119.60
 
-;; Query time: 53 msec
+;; Query time: 76 msec
 ;; SERVER: 212.166.132.110#53(212.166.132.110)
-;; WHEN: jue dic 10 20:57:53 CET 2020
-;; MSG SIZE  rcvd: 88
-
-root@debian:~#
+;; WHEN: mar dic 15 14:13:01 CET 2020
+;; MSG SIZE  rcvd: 84
 </pre>
 
 Vemos que ahora nos ha respondido un servidor DNS que ha obtenido por DHCP, cuya dirección es *212.166.132.110*, y que ya lógicamente no responde el que habíamos creado nosotros.

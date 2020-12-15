@@ -40,7 +40,19 @@ interface=eth0
 
 Con esto, ya habríamos terminado la configuración del servicio `dnsmasq`.
 
-Vamos a modificar el fichero `/etc/hosts` para cambiar el **hostname** y el **FQDN** de la máquina.
+Vamos a cambiar el nombre de la máquina, para ello, editamos el fichero `/etc/hostname`. En mi caso la máquina se llamará `javierpzh` por lo que el contenido del fichero es:
+
+<pre>
+javierpzh
+</pre>
+
+Si vemos, actualmente el *prompt* de la máquina posee este aspecto:
+
+<pre>
+root@servidor-dns:~#
+</pre>
+
+Debemos reiniciar la máquina para que este cambio se aplique, pero antes, vamos a modificar el fichero `/etc/hosts` para cambiar el **hostname** y el **FQDN** de la máquina.
 
 Antes de hacer esto, por experiencia, ya sé, que al reiniciar la máquina se restablecerá el fichero `/etc/hosts`. Para cambiar este funcionamiento, tenemos que dirigirnos al fichero `/etc/cloud/cloud.cfg` y buscar esta línea:
 
@@ -54,12 +66,21 @@ Le cambiamos el valor a *false*:
 manage_etc_hosts: false
 </pre>
 
-Ahora sí, vamos a cambiar el fichero `/etc/hosts`, 
+Ahora sí, vamos a cambiar el fichero `/etc/hosts`. Nos interesa cambiar la línea con la dirección **127.0.1.1** que es la que hace referencia a la propia máquina. Establezco como **FQDN** `javierpzh.iesgn.org` y como **hostname**, `javierpzh`:
 
 <pre>
 127.0.1.1 javierpzh.iesgn.org javierpzh
 </pre>
 
+Hecho esto, vamos a reiniciar la máquina con el comando `reboot`.
+
+Si después del reinicio volvemos a mirar el *prompt*:
+
+<pre>
+root@javierpzh:~#
+</pre>
+
+Vemos como hemos modificado correctamente el *hostname* de la máquina.
 
 #### Tarea 1: Modifica los clientes para que utilicen el nuevo servidor DNS. Realiza una consulta a `www.iesgn.org`, y a `www.josedomingo.org`. Realiza una prueba de funcionamiento para comprobar que el servidor *dnsmasq* funciona como caché DNS. Muestra el fichero hosts del cliente para demostrar que no estás utilizando resolución estática. Realiza una consulta directa al servidor *dnsmasq*. ¿Se puede realizar resolución inversa?**
 

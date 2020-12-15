@@ -1,4 +1,4 @@
-: Servidor DNS
+Title: Servidor DNS
 Category: Servicios de Red e Internet
 Date: 2020/12/11
 Header_Cover: theme/images/banner-servicios.jpg

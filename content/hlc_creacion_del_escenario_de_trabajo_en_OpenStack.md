@@ -912,7 +912,39 @@ yum update -y
 
 Cuando se ejecuta este comando, `yum` comenzará a comprobar en sus repositorios si existe una versión actualizada del software que el sistema tiene instalado actualmente. Una vez que revisa la lista de repositorios y nos informa de que paquetes se pueden actualizar, introducimos `y` y pulsando *intro* se nos actualizarán todos los paquetes.
 
-**10. Hasta que no esté configurado el servidor DNS, incluye resolución estática en las tres instancias tanto usando nombre completo como hostname.**
+**10. Configura el servidor con el nombre de dominio `(nombre-usuario).gonzalonazareno.org`**
+
+**Dulcinea:**
+
+En los sistemas *Debian*, el fichero `/etc/hosts` se genera dinámicamente en cada arranque, debido al `cloud-init`, así que debemos deshabilitarlo para conseguir un fichero estático. Para hacer esto, tendremos que cambiar el valor de la directiva **manage_etc_hosts** a **false** en el fichero `/etc/cloud/cloud.cfg`, de manera que quede así:
+
+<pre>
+manage_etc_hosts: false
+</pre>
+
+Hecho esto, ya podemos realizar las modificaciones necesarias en el fichero `/etc/hosts`. La línea editada tendría este aspecto:
+
+<pre>
+127.0.1.1 dulcinea.javierpzh.gonzalonazareno.org dulcinea dulcinea.novalocal  
+</pre>
+
+**Sancho:**
+
+Añadimos al fichero `/etc/hosts` la siguiente línea:
+
+<pre>
+127.0.1.1 sancho.javierpzh.gonzalonazareno.org sancho
+</pre>
+
+**Quijote:**
+
+En los sistemas **CentOS** de *OpenStack*, el *hostname* se asigna durante la creación es `(hostname).novalocal`, cosa que no nos interesa. Para llevar a cabo dicho cambio, vamos a modificar el fichero `/etc/hostname`. Quedando la línea de este fichero:
+
+<pre>
+quijote
+</pre>
+
+**11. Hasta que no esté configurado el servidor DNS, incluye resolución estática en las tres instancias tanto usando nombre completo como *hostname*.**
 
 Para configurar la resolución estática de las instancias, debemos modificar el fichero `/etc/hosts` y añadir unas líneas con este aspecto:
 
@@ -970,7 +1002,7 @@ Añadimos estas líneas:
 10.0.1.8 sancho.javierpzh.gonzalonazareno.org sancho
 </pre>
 
-**11. Asegúrate que el servidor tiene sincronizado su reloj utilizando un servidor NTP externo.**
+**12. Asegúrate que el servidor tiene sincronizado su reloj utilizando un servidor NTP externo.**
 
 **Dulcinea:**
 

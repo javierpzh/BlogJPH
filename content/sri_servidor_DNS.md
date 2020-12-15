@@ -40,6 +40,27 @@ interface=eth0
 
 Con esto, ya habríamos terminado la configuración del servicio `dnsmasq`.
 
+Vamos a modificar el fichero `/etc/hosts` para cambiar el **hostname** y el **FQDN** de la máquina.
+
+Antes de hacer esto, por experiencia, ya sé, que al reiniciar la máquina se restablecerá el fichero `/etc/hosts`. Para cambiar este funcionamiento, tenemos que dirigirnos al fichero `/etc/cloud/cloud.cfg` y buscar esta línea:
+
+<pre>
+manage_etc_hosts: true
+</pre>
+
+Le cambiamos el valor a *false*:
+
+<pre>
+manage_etc_hosts: false
+</pre>
+
+Ahora sí, vamos a cambiar el fichero `/etc/hosts`, 
+
+<pre>
+127.0.1.1 javierpzh.iesgn.org javierpzh
+</pre>
+
+
 #### Tarea 1: Modifica los clientes para que utilicen el nuevo servidor DNS. Realiza una consulta a `www.iesgn.org`, y a `www.josedomingo.org`. Realiza una prueba de funcionamiento para comprobar que el servidor *dnsmasq* funciona como caché DNS. Muestra el fichero hosts del cliente para demostrar que no estás utilizando resolución estática. Realiza una consulta directa al servidor *dnsmasq*. ¿Se puede realizar resolución inversa?**
 
 He creado una segunda máquina virtual con *Vagrant* que será la que actuará como **cliente**, mediante el siguiente fichero *Vagrantfile*:

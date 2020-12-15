@@ -420,7 +420,13 @@ Los registros de tipo **A** especifican la direcciones IP correspondientes al do
 
 Los registros de tipo **CNAME** sirven para apuntar hacia otro de los registros de tipo **A** ya existentes. De manera que es mucho más fácil y cómodo hacer referencia a una dirección a través de un nombre en vez de con la propia dirección en sí.
 
-Explicado estos detalles, vamos a añadir al fichero `/etc/resolv.conf` de la máquina cliente la siguiente línea con la IP del servidor DNS (si ya la hemos añadido en la tarea 1, no hace falta obviamente):
+Explicado estos detalles, reiniciamos el servidor DNS para que se apliquen los nuevos cambios:
+
+<pre>
+systemctl restart bind9
+</pre>
+
+Vamos a añadir al fichero `/etc/resolv.conf` de la máquina cliente la siguiente línea con la IP del servidor DNS (si ya la hemos añadido en la tarea 1, no hace falta obviamente):
 
 <pre>
 nameserver 172.22.200.174
@@ -590,33 +596,32 @@ Lógicamente como he comentado antes, funciona.
 
 Por último, para terminar esta tarea, vamos a configurar la zona inversa de nuestra servidor DNS *bind9*.
 
-Al igual que hicimos al principio del ejercicio, vamos a tomar como plantilla un archivo, pero esta vez será el `/etc/bind/db.127` y lo guardaremos de nuevo en `/var/cache/bind` con el nombre `db.192.168.150`.
+Al igual que hicimos al principio del ejercicio, vamos a tomar como plantilla un archivo, pero esta vez será el `/etc/bind/db.127` y lo guardaremos de nuevo en `/var/cache/bind` con el nombre `db.200.22.172`.
 
 <pre>
-cp /etc/bind/db.127 /var/cache/bind/db.192.168.150
+cp /etc/bind/db.127 /var/cache/bind/db.200.22.172
 </pre>
 
-Antes de mostrar como quedaría este fichero, hay que decir que por cada registro de tipo **A** que tengamos en nuestro archivos que contiene las zonas directas, tenemos que añadir un registro de tipo **PTR**.
+Antes de mostrar como quedaría este fichero, hay que decir que por cada registro de tipo **A** que tengamos en nuestro archivo que contiene la zona directa, sin incluir las páginas webs, tenemos que añadir un registro de tipo **PTR**.
 
-En mi caso, el fichero `/var/cache/bind/db.192.168.150` tendría este aspecto:
+En mi caso, el fichero `/var/cache/bind/db.db.200.22.172` tendría este aspecto:
 
 <pre>
-$TTL	604800
-@	IN	SOA	javierpzh.iesgn.org. root.localhost. (
-			      1		; Serial
-			 604800		; Refresh
-			  86400		; Retry
-			2419200		; Expire
-			 604800 )	; Negative Cache TTL
+$TTL    604800
+@       IN      SOA     javierpzh.iesgn.org. root.localhost. (
+                              1         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
 ;
-@	IN	NS	javierpzh.iesgn.org.
+@       IN      NS      javierpzh.iesgn.org.
 
-$ORIGIN 150.168.192.in-addr.arpa.
+$ORIGIN 200.22.172.in-addr.arpa.
 
-10	IN	PTR	  javierpzh.iesgn.org.
-200	IN	PTR	  scorreos.iesgn.org.
-201	IN	PTR	  sftp.iesgn.org
-26  IN	PTR	  cliente.iesgn.org
+174     IN      PTR     javierpzh.iesgn.org.
+200     IN      PTR     correo.iesgn.org.
+201     IN      PTR     ftp.iesgn.org.
 </pre>
 
 Reiniciamos el servidor DNS para que se apliquen los nuevos cambios:
@@ -628,69 +633,65 @@ systemctl restart bind9
 Para comprobar que funciona la resolución inversa, vamos a hacer una consulta inversa. Para hacer esto utilizamos el comando `dig -x (IP)`:
 
 <pre>
-root@debian:~# dig -x 192.168.150.10
+javier@debian:~$ dig -x 172.22.200.174
 
-; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> -x 192.168.150.10
+; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> -x 172.22.200.174
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 44927
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21938
 ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
-; COOKIE: 3becf8105587fe516606f84b5fd38c12b82f225369f578b9 (good)
+; COOKIE: 7d3b873b603a177806bc97575fd8c12a2de7c483ab5f1672 (good)
 ;; QUESTION SECTION:
-;10.150.168.192.in-addr.arpa.	IN	PTR
+;174.200.22.172.in-addr.arpa.	IN	PTR
 
 ;; ANSWER SECTION:
-10.150.168.192.in-addr.arpa. 604800 IN	PTR	javierpzh.iesgn.org.
+174.200.22.172.in-addr.arpa. 604800 IN	PTR	javierpzh.iesgn.org.
 
 ;; AUTHORITY SECTION:
-150.168.192.in-addr.arpa. 604800 IN	NS	javierpzh.iesgn.org.
+200.22.172.in-addr.arpa. 604800	IN	NS	javierpzh.iesgn.org.
 
 ;; ADDITIONAL SECTION:
-javierpzh.iesgn.org.	86400	IN	A	192.168.150.10
+javierpzh.iesgn.org.	86400	IN	A	172.22.200.174
 
-;; Query time: 0 msec
-;; SERVER: 192.168.150.10#53(192.168.150.10)
-;; WHEN: vie dic 11 18:00:09 CET 2020
+;; Query time: 79 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: mar dic 15 14:59:06 CET 2020
 ;; MSG SIZE  rcvd: 147
-
-root@debian:~#
 </pre>
 
 Parece que el servidor resuelve consultas inversas, pero vamos a hacer una prueba más realizando otra consulta inversa, esta vez al servidor de correos.
 
 <pre>
-root@debian:~# dig -x 192.168.150.200
+javier@debian:~$ dig -x 172.22.200.200
 
-; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> -x 192.168.150.200
+; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> -x 172.22.200.200
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 29504
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 61164
 ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
-; COOKIE: 779a6650f4f0623f495f51185fd38c25ceac5c00a3b27e45 (good)
+; COOKIE: 8551cca364e2557b2396263f5fd8c14e6b958e7180155dcf (good)
 ;; QUESTION SECTION:
-;200.150.168.192.in-addr.arpa.	IN	PTR
+;200.200.22.172.in-addr.arpa.	IN	PTR
 
 ;; ANSWER SECTION:
-200.150.168.192.in-addr.arpa. 604800 IN	PTR	scorreos.iesgn.org.
+200.200.22.172.in-addr.arpa. 604800 IN	PTR	correo.iesgn.org.
 
 ;; AUTHORITY SECTION:
-150.168.192.in-addr.arpa. 604800 IN	NS	javierpzh.iesgn.org.
+200.22.172.in-addr.arpa. 604800	IN	NS	javierpzh.iesgn.org.
 
 ;; ADDITIONAL SECTION:
-javierpzh.iesgn.org.	86400	IN	A	192.168.150.10
+javierpzh.iesgn.org.	86400	IN	A	172.22.200.174
 
-;; Query time: 0 msec
-;; SERVER: 192.168.150.10#53(192.168.150.10)
-;; WHEN: vie dic 11 18:00:27 CET 2020
-;; MSG SIZE  rcvd: 157
-
-root@debian:~#
+;; Query time: 81 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: mar dic 15 14:59:42 CET 2020
+;; MSG SIZE  rcvd: 154
 </pre>
 
 Vemos que también funciona correctamente, por lo que este ejercicio estaría terminado.
@@ -744,19 +745,19 @@ Vemos que también funciona correctamente, por lo que este ejercicio estaría te
 
 ### Delegación de dominios
 
-Tenemos un servidor DNS que gestiona la zona correspondiente al nombre de dominio `iesgn.org`, en esta ocasión queremos delegar el subdominio `informatica.iesgn.org` para que lo gestione otro servidor DNS. Por lo tanto tenemos un escenario con dos servidores DNS:
+**Tenemos un servidor DNS que gestiona la zona correspondiente al nombre de dominio `iesgn.org`, en esta ocasión queremos delegar el subdominio `informatica.iesgn.org` para que lo gestione otro servidor DNS. Por lo tanto tenemos un escenario con dos servidores DNS:**
 
-- `pandora.iesgn.org`, es servidor DNS autorizado para la zona `iesgn.org`.
+- **`pandora.iesgn.org`, es servidor DNS autorizado para la zona `iesgn.org`.**
 
-- `ns.informatica.iesgn.org`, es el servidor DNS para la zona `informatica.iesgn.org` y, está instalado en otra máquina.
+- **`ns.informatica.iesgn.org`, es el servidor DNS para la zona `informatica.iesgn.org` y, está instalado en otra máquina.**
 
-Los nombres que vamos a tener en ese subdominio son los siguientes:
+**Los nombres que vamos a tener en ese subdominio son los siguientes:**
 
-- `www.informatica.iesgn.org` corresponde a un sitio web que está alojado en el servidor web del departamento de informática.
+- **`www.informatica.iesgn.org` corresponde a un sitio web que está alojado en el servidor web del departamento de informática.**
 
-- Vamos a suponer que tenemos un servidor FTP que se llame `ftp.informatica.iesgn.org` y que está en la misma máquina.
+- **Vamos a suponer que tenemos un servidor FTP que se llame `ftp.informatica.iesgn.org` y que está en la misma máquina.**
 
-- Vamos a suponer que tenemos un servidor para recibir los correos que se llame `correo.informatica.iesgn.org`.
+- **Vamos a suponer que tenemos un servidor para recibir los correos que se llame `correo.informatica.iesgn.org`.**
 
 #### Tarea 7: Realiza la instalación y configuración del nuevo servidor DNS con las características anteriormente señaladas. Muestra el resultado al profesor.**
 

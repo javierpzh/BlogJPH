@@ -1,4 +1,4 @@
-Title: Servidor DNS
+: Servidor DNS
 Category: Servicios de Red e Internet
 Date: 2020/12/11
 Header_Cover: theme/images/banner-servicios.jpg
@@ -383,7 +383,7 @@ Ahora, vamos a configurar las zonas que definimos en el paso anterior. En mi cas
 root@javierpzh:~# cp /etc/bind/db.empty /var/cache/bind/db.iesgn.org
 </pre>
 
-Hecho esto, empezamos a editar nuestro archivo `db.iesgn.org`. Lo primero que debemos hacer en él es definir el servidor con privilegios sobre la zona, en mi caso lo he llamado `javierpzh.iesgn.org`. Lo definimos con un registro de tipo **NS**:
+Hecho esto, empezamos a editar nuestro archivo `db.iesgn.org`:
 
 <pre>
 $TTL    86400
@@ -408,11 +408,17 @@ departamentos   IN      CNAME   javierpzh
 
 Voy a explicar el bloque añadido.
 
-El registro **SOA** es la autoridad sobre la zona, en mi caso `javierpzh.iesgn.org`.
+Los registros de tipo **SOA** representan las autoridad sobre las zonas.
+
+El registro de tipo **NS** define el servidor con privilegios sobre la zona.
+
+El registro de tipo **MX** indica que hacemos referencia a un servidor de correos.
 
 El registro **$ORIGIN** se usa para que las líneas que se especifiquen debajo de él, sean autocompletadas con el dominio especificado en dicho registro. Esto nos sirve para evitar poner en cada registro que creemos, la zona, es decir, a los próximos registros que creemos, se les añadirá automáticamente la zona `iesgn.org`.
 
-El registro de tipo **A** especifica la dirección IP correspondiente al dominio.
+Los registros de tipo **A** especifican la direcciones IP correspondientes al dominio.
+
+Los registros de tipo **CNAME** sirven para apuntar hacia otro de los registros de tipo **A** ya existentes. De manera que es mucho más fácil y cómodo hacer referencia a una dirección a través de un nombre en vez de con la propia dirección en sí.
 
 Explicado estos detalles, vamos a añadir al fichero `/etc/resolv.conf` de la máquina cliente la siguiente línea con la IP del servidor DNS (si ya la hemos añadido en la tarea 1, no hace falta obviamente):
 
@@ -420,7 +426,9 @@ Explicado estos detalles, vamos a añadir al fichero `/etc/resolv.conf` de la m�
 nameserver 172.22.200.174
 </pre>
 
-Hecho esto, ahora nuestro cliente utilizará nuestro servidor DNS *bind9*, pero, antes hemos definido un registro **SOA** para definir la autoridad sobre la zona `iesgn.org`, que en teoría debería ser `javierpzh`. ¿Lo comprobamos? Vamos a asegurarnos. Para verificar la autoridad de una zona, hacemos uso del comando `dig ns (zona)`:
+Hecho esto, ahora nuestro cliente utilizará nuestro servidor DNS *bind9*.
+
+Antes hemos definido un registro **SOA** para definir la autoridad sobre la zona `iesgn.org`, que en teoría debería ser `javierpzh`. ¿Lo comprobamos? Vamos a asegurarnos. Para verificar la autoridad de una zona, hacemos uso del comando `dig ns (zona)`:
 
 <pre>
 javier@debian:~$ dig ns iesgn.org
@@ -428,12 +436,12 @@ javier@debian:~$ dig ns iesgn.org
 ; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> ns iesgn.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 58805
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 32712
 ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 2
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
-; COOKIE: 8e54c737b042fc53a6c878905fd8bae17885d52769a88afb (good)
+; COOKIE: 7b0f823027cdfdfb67ddfadd5fd8bdf3915ecc13d47da118 (good)
 ;; QUESTION SECTION:
 ;iesgn.org.			IN	NS
 
@@ -443,282 +451,138 @@ iesgn.org.		86400	IN	NS	javierpzh.iesgn.org.
 ;; ADDITIONAL SECTION:
 javierpzh.iesgn.org.	86400	IN	A	172.22.200.174
 
-;; Query time: 80 msec
+;; Query time: 81 msec
 ;; SERVER: 172.22.200.174#53(172.22.200.174)
-;; WHEN: mar dic 15 14:32:16 CET 2020
+;; WHEN: mar dic 15 14:45:22 CET 2020
 ;; MSG SIZE  rcvd: 106
 </pre>
 
 Efectivamente, la autoridad sobre esta zona es `javierpzh`.
 
-Vamos a añadir la zona del **servidor de correos** que nos pide, aunque este servidor no exista. Para ello nos dirigimos de nuevo al fichero `/var/cache/bind/db.iesgn.org` y añadiremos un registro **MX**, junto con su correspondiente registro de tipo **A**:
+Ahora, haremos una consulta al servidor DNS y preguntaremos por el **servidor de correos** que hemos especificado, es decir, `correo.iesgn.org`:
 
 <pre>
-$TTL	86400
-@	IN	SOA	javierpzh.iesgn.org. root.localhost. (
-			      1		; Serial
-			 604800		; Refresh
-			  86400		; Retry
-			2419200		; Expire
-			  86400 )	; Negative Cache TTL
-;
-@	IN	NS	javierpzh.iesgn.org.
-@	IN	MX	10	scorreos.iesgn.org.
-
-
-$ORIGIN iesgn.org.
-
-javierpzh	IN      A       192.168.150.10
-scorreos	IN	    A	      192.168.150.200
-</pre>
-
-Reiniciamos el servidor DNS para que se apliquen los nuevos cambios:
-
-<pre>
-systemctl restart bind9
-</pre>
-
-Ahora, haremos una consulta al servidor DNS y preguntaremos por el servidor de correos que hemos especificado, es decir, `scorreos.iesgn.org`:
-
-<pre>
-root@debian:~# dig mx iesgn.org
+javier@debian:~$ dig mx iesgn.org
 
 ; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> mx iesgn.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 27223
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 64754
 ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 3
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
-; COOKIE: ec721cf5598d6a9fc228c0005fd38b75a7ed2cc8a2faefe4 (good)
+; COOKIE: 0aca65684d6e77395f68519c5fd8be1045e75fe0b0b94080 (good)
 ;; QUESTION SECTION:
 ;iesgn.org.			IN	MX
 
 ;; ANSWER SECTION:
-iesgn.org.		86400	IN	MX	10 scorreos.iesgn.org.
+iesgn.org.		86400	IN	MX	10 correo.iesgn.org.
 
 ;; AUTHORITY SECTION:
 iesgn.org.		86400	IN	NS	javierpzh.iesgn.org.
 
 ;; ADDITIONAL SECTION:
-scorreos.iesgn.org.	86400	IN	A	192.168.150.200
-javierpzh.iesgn.org.	86400	IN	A	192.168.150.10
+correo.iesgn.org.	86400	IN	A	172.22.200.200
+javierpzh.iesgn.org.	86400	IN	A	172.22.200.174
 
-;; Query time: 0 msec
-;; SERVER: 192.168.150.10#53(192.168.150.10)
-;; WHEN: vie dic 11 17:57:31 CET 2020
-;; MSG SIZE  rcvd: 147
-
-root@debian:~#
+;; Query time: 83 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: mar dic 15 14:45:52 CET 2020
+;; MSG SIZE  rcvd: 145
 </pre>
 
 Vemos como nos responde con la información de este servidor de correos ficticio.
 
-Es el momento de añadir la zona del **servidor FTP** que nos pide, aunque este servidor no exista. Para ello nos dirigimos de nuevo al fichero `/var/cache/bind/db.iesgn.org` y añadiremos un nuevo registro de tipo **A**:
+Ahora, haremos una consulta al servidor DNS y preguntaremos por el **servidor FTP** que hemos especificado, es decir, `ftp.iesgn.org`:
 
 <pre>
-$TTL	86400
-@	IN	SOA	javierpzh.iesgn.org. root.localhost. (
-			      1		; Serial
-			 604800		; Refresh
-			  86400		; Retry
-			2419200		; Expire
-			  86400 )	; Negative Cache TTL
-;
-@	IN	NS	javierpzh.iesgn.org.
-@	IN	MX	10	scorreos.iesgn.org.
+javier@debian:~$ dig ftp.iesgn.org
 
-
-$ORIGIN iesgn.org.
-
-javierpzh	IN      A       192.168.150.10
-scorreos	IN	    A	      192.168.150.200
-sftp		  IN	    A	      192.168.150.201
-</pre>
-
-Reiniciamos el servidor DNS para que se apliquen los nuevos cambios:
-
-<pre>
-systemctl restart bind9
-</pre>
-
-Ahora, haremos una consulta al servidor DNS y preguntaremos por el servidor FTP que hemos especificado, es decir, `sftp.iesgn.org`:
-
-<pre>
-root@debian:~# dig sftp.iesgn.org
-
-; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> sftp.iesgn.org
+; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> ftp.iesgn.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 36434
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 5805
 ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
-; COOKIE: 0fabe9ffc844e5d0399b7b345fd38b8ac57e6e1b28ea0bdb (good)
+; COOKIE: b890f6dcd25d80c0dc4ea1085fd8be2f91ea9ad925c3fdb5 (good)
 ;; QUESTION SECTION:
-;sftp.iesgn.org.			IN	A
+;ftp.iesgn.org.			IN	A
 
 ;; ANSWER SECTION:
-sftp.iesgn.org.		86400	IN	A	192.168.150.201
+ftp.iesgn.org.		86400	IN	A	172.22.200.201
 
 ;; AUTHORITY SECTION:
 iesgn.org.		86400	IN	NS	javierpzh.iesgn.org.
 
 ;; ADDITIONAL SECTION:
-javierpzh.iesgn.org.	86400	IN	A	192.168.150.10
+javierpzh.iesgn.org.	86400	IN	A	172.22.200.174
 
-;; Query time: 0 msec
-;; SERVER: 192.168.150.10#53(192.168.150.10)
-;; WHEN: vie dic 11 17:57:53 CET 2020
-;; MSG SIZE  rcvd: 127
-
-root@debian:~#
+;; Query time: 84 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: mar dic 15 14:46:23 CET 2020
+;; MSG SIZE  rcvd: 126
 </pre>
 
 Vemos como nos responde con la información de este servidor FTP ficticio.
 
-Vamos a dar el siguiente paso, que será nombrar a los clientes, en mi caso, la dirección IP del cliente es la 192.168.0.26, ya que estoy utilizando como cliente mi máquina anfitriona. Añado el registro de tipo **A** en `/var/cache/bind/db.iesgn.org`:
+Vamos a probar si funcionan como deberían los registros *CNAME* haciendo una consulta a las direcciones `www.iesgn.org` y `departamentos.iesgn.org`:
 
 <pre>
-$TTL	86400
-@	IN	SOA	javierpzh.iesgn.org. root.localhost. (
-			      1		; Serial
-			 604800		; Refresh
-			  86400		; Retry
-			2419200		; Expire
-			  86400 )	; Negative Cache TTL
-;
-@	IN	NS	javierpzh.iesgn.org.
-@	IN	MX	10	scorreos.iesgn.org.
-
-
-$ORIGIN iesgn.org.
-
-javierpzh	IN      A       192.168.150.10
-scorreos	IN	    A	      192.168.150.200
-sftp		  IN	    A	      192.168.150.201
-cliente		IN	    A	      192.168.0.26
-</pre>
-
-Ahora, haremos lo mismo, pero esta vez nombraremos a los *virtualhost* que creamos al principio de la práctica. De nuevo en el fichero `/var/cache/bind/db.iesgn.org`:
-
-<pre>
-$TTL	86400
-@	IN	SOA	javierpzh.iesgn.org. root.localhost. (
-			      1		; Serial
-			 604800		; Refresh
-			  86400		; Retry
-			2419200		; Expire
-			  86400 )	; Negative Cache TTL
-;
-@	IN	NS	javierpzh.iesgn.org.
-@	IN	MX	10	scorreos.iesgn.org.
-
-
-$ORIGIN iesgn.org.
-
-javierpzh	     IN      A       192.168.150.10
-scorreos	     IN	     A	     192.168.150.200
-sftp		       IN	     A	     192.168.150.201
-cliente		     IN	     A	     192.168.0.26
-www		         IN      A	     192.168.150.10
-departamentos	 IN    	 A	     192.168.150.10
-</pre>
-
-¿Quedaría así no? Ya que los *virtualhost* se encuentran en la misma máquina que el servidor DNS.
-
-Bueno, podríamos dejarlo así, y funcionaría perfectamente, pero no es lo más óptimo/cómodo por decirlo de alguna forma.
-
-Si nos paramos un momento a pensar, anteriormente y como podemos apreciar, ya tenemos un registro tipo **A** que hace referencia a esa dirección IP, por lo que, ¿no os preguntáis si hay alguna forma de reutilizar este registro? Pues sí, obviamente sí. Y aquí entran en acción, los registros de tipo **CNAME**, que sirven para apuntar hacia otro de los registros ya existentes. De manera que es mucho más fácil y cómodo hacer referencia a una dirección a través de un nombre en vez de con la propia dirección en sí.
-
-Utilizando los registros **CNAME** quedaría así:
-
-<pre>
-$TTL	86400
-@	IN	SOA	javierpzh.iesgn.org. root.localhost. (
-			      1		; Serial
-			 604800		; Refresh
-			  86400		; Retry
-			2419200		; Expire
-			  86400 )	; Negative Cache TTL
-;
-@	IN	NS	javierpzh.iesgn.org.
-@	IN	MX	10	scorreos.iesgn.org.
-
-
-$ORIGIN iesgn.org.
-
-javierpzh	     IN      A       192.168.150.10
-scorreos	     IN	     A	     192.168.150.200
-sftp		       IN	     A	     192.168.150.201
-cliente		     IN	     A	     192.168.0.26
-www		         IN      CNAME	 javierpzh
-departamentos	 IN    	 CNAME	 javierpzh
-</pre>
-
-Explicado esto, vamos a probar si funciona como debería haciendo una consulta a las direcciones `www.iesgn.org` y `departamentos.iesgn.org`, pero no sin antes reiniciar el servidor DNS para que se apliquen los nuevos cambios:
-
-<pre>
-systemctl restart bind9
-</pre>
-
-Ahora sí, realizamos las consultas:
-
-<pre>
-root@debian:~# dig www.iesgn.org
+javier@debian:~$ dig www.iesgn.org
 
 ; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> www.iesgn.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 5478
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31627
 ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 1, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
-; COOKIE: eda2332198272cdf60febed55fd38ba7b6024adf329d5449 (good)
+; COOKIE: 294d876823b5bdd01a9627555fd8be65f78ac8bcb0b12c73 (good)
 ;; QUESTION SECTION:
 ;www.iesgn.org.			IN	A
 
 ;; ANSWER SECTION:
 www.iesgn.org.		86400	IN	CNAME	javierpzh.iesgn.org.
-javierpzh.iesgn.org.	86400	IN	A	192.168.150.10
+javierpzh.iesgn.org.	86400	IN	A	172.22.200.174
 
 ;; AUTHORITY SECTION:
 iesgn.org.		86400	IN	NS	javierpzh.iesgn.org.
 
-;; Query time: 0 msec
-;; SERVER: 192.168.150.10#53(192.168.150.10)
-;; WHEN: vie dic 11 17:58:22 CET 2020
+;; Query time: 84 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: mar dic 15 14:47:17 CET 2020
 ;; MSG SIZE  rcvd: 124
 
 ------------------------------------------------------------------------
 
-root@debian:~# dig departamentos.iesgn.org
+javier@debian:~$ dig departamentos.iesgn.org
 
 ; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> departamentos.iesgn.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12032
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 65267
 ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 1, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
-; COOKIE: 7f93d61aeb4c0efc522158cd5fd38bbbd4312d4adf9d1116 (good)
+; COOKIE: 6966c6cb36feec24d45b37dd5fd8be7de106924826689110 (good)
 ;; QUESTION SECTION:
 ;departamentos.iesgn.org.	IN	A
 
 ;; ANSWER SECTION:
 departamentos.iesgn.org. 86400	IN	CNAME	javierpzh.iesgn.org.
-javierpzh.iesgn.org.	86400	IN	A	192.168.150.10
+javierpzh.iesgn.org.	86400	IN	A	172.22.200.174
 
 ;; AUTHORITY SECTION:
 iesgn.org.		86400	IN	NS	javierpzh.iesgn.org.
 
-;; Query time: 0 msec
-;; SERVER: 192.168.150.10#53(192.168.150.10)
-;; WHEN: vie dic 11 17:58:42 CET 2020
+;; Query time: 203 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: mar dic 15 14:47:41 CET 2020
 ;; MSG SIZE  rcvd: 134
 </pre>
 

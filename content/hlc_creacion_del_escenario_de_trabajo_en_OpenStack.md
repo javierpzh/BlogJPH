@@ -912,7 +912,7 @@ yum update -y
 
 Cuando se ejecuta este comando, `yum` comenzará a comprobar en sus repositorios si existe una versión actualizada del software que el sistema tiene instalado actualmente. Una vez que revisa la lista de repositorios y nos informa de que paquetes se pueden actualizar, introducimos `y` y pulsando *intro* se nos actualizarán todos los paquetes.
 
-**10. Configura el servidor con el nombre de dominio `(nombre-usuario).gonzalonazareno.org`**
+**10. Configura el servidor con el nombre de dominio `(nombre-usuario).gonzalonazareno.org`.**
 
 **Dulcinea:**
 

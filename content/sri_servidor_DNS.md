@@ -377,10 +377,10 @@ options {
 };
 </pre>
 
-Ahora, vamos a configurar las zonas que definimos en el paso anterior. En mi caso copio el fichero `/etc/bind/db.empty` para utilizarlo como plantilla del nuevo archivo de configuración de esta zona **iesgn.org**.
+Ahora, vamos a configurar las zonas que definimos en el paso anterior. En mi caso copio el fichero `/etc/bind/db.empty` para utilizarlo como plantilla del nuevo archivo de configuración de esta **zona de resolución directa** `iesgn.org`.
 
 <pre>
-root@DNS:/etc/bind# cp db.empty /var/cache/bind/db.iesgn.org
+root@javierpzh:~# cp /etc/bind/db.empty /var/cache/bind/db.iesgn.org
 </pre>
 
 Hecho esto, empezamos a editar nuestro archivo `db.iesgn.org`. Lo primero que debemos hacer en él es definir el servidor con privilegios sobre la zona, en mi caso lo he llamado `javierpzh.iesgn.org`. Lo definimos con un registro de tipo **NS**:

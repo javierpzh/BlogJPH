@@ -916,7 +916,13 @@ Cuando se ejecuta este comando, `yum` comenzará a comprobar en sus repositorios
 
 **Dulcinea:**
 
-En los sistemas *Debian*, el fichero `/etc/hosts` se genera dinámicamente en cada arranque, debido al `cloud-init`, así que debemos deshabilitarlo para conseguir un fichero estático. Para hacer esto, tendremos que cambiar el valor de la directiva **manage_etc_hosts** a **false** en el fichero `/etc/cloud/cloud.cfg`, de manera que quede así:
+Me he dado cuenta de una cosa al reiniciar la máquina *Dulcinea*, y es que en cada inicio se restablece el fichero `/etc/hosts`. Para cambiar este funcionamiento, tenemos que dirigirnos al fichero `/etc/cloud/cloud.cfg` y buscar esta línea:
+
+<pre>
+manage_etc_hosts: true
+</pre>
+
+Le cambiamos el valor a *false*:
 
 <pre>
 manage_etc_hosts: false

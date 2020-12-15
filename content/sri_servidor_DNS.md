@@ -117,67 +117,109 @@ Añadimos la línea `nameserver 172.22.200.174`, cuya dirección corresponde a l
 Hecho esto, podemos realizar una consulta a `www.iesgn.org`:
 
 <pre>
-root@debian:~# dig www.iesgn.org
+javier@debian:~$ dig www.iesgn.org
 
 ; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> www.iesgn.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 62534
-;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 30160
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
 ;; QUESTION SECTION:
 ;www.iesgn.org.			IN	A
 
-;; AUTHORITY SECTION:
-org.			900	IN	SOA	a0.org.afilias-nst.info. noc.afilias-nst.info. 2014176427 1800 900 604800 86400
+;; ANSWER SECTION:
+www.iesgn.org.		0	IN	A	172.22.200.174
 
-;; Query time: 56 msec
-;; SERVER: 192.168.150.10#53(192.168.150.10)
-;; WHEN: jue dic 10 20:39:07 CET 2020
-;; MSG SIZE  rcvd: 105
-
-root@debian:~#
+;; Query time: 97 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: mar dic 15 13:56:32 CET 2020
+;; MSG SIZE  rcvd: 58
 </pre>
 
-Vemos como nos está respondiendo nuestro servidor DNS, ya que nos indica que la respuesta viene de la IP 192.168.150.10.
+Vemos como nos está respondiendo nuestro servidor DNS, ya que nos indica que la respuesta viene de la IP **172.22.200.174**.
 
-Realizo una consulta a `departamentos.iesgn.org`, dirección a la que ya había realizado una consulta anteriormente, por lo que tendría que tener esta consulta en caché:
+Realizo una consulta a `departamentos.iesgn.org`:
 
 <pre>
-root@debian:~# dig departamentos.iesgn.org
+javier@debian:~$ dig departamentos.iesgn.org
 
 ; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> departamentos.iesgn.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 46650
-;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 32409
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
 ;; QUESTION SECTION:
 ;departamentos.iesgn.org.	IN	A
 
-;; Query time: 0 msec
-;; SERVER: 192.168.150.10#53(192.168.150.10)
-;; WHEN: jue dic 10 20:39:41 CET 2020
-;; MSG SIZE  rcvd: 52
+;; ANSWER SECTION:
+departamentos.iesgn.org. 0	IN	A	172.22.200.174
 
-root@debian:~#
+;; Query time: 242 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: mar dic 15 13:57:36 CET 2020
+;; MSG SIZE  rcvd: 68
 </pre>
 
-Vemos como efectivamente la tenía en caché y por eso el tiempo de respuesta es de **0 msec**.
+Vemos como de nuevo nos está respondiendo nuestro servidor DNS.
 
 Hago una consulta a `www.josedomingo.org`, la cual me debería responder ya que en el servidor hemos realizado la configuración adecuada para que pueda utilizar DNS externos en caso de que sea necesario:
 
 <pre>
-root@debian:~# dig www.josedomingo.org
+javier@debian:~$ dig www.josedomingo.org
 
 ; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> www.josedomingo.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 44979
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18210
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 5, ADDITIONAL: 6
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: cd4b754d056f0763b14e40b65fd8b2fa0fe587d46fbb0cd0 (good)
+;; QUESTION SECTION:
+;www.josedomingo.org.		IN	A
+
+;; ANSWER SECTION:
+www.josedomingo.org.	900	IN	CNAME	endor.josedomingo.org.
+endor.josedomingo.org.	365	IN	A	37.187.119.60
+
+;; AUTHORITY SECTION:
+josedomingo.org.	82635	IN	NS	ns1.cdmon.net.
+josedomingo.org.	82635	IN	NS	ns5.cdmondns-01.com.
+josedomingo.org.	82635	IN	NS	ns4.cdmondns-01.org.
+josedomingo.org.	82635	IN	NS	ns2.cdmon.net.
+josedomingo.org.	82635	IN	NS	ns3.cdmon.net.
+
+;; ADDITIONAL SECTION:
+ns1.cdmon.net.		160610	IN	A	35.189.106.232
+ns2.cdmon.net.		160610	IN	A	35.195.57.29
+ns3.cdmon.net.		160610	IN	A	35.157.47.125
+ns4.cdmondns-01.org.	82635	IN	A	52.58.66.183
+ns5.cdmondns-01.com.	160610	IN	A	52.59.146.62
+
+;; Query time: 700 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: mar dic 15 13:58:34 CET 2020
+;; MSG SIZE  rcvd: 318
+</pre>
+
+Vemos que el tiempo de respuesta ha sido de **700 msec**, algo bastante elevado, aunque supongo que es porque estoy trabajando desde casa a través de la VPN.
+
+Vamos a realizar de nuevo una consulta a `www.josedomingo.org`, la cual me debería responder más rápida que la anterior ya que este servidor funciona como **caché DNS**:
+
+<pre>
+javier@debian:~$ dig www.josedomingo.org
+
+; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> www.josedomingo.org
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 64502
 ;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
@@ -186,42 +228,45 @@ root@debian:~# dig www.josedomingo.org
 ;www.josedomingo.org.		IN	A
 
 ;; ANSWER SECTION:
-www.josedomingo.org.	393	IN	CNAME	playerone.josedomingo.org.
-playerone.josedomingo.org. 393	IN	A	137.74.161.90
+www.josedomingo.org.	846	IN	CNAME	endor.josedomingo.org.
+endor.josedomingo.org.	311	IN	A	37.187.119.60
 
-;; Query time: 47 msec
-;; SERVER: 192.168.150.10#53(192.168.150.10)
-;; WHEN: jue dic 10 20:40:20 CET 2020
-;; MSG SIZE  rcvd: 88
-
-root@debian:~#
+;; Query time: 81 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: mar dic 15 13:59:27 CET 2020
+;; MSG SIZE  rcvd: 99
 </pre>
 
-Por último, vamos a comprobar la resolución inversa haciendo una consulta a la IP de la dirección `playerone.josedomingo.org` que es la *137.74.161.90*:
+Vemos que esta vez el tiempo de respuesta ha sido de **81 msec**, muchísimo más reducido que la primera vez, lo que demuestra que este servidor funciona como *caché DNS*. Además, vuelvo a decir que estoy en casa, si estuviera en clase, seguramente el tiempo de respuesta hubiera sido de unos pocos *msec*.
+
+Por último, vamos a comprobar la resolución inversa haciendo una consulta a la IP de la dirección `endor.josedomingo.org` que es la *37.187.119.60*:
 
 <pre>
-root@debian:~# dig -x 137.74.161.90
+javier@debian:~$ dig -x 37.187.119.60
 
-; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> -x 137.74.161.90
+; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> -x 37.187.119.60
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 19197
-;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 60847
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: ab7414b8c67b8dae299df1475fd8b528f0540c2f00c10f05 (good)
 ;; QUESTION SECTION:
-;90.161.74.137.in-addr.arpa.	IN	PTR
+;60.119.187.37.in-addr.arpa.	IN	PTR
 
 ;; ANSWER SECTION:
-90.161.74.137.in-addr.arpa. 43200 IN	PTR	playerone.josedomingo.org.
+60.119.187.37.in-addr.arpa. 86370 IN	PTR	ns330309.ip-37-187-119.eu.
 
-;; Query time: 82 msec
-;; SERVER: 192.168.150.10#53(192.168.150.10)
-;; WHEN: jue dic 10 20:40:58 CET 2020
-;; MSG SIZE  rcvd: 94
+;; AUTHORITY SECTION:
+119.187.37.in-addr.arpa. 172763	IN	NS	ns104.ovh.net.
+119.187.37.in-addr.arpa. 172763	IN	NS	dns104.ovh.net.
 
-root@debian:~#
+;; Query time: 230 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: mar dic 15 14:07:52 CET 2020
+;; MSG SIZE  rcvd: 170
 </pre>
 
 Vemos que nos ha respondido de nuevo nuestro servidor DNS, por lo que también podríamos realizar resoluciones inversas.
@@ -239,7 +284,7 @@ Vemos que nos ha respondido de nuevo nuestro servidor DNS, por lo que también p
 
 - **Además queremos nombrar a los clientes.**
 
-- **También hay que nombrar a los virtual hosts de apache: `www.iesgn.org` y `departementos.iesgn.org`.**
+- **También hay que nombrar a los *virtualhosts* de apache: `www.iesgn.org` y `departementos.iesgn.org`.**
 
 - **Se tienen que configurar la zona de resolución inversa.**
 

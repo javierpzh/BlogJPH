@@ -96,7 +96,7 @@ javierpzh.iesgn.org
 
 También lo hemos modificado. Con esto, habríamos terminado todo el trabajo en la máquina *servidor*.
 
-#### Tarea 1: Modifica los clientes para que utilicen el nuevo servidor DNS. Realiza una consulta a `www.iesgn.org`, y a `www.josedomingo.org`. Realiza una prueba de funcionamiento para comprobar que el servidor *dnsmasq* funciona como caché DNS. Muestra el fichero hosts del cliente para demostrar que no estás utilizando resolución estática. Realiza una consulta directa al servidor *dnsmasq*. ¿Se puede realizar resolución inversa?**
+#### Tarea 1: Modifica los clientes para que utilicen el nuevo servidor DNS. Realiza una consulta a `www.iesgn.org`, y a `www.josedomingo.org`. Realiza una prueba de funcionamiento para comprobar que el servidor *dnsmasq* funciona como caché DNS. Muestra el fichero hosts del cliente para demostrar que no estás utilizando resolución estática. Realiza una consulta directa al servidor *dnsmasq*. ¿Se puede realizar resolución inversa?
 
 La máquina que actuará como **cliente**, será mi máquina anfitriona.
 
@@ -465,6 +465,35 @@ javierpzh.iesgn.org.	86400	IN	A	172.22.200.174
 
 Efectivamente, la autoridad sobre esta zona es `javierpzh`.
 
+Hacemos una consulta al servidor DNS y preguntamos por la dirección `javierpzh.iesgn.org`:
+
+<pre>
+javier@debian:~$ dig javierpzh.iesgn.org
+
+; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> javierpzh.iesgn.org
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 65344
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: 3dcc5f35481cc4c49e80ce955fd8e176f2da3aa5d4f91551 (good)
+;; QUESTION SECTION:
+;javierpzh.iesgn.org.		IN	A
+
+;; ANSWER SECTION:
+javierpzh.iesgn.org.	86400	IN	A	172.22.200.174
+
+;; AUTHORITY SECTION:
+iesgn.org.		86400	IN	NS	javierpzh.iesgn.org.
+
+;; Query time: 86 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: mar dic 15 14:45:44 CET 2020
+;; MSG SIZE  rcvd: 106
+</pre>
+
 Ahora, haremos una consulta al servidor DNS y preguntaremos por el **servidor de correos** que hemos especificado, es decir, `correo.iesgn.org`:
 
 <pre>
@@ -697,24 +726,11 @@ javierpzh.iesgn.org.	86400	IN	A	172.22.200.174
 Vemos que también funciona correctamente, por lo que este ejercicio estaría terminado.
 
 
-#### Tarea 3: Realiza las consultas dig/nslookup desde los clientes preguntando por los siguientes:**
-
-- **Dirección de pandora.iesgn.org, www.iesgn.org, `ftp.iesgn.org`.**
-
-- **El servidor DNS con autoridad sobre la zona del dominio `iesgn.org`.**
-
-- **El servidor de correo configurado para `iesgn.org`.**
-
-- **La dirección IP de `www.josedomingo.org`**.
-
-- **Una resolución inversa**
-
-
 ### Servidor DNS esclavo
 
 ##### El servidor DNS actual funciona como **DNS maestro**. Vamos a instalar un nuevo servidor DNS que va a estar configurado como **DNS esclavo** del anterior, donde se van a ir copiando periódicamente las zonas del DNS maestro. Suponemos que el nombre del servidor DNS esclavo se va llamar `afrodita.iesgn.org`.
 
-#### Tarea 4: Realiza la instalación del servidor DNS esclavo. Documenta los siguientes apartados:**
+#### Tarea 3: Realiza la instalación del servidor DNS esclavo. Documenta los siguientes apartados:
 
 - **Entrega la configuración de las zonas del maestro y del esclavo.**
 
@@ -727,7 +743,7 @@ Vemos que también funciona correctamente, por lo que este ejercicio estaría te
 - **Muestra la salida del log donde se demuestra que se ha realizado la transferencia de zona.**
 
 
-#### Tarea 5: Documenta los siguientes apartados:**
+#### Tarea 4: Documenta los siguientes apartados:
 
 - **Configura un cliente para que utilice los dos servidores como servidores DNS.**
 
@@ -736,7 +752,7 @@ Vemos que también funciona correctamente, por lo que este ejercicio estaría te
 - **Solicita una copia completa de la zona desde el cliente ¿qué tiene que ocurrir?. Solicita una copia completa desde el esclavo ¿qué tiene que ocurrir?**
 
 
-#### Tarea 6: Muestra al profesor el funcionamiento del DNS esclavo:**
+#### Tarea 5: Muestra al profesor el funcionamiento del DNS esclavo:
 
 - **Realiza una consulta desde el cliente y comprueba que servidor está respondiendo.**
 
@@ -759,12 +775,12 @@ Vemos que también funciona correctamente, por lo que este ejercicio estaría te
 
 - **Vamos a suponer que tenemos un servidor para recibir los correos que se llame `correo.informatica.iesgn.org`.**
 
-#### Tarea 7: Realiza la instalación y configuración del nuevo servidor DNS con las características anteriormente señaladas. Muestra el resultado al profesor.**
+#### Tarea 6: Realiza la instalación y configuración del nuevo servidor DNS con las características anteriormente señaladas. Muestra el resultado al profesor.
 
 
 
 
-#### Tarea 8: Realiza las consultas dig/neslookup desde los clientes preguntando por los siguientes:**
+#### Tarea 7: Realiza las consultas dig/neslookup desde los clientes preguntando por los siguientes:
 
 - **Dirección de `www.informatica.iesgn.org`, `ftp.informatica.iesgn.org`.**
 

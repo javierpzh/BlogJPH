@@ -14,11 +14,13 @@ Tags: DNS, bind9, dnsmasq
 
 ### Servidor DNSmasq
 
-Las dos páginas servidas por *Apache2* las he creado pero voy a omitir su explicación, pues ya tengo otras entradas en las que hablo expresamente de esto. Te dejo este enlace por si quieres saber algo más de [Apache2](https://javierpzh.github.io/tag/apache.html).
-
 **Instala el servidor DNS *dnsmasq* en `pandora.iesgn.org` y configúralo para que los clientes puedan conocer los nombres necesarios.**
 
 He creado una instancia en el *cloud* de **OpenStack** que será la máquina que actuará como **servidor**, posee una dirección IP **172.22.200.174**.
+
+Las dos páginas servidas por *Apache2* las he creado pero voy a omitir su explicación, pues ya tengo otras entradas en las que hablo expresamente de esto. Te dejo este enlace por si quieres saber algo más de [Apache2](https://javierpzh.github.io/tag/apache.html).
+
+**Importante:** como estamos trabajando en el *cloud*, he tenido que abrir el puerto **53/UDP**, ya que es el puerto que se utiliza para recibir las peticiones de parte de los clientes.
 
 Una vez en ella, lo primero que debemos hacer es instalar el siguiente paquete:
 
@@ -107,12 +109,10 @@ apt install dnsutils -y
 Una vez instalado este paquete, vamos a añadir en el fichero `/etc/resolv.conf`, que contiene los servidores DNS que va a utilizar esta máquina, esta línea para indicar que haga uso del servidor DNS que hemos creado:
 
 <pre>
-nameserver 192.168.150.50
-
-nameserver 10.0.2.3
+nameserver 172.22.200.174
 </pre>
 
-Añadimos la línea `nameserver 192.168.150.10`, cuya dirección corresponde a la IP de la máquina servidor.
+Añadimos la línea `nameserver 172.22.200.174`, cuya dirección corresponde a la IP de la máquina servidor.
 
 Hecho esto, podemos realizar una consulta a `www.iesgn.org`:
 

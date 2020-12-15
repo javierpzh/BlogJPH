@@ -783,6 +783,9 @@ Vemos que también funciona correctamente, por lo que este ejercicio estaría te
 
 - **Muestra la salida del log donde se demuestra que se ha realizado la transferencia de zona.**
 
+He creado una segunda instancia en el *cloud*, también con un sistema *Debian Buster*, para que actúe como **esclavo**. Posee la dirección **172.22.201.12**.
+
+
 
 #### Tarea 4: Documenta los siguientes apartados:
 

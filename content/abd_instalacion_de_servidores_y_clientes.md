@@ -493,27 +493,7 @@ Podemos ver como nuestra aplicación nos muestra las bases de datos existentes e
 
 #### Instalación de una herramienta de administración para MongoDB y prueba desde un cliente remoto
 
-Lo primero que voy a hacer, sería crear las dos máquinas virtuales con las que vamos a trabajar en este ejercicio. Como siempre, una actuará como servidor y la otra como cliente. Las dos *mv* están creadas con **Vagrant** con un sistema **Debian 10**, y conectadas a la misma red local. Este es el fichero *Vagrantfile*:
-
-<pre>
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
-Vagrant.configure("2") do |config|
-  config.vm.define :servidor do |servidor|
-        servidor.vm.box="debian/buster64"
-        servidor.vm.hostname="servidor"
-    servidor.vm.network :public_network, :bridge=>"wlo1"
-  end
-
-  config.vm.define :cliente do |cliente|
-        cliente.vm.box="debian/buster64"
-        cliente.vm.hostname="cliente"
-    cliente.vm.network :public_network, :bridge=>"wlo1"
-  end
-
-end
-</pre>
+Lo primero que voy a hacer, sería crear las dos máquinas virtuales con las que vamos a trabajar en este ejercicio. Como siempre, una actuará como servidor y la otra como cliente. Las dos *mv* están creadas con un sistema **Debian 10**, y conectadas a la misma red local. La máquina **cliente** tendrá **entorno gráfico** para así poder utilizar la herramienta de administración.
 
 Las direcciones IP de ambas máquinas son:
 
@@ -791,7 +771,7 @@ Este proceso lo haremos desde el *cliente*.
 
 He decidido instalar la propia herramienta de administración de *MongoDB*, llamada **Compass**. Es una aplicación bastante sencilla de utilizar y que nos facilita muchísimo el trabajo.
 
-Para descargar esta aplicación de escritorio nos dirigimos a la [página oficial de descargas de MongoDB](https://www.mongodb.com/try/download/compass) y elegimos el sistema operativo con el que trabajemos y descargamos el archivo `.exe`, `.deb`, `.rpm`, ... En mi caso estoy trabajando con *Debian*, por lo que descargo el `.deb`, y lo instalo con el siguiente comando:
+Para descargar esta aplicación de escritorio nos dirigimos a la [página oficial de descargas de MongoDB](https://www.mongodb.com/try/download/compass) y elegimos el sistema operativo con el que trabajamos y descargamos el archivo `.exe`, `.deb`, `.rpm`, ... En mi caso estoy trabajando con *Debian*, por lo que descargo el `.deb`, y lo instalo con el siguiente comando:
 
 <pre>
 sudo dpkg -i mongodb-compass_1.24.1_amd64.deb

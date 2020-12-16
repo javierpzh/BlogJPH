@@ -551,7 +551,7 @@ Una vez descargado el paquete, vamos a iniciar el proceso:
 systemctl enable --now mongod
 </pre>
 
-Con esto, habríamos terminado la actualización, que vemos que es muy sencilla.
+Con esto, habríamos terminado la instalación, que vemos que es muy sencilla.
 
 Vamos a proceder a acceder por primera vez a nuestro servidor:
 

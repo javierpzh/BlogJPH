@@ -491,7 +491,7 @@ Si accedemos a la dirección `.../phppgadmin` en nuestro navegador e iniciamos s
 
 Podemos ver como nuestra aplicación nos muestra las bases de datos existentes en el servidor, y podemos eliminarlas, modificarlas y establecer privilegios, entre otras cosas, ya que también podemos realizar consultas, ...
 
-#### Instalación de una herramienta de administración web para MongoDB y prueba desde un cliente remoto
+#### Instalación de una herramienta de administración para MongoDB y prueba desde un cliente remoto
 
 Lo primero que voy a hacer, sería crear las dos máquinas virtuales con las que vamos a trabajar en este ejercicio. Como siempre, una actuará como servidor y la otra como cliente. Las dos *mv* están creadas con **Vagrant** con un sistema **Debian 10**, y conectadas a la misma red local. Este es el fichero *Vagrantfile*:
 
@@ -785,4 +785,34 @@ Productos
 
 Acabamos de comprobar como podemos efectivamente podemos acceder al servidor y tenemos acceso a la base de datos y a sus colecciones y documentos.
 
-Por tanto, solo nos faltaría desarrollar la herramienta web para administrar nuestro servidor de *MongoDB*.
+Por tanto, solo nos faltaría instalar la herramienta para administrar nuestro servidor de *MongoDB*.
+
+Este proceso lo haremos desde el *cliente*.
+
+He decidido instalar la propia herramienta de administración de *MongoDB*, llamada **Compass**. Es una aplicación bastante sencilla de utilizar y que nos facilita muchísimo el trabajo.
+
+Para descargar esta aplicación de escritorio nos dirigimos a la [página oficial de descargas de MongoDB](https://www.mongodb.com/try/download/compass) y elegimos el sistema operativo con el que trabajemos y descargamos el archivo `.exe`, `.deb`, `.rpm`, ... En mi caso estoy trabajando con *Debian*, por lo que descargo el `.deb`, y lo instalo con el siguiente comando:
+
+<pre>
+sudo dpkg -i mongodb-compass_1.24.1_amd64.deb
+</pre>
+
+Una vez instalado, ya podemos abrir la aplicación.
+
+Una vez en ella, nos aparecerá una ventana como esta:
+
+![.](images/abd_instalacion_de_servidores_y_clientes/compass.png)
+
+Vemos que nos aparece un recuadro, aquí es donde debemos introducir el comando para conectarnos a nuestro servidor remoto. Para ello, utilizamos este comando:
+
+<pre>
+mongodb://usuario:contraseña@X.X.X.X:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false
+</pre>
+
+Obviamente, tendremos que sustituir el valor *usuario* y *contraseña* por el que cada uno tenga, y la *IP* también.
+
+En mi caso, utilizo el siguiente comando:
+
+<pre>
+mongodb://javier:********@192.168.0.39:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false
+</pre>

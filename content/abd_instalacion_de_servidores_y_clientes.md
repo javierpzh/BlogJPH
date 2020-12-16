@@ -821,23 +821,4 @@ Hecho esto, ya tendremos configurado el acceso remoto a nuestro servidor. Como p
 
 ![.](images/abd_instalacion_de_servidores_y_clientes/compassdatos.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.
+Hemos finalizado el ejercicio.

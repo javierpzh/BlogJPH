@@ -228,6 +228,8 @@ Hecho esto, ya habríamos habilitado al servidor para que permita el acceso remo
 tnsping 192.168.0.55
 </pre>
 
+Tenemos conectividad con el puerto *1521* del *servidor*.
+
 Si queremos acceder remotamente con **sqlplus** hay que utilizar un comando como este:
 
 <pre>

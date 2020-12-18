@@ -1224,7 +1224,7 @@ Para realizar esta delegación, debemos editar el fichero `/var/cache/bind/db.ie
 <pre>
 $ORIGIN informatica.iesgn.org.
 
-@       IN      NS      afrodita.iesgn.org.
+@       IN      NS      afrodita
 
 afrodita        IN      A       172.22.200.253
 </pre>
@@ -1258,7 +1258,7 @@ departamentos   IN      CNAME   javierpzh
 
 $ORIGIN informatica.iesgn.org.
 
-@       IN      NS      afrodita.iesgn.org.
+@       IN      NS      afrodita
 
 afrodita        IN      A       172.22.200.253
 </pre>
@@ -1311,29 +1311,33 @@ Solo nos quedaría crear el nuevo fichero `db.informatica.iesgn.org`, que lógic
 root@afrodita:~# cp /etc/bind/db.empty /var/cache/bind/db.informatica.iesgn.org
 </pre>
 
-Hecho esto, empezamos a editar nuestro archivo `/var/cache/bind/db.informatica.iesgn.org`:
+Hecho esto, empezamos a editar nuestro archivo `/var/cache/bind/db.informatica.iesgn.org` que quedará así:
 
 <pre>
+$TTL    86400
+@       IN      SOA     afrodita.informatica.iesgn.org. root.localhost. (
+                        20121802        ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                          86400 )       ; Negative Cache TTL
+;
+@       IN      NS      afrodita.informatica.iesgn.org.
+@       IN      MX      10      correo.informatica.iesgn.org.
 
+$ORIGIN informatica.iesgn.org.
+
+afrodita        IN      A       172.22.200.253
+correo          IN      A       172.22.200.200
+www             IN      A       172.22.200.210
+ftp             IN      CNAME   afrodita
 </pre>
 
+Reiniciamos el servidor:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<pre>
+systemctl restart bind9
+</pre>
 
 
 #### Tarea 7: Realiza las consultas dig/nslookup desde los clientes preguntando por los siguientes:
@@ -1343,3 +1347,132 @@ Hecho esto, empezamos a editar nuestro archivo `/var/cache/bind/db.informatica.i
 - **El servidor DNS que tiene configurado la zona del dominio `informatica.iesgn.org`. ¿Es el mismo que el servidor DNS con autoridad para la zona `iesgn.org`?**
 
 - **El servidor de correo configurado para `informatica.iesgn.org`.**
+
+Vamos a realizar todas las consultas, pero vamos a especificar que las haga al servidor **maestro**, para así ver que realmente se ha llevado a cabo la delegación.
+
+Consulta a `www.informatica.iesgn.org`:
+
+<pre>
+javier@debian:~$ dig @172.22.200.174 www.informatica.iesgn.org
+
+; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> @172.22.200.174 www.informatica.iesgn.org
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 35861
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: df597e5fc5042a3d1b834c045fdcec456c2f5ebc5f532415 (good)
+;; QUESTION SECTION:
+;www.informatica.iesgn.org.	IN	A
+
+;; ANSWER SECTION:
+www.informatica.iesgn.org. 86315 IN	CNAME	afrodita.informatica.iesgn.org.
+afrodita.informatica.iesgn.org.	86315 IN A	172.22.200.253
+
+;; AUTHORITY SECTION:
+informatica.iesgn.org.	86400	IN	NS	afrodita.informatica.iesgn.org.
+
+;; Query time: 103 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: vie dic 18 18:52:05 CET 2020
+;; MSG SIZE  rcvd: 135
+</pre>
+
+Consulta a `ftp.informatica.iesgn.org`:
+
+<pre>
+javier@debian:~$ dig @172.22.200.174 ftp.informatica.iesgn.org
+
+; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> @172.22.200.174 ftp.informatica.iesgn.org
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18527
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: 16942171957d80ca85c43c805fdcec68f1630535c8a99fd0 (good)
+;; QUESTION SECTION:
+;ftp.informatica.iesgn.org.	IN	A
+
+;; ANSWER SECTION:
+ftp.informatica.iesgn.org. 86400 IN	CNAME	afrodita.informatica.iesgn.org.
+afrodita.informatica.iesgn.org.	86280 IN A	172.22.200.253
+
+;; AUTHORITY SECTION:
+informatica.iesgn.org.	86400	IN	NS	afrodita.informatica.iesgn.org.
+
+;; Query time: 88 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: vie dic 18 18:52:40 CET 2020
+;; MSG SIZE  rcvd: 135
+</pre>
+
+Consulta al servidor de correos de `informatica.iesgn.org`:
+
+<pre>
+javier@debian:~$ dig @172.22.200.174 mx informatica.iesgn.org
+
+; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> @172.22.200.174 mx informatica.iesgn.org
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 28235
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: 40dae1383db02b79b8b07f425fdcec8626ce79eeca478866 (good)
+;; QUESTION SECTION:
+;informatica.iesgn.org.		IN	MX
+
+;; ANSWER SECTION:
+informatica.iesgn.org.	86400	IN	MX	10 correo.informatica.iesgn.org.
+
+;; AUTHORITY SECTION:
+informatica.iesgn.org.	86400	IN	NS	afrodita.informatica.iesgn.org.
+
+;; ADDITIONAL SECTION:
+afrodita.informatica.iesgn.org.	86250 IN A	172.22.200.253
+
+;; Query time: 88 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: vie dic 18 18:53:10 CET 2020
+;; MSG SIZE  rcvd: 140
+</pre>
+
+Consulta al servidor DNS que tiene autoridad sobre la zona `informatica.iesgn.org`:
+
+<pre>
+javier@debian:~$ dig +norec @172.22.200.174 informatica.iesgn.org. soa
+
+; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> +norec @172.22.200.174 informatica.iesgn.org. soa
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 30757
+;; flags: qr ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: 78b294bb2b52138b040de9255fdceca9a949decb712417aa (good)
+;; QUESTION SECTION:
+;informatica.iesgn.org.		IN	SOA
+
+;; AUTHORITY SECTION:
+informatica.iesgn.org.	86400	IN	NS	afrodita.informatica.iesgn.org.
+
+;; ADDITIONAL SECTION:
+afrodita.informatica.iesgn.org.	86215 IN A	172.22.200.253
+
+;; Query time: 83 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: vie dic 18 18:53:45 CET 2020
+;; MSG SIZE  rcvd: 117
+</pre>
+
+Todas las consultas nos devuelven los resultados que esperábamos, por lo que con esto, habríamos terminado el contenido de este *post*.

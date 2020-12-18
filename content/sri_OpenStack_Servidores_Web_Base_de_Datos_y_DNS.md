@@ -117,3 +117,130 @@ Vemos accediendo a la IP de *Dulcinea* nos muestra la página servida por nuestr
 ## Servidor de base de datos
 
 **En *Sancho (Ubuntu)* vamos a instalar un servidor de base de datos *MariaDB* `bd.(nombre).gonzalonazareno.org`. Entrega una prueba de funcionamiento donde se vea como se realiza una conexión a la base de datos desde *Quijote*.**
+
+El primer paso sería instalar nuestro gestor de base de datos, **MySQL**, por tanto, lo instalamos:
+
+<pre>
+apt install mariadb-server mariadb-client -y
+</pre>
+
+Una vez lo hemos instalado, vamos a configurar una serie de opciones con el comando `mysql_secure_installation`. Vamos a especificarle una **contraseña de root**, vamos a **eliminar los usuarios anónimos**, vamos a especificar que queremos **desactivar el acceso remoto** a la base de datos, en resumen, vamos a restablecer la base de datos, con nuestras preferencias. Esta es una manera de asegurar el servicio. Aquí muestro el proceso:
+
+<pre>
+root@sancho:~# mysql_secure_installation
+
+NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+
+In order to log into MariaDB to secure it, we'll need the current
+password for the root user.  If you've just installed MariaDB, and
+you haven't set the root password yet, the password will be blank,
+so you should just press enter here.
+
+Enter current password for root (enter for none):
+OK, successfully used password, moving on...
+
+Setting the root password ensures that nobody can log into the MariaDB
+root user without the proper authorisation.
+
+You already have a root password set, so you can safely answer 'n'.
+
+Change the root password? [Y/n] y
+New password:
+Re-enter new password:
+Password updated successfully!
+Reloading privilege tables..
+ ... Success!
+
+
+By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them.  This is intended only for testing, and to make the installation
+go a bit smoother.  You should remove them before moving into a
+production environment.
+
+Remove anonymous users? [Y/n] y
+ ... Success!
+
+Normally, root should only be allowed to connect from 'localhost'.  This
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] y
+ ... Success!
+
+By default, MariaDB comes with a database named 'test' that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] y
+ - Dropping test database...
+ ... Success!
+ - Removing privileges on test database...
+ ... Success!
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] y
+ ... Success!
+
+Cleaning up...
+
+All done!  If you've completed all of the above steps, your MariaDB
+installation should now be secure.
+
+Thanks for using MariaDB!
+</pre>
+
+Es el turno de crear un usuario propio, asignarle privilegios y especificarle que sea accesible desde *Quijote*, es decir, desde cualquier dirección IP dentro de **10.0.2.XXX**. En realidad, podría poner que solo sea accesible para la IP de *Quijote*, ya que éste tiene la IP estática, pero prefiero hacerlo así por si en algún momento tenemos que cambiar la IP de *Quijote*. Para hacer esto debemos conectarnos como *root*:
+
+<pre>
+root@sancho:~# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 57
+Server version: 10.3.25-MariaDB-0ubuntu0.20.04.1 Ubuntu 20.04
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE USER 'javier'@'10.0.2.*' IDENTIFIED BY 'contraseña';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO 'javier'@'10.0.2.*';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> exit
+Bye
+</pre>
+
+
+
+
+
+
+Vamos a comprobar el acceso remoto desde *Quijote*. Para ello necesitamos instalar *MySQL*:
+
+<pre>
+dnf install mysql-server -y
+</pre>
+
+Ahora probamos a acceder:
+
+<pre>
+mysql -h 10.0.1.8 -u javier -p
+</pre>
+
+El parámetro **-h** indica la dirección del servidor, y los parámetros **-u** y **-p**, como ya sabemos, indican el usuario y la autenticación mediante contraseña.
+
+Obtenemos este resultado:
+
+<pre>
+[root@quijote ~]# mysql -h 10.0.1.8 -u javier -p
+</pre>
+
+
+
+
+.

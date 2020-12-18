@@ -1215,6 +1215,38 @@ Vemos como ahora la respuesta viene de parte de la dirección **172.22.200.253**
 
 #### Tarea 6: Realiza la instalación y configuración del nuevo servidor DNS con las características anteriormente señaladas.
 
+Vamos a utilizar la máquina **afrodita** para realizar la delegación del dominio.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

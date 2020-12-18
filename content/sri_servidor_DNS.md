@@ -676,7 +676,7 @@ cp /etc/bind/db.127 /var/cache/bind/db.200.22.172
 
 Antes de mostrar como quedaría este fichero, hay que decir que por cada registro de tipo **A** que tengamos en nuestro archivo que contiene la zona directa, sin incluir las páginas webs, tenemos que añadir un registro de tipo **PTR**.
 
-En mi caso, el fichero `/var/cache/bind/db.db.200.22.172` tendría este aspecto:
+En mi caso, el fichero `/var/cache/bind/db.200.22.172` tendría este aspecto:
 
 <pre>
 $TTL    604800

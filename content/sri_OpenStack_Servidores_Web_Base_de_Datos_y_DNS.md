@@ -98,6 +98,92 @@ options {
 };
 </pre>
 
+Ahora, vamos a configurar las zonas que definimos en el paso anterior. En mi caso copio el fichero `/etc/bind/db.empty` para utilizarlo como plantilla del nuevo archivo de configuración de esta **zona de resolución directa** `javierpzh.gonzalonazareno.org`.
+
+
+<pre>
+root@freston:~# cp /etc/bind/db.empty /var/cache/bind/javierpzh.gonzalonazareno.org
+</pre>
+
+Hecho esto, empezamos a editar nuestro archivo `javierpzh.gonzalonazareno.org`:
+
+<pre>
+$TTL    86400
+@       IN      SOA     javierpzh.gonzalonazareno.org. root.localhost. (
+                        20121801        ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                          86400 )       ; Negative Cache TTL
+;
+@       IN      NS      javierpzh.gonzalonazareno.org.
+
+$ORIGIN .gonzalonazareno.org.
+
+javierpzh       IN      A       172.22.200.183
+</pre>
+
+Voy a explicar el bloque añadido.
+
+Vemos que hay un apartado llamado **Serial**, este apartado es muy importante, ya que es el identificador de la zona, que debemos incrementar cada vez que hagamos un cambio. Se recomienda que el valor sea de este formato **YYMMDDNN**, es decir, la fecha de modificación y el número de la modificación. En mi caso he establecido **20121801** pues estoy realizando esta práctica el *18 de diciembre de 2020* y es la primera modificación que hago.
+
+Los registros de tipo **SOA** representan las autoridad sobre las zonas.
+
+El registro de tipo **NS** define el servidor con privilegios sobre la zona.
+
+El registro **$ORIGIN** se usa para que las líneas que se especifiquen debajo de él, sean autocompletadas con el dominio especificado en dicho registro. Esto nos sirve para evitar poner en cada registro que creemos, la zona, es decir, a los próximos registros que creemos, se les añadirá automáticamente la zona `iesgn.org`.
+
+Los registros de tipo **A** especifican la direcciones IP correspondientes al dominio.
+
+Los registros de tipo **CNAME** sirven para apuntar hacia otro de los registros de tipo **A** ya existentes. De manera que es mucho más fácil y cómodo hacer referencia a una dirección a través de un nombre en vez de con la propia dirección en sí.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+
+Reiniciamos el servidor DNS para que se apliquen los nuevos cambios:
+
+<pre>
+systemctl restart bind9
+</pre>
+
+Vamos a añadir al fichero `/etc/resolv.conf` de las máquinas clientes la siguiente línea con la IP del servidor DNS:
+
+<pre>
+nameserver 172.22.200.183
+</pre>
+
+Hecho esto, ahora nuestros clientes utilizarán nuestro servidor DNS *bind9* ubicado en *Freston*.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

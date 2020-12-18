@@ -223,23 +223,7 @@ bind-address = 0.0.0.0
 
 Esto hará que el servidor escuche las peticiones que provienen de todas las interfaces, a diferencia del punto anterior, que estaba configurado para que solo escuchara en *localhost*.
 
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
-
-.
+--------------------------------------------------------------------------------
 
 Hecho esto podemos dirigirnos al **cliente**, es decir, vamos a comprobar el acceso remoto desde *Quijote*. Para ello necesitamos instalar *MySQL*:
 

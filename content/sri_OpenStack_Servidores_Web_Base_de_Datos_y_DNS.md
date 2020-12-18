@@ -215,6 +215,17 @@ MariaDB [(none)]> exit
 Bye
 </pre>
 
+Una vez tenemos el usuario al que accederemos remotamente, nos quedaría configurar el acceso remoto a nuestro servidor *MySQL*, para ello, debemos modificar el fichero de configuración `/etc/mysql/mariadb.conf.d/50-server.cnf` y buscar la línea `bind-address = 127.0.0.1` y sustituirla por la siguiente:
+
+<pre>
+bind-address = 0.0.0.0
+</pre>
+
+
+
+
+
+
 
 
 

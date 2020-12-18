@@ -242,7 +242,7 @@ El parámetro **-h** indica la dirección del servidor, y los parámetros **-u**
 Obtenemos este resultado:
 
 <pre>
-[root@quijote ~]# mysql -h 10.0.1.8 -u javier -p
+[root@quijote ~]# mysql -h sancho -u javier -p
 </pre>
 
 

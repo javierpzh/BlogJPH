@@ -103,7 +103,11 @@ Hecho esto, es el momento de acceder a este servidor de manera remota.
 
 Para ello, he creado otra máquina virtual con **Windows 10**, que en este caso, actuará como **cliente** que accederá al servidor creado anteriormente. También está conectada en modo puente a mi red doméstica, por lo que tiene totalmente accesible al servidor y viceversa. En esta segunda máquina he instalado *Oracle* de igual manera que en la primera.
 
-Me he dado cuenta de un pequeño detalle, y es que por defecto, el cortafuegos de *Windows 10* (*firewall*), me bloqueaba la entrada de paquetes, es decir, me dejaba enviar paquetes pero no recibir, de manera que las máquinas virtuales no llegaban a establecer una conexión, ya que los paquetes sí salían pero nunca llegaban a su destino, por tanto, he tenido que desactivar los cortafuegos de ambas máquinas. Como estoy trabajando en máquinas virtuales en mi red local, no hay problema, pero obviamente no es nada recomendable desactivar todo el sistemas de cortafuegos del sistema.
+Me he dado cuenta de un pequeño detalle, y es que por defecto, el cortafuegos de *Windows 10* (*firewall*), me bloqueaba la entrada de paquetes, es decir, me dejaba enviar paquetes pero no recibir, de manera que las máquinas virtuales no llegaban a establecer una conexión, ya que los paquetes sí salían pero nunca llegaban a su destino, por tanto, he tenido que desactivar los cortafuegos de ambas máquinas. Como estoy trabajando en máquinas virtuales en mi red local, no hay problema, pero obviamente no es nada recomendable desactivar todo el sistemas de cortafuegos del sistema. Para evitar tener que desactivar todo el *firewall*, podemos añadir esta regla al cortafuegos que nos solucionará el problema:
+
+<pre>
+netsh advfirewall firewall add rule name="Habilitar respuesta ICMP IPv4" protocol=icmpv4:8,any dir=in action=allow
+</pre>
 
 Esta máquina *cliente* posee la IP **192.168.0.56**.
 

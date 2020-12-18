@@ -26,7 +26,7 @@ Tags: OpenStack, bind9, Apache, MySQL, MariaDB
 
 - **Debes determinar cómo vas a nombrar a *Dulcinea*, para que seamos capaz de resolver la IP flotante y la ip fija. Para ello vamos a usar vistas en bind9.**
 
-- **Debes considerar la posibilidad de hacer tres zonas de resolución inversa: para las redes `10.0.0.0/24`, `10.0.1.0/24` y `10.0.2.0/24`. (No vamos a crear la zona inversa para la red externa de IP flotantes). para resolver IP fijas y flotantes del *cloud*.**
+- **Debes considerar la posibilidad de hacer tres zonas de resolución inversa: para las redes `10.0.0.0/24`, `10.0.1.0/24` y `10.0.2.0/24` (no vamos a crear la zona inversa para la red externa de IP flotantes), para resolver IP fijas y flotantes del *cloud*.**
 
 
 **Entrega el resultado de las siguientes consultas desde un cliente interno a nuestra red y otro externo:**
@@ -51,14 +51,24 @@ Una vez instalado, debemos modificar su fichero de configuración, para ello nos
 <pre>
 include "/etc/bind/zones.rfc1918";
 
-zone "iesgn.org" {
+zone "javierpzh.gonzalonazareno.org" {
         type master;
-        file "/var/cache/bind/db.iesgn.org";
+        file "/var/cache/bind/db.javierpzh.gonzalonazareno.org";
 };
 
-zone "200.22.172.in-addr.arpa" {
+zone "0.0.10.in-addr.arpa" {
         type master;
-        file "/var/cache/bind/db.200.22.172";
+        file "/var/cache/bind/db.0.0.10";
+};
+
+zone "1.0.10.in-addr.arpa" {
+        type master;
+        file "/var/cache/bind/db.1.0.10";
+};
+
+zone "2.0.10.in-addr.arpa" {
+        type master;
+        file "/var/cache/bind/db.2.0.10";
 };
 </pre>
 
@@ -66,7 +76,7 @@ Vamos a explicar las líneas que acabamos de añadir.
 
 En primer lugar, hemos escrito una línea que hacer referencia a un archivo llamado `zones.rfc1918`, que es un fichero de configuración de las zonas privadas que queremos definir.
 
-Los bloques definen las zonas de las que el servidor tiene autoridad, la **zona de resolución directa** `iesgn.org` con su correspondiente **zona de resolución inversa** `200.22.172.in-addr.arpa`, además vemos como hemos especificado que actúen como **maestro**.
+Los bloques definen las zonas de las que el servidor tiene autoridad, la **zona de resolución directa** `javierpzh.gonzalonazareno.org` con sus correspondientes **zonas de resolución inversa** `0.0.10.in-addr.arpa`, `1.0.10.in-addr.arpa` y `2.0.10.in-addr.arpa`, además vemos como hemos especificado que actúen como **maestro**.
 
 Una vez explicado, tenemos que dirigirnos al fichero `/etc/bind/named.conf.options`, y aquí debemos introducir las siguientes líneas:
 

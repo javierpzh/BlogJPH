@@ -997,7 +997,7 @@ Efectivamente, podemos ver como se han copiado las zonas a este servidor *esclav
 
 - **Realiza una consulta con `dig` tanto al maestro como al esclavo para comprobar que las respuestas son autorizadas. ¿En qué te tienes que fijar?**
 
-- **Solicita una copia completa de la zona desde el cliente ¿qué tiene que ocurrir?. Solicita una copia completa desde el esclavo ¿qué tiene que ocurrir?**
+- **Solicita una copia completa de la zona desde el cliente. ¿Qué tiene que ocurrir? Solicita una copia completa desde el esclavo. ¿Qué tiene que ocurrir?**
 
 Hecho esto, nos dirigimos a nuestro equipo anfitrión y añadimos al fichero `resolv.conf` la siguiente línea:
 
@@ -1007,11 +1007,75 @@ nameserver 172.22.200.253
 
 Esta línea hace referencia a la de **afrodita**, es decir, la IP del servidor *esclavo*.
 
+Vamos a hacer una consulta al *maestro* y otra al *esclavo* para ver las diferencias:
 
+<pre>
+javier@debian:~$ dig +norec @172.22.200.174 iesgn.org. soa
 
+; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> +norec @172.22.200.174 iesgn.org. soa
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18061
+;; flags: qr aa ra; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 3
 
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: 87db148fead0ec5efc52e7c75fdcdbf65feade950b86e84e (good)
+;; QUESTION SECTION:
+;iesgn.org.			IN	SOA
 
+;; ANSWER SECTION:
+iesgn.org.		86400	IN	SOA	javierpzh.iesgn.org. root.localhost. 20121801 604800 86400 2419200 86400
 
+;; AUTHORITY SECTION:
+iesgn.org.		86400	IN	NS	afrodita.iesgn.org.
+iesgn.org.		86400	IN	NS	javierpzh.iesgn.org.
+
+;; ADDITIONAL SECTION:
+afrodita.iesgn.org.	86400	IN	A	172.22.200.253
+javierpzh.iesgn.org.	86400	IN	A	172.22.200.174
+
+;; Query time: 84 msec
+;; SERVER: 172.22.200.174#53(172.22.200.174)
+;; WHEN: vie dic 18 17:42:30 CET 2020
+;; MSG SIZE  rcvd: 195
+
+javier@debian:~$ dig +norec @172.22.200.253 iesgn.org. soa
+
+; <<>> DiG 9.11.5-P4-5.1+deb10u2-Debian <<>> +norec @172.22.200.253 iesgn.org. soa
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 52681
+;; flags: qr aa ra; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 3
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: 708e697a25ccee2e550d50375fdcdbfe545d6d60af91c97c (good)
+;; QUESTION SECTION:
+;iesgn.org.			IN	SOA
+
+;; ANSWER SECTION:
+iesgn.org.		86400	IN	SOA	javierpzh.iesgn.org. root.localhost. 20121801 604800 86400 2419200 86400
+
+;; AUTHORITY SECTION:
+iesgn.org.		86400	IN	NS	javierpzh.iesgn.org.
+iesgn.org.		86400	IN	NS	afrodita.iesgn.org.
+
+;; ADDITIONAL SECTION:
+afrodita.iesgn.org.	86400	IN	A	172.22.200.253
+javierpzh.iesgn.org.	86400	IN	A	172.22.200.174
+
+;; Query time: 82 msec
+;; SERVER: 172.22.200.253#53(172.22.200.253)
+;; WHEN: vie dic 18 17:42:38 CET 2020
+;; MSG SIZE  rcvd: 195
+</pre>
+
+A la primera consulta nos ha respondido el *maestro* y a la segunda el *esclavo* como podemos ver. Vemos que ambas, los dos servidores aparecen autorizados.
+
+Ahora vamos a solicitar una copia de la zona.
 
 
 

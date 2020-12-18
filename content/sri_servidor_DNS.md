@@ -1218,7 +1218,7 @@ Vemos como ahora la respuesta viene de parte de la dirección **172.22.200.253**
 
 
 
-#### Tarea 7: Realiza las consultas dig/neslookup desde los clientes preguntando por los siguientes:
+#### Tarea 7: Realiza las consultas dig/nslookup desde los clientes preguntando por los siguientes:
 
 - **Dirección de `www.informatica.iesgn.org`, `ftp.informatica.iesgn.org`.**
 

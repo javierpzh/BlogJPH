@@ -990,6 +990,15 @@ db.200.22.172  db.iesgn.org  managed-keys.bind	managed-keys.bind.jnl
 
 Efectivamente, podemos ver como se han copiado las zonas a este servidor *esclavo*.
 
+
+#### Tarea 4: Documenta los siguientes apartados:
+
+- **Configura un cliente para que utilice los dos servidores como servidores DNS.**
+
+- **Realiza una consulta con `dig` tanto al maestro como al esclavo para comprobar que las respuestas son autorizadas. ¿En qué te tienes que fijar?**
+
+- **Solicita una copia completa de la zona desde el cliente ¿qué tiene que ocurrir?. Solicita una copia completa desde el esclavo ¿qué tiene que ocurrir?**
+
 Hecho esto, nos dirigimos a nuestro equipo anfitrión y añadimos al fichero `resolv.conf` la siguiente línea:
 
 <pre>
@@ -1015,23 +1024,6 @@ Esta línea hace referencia a la de **afrodita**, es decir, la IP del servidor *
 
 
 
-
-
-
-
-
-
-
-
-
-
-#### Tarea 4: Documenta los siguientes apartados:
-
-- **Configura un cliente para que utilice los dos servidores como servidores DNS.**
-
-- **Realiza una consulta con `dig` tanto al maestro como al esclavo para comprobar que las respuestas son autorizadas. ¿En qué te tienes que fijar?**
-
-- **Solicita una copia completa de la zona desde el cliente ¿qué tiene que ocurrir?. Solicita una copia completa desde el esclavo ¿qué tiene que ocurrir?**
 
 
 #### Tarea 5: Muestra al profesor el funcionamiento del DNS esclavo:

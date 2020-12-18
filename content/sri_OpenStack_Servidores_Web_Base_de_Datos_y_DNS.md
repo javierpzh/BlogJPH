@@ -141,7 +141,7 @@ Los registros de tipo **SOA** representan las autoridad sobre las zonas.
 
 El registro de tipo **NS** define el servidor con privilegios sobre la zona.
 
-El registro **$ORIGIN** se usa para que las líneas que se especifiquen debajo de él, sean autocompletadas con el dominio especificado en dicho registro. Esto nos sirve para evitar poner en cada registro que creemos, la zona, es decir, a los próximos registros que creemos, se les añadirá automáticamente la zona `iesgn.org`.
+El registro **$ORIGIN** se usa para que las líneas que se especifiquen debajo de él, sean autocompletadas con el dominio especificado en dicho registro. Esto nos sirve para evitar poner en cada registro que creemos, la zona, es decir, a los próximos registros que creemos, se les añadirá automáticamente la zona `gonzalonazareno.org`.
 
 Los registros de tipo **A** especifican la direcciones IP correspondientes al dominio.
 

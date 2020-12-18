@@ -89,6 +89,27 @@ root@freston:~# mv wildcard.crt /etc/ssl/certs/
 
 
 
+Reiniciamos el servidor **LDAP** para aplicar los cambios:
+
+<pre>
+systemctl restart slapd.service
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

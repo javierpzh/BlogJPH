@@ -771,9 +771,9 @@ Vemos que también funciona correctamente, por lo que este ejercicio estaría te
 
 ### Servidor DNS esclavo
 
-##### El servidor DNS actual funciona como **DNS maestro**. Vamos a instalar un nuevo servidor DNS que va a estar configurado como **DNS esclavo** del anterior, donde se van a ir copiando periódicamente las zonas del DNS maestro. Suponemos que el nombre del servidor DNS esclavo se va llamar `afrodita.iesgn.org`.
+##### El servidor DNS actual funciona como *DNS maestro*. Vamos a instalar un nuevo servidor DNS que va a estar configurado como *DNS esclavo* del anterior, donde se van a ir copiando periódicamente las zonas del *DNS maestro*. Suponemos que el nombre del servidor *DNS esclavo* se va llamar `afrodita.iesgn.org`.
 
-#### Tarea 3: Realiza la instalación del servidor DNS esclavo. Documenta los siguientes apartados:
+#### Tarea 3: Realiza la instalación del servidor *DNS esclavo*. Documenta los siguientes apartados:
 
 - **Entrega la configuración de las zonas del maestro y del esclavo.**
 
@@ -788,6 +788,8 @@ Vemos que también funciona correctamente, por lo que este ejercicio estaría te
 Antes de nada, me gustaría explicar por encima para que servirá este **servidor esclavo**. Este nuevo servidor DNS, estará de alguna forma sincronizado con el **maestro** y nos ayudará en caso de que el *servidor maestro* no pueda procesar/responder una petición, de manera, que actuará este *servidor esclavo* y responderá él la petición. Es muy útil para casos de caídas del primer servidor, para casos donde queramos utilizar estos servidores en alta disponibilidad, ...
 
 He creado una segunda instancia en el *cloud*, también con un sistema *Debian Buster*, para que actúe como **esclavo**. Posee la dirección **172.22.200.253**.
+
+**Importante:** como estamos trabajando en el *cloud*, he tenido que abrir el puerto **53/TCP**, ya que es el puerto que se utiliza para la transferencia de archivos, de manera que si no lo tenemos abierto, el *esclavo* no recibirá las zonas del *maestro*.
 
 Pero antes de empezar a trabajar con esta máquina, debemos configurar el servidor **maestro**, que será el que hemos estado utilizando antes, para que permita que las zonas se puedan transferir a este servidor **esclavo**. Para ello nos dirigimos al fichero `/etc/bind/named.conf.local`, en el que si recordamos, antes añadimos dos bloques que hacían referencia a ambas zonas (directa e inversa). Bien, pues tenemos que introducir dos nuevas directivas en cada uno de los bloques, estas directivas son las llamadas **allow-transfer** y **notify yes**. El resultado final del contenido del fichero sería:
 
@@ -930,7 +932,9 @@ systemctl restart bind9
 
 Tras unos segundos, nuestro nuevo servidor habría obtenido la transferencia de las zonas desde el servidor *maestro* por lo que ya tendríamos trabajando ambos servidores conjuntamente.
 
+<pre>
 
+</pre>
 
 
 

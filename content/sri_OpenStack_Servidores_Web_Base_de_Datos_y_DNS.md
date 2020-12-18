@@ -20,40 +20,45 @@ Tags: OpenStack, bind9, Apache, MySQL, MariaDB
 
 - **El servidor DNS se llama `freston.(nombre).gonzalonazareno.org` y va a ser el servidor con autoridad para la zona `(nombre).gonzalonazareno.org`.**
 
-
-
 - **El servidor debe resolver el nombre de todas las máquinas.**
-
-
 
 - **El servidor debe resolver los distintos servicios (virtualhost, servidor de base de datos, servidor LDAP, ...).**
 
-
-
 - **Debes determinar cómo vas a nombrar a *Dulcinea*, para que seamos capaz de resolver la IP flotante y la ip fija. Para ello vamos a usar vistas en bind9.**
 
-
-
 - **Debes considerar la posibilidad de hacer tres zonas de resolución inversa: para las redes `10.0.0.0/24`, `10.0.1.0/24` y `10.0.2.0/24`. (No vamos a crear la zona inversa para la red externa de IP flotantes). para resolver IP fijas y flotantes del *cloud*.**
-
-
 
 
 **Entrega el resultado de las siguientes consultas desde un cliente interno a nuestra red y otro externo:**
 
 - **El servidor DNS con autoridad sobre la zona del dominio `(nombre).gonzalonazareno.org`**
 
-
-
 - **La dirección IP de *Dulcinea*.**
-
-
 
 - **Una resolución de `www`.**
 
-
-
 - **Un resolución inversa de IP fija en cada una de las redes. (Esta consulta sólo funcionará desde una máquina interna).**
+
+
+Vamos a instalar el servidor bind9:
+
+<pre>
+apt install bind9 -y
+</pre>
+
+Una vez instalado, debemos modificar su fichero de configuración, para ello nos dirigimos a `/etc/bind/named.conf.local` y añadimos el siguiente bloque:
+
+<pre>
+
+</pre>
+
+
+
+
+
+
+
+
 
 
 

@@ -40,12 +40,16 @@ En ella, introducimos nuestras credenciales y se nos abrirá un administrador.
 
 Con estos pasos, ya habríamos instalado correctamente **VMWare ESXi 5.5** en nuestro servidor y tendríamos acceso remoto a él mediante una herramienta gráfica.
 
+![.](images/hlc_instalacion_y_configuracion_basica_de_VMWare_ESXi/vmwareadmin.png)
+
 Para terminar, voy a crear una máquina virtual de prueba, que correrá un sistema **Debian 10**.
 
 Para ello, en primer lugar, debemos subir el archivo `.iso` a nuestro servidor. Nos dirigimos al apartado denominado **Storage** y subimos la *ISO*. En mi caso la almaceno en una carpeta llamada `iso`.
 
 Cuando tenemos la *ISO* en nuestro servidor, crearemos la propia máquina virtual. Es un proceso muy sencillo en el que tendremos que ir indicando los parámetros y características que queremos que posea nuestra máquina.
 
-Una vez lleguemos al apartado ****, debemos seleccionar la opción **** y seleccionar el archivo `.iso` que acabamos de almacenar. También, es muy importante tener seleccionada la opción ****, ya que sino, no nos detectará la *ISO* en el arranque.
+Una vez lleguemos al apartado **CD/DVD drive 1**, debemos seleccionar la opción **Datastore ISO File** y seleccionar el archivo `.iso` que acabamos de almacenar. También, es muy importante tener seleccionada la opción **Connect at power on**, ya que sino, no nos detectará la *ISO* en el arranque.
+
+![.](images/hlc_instalacion_y_configuracion_basica_de_VMWare_ESXi/vmwareseleccionariso.png)
 
 Con esto, ya podríamos encender nuestra *mv* y realizar el proceso de instalación del sistema, por lo que hemos llegado al final del *post*.

@@ -221,17 +221,9 @@ Una vez tenemos el usuario al que accederemos remotamente, nos quedaría configu
 bind-address = 0.0.0.0
 </pre>
 
-
-
-
-
-
-
-
-
-
-
-Vamos a comprobar el acceso remoto desde *Quijote*. Para ello necesitamos instalar *MySQL*:
+Esto hará que el servidor escuche las peticiones que provienen de todas las interfaces, a diferencia del punto anterior, que estaba configurado para que solo escuchara en *localhost*.
+--------------------------------------------------------------------------------
+Hecho esto podemos dirigirnos al **cliente**, es decir, vamos a comprobar el acceso remoto desde *Quijote*. Para ello necesitamos instalar *MySQL*:
 
 <pre>
 dnf install mysql-server -y

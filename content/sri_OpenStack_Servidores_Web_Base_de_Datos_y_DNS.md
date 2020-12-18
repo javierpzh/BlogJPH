@@ -74,7 +74,7 @@ Una vez tenemos creada la regla *DNAT* en *Dulcinea*, procedemos a instalar el s
 dnf install httpd -y
 </pre>
 
-Una vez instalado, debemos abrir los puertos que utilizará *Apache* ya que por defecto, en el *firewall* de *CentOS*, vienen cerrados.
+Una vez instalado, debemos abrir los puertos *80* y *443*, que utilizará *Apache*, ya que por defecto, en el *firewall* de *CentOS*, vienen cerrados.
 
 <pre>
 [root@quijote ~]# firewall-cmd --permanent --add-service=http

@@ -24,9 +24,7 @@ El proceso de instalación la verdad que es de lo más trivial que he llegado a 
 
 Una vez ya había instalado *VMWare ESXi*, volví a la BIOS para modificar de nuevo la secuencia de arranque y poner en primer lugar la unidad de almacenamiento *SATA*.
 
-Al iniciar el sistema, nos aparece una ventana en la que nos indica la dirección IP y los datos del sistema. En este punto, debemos cambiar la IP y establecerla estática, para ello, pulsamos la tecla **F2** y se nos abrirá este menú en el que la configuraremos.
-
-![.](images/hlc_instalacion_y_configuracion_basica_de_VMWare_ESXi/vmwareip.png)
+Al iniciar el sistema, nos aparece una ventana en la que nos indica la dirección IP y los datos del sistema. En este punto, debemos cambiar la IP y establecerla estática, para ello, pulsamos la tecla **F2** y se nos abrirá un menú bastante simple en el que la configuraremos.
 
 Hecho esto, tenemos que introducir la dirección IP desde un navegador, para descargar las herramientas necesarias para llevar a cabo la gestión remota.
 

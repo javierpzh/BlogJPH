@@ -289,7 +289,7 @@ Vemos que nos ha respondido de nuevo nuestro servidor DNS, por lo que también p
 - **Se tienen que configurar la zona de resolución inversa.**
 
 
-#### Tarea 2: Realiza la instalación y configuración del servidor *bind9* con las características anteriormente señaladas. Entrega las zonas que has definido. Muestra al profesor su funcionamiento.**
+#### Tarea 2: Realiza la instalación y configuración del servidor *bind9* con las características anteriormente señaladas. Entrega las zonas que has definido.
 
 Una vez hemos desinstalado el servidor **dnsmasq**, antes de instalar el servidor DNS **bind9**, vamos a realizar de nuevo una consulta a `www.josedomingo.org` para ver que servidor DNS nos responde ahora:
 
@@ -1114,7 +1114,7 @@ iesgn.org.		86400	IN	SOA	javierpzh.iesgn.org. root.localhost. 20121801 604800 86
 Desde *afrodita* sí nos deja. Obviamente, esto se debe a que anteriormente configuramos el servidor *maestro* para que únicamente copiara las zonas a la dirección IP de *afrodita* y denegamos las transferencias por defecto a los clientes.
 
 
-#### Tarea 5: Muestra al profesor el funcionamiento del DNS esclavo:
+#### Tarea 5: Funcionamiento del DNS esclavo:
 
 - **Realiza una consulta desde el cliente y comprueba que servidor está respondiendo.**
 
@@ -1213,7 +1213,7 @@ Vemos como ahora la respuesta viene de parte de la dirección **172.22.200.253**
 
 - **Vamos a suponer que tenemos un servidor para recibir los correos que se llame `correo.informatica.iesgn.org`.**
 
-#### Tarea 6: Realiza la instalación y configuración del nuevo servidor DNS con las características anteriormente señaladas. Muestra el resultado al profesor.
+#### Tarea 6: Realiza la instalación y configuración del nuevo servidor DNS con las características anteriormente señaladas.
 
 
 

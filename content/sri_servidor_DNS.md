@@ -1215,21 +1215,107 @@ Vemos como ahora la respuesta viene de parte de la dirección **172.22.200.253**
 
 #### Tarea 6: Realiza la instalación y configuración del nuevo servidor DNS con las características anteriormente señaladas.
 
-Vamos a utilizar la máquina **afrodita** para realizar la delegación del dominio.
+Utilizaré la máquina **afrodita** para realizar la delegación del dominio.
+
+Vamos a ponernos en situación, tenemos la primera máquina, es decir, el servidor **maestro** como servidor con autoridad sobre la zona `iesgn.org`. Bien, pues desde este servidor vamos a configurar la delegación del subdominio `informatica.iesgn.org` al servidor **esclavo**, es decir, a **afrodita**.
+
+Para realizar esta delegación, debemos editar el fichero `/var/cache/bind/db.iesgn.org` y añadir el siguiente bloque:
+
+<pre>
+$ORIGIN informatica.iesgn.org.
+
+@       IN      NS      afrodita.iesgn.org.
+
+afrodita        IN      A       172.22.200.253
+</pre>
+
+Vemos como hemos creado un nuevo registro **$ORIGIN** para el subdominio `informatica.iesgn.org`, al que le hemos asignado un registro **NS** con *afrodita*, lo que indica que ésta será el servidor con autoridad sobre este subdominio. Luego, creamos un registro de tipo **A** con la IP de *afrodita*.
+
+De manera que el contenido final del fichero `/var/cache/bind/db.iesgn.org` sería este:
+
+<pre>
+$TTL    86400
+@       IN      SOA     javierpzh.iesgn.org. root.localhost. (
+                        20121801        ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                          86400 )       ; Negative Cache TTL
+;
+@       IN      NS      javierpzh.iesgn.org.
+@       IN      NS      afrodita.iesgn.org.
+@       IN      MX      10      correo.iesgn.org.
+
+$ORIGIN iesgn.org.
+
+javierpzh       IN      A       172.22.200.174
+afrodita        IN      A       172.22.200.253
+correo          IN      A       172.22.200.200
+ftp             IN      A       172.22.200.201
+www             IN      CNAME   javierpzh
+departamentos   IN      CNAME   javierpzh
 
 
+$ORIGIN informatica.iesgn.org.
 
+@       IN      NS      afrodita.iesgn.org.
 
+afrodita        IN      A       172.22.200.253
+</pre>
 
+Es muy importante aumentar el valor del campo **serial**, que hemos comentado su funcionamiento.
 
+Ahora tendríamos que reiniciar el servidor:
 
+<pre>
+systemctl restart bind9
+</pre>
 
+En este punto, debemos dirigirnos al servidor *esclavo* sobre el que hemos realizado la delegación, y en él, configurar esta nueva zona sobre la que tenemos autoridad.
 
+Editamos el fichero `etc/bind/named.conf.local` y añadimos el siguiente bloque:
 
+<pre>
+zone "informatica.iesgn.org" {
+        type master;
+        file "db.informatica.iesgn.org";
+};
+</pre>
 
+De manera que el contenido final del fichero `etc/bind/named.conf.local` sería este:
 
+<pre>
+include "/etc/bind/zones.rfc1918";
 
+zone "iesgn.org" {
+        type slave;
+        file "db.iesgn.org";
+        masters { 172.22.200.174; };
+};
 
+zone "200.22.172.in-addr.arpa" {
+        type slave;
+        file "db.200.22.172";
+        masters { 172.22.200.174; };
+};
+
+zone "informatica.iesgn.org" {
+        type master;
+        file "db.informatica.iesgn.org";
+};
+</pre>
+
+Solo nos quedaría crear el nuevo fichero `db.informatica.iesgn.org`, que lógicamente se encontrará en `/var/cache/bind/`. Para ello vamos a copiar de nuevo el archivo `/etc/bind/db.empty` para tomarlo como referencia:
+
+<pre>
+root@afrodita:~# cp /etc/bind/db.empty /var/cache/bind/db.informatica.iesgn.org
+</pre>
+
+Hecho esto, empezamos a editar nuestro archivo `/var/cache/bind/db.informatica.iesgn.org`:
+
+<pre>
+
+</pre>
 
 
 

@@ -4,11 +4,11 @@ Category: Cloud Computing
 Header_Cover: theme/images/banner-hlc.jpg
 Tags: VMWare
 
-#### Utiliza el servidor físico que se te haya asignado e instala la versión adecuada del sistema de virtualización VMWare ESXi (hay que tener en cuenta que recibe diferentes denominaciones comerciales, pero nos referimos al sistema de virtualización de VMWare que proporciona virtualización de alto rendimiento mediante la técnica de la paravirtualización).
+#### Vamos a utilizar un servidor físico para instalar la versión adecuada del sistema de virtualización VMWare ESXi (hay que tener en cuenta que recibe diferentes denominaciones comerciales, pero nos referimos al sistema de virtualización de VMWare que proporciona virtualización de alto rendimiento mediante la técnica de la paravirtualización).
 
-#### Realiza la configuración del servicio que permita su gestión remota desde un equipo cliente e instala en tu equipo la aplicación cliente que permita gestionar remotamente el hipervisor.
+#### Realizaremos la configuración del servicio para que permita su gestión remota desde un equipo cliente e instalaremos en nuestro equipo la aplicación cliente que permita gestionar remotamente el hipervisor.
 
-#### Instala una máquina virtual que tenga acceso a Internet. La corrección consistirá en comprobar el funcionamiento de dicha máquina virtual.
+#### Instalaremos una máquina virtual que tenga acceso internet.
 
 Como dice el título de la práctica, voy a realizar la instalación de **VMWare ESXi** en su versión **5.5** sobre el servidor físico que tengo asignado.
 
@@ -24,7 +24,11 @@ El proceso de instalación la verdad que es de lo más trivial que he llegado a 
 
 Una vez ya había instalado *VMWare ESXi*, volví a la BIOS para modificar de nuevo la secuencia de arranque y poner en primer lugar la unidad de almacenamiento *SATA*.
 
-Al iniciar el sistema, nos aparece una ventana en la que nos indica la dirección IP, que tenemos que introducir desde un navegador, para descargar las herramientas necesarias para llevar a cabo la gestión remota.
+Al iniciar el sistema, nos aparece una ventana en la que nos indica la dirección IP y los datos del sistema. En este punto, debemos cambiar la IP y establecerla estática, para ello, pulsamos la tecla **F2** y se nos abrirá este menú en el que la configuraremos.
+
+![.](images/hlc_instalacion_y_configuracion_basica_de_VMWare_ESXi/vmwareip.png)
+
+Hecho esto, tenemos que introducir la dirección IP desde un navegador, para descargar las herramientas necesarias para llevar a cabo la gestión remota.
 
 ![.](images/hlc_instalacion_y_configuracion_basica_de_VMWare_ESXi/vmwareweb.png)
 
@@ -32,14 +36,16 @@ Descargué e instalé la aplicación llamada `vSphere Client`.
 
 ![.](images/hlc_instalacion_y_configuracion_basica_de_VMWare_ESXi/vSphereClient.png)
 
+En ella, introducimos nuestras credenciales y se nos abrirá un administrador.
 
+Con estos pasos, ya habríamos instalado correctamente **VMWare ESXi 5.5** en nuestro servidor y tendríamos acceso remoto a él mediante una herramienta gráfica.
 
+Para terminar, voy a crear una máquina virtual de prueba, que correrá un sistema **Debian 10**.
 
+Para ello, en primer lugar, debemos subir el archivo `.iso` a nuestro servidor. Nos dirigimos al apartado denominado **Storage** y subimos la *ISO*. En mi caso la almaceno en una carpeta llamada `iso`.
 
+Cuando tenemos la *ISO* en nuestro servidor, crearemos la propia máquina virtual. Es un proceso muy sencillo en el que tendremos que ir indicando los parámetros y características que queremos que posea nuestra máquina.
 
+Una vez lleguemos al apartado ****, debemos seleccionar la opción **** y seleccionar el archivo `.iso` que acabamos de almacenar. También, es muy importante tener seleccionada la opción ****, ya que sino, no nos detectará la *ISO* en el arranque.
 
-
-
-
-
-.
+Con esto, ya podríamos encender nuestra *mv* y realizar el proceso de instalación del sistema, por lo que hemos llegado al final del *post*.

@@ -1,5 +1,5 @@
 Title: LDAPs
-Date: 2020/12/19
+Date: 2020/12/09
 Category: Administración de Sistemas Operativos
 Header_Cover: theme/images/banner-sistemas.jpg
 Tags: LDAP, OpenStack

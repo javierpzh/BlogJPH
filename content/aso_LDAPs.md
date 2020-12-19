@@ -1,5 +1,5 @@
 Title: LDAPs
-Date: 2020/12/17
+Date: 2020/12/19
 Category: Administración de Sistemas Operativos
 Header_Cover: theme/images/banner-sistemas.jpg
 Tags: LDAP, OpenStack
@@ -8,7 +8,7 @@ Tags: LDAP, OpenStack
 
 Si quieres saber como instalar un servidor **LDAP**, puedes consultar [este post](https://javierpzh.github.io/instalacion-y-configuracion-inicial-de-openldap.html).
 
-Lo primero que debemos hacer es solicitar el certificado **wildcard**.
+Si queremos configurar **Freston** para que utilice el protocolo `ldaps://` y que así la información viaje cifrada y de manera segura, lo primero que debemos hacer es solicitar el certificado **wildcard**.
 
 Para crear este certificado, vamos a crear una clave privada de **4096 bits**, para ello vamos a utilizar `openssl`. Vamos a guardar esta clave en el directorio `/etc/ssl/private/`. Para crear esta clave privada empleamos el siguiente comando:
 
@@ -65,7 +65,7 @@ root@freston:~# ls
 gonzalonazareno.crt  wildcard.crt  wildcard.csr
 </pre>
 
-Una vez los tenemos aquí, los vamos a mover a la ruta `/etc/ssl/certs`:
+Lógicamente, estos certificados no debemos dejarlos en esta directorio, por lo que, los vamos a mover a la ruta `/etc/ssl/certs`:
 
 <pre>
 root@freston:~# mv gonzalonazareno.crt /etc/ssl/certs/
@@ -73,28 +73,22 @@ root@freston:~# mv gonzalonazareno.crt /etc/ssl/certs/
 root@freston:~# mv wildcard.crt /etc/ssl/certs/
 </pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Reiniciamos el servidor **LDAP** para aplicar los cambios:
+Es importante que ambos archivos, posean a **root** como usuario y grupo propietario, por tanto le cambio el propietario y el grupo:
 
 <pre>
-systemctl restart slapd.service
+root@freston:/etc/ssl/certs# chown -R root:root wildcard.crt
+
+root@freston:/etc/ssl/certs# chown -R root:root gonzalonazareno.crt
+</pre>
+
+Aquí podemos ver el resultado:
+
+<pre>
+root@freston:~# ls -l /etc/ssl/certs/ | grep gonzalo
+-rw-r--r-- 1 root root   3634 Dec 18 09:34 gonzalonazareno.crt
+
+root@freston:~# ls -l /etc/ssl/certs/ | grep wildcard
+-rw-r--r-- 1 root root  10119 Dec 18 09:29 wildcard.crt
 </pre>
 
 
@@ -114,5 +108,23 @@ systemctl restart slapd.service
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+
+Reiniciamos el servidor **LDAP** para aplicar los cambios:
+
+<pre>
+systemctl restart slapd.service
+</pre>
 
 .

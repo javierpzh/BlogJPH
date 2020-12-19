@@ -101,16 +101,25 @@ Es la primera vez que estoy utilizando *LDAP*, y me ha sorprendido mucho la mane
 Creamos el fichero `.ldif` e introducimos las siguientes líneas:
 
 <pre>
-root@freston:~# cat configuracion.ldif
+dn: cn=config
 
-dn: cn=config changetype: modify replace: olcTLSCACertificateFile olcTLSCACertificateFile: /etc/ssl/certs/gonzalonazareno.crt
+changetype: modify replace: olcTLSCACertificateFile olcTLSCACertificateFile: /etc/ssl/certs/gonzalonazareno.crt
 
 replace: olcTLSCertificateKeyFile olcTLSCertificateKeyFile: /etc/ssl/private/freston.key
 
 replace: olcTLSCertificateFile olcTLSCertificateFile: /etc/ssl/certs/wildcard.crt
 </pre>
 
+Una vez creado, vamos a hacer uso del siguiente comando para aplicar los cambios y modificar la configuración:
 
+<pre>
+root@freston:~# ldapmodify -Y EXTERNAL -H ldapi:/// -f configuracion.ldif
+
+SASL/EXTERNAL authentication started
+SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+SASL SSF: 0
+modifying entry "cn=config"
+</pre>
 
 
 

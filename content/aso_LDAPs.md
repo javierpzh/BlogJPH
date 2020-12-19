@@ -18,9 +18,20 @@ Generating RSA private key, 4096 bit long modulus (2 primes)
 .........................................++++
 ...........................................................................................................................++++
 e is 65537 (0x010001)
+</pre>
 
-root@freston:~# ls /etc/ssl/private/
-freston.key
+Debemos cambiarle los permisos a la clave privada a **400**, así únicamente el propietario podrá leer el contenido. Para ello, haremos uso de la herramienta `chmod`:
+
+<pre>
+root@freston:/etc/ssl/private# ls -l
+total 4
+-rw-r--r-- 1 root root 3243 Dec 18 08:59 freston.key
+
+root@freston:/etc/ssl/private# chmod 400 /etc/ssl/private/freston.key
+
+root@freston:/etc/ssl/private# ls -l
+total 4
+-r-------- 1 root root 3243 Dec 18 08:59 freston.key
 </pre>
 
 Lo siguiente sería generar una solicitud de firma de certificado, es decir, un fichero **.csr**, que posteriormente enviaremos a la entidad del [Gonzalo Nazareno](https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/) para que nos lo firmen.
@@ -91,6 +102,20 @@ root@freston:~# ls -l /etc/ssl/certs/ | grep wildcard
 -rw-r--r-- 1 root root  10119 Dec 18 09:29 wildcard.crt
 </pre>
 
+
+
+<pre>
+apt install acl -y
+</pre>
+
+
+
+<pre>
+root@freston:# setfacl -m u:openldap:r-x /etc/ssl/private
+
+root@freston:# setfacl -m u:openldap:r-x /etc/ssl/private/freston.key
+</pre>
+
 --------------------------------------------------------------------------------
 
 
@@ -103,7 +128,9 @@ Creamos el fichero `.ldif` e introducimos las siguientes líneas:
 <pre>
 dn: cn=config
 
-changetype: modify replace: olcTLSCACertificateFile olcTLSCACertificateFile: /etc/ssl/certs/gonzalonazareno.crt
+changetype: modify
+
+replace: olcTLSCACertificateFile olcTLSCACertificateFile: /etc/ssl/certs/gonzalonazareno.crt
 
 replace: olcTLSCertificateKeyFile olcTLSCertificateKeyFile: /etc/ssl/private/freston.key
 
@@ -127,30 +154,54 @@ Vale, una vez hemos importado el fichero *.ldif* destinado a la configuración, 
 SLAPD_SERVICES="ldap:/// ldapi:/// ldaps:///"
 </pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---------------------------------------------------------------------------------
-
 Reiniciamos el servidor **LDAP** para aplicar los cambios:
 
 <pre>
 systemctl restart slapd.service
 </pre>
+
+Es hora de pasar a la parte del **cliente**. En mi caso será en la misma máquina pero haré la configuración que debería hacerse en una situación más normal, en la que el cliente se encuentre en otro equipo.
+
+El certificado que hemos almacenado en la ruta `/etc/ssl/certs/` para el servidor, en el lado del cliente, no debería almacenarse ahí, sino que sería más recomendable hacerlo en la ruta `/usr/local/share/ca-certificates/`. Este directorio está creado para almacenar en él los certificados que creemos nosotros de manera local. Por tanto voy a copiar el archivo `gonzalonazareno.crt` a esta ruta:
+
+<pre>
+cp /etc/ssl/certs/gonzalonazareno.crt /usr/local/share/ca-certificates/
+</pre>
+
+Una vez lo hemos copiado, haremos uso del siguiente comando. Lo que haremos con este comando, será crear un enlace simbólico a la ruta `/etc/ssl/certs/` y con esto crearemos la nueva entrada necesaria para que el cliente haga uso de **ldaps://** confiando en la autoridad certificadora.
+
+<pre>
+update-ca-certificates
+</pre>
+
+Por último, debemos realizar una modificación en el fichero de configuración `/etc/ldap/ldap.conf`. Hay que descomentar el apartado llamado **URI**. Quedaría así:
+
+<pre>
+URI     ldaps://localhost
+</pre>
+
+Esto hará, que el cliente utilice de manera predeterminada el protocolo **ldaps://**.
+
+
+
+<pre>
+
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .

@@ -98,10 +98,16 @@ root@freston:~# ls -l /etc/ssl/certs/ | grep wildcard
 
 Es la primera vez que estoy utilizando *LDAP*, y me ha sorprendido mucho la manera en la que se realiza su configuración, ya que no vamos a llevar a cabo las modificaciones en unos ficheros de configuración como es lo habitual, sino que vamos a crear un fichero `.ldif`, como los que creamos para introducir objetos. Esto se debe a que, de esta manera, podremos manipular la configuración sin tener que reiniciar el servicio, por tanto, nunca dejaría de funcionar.
 
-Creamos el fichero `.ldif`:
+Creamos el fichero `.ldif` e introducimos las siguientes líneas:
 
 <pre>
+root@freston:~# cat configuracion.ldif
 
+dn: cn=config changetype: modify replace: olcTLSCACertificateFile olcTLSCACertificateFile: /etc/ssl/certs/gonzalonazareno.crt
+
+replace: olcTLSCertificateKeyFile olcTLSCertificateKeyFile: /etc/ssl/private/freston.key
+
+replace: olcTLSCertificateFile olcTLSCertificateFile: /etc/ssl/certs/wildcard.crt
 </pre>
 
 

@@ -91,11 +91,18 @@ root@freston:~# ls -l /etc/ssl/certs/ | grep wildcard
 -rw-r--r-- 1 root root  10119 Dec 18 09:29 wildcard.crt
 </pre>
 
+--------------------------------------------------------------------------------
 
 
+--------------------------------------------------------------------------------
 
+Es la primera vez que estoy utilizando *LDAP*, y me ha sorprendido mucho la manera en la que se realiza su configuración, ya que no vamos a llevar a cabo las modificaciones en unos ficheros de configuración como es lo habitual, sino que vamos a crear un fichero `.ldif`, como los que creamos para introducir objetos. Esto se debe a que, de esta manera, podremos manipular la configuración sin tener que reiniciar el servicio, por tanto, nunca dejaría de funcionar.
 
+Creamos el fichero `.ldif`:
 
+<pre>
+
+</pre>
 
 
 

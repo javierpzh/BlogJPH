@@ -121,7 +121,11 @@ SASL SSF: 0
 modifying entry "cn=config"
 </pre>
 
+Vale, una vez hemos importado el fichero *.ldif* destinado a la configuración, nos quedaría hacer una modificación en el fichero `/etc/default/slapd`, ya que por defecto, el protocolo `ldaps://` no viene habilitado. Para habilitarlo, debemos buscar la línea **SLAPD_SERVICES** y añadir el valor **ldaps://**, de manera que quedaría así:
 
+<pre>
+SLAPD_SERVICES="ldap:/// ldapi:/// ldaps:///"
+</pre>
 
 
 

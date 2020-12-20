@@ -124,12 +124,15 @@ Creamos el fichero `.ldif` e introducimos las siguientes líneas:
 dn: cn=config
 
 changetype: modify
-
-replace: olcTLSCACertificateFile olcTLSCACertificateFile: /etc/ssl/certs/gonzalonazareno.crt
-
-replace: olcTLSCertificateKeyFile olcTLSCertificateKeyFile: /etc/ssl/private/freston.key
-
-replace: olcTLSCertificateFile olcTLSCertificateFile: /etc/ssl/certs/wildcard.crt
+add: olcTLSCACertificateFile
+replace: olcTLSCACertificateFile
+olcTLSCACertificateFile: /etc/ssl/certs/gonzalonazareno.crt
+-
+replace: olcTLSCertificateFile
+olcTLSCertificateFile: /etc/ssl/certs/wildcard.crt
+-
+replace: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/ssl/private/freston.key
 </pre>
 
 Una vez creado, vamos a hacer uso del siguiente comando para aplicar los cambios y modificar la configuración:
@@ -187,16 +190,10 @@ Esto hará, que el cliente utilice de manera predeterminada el protocolo **ldaps
 
 
 
+setfacl -m u:openldap:r-x /etc/ssl/certs/gonzalonazareno.crt
+setfacl -m u:openldap:r-x /etc/ssl/certs/wildcard.crt
 
 
-
-
-
-
-
-
-
-
-
+Mirar en el fichero `ldif` esta línea: `add: olcTLSCACertificateFile`
 
 .

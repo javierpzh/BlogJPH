@@ -19,7 +19,9 @@ Vamos a configurar **Sancho** como servidor **LDAP** secundario de **Freston**, 
 
 Bien, primeramente, si ya tenemos instalado un servidor *LDAP* que nos ofrece servicio, ¿para qué instalar otro? Pues es muy sencillo, esto nos hará tener una segunda máquina que nos siga ofreciendo el servicio de *LDAP* en caso de que en la primera máquina ocurriera algún fallo, evitando así perder el servicio durante el tiempo que nos lleve arreglar este fallo. Esto obviamente, en un caso de alta disponibilidad, es muy importante como ya os podéis imaginar.
 
+¿Y como trabajarán estos dos servidores conjuntamente? Pues también es muy simple. Se trata de ir replicando los datos y las informaciones del servidor principal, al secundario, de manera que siempre estén sincronizados.
 
+Una vez tenemos la idea de para que nos serviría este servidor de respaldo, voy a pasar a explicar 
 
 
 

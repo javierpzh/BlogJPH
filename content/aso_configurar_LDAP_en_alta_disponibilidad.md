@@ -49,11 +49,17 @@ Tenemos diferentes opciones de implementación:
 
 - **MirrorMode**
 
-    Es una configuración híbrida que garantiza la consistencia de la replicación *single-master*, mientras provee alta disponibilidad como las soluciones *multi-master*. Dos proveedores se configuran para replicarse mutuamente (como en *multi-master*) pero un *front-end* externo dirige las escrituras solamente a uno de los dos servidores. El servidor secundario sólo se usará para escrituras si el primario no funciona, caso en el que el *frontend* *(single point of failure?)* dirigirá las escrituras a al secundario. Cuando el servidor primario es reparado y reiniciado, automáticamente se actualizarán sus datos a partir del servidor secundario.
+    Es una configuración híbrida que garantiza la consistencia de la replicación *single-master*, mientras provee alta disponibilidad como las soluciones *multi-master*.
+
+    Dos proveedores se configuran para replicarse mutuamente (como en *multi-master*) pero un *front-end* externo dirige las escrituras solamente a uno de los dos servidores. El servidor secundario sólo se usará para escrituras si el primario no funciona, caso en el que el *frontend* *(single point of failure?)* dirigirá las escrituras a al secundario.
+
+    Cuando el servidor primario es reparado y reiniciado, automáticamente se actualizarán sus datos a partir del servidor secundario.
 
 - **Syncrepl Proxy Mode**
 
-    Se utiliza en algunas configuraciones donde el consumidor no puede iniciar la comunicación con el proveedor por restricciones del *firewall*. En este caso, *syncrepl* se debe ejecutar desde un tercer equipo, que sí llegara al proveedor y así sí sería posible iniciar la comunicación del proveedor con el consumidor real.
+    Se utiliza en algunas configuraciones donde el consumidor no puede iniciar la comunicación con el proveedor por restricciones del *firewall*.
+
+    En este caso, *syncrepl* se debe ejecutar desde un tercer equipo, que sí llegara al proveedor y así sí sería posible iniciar la comunicación del proveedor con el consumidor real.
 
 Ya conocemos todas las opciones que disponemos para elegir. En mi caso, pienso que la más adecuada para lo que estoy buscando, sería el método **MirrorMode**, ya que garantiza la sincronización de todos los datos incluso cuando falla el servidor principal.
 

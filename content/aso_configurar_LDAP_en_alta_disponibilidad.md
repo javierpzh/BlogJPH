@@ -53,7 +53,7 @@ Es una configuración híbrida que garantiza la consistencia de la replicación 
 
 - **Syncrepl Proxy Mode**
 
-Se utiliza en algunas configuraciones donde el consumidor no puede iniciar la comunicación con el proveedor por restricciones del *firewall*. En este caso, *syncrepl* se debe ejecutar desde un tercer equipo, que sí llegara al proveedor y así sí sería posible iniciar la comunicación del proveedor con el consumidor real.
+  Se utiliza en algunas configuraciones donde el consumidor no puede iniciar la comunicación con el proveedor por restricciones del *firewall*. En este caso, *syncrepl* se debe ejecutar desde un tercer equipo, que sí llegara al proveedor y así sí sería posible iniciar la comunicación del proveedor con el consumidor real.
 
 Ya conocemos todas las opciones que disponemos para elegir. En mi caso, pienso que la más adecuada para lo que estoy buscando, sería el método **MirrorMode**, ya que garantiza la sincronización de todos los datos incluso cuando falla el servidor principal.
 

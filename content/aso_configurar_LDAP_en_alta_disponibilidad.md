@@ -17,6 +17,7 @@ Si quieres saber como configurar un servidor **LDAPs**, puedes consultar [este p
 
 Vamos a configurar **Sancho** como servidor **LDAP** secundario de **Freston**, pero antes de realizar la configuración, voy a explicar brevemente los tipos de métodos que podemos elegir para configurar un servidor *LDAP* de respaldo, y por qué el que he seleccionado es el más adecuado para este caso.
 
+Bien, primeramente, si ya tenemos instalado un servidor *LDAP* que nos ofrece servicio, ¿para qué instalar otro? Pues es muy sencillo, esto nos hará tener una segunda máquina que nos siga ofreciendo el servicio de *LDAP* en caso de que en la primera máquina ocurriera algún fallo, evitando así perder el servicio durante el tiempo que nos lleve arreglar este fallo. Esto obviamente, en un caso de alta disponibilidad, es muy importante como ya os podéis imaginar.
 
 
 

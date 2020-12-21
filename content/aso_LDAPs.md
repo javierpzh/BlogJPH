@@ -8,7 +8,7 @@ Tags: LDAP, OpenStack
 
 Si quieres saber como instalar un servidor **LDAP**, puedes consultar [este post](https://javierpzh.github.io/instalacion-y-configuracion-inicial-de-openldap.html).
 
-Si queremos configurar **Freston** para que utilice el protocolo `ldaps://` y que así la información viaje cifrada y de manera segura, lo primero que debemos hacer es solicitar el certificado **wildcard**.
+Si queremos configurar **Freston** para que utilice el protocolo `ldaps://` y que así la información viaje cifrada y de manera segura, lo primero que debemos hacer es solicitar el certificado. En mi caso, voy a solicitar un certificado **wildcard** ya que posteriormente voy a necesitar utilizarlo en otras máquinas que se encuentran bajo el mismo dominio que *Freston* (`xxxxx.javierpzh.gonzalonazareno.org`).
 
 Para crear este certificado, vamos a crear una clave privada de **4096 bits**, para ello vamos a utilizar `openssl`. Vamos a guardar esta clave en el directorio `/etc/ssl/private/`. Para crear esta clave privada empleamos el siguiente comando:
 
@@ -169,6 +169,12 @@ Vale, una vez hemos importado el fichero *.ldif* destinado a la configuración, 
 SLAPD_SERVICES="ldap:/// ldapi:/// ldaps:///"
 </pre>
 
+Reiniciamos el servidor *LDAP* para aplicar los cambios:
+
+<pre>
+systemctl restart slapd.service
+</pre>
+
 Por último, en la parte del **cliente** (en mi caso, se trata de la misma máquina), debemos realizar una modificación en el fichero de configuración `/etc/ldap/ldap.conf`. Hay que descomentar el apartado llamado **URI**. Quedaría así:
 
 <pre>
@@ -176,12 +182,6 @@ URI     ldaps://localhost
 </pre>
 
 Esto hará, que el cliente utilice de manera predeterminada el protocolo **ldaps://**.
-
-Reiniciamos el servidor *LDAP* para aplicar los cambios:
-
-<pre>
-systemctl restart slapd.service
-</pre>
 
 Para finalizar, vamos a realizar una consulta. Para realizar consultas en *LDAP* se utiliza la herramienta `ldapsearch`:
 

@@ -65,6 +65,8 @@ Tenemos diferentes opciones de implementación:
 
 Ya conocemos todas las opciones que disponemos para elegir. En mi caso, pienso que la más adecuada para lo que estoy buscando, sería el método **MirrorMode**, ya que garantiza la sincronización de todos los datos incluso cuando falla el servidor principal y nos aporta unas desventajas mínimas y que prácticamente no me afectan, como es, el uso de un dispositivo externo que se encargue de comprobar qué proveedor se encuentra actualmente activo.
 
+Por fin, llegó el momento de empezar a realizar las configuraciones en sí, para ello, antes, he tenido que realizar en **Sancho**, la instalación de *LDAP* y asegurarme que haga uso del protocolo *ldaps://*. Me he ayudado, de los *posts* que cité al principio de este artículo.
+
 
 
 

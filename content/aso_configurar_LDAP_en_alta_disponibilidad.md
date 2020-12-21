@@ -21,16 +21,33 @@ Bien, primeramente, si ya tenemos instalado un servidor *LDAP* que nos ofrece se
 
 ¿Y como trabajarán estos dos servidores conjuntamente? Pues también es muy simple. Se trata de ir replicando los datos y las informaciones del servidor principal, al secundario, de manera que siempre estén sincronizados.
 
-Una vez tenemos la idea de para que nos serviría este servidor de respaldo, voy a pasar a explicar los distintos métodos de los que disponemos a la hora de realizar esta configuración. La herramienta encargada de llevar a cabo estas sincronizaciones recibe el nombre de **LDAP Sync Replication**, aunque es más conocido como **syncrepl**.
+Una vez tenemos la idea de para que nos serviría este servidor de respaldo, voy a pasar a explicar los distintos métodos de los que disponemos a la hora de realizar esta configuración. La herramienta encargada de llevar a cabo estas sincronizaciones recibe el nombre de **LDAP Sync Replication engine**, aunque es más conocido como **syncrepl**. Es un motor de replicación que permite que un servidor *LDAP* mantenga una "copia de seguridad". Utiliza el protocolo **LDAP Content Synchronization**, que soporta dos tipos de sincronización:
 
+- **pull-based:** el cliente consulta periódicamente al servidor para actualizaciones.
 
+- **push-based:** el cliente queda esperando que el servidor le envíe actualizaciones en tiempo real.
 
+Un consumidor puede crear una replica sin cambiar la configuración del proveedor y sin necesidad de reiniciar el proveedor, siempre que que el consumidor tenga permisos de acceso al fragmento del DIT a ser replicado.
+Opciones de implementación
+Master-slave
 
+Existe un sólo servidor proveedor (master) capaz de realizar actualizaciones, estas se replican a uno o mas servidores consumidores (slaves). Los servidores consumidores tienen replicas de sólo lectura del DIT. Los usuarios de sólo lectura pueden acceder a cualquiera de los dos servidores. Los usuarios con posibilidad de escritura, sólo podrán realizar modificaciones en el master. Existe la posibilidad de configurar a los servidores esclavos para que devuelvan un referral al master cuando se les solicita una escritura. Se puede ver en la siguiente imagen:
 
+Delta-syncrepl
 
+Cada vez que se realiza un cambio en un atributo de un objeto, syncrepl copia todo el objeto al consumidor. Delta-syncrepl es una variante de syncrepl que busca hacer mas eficiente la transferencia de información enviando solamente los datos modificados. Es utilizado en casos donde se realiza gran cantidad de modificaciones, por ejemplo en casos donde se tiene una rutina periodica que modifica gran cantidad de atributos.
+N-Way Multi-master
 
+Utiliza syncrepl para replicar los datos a multiples proveedores (masters).
+Evita tener un punto único de falla, ya que si un proveedor falla otro continuará aceptando cambios.
 
+Puede causar inconsistencias, por ejemplo si hay al menos dos proveedores activos pero debido a problemas de red unos clientes ven uno y otros clientes ven al otro. En este caso, puede ser dificil llegar a unificar luego la información de ambos proveedores.
+MirrorMode
 
+Es una configuración hibrida que garantiza la consistencia de la replicación single-master, mientras provee alta disponibilidad como las soluciones multi-master. Dos proveedores se configuran para repcliarse mutuamente (como en multi-master) pero un front-end externo dirige las escrituras solamente a uno de los dos servidores. El servidor secundario sólo se usará para escrituras si el primario no funciona, caso en el que el frontend (single point of failure?) dirigirá las escrituras a al secundario. Cuando el servidor primario es reparado y reiniciado el automaticamente actualizará sus datos a partir del servidor secundario.
+Syncrepl Proxy Mode
+
+Se uitliza en algunas configuraciones donde el consumidor no puede iniciar la comunicación con el proveedor por restricciones de los firewalls. En ese caso Syncrepl se debe ejecutar desde un tercer equipo, que si llega al proveedor y puede iniciar la counicación del proveedor con el consumidor real.
 
 
 

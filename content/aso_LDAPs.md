@@ -43,6 +43,8 @@ apt install acl -y
 Y creamos la *ACL* adecuada:
 
 <pre>
+root@freston:# setfacl -m u:openldap:r-x /etc/ssl/private/
+
 root@freston:# setfacl -m u:openldap:r-x /etc/ssl/private/freston.key
 </pre>
 
@@ -118,6 +120,7 @@ Vamos a crear de nuevo las *ACL* adecuadas para que el usuario **openldap** pued
 
 <pre>
 root@freston:~# setfacl -m u:openldap:r-x /etc/ssl/certs/gonzalonazareno.crt
+
 root@freston:~# setfacl -m u:openldap:r-x /etc/ssl/certs/wildcard.crt
 </pre>
 
@@ -182,6 +185,24 @@ URI     ldaps://localhost
 </pre>
 
 Esto hará, que el cliente utilice de manera predeterminada el protocolo **ldaps://**.
+
+Debemos copiar el certificado de la entidad certificadora a la ruta `/usr/local/share/ca-certificates`, y luego ejecutar el comando `update-ca-certificates`. Esta herramienta, lo que hará, es que, sobre los certificados almacenados, se cree un enlace simbólico a la ruta `/etc/ssl/certs/`.
+
+<pre>
+root@freston:~# cp /etc/ssl/certs/gonzalonazareno.crt /usr/local/share/ca-certificates/
+</pre>
+
+Ejecutamos el siguiente comando:
+
+<pre>
+root@freston:~# update-ca-certificates
+
+Updating certificates in /etc/ssl/certs...
+rehash: warning: skipping duplicate certificate in gonzalonazareno.crt
+1 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+</pre>
 
 Para finalizar, vamos a realizar una consulta. Para realizar consultas en *LDAP* se utiliza la herramienta `ldapsearch`:
 

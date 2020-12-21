@@ -169,12 +169,6 @@ Vale, una vez hemos importado el fichero *.ldif* destinado a la configuración, 
 SLAPD_SERVICES="ldap:/// ldapi:/// ldaps:///"
 </pre>
 
-Reiniciamos el servidor *LDAP* para aplicar los cambios:
-
-<pre>
-systemctl restart slapd.service
-</pre>
-
 Por último, debemos realizar una modificación en el fichero de configuración `/etc/ldap/ldap.conf`. Hay que descomentar el apartado llamado **URI**. Quedaría así:
 
 <pre>
@@ -183,7 +177,13 @@ URI     ldaps://localhost
 
 Esto hará, que el cliente utilice de manera predeterminada el protocolo **ldaps://**.
 
-Por último, vamos a realizar una consulta. Para realizar consultas en *LDAP* se utiliza la herramienta `ldapsearch`:
+Reiniciamos el servidor *LDAP* para aplicar los cambios:
+
+<pre>
+systemctl restart slapd.service
+</pre>
+
+Para finalizar, vamos a realizar una consulta. Para realizar consultas en *LDAP* se utiliza la herramienta `ldapsearch`:
 
 <pre>
 root@freston:~# ldapsearch -x -b "dc=javierpzh,dc=gonzalonazareno,dc=org"

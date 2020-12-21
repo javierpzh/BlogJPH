@@ -21,7 +21,7 @@ Bien, primeramente, si ya tenemos instalado un servidor *LDAP* que nos ofrece se
 
 ¿Y como trabajarán estos dos servidores conjuntamente? Pues también es muy simple. Se trata de ir replicando los datos y las informaciones del servidor principal, al secundario, de manera que siempre estén sincronizados.
 
-Una vez tenemos la idea de para que nos serviría este servidor de respaldo, voy a pasar a explicar 
+Una vez tenemos la idea de para que nos serviría este servidor de respaldo, voy a pasar a explicar los distintos métodos de los que disponemos a la hora de realizar esta configuración. La herramienta encargada de llevar a cabo estas sincronizaciones recibe el nombre de **LDAP Sync Replication**, aunque es más conocido como **syncrepl**.
 
 
 

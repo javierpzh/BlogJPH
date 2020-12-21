@@ -169,7 +169,7 @@ Vale, una vez hemos importado el fichero *.ldif* destinado a la configuración, 
 SLAPD_SERVICES="ldap:/// ldapi:/// ldaps:///"
 </pre>
 
-Por último, debemos realizar una modificación en el fichero de configuración `/etc/ldap/ldap.conf`. Hay que descomentar el apartado llamado **URI**. Quedaría así:
+Por último, en la parte del **cliente** (en mi caso, se trata de la misma máquina), debemos realizar una modificación en el fichero de configuración `/etc/ldap/ldap.conf`. Hay que descomentar el apartado llamado **URI**. Quedaría así:
 
 <pre>
 URI     ldaps://localhost

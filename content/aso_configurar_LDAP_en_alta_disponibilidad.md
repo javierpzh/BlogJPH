@@ -37,7 +37,9 @@ Tenemos diferentes opciones de implementación:
 
 - **Delta-syncrepl**
 
-    Cada vez que se realiza un cambio en un atributo de un objeto, *syncrepl* copia todo el objeto al servidor de respaldo. *Delta-syncrepl* es una variante de *syncrepl* que busca hacer más eficiente la transferencia de información enviando solamente los datos modificados. Es utilizado en casos donde se realiza gran cantidad de modificaciones, por ejemplo, en casos donde se tiene una rutina periódica que modifica gran cantidad de atributos.
+    Cada vez que se realiza un cambio en un atributo de un objeto, *syncrepl* copia todo el objeto al servidor de respaldo.
+
+    Este método, es una variante de *syncrepl* que busca hacer más eficiente la transferencia de información enviando solamente los datos modificados. Es utilizado en casos donde se realiza gran cantidad de modificaciones, por ejemplo, en casos donde se tiene una rutina periódica que modifica gran cantidad de atributos.
 
 - **N-Way Multi-master**
 

@@ -33,23 +33,23 @@ Tenemos diferentes opciones de implementación:
 
 - **Master-slave**
 
-Existe un sólo servidor principal *(master)* capaz de realizar actualizaciones, estas se replican a uno o más servidores secundarios *(slaves)*.
+    Existe un sólo servidor principal *(master)* capaz de realizar actualizaciones, estas se replican a uno o más servidores secundarios *(slaves)*.
 
 - **Delta-syncrepl**
 
-Cada vez que se realiza un cambio en un atributo de un objeto, *syncrepl* copia todo el objeto al servidor de respaldo. *Delta-syncrepl* es una variante de *syncrepl* que busca hacer más eficiente la transferencia de información enviando solamente los datos modificados. Es utilizado en casos donde se realiza gran cantidad de modificaciones, por ejemplo, en casos donde se tiene una rutina periódica que modifica gran cantidad de atributos.
+    Cada vez que se realiza un cambio en un atributo de un objeto, *syncrepl* copia todo el objeto al servidor de respaldo. *Delta-syncrepl* es una variante de *syncrepl* que busca hacer más eficiente la transferencia de información enviando solamente los datos modificados. Es utilizado en casos donde se realiza gran cantidad de modificaciones, por ejemplo, en casos donde se tiene una rutina periódica que modifica gran cantidad de atributos.
 
 - **N-Way Multi-master**
 
-Utiliza *syncrepl* para replicar los datos a múltiples proveedores.
+    Utiliza *syncrepl* para replicar los datos a múltiples proveedores.
 
-Evita tener un punto único de falla, ya que si un proveedor falla otro continuará aceptando cambios.
+    Evita tener un punto único de falla, ya que si un proveedor falla otro continuará aceptando cambios.
 
-Puede causar inconsistencias, ya que, por ejemplo, si hay al menos dos proveedores activos pero debido a problemas de red unos clientes ven uno y otros clientes ven al otro. En este caso, puede ser difícil llegar a unificar luego la información de ambos proveedores.
+    Puede causar inconsistencias, ya que, por ejemplo, si hay al menos dos proveedores activos pero debido a problemas de red unos clientes ven uno y otros clientes ven al otro. En este caso, puede ser difícil llegar a unificar luego la información de ambos proveedores.
 
 - **MirrorMode**
 
-Es una configuración híbrida que garantiza la consistencia de la replicación *single-master*, mientras provee alta disponibilidad como las soluciones *multi-master*. Dos proveedores se configuran para replicarse mutuamente (como en *multi-master*) pero un *front-end* externo dirige las escrituras solamente a uno de los dos servidores. El servidor secundario sólo se usará para escrituras si el primario no funciona, caso en el que el *frontend* *(single point of failure?)* dirigirá las escrituras a al secundario. Cuando el servidor primario es reparado y reiniciado, automáticamente se actualizarán sus datos a partir del servidor secundario.
+    Es una configuración híbrida que garantiza la consistencia de la replicación *single-master*, mientras provee alta disponibilidad como las soluciones *multi-master*. Dos proveedores se configuran para replicarse mutuamente (como en *multi-master*) pero un *front-end* externo dirige las escrituras solamente a uno de los dos servidores. El servidor secundario sólo se usará para escrituras si el primario no funciona, caso en el que el *frontend* *(single point of failure?)* dirigirá las escrituras a al secundario. Cuando el servidor primario es reparado y reiniciado, automáticamente se actualizarán sus datos a partir del servidor secundario.
 
 - **Syncrepl Proxy Mode**
 

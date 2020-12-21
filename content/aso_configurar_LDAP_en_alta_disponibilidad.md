@@ -15,6 +15,8 @@ Si quieres saber como instalar un servidor **LDAP**, puedes consultar [este post
 
 Si quieres saber como configurar un servidor **LDAPs**, puedes consultar [este post](https://javierpzh.github.io/ldaps.html).
 
+Vamos a configurar **Sancho** como servidor **LDAP** secundario de **Freston**, pero antes de realizar la configuración, voy a explicar brevemente los tipos de métodos que podemos elegir para configurar un servidor *LDAP* de respaldo, y por qué el que he seleccionado es el más adecuado para este caso.
+
 
 
 

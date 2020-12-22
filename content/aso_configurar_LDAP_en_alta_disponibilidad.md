@@ -216,26 +216,29 @@ Realizamos la consulta:
 ldapsearch -x -b "dc=javierpzh,dc=gonzalonazareno,dc=org"
 </pre>
 
+Podemos apreciar que nos muestra todos los datos que fueron creados en el primer servidor.
 
+Como última prueba, he preparado un fichero `.ldif` que insertará en el servidor principal, es decir, en *Freston*, una nueva unidad organizativa: **Prueba**.
 
+El contenido de este fichero `prueba.ldif` es el siguiente:
 
+<pre>
+dn: ou=Prueba,dc=javierpzh,dc=gonzalonazareno,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: Prueba
+</pre>
 
+Para cargar la configuración de este nuevo fichero, debemos hacer uso del siguiente comando:
 
+<pre>
+ldapadd -x -D 'cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org' -W -f prueba.ldif
+</pre>
 
+Si ahora hacemos una nueva consulta desde el servidor de respaldo, es decir, *Sancho*:
 
+<pre>
+ldapsearch -x -b "dc=javierpzh,dc=gonzalonazareno,dc=org"
+</pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.
+De nuevo vemos que los datos se encuentran sincronizados, por tanto este *post* habría terminado.

@@ -202,9 +202,13 @@ Importamos el último fichero de configuración:
 ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode6.ldif
 </pre>
 
+Hecho esto, ya habríamos terminado de configurar el servidor principal de *LDAP*, así que vamos a pasar con el servidor secundario. En éste, tendremos que realizar exactamente la misma configuración cambiando dos pequeños detalles.
+
+El primero de ellos es que debemos cambiar en el llamado `mirrormode5.ldif` el valor del campo **olcServerId**, ya que esto indica el número identificativo del servidor, en mi caso le he asignado el valor **2**.
+
+Y por último, debemos cambiar en el fichero `mirrormode6.ldif` la línea **provider** y asignarle como valor la dirección del servidor principal, para que haga referencia a éste.
 
 
-Servidor secundario
 
 
 

@@ -206,14 +206,14 @@ Hecho esto, ya habríamos terminado de configurar el servidor principal de *LDAP
 
 El primero de ellos es que debemos cambiar en el llamado `mirrormode5.ldif` el valor del campo **olcServerId**, ya que esto indica el número identificativo del servidor, en mi caso le he asignado el valor **2**.
 
-Y por último, debemos cambiar en el fichero `mirrormode6.ldif` la línea **provider** y asignarle como valor la dirección del servidor principal, para que haga referencia a éste.
+Y por último, debemos cambiar en el fichero `mirrormode6.ldif` la línea **provider** y asignarle como valor la dirección del servidor principal, para que haga referencia a éste. En mi caso **ldaps://sancho.javierpzh.gonzalonazareno.org**.
 
 En este unto, ya tendríamos ambos servidores replicados, por lo que vamos a pasar a hacer una prueba y a consultar en el servidor secundario los elementos, de manera que deben aparecer los datos que fueron creados en el principal.
 
 Realizamos la consulta:
 
 <pre>
-
+ldapsearch -x -b "dc=javierpzh,dc=gonzalonazareno,dc=org"
 </pre>
 
 

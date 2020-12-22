@@ -78,14 +78,26 @@ dn: uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org
 objectClass: top
 objectClass: account
 objectClass: simpleSecurityObject
-description: LDAP replication user
-userPassword: "contraseña"
+description: usuario LDAP
+userPassword: {SSHA}Sgk2gyc+tAc3P2dQ+lKphIikCZOWsuGp
 </pre>
 
-Insertamos los cambios con el siguiente comando:
+Habéis podido notar que la contraseña que he introducido se encuentra encriptada, y esto es porque la he cifrado previamente con la herramienta `slappasswd`, ya que sino la contraseña quedaría en texto plano al público.
 
 <pre>
-ldapmodify -D "cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org" -W -f mirrormode1.ldif
+root@sancho:~# slappasswd
+New password:
+Re-enter new password:
+{SSHA}Sgk2gyc+tAc3P2dQ+lKphIikCZOWsuGp
+</pre>
+
+Una vez tenemos ese archivo listo, lo insertamos mediante el siguiente comando:
+
+<pre>
+root@freston:~# ldapadd -x -D "cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org" -W -f mirrormode1.ldif
+
+Enter LDAP Password:
+adding new entry "uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org"
 </pre>
 
 Debemos asignarle permisos de escritura al nuevo usuario, por tanto, creamos un nuevo fichero, que recibirá el nombre `mirrormode2.ldif`:
@@ -111,41 +123,41 @@ by * none
 De nuevo, añadimos y asignamos los cambios con este comando:
 
 <pre>
-ldapadd -H ldapi:/// -Y EXTERNAL -f mirrormode2.ldif
+ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode2.ldif
 </pre>
 
-Pasamos con el tercer archivo, `mirrormode3.ldif`, este será el encargado de cargar el módulo **syncprov**. El resultado del contenido de este fichero sería:
+Pasamos con el tercer archivo, `mirrormode3.ldif`, este será el encargado de cargar el módulo **syncprov** que es necesario para que se lleve a cabo la sincronización. El resultado del contenido de este fichero sería:
 
 <pre>
 dn: cn=module{0},cn=config
 changetype: modify
 add: olcModuleLoad
 olcModuleLoad: syncprov
--
 </pre>
 
-Cargamos el módulo definido en el archivo:
+Lo importamos con el comando:
 
 <pre>
-ldapadd -H ldapi:/// -Y EXTERNAL -f mirrormode3.ldif
+ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode3.ldif
 </pre>
 
-Cuarto archivo `mirrormode4.ldif`:
+El cuarto archivo sería `mirrormode4.ldif`, y este se encargará de establecer la configuración del módulo que hemos cargado en el paso anterior:
 
 <pre>
 dn: olcOverlay=syncprov,olcDatabase={1}mdb,cn=config
+changetype: add
 objectClass: olcSyncProvConfig
 olcOverlay: syncprov
 olcSpCheckpoint: 100 10
 </pre>
 
-
+Añadimos la nueva configuración:
 
 <pre>
-ldapadd -H ldapi:/// -Y EXTERNAL -f mirrormode4.ldif
+ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode4.ldif
 </pre>
 
-Quinto archivo `mirrormode5.ldif`:
+Es el turno de asignarle un número identificativo al servidor, para ello creamos el archivo `mirrormode5.ldif`:
 
 <pre>
 dn: cn=config
@@ -160,7 +172,7 @@ Añadimos los cambios del nuevo archivo:
 ldapadd -H ldapi:/// -Y EXTERNAL -f mirrormode5.ldif
 </pre>
 
-Sexto archivo `mirrormode6.ldif`:
+Llegamos al sexto y último fichero necesario, `mirrormode6.ldif`, que será el encargado de habilitar la propia sincronización:
 
 <pre>
 dn: olcDatabase={1}mdb,cn=config
@@ -185,7 +197,7 @@ olcMirrorMode: TRUE
 -
 </pre>
 
-
+Importamos el último fichero de configuración:
 
 <pre>
 ldapadd -H ldapi:/// -Y EXTERNAL -f mirrormode6.ldif

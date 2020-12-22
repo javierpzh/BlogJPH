@@ -86,16 +86,30 @@ Insertamos los cambios con el siguiente comando:
 ldapmodify -D "cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org" -W -f mirrormode1.ldif
 </pre>
 
-Debemos asignarle permisos de escritura al nuevo usuario, por tanto, creamos de nuevo un fichero `.ldif`:
+Debemos asignarle permisos de escritura al nuevo usuario, por tanto, creamos de nuevo un fichero, que recibirá el nombre `mirrormode2.ldif`:
 
 <pre>
-
+dn: olcDatabase={1}mdb,cn=config
+changetype: modify
+add: olcAccess
+olcAccess: to attrs=userPassword
+by self =xw
+by dn.exact="cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org" =xw
+by dn.exact="uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org" read
+by anonymous auth
+by * none
+olcAccess: to *
+by anonymous auth
+by self write
+by dn.exact="uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org" read
+by users read
+by * none
 </pre>
 
-
+De nuevo, añadimos y asignamos los cambios con este comando:
 
 <pre>
-
+ldapadd -H ldapi:/// -Y EXTERNAL -f mirrormode2.ldif
 </pre>
 
 

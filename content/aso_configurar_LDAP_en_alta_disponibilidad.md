@@ -137,7 +137,7 @@ SASL SSF: 0
 ldapmodify: invalid format (line 5) entry: "olcDatabase={1}mdb,cn=config"
 </pre>
 
-Toda la documentación que he encontrado, concuerda con el contenido de mi fichero, y hablando con varios compañeros, también. Toda la información se encuentra sin espacios, ni tabulaciones, ... A partir de aquí, el ejercicio sigue con lo que se debería hacer, pero sin poder mostrar el resultado final obviamente, cuando consiga arreglarlo, modificaré el artículo.
+Toda la documentación que he encontrado, concuerda con el contenido de mi fichero, y hablando con varios compañeros, también. Toda la información se encuentra sin espacios, ni tabulaciones, ... A partir de aquí, el ejercicio sigue con lo que se debería hacer, pero sin poder mostrar el resultado final obviamente. Alberto, a ver si sabrías decirme donde está el error por favor. Cuando consiga arreglarlo, modificaré el artículo.
 
 Pasamos con el tercer archivo, `mirrormode3.ldif`, este será el encargado de cargar el módulo **syncprov** que es necesario para que se lleve a cabo la sincronización. El resultado del contenido de este fichero sería:
 

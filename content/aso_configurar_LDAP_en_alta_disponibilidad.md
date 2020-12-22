@@ -127,7 +127,7 @@ olcModuleLoad: syncprov
 Cargamos el módulo definido en el archivo:
 
 <pre>
-
+ldapadd -H ldapi:/// -Y EXTERNAL -f mirrormode3.ldif
 </pre>
 
 

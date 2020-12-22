@@ -208,7 +208,13 @@ El primero de ellos es que debemos cambiar en el llamado `mirrormode5.ldif` el v
 
 Y por último, debemos cambiar en el fichero `mirrormode6.ldif` la línea **provider** y asignarle como valor la dirección del servidor principal, para que haga referencia a éste.
 
+En este unto, ya tendríamos ambos servidores replicados, por lo que vamos a pasar a hacer una prueba y a consultar en el servidor secundario los elementos, de manera que deben aparecer los datos que fueron creados en el principal.
 
+Realizamos la consulta:
+
+<pre>
+
+</pre>
 
 
 

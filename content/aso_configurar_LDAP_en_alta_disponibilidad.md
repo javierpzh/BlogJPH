@@ -194,7 +194,6 @@ olcDbIndex: entryCSN eq
 -
 replace: olcMirrorMode
 olcMirrorMode: TRUE
--
 </pre>
 
 Importamos el último fichero de configuración:

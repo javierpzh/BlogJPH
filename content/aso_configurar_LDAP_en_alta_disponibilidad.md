@@ -100,7 +100,7 @@ Enter LDAP Password:
 adding new entry "uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org"
 </pre>
 
-Debemos asignarle permisos de escritura al nuevo usuario, por tanto, creamos un nuevo fichero, que recibirá el nombre `mirrormode2.ldif`:
+Debemos asignarle permisos de lectura y escritura al nuevo usuario, por tanto, creamos un nuevo fichero, que recibirá el nombre `mirrormode2.ldif`:
 
 <pre>
 dn: olcDatabase={1}mdb,cn=config
@@ -125,6 +125,19 @@ De nuevo, añadimos y asignamos los cambios con este comando:
 <pre>
 ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode2.ldif
 </pre>
+
+En este punto, por alguna razón que desconozco, me salta este error que aún no he logrado solucionar:
+
+<pre>
+root@freston:~# ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode2.ldif
+
+SASL/EXTERNAL authentication started
+SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+SASL SSF: 0
+ldapmodify: invalid format (line 5) entry: "olcDatabase={1}mdb,cn=config"
+</pre>
+
+Toda la documentación que he encontrado, concuerda con el contenido de mi fichero, y hablando con varios compañeros, también. Toda la información se encuentra sin espacios, ni tabulaciones, ... A partir de aquí, el ejercicio sigue con lo que se debería hacer, pero sin poder mostrar el resultado final obviamente, cuando consiga arreglarlo, modificaré el artículo.
 
 Pasamos con el tercer archivo, `mirrormode3.ldif`, este será el encargado de cargar el módulo **syncprov** que es necesario para que se lleve a cabo la sincronización. El resultado del contenido de este fichero sería:
 
@@ -208,7 +221,11 @@ El primero de ellos es que debemos cambiar en el llamado `mirrormode5.ldif` el v
 
 Y por último, debemos cambiar en el fichero `mirrormode6.ldif` la línea **provider** y asignarle como valor la dirección del servidor principal, para que haga referencia a éste. En mi caso **ldaps://sancho.javierpzh.gonzalonazareno.org**.
 
-En este unto, ya tendríamos ambos servidores replicados, por lo que vamos a pasar a hacer una prueba y a consultar en el servidor secundario los elementos, de manera que deben aparecer los datos que fueron creados en el principal.
+--------------------------------------------------------------------------------
+
+**Zona de pruebas** (post-arreglo)
+
+En este punto, ya tendríamos ambos servidores replicados, por lo que vamos a pasar a hacer una prueba y a consultar en el servidor secundario los elementos, de manera que deben aparecer los datos que fueron creados en el principal.
 
 Realizamos la consulta:
 
@@ -220,7 +237,7 @@ Podemos apreciar que nos muestra todos los datos que fueron creados en el primer
 
 Como última prueba, he preparado un fichero `.ldif` que insertará en el servidor principal, es decir, en *Freston*, una nueva unidad organizativa: **Prueba**.
 
-El contenido de este fichero `prueba.ldif` es el siguiente:
+El contenido de este fichero `prueba.ldif` es el siguiente. Podemos descargar el fichero [aquí](images/aso_configurar_LDAP_en_alta_disponibilidad/prueba.ldif):
 
 <pre>
 dn: ou=Prueba,dc=javierpzh,dc=gonzalonazareno,dc=org

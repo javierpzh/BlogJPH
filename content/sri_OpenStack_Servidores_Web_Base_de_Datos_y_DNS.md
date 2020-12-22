@@ -1,6 +1,6 @@
 Title: OpenStack: Servidores Web, Base de Datos y DNS
 Date: 2020/12/18
-Category: Servicios de Redes e Internet
+Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: OpenStack, bind9, Apache, MySQL, MariaDB
 

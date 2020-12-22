@@ -169,7 +169,7 @@ olcServerId: 1
 Añadimos los cambios del nuevo archivo:
 
 <pre>
-ldapadd -H ldapi:/// -Y EXTERNAL -f mirrormode5.ldif
+ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode5.ldif
 </pre>
 
 Llegamos al sexto y último fichero necesario, `mirrormode6.ldif`, que será el encargado de habilitar la propia sincronización:
@@ -199,7 +199,7 @@ olcMirrorMode: TRUE
 Importamos el último fichero de configuración:
 
 <pre>
-ldapadd -H ldapi:/// -Y EXTERNAL -f mirrormode6.ldif
+ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode6.ldif
 </pre>
 
 

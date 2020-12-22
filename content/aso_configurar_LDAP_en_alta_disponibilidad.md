@@ -69,7 +69,9 @@ Por fin, llegó el momento de empezar a realizar las configuraciones en sí, par
 
 Hecho esto, en la máquina que actuará como servidor principal, es decir, **Freston**, empezaremos con la configuración.
 
-Crearemos un fichero `.ldif` que definirá el usuario **mirrormode** y lo creará. En mi caso, se llamará `mirrormode1.ldif` y tendrá el siguiente aspecto:
+Como sabemos, ya que lo hemos visto en los *posts* anteriores acerca de *LDAP*, la mayoría de configuraciones se llevan a cabo a partir de ficheros con extensión `.ldif` que insertaremos. Para llevar a cabo este proceso, necesitaremos crear seis ficheros distintos.
+
+Creamos el primer fichero `.ldif` que definirá el usuario **mirrormode** y lo creará. En mi caso, se llamará `mirrormode1.ldif` y tendrá el siguiente aspecto:
 
 <pre>
 dn: uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org
@@ -86,7 +88,7 @@ Insertamos los cambios con el siguiente comando:
 ldapmodify -D "cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org" -W -f mirrormode1.ldif
 </pre>
 
-Debemos asignarle permisos de escritura al nuevo usuario, por tanto, creamos de nuevo un fichero, que recibirá el nombre `mirrormode2.ldif`:
+Debemos asignarle permisos de escritura al nuevo usuario, por tanto, creamos un nuevo fichero, que recibirá el nombre `mirrormode2.ldif`:
 
 <pre>
 dn: olcDatabase={1}mdb,cn=config

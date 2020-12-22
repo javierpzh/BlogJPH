@@ -83,7 +83,7 @@ userPassword: "contraseña"
 Insertamos los cambios con el siguiente comando:
 
 <pre>
-ldapmodify -D "cn=admin,dc=lopez,dc=gonzalonazareno,dc=org" -W -f mickey1.ldif
+ldapmodify -D "cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org" -W -f mirrormode.ldif
 </pre>
 
 Debemos asignarle permisos de escritura al nuevo usuario, por tanto, creamos de nuevo un fichero `.ldif`:

@@ -69,7 +69,7 @@ Por fin, llegó el momento de empezar a realizar las configuraciones en sí, par
 
 Hecho esto, en la máquina que actuará como servidor principal, es decir, **Freston**, empezaremos con la configuración.
 
-Crearemos un fichero `.ldif` que definirá el usuario **mirrormode** y lo creará. Tendrá el siguiente aspecto:
+Crearemos un fichero `.ldif` que definirá el usuario **mirrormode** y lo creará. En mi caso, se llamará `mirrormode1.ldif` y tendrá el siguiente aspecto:
 
 <pre>
 dn: uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org
@@ -83,7 +83,7 @@ userPassword: "contraseña"
 Insertamos los cambios con el siguiente comando:
 
 <pre>
-ldapmodify -D "cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org" -W -f mirrormode.ldif
+ldapmodify -D "cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org" -W -f mirrormode1.ldif
 </pre>
 
 Debemos asignarle permisos de escritura al nuevo usuario, por tanto, creamos de nuevo un fichero `.ldif`:

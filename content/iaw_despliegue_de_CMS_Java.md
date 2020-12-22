@@ -1,5 +1,5 @@
 Title: Despliegue de CMS Java
-Date: 2020/12/14
+Date: 2020/12/22
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: CMS, Java, Tomcat

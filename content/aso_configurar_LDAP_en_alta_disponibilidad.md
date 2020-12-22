@@ -130,6 +130,82 @@ Cargamos el módulo definido en el archivo:
 ldapadd -H ldapi:/// -Y EXTERNAL -f mirrormode3.ldif
 </pre>
 
+Cuarto archivo `mirrormode4.ldif`:
+
+<pre>
+dn: olcOverlay=syncprov,olcDatabase={1}mdb,cn=config
+objectClass: olcSyncProvConfig
+olcOverlay: syncprov
+olcSpCheckpoint: 100 10
+</pre>
+
+
+
+<pre>
+ldapadd -H ldapi:/// -Y EXTERNAL -f mirrormode4.ldif
+</pre>
+
+Quinto archivo `mirrormode5.ldif`:
+
+<pre>
+dn: cn=config
+changetype: modify
+add: olcServerId
+olcServerId: 1
+</pre>
+
+Añadimos los cambios del nuevo archivo:
+
+<pre>
+ldapadd -H ldapi:/// -Y EXTERNAL -f mirrormode5.ldif
+</pre>
+
+Sexto archivo `mirrormode6.ldif`:
+
+<pre>
+dn: olcDatabase={1}mdb,cn=config
+changetype: modify
+add: olcSyncrepl
+olcsyncrepl: rid=000
+provider=ldap://sancho.javierpzh.gonzalonazareno.org
+type=refreshAndPersist
+retry="5 5 300 +"
+searchbase="dc=javierpzh,dc=gonzalonazareno,dc=org"
+attrs="*,+"
+bindmethod=simple
+binddn="uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org"
+credentials="contraseña"
+-
+add: olcDbIndex
+olcDbIndex: entryUUID eq
+olcDbIndex: entryCSN eq
+-
+replace: olcMirrorMode
+olcMirrorMode: TRUE
+-
+</pre>
+
+
+
+<pre>
+ldapadd -H ldapi:/// -Y EXTERNAL -f mirrormode6.ldif
+</pre>
+
+
+
+Servidor secundario
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1255,11 +1255,9 @@ Ya hemos instalado *Pico*.
 
 ##Tarea 5: Necesidad de otros servicios
 
-- **La mayoría de los CMS tienen la posibilidad de mandar correos electrónicos (por ejemplo para notificar una nueva versión, notificar un comentario,…)**
+**La mayoría de los CMS tienen la posibilidad de mandar correos electrónicos (por ejemplo para notificar una nueva versión, notificar un comentario,…)**
 
-
-
-- **Instala un servidor de correo electrónico en tu servidor. Debes configurar un servidor relay de correo, para ello en el fichero `/etc/postfix/main.cf`, debes poner la siguiente línea:**
+- **Instala un servidor de correo electrónico en tu servidor. Debes configurar un *servidor relay de correo*, para ello en el fichero `/etc/postfix/main.cf`, debes poner la siguiente línea:**
 
 <pre>
 relayhost = babuino-smtp.gonzalonazareno.org

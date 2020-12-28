@@ -352,7 +352,7 @@ Aplicamos los cambios en la configuración reiniciando el servidor web:
 systemctl restart apache2
 </pre>
 
-En este punto ya podemos hacer uso del **Instalador Web de Drupal**. Accedemos a la web que hemos configurado antes con la URL `http://www.javierperezhidalgo-drupal.org`, y se nos abrirá el instalador.
+En este punto ya podemos hacer uso del **Instalador Web de Drupal**. Accedemos a la web que hemos configurado antes con la URL `www.javierperezhidalgo-drupal.org`, y se nos abrirá el instalador.
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/instaladorwebdrupal.png)
 

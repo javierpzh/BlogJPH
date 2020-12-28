@@ -142,7 +142,7 @@ Activamos el módulo de **PHP** de **Apache**.
 a2enmod php7.3
 </pre>
 
-Y por último introducimos la siguiente línea en forma de script PHP, que lo único que hace es crear un fichero llamado `phpinfo.php` dentro del directorio `/var/www/html`, en el que escribe **<?php phpinfo(); ?>**.
+Y por último introducimos la siguiente línea en forma de *script PHP*, que lo único que hace es crear un fichero llamado `phpinfo.php` dentro del directorio `/var/www/html`, en el que escribe **<?php phpinfo(); ?>**.
 
 `echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/phpinfo.php`
 
@@ -169,7 +169,7 @@ ServerName www.javierperezhidalgo-drupal.org
 Creamos el enlace simbólico para activar el sitio web:
 
 <pre>
-a2ensite javierperezhidalgo-drupal.conf
+root@buster:/etc/apache2/sites-available# a2ensite javierperezhidalgo-drupal.conf
 </pre>
 
 Reinicamos el servicio del servidor apache:
@@ -221,48 +221,48 @@ Además de crear el usuario **drupal**, le he concedido todos los permisos para 
 
 - **Descarga la versión que te parezca más oportuna de Drupal y realiza la instalación.**
 
-Para descargar **Drupal** en su última versión, que en este momento es la **9**, nos dirigimos a la [página oficial de Drupal](https://www.drupal.org/download). Copiamos la ruta del enlace de descarga del archivo, en mi caso prefiero el *tar.gz* y lo descargamos en nuestro servidor LAMP con la utilidad `wget`.
+Para descargar **Drupal** en su última versión, que en este momento es la **9**, nos dirigimos a la [página oficial de Drupal](https://www.drupal.org/download). Copiamos la ruta del enlace de descarga del archivo, en mi caso prefiero el *tar.gz* y lo descargamos en nuestro servidor *LAMP* con la utilidad `wget`.
 
 <pre>
 root@buster:~# wget https://www.drupal.org/download-latest/tar.gz
---2020-10-22 18:29:12--  https://www.drupal.org/download-latest/tar.gz
+--2020-12-28 13:18:56--  https://www.drupal.org/download-latest/tar.gz
 Resolving www.drupal.org (www.drupal.org)... 151.101.134.217
 Connecting to www.drupal.org (www.drupal.org)|151.101.134.217|:443... connected.
 HTTP request sent, awaiting response... 302 Moved Temporarily
-Location: https://ftp.drupal.org/files/projects/drupal-9.0.7.tar.gz [following]
---2020-10-22 18:29:13--  https://ftp.drupal.org/files/projects/drupal-9.0.7.tar.gz
+Location: https://ftp.drupal.org/files/projects/drupal-9.1.0.tar.gz [following]
+--2020-12-28 13:18:57--  https://ftp.drupal.org/files/projects/drupal-9.1.0.tar.gz
 Resolving ftp.drupal.org (ftp.drupal.org)... 151.101.134.217
 Connecting to ftp.drupal.org (ftp.drupal.org)|151.101.134.217|:443... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 16863270 (16M) [application/octet-stream]
+Length: 17741953 (17M) [application/octet-stream]
 Saving to: ‘tar.gz’
 
-tar.gz                    100%[=====================================>]  16.08M  28.9MB/s    in 0.6s    
+tar.gz                    100%[=====================================>]  16.92M  8.86MB/s    in 1.9s    
 
-2020-10-22 18:29:14 (28.9 MB/s) - ‘tar.gz’ saved [16863270/16863270]
+2020-12-28 13:18:59 (8.86 MB/s) - ‘tar.gz’ saved [17741953/17741953]
 
-root@buster:~# tar xf tar.gz -C /var/www/html/
+root@buster:~# tar xf tar.gz -C /srv/www/
 
-root@buster:~# ln -s /var/www/html/drupal-9.0.7/ /var/www/html/drupal
+root@buster:~# ln -s /srv/www/drupal-9.1.0/ /srv/www/drupal
 
-root@buster:~# chown -R www-data:www-data /var/www/html/drupal/
+root@buster:~# chown -R www-data:www-data /srv/www/drupal/
 </pre>
 
-Hemos descargado **Drupal** y lo hemos descomprimido en la ruta en la que se encuentra el sitio web. Además conviene crear un enlace simbólico sobre el directorio de Drupal para tener un nombre sin números de versión. Hemos otorgado a `www-data` como dueño del directorio y su contenido al servidor web.
+Hemos descargado **Drupal** y lo hemos descomprimido en la ruta en la que se encuentra el sitio web, en mi caso, `/srv/www/`. Además conviene crear un enlace simbólico sobre el directorio de *Drupal* para tener un nombre sin números de versión. Hemos otorgado a `www-data` como dueño del directorio y su contenido al servidor web.
 
-También necesitamos algunas extensiones de PHP:
+También necesitamos algunas extensiones de *PHP*:
 
 <pre>
 apt install php-apcu php-gd php-mbstring php-uploadprogress php-xml -y
 </pre>
 
-Drupal puede hacer uso del sistema de reescritura de URLs, basado en el módulo `Rewrite` de Apache, que no está activado por defecto. Este módulo permite crear direcciones URL alternativas a las dinámicas generadas por la programación de nuestros sitio web, de tal modo que sean más legibles y fáciles de recordar. Activamos el módulo `Rewrite` y otros que puede usar Drupal:
+Drupal puede hacer uso del sistema de reescritura de *URLs*, basado en el módulo `Rewrite` de Apache, que no está activado por defecto. Este módulo permite crear direcciones *URL* alternativas a las dinámicas generadas por la programación de nuestros sitio web, de tal modo que sean más legibles y fáciles de recordar. Activamos el módulo `Rewrite` y otros que puede usar *Drupal*:
 
 <pre>
 a2enmod expires headers rewrite
 </pre>
 
-Generamos un fichero de configuración para Drupal que permita el uso de archivos `.htaccess` que configuren el módulo `Rewrite`:
+Generamos un fichero de configuración para *Drupal* que permita el uso de archivos `.htaccess` que configuren el módulo `Rewrite`:
 
 <pre>
 root@buster:/var/www/html# cd /etc/apache2/conf-available/
@@ -320,7 +320,7 @@ Completamos según nuestras preferencias y guardamos y listo:
 
 - **Realiza una configuración mínima de la aplicación (Cambia la plantilla, crea algún contenido, …)**
 
-Para **cambiar el tema de nuestro CMS**, nos dirigimos a la opción que nos aparece arriba, **Apariencia** y seleccionamos `+ Instalar nuevo tema`, introducimos el enlace de descarga del tema que queremos añadir y listo. Cuidado, tenemos que comprobar que el tema que vamos a instalar es compatible con la versión de Drupal que estamos utilizando.
+Para **cambiar el tema de nuestro CMS**, nos dirigimos a la opción que nos aparece arriba, **Apariencia** y seleccionamos `+ Instalar nuevo tema`, introducimos el enlace de descarga del tema que queremos añadir y listo. Cuidado, tenemos que comprobar que el tema que vamos a instalar es compatible con la versión de *Drupal* que estamos utilizando.
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/temainstalado.png)
 
@@ -332,13 +332,13 @@ Y ya hemos cambiado el tema:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/nuevotemainicio.png)
 
-Vamos a añadir alguna entrada, para ver como se mostraría el contenido. Para ello en la parte superior de las opciones, donde dice **Contenido**, clickamos en `+ Añadir contenido`, y se nos abrirá una especie de editor, que configuramos a nuestro gusto y guardamos los cambios.
+Vamos a añadir alguna entrada, para ver como se mostraría el contenido. Para ello en la parte superior de las opciones, donde dice **Contenido**, *clickamos* en `+ Añadir contenido`, y se nos abrirá una especie de editor, que configuramos a nuestro gusto y guardamos los cambios.
 
 Así quedaría nuestra nueva publicación:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/nuevocontenido.png)
 
-- **Instala un módulo para añadir alguna funcionalidad a drupal.**
+- **Instala un módulo para añadir alguna funcionalidad a Drupal.**
 
 Para **instalar un nuevo módulo** en Drupal, es bastante sencillo y parecido a los temas. Vamos a la opción **Ampliar**, clickamos en `+ Instalar nuevo módulo`, introducimos el enlace de descarga del módulo que queremos añadir y listo. Al igual que con el tema, tenemos que verificar que funciona con nuestra versión de Drupal.
 

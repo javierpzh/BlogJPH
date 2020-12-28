@@ -1000,10 +1000,10 @@ a2ensite anchor.conf
 Por último, añadimos esta línea al fichero `/etc/hosts` del equipo anfitrión para que podamos ver la web en nuestro navegador.
 
 <pre>
-192.168.30.15   www.javierperezhidalgo-anchor.com
+192.168.30.15   www.javierperezhidalgo-anchor.org
 </pre>
 
-Introducimos en el navegador la dirección `www.javierperezhidalgo-anchor.com` y nos saldrá el instalador de *Anchor*:
+Introducimos en el navegador la dirección `www.javierperezhidalgo-anchor.org` y nos saldrá el instalador de *Anchor*:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/anchor.png)
 

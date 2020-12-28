@@ -735,7 +735,7 @@ $databases['default']['default'] = array (
 
 Una vez hecho esto, tendríamos que dirigirnos a la máquina donde hemos migrado la copia de seguridad, es decir la llamada **maquina2**, y tenemos que permitirle el acceso remoto a la base de datos.
 
-El primer paso es editar el fichero de configuración que se encuentra en `/etc/mysql/mariadb.conf.d/50-server.cnf` y tenemos que editar, y en caso de estar comentadas la línea `bind-address`. En esta línea también tenemos que cambiar la IP, ya que por defecto aparece la de *localhost*, podemos poner una IP concreta si sabemos que siempre va a acceder un equipo con la misma dirección, o podemos habilitarlas todas. Si queremos esta última opción, la línea quedará así:
+El primer paso es editar el fichero de configuración que se encuentra en `/etc/mysql/mariadb.conf.d/50-server.cnf` y tenemos que editar, y en caso de estar comentadas la línea `bind-address`. En esta línea, tenemos que cambiar la IP, ya que por defecto aparece la de *localhost*, y esto hace que el servidor esté configurado para que solo escuche peticiones de *localhost*. Si queremos que escuche las peticiones de todas las interfaces de red, la línea debe quedar así:
 
 <pre>
 bind-address            = 0.0.0.0

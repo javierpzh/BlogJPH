@@ -826,19 +826,13 @@ MariaDB [(none)]> exit
 Bye
 </pre>
 
-Vamos a instalar la utilidad para descargar archivos `curl`, ya que estamos siguiendo los pasos de la web de *Anchor* y utiliza este comando. También necesitamos tener instalado el paquete `git`, ya que nos hará falta durante la instalación:
+Necesitamos instalar **composer** en el sistema, que es un administrador de dependencias *PHP*. También necesitamos tener instalado el paquete `git`, ya que nos hará falta durante la instalación:
 
 <pre>
-apt install curl git -y
+apt install composer git -y
 </pre>
 
-Necesitamos instalar *Composer* en el sistema, que es un administrador de dependencias PHP. Lo descargamos, instalamos y ejecutamos mediante el siguiente comando:
-
-<pre>
-curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-</pre>
-
-Descargamos y creamos la página de *Anchor* utilizando *Composer* con el comando:
+Descargamos y creamos la página de *Anchor* utilizando *composer* con el comando:
 
 <pre>
 root@buster:/srv/www# composer create-project anchorcms/anchor-cms
@@ -1202,7 +1196,7 @@ root@buster:/srv/www# chown -R www-data:www-data /srv/
 Descargamos el instalador y lo lanzamos mediante los siguientes comandos:
 
 <pre>
-root@buster:/srv/www# curl -sSL https://getcomposer.org/installer | php
+root@buster:/srv/www# apt install composer -y
 
 ...
 
@@ -1269,11 +1263,37 @@ Lo instalo y lo añado:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/modulocorreos.png)
 
+Debemos instalar **composer**, ya que vamos a necesitar hacer uso de una dependencia llamada **phpmailer**:
 
+<pre>
+apt install composer -y
+</pre>
 
+Instalado el manejador de dependencias, instalamos la propia dependencia:
 
+<pre>
+root@buster:~# composer require phpmailer/phpmailer
+Do not run Composer as root/super user! See https://getcomposer.org/root for details
+Continue as root/super user [yes]? yes
+Using version ^6.2 for phpmailer/phpmailer
+./composer.json has been created
+Running composer update phpmailer/phpmailer
+Loading composer repositories with package information
+Updating dependencies
+Lock file operations: 1 install, 0 updates, 0 removals
+  - Locking phpmailer/phpmailer (v6.2.0)
+Writing lock file
+Installing dependencies from lock file (including require-dev)
+Package operations: 1 install, 0 updates, 0 removals
+  - Downloading phpmailer/phpmailer (v6.2.0)
+  - Installing phpmailer/phpmailer (v6.2.0): Extracting archive
+5 package suggestions were added by new dependencies, use `composer suggest` to see details.
+Generating autoload files
+1 package you are using is looking for funding.
+Use the `composer fund` command to find out more!
+</pre>
 
-
+Hecho esto, tan solo nos quedaría configurar *Drupal*. Nos dirigimos a nuestra web, y vamos a proceder a configurar el nuevo módulo instalado.
 
 
 

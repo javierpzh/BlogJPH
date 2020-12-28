@@ -379,9 +379,7 @@ Completamos según nuestras preferencias y guardamos y listo:
 
 Para **cambiar el tema de nuestro CMS**, nos dirigimos a la opción que nos aparece arriba, **Apariencia** y seleccionamos `+ Instalar nuevo tema`, introducimos el enlace de descarga del tema que queremos añadir y listo. Cuidado, tenemos que comprobar que el tema que vamos a instalar es compatible con la versión de *Drupal* que estamos utilizando.
 
-![.](images/iaw_instalacion_local_de_un_cms_php/temainstalado.png)
-
-Lo seleccionamos como activo:
+Una vez tenemos instalado el tema que queremos, lo seleccionamos como activo:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/temaseleccionado.png)
 

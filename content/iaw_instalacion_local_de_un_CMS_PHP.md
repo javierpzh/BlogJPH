@@ -421,10 +421,10 @@ Observamos como en la página de inicio, ahora nos aparece un pequeño menú con
 Realizamos una copia de seguridad de la base de datos de *Drupal* que tenemos en *MySQL*, mediante el comando:
 
 <pre>
-root@buster:/home/vagrant# mysqldump -u drupal -p drupal > copiaseguridaddrupal.sql
+root@buster:~# mysqldump -u drupal -p drupal > copiaseguridaddrupal.sql
 Enter password:
 
-root@buster:/home/vagrant# ls
+root@buster:~# ls
 copiaseguridaddrupal.sql
 </pre>
 

@@ -826,10 +826,10 @@ MariaDB [(none)]> exit
 Bye
 </pre>
 
-Vamos a instalar la utilidad para descargar archivos `curl`, ya que estamos siguiendo los pasos de la web de *Anchor* y utiliza este comando:
+Vamos a instalar la utilidad para descargar archivos `curl`, ya que estamos siguiendo los pasos de la web de *Anchor* y utiliza este comando. También necesitamos tener instalado el paquete `git`, ya que nos hará falta durante la instalación:
 
 <pre>
-apt install curl -y
+apt install curl git -y
 </pre>
 
 Necesitamos instalar *Composer* en el sistema, que es un administrador de dependencias PHP. Lo descargamos, instalamos y ejecutamos mediante el siguiente comando:
@@ -841,7 +841,7 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 Descargamos y creamos la página de *Anchor* utilizando *Composer* con el comando:
 
 <pre>
-root@buster:/var/www/html# composer create-project anchorcms/anchor-cms
+root@buster:/srv/www# composer create-project anchorcms/anchor-cms
 Do not run Composer as root/super user! See https://getcomposer.org/root for details
 Continue as root/super user [yes]? yes
 Creating a "anchorcms/anchor-cms" project at "./anchor-cms"
@@ -851,7 +851,7 @@ Your command-line PHP is using multiple ini files. Run `php --ini` to show them.
     Now trying to download from source
   - Syncing anchorcms/anchor-cms (0.12.7) into cache
   - Installing anchorcms/anchor-cms (0.12.7): Cloning 08e8e50790 from cache
-Created project in /var/www/html/anchor-cms
+Created project in /srv/www/anchor-cms
 
 
   [Composer\Json\JsonValidationException]                    
@@ -864,13 +864,13 @@ create-project [-s|--stability STABILITY] [--prefer-source] [--prefer-dist] [--r
 Antes de pasar con el error del que nos ha informado, he cambiado el nombre del directorio:
 
 <pre>
-root@buster:/var/www/html# mv anchor-cms anchor
+root@buster:/srv/www# mv anchor-cms anchor
 </pre>
 
 Si nos fijamos, nos ha reportado un mensaje de error. Nos indica que ha detectado un fallo en el fichero `composer.json`. Para solucionar este error, debemos editar el fichero:
 
 <pre>
-root@buster:/var/www/html/anchor# nano composer.json
+root@buster:/srv/www/anchor# nano composer.json
 </pre>
 
 En la línea que hace referencia al tipo, debemos cambiar el valor, que por defecto viene *CMS*, debemos indicar el tipo con letras minúsculas, de forma que quede así:
@@ -882,7 +882,7 @@ En la línea que hace referencia al tipo, debemos cambiar el valor, que por defe
 Corremos el instalador de nuevo:
 
 <pre>
-root@buster:/var/www/html/anchor# composer install
+root@buster:/srv/www/anchor# composer install
 Do not run Composer as root/super user! See https://getcomposer.org/root for details
 Continue as root/super user [yes]? yes
 Installing dependencies from lock file (including require-dev)
@@ -962,55 +962,51 @@ Ahora sí hemos instalado correctamente *Anchor* como nuestro CMS.
 Hemos otorgado a `www-data` como dueño del directorio y su contenido al servidor web.
 
 <pre>
-root@buster:/var/www/html# chown -R www-data:www-data ./anchor/
-
-root@buster:/var/www/html# ls -l
-total 28
-drwxr-xr-x 10 www-data www-data  4096 Oct 30 12:05 anchor
-lrwxrwxrwx  1 root     root        27 Oct 28 09:52 drupal -> /var/www/html/drupal-9.0.7/
-drwxr-xr-x  8 www-data www-data  4096 Oct 28 11:14 drupal-9.0.7
--rw-r--r--  1 root     root     10701 Oct 28 09:44 index.html
--rw-r--r--  1 root     root        20 Oct 28 09:45 phpinfo.php
-drwxr-xr-x 13 www-data www-data  4096 Oct 29 17:59 Pico
+root@buster:/srv/www/anchor# chown -R www-data:www-data /srv/
 </pre>
 
 Solo nos quedaría configurar nuestro servidor web *Apache* para que sirviera la web. Para ello vamos a generar un fichero de configuración para *Anchor*:
 
 <pre>
-root@buster:/etc/apache2/sites-available# cp javierperezhidalgodrupal.conf anchor.conf
+root@buster:/etc/apache2/sites-available# cp javierperezhidalgo-drupal.conf anchor.conf
 
 root@buster:/etc/apache2/sites-available# nano anchor.conf
 </pre>
 
-Dentro de este fichero especificamos la dirección de la web y el DocumentRoot:
+Dentro de este fichero especificamos la dirección de la web (*ServerName*) y el *DocumentRoot*, quedaría así:
 
 <pre>
-ServerName www.javierperezhidalgoanchor.com
-DocumentRoot /var/www/html/anchor
+<\VirtualHost *:80\>
+        ServerName www.javierperezhidalgo-anchor.org
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /srv/www/anchor
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+<\/VirtualHost\>
 </pre>
+
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
 Habilitamos el sitio web para que *Apache* lo muestre y reiniciamos el servidor, como siempre hay que hacer cuando hagamos un cambio:
 
 <pre>
-root@buster:/etc/apache2/sites-available# a2ensite anchor.conf
-Enabling site anchor.
-To activate the new configuration, you need to run:
-  systemctl reload apache2
-
-root@buster:/etc/apache2/sites-available# systemctl restart apache2
+a2ensite anchor.conf
 </pre>
 
 Por último, añadimos esta línea al fichero `/etc/hosts` del equipo anfitrión para que podamos ver la web en nuestro navegador.
 
 <pre>
-192.168.30.15   www.javierperezhidalgoanchor.com
+192.168.30.15   www.javierperezhidalgo-anchor.com
 </pre>
 
-Introducimos en el navegador la dirección `www.javierperezhidalgoanchor.com` y nos saldrá el instalador de Anchor:
+Introducimos en el navegador la dirección `www.javierperezhidalgo-anchor.com` y nos saldrá el instalador de *Anchor*:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/anchor.png)
 
-Vamos a realizar una instalación rápida, ya que es muy parecido al proceso que hemos realizado para Drupal.
+Vamos a realizar una instalación rápida, ya que es muy parecido al proceso que hemos realizado para *Drupal*.
 
 En primer lugar indicamos el idioma y la zona horaria:
 

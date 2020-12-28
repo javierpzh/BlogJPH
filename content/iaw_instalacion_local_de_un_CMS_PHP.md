@@ -786,15 +786,18 @@ Ya podemos acceder de nuevo a nuestro sitio web *Drupal* que esta vez está util
 
 - **Configura otro Virtualhost y elige otro nombre en el mismo dominio.**
 
-He decidido elegir el CMS llamado **Anchor**. Este CMS cuenta con una interfaz de usuario muy simple. Instalar Anchor CMS te llevará muy poco tiempo. Soporta *Markdown* editor, campos personalizados, múltiples idiomas y la posibilidad de instalar múltiples temas.
+He decidido elegir el CMS llamado **Anchor**. Este CMS cuenta con una interfaz de usuario muy simple. Instalar Anchor CMS te llevará muy poco tiempo. Soporta *Markdown editor*, campos personalizados, múltiples idiomas y la posibilidad de instalar múltiples temas.
 
 Si nos ayudamos de la página oficial de [Anchor](https://anchorcms.com/), la descarga la podemos realizar desde [aquí](https://anchorcms.com/download).
 
 Como antes para realizar la migración, desinstalé *MySQL* de la máquina **servidor1**, voy a volver a realizar la instalación y configuración, esta vez sin tantos detalles.
 
 <pre>
-apt install mariadb-server mariadb-client -y
-mysql_secure_installation
+root@buster:~# apt install mariadb-server mariadb-client -y
+
+root@buster:~# mysql_secure_installation
+
+...
 </pre>
 
 Creamos el usuario **anchor** de la base de datos y le otorgamos los permisos:

@@ -134,7 +134,7 @@ Nos quedaría por instalar el **servidor PHP**, para ello:
 apt install php libapache2-mod-php php-mysql -y
 </pre>
 
-También he instalado las **librerías php** de *apache* y *mysql*, para que todos los sistemas puedan funcionar de manera conjunta.
+También he instalado las **librerías php** de *Apache* y *MySQL*, para que todos los sistemas puedan funcionar de manera conjunta.
 
 Activamos el módulo de **PHP** de **Apache**.
 
@@ -988,7 +988,7 @@ Dentro de este fichero especificamos la dirección de la web (*ServerName*) y el
 Habilitamos el sitio web para que *Apache* lo muestre y reiniciamos el servidor, como siempre hay que hacer cuando hagamos un cambio:
 
 <pre>
-a2ensite anchor.conf
+root@buster:/etc/apache2/sites-available# a2ensite anchor.conf
 </pre>
 
 Por último, añadimos esta línea al fichero `/etc/hosts` del equipo anfitrión para que podamos ver la web en nuestro navegador.
@@ -1226,7 +1226,7 @@ Hemos instalado el CMS *Pico*. Solo nos quedaría configurar *Apache* para que s
 Habilitamos el despliegue de la página:
 
 <pre>
-a2ensite pico.conf
+root@buster:/etc/apache2/sites-available# a2ensite pico.conf
 </pre>
 
 Reiniciamos el servicio:

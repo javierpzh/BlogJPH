@@ -1054,9 +1054,36 @@ apt remove --purge mariadb-server mariadb-client -y && apt autoremove -y
 
 Si probamos a acceder ahora a nuestra web *Anchor*:
 
-
+![.](images/iaw_instalacion_local_de_un_cms_php/bbddeliminadaanchor.png)
 
 Vemos como efectivamente hemos eliminado correctamente la base de datos.
+
+Hecho esto, en la **maquina2**, vamos a crear la base de datos y el usuario **anchor**.
+
+<pre>
+root@buster:~# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 39
+Server version: 10.3.27-MariaDB-0+deb10u1 Debian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE anchor;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> CREATE USER 'anchor' IDENTIFIED BY 'contraseña';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON anchor.* TO 'anchor';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> exit
+Bye
+
+</pre>
 
 Copiamos el nuevo archivo a la *maquina2*, donde vamos a restaurar la copia de seguridad con el siguiente comando:
 
@@ -1067,12 +1094,85 @@ Enter password:
 root@buster:~#
 </pre>
 
+Vamos a comprobar como efectivamente hemos restaurado todos los datos:
 
+<pre>
+root@buster:~# mysql -u anchor -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 41
+Server version: 10.3.27-MariaDB-0+deb10u1 Debian 10
 
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| anchor             |
+| information_schema |
++--------------------+
+2 rows in set (0.001 sec)
 
+MariaDB [(none)]> use anchor;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
 
+Database changed
+MariaDB [anchor]> show tables;
++----------------------+
+| Tables_in_anchor     |
++----------------------+
+| anchor_categories    |
+| anchor_category_meta |
+| anchor_comments      |
+| anchor_extend        |
+| anchor_meta          |
+| anchor_page_meta     |
+| anchor_pages         |
+| anchor_pagetypes     |
+| anchor_post_meta     |
+| anchor_posts         |
+| anchor_sessions      |
+| anchor_user_meta     |
+| anchor_users         |
++----------------------+
+13 rows in set (0.001 sec)
+
+MariaDB [anchor]>
+</pre>
+
+Vemos que sí. Y por último, nos queda configurar nuestro CMS para que haga uso de esta base de datos. Para esto nos tenemos que dirigir al fichero `db.php`, que se encuentra en la ruta `/srv/www/anchor/anchor/config/db.php` de la máquina donde tenemos instalado nuestro CMS, es decir, en **servidor1**.
+
+En él, nos encontraremos la configuración de la base de datos asociada al CMS. Ajustamos los nuevos parámetros que necesitamos, cambiando la dirección de la base de datos y estableciendo la IP de nuestra segunda máquina:
+
+<pre>
+<?php
+
+return [
+    'default'     => 'mysql',
+    'prefix'      => 'anchor_',
+    'connections' => [
+        'mysql' => [
+            'driver'   => 'mysql',
+            'hostname' => '192.168.30.30',
+            'port'     => '3306',
+            'username' => 'anchor',
+            'password' => 'contraseña',
+            'database' => 'anchor',
+            'charset'  => 'utf8mb4'
+        ]
+    ]
+];
+</pre>
+
+Hecho esto, vamos a reiniciar nuestro servidor web y a comprobar que nuestro CMS vuelve a funcionar:
+
+![.](images/iaw_instalacion_local_de_un_cms_php/bbddremotaanchor.png)
+
+La respuesta es afirmativa, por tanto habríamos terminado el ejercicio.
 
 
 ## Instalación de un CMS PHP que no utiliza base de datos

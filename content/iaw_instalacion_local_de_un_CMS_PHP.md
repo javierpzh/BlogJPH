@@ -773,7 +773,11 @@ Reiniciamos el servidor:
 systemctl restart mysqld
 </pre>
 
-Ya podemos acceder de nuevo a nuestro sitio web Drupal.
+Accedemos a la dirección `www.javierperezhidalgo-drupal.org` para ver si ya vuelve a funcionar:
+
+![.](images/iaw_instalacion_local_de_un_cms_php/bbddenremoto.png)
+
+Ya podemos acceder de nuevo a nuestro sitio web *Drupal* que esta vez está utilizando una base de datos que se encuentra en otra máquina.
 
 
 ## Tarea 4: Instalación de otro CMS PHP

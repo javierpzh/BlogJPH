@@ -155,11 +155,12 @@ Hemos terminado de montar nuestro servidor LAMP.
 En la ruta `/etc/apache2/sites-available/` creamos un fichero de configuración para esta página. Podemos copiar el fichero llamado `000-default.conf` para tener la estructura y luego lo modificamos:
 
 <pre>
-cp 000-default.conf javierperezhidalgo-drupal.conf
-nano javierperezhidalgo-drupal.conf
+root@buster:/etc/apache2/sites-available# cp 000-default.conf javierperezhidalgo-drupal.conf
+
+root@buster:/etc/apache2/sites-available# nano javierperezhidalgo-drupal.conf
 </pre>
 
-Dentro de este fichero, establecemos la url de la web en el apartado **ServerName**. Tiene que quedar así:
+Dentro de este fichero, establecemos la *URL* de la web en el apartado **ServerName**. Tiene que quedar así:
 
 <pre>
 ServerName www.javierperezhidalgo-drupal.org

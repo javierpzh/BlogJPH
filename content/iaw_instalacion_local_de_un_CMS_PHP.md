@@ -163,8 +163,19 @@ root@buster:/etc/apache2/sites-available# nano javierperezhidalgo-drupal.conf
 Dentro de este fichero, establecemos la *URL* de la web en el apartado **ServerName**. Tiene que quedar así:
 
 <pre>
-ServerName www.javierperezhidalgo-drupal.org
+<\VirtualHost *:80\>
+        ServerName www.javierperezhidalgo-drupal.org
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /srv/www/drupal
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+<\/VirtualHost\>
 </pre>
+
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
 Creamos el enlace simbólico para activar el sitio web:
 

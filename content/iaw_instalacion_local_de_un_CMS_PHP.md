@@ -1,5 +1,5 @@
 Title: Instalación local de un CMS PHP
-Date: 2020/10/29
+Date: 2020/12/28
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: LAMP, CMS, Linux, Apache, MariaDB, MySQL, PHP, DrupalCMS, AnchorCMS, PicoCMS

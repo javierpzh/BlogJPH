@@ -1,5 +1,5 @@
 Title: Despliegue de CMS Java
-Date: 2020/12/22
+Date: 2020/12/28
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: CMS, Java, Tomcat
@@ -27,7 +27,7 @@ Gracias a HTML5, una vez tengamos instalado y configurado *Apache Guacamole*, ta
 
 5. Configurar el fichero `/etc/tomcat9/server.xml` para activar el conector `ajp`.
 
-6. Buscar información sobre el **proxy.ajp** en **Apache2** y realizar la configuración necesaria.
+6. Realizar un **proxy inverso** en **Apache2** y realizar la configuración necesaria.
 
 A continuación vamos a realizar la instalación de *tomcat 9* y de la aplicación en sí.
 
@@ -110,7 +110,7 @@ Hecho esto, vamos a probar a acceder a la dirección `192.168.200.20:8080/guacam
 
 Vemos que podemos acceder a la aplicación.
 
-
+Hecho esto, vamos a
 
 
 

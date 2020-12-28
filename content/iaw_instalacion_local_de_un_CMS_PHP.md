@@ -314,7 +314,7 @@ a2enmod rewrite
 Ya tendríamos activado el módulo *Rewrite* de *Apache*, pero nos quedaría por configurar nuestra aplicación *Drupal* para que haga uso de él. Para ello, nos dirigimos al fichero de configuración del *virtualhost* de *Drupal* e introducimos el siguiente bloque, que permite, entre ellos, el uso de archivos `.htaccess`.
 
 <pre>
-<\Directory /var/www/html/drupal>
+<\Directory /srv/www/drupal>
         AllowOverride all
 <\/Directory>
 </pre>
@@ -337,7 +337,7 @@ De manera que el fichero del *virtualhost* quedaría con el siguiente aspecto:
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-        <\Directory /srv/drupal/\>
+        <\Directory /srv/www/drupal/\>
           AllowOverride All
         <\/Directory\>
 

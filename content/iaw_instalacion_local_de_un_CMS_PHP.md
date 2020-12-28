@@ -379,6 +379,10 @@ Completamos según nuestras preferencias y guardamos y listo:
 
 Para **cambiar el tema de nuestro CMS**, nos dirigimos a la opción que nos aparece arriba, **Apariencia** y seleccionamos `+ Instalar nuevo tema`, introducimos el enlace de descarga del tema que queremos añadir y listo. Cuidado, tenemos que comprobar que el tema que vamos a instalar es compatible con la versión de *Drupal* que estamos utilizando.
 
+Puede ser que no nos aparezca el botón `+ Instalar nuevo tema`. En este caso, debemos dirigirnos a la pestaña **Contenido** y en ésta, activar el módulo **Update Manager**. Hecho esto, ya nos aparecería este botón.
+
+![.](images/iaw_instalacion_local_de_un_cms_php/drupalupdatemanager.png)
+
 Una vez tenemos instalado el tema que queremos, lo seleccionamos como activo:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/temaseleccionado.png)
@@ -395,7 +399,7 @@ Así quedaría nuestra nueva publicación:
 
 - **Instala un módulo para añadir alguna funcionalidad a Drupal.**
 
-Para **instalar un nuevo módulo** en Drupal, es bastante sencillo y parecido a los temas. Vamos a la opción **Ampliar**, clickamos en `+ Instalar nuevo módulo`, introducimos el enlace de descarga del módulo que queremos añadir y listo. Al igual que con el tema, tenemos que verificar que funciona con nuestra versión de Drupal.
+Para **instalar un nuevo módulo** en Drupal, es bastante sencillo y parecido a los temas. Vamos a la opción **Ampliar**, *clickamos* en `+ Instalar nuevo módulo`, introducimos el enlace de descarga del módulo que queremos añadir y listo. Al igual que con el tema, tenemos que verificar que funciona con nuestra versión de *Drupal*.
 
 En mi caso, voy a instalar un módulo llamado ***AddToAny*** que permite compartir los artículos y entradas de la web a través de nuestras redes sociales.
 

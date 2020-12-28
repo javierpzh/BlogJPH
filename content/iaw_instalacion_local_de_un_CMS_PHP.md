@@ -559,7 +559,7 @@ Bye
 
 Para mover la copia de seguridad de la base de datos que hemos realizado en pasos anteriores, en la máquina **servidor1** he instalado la utilidad **rclone**, he configurado mi cuenta de *Dropbox* y he copiado el archivo. Si quieres aprender más sobre *rclone* puedes visitar este [post](https://javierpzh.github.io/rclone-gestionando-nuestro-almacenamiento-en-la-nube.html).
 
-Podríamos haberlo hecho con el típico comando `scp`, pero en caso de querer utilizarlo, tendríamos que establecer una contraseña en las máquinas, ya que *Vagrant* por defecto no deja que nos conectemos por **SSH** si no utilizamos la clave privada, y luego configurar en el fichero `/etc/ssh/sshd_config` la línea `PasswordAuthentication no` y sustituir el **no** por un **yes**, y reiniciar el servicio SSH, ya que hemos tocado su configuración. Esta solución me la comentó mi compañero [Álvaro](https://www.instagram.com/whosalvr/) ya que yo no caí en estos detalles.
+Podríamos haberlo hecho con el típico comando `scp`, pero en caso de querer utilizarlo, tendríamos que establecer una contraseña en las máquinas, ya que *Vagrant* por defecto no deja que nos conectemos por **SSH** si no utilizamos la clave privada, y luego configurar en el fichero `/etc/ssh/sshd_config` la línea `PasswordAuthentication no` y sustituir el **no** por un **yes**, y reiniciar el servicio *SSH*, ya que hemos tocado su configuración.
 
 Ahora voy a configurar la misma cuenta de *Dropbox* con *rclone* en la máquina **maquina2**, y voy a descargar la copia de seguridad de la base de datos.
 

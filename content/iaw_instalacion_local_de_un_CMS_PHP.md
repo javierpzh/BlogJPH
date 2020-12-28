@@ -260,6 +260,8 @@ Hemos descargado **Drupal** y lo hemos descomprimido en la ruta en la que se enc
 #<\/Directory\>
 </pre>
 
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
+
 Esto indica que mostrará todos los ficheros de las páginas alojadas en la ruta `/var/www/`. Lo que debemos hacer es comentar estas líneas y descomentar las de abajo que hacen referencia a la ruta `/srv/` y todos sus hijos:
 
 <pre>
@@ -275,6 +277,8 @@ Esto indica que mostrará todos los ficheros de las páginas alojadas en la ruta
         Require all granted
 <\/Directory\>
 </pre>
+
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
 Además conviene crear un enlace simbólico sobre el directorio de *Drupal* para tener un nombre sin números de versión. Hemos otorgado al usuario `www-data` como dueño del directorio y su contenido al servidor web.
 

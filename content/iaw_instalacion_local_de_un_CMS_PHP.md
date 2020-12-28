@@ -1052,7 +1052,7 @@ Clonamos el repositorio en `/srv/www`:
 root@buster:/srv/www# git clone https://github.com/picocms/Pico.git
 </pre>
 
-Hemos otorgado a `www-data` como dueño del directorio y su contenido al servidor web.
+Hemos otorgado al usuario `www-data` como dueño del directorio y su contenido al servidor web.
 
 <pre>
 root@buster:/srv/www# chown -R www-data:www-data /srv/

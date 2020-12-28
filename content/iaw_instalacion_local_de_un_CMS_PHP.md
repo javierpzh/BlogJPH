@@ -977,6 +977,7 @@ Dentro de este fichero especificamos la dirección de la web (*ServerName*) y el
 
 <pre>
 <\VirtualHost *:80\>
+
         ServerName www.javierperezhidalgo-anchor.org
 
         ServerAdmin webmaster@localhost

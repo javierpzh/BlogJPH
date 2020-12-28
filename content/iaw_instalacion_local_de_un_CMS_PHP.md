@@ -1070,7 +1070,7 @@ root@buster:/srv/www# php composer.phar create-project picocms/pico-composer pic
 ...
 </pre>
 
-Hemos instalado el CMS *Pico*. Solo nos quedaría configurar *Apache* para que sirva este sitio web en la dirección `www.javierperezhidalgopico.com/`. Primero creamos el fichero de configuración en `/etc/apache2/sites-available`, lo voy a llamar `pico.conf`. Añado las siguientes líneas:
+Hemos instalado el CMS *Pico*. Solo nos quedaría configurar *Apache* para que sirva este sitio web en la dirección `www.javierperezhidalgopico.com`. Primero creamos el fichero de configuración en `/etc/apache2/sites-available`, lo voy a llamar `pico.conf`. Añado las siguientes líneas:
 
 <pre>
 <\VirtualHost *:80\>

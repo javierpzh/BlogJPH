@@ -1259,10 +1259,43 @@ Ya hemos instalado *Pico*.
 
 - **Instala un servidor de correo electrónico en tu servidor. Debes configurar un *servidor relay de correo*, para ello en el fichero `/etc/postfix/main.cf`, debes poner la siguiente línea:**
 
-<pre>
-relayhost = babuino-smtp.gonzalonazareno.org
-</pre>
-
-
-
 - **Configura alguno de los CMS para utilizar tu servidor de correo y realiza una prueba de funcionamiento.**
+
+Para llevar a cabo este ejercicio, voy a configurar la web *Drupal* que instalé anteriormente.
+
+Lo primero que debemos hacer, es dirigirnos hacia nuestra aplicación e instalarle el módulo llamado **SMTP Authentication Support**. Como ya sabemos, para instalar un módulo, debemos situarnos en la opción **Ampliar**, *clickamos* en `+ Instalar nuevo módulo`, introducimos el enlace de descarga del módulo que queremos añadir y listo.
+
+Lo instalo y lo añado:
+
+![.](images/iaw_instalacion_local_de_un_cms_php/modulocorreos.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

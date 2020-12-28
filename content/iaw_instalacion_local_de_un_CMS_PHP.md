@@ -978,7 +978,7 @@ Dentro de este fichero especificamos la dirección de la web (*ServerName*) y el
 <pre>
 <\VirtualHost *:80\>
 
-        ServerName www.javierperezhidalgo-anchor.org
+        ServerName www.javierperezhidalgoanchor.org
 
         ServerAdmin webmaster@localhost
         DocumentRoot /srv/www/anchor
@@ -1000,10 +1000,10 @@ a2ensite anchor.conf
 Por último, añadimos esta línea al fichero `/etc/hosts` del equipo anfitrión para que podamos ver la web en nuestro navegador.
 
 <pre>
-192.168.30.15   www.javierperezhidalgo-anchor.org
+192.168.30.15   www.javierperezhidalgoanchor.org
 </pre>
 
-Introducimos en el navegador la dirección `www.javierperezhidalgo-anchor.org` y nos saldrá el instalador de *Anchor*:
+Introducimos en el navegador la dirección `www.javierperezhidalgoanchor.org` y nos saldrá el instalador de *Anchor*:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/anchor.png)
 

@@ -712,13 +712,13 @@ Probamos a acceder a la página de *Drupal* ahora:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/bbddeliminada.png)
 
-- **Realiza los cambios de configuración necesarios en *Drupal* para que la página funcione.**
+Obviamente, no podemos acceder a la web, ya que ahora mismo no se encuentra conectada a ninguna base de datos.
 
-**Entrega una documentación resumida donde expliques los pasos fundamentales para realizar esta tarea. En este momento, muestra al profesor la aplicación funcionando en local.**
+- **Realiza los cambios de configuración necesarios en *Drupal* para que la página funcione.**
 
 En este punto, queremos volver a tener disponible nuestra web de *Drupal*, pero funcionando con la base de datos en la nueva máquina, es decir, en **maquina2**.
 
-Tenemos que cambiar la configuración de *Drupal*, para ello nos dirigimos al fichero que se encuentra en la ruta `/srv/www/drupal-9.1.0/sites/default/settings.php` de la máquina **servidor1**, y al final del archivo, se encuentra la configuración de la base de datos que utiliza Drupal. Como es obvio, está configurada como que la base de datos está en el mismo equipo, por tanto está configurado en **localhost**. Aquí viene el primer cambio, pues debemos remover *localhost* y sustituirlo por la IP de la máquina donde se encuentra la nueva base de datos sobre la que va a funcionar Drupal, que es la **192.168.30.30**.
+Tenemos que cambiar la configuración de *Drupal*, para ello nos dirigimos al fichero que se encuentra en la ruta `/srv/www/drupal-9.1.0/sites/default/settings.php` de la máquina **servidor1**, y al final del archivo, se encuentra la configuración de la base de datos que utiliza *Drupal*. Como es obvio, está configurada como que la base de datos está en el mismo equipo, por tanto está configurado en **localhost**. Aquí viene el primer cambio, pues debemos remover *localhost* y sustituirlo por la IP de la máquina donde se encuentra la nueva base de datos sobre la que va a funcionar Drupal, que es la **192.168.30.30**.
 
 <pre>
 $databases['default']['default'] = array (
@@ -786,7 +786,7 @@ Ya podemos acceder de nuevo a nuestro sitio web *Drupal* que esta vez está util
 
 - **Configura otro Virtualhost y elige otro nombre en el mismo dominio.**
 
-He decidido elegir el CMS llamado **Anchor**. Este CMS cuenta con una interfaz de usuario muy simple. Instalar Anchor CMS te llevará muy poco tiempo. Soporta *Markdown editor*, campos personalizados, múltiples idiomas y la posibilidad de instalar múltiples temas.
+He decidido elegir el CMS llamado **Anchor**. Este CMS cuenta con una interfaz de usuario muy simple. Instalar *Anchor* nos llevará muy poco tiempo. Soporta *Markdown editor*, campos personalizados, múltiples idiomas y la posibilidad de instalar múltiples temas.
 
 Si nos ayudamos de la página oficial de [Anchor](https://anchorcms.com/), la descarga la podemos realizar desde [aquí](https://anchorcms.com/download).
 
@@ -1032,6 +1032,47 @@ Y con esto ya hemos terminado la instalación de *Anchor*.
 Así luce nuestra nueva página:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/terminadoanchor.png)
+
+Hemos terminado la instalación de *Anchor*, pero me gustaría hacer una modificación. Y no es más, sino que volver a migrar nuestra base de datos a nuestra segunda máquina, es decir, a la **maquina2**, para así acceder a la base de datos remotamente.
+
+Volvemos a repetir el mismo proceso que realizamos con *Drupal*, y en primer lugar, vamos a realizar una copia de seguridad y a copiarla a la segunda máquina:
+
+<pre>
+root@buster:~# mysqldump -u anchor -p anchor > copiaseguridadanchor.sql
+
+root@buster:~# ls
+copiaseguridadanchor.sql  copiaseguridaddrupal.sql
+</pre>
+
+Le pasamos dos parámetros: la opción **-u** indica el nombre de usuario y la opción **-p** el nombre de la base de datos.
+
+En este punto, ya podríamos desinstalar la base de datos existente en la máquina llamada **servidor1**.
+
+<pre>
+apt remove --purge mariadb-server mariadb-client -y && apt autoremove -y
+</pre>
+
+Si probamos a acceder ahora a nuestra web *Anchor*:
+
+
+
+Vemos como efectivamente hemos eliminado correctamente la base de datos.
+
+Copiamos el nuevo archivo a la *maquina2*, donde vamos a restaurar la copia de seguridad con el siguiente comando:
+
+<pre>
+root@buster:~# mysql -u anchor -p anchor < copiaseguridadanchor.sql
+Enter password:
+
+root@buster:~#
+</pre>
+
+
+
+
+
+
+
 
 
 ## Instalación de un CMS PHP que no utiliza base de datos

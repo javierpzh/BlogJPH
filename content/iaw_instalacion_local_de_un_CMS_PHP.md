@@ -1110,6 +1110,7 @@ Nos dirigimos a la web `www.javierperezhidalgopico.org`:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/pico.png)
 
+Ya hemos instalado *Pico*.
 
 ##Tarea 5: Necesidad de otros servicios
 

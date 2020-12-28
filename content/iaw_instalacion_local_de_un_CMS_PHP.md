@@ -209,7 +209,7 @@ root@buster:/var/www/html# mysql -u root -p
 Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MariaDB connection id is 65
-Server version: 10.3.25-MariaDB-0+deb10u1 Debian 10
+Server version: 10.3.27-MariaDB-0+deb10u1 Debian 10
 
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
@@ -536,7 +536,7 @@ root@buster:/home/vagrant# mysql -u root -p
 Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MariaDB connection id is 57
-Server version: 10.3.25-MariaDB-0+deb10u1 Debian 10
+Server version: 10.3.27-MariaDB-0+deb10u1 Debian 10
 
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
@@ -564,16 +564,19 @@ Podríamos haberlo hecho con el típico comando `scp`, pero en caso de querer ut
 Ahora voy a configurar la misma cuenta de *Dropbox* con *rclone* en la máquina **maquina2**, y voy a descargar la copia de seguridad de la base de datos.
 
 <pre>
-root@buster:/home/vagrant# rclone copy dropbox:/rclone/copiaseguridaddrupal.sql /home/vagrant/
+root@buster:~# rclone copy dropbox:/rclone/copiaseguridaddrupal.sql /home/vagrant/
 
-root@buster:/home/vagrant# ls
+root@buster:~# ls
 copiaseguridaddrupal.sql
 </pre>
 
 Ya tengo la copia de seguridad en la **maquina2**, que es donde quiero restaurarla. Para restaurar una copia de seguridad de una base de datos en *MySQL*, introducimos el siguiente comando:
 
 <pre>
-mysql -u drupal -p drupal < copiaseguridaddrupal.sql
+root@buster:~# mysql -u drupal -p drupal < copiaseguridaddrupal.sql
+Enter password:
+
+root@buster:~#
 </pre>
 
 El parámetro **-u** indica el nombre de usuario y **-p** el nombre de la base de datos, donde se va a restaurar la copia.
@@ -581,11 +584,11 @@ El parámetro **-u** indica el nombre de usuario y **-p** el nombre de la base d
 Si miramos las bases de datos del usuario **drupal**:
 
 <pre>
-root@buster:/home/vagrant# mysql -u drupal -p
+root@buster:~# mysql -u drupal -p
 Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 63
-Server version: 10.3.25-MariaDB-0+deb10u1 Debian 10
+Your MariaDB connection id is 59
+Server version: 10.3.27-MariaDB-0+deb10u1 Debian 10
 
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
@@ -705,11 +708,11 @@ En **servidor1** desinstalamos el servidor de base de datos y borramos todos sus
 apt remove --purge mariadb-server mariadb-client -y && apt autoremove -y
 </pre>
 
-Probamos a acceder a la página de Drupal ahora:
+Probamos a acceder a la página de *Drupal* ahora:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/bbddeliminada.png)
 
-- **Realiza los cambios de configuración necesarios en drupal para que la página funcione.**
+- **Realiza los cambios de configuración necesarios en *Drupal* para que la página funcione.**
 
 **Entrega una documentación resumida donde expliques los pasos fundamentales para realizar esta tarea. En este momento, muestra al profesor la aplicación funcionando en local.**
 

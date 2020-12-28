@@ -1,5 +1,5 @@
 Title: Instalación local de un CMS PHP
-Date: 2020/12/28
+Date: 2020/10/29
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: LAMP, CMS, Linux, Apache, MariaDB, MySQL, PHP, DrupalCMS, AnchorCMS, PicoCMS
@@ -1235,7 +1235,7 @@ Reiniciamos el servicio:
 systemctl restart apache2
 </pre>
 
-Acabamos de lanzar nuestra página en Pico, si queremos visualizarla en nuestra máquina anfitrión, añadimos la siguiente línea al fichero `/etc/hosts`:
+Acabamos de lanzar nuestra página en *Pico*, si queremos visualizarla en nuestra máquina anfitriona, añadimos la siguiente línea al fichero `/etc/hosts`:
 
 <pre>
 192.168.30.15   www.javierperezhidalgopico.org
@@ -1245,77 +1245,4 @@ Nos dirigimos a la web `www.javierperezhidalgopico.org`:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/pico.png)
 
-Ya hemos instalado *Pico*.
-
-##Tarea 5: Necesidad de otros servicios
-
-**La mayoría de los CMS tienen la posibilidad de mandar correos electrónicos (por ejemplo para notificar una nueva versión, notificar un comentario,…)**
-
-- **Instala un servidor de correo electrónico en tu servidor. Debes configurar un *servidor relay de correo*, para ello en el fichero `/etc/postfix/main.cf`, debes poner la siguiente línea:**
-
-- **Configura alguno de los CMS para utilizar tu servidor de correo y realiza una prueba de funcionamiento.**
-
-Para llevar a cabo este ejercicio, voy a configurar la web *Drupal* que instalé anteriormente.
-
-Lo primero que debemos hacer, es dirigirnos hacia nuestra aplicación e instalarle el módulo llamado **SMTP Authentication Support**. Como ya sabemos, para instalar un módulo, debemos situarnos en la opción **Ampliar**, *clickamos* en `+ Instalar nuevo módulo`, introducimos el enlace de descarga del módulo que queremos añadir y listo.
-
-Lo instalo y lo añado:
-
-![.](images/iaw_instalacion_local_de_un_cms_php/modulocorreos.png)
-
-Debemos instalar **composer**, ya que vamos a necesitar hacer uso de una dependencia llamada **phpmailer**:
-
-<pre>
-apt install composer -y
-</pre>
-
-Instalado el manejador de dependencias, instalamos la propia dependencia:
-
-<pre>
-root@buster:~# composer require phpmailer/phpmailer
-Do not run Composer as root/super user! See https://getcomposer.org/root for details
-Continue as root/super user [yes]? yes
-Using version ^6.2 for phpmailer/phpmailer
-./composer.json has been created
-Running composer update phpmailer/phpmailer
-Loading composer repositories with package information
-Updating dependencies
-Lock file operations: 1 install, 0 updates, 0 removals
-  - Locking phpmailer/phpmailer (v6.2.0)
-Writing lock file
-Installing dependencies from lock file (including require-dev)
-Package operations: 1 install, 0 updates, 0 removals
-  - Downloading phpmailer/phpmailer (v6.2.0)
-  - Installing phpmailer/phpmailer (v6.2.0): Extracting archive
-5 package suggestions were added by new dependencies, use `composer suggest` to see details.
-Generating autoload files
-1 package you are using is looking for funding.
-Use the `composer fund` command to find out more!
-</pre>
-
-Hecho esto, tan solo nos quedaría configurar *Drupal*. Nos dirigimos a nuestra web, y vamos a proceder a configurar el nuevo módulo instalado.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.
+Ya hemos instalado *Pico* y habríamos terminado con este *post*.

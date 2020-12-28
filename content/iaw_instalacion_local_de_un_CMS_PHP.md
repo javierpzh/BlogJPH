@@ -1268,7 +1268,3 @@ relayhost = babuino-smtp.gonzalonazareno.org
 
 
 - **Configura alguno de los CMS para utilizar tu servidor de correo y realiza una prueba de funcionamiento.**
-
-
-
-**Muestra al profesor algún correo enviado por tu CMS.**

@@ -247,33 +247,33 @@ root@buster:~# tar xf tar.gz -C /srv/www/
 Hemos descargado **Drupal** y lo hemos descomprimido en la ruta en la que se encuentra el sitio web, en mi caso, `/srv/www/`. Para utilizar esta ruta, debemos modificar el fichero `apache2.conf`, que actualmente posee esta configuración:
 
 <pre>
-<Directory /var/www/>
+<\Directory /var/www/\>
        Options Indexes FollowSymLinks
        AllowOverride None
        Require all granted
-</Directory>
+<\/Directory\>
 
-#<Directory /srv/>
+#<\Directory /srv/\>
 #        Options Indexes FollowSymLinks
 #        AllowOverride None
 #        Require all granted
-#</Directory>
+#<\/Directory\>
 </pre>
 
 Esto indica que mostrará todos los ficheros de las páginas alojadas en la ruta `/var/www/`. Lo que debemos hacer es comentar estas líneas y descomentar las de abajo que hacen referencia a la ruta `/srv/` y todos sus hijos:
 
 <pre>
-#<Directory /var/www/>
+#<\Directory /var/www/\>
 #       Options Indexes FollowSymLinks
 #       AllowOverride None
 #       Require all granted
-#</Directory>
+#<\/Directory\>
 
-<Directory /srv/>
+<\Directory /srv/\>
         Options Indexes FollowSymLinks
         AllowOverride None
         Require all granted
-</Directory>
+<\/Directory\>
 </pre>
 
 Además conviene crear un enlace simbólico sobre el directorio de *Drupal* para tener un nombre sin números de versión. Hemos otorgado al usuario `www-data` como dueño del directorio y su contenido al servidor web.

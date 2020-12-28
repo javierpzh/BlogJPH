@@ -1036,49 +1036,57 @@ Así luce nuestra nueva página:
 
 ## Instalación de un CMS PHP que no utiliza base de datos
 
-También voy a instalar un CMS llamado **Pico**. No tiene un backend para editar los datos (aunque existe un plugin para ello). No utiliza consultas a la base de datos, por lo tanto, es súper rápido. Es compatible con el formato Markdown y las plantillas twig.
+También voy a instalar un CMS llamado **Pico**. No tiene un *backend* para editar los datos (aunque existe un *plugin* para ello). No utiliza consultas a la base de datos, por lo tanto, es súper rápido. Es compatible con el formato *Markdown* y las plantillas *twig*.
 
 Vamos a proceder a instalarlo.
 
-Si nos ayudamos de la página oficial de [Pico](http://picocms.org/), la descarga la podemos realizar clonando un repositorio de GitHub. Por tanto necesitamos el paquete `git` en nuestro sistema:
+Si nos ayudamos de la página oficial de [Pico](http://picocms.org/), la descarga la podemos realizar clonando un repositorio de *GitHub*. Por tanto necesitamos el paquete `git` en nuestro sistema:
 
 <pre>
 apt install git -y
 </pre>
 
-Clonamos el repositorio en `/var/www/html`:
+Clonamos el repositorio en `/srv/www`:
 
 <pre>
-git clone https://github.com/picocms/Pico.git
+root@buster:/srv/www# git clone https://github.com/picocms/Pico.git
 </pre>
 
 Hemos otorgado a `www-data` como dueño del directorio y su contenido al servidor web.
 
 <pre>
-root@buster:/var/www/html# chown -R www-data:www-data ./Pico/
-
-root@buster:/var/www/html# ls -l
-total 24
-lrwxrwxrwx  1 root     root        27 Oct 28 09:52 drupal -> /var/www/html/drupal-9.0.7/
-drwxr-xr-x  8 www-data www-data  4096 Oct 28 11:14 drupal-9.0.7
--rw-r--r--  1 root     root     10701 Oct 28 09:44 index.html
--rw-r--r--  1 root     root        20 Oct 28 09:45 phpinfo.php
-drwxr-xr-x 12 www-data www-data  4096 Oct 29 17:54 Pico
+root@buster:/srv/www# chown -R www-data:www-data /srv/
 </pre>
 
 Descargamos el instalador y lo lanzamos mediante los siguientes comandos:
 
 <pre>
-curl -sSL https://getcomposer.org/installer | php
-php composer.phar create-project picocms/pico-composer pico
+root@buster:/srv/www# curl -sSL https://getcomposer.org/installer | php
+
+...
+
+root@buster:/srv/www# php composer.phar create-project picocms/pico-composer pico
+
+...
 </pre>
 
-Hemos instalado el CMS Pico. Solo nos quedaría configurar apache para que sirva este sitio web en la dirección `http://www.javierperezhidalgopico.com/Pico/pico/`. Primero creamos el fichero de configuración en `/etc/apache2/sites-available`, lo voy a llamar `pico.conf`. Añado las siguientes líneas:
+Hemos instalado el CMS *Pico*. Solo nos quedaría configurar *Apache* para que sirva este sitio web en la dirección `www.javierperezhidalgopico.com/`. Primero creamos el fichero de configuración en `/etc/apache2/sites-available`, lo voy a llamar `pico.conf`. Añado las siguientes líneas:
 
 <pre>
-ServerName www.javierperezhidalgopico.com
-DocumentRoot /var/www/html/Pico
+<\VirtualHost *:80\>
+
+        ServerName www.javierperezhidalgopico.org
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /srv/www/pico
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+<\/VirtualHost\>
 </pre>
+
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
 Habilitamos el despliegue de la página:
 
@@ -1095,10 +1103,10 @@ systemctl restart apache2
 Acabamos de lanzar nuestra página en Pico, si queremos visualizarla en nuestra máquina anfitrión, añadimos la siguiente línea al fichero `/etc/hosts`:
 
 <pre>
-192.168.30.15   www.javierperezhidalgopico.com
+192.168.30.15   www.javierperezhidalgopico.org
 </pre>
 
-Nos dirigimos a la web `http://www.javierperezhidalgopico.com/Pico/pico/`:
+Nos dirigimos a la web `www.javierperezhidalgopico.org`:
 
 ![.](images/iaw_instalacion_local_de_un_cms_php/pico.png)
 

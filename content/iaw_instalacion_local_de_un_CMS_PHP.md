@@ -248,7 +248,7 @@ root@buster:~# ln -s /srv/www/drupal-9.1.0/ /srv/www/drupal
 root@buster:~# chown -R www-data:www-data /srv/www/drupal/
 </pre>
 
-Hemos descargado **Drupal** y lo hemos descomprimido en la ruta en la que se encuentra el sitio web, en mi caso, `/srv/www/`. Además conviene crear un enlace simbólico sobre el directorio de *Drupal* para tener un nombre sin números de versión. Hemos otorgado a `www-data` como dueño del directorio y su contenido al servidor web.
+Hemos descargado **Drupal** y lo hemos descomprimido en la ruta en la que se encuentra el sitio web, en mi caso, `/srv/www/`. Además conviene crear un enlace simbólico sobre el directorio de *Drupal* para tener un nombre sin números de versión. Hemos otorgado al usuario `www-data` como dueño del directorio y su contenido al servidor web.
 
 También necesitamos algunas extensiones de *PHP*:
 
@@ -256,7 +256,7 @@ También necesitamos algunas extensiones de *PHP*:
 apt install php-apcu php-gd php-mbstring php-uploadprogress php-xml -y
 </pre>
 
-Drupal puede hacer uso del sistema de reescritura de *URLs*, basado en el módulo `Rewrite` de Apache, que no está activado por defecto. Este módulo permite crear direcciones *URL* alternativas a las dinámicas generadas por la programación de nuestros sitio web, de tal modo que sean más legibles y fáciles de recordar. Activamos el módulo `Rewrite` y otros que puede usar *Drupal*:
+*Drupal* puede hacer uso del sistema de reescritura de *URLs*, basado en el módulo **Rewrite** de *Apache*, que no está activado por defecto. Este módulo permite crear direcciones *URL* alternativas a las dinámicas generadas por la programación de nuestros sitio web, de tal modo que sean más legibles y fáciles de recordar. Activamos el módulo **Rewrite**:
 
 <pre>
 a2enmod expires headers rewrite

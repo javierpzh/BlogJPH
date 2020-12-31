@@ -190,9 +190,30 @@ Los registros de tipo **A** especifican la direcciones IP correspondientes al do
 
 Los registros de tipo **CNAME** sirven para apuntar hacia otro de los registros de tipo **A** ya existentes. De manera que es mucho más fácil y cómodo hacer referencia a una dirección a través de un nombre en vez de con la propia dirección en sí.
 
-Explicados estos detalles, vamos a continuar con la siguiente
+Explicados estos detalles, vamos a continuar con la siguiente zona que se empleará para la vista de la **red DMZ**. Vuelvo a copiar el fichero `/etc/bind/db.empty` para utilizarlo como plantilla:
 
+<pre>
+root@freston:~# cp /etc/bind/db.empty /var/cache/bind/db.externa.javierpzh.gonzalonazareno.org
+</pre>
 
+Hecho esto, empezamos a editar nuestro archivo `db.DMZ.javierpzh.gonzalonazareno.org`:
+
+<pre>
+$TTL    86400
+@       IN      SOA     dulcinea.javierpzh.gonzalonazareno.org. root.localhost. (
+                        20123001        ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                          86400 )       ; Negative Cache TTL
+;
+@       IN      NS      dulcinea.javierpzh.gonzalonazareno.org.
+
+$ORIGIN javierpzh.gonzalonazareno.org.
+
+dulcinea        IN      A       172.22.200.183
+www             IN      CNAME   dulcinea
+</pre>
 
 
 

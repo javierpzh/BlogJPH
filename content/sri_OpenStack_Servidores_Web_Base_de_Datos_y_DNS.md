@@ -6,7 +6,7 @@ Tags: OpenStack, bind9, Apache, MySQL, MariaDB
 
 ## Servidor DNS
 
-**Vamos a instalar un servidor DNS en *Freston* que nos permita gestionar la resolución directa e inversa de nuestros nombres. Cada alumno va a poseer un servidor dns con autoridad sobre un subdominio de nuestro dominio principal `gonzalonazareno.org`, que se llamará `(nombre).gonzalonazareno.org`. A partir de este momento no será necesario la resolución estática en los servidores.**
+**Vamos a instalar un servidor DNS en *Freston* que nos permita gestionar la resolución directa e inversa de nuestros nombres. Mi subdominio dentro del dominio principal `gonzalonazareno.org`, se llamará `javierpzh.gonzalonazareno.org`. A partir de este momento no será necesario la resolución estática en los servidores.**
 
 **Determina la regla DNAT en *Dulcinea* para que podamos hacer consultas DNS desde el exterior**
 
@@ -46,48 +46,85 @@ Vamos a instalar el servidor bind9:
 apt install bind9 -y
 </pre>
 
-Una vez instalado, debemos modificar su fichero de configuración, para ello nos dirigimos a `/etc/bind/named.conf.local` y añadimos el siguiente bloque:
+Una vez instalado, vamos a pasar a definir las vistas que vamos a crear posteriormente. Para ello, nos dirigimos al fichero `/etc/bind/named.conf.local` y añadimos los siguientes bloques que definirán cada una de las vistas:
 
 <pre>
-include "/etc/bind/zones.rfc1918";
+view red_externa {
+        match-clients {172.22.0.0/15; 192.168.202.2;};
+        allow-recursion { any; };
 
-zone "javierpzh.gonzalonazareno.org" {
-        type master;
-        file "/var/cache/bind/db.javierpzh.gonzalonazareno.org";
+        include "/etc/bind/zones.rfc1918";
+
+        zone "javierpzh.gonzalonazareno.org" {
+          type master;
+          file "/var/cache/bind/db.javierpzh.gonzalonazareno.org";
+        };
 };
 
-zone "0.0.10.in-addr.arpa" {
-        type master;
-        file "/var/cache/bind/db.0.0.10";
+view red_DMZ {
+        match-clients {10.0.2.0/24;};
+        allow-recursion { any; };
+
+        include "/etc/bind/zones.rfc1918";
+
+        zone "javierpzh.gonzalonazareno.org" {
+          type master;
+          file "/var/cache/bind/db.javierpzh.gonzalonazareno.org";
+        };
+
+        zone "1.0.10.in-addr.arpa" {
+          type master;
+          file "/var/cache/bind/db.1.0.10";
+        };
+
+        zone "2.0.10.in-addr.arpa" {
+          type master;
+          file "/var/cache/bind/db.2.0.10";
+        };
 };
 
-zone "1.0.10.in-addr.arpa" {
-        type master;
-        file "/var/cache/bind/db.1.0.10";
-};
+view red_interna {
+        match-clients {10.0.1.0/24;};
+        allow-recursion { any; };
 
-zone "2.0.10.in-addr.arpa" {
-        type master;
-        file "/var/cache/bind/db.2.0.10";
+        include "/etc/bind/zones.rfc1918";
+
+        zone "javierpzh.gonzalonazareno.org" {
+          type master;
+          file "/var/cache/bind/db.javierpzh.gonzalonazareno.org";
+        };
+
+        zone "1.0.10.in-addr.arpa" {
+          type master;
+          file "/var/cache/bind/db.1.0.10";
+        };
+
+        zone "2.0.10.in-addr.arpa" {
+          type master;
+          file "/var/cache/bind/db.2.0.10";
+        };
 };
 </pre>
 
 Vamos a explicar las líneas que acabamos de añadir.
 
-En primer lugar, hemos escrito una línea que hacer referencia a un archivo llamado `zones.rfc1918`, que es un fichero de configuración de las zonas privadas que queremos definir.
+En primer lugar, vemos que hemos añadido tres vistas distintas, una para cada una de las redes con las que vamos a interaccionar. La primera está destinada a la **red externa**, la segunda a la **red DMZ**, y la tercera a la **red interna**.
 
-Los bloques definen las zonas de las que el servidor tiene autoridad, la **zona de resolución directa** `javierpzh.gonzalonazareno.org` con sus correspondientes **zonas de resolución inversa** `0.0.10.in-addr.arpa`, `1.0.10.in-addr.arpa` y `2.0.10.in-addr.arpa`, además vemos como hemos especificado que actúen como **maestro**.
+Podemos ver que he escrito una línea que hacer referencia a un archivo llamado `zones.rfc1918`, que es un fichero de configuración de las zonas privadas que queremos definir.
+
+Los bloques definen las zonas de las que el servidor tiene autoridad, la **zona de resolución directa** `javierpzh.gonzalonazareno.org`, y sus correspondientes **zonas de resolución inversa** `1.0.10.in-addr.arpa` y `2.0.10.in-addr.arpa`, además vemos como hemos especificado que actúen como **maestro**.
 
 Una vez explicado, tenemos que dirigirnos al fichero `/etc/bind/named.conf.options`, y aquí debemos introducir las siguientes líneas:
 
 <pre>
-recursion yes;
+allow-query { 172.22.0.0/15;10.0.1.0/24;10.0.2.0/24;192.168.202.2; };
+
 allow-recursion { any; };
-listen-on { any; };
-allow-transfer { none; };
+
+allow-query-cache { any; };
 </pre>
 
-De manera, que el fichero `/etc/bind/named.conf.options` quedaría así:
+De manera que el contenido total del fichero sería:
 
 <pre>
 options {
@@ -99,7 +136,11 @@ options {
 
         recursion yes;
 
+        allow-query { 172.22.0.0/15;10.0.1.0/24;10.0.2.0/24;192.168.202.2; };
+
         allow-recursion { any; };
+
+        allow-query-cache { any; };
 
         listen-on { any; };
 
@@ -108,33 +149,31 @@ options {
 };
 </pre>
 
-Ahora, vamos a configurar las zonas que definimos en el paso anterior. En mi caso copio el fichero `/etc/bind/db.empty` para utilizarlo como plantilla del nuevo archivo de configuración de esta **zona de resolución directa** `javierpzh.gonzalonazareno.org`.
+Ahora, vamos a configurar las zonas que definimos en el paso anterior. En mi caso copio el fichero `/etc/bind/db.empty` para utilizarlo como plantilla de los nuevos archivos de configuración.
+
+En primer lugar, voy a definir y configurar la zona que utilizaremos en la vista destinada para la **red externa**:
 
 <pre>
-root@freston:~# cp /etc/bind/db.empty /var/cache/bind/javierpzh.gonzalonazareno.org
+root@freston:~# cp /etc/bind/db.empty /var/cache/bind/db.externa.javierpzh.gonzalonazareno.org
 </pre>
 
-Hecho esto, empezamos a editar nuestro archivo `javierpzh.gonzalonazareno.org`:
+Hecho esto, empezamos a editar nuestro archivo `db.externa.javierpzh.gonzalonazareno.org`:
 
 <pre>
 $TTL    86400
-@       IN      SOA     javierpzh.gonzalonazareno.org. root.localhost. (
-                        20121801        ; Serial
+@       IN      SOA     dulcinea.javierpzh.gonzalonazareno.org. root.localhost. (
+                        20123001        ; Serial
                          604800         ; Refresh
                           86400         ; Retry
                         2419200         ; Expire
                           86400 )       ; Negative Cache TTL
 ;
-@       IN      NS      javierpzh.gonzalonazareno.org.
+@       IN      NS      dulcinea.javierpzh.gonzalonazareno.org.
 
 $ORIGIN javierpzh.gonzalonazareno.org.
 
-dulcinea        IN      A       10.0.0.8
-dulcinea        IN      A       10.0.1.11
-dulcinea        IN      A       10.0.2.10
-sancho          IN      A       10.0.1.8
-freston         IN      A       10.0.1.6
-quijote         IN      A       10.0.2.6
+dulcinea        IN      A       172.22.200.183
+www             IN      CNAME   dulcinea
 </pre>
 
 Voy a explicar el bloque añadido.
@@ -271,7 +310,7 @@ Hecho esto, ahora nuestros clientes utilizarán nuestro servidor DNS *bind9* ubi
 
 ## Servidor Web
 
-**En *Quijote (CentOS)* (Servidor que está en la DMZ) vamos a instalar un servidor web *Apache*. Configura el servidor para que sea capaz de ejecutar código PHP (para ello vamos a usar un servidor de aplicaciones `php-fpm`). Entrega una captura de pantalla accediendo a `www.(nombre).gonzalonazareno.org/info.php` donde se vea la salida del fichero `info.php`. Investiga la reglas *DNAT* de cortafuegos que tienes que configurar en *Dulcinea* para, cuando accedemos a la IP flotante se acceda al servidor web.**
+**En *Quijote (CentOS)* (Servidor que está en la DMZ) vamos a instalar un servidor web *Apache*. Vamos a configurar el servidor para que sea capaz de ejecutar código PHP (para ello vamos a usar un servidor de aplicaciones `php-fpm`). Entrega una captura de pantalla accediendo a `www.(nombre).gonzalonazareno.org/info.php` donde se vea la salida del fichero `info.php`. Investiga la reglas *DNAT* de cortafuegos que tienes que configurar en *Dulcinea* para, cuando accedemos a la IP flotante se acceda al servidor web.**
 
 Antes de instalar el servidor web, vamos a dirigirnos a **Dulcinea** y vamos a crear la regla necesaria para hacer **DNAT**. La regla es la siguiente:
 

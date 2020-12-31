@@ -136,7 +136,7 @@ root@buster:/etc/apache2/sites-available# cp 000-default.conf guacamole.conf
 root@buster:/etc/apache2/sites-available# nano guacamole.conf
 </pre>
 
-
+Editamos el nuevo *virtualhost* y queda con este aspecto:
 
 <pre>
 <\VirtualHost *:80\>
@@ -152,8 +152,8 @@ root@buster:/etc/apache2/sites-available# nano guacamole.conf
         <\Location /guacamole/\>
           Order allow,deny
           Allow from all
-          ProxyPass http://localhost:8080/guacamole-1.2.0/ flushpackets=on
-          ProxyPassReverse http://localhost:8080/guacamole-1.2.0/
+          ProxyPass http://localhost:8080/guacamole/ flushpackets=on
+          ProxyPassReverse http://localhost:8080/guacamole/
         <\/Location\>
 
 <\/VirtualHost\>
@@ -161,7 +161,9 @@ root@buster:/etc/apache2/sites-available# nano guacamole.conf
 
 **Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
-Podemos ver, como he especificado que el contenido de esta web, estará en `/srv/www/guacamole`, pues bien, para que *Apache* sea capaz de buscar en dicho directorio, debemos dirigirnos al fichero `/etc/apache2/apache2.conf`, y descomentar o añadir el siguiente bloque, ya que por defecto, solo nos proporciona el contenido almacenado en `/var/`:
+El último bloque, hace referencia y sirve para configurar el *proxy inverso*.
+
+También podemos ver, como he especificado que el contenido de esta web, estará en `/srv/www/guacamole`, pues bien, para que *Apache* sea capaz de buscar en dicho directorio, debemos dirigirnos al fichero `/etc/apache2/apache2.conf`, y descomentar o añadir el siguiente bloque, ya que por defecto, solo nos proporciona el contenido almacenado en `/var/`:
 
 <pre>
 <\Directory /srv/\>

@@ -137,18 +137,6 @@ apt install apache2 apache2-utils -y
 
 
 
-#### ¿Has necesitado instalar alguna librería? ¿Has necesitado instalar un conector de una base de datos?
 
-.
-
-#### Entrega una captura de pantalla donde se vea la aplicación funcionando
-
-.
-
-#### Realiza la configuración necesaria en Apache2 y tomcat (utilizando el protocolo AJP) para que la aplicación sea servida por el servidor web
-
-.
-
-#### Entrega una captura de pantalla donde se vea la aplicación funcionando servida por Apache2
 
 .

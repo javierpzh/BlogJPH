@@ -189,18 +189,12 @@ Por último, vamos a reiniciar nuestro servidor web:
 systemctl restart apache2
 </pre>
 
+Nos dirigimos a nuestro navegador e introducimos la dirección `www.guacamole-javierpzh.com`:
 
+![.](images/iaw_despliegue_de_CMS_Java/guacamole8080.png)
 
+Hacemos *click* para dirigirnos al enlace:
 
+![.](images/iaw_despliegue_de_CMS_Java/guacamole8080.png)
 
-
-
-
-
-
-
-
-
-
-
-.
+Ya estaríamos viendo nuestra aplicación servida por nuestro servidor web *Apache*, por lo que habríamos terminado con el *post*.

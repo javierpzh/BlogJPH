@@ -114,7 +114,13 @@ Podemos ver que he escrito una línea que hacer referencia a un archivo llamado 
 
 Los bloques definen las zonas de las que el servidor tiene autoridad, la **zona de resolución directa** `javierpzh.gonzalonazareno.org`, y sus correspondientes **zonas de resolución inversa** `1.0.10.in-addr.arpa` y `2.0.10.in-addr.arpa`, además vemos como hemos especificado que actúen como **maestro**.
 
-Una vez explicado, tenemos que dirigirnos al fichero `/etc/bind/named.conf.options`, y aquí debemos introducir las siguientes líneas:
+Una vez explicado, como vamos a utilizar distintas vistas, debemos dirigirnos al fichero `/etc/bind/named.conf` y comentar (para comentar se utilizan dos caracteres `/`) o eliminar la siguiente línea:
+
+<pre>
+include "/etc/bind/named.conf.default-zones";
+</pre>
+
+Hecho esto, tenemos que dirigirnos al fichero `/etc/bind/named.conf.options`, e introducir las siguientes líneas:
 
 <pre>
 allow-query { 172.22.0.0/15;10.0.1.0/24;10.0.2.0/24;192.168.202.2; };
@@ -309,32 +315,35 @@ iptables -t nat -A PREROUTING -p udp --dport 53 -i eth0 -j DNAT --to 10.0.1.6:53
 
 Esta regla, lo que hace, es redirigir el tráfico que proviene desde la interfaz **eth0** y su destino es el puerto **53**, a la dirección **10.0.1.6:53**, es decir, la IP de **Freston** y el puerto **53** de dicha máquina.
 
-
-
-
-
-
-
-
-
-
---------------------------------------------------------------------------------
-
 Reiniciamos el servidor DNS para que se apliquen los nuevos cambios:
 
 <pre>
 systemctl restart bind9
 </pre>
 
-Vamos a añadir al fichero `/etc/resolv.conf` de las máquinas clientes la siguiente línea con la IP del servidor DNS:
+Bien, hemos terminado de configurar nuestro servidor DNS, pero debemos configurar nuestros clientes para que hagan uso de este servidor. Para ello debemos realizar las siguientes modificaciones en cada máquina:
+
+**Dulcinea, Freston y Sancho:**
+
+Vamos a añadir al fichero `/etc/resolv.conf` las siguientes líneas con la información del servidor DNS:
 
 <pre>
-nameserver 172.22.200.183
+nameserver 10.0.1.6
+search javierpzh.gonzalonazareno.org
+</pre>
+
+**Quijote:**
+
+Vamos a añadir al fichero `/etc/resolv.conf` las siguientes líneas con la información del servidor DNS:
+
+<pre>
+nameserver 10.0.1.6
+search javierpzh.gonzalonazareno.org
 </pre>
 
 Hecho esto, ahora nuestros clientes utilizarán nuestro servidor DNS *bind9* ubicado en *Freston*.
 
-
+Como ya poseemos un servidor DNS bien configurado, podemos eliminar las entradas referentes a los distintos equipos en el fichero `/etc/hosts` de manera que no nos hará falta hacer uso de la resolución estática.
 
 
 

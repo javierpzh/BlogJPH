@@ -108,7 +108,7 @@ Hecho esto, vamos a probar a acceder a la dirección `192.168.200.20:8080/guacam
 
 Vemos que podemos acceder a la aplicación.
 
-Hecho esto, vamos a llevar a cabo el último paso, que sería el de configurar nuestro servidor web *Apache* para que nos sirva nuestro CMS *Guacamole*, para lo que debemos realizar un **proxy inverso**.
+Hecho esto, vamos a llevar a cabo el último paso, que sería el de configurar nuestro servidor web **Apache** para que nos sirva nuestro CMS *Guacamole*, para lo que debemos realizar un **proxy inverso**.
 
 Procedemos a instalar nuestro servidor web, para ello utilizamos el siguiente comando:
 
@@ -116,9 +116,41 @@ Procedemos a instalar nuestro servidor web, para ello utilizamos el siguiente co
 apt install apache2 apache2-utils -y
 </pre>
 
+Ahora, necesitamos instalar el paquete que contiene los módulos fundamentales para conectar *Apache* con *tomcat9*:
+
+<pre>
+apt install libapache2-mod-jk -y
+</pre>
+
+Habilitamos los siguiente módulos:
+
+<pre>
+a2enmod proxy proxy_http
+</pre>
+
+Instalado y habilitado, vamos a crear un nuevo *virtualhost*. He copiado el fichero `000-default.conf` para que me sirva de plantilla para el *virtualhost* que verdaderamente voy a configurar, que es el llamado `guacamole.conf`:
+
+<pre>
+root@buster:/etc/apache2/sites-available# cp 000-default.conf guacamole.conf
+
+root@buster:/etc/apache2/sites-available# nano guacamole.conf
+</pre>
 
 
 
+<pre>
+
+</pre>
+
+
+
+<pre>
+<\Directory /srv/\>
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+<\/Directory\>
+</pre>
 
 
 

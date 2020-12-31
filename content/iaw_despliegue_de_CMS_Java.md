@@ -189,6 +189,13 @@ Por último, vamos a reiniciar nuestro servidor web:
 systemctl restart apache2
 </pre>
 
+Voy a añadir a mi máquina anfitriona la siguiente línea en el fichero `/etc/hosts` para poder utilzar la
+resolución estática:
+
+<pre>
+192.168.200.20  www.guacamole-javierpzh.com
+</pre>
+
 Nos dirigimos a nuestro navegador e introducimos la dirección `www.guacamole-javierpzh.com`:
 
 ![.](images/iaw_despliegue_de_CMS_Java/proxyinverso.png)

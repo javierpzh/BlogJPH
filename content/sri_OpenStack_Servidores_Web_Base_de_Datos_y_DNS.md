@@ -178,47 +178,49 @@ www             IN      CNAME   dulcinea
 
 Voy a explicar el bloque añadido.
 
-Vemos que hay un apartado llamado **Serial**, este apartado es muy importante, ya que es el identificador de la zona, que debemos incrementar cada vez que hagamos un cambio. Se recomienda que el valor sea de este formato **YYMMDDNN**, es decir, la fecha de modificación y el número de la modificación. En mi caso he establecido **20121801** pues estoy realizando esta práctica el *18 de diciembre de 2020* y es la primera modificación que hago.
+Vemos que hay un apartado llamado **Serial**, este apartado es muy importante, ya que es el identificador de la zona, que debemos incrementar cada vez que hagamos un cambio. Se recomienda que el valor sea de este formato **YYMMDDNN**, es decir, la fecha de modificación y el número de la modificación. En mi caso he establecido **20123001** pues estoy realizando esta práctica el *30 de diciembre de 2020* y es la primera modificación que hago.
 
-Los registros de tipo **SOA** representan las autoridad sobre las zonas.
+Los registros de tipo **SOA** representan la autoridad sobre la zona.
 
 El registro de tipo **NS** define el servidor con privilegios sobre la zona.
 
-El registro **$ORIGIN** se usa para que las líneas que se especifiquen debajo de él, sean autocompletadas con el dominio especificado en dicho registro. Esto nos sirve para evitar poner en cada registro que creemos, la zona, es decir, a los próximos registros que creemos, se les añadirá automáticamente la zona `gonzalonazareno.org`.
+El registro **$ORIGIN** se usa para que las líneas que se especifiquen debajo de él, sean autocompletadas con el dominio especificado en dicho registro. Esto nos sirve para evitar poner en cada registro que creemos, la zona, es decir, a los próximos registros que creemos, se les añadirá automáticamente la zona `javierpzh.gonzalonazareno.org`.
 
 Los registros de tipo **A** especifican la direcciones IP correspondientes al dominio.
 
 Los registros de tipo **CNAME** sirven para apuntar hacia otro de los registros de tipo **A** ya existentes. De manera que es mucho más fácil y cómodo hacer referencia a una dirección a través de un nombre en vez de con la propia dirección en sí.
 
-Explicados estos detalles, vamos a tomar como plantilla otro archivo, esta vez será el `/etc/bind/db.127` y lo copiaremos tres veces, ya que vamos a configurar 3 zonas inversas. Lo guardaremos de nuevo en `/var/cache/bind` con los nombres `db.0.0.10`, `db.1.0.10` y `db.2.0.10`.
+Explicados estos detalles, vamos a continuar con la siguiente
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+tomar como plantilla otro archivo, esta vez será el `/etc/bind/db.127` y lo copiaremos tres veces, ya que vamos a configurar 3 zonas inversas. Lo guardaremos de nuevo en `/var/cache/bind` con los nombres `db.1.0.10` y `db.2.0.10`.
 
 <pre>
-root@freston:~# cp /etc/bind/db.127 /var/cache/bind/db.0.0.10
-
 root@freston:~# cp /etc/bind/db.127 /var/cache/bind/db.1.0.10
 
 root@freston:~# cp /etc/bind/db.127 /var/cache/bind/db.2.0.10
 </pre>
 
 Antes de mostrar como quedarían estos ficheros, hay que decir que por cada registro de tipo **A** que tengamos en nuestro archivo que contiene la zona directa, tenemos que añadir un registro de tipo **PTR**.
-
-En mi caso, el fichero `/var/cache/bind/db.0.0.10` tendría este aspecto:
-
-<pre>
-$TTL    604800
-@       IN      SOA     javierpzh.gonzalonazareno.org. root.localhost. (
-                        20121501        ; Serial
-                         604800         ; Refresh
-                          86400         ; Retry
-                        2419200         ; Expire
-                         604800 )       ; Negative Cache TTL
-;
-@       IN      NS      javierpzh.gonzalonazareno.org.
-
-$ORIGIN 0.0.10.in-addr.arpa.
-
-183     IN      PTR     javierpzh.gonzalonazareno.org.
-</pre>
 
 En mi caso, el fichero `/var/cache/bind/db.1.0.10` tendría este aspecto:
 

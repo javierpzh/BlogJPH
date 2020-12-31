@@ -175,8 +175,17 @@ También podemos ver, como he especificado que el contenido de esta web, estará
 
 **Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
+En este punto, solo nos quedaría crear un fichero `index.html` en la ruta `/srv/www/guacamole`. En mi caso el contenido de este fichero es el siguiente:
 
+<pre>
 
+</pre>
+
+Por último, vamos a reiniciar nuestro servidor web:
+
+<pre>
+systemctl restart apache2
+</pre>
 
 
 

@@ -108,9 +108,13 @@ Hecho esto, vamos a probar a acceder a la dirección `192.168.200.20:8080/guacam
 
 Vemos que podemos acceder a la aplicación.
 
-Hecho esto, vamos a proceder a llevar a cabo el último paso, que sería el de configurar nuestro servidor web *Apache* para que nos sirva nuestro CMS *Guacamole*, para lo que debemos realizar un **proxy inverso**.
+Hecho esto, vamos a llevar a cabo el último paso, que sería el de configurar nuestro servidor web *Apache* para que nos sirva nuestro CMS *Guacamole*, para lo que debemos realizar un **proxy inverso**.
 
+Procedemos a instalar nuestro servidor web, para ello utilizamos el siguiente comando:
 
+<pre>
+apt install apache2 apache-utils -y
+</pre>
 
 
 

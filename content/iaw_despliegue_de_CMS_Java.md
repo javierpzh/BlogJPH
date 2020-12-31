@@ -178,8 +178,10 @@ También podemos ver, como he especificado que el contenido de esta web, estará
 En este punto, solo nos quedaría crear un fichero `index.html` en la ruta `/srv/www/guacamole`. En mi caso el contenido de este fichero es el siguiente:
 
 <pre>
-
+<\h1\>Si quieres ir a Guacamole,haz click <\a href=http://www.guacamole-javierpzh.com/guacamole/#/\> aqui<\/a\><\/h1\>
 </pre>
+
+**Atención:** a estas líneas hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiarlas, debemos tener en cuenta esto.
 
 Por último, vamos a reiniciar nuestro servidor web:
 

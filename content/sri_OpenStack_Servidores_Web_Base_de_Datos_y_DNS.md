@@ -299,9 +299,15 @@ $ORIGIN 2.0.10.in-addr.arpa.
 6     IN      PTR     quijote.javierpzh.gonzalonazareno.org.
 </pre>
 
+Hemos terminado de crear las diferentes zonas, y tan solo nos quedaría crear la regla **DNAT** en **Dulcinea** para poder realizar las consultas a nuestro servidor DNS instalado en **Freston**.
 
+Añadimos la siguiente regla:
 
+<pre>
+iptables -t nat -A PREROUTING -p udp --dport 53 -i eth0 -j DNAT --to 10.0.1.6:53
+</pre>
 
+Esta regla, lo que hace, es redirigir el tráfico que proviene desde la interfaz **eth0** y su destino es el puerto **53**, a la dirección **10.0.1.6:53**, es decir, la IP de **Freston** y el puerto **53** de dicha máquina.
 
 
 

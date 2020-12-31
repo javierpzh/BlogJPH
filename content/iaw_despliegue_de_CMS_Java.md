@@ -6,7 +6,7 @@ Tags: CMS, Java, Tomcat
 
 **En esta práctica vamos a desplegar un [CMS escrito en Java](https://java-source.net/open-source/content-managment-systems). Puedes escoger la aplicación que vas a desplegar de CMS escritos en Java o de [Aplicaciones Java en Bitnami](https://bitnami.com/tag/java).**
 
-#### Indica la aplicación escogida y su funcionalidad
+#### Aplicación escogida y su funcionalidad
 
 He decidido escoger el **CMS escrito en Java**, llamado **Guacamole**.
 
@@ -15,7 +15,7 @@ He decidido escoger el **CMS escrito en Java**, llamado **Guacamole**.
 Gracias a HTML5, una vez tengamos instalado y configurado *Apache Guacamole*, tan solo tenemos que conectarnos mediante el navegador web para empezar a trabajar remotamente.
 
 
-#### Escribe una guía de los pasos fundamentales para realizar la instalación
+#### Guía de los pasos fundamentales para realizar la instalación
 
 1. Instalar *tomcat 9*.
 
@@ -25,9 +25,7 @@ Gracias a HTML5, una vez tengamos instalado y configurado *Apache Guacamole*, ta
 
 4. Acceder a la aplicación.
 
-5. Configurar el fichero `/etc/tomcat9/server.xml` para activar el conector `ajp`.
-
-6. Realizar un **proxy inverso** en **Apache2** y realizar la configuración necesaria.
+5. Realizar un **proxy inverso** en **Apache2** y realizar la configuración necesaria.
 
 A continuación vamos a realizar la instalación de *tomcat 9* y de la aplicación en sí.
 

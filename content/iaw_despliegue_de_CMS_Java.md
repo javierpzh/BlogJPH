@@ -113,7 +113,7 @@ Hecho esto, vamos a llevar a cabo el último paso, que sería el de configurar n
 Procedemos a instalar nuestro servidor web, para ello utilizamos el siguiente comando:
 
 <pre>
-apt install apache2 apache-utils -y
+apt install apache2 apache2-utils -y
 </pre>
 
 

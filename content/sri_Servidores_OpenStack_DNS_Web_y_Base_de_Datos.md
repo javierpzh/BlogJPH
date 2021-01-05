@@ -484,27 +484,44 @@ Y accedemos de nuevo a la dirección `www.javierpzh.gonzalonazareno.org`:
 
 Vemos como nos muestra el nuevo *virtualhost*.
 
-Por último, vamos a configurar este servidor para que ejecute código **PHP**. Utilizaremos el servidor de aplicaciones `php-fpm`.
+Por último, vamos a configurar este servidor para que ejecute código **PHP**. Utilizaremos el servidor de aplicaciones `php-fpm`, por tanto, lo instalamos:
 
 <pre>
 dnf install php php-fpm -y
 </pre>
 
+Una vez instalado, vamos a habilitar su arranque en cada inicio del sistema:
 
+<pre>
+[root@quijote iesgn]# systemctl enable php-fpm
+Created symlink /etc/systemd/system/multi-user.target.wants/php-fpm.service → /usr/lib/systemd/system/php-fpm.service.
+<pre>
 
+Hecho esto, ya habríamos instalado nuestro servidor de aplicaciones *PHP*, pero vamos a comprobar que funciona de manera correcta. Para esto, vamos a añadir a nuestro *virtualhost* los siguientes bloques:
 
+<pre>
+<\Proxy "unix:/run/php-fpm/www.sock|fcgi://php-fpm"\>
+    ProxySet disablereuse=off
+<\/Proxy\>
 
+<\FilesMatch \.php$\>
+    SetHandler proxy:fcgi://php-fpm
+<\/FilesMatch\>
+</pre>
 
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
+En la ruta `/var/www/iesgn` voy a crear un archivo llamado `info.php` que contendrá la siguiente línea:
 
+<pre>
+<?php phpinfo(); ?>
+</pre>
 
+Si accedemos a la dirección `www.javierpzh.gonzalonazareno.org/info.php`:
 
+![.](images/sri_Servidores_OpenStack_DNS_Web_y_Base_de_Datos/quijoteapachephpinfo.png)
 
-
-
-
-
-
+Vemos como nuestro servidor ejecuta código *PHP*, por lo que habríamos terminado.
 
 
 ## Servidor de base de datos

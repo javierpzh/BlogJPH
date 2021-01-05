@@ -420,12 +420,27 @@ Hecho esto, si nos dirigimos nuestro navegador e introducimos la dirección IP d
 
 ![.](images/sri_OpenStack_Servidores_Web_Base_de_Datos_y_DNS/quijoteapache.png)
 
-Vemos accediendo a la IP de *Dulcinea* nos muestra la página servida por nuestro servidor web, que se encuentra en *Quijote*, por lo que tanto la regla *DNAT* creada en *Dulcinea*, como el servidor *httpd*, están bien.
+Vemos que accediendo a la IP de *Dulcinea* nos muestra la página servida por nuestro servidor web, que se encuentra en *Quijote*, por lo que, tanto la regla *DNAT* creada en *Dulcinea*, como el servidor *httpd*, funcionan correctamente.
 
+En *Centos*, la instalación de un servidor *Apache* es distinta respecto a lo que estamos acostumbrados a utilizar, *Debian*. Podemos apreciar que no poseemos ni la carpeta `sites-availables` ni la carpeta de `sites-enabled`, por lo que nosotros mismos vamos a proceder a crearlas, para ello nos dirigimos al directorio `/etc/httpd` y las creamos:
 
+<pre>
+[root@quijote ~]# ls /etc/httpd/
+conf  conf.d  conf.modules.d  logs  modules  run  state
 
+[root@quijote ~]# mkdir /etc/httpd/{sites-availble,sites-enabled}
 
+[root@quijote ~]# ls /etc/httpd/
+conf  conf.d  conf.modules.d  logs  modules  run  sites-availble  sites-enabled  state
+</pre>
 
+Una vez disponemos de las carpetas donde almacenaremos nuestros *virtualhost*, debemos dirigirnos al fichero `/etc/httpd/conf/httpd.conf` e indicar que los *virtualhost* se almacenan en la carpeta `sites-enabled`. Para ello añadimos la siguiente línea en dicho fichero:
+
+<pre>
+IncludeOptional sites-enabled/*.conf
+</pre>
+
+Hecho esto, ya procederemos a crear nuestro primer *virtualhost*. 
 
 
 

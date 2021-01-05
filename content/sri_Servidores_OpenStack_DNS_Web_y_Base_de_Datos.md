@@ -313,7 +313,7 @@ Añadimos la siguiente regla:
 iptables -t nat -A PREROUTING -p udp --dport 53 -i eth0 -j DNAT --to 10.0.1.6:53
 </pre>
 
-Esta regla, lo que hace, es redirigir el tráfico que proviene desde la interfaz **eth0** y su destino es el puerto **53**, a la dirección **10.0.1.6:53**, es decir, la IP de **Freston** y el puerto **53** de dicha máquina.
+Esta regla, lo que hace, es redirigir el tráfico que proviene desde la interfaz **eth0** y su destino es el puerto **53**, a la dirección **10.0.1.6:53**, es decir, la IP de **Freston** y el puerto **53** de dicha máquina, donde se encontrará nuestro servidor DNS.
 
 Reiniciamos el servidor DNS para que se apliquen los nuevos cambios:
 
@@ -373,8 +373,10 @@ Como ya poseemos un servidor DNS bien configurado, podemos eliminar las entradas
 Antes de instalar el servidor web, vamos a dirigirnos a **Dulcinea** y vamos a crear la regla necesaria para hacer **DNAT**. La regla es la siguiente:
 
 <pre>
-
+iptables -t nat -A PREROUTING -p tcp --dport 80 -i eth0 -j DNAT --to 10.0.2.6:80
 </pre>
+
+Esta regla, lo que hace, es redirigir el tráfico que proviene desde la interfaz **eth0** y su destino es el puerto **80**, a la dirección **10.0.2.6:80**, es decir, la IP de **Quijote** y el puerto **80** de dicha máquina, donde se encontrará nuestro servidor web.
 
 Una vez tenemos creada la regla *DNAT* en *Dulcinea*, procedemos a instalar el servidor web **Apache** en *Quijote*, que lo vamos a instalar con este comando, ya que en **CentOS** *Apache* se incluye en el paquete **httpd**:
 

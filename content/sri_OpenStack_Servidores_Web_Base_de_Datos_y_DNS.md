@@ -1,4 +1,4 @@
-Title: OpenStack: Servidores Web, Base de Datos y DNS
+Title: Servidores OpenStack: DNS, Web y Base de Datos
 Date: 2021/01/04
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg

@@ -511,11 +511,7 @@ Hecho esto, ya habríamos instalado nuestro servidor de aplicaciones *PHP*, pero
 
 **Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
-En la ruta `/var/www/iesgn` voy a crear un archivo llamado `info.php` que contendrá la siguiente línea:
-
-<pre>
-<?php phpinfo(); ?>
-</pre>
+En la ruta `/var/www/iesgn` voy a crear un archivo llamado `info.php` que contendrá la siguiente línea: `<?php phpinfo(); ?>`.
 
 Si accedemos a la dirección `www.javierpzh.gonzalonazareno.org/info.php`:
 

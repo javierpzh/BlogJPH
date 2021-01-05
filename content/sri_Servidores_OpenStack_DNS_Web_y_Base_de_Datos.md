@@ -440,7 +440,32 @@ Una vez disponemos de las carpetas donde almacenaremos nuestros *virtualhost*, d
 IncludeOptional sites-enabled/*.conf
 </pre>
 
-Hecho esto, ya procederemos a crear nuestro primer *virtualhost*. 
+Hecho esto, ya procederemos a crear nuestro primer *virtualhost*. En mi caso recibirá el nombre de `javierpzh.gonzalonazareno.conf` y poseerá este aspecto:
+
+<pre>
+<\VirtualHost *:80\>
+
+    ServerName www.javierpzh.gonzalonazareno.org
+    DocumentRoot /var/www/iesgn
+
+    ErrorLog /var/www/iesgn/log/error.log
+    CustomLog /var/www/iesgn/log/requests.log combined
+
+<\/VirtualHost\>
+</pre>
+
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
+
+Ahora, vamos a habilitar este nuevo *virtualhost*, creando un enlace simbólico hacia la ruta `/etc/httpd/sites-enabled`.
+
+<pre>
+[root@quijote sites-availble]# ln -s /etc/httpd/sites-availble/javierpzh.gonzalonazareno.conf /etc/httpd/sites-enabled/
+</pre>
+
+En este punto, tan solo nos quedaría crear un fichero `index.html` en la ruta especificada en el apartado **DocumentRoot**, que en mi caso, es `/var/www/iesgn`.
+
+
+
 
 
 

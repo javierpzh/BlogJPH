@@ -416,11 +416,11 @@ Habilitamos para que este servicio se inicie en cada arranque del sistema.
 Created symlink /etc/systemd/system/multi-user.target.wants/httpd.service → /usr/lib/systemd/system/httpd.service.
 </pre>
 
-Hecho esto, si nos dirigimos nuestro navegador e introducimos la dirección IP de *Dulcinea*, nos debe aparecer una página como esta:
+Hecho esto, si nos dirigimos nuestro navegador e introducimos la dirección `www.javierpzh.gonzalonazareno.org`, nos debe aparecer una página como esta:
 
 ![.](images/sri_Servidores_OpenStack_DNS_Web_y_Base_de_Datos/quijoteapache.png)
 
-Vemos que accediendo a la IP de *Dulcinea* nos muestra la página servida por nuestro servidor web, que se encuentra en *Quijote*, por lo que, tanto la regla *DNAT* creada en *Dulcinea*, como el servidor *httpd*, funcionan correctamente.
+Vemos que accediendo a `www.javierpzh.gonzalonazareno.org` nos muestra la página servida por nuestro servidor web, que se encuentra en *Quijote*, por lo que, tanto la regla *DNAT* creada en *Dulcinea*, como el servidor *httpd*, funcionan correctamente.
 
 En *Centos*, la instalación de un servidor *Apache* es distinta respecto a lo que estamos acostumbrados a utilizar, *Debian*. Podemos apreciar que no poseemos ni la carpeta `sites-availables` ni la carpeta de `sites-enabled`, por lo que nosotros mismos vamos a proceder a crearlas, para ello nos dirigimos al directorio `/etc/httpd` y las creamos:
 
@@ -462,12 +462,25 @@ Ahora, vamos a habilitar este nuevo *virtualhost*, creando un enlace simbólico 
 [root@quijote sites-availble]# ln -s /etc/httpd/sites-availble/javierpzh.gonzalonazareno.conf /etc/httpd/sites-enabled/
 </pre>
 
-En este punto, tan solo nos quedaría crear un fichero `index.html` en la ruta especificada en el apartado **DocumentRoot**, que en mi caso, es `/var/www/iesgn`.
+En este punto, tan solo nos quedaría crear un fichero `index.html` en la ruta especificada en el apartado **DocumentRoot**, que en mi caso, es `/var/www/iesgn`. Mi fichero `index.html` quedaría así:
 
+<pre>
+<\h1\>Pagina de Javier Perez Hidalgo, alumno del Gonzalo Nazareno<\/h1\>
+</pre>
 
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
+También debemos crear dentro del directorio `/var/www/iesgn`, una carpeta llamada `log`.
 
+Reiniciamos nuestro servidor web:
 
+<pre>
+systemctl restart httpd
+</pre>
+
+Y accedemos de nuevo a la dirección `www.javierpzh.gonzalonazareno.org`:
+
+![.](images/sri_Servidores_OpenStack_DNS_Web_y_Base_de_Datos/quijoteapachevirtualhost.png)
 
 
 

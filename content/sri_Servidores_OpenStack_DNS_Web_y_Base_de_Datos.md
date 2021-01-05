@@ -495,7 +495,7 @@ Una vez instalado, vamos a habilitar su arranque en cada inicio del sistema:
 <pre>
 [root@quijote iesgn]# systemctl enable php-fpm
 Created symlink /etc/systemd/system/multi-user.target.wants/php-fpm.service → /usr/lib/systemd/system/php-fpm.service.
-<pre>
+</pre>
 
 Hecho esto, ya habríamos instalado nuestro servidor de aplicaciones *PHP*, pero vamos a comprobar que funciona de manera correcta. Para esto, vamos a añadir a nuestro *virtualhost* los siguientes bloques:
 

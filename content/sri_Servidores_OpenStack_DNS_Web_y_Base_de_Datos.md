@@ -315,6 +315,12 @@ iptables -t nat -A PREROUTING -p udp --dport 53 -i eth0 -j DNAT --to 10.0.1.6:53
 
 Esta regla, lo que hace, es redirigir el tráfico que proviene desde la interfaz **eth0** y su destino es el puerto **53**, a la dirección **10.0.1.6:53**, es decir, la IP de **Freston** y el puerto **53** de dicha máquina, donde se encontrará nuestro servidor DNS.
 
+**Importante:** es muy recomendable instalar el paquete `iptables-persistent`, ya que esto hará que en cada arranque del sistema las reglas que hemos configurado se levanten automáticamente, siempre y cuando las guardemos en el fichero `/etc/iptables/rules.v4`. Por tanto vamos a guardar esta regla para que se levente en cada inicio:
+
+<pre>
+iptables-save > /etc/iptables/rules.v4
+</pre>
+
 Reiniciamos el servidor DNS para que se apliquen los nuevos cambios:
 
 <pre>
@@ -377,6 +383,12 @@ iptables -t nat -A PREROUTING -p tcp --dport 80 -i eth0 -j DNAT --to 10.0.2.6:80
 </pre>
 
 Esta regla, lo que hace, es redirigir el tráfico que proviene desde la interfaz **eth0** y su destino es el puerto **80**, a la dirección **10.0.2.6:80**, es decir, la IP de **Quijote** y el puerto **80** de dicha máquina, donde se encontrará nuestro servidor web.
+
+**Importante:** es muy recomendable instalar el paquete `iptables-persistent`, ya que esto hará que en cada arranque del sistema las reglas que hemos configurado se levanten automáticamente, siempre y cuando las guardemos en el fichero `/etc/iptables/rules.v4`. Por tanto vamos a guardar esta regla para que se levente en cada inicio:
+
+<pre>
+iptables-save > /etc/iptables/rules.v4
+</pre>
 
 Una vez tenemos creada la regla *DNAT* en *Dulcinea*, procedemos a instalar el servidor web **Apache** en *Quijote*, que lo vamos a instalar con este comando, ya que en **CentOS** *Apache* se incluye en el paquete **httpd**:
 

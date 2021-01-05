@@ -390,7 +390,7 @@ Esta regla, lo que hace, es redirigir el tráfico que proviene desde la interfaz
 iptables-save > /etc/iptables/rules.v4
 </pre>
 
-Una vez tenemos creada la regla *DNAT* en *Dulcinea*, procedemos a instalar el servidor web **Apache** en **Quijote**, que lo vamos a instalar con este comando, ya que en **CentOS** *Apache* se incluye en el paquete **httpd**:
+Una vez tenemos creada la regla *DNAT* en *Dulcinea*, procedemos a instalar el servidor web **Apache** en **Quijote**, que lo vamos a instalar con este comando, ya que en **CentOS**, *Apache* se incluye en el paquete **httpd**:
 
 <pre>
 dnf install httpd -y

@@ -482,6 +482,24 @@ Y accedemos de nuevo a la dirección `www.javierpzh.gonzalonazareno.org`:
 
 ![.](images/sri_Servidores_OpenStack_DNS_Web_y_Base_de_Datos/quijoteapachevirtualhost.png)
 
+Vemos como nos muestra el nuevo *virtualhost*.
+
+Por último, vamos a configurar este servidor para que ejecute código **PHP**. Utilizaremos el servidor de aplicaciones `php-fpm`.
+
+<pre>
+dnf install php php-fpm -y
+</pre>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -418,7 +418,7 @@ Created symlink /etc/systemd/system/multi-user.target.wants/httpd.service → /u
 
 Hecho esto, si nos dirigimos nuestro navegador e introducimos la dirección IP de *Dulcinea*, nos debe aparecer una página como esta:
 
-![.](images/sri_OpenStack_Servidores_Web_Base_de_Datos_y_DNS/quijoteapache.png)
+![.](images/sri_Servidores_OpenStack_DNS_Web_y_Base_de_Datos/quijoteapache.png)
 
 Vemos que accediendo a la IP de *Dulcinea* nos muestra la página servida por nuestro servidor web, que se encuentra en *Quijote*, por lo que, tanto la regla *DNAT* creada en *Dulcinea*, como el servidor *httpd*, funcionan correctamente.
 

@@ -336,6 +336,8 @@ Aunque pensándolo mejor, en mi caso al menos, creo que me interesa más que en 
 
 Esto me servirá para que en el caso, de que en mi DNS ocurra algún error o no se encuentre disponible en algún momento, pueda seguir utilizando otros servidores.
 
+**En las máquinas Debian (Dulcinea y Freston) :**
+
 Para hacer esto, debemos dirigirnos al fichero `/etc/resolvconf/resolv.conf.d/head` que inicialmente posee este aspecto:
 
 <pre>
@@ -366,6 +368,8 @@ search openstacklocal
 </pre>
 
 Podemos apreciar como ha obtenido otros servidores por DHCP, pero en primer lugar se encuentra mi DNS, y por tanto, será al que se le consulte siempre que esté disponible y sea capaz de resolver la petición.
+
+
 
 Hecho esto, ahora nuestros clientes utilizarán nuestro servidor DNS *bind9* ubicado en *Freston*.
 

@@ -4,13 +4,13 @@ Category: Seguridad y Alta Disponibilidad
 Header_Cover: theme/images/banner-seguridad.jpg
 Tags: OpenStack, HTTPS
 
-**En este *post* vamos a configurar de forma adecuada el protocolo HTTPS en nuestro servidor web para nuestra aplicaciones web. Para ello vamos a emitir un certificado *wildcard* en la entidad certificadora [Gonzalo Nazareno](https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/).**
+**En este *post* vamos a configurar de forma adecuada el protocolo HTTPs en nuestro servidor web para nuestra aplicaciones web. Para ello vamos a emitir un certificado *wildcard* en la entidad certificadora [Gonzalo Nazareno](https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/).**
 
 - **Explica los pasos fundamentales para la creación del certificado. Especificando los campos que has rellenado en el fichero CSR.**
 
 Lo primero que debemos hacer es solicitar el certificado **wildcard**.
 
-(Este certificado ya lo creé anteriormente para el uso del protocolo *LDAPs*, puedes ver el *post* [aquí](https://javierpzh.github.io/ldaps.html) y por ello el proceso lo llevo a cabo en la máquina *Freston*. La clave privada y los certificados `.csr` y `.crt` los he copiado a la máquina *Quijote*.)
+(Este certificado ya lo creé anteriormente para el uso del protocolo *LDAPs*, puedes ver el *post* [aquí](https://javierpzh.github.io/ldaps.html) y por ello el proceso lo llevo a cabo en la máquina *Freston*. La clave privada y los certificados `.crt` los he copiado a la máquina *Quijote*.)
 
 Para crear este certificado, vamos a crear una clave privada de **4096 bits**, para ello vamos a utilizar `openssl`. Vamos a guardar esta clave en el directorio `/etc/ssl/private/`. Para crear esta clave privada empleamos el siguiente comando:
 
@@ -74,42 +74,61 @@ Por tanto, pasaré este archivo a mi equipo mediante `scp`.
 Ya explicado el proceso de como crear un certificado de estas características, y poseer el certificado firmado por la entidad certificadora, lo pasamos a *Quijote*. También hemos tenido que descargar el certificado de la entidad *Gonzalo Nazareno*. Por tanto lo vamos a mover también a *Quijote*.
 
 <pre>
-root@freston:~# ls
-gonzalonazareno.crt  wildcard.crt  wildcard.csr
+[centos@quijote ~]$ ls
+freston.key  gonzalonazareno.crt  wildcard.crt
 </pre>
 
-Estos certificados los vamos a mover a la ruta `/etc/ssl/certs`:
+Es importante que todos los archivos, posean a **root** como usuario y grupo propietario, por tanto le cambio el propietario y el grupo. Y la clave privada, como hemos visto antes, debe tener permisos **400**:
 
 <pre>
-root@freston:~# mv gonzalonazareno.crt /etc/ssl/certs/
+[centos@quijote ~]$ sudo chown -R root:root wildcard.crt
 
-root@freston:~# mv wildcard.crt /etc/ssl/certs/
-</pre>
+[centos@quijote ~]$ sudo chown -R root:root gonzalonazareno.crt
 
-Es importante que ambos archivos, posean a **root** como usuario y grupo propietario, por tanto le cambio el propietario y el grupo:
+[centos@quijote ~]$ sudo chown -R root:root freston.key
 
-<pre>
-root@freston:/etc/ssl/certs# chown -R root:root wildcard.crt
-
-root@freston:/etc/ssl/certs# chown -R root:root gonzalonazareno.crt
+[centos@quijote ~]$ sudo chmod 400 freston.key
 </pre>
 
 Aquí podemos ver el resultado:
 
 <pre>
-root@freston:~# ls -l /etc/ssl/certs/ | grep gonzalo
--rw-r--r-- 1 root root   3634 Dec 18 09:34 gonzalonazareno.crt
-
-root@freston:~# ls -l /etc/ssl/certs/ | grep wildcard
--rw-r--r-- 1 root root  10119 Dec 18 09:29 wildcard.crt
+[centos@quijote ~]$ ls -l
+total 20
+-r--------. 1 root root  3243 Jan 11 20:14 freston.key
+-rw-r--r--. 1 root root  3634 Jan 11 20:34 gonzalonazareno.crt
+-rw-r-xr--. 1 root root 10119 Jan 11 20:35 wildcard.crt
 </pre>
 
-- **Debes hacer una redirección para forzar el protocolo HTTPSs.**
+Los certificados `wildcard.crt` y `gonzalonazareno.crt` los vamos a mover a la ruta `/etc/pki/tls/certs/` y la clave privada `freston.key` a la ruta `/etc/pki/tls/private/`:
+
+<pre>
+[centos@quijote ~]$ sudo mv gonzalonazareno.crt /etc/pki/tls/certs/
+
+[centos@quijote ~]$ sudo mv wildcard.crt /etc/pki/tls/certs/
+
+[centos@quijote ~]$ sudo mv freston.key /etc/pki/tls/private/
+</pre>
+
+- **Debes hacer una redirección para forzar el protocolo HTTPs.**
 
 
 
 - **Investiga la regla DNAT en el cortafuego para abrir el puerto 443.**
 
+Vamos a crear la regla necesaria para hacer **DNAT**. La regla es la siguiente:
+
+<pre>
+iptables -t nat -A PREROUTING -p tcp --dport 443 -i eth0 -j DNAT --to 10.0.2.6:443
+</pre>
+
+Esta regla, lo que hace, es redirigir el tráfico que proviene desde la interfaz **eth0** y su destino es el puerto **443**, a la dirección **10.0.2.6:443**, es decir, la IP de **Quijote** y el puerto **443** de dicha máquina, donde se encontrará nuestro servidor web.
+
+**Importante:** es muy recomendable instalar el paquete `iptables-persistent`, ya que esto hará que en cada arranque del sistema las reglas que hemos configurado se levanten automáticamente, siempre y cuando las guardemos en el fichero `/etc/iptables/rules.v4`. Por tanto vamos a guardar esta regla para que se levente en cada inicio:
+
+<pre>
+iptables-save > /etc/iptables/rules.v4
+</pre>
 
 
 - **Instala el certificado del Gonzalo Nazareno en tu navegador para que se pueda verificar tu certificado.**

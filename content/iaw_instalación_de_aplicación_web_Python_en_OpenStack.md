@@ -8,28 +8,34 @@ Tags: OpenStack, Python, Django, virtualenv, git
 
 #### Instala el CMS en el entorno de desarrollo. Debes utilizar un entorno virtual.
 
-En primer lugar voy a proceder a crear el entorno virtual donde trabajaré en el entorno de desarrollo, se encontrará en `entornos_virtuales/web_python_openstack`. Para crear un entorno virtual necesitamos tener instalado este paquete:
+Vamos a utilizar un repositorio de *GitHub* en el que guardaremos los ficheros que se generen durante la instalación del *CMS*. He creado un nuevo repositorio y lo voy a clonar en la dirección `entornos_virtuales`:
+
+<pre>
+javier@debian:~/entornos_virtuales$ git clone git@github.com:javierpzh/Web-Python-OpenStack.git
+</pre>
+
+En segundo lugar, vamos a crear el entorno virtual donde trabajaremos en el entorno de desarrollo, en mi caso, se encontrará en `entornos_virtuales/Web_Python_OpenStack`. Para crear un entorno virtual necesitamos tener instalado este paquete:
 
 <pre>
 apt install python3-venv -y
 </pre>
 
-Ya instalado, tenemos que crear el entorno virtual, empleamos el siguiente comando:
+Ya instalado, podemos crear el entorno virtual, y para ello, empleamos el siguiente comando:
 
 <pre>
-javier@debian:~/entornos_virtuales/web_python_openstack$ python3 -m venv webpython
+javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ python3 -m venv webpython
 </pre>
 
 Una vez creado, vamos a activarlo mediante el siguiente comando:
 
 <pre>
-javier@debian:~/entornos_virtuales/web_python_openstack$ source webpython/bin/activate
+javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ source webpython/bin/activate
 </pre>
 
 Si nos fijamos, vemos como el aspecto del *prompt* ha cambiado y ahora aparece el entorno virtual como activo:
 
 <pre>
-(webpython) javier@debian:~/entornos_virtuales/web_python_openstack$
+(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$
 </pre>
 
 Para actualizar `pip`:
@@ -37,6 +43,16 @@ Para actualizar `pip`:
 <pre>
 pip install --upgrade pip
 </pre>
+
+Ya tendríamos el entorno virtual listo para trabajar con él.
+
+
+
+
+
+
+
+
 
 
 

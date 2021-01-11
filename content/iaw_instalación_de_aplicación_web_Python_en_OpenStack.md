@@ -2,13 +2,17 @@ Title: Instalación de aplicación web Python en OpenStack
 Date: 2021/01/11
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
-Tags: Python, Django, OpenStack
+Tags: OpenStack, Python, Django, virtualenv, git
 
 **En esta tarea vamos a desplegar un *CMS Python*. Tienes que realizar la instalación de un *CMS Python* basado en *Django*. Puedes encontrar varios en el siguiente [enlace](https://djangopackages.org/grids/g/cms/).**
 
 #### Instala el CMS en el entorno de desarrollo. Debes utilizar un entorno virtual.
 
+En primer lugar voy a proceder a crear el entorno virtual donde trabajaré en el entorno de desarrollo, se encontrará en `entornos_virtuales/web_python_openstack`. Para crear el entorno virtual, empleamos el siguiente comando:
 
+<pre>
+python3 -m venv webpython
+</pre>
 
 #### Personaliza la página (cambia el nombre al blog y pon tu nombre) y añade contenido (algún artículo con alguna imagen).
 

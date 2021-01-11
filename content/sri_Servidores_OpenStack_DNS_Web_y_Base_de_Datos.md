@@ -351,7 +351,6 @@ Y añadir estas líneas, de manera que el contenido total sería el siguiente:
 
 nameserver 10.0.1.6
 search javierpzh.gonzalonazareno.org
-
 </pre>
 
 

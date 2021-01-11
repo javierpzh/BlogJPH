@@ -118,13 +118,19 @@ En este punto, vamos a pasar con la configuración del protocolo *HTTPs*, para e
 dnf install mod_ssl -y
 </pre>
 
-
-
 Para forzar que se acceda a la página a través del protocolo **HTTPs**, vamos a añadir al fichero de configuración de nuestro *virtualhost* la siguiente línea:
 
 <pre>
-Redirect / https://www.javierpzh.gonzalonazareno.org/
+Redirect / https://www.javierpzh.gonzalonazareno.org
 </pre>
+
+
+
+
+
+
+
+
 
 
 

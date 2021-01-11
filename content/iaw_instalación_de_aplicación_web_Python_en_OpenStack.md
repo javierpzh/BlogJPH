@@ -8,7 +8,13 @@ Tags: OpenStack, Python, Django, virtualenv, git
 
 #### Instala el CMS en el entorno de desarrollo. Debes utilizar un entorno virtual.
 
-En primer lugar voy a proceder a crear el entorno virtual donde trabajaré en el entorno de desarrollo, se encontrará en `entornos_virtuales/web_python_openstack`. Para crear el entorno virtual, empleamos el siguiente comando:
+En primer lugar voy a proceder a crear el entorno virtual donde trabajaré en el entorno de desarrollo, se encontrará en `entornos_virtuales/web_python_openstack`. Para crear un entorno virtual necesitamos tener instalado este paquete:
+
+<pre>
+apt install python3-venv -y
+</pre>
+
+Ya instalado, tenemos que crear el entorno virtual, empleamos el siguiente comando:
 
 <pre>
 javier@debian:~/entornos_virtuales/web_python_openstack$ python3 -m venv webpython
@@ -25,6 +31,16 @@ Si nos fijamos, vemos como el aspecto del *prompt* ha cambiado y ahora aparece e
 <pre>
 (webpython) javier@debian:~/entornos_virtuales/web_python_openstack$
 </pre>
+
+Para actualizar `pip`:
+
+<pre>
+pip install --upgrade pip
+</pre>
+
+
+
+
 
 #### Personaliza la página (cambia el nombre al blog y pon tu nombre) y añade contenido (algún artículo con alguna imagen).
 

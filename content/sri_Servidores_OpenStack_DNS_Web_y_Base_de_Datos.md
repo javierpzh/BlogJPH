@@ -353,6 +353,14 @@ nameserver 10.0.1.6
 search javierpzh.gonzalonazareno.org
 </pre>
 
+Si ahora reiniciamos la máquina y miramos el contenido del fichero `/etc/resolv.conf`:
+
+<pre>
+
+</pre>
+
+
+
 
 Para ello debemos realizar las siguientes modificaciones en cada máquina:
 

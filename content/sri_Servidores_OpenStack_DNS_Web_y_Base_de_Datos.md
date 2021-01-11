@@ -57,7 +57,7 @@ view red_externa {
 
         zone "javierpzh.gonzalonazareno.org" {
           type master;
-          file "/var/cache/bind/db.javierpzh.gonzalonazareno.org";
+          file "/var/cache/bind/db.externa.javierpzh.gonzalonazareno.org";
         };
 };
 
@@ -69,7 +69,7 @@ view red_DMZ {
 
         zone "javierpzh.gonzalonazareno.org" {
           type master;
-          file "/var/cache/bind/db.javierpzh.gonzalonazareno.org";
+          file "/var/cache/bind/db.DMZ.javierpzh.gonzalonazareno.org";
         };
 
         zone "1.0.10.in-addr.arpa" {
@@ -91,7 +91,7 @@ view red_interna {
 
         zone "javierpzh.gonzalonazareno.org" {
           type master;
-          file "/var/cache/bind/db.javierpzh.gonzalonazareno.org";
+          file "/var/cache/bind/db.interna.javierpzh.gonzalonazareno.org";
         };
 
         zone "1.0.10.in-addr.arpa" {

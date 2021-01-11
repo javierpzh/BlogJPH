@@ -455,6 +455,7 @@ dulcinea.javierpzh.gonzalonazareno.org.	86400 IN A 172.22.200.183
 ;; MSG SIZE  rcvd: 125
 </pre>
 
+Comprobaciones:
 
 
 

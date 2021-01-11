@@ -11,7 +11,19 @@ Tags: OpenStack, Python, Django, virtualenv, git
 En primer lugar voy a proceder a crear el entorno virtual donde trabajaré en el entorno de desarrollo, se encontrará en `entornos_virtuales/web_python_openstack`. Para crear el entorno virtual, empleamos el siguiente comando:
 
 <pre>
-python3 -m venv webpython
+javier@debian:~/entornos_virtuales/web_python_openstack$ python3 -m venv webpython
+</pre>
+
+Una vez creado, vamos a activarlo mediante el siguiente comando:
+
+<pre>
+javier@debian:~/entornos_virtuales/web_python_openstack$ source webpython/bin/activate
+</pre>
+
+Si nos fijamos, vemos como el aspecto del *prompt* ha cambiado y ahora aparece el entorno virtual como activo:
+
+<pre>
+(webpython) javier@debian:~/entornos_virtuales/web_python_openstack$
 </pre>
 
 #### Personaliza la página (cambia el nombre al blog y pon tu nombre) y añade contenido (algún artículo con alguna imagen).

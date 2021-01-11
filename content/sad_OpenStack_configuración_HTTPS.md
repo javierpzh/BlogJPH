@@ -4,13 +4,13 @@ Category: Seguridad y Alta Disponibilidad
 Header_Cover: theme/images/banner-seguridad.jpg
 Tags: OpenStack, HTTPS
 
-**En este *post* vamos a configurar de forma adecuada el protocolo HTTPS en nuestro servidor web para nuestra aplicaciones web. Para ello vamos a emitir un certificado *wildcard* en la entidad certificadora Gonzalo Nazareno.**
+**En este *post* vamos a configurar de forma adecuada el protocolo HTTPS en nuestro servidor web para nuestra aplicaciones web. Para ello vamos a emitir un certificado *wildcard* en la entidad certificadora [Gonzalo Nazareno](https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/).**
 
 - **Explica los pasos fundamentales para la creación del certificado. Especificando los campos que has rellenado en el fichero CSR.**
 
 Lo primero que debemos hacer es solicitar el certificado **wildcard**.
 
-(Este certificado ya lo creé anteriormente para el uso del protocolo *LDAPs*, puedes ver el *post* [aquí](https://javierpzh.github.io/ldaps.html) y por ello el proceso lo llevo a cabo en la máquina *Freston*. La clave privada la he copiado a la máquina *Quijote*)
+(Este certificado ya lo creé anteriormente para el uso del protocolo *LDAPs*, puedes ver el *post* [aquí](https://javierpzh.github.io/ldaps.html) y por ello el proceso lo llevo a cabo en la máquina *Freston*. La clave privada y los certificados `.csr` y `.crt` los he copiado a la máquina *Quijote*.)
 
 Para crear este certificado, vamos a crear una clave privada de **4096 bits**, para ello vamos a utilizar `openssl`. Vamos a guardar esta clave en el directorio `/etc/ssl/private/`. Para crear esta clave privada empleamos el siguiente comando:
 
@@ -36,21 +36,7 @@ total 4
 -r-------- 1 root root 3243 Dec 18 08:59 freston.key
 </pre>
 
-Pero claro, también hay que pensar que el usuario de **LDAP** debe poder leer esta clave, así que, para ello, he decidido crear una **ACL** para que únicamente este usuario, llamado **openldap** tenga acceso a la clave privada. Para ello instalamos el paquete `acl`:
-
-<pre>
-apt install acl -y
-</pre>
-
-Y creamos la *ACL* adecuada:
-
-<pre>
-root@freston:# setfacl -m u:openldap:r-x /etc/ssl/private/
-
-root@freston:# setfacl -m u:openldap:r-x /etc/ssl/private/freston.key
-</pre>
-
-Lo siguiente sería generar una solicitud de firma de certificado, es decir, un fichero **.csr**, que posteriormente enviaremos a la entidad del [Gonzalo Nazareno](https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/) para que nos lo firmen.
+Lo siguiente sería generar una solicitud de firma de certificado, es decir, un fichero **.csr**, que posteriormente enviaremos a la entidad del Gonzalo Nazareno para que nos lo firmen.
 
 Para generar nuestro archivo *.csr*:
 
@@ -85,14 +71,14 @@ Si quieres entender mejor la estructura del escenario donde estamos trabajando p
 
 Por tanto, pasaré este archivo a mi equipo mediante `scp`.
 
-Una vez tenemos el certificado firmado por la entidad certificadora, lo pasamos a *Freston*. También hemos tenido que descargar el certificado de la entidad *Gonzalo Nazareno*. Por tanto lo vamos a mover también a *Freston*.
+Ya explicado el proceso de como crear un certificado de estas características, y poseer el certificado firmado por la entidad certificadora, lo pasamos a *Quijote*. También hemos tenido que descargar el certificado de la entidad *Gonzalo Nazareno*. Por tanto lo vamos a mover también a *Quijote*.
 
 <pre>
 root@freston:~# ls
 gonzalonazareno.crt  wildcard.crt  wildcard.csr
 </pre>
 
-Lógicamente, estos certificados no debemos dejarlos en esta directorio, por lo que, los vamos a mover a la ruta `/etc/ssl/certs`:
+Estos certificados los vamos a mover a la ruta `/etc/ssl/certs`:
 
 <pre>
 root@freston:~# mv gonzalonazareno.crt /etc/ssl/certs/

@@ -90,7 +90,7 @@ root@freston:~# ls
 gonzalonazareno.crt  wildcard.crt  wildcard.csr
 </pre>
 
-Lógicamente, estos certificados no debemos dejarlos en esta directorio, por lo que, los vamos a mover a la ruta `/etc/ssl/certs`:
+Lógicamente, estos certificados no debemos dejarlos en este directorio, por lo que, los vamos a mover a la ruta `/etc/ssl/certs`:
 
 <pre>
 root@freston:~# mv gonzalonazareno.crt /etc/ssl/certs/

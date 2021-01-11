@@ -112,6 +112,20 @@ Los certificados `wildcard.crt` y `gonzalonazareno.crt` los vamos a mover a la r
 
 - **Debes hacer una redirección para forzar el protocolo HTTPs.**
 
+En este punto, vamos a pasar con la configuración del protocolo *HTTPs*, para ello es necesario tener instalado el módulo `mod_ssl`. Lo instalamos:
+
+<pre>
+dnf install mod_ssl -y
+</pre>
+
+
+
+Para forzar que se acceda a la página a través del protocolo **HTTPs**, vamos a añadir al fichero de configuración de nuestro *virtualhost* la siguiente línea:
+
+<pre>
+Redirect / https://www.javierpzh.gonzalonazareno.org/
+</pre>
+
 
 
 - **Investiga la regla DNAT en el cortafuego para abrir el puerto 443.**

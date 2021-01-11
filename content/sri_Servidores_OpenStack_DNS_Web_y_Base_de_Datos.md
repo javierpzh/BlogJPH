@@ -370,6 +370,13 @@ search openstacklocal
 Podemos apreciar como ha obtenido otros servidores por DHCP, pero en primer lugar se encuentra mi DNS, y por tanto, será al que se le consulte siempre que esté disponible y sea capaz de resolver la petición.
 
 
+<pre>
+apt install resolvconf -y
+</pre>
+
+
+
+
 
 Hecho esto, ahora nuestros clientes utilizarán nuestro servidor DNS *bind9* ubicado en *Freston*.
 

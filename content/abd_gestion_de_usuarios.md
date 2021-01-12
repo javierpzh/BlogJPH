@@ -171,15 +171,15 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 
 - **No son roles de superusuario directamente, pero pueden asignar a cualquier usuario cualquier privilegio en cualquier base de datos, también ellos mismos.**
 
-    - `userAdmin`:
+    - `userAdmin`
 
-    - `dbOwner`:
+    - `dbOwner`
 
-    - `userAdminAnyDatabase`:
+    - `userAdminAnyDatabase`
 
 - **Roles que actúan a nivel de todo el sistema**
 
-    - `root`:
+    - `root`: asigna privilegios completos sobre todos los recursos del sistema.
 
 
 

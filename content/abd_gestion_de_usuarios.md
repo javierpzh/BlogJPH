@@ -177,7 +177,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 
     - `userAdminAnyDatabase`
 
-- **Roles que actúan a nivel de todo el sistema
+- Roles que actúan a nivel de todo el sistema
 
     - `root`: asigna privilegios completos sobre todos los recursos del sistema.
 

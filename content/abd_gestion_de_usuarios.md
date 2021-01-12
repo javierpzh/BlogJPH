@@ -46,7 +46,7 @@ Tags: Base de Datos, Oracle, MySQL, MariaDB, PostgreSQL, MongoDB
 
 
 
-**7. Realiza un procedimiento que genere un *script* que cree un rol conteniendo todos los permisos que tenga el usuario cuyo nombre reciba como parámetro, le hayan sido asignados a aquél directamente o a través de roles. El nuevo rol deberá llamarse `BackupPrivsNombreUsuario`.**
+**7. Realiza un procedimiento que genere un *script* que cree un rol conteniendo todos los permisos que tenga el usuario cuyo nombre reciba como parámetro, le hayan sido asignados a aquel directamente o a través de roles. El nuevo rol deberá llamarse `BackupPrivsNombreUsuario`.**
 
 
 

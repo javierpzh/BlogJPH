@@ -206,6 +206,18 @@ Hay que decir que podemos asignar un rol, tanto a la hora de crear el usuario, c
 )
 </pre>
 
+Bien, ¿y qué pasa si queremos remover un rol de un usuario?
+
+
+
+
+
+
+
+
+
+
+
 
 
 

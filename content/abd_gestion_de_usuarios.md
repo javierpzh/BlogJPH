@@ -142,29 +142,29 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 
     - `hostManager`: permite monitorizar y administrar servidores.
 
-    - `clusterAdmin`: combina los tres roles anteriores, añadiendo además la acción `dropDatabase`.
+    - `clusterAdmin`: combina los tres roles anteriores, añadiendo además el rol `dropDatabase`.
 
 
 #### Roles de copias de seguridad/restauración
 
 - **Roles que actúan a nivel de base de datos**
 
-    - `backup`:
+    - `backup`: permite realizar copias de seguridad de los datos.
 
-    - `restore`:
+    - `restore`: permite restaurar los datos de las copias de seguridad.
 
 
 #### Roles de todas las bases de datos
 
 - **Roles que actúan a nivel de todas las bases de datos**
 
-    - `readAnyDatabase`:
+    - `readAnyDatabase`: es el mismo rol que `read` pero se aplica a todas las bases de datos.
 
-    - `readWriteAnyDatabase`:
+    - `readWriteAnyDatabase`: es el mismo rol que `readWrite` pero se aplica a todas las bases de datos.
 
-    - `userAdminAnyDatabase`:
+    - `userAdminAnyDatabase`: es el mismo rol que `userAdmin` pero se aplica a todas las bases de datos.
 
-    - `dbAdminAnyDatabase`:
+    - `dbAdminAnyDatabase`: es el mismo rol que `dbAdmin` pero se aplica a todas las bases de datos.
 
 
 #### Roles de superusuarios

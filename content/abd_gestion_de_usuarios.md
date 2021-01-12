@@ -200,7 +200,10 @@ Hay que decir que podemos asignar un rol, tanto a la hora de crear el usuario, c
 - **Después de haber creado el usuario**
 
 <pre>
-
+\> db.grantRolesToUser(
+   "nombreusuario",
+   [ { role : "nombredelrol", db : "nombrebd" }, "nombredelrol", … ]
+)
 </pre>
 
 

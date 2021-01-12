@@ -6,15 +6,15 @@ Tags: Base de Datos, Oracle, MySQL, MariaDB, PostgreSQL, MongoDB
 
 ## Oracle
 
-1. Realiza un procedimiento llamado `MostrarObjetosAccesibles` que reciba un nombre de usuario y muestre todos los objetos a los que tiene acceso.
+**1. Realiza un procedimiento llamado `MostrarObjetosAccesibles` que reciba un nombre de usuario y muestre todos los objetos a los que tiene acceso.**
 
-2. Realiza un procedimiento que reciba un nombre de usuario, un privilegio y un objeto y nos muestre el mensaje 'SI, DIRECTO' si el usuario tiene ese privilegio sobre objeto concedido directamente, 'SI, POR ROL' si el usuario lo tiene en alguno de los roles que tiene concedidos y un 'NO' si el usuario no tiene dicho privilegio.
+**2. Realiza un procedimiento que reciba un nombre de usuario, un privilegio y un objeto y nos muestre el mensaje 'SI, DIRECTO' si el usuario tiene ese privilegio sobre objeto concedido directamente, 'SI, POR ROL' si el usuario lo tiene en alguno de los roles que tiene concedidos y un 'NO' si el usuario no tiene dicho privilegio.**
 
-3. Escribe una consulta que obtenga un script para quitar el privilegio de borrar registros en alguna tabla de *SCOTT* a los usuarios que lo tengan.
+**3. Escribe una consulta que obtenga un *script* para quitar el privilegio de borrar registros en alguna tabla de *SCOTT* a los usuarios que lo tengan.**
 
-4. Crea un tablespace TS2 con tamaño de extensión de 256K. Realiza una consulta que genere un script que asigne ese tablespace como tablespace por defecto a los usuarios que no tienen privilegios para consultar ninguna tabla de *SCOTT*, excepto a *SYSTEM*.
+**4. Crea un *tablespace* TS2 con tamaño de extensión de 256K. Realiza una consulta que genere un *script* que asigne ese *tablespace* como *tablespace* por defecto a los usuarios que no tienen privilegios para consultar ninguna tabla de *SCOTT*, excepto a *SYSTEM*.**
 
-5. La vida de un *DBA* es dura. Tras pedirlo insistentemente, en tu empresa han contratado una persona para ayudarte. Decides que se encargará de las siguientes tareas:
+**5. La vida de un *DBA* es dura. Tras pedirlo insistentemente, en tu empresa han contratado una persona para ayudarte. Decides que se encargará de las siguientes tareas:**
 
 • Resetear los archivos de *log* en caso de necesidad.
 • Crear funciones de complejidad de contraseña y asignárselas a  usuarios.
@@ -29,15 +29,15 @@ Pista: Si no recuerdas el nombre de un privilegio, puedes buscarlo en el diccion
 
 6. Muestra el texto de la última sentencia *SQL* que se ejecuto en el servidor, junto con el número de veces que se ha ejecutado desde que se cargó en el *Shared Pool* y el tiempo de CPU empleado en su ejecución.
 
-7. Realiza un procedimiento que genere un script que cree un rol conteniendo todos los permisos que tenga el usuario cuyo nombre reciba como parámetro, le hayan sido asignados a aquél directamente o a través de roles. El nuevo rol deberá llamarse `BackupPrivsNombreUsuario`.
+7. Realiza un procedimiento que genere un *script* que cree un rol conteniendo todos los permisos que tenga el usuario cuyo nombre reciba como parámetro, le hayan sido asignados a aquél directamente o a través de roles. El nuevo rol deberá llamarse `BackupPrivsNombreUsuario`.
 
 ## MySQL
 
-1. Escribe una consulta que obtenga un script para quitar el privilegio de borrar registros en alguna tabla de *SCOTT* a los usuarios que lo tengan.
+1. Escribe una consulta que obtenga un *script* para quitar el privilegio de borrar registros en alguna tabla de *SCOTT* a los usuarios que lo tengan.
 
 ## PostgreSQL
 
-1. Escribe una consulta que obtenga un script para quitar el privilegio de borrar registros en alguna tabla de *SCOTT* a los usuarios que lo tengan.
+1. Escribe una consulta que obtenga un *script* para quitar el privilegio de borrar registros en alguna tabla de *SCOTT* a los usuarios que lo tengan.
 
 ## MongoDB
 

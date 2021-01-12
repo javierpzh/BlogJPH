@@ -114,61 +114,60 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 
 
 ##### Usuario de base de datos
-- **Actúan a nivel de Base de Datos**
+
+- **Roles que actúan a nivel de Base de Datos**
     - `read`:
     - `readWrite`:
-- **Actúan a nivel de todas las Bases de Datos**
+- **Roles que actúan a nivel de todas las Bases de Datos**
     - `readAnyDatabase`:
     - `readWriteAnyDatabase`:
 
-- **Administración de base de datos**
-    - **Actúan a nivel de Base de Datos**
-        - `dbAdmin`: permite gestionar datos, pero no puede acceder a información sobre los usuarios
-            - `collStats`:
-            - `dbHash`:
-            - `dbStats`:
-            - `killCursors`:
-            - `listIndexes`:
-            - `listCollections`:
-            - `bypassDocumentValidation`:
-            - `collMod`:
-            - `collStats`:
-            - `compact`:
-            - `convertToCapped`:
-        - `userAdmin`: permite crear usuarios que únicamente tengan permiso para gestionar usuarios pero no puedan acceder a datos
-            - `changeCustomData`:
-            - `changePassword`:
-            - `createRole`:
-            - `createUser`:
-            - `dropRole`:
-            - `dropUser`:
-            - `grantRole`:
-            - `revokeRole`:
-            - `setAuthenticationRestriction`:
-            - `viewRole`:
-            - `viewUser`:
-        - `dbOwner`: puede efectuar cualquier operación administrativa en la base de datos. Por lo tanto, junta los privilegios de `readWrite`, `dbAdmin` y `userAdmin`.
-    - **Actúan a nivel de todas las Bases de Datos**
-        - `dbAdminAnyDatabase`:
-        - `userAdminAnyDatabase`:
+##### Administración de base de datos
+- **Roles que actúan a nivel de Base de Datos**
+    - `dbAdmin`: permite gestionar datos, pero no puede acceder a información sobre los usuarios
+        - `collStats`:
+        - `dbHash`:
+        - `dbStats`:
+        - `killCursors`:
+        - `listIndexes`:
+        - `listCollections`:
+        - `bypassDocumentValidation`:
+        - `collMod`:
+        - `collStats`:
+        - `compact`:
+        - `convertToCapped`:
+    - `userAdmin`: permite crear usuarios que únicamente tengan permiso para gestionar usuarios pero no puedan acceder a datos
+        - `changeCustomData`:
+        - `changePassword`:
+        - `createRole`:
+        - `createUser`:
+        - `dropRole`:
+        - `dropUser`:
+        - `grantRole`:
+        - `revokeRole`:
+        - `setAuthenticationRestriction`:
+        - `viewRole`:
+        - `viewUser`:
+    - `dbOwner`: puede efectuar cualquier operación administrativa en la base de datos. Por lo tanto, junta los privilegios de `readWrite`, `dbAdmin` y `userAdmin`.
+- **Roles que actúan a nivel de todas las Bases de Datos**
+    - `dbAdminAnyDatabase`:
+    - `userAdminAnyDatabase`:
 
-- **Administración de *cluster*.**
-    - **Actúan a nivel de Base de Datos**
-        - `clusterAdmin`:
-        - `clusterManager`:
-        - `clusterMonitor`:
-        - `hostManager`:
+##### Administración de *cluster*
+- **Roles que actúan a nivel de Base de Datos**
+    - `clusterAdmin`:
+    - `clusterManager`:
+    - `clusterMonitor`:
+    - `hostManager`:
 
-- **Copia de seguridad/restauración**
-    - **Actúan a nivel de Base de Datos**
-        - `backup`:
-        - `restore`:
+##### Copia de seguridad/restauración
+- **Roles que actúan a nivel de Base de Datos**
+    - `backup`:
+    - `restore`:
 
-- **Superusuario**
-    - **Actúan a nivel de todo el sistema**
-        - `root`:
-
-
+##### Superusuario
+- **Roles que actúan a nivel de todo el sistema**
+    - `root`:
 
 
 

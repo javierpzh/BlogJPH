@@ -90,8 +90,80 @@ Un privilegio define una acción o acciones que se pueden efectuar sobre un recu
 
 Un rol puede además heredar privilegios de uno o varios roles.
 
+*MongoDB* dispone de dos tipos de roles:
+
+- **Roles predefinidos en el sistema:** son los que ya se encuentran creados de manera predeterminada y listos para utilizarse.
+
+- **Roles definidos por el usuario:** son los creados por el administrador del sistema.
+
+En este caso, nos interesan los **roles predefinidos**.
+
+Dentro de éstos, podemos clasificar los distintos roles en varias categorías.
+
+- Usuario de base de datos
+
+- Administración de base de datos
+
+- Administración de *cluster*
+
+- Copia de seguridad/restauración
+
+- Superusuario
+
+Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 
 
+- **Usuario de base de datos**
+    - **Nivel de Base de Datos**
+        - **read:**
+        - **readWrite:**
+    - **Todas las Bases de Datos**
+        - **readAnyDatabase:**
+        - **readWriteAnyDatabase:**
+
+- **Administración de base de datos**
+            Nivel de Base de Datos
+                dbAdmin permite gestionar datos, pero no puede acceder a información sobre los usuarios
+                    collStats
+                    dbHash
+                    dbStats
+                    killCursors
+                    listIndexes
+                    listCollections
+                    bypassDocumentValidation
+                    collMod
+                    collStats
+                    compact
+                    convertToCapped
+                userAdmin permite crear usuarios que únicamente tengan permiso para gestionar usuarios pero no puedan acceder a datos
+                    changeCustomData
+                    changePassword
+                    createRole
+                    createUser
+                    dropRole
+                    dropUser
+                    grantRole
+                    revokeRole
+                    setAuthenticationRestriction
+                    viewRole
+                    viewUser
+                dbOwner puede efectuar cualquier operación administrativa en la base de datos. Por lo tanto, junta los privilegios de readWrite, dbAdmin y userAdmin.
+            Todas las Bases de Datos
+                dbAdminAnyDatabase
+                userAdminAnyDatabase
+- **Administración de *cluster*.**
+            Nivel de Base de Datos
+                clusterAdmin
+                clusterManager
+                clusterMonitor
+                hostManager
+- **Copia de seguridad/restauración**
+            Nivel de Base de Datos
+                backup
+                restore
+- **Superusuario**
+            Actúa a nivel de todo el sistema
+                root
 
 
 

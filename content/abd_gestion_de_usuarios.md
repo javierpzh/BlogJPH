@@ -114,20 +114,20 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 
 
 - **Usuario de base de datos**
-    - **Nivel de Base de Datos**
-        - **read:**
-        - **readWrite:**
-    - **Todas las Bases de Datos**
-        - **readAnyDatabase:**
-        - **readWriteAnyDatabase:**
+    - **Actúa a nivel de Base de Datos**
+        - `read`:
+        - `readWrite`:
+    - **Actúa a nivel de todas las Bases de Datos**
+        - `readAnyDatabase`:
+        - `readWriteAnyDatabase`:
 
 - **Administración de base de datos**
-            Nivel de Base de Datos
-                dbAdmin permite gestionar datos, pero no puede acceder a información sobre los usuarios
-                    collStats
-                    dbHash
-                    dbStats
-                    killCursors
+    - **Actúa a nivel de Base de Datos**
+        - `dbAdmin`: permite gestionar datos, pero no puede acceder a información sobre los usuarios
+            - **collStats**
+                    dbHash**
+                    dbStats**
+                    killCursors**
                     listIndexes
                     listCollections
                     bypassDocumentValidation
@@ -152,18 +152,18 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
                 dbAdminAnyDatabase
                 userAdminAnyDatabase
 - **Administración de *cluster*.**
-            Nivel de Base de Datos
-                clusterAdmin
-                clusterManager
-                clusterMonitor
-                hostManager
+    - **Actúa a nivel de Base de Datos**
+        - `clusterAdmin`:
+        - `clusterManager`:
+        - `clusterMonitor`:
+        - `hostManager`:
 - **Copia de seguridad/restauración**
-            Nivel de Base de Datos
-                backup
-                restore
+    - **Actúa a nivel de Base de Datos**
+        - `backup`:
+        - `restore`:
 - **Superusuario**
-            Actúa a nivel de todo el sistema
-                root
+    - **Actúa a nivel de todo el sistema**
+        - `root`:
 
 
 

@@ -182,10 +182,26 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
     - `root`: asigna privilegios completos sobre todos los recursos del sistema.
 
 
+Una vez explicados todos los roles que vienen definidos por defecto en *MongoDB*, vamos a ver como se asignan sobre los usuarios.
 
+Hay que decir que podemos asignar un rol, tanto a la hora de crear el usuario, como, con el usuario ya creado con anterioridad.
 
+- **En el momento de crear el usuario**
 
+<pre>
+\> db.createUser(
+{
+   user: "nombreusuario",
+   pwd: "contraseña",
+   roles: [ { role: "nombredelrol", db: "nombrebd" } ]
+})
+</pre>
 
+- **Después de haber creado el usuario**
+
+<pre>
+
+</pre>
 
 
 

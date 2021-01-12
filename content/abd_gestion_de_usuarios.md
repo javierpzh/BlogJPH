@@ -114,7 +114,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 
 ##### Roles de usuarios de bases de datos
 
-- **Roles que actúan a nivel de base de datos**
+- Roles que actúan a nivel de base de datos
 
     - `read`: permite leer datos de todas las colecciones.
 
@@ -123,7 +123,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 
 ##### Roles de administradores de bases de datos
 
-- **Roles que actúan a nivel de base de datos**
+- Roles que actúan a nivel de base de datos
 
     - `dbAdmin`: permite realizar tareas administrativas.
 
@@ -184,7 +184,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 
 Una vez explicados todos los roles que vienen definidos por defecto en *MongoDB*, vamos a ver como se asignan sobre los usuarios.
 
-Hay que decir que podemos asignar un rol, tanto a la hora de crear el usuario, como, con el usuario ya creado con anterioridad.
+Hay que decir que podemos **asignar un rol**, tanto a la hora de crear el usuario, como, con el usuario ya creado con anterioridad.
 
 - **En el momento de crear el usuario**
 
@@ -206,7 +206,7 @@ Hay que decir que podemos asignar un rol, tanto a la hora de crear el usuario, c
 )
 </pre>
 
-Bien, ¿y qué pasa si queremos remover un rol de un usuario?
+Bien, ¿y qué pasa si queremos **remover un rol** de un usuario?
 
 
 

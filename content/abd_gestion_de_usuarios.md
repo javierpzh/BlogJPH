@@ -113,63 +113,49 @@ Dentro de éstos, podemos clasificar los distintos roles en varias categorías.
 Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 
 
-#### Usuario de base de datos
+#### Roles de usuario de base de datos
 
-- **Roles que actúan a nivel de Base de Datos**
+- **Roles que actúan a nivel de base de datos**
     - `read`:
     - `readWrite`:
-- **Roles que actúan a nivel de todas las Bases de Datos**
-    - `readAnyDatabase`:
-    - `readWriteAnyDatabase`:
 
-#### Administración de base de datos
+#### Roles de administración de base de datos
 
-- **Roles que actúan a nivel de Base de Datos**
+- **Roles que actúan a nivel de base de datos**
     - `dbAdmin`: permite gestionar datos, pero no puede acceder a información sobre los usuarios
-        - `collStats`:
-        - `dbHash`:
-        - `dbStats`:
-        - `killCursors`:
-        - `listIndexes`:
-        - `listCollections`:
-        - `bypassDocumentValidation`:
-        - `collMod`:
-        - `collStats`:
-        - `compact`:
-        - `convertToCapped`:
+
     - `userAdmin`: permite crear usuarios que únicamente tengan permiso para gestionar usuarios pero no puedan acceder a datos
-        - `changeCustomData`:
-        - `changePassword`:
-        - `createRole`:
-        - `createUser`:
-        - `dropRole`:
-        - `dropUser`:
-        - `grantRole`:
-        - `revokeRole`:
-        - `setAuthenticationRestriction`:
-        - `viewRole`:
-        - `viewUser`:
+
     - `dbOwner`: puede efectuar cualquier operación administrativa en la base de datos. Por lo tanto, junta los privilegios de `readWrite`, `dbAdmin` y `userAdmin`.
-- **Roles que actúan a nivel de todas las Bases de Datos**
-    - `dbAdminAnyDatabase`:
-    - `userAdminAnyDatabase`:
 
-#### Administración de *cluster*
+#### Roles de administración de *cluster*
 
-- **Roles que actúan a nivel de Base de Datos**
-    - `clusterAdmin`:
-    - `clusterManager`:
+- **Roles que actúan a nivel de todo el sistema**
     - `clusterMonitor`:
+    - `clusterManager`:
     - `hostManager`:
+    - `clusterAdmin`:
 
-#### Copia de seguridad/restauración
+#### Roles de copia de seguridad/restauración
 
-- **Roles que actúan a nivel de Base de Datos**
+- **Roles que actúan a nivel de base de datos**
     - `backup`:
     - `restore`:
 
-#### Superusuario
+#### Roles de todas las bases de datos
 
+- **Roles que actúan a nivel de todas las bases de datos**
+    - `readAnyDatabase`:
+    - `readWriteAnyDatabase`:
+    - `userAdminAnyDatabase`:
+    - `dbAdminAnyDatabase`:
+
+#### Roles de superusuario
+
+- **No son roles de superusuario directamente, pero pueden asignar a cualquier usuario cualquier privilegio en cualquier base de datos, también ellos mismos.**
+    - `userAdmin`:
+    - `dbOwner`:
+    - `userAdminAnyDatabase`:
 - **Roles que actúan a nivel de todo el sistema**
     - `root`:
 

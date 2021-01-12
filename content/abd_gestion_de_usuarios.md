@@ -88,7 +88,7 @@ Un privilegio define una acción o acciones que se pueden efectuar sobre un recu
 - Un conjunto de colecciones.
 - A nivel de *cluster*: representa operaciones sobre el conjunto de réplicas o el *cluster* de *shards*.
 
-
+Un rol puede además heredar privilegios de uno o varios roles.
 
 
 

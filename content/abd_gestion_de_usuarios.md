@@ -116,6 +116,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 #### Roles de usuario de base de datos
 
 - **Roles que actúan a nivel de base de datos**
+
     - `read`:
 
     - `readWrite`:
@@ -123,6 +124,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 #### Roles de administración de base de datos
 
 - **Roles que actúan a nivel de base de datos**
+
     - `dbAdmin`: permite gestionar datos, pero no puede acceder a información sobre los usuarios
 
     - `userAdmin`: permite crear usuarios que únicamente tengan permiso para gestionar usuarios pero no puedan acceder a datos
@@ -132,6 +134,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 #### Roles de administración de *cluster*
 
 - **Roles que actúan a nivel de todo el sistema**
+
     - `clusterMonitor`:
 
     - `clusterManager`:
@@ -144,6 +147,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 #### Roles de copia de seguridad/restauración
 
 - **Roles que actúan a nivel de base de datos**
+
     - `backup`:
 
     - `restore`:
@@ -152,6 +156,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 #### Roles de todas las bases de datos
 
 - **Roles que actúan a nivel de todas las bases de datos**
+
     - `readAnyDatabase`:
 
     - `readWriteAnyDatabase`:
@@ -164,6 +169,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 #### Roles de superusuario
 
 - **No son roles de superusuario directamente, pero pueden asignar a cualquier usuario cualquier privilegio en cualquier base de datos, también ellos mismos.**
+
     - `userAdmin`:
 
     - `dbOwner`:

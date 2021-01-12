@@ -215,9 +215,9 @@ Bien, ¿y qué pasa si queremos **remover un rol** de un usuario?
 Pues para ello, debemos emplear el siguiente comando:
 
 <pre>
-> use "nombrebd"
+\> use "nombrebd"
 
-> db.revokeRolesFromUser(
+\> db.revokeRolesFromUser(
    "nombreusuario",
    [ { role : "nombredelrol", db : "nombrebd" } | "nombredelrol" ]
 )

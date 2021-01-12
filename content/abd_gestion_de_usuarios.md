@@ -69,6 +69,30 @@ Tags: Base de Datos, Oracle, MySQL, MariaDB, PostgreSQL, MongoDB
 
 **1. Averigua si existe la posibilidad en *MongoDB* de limitar el acceso de un usuario a los datos de una colección determinada.**
 
+Podríamos revocarle al usuario el rol de leer y escribir en dicha colección, es decir, el rol `readWrite`.
+
+<pre>
+\> use "empresa_mongodb"
+
+\> db.revokeRolesFromUser(
+   "nombreusuario",
+   [ { role : "nombredelrol", db : "empresa_mongodb" } | "nombredelrol" ]
+)
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 **2. Averigua si en *MongoDB* existe el concepto de privilegio del sistema y muestra las diferencias más importantes con *Oracle*.**

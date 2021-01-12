@@ -189,6 +189,8 @@ Hay que decir que podemos **asignar un rol**, tanto a la hora de crear el usuari
 - **En el momento de crear el usuario**
 
 <pre>
+\> use "nombrebd"
+
 \> db.createUser(
 {
    user: "nombreusuario",
@@ -200,6 +202,8 @@ Hay que decir que podemos **asignar un rol**, tanto a la hora de crear el usuari
 - **Después de haber creado el usuario**
 
 <pre>
+\> use "nombrebd"
+
 \> db.grantRolesToUser(
    "nombreusuario",
    [ { role : "nombredelrol", db : "nombrebd" }, "nombredelrol", … ]
@@ -208,7 +212,16 @@ Hay que decir que podemos **asignar un rol**, tanto a la hora de crear el usuari
 
 Bien, ¿y qué pasa si queremos **remover un rol** de un usuario?
 
+Pues para ello, debemos emplear el siguiente comando:
 
+<pre>
+\> use "nombrebd"
+
+\> db.revokeRolesFromUser(
+   "nombreusuario",
+   [ { role : "nombredelrol", db : "nombrebd" } | "nombredelrol" ]
+)
+</pre>
 
 
 

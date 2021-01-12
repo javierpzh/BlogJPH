@@ -77,6 +77,53 @@ Tags: Base de Datos, Oracle, MySQL, MariaDB, PostgreSQL, MongoDB
 
 **3. Explica los roles por defecto que incorpora *MongoDB* y como se asignan a los usuarios.**
 
+Primeramente veo conveniente explicar lo que es un **rol**.
+
+Un *rol* se define como un conjunto de privilegios. Cuando a un usuario se le asigna un rol, los privilegios de ese rol son accesibles por el usuario.
+
+Un privilegio define una acción o acciones que se pueden efectuar sobre un recurso. Los recursos pueden ser de varios tipos:
+
+- Una base de datos.
+- Una colección.
+- Un conjunto de colecciones.
+- A nivel de *cluster*: representa operaciones sobre el conjunto de réplicas o el *cluster* de *shards*.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 **4. Explica como puede consultarse el diccionario de datos de *MongoDB* para saber que roles han sido concedidos a un usuario y qué privilegios incluyen.**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

@@ -112,7 +112,7 @@ Dentro de éstos, podemos clasificar los distintos roles en varias categorías.
 
 Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 
-#### Roles de usuarios de bases de datos
+##### Roles de usuarios de bases de datos
 
 - **Roles que actúan a nivel de base de datos**
 
@@ -121,7 +121,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
     - `readWrite`: permite leer y escribir datos de todas las colecciones.
 
 
-#### Roles de administradores de bases de datos
+##### Roles de administradores de bases de datos
 
 - **Roles que actúan a nivel de base de datos**
 
@@ -132,7 +132,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
     - `dbOwner`: puede efectuar cualquier operación administrativa en la base de datos. Por lo tanto, junta los privilegios de `readWrite`, `dbAdmin` y `userAdmin`.
 
 
-#### Roles de administradores de *cluster*
+##### Roles de administradores de *cluster*
 
 - **Roles que actúan a nivel de todo el sistema**
 
@@ -145,7 +145,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
     - `clusterAdmin`: combina los tres roles anteriores, añadiendo además el rol `dropDatabase`.
 
 
-#### Roles de copias de seguridad/restauración
+##### Roles de copias de seguridad/restauración
 
 - **Roles que actúan a nivel de base de datos**
 
@@ -154,7 +154,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
     - `restore`: permite restaurar los datos de las copias de seguridad.
 
 
-#### Roles de todas las bases de datos
+##### Roles de todas las bases de datos
 
 - **Roles que actúan a nivel de todas las bases de datos**
 
@@ -167,7 +167,7 @@ Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
     - `dbAdminAnyDatabase`: es el mismo rol que `dbAdmin` pero se aplica a todas las bases de datos.
 
 
-#### Roles de superusuarios
+##### Roles de superusuarios
 
 - **No son roles de superusuario directamente, pero pueden asignar a cualquier usuario cualquier privilegio en cualquier base de datos, también ellos mismos.**
 

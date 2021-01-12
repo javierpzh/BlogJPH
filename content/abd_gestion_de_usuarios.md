@@ -113,13 +113,13 @@ Dentro de éstos, podemos clasificar los distintos roles en varias categorías.
 Ahora sí, vamos a ver cada uno de los roles que existen en *MongoDB*.
 
 
-- **Usuario de base de datos**
-    - **Actúan a nivel de Base de Datos**
-        - `read`:
-        - `readWrite`:
-    - **Actúan a nivel de todas las Bases de Datos**
-        - `readAnyDatabase`:
-        - `readWriteAnyDatabase`:
+##### Usuario de base de datos
+- **Actúan a nivel de Base de Datos**
+    - `read`:
+    - `readWrite`:
+- **Actúan a nivel de todas las Bases de Datos**
+    - `readAnyDatabase`:
+    - `readWriteAnyDatabase`:
 
 - **Administración de base de datos**
     - **Actúan a nivel de Base de Datos**

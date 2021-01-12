@@ -223,21 +223,6 @@ Pues para ello, debemos emplear el siguiente comando:
 )
 </pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 **4. Explica como puede consultarse el diccionario de datos de *MongoDB* para saber que roles han sido concedidos a un usuario y qué privilegios incluyen.**
 
 

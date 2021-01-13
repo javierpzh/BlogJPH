@@ -51,60 +51,57 @@ Una vez instalado, vamos a pasar a definir las vistas que vamos a crear posterio
 <pre>
 view red_externa {
         match-clients {172.22.0.0/15; 192.168.202.2;};
-        allow-recursion { any; };
 
         include "/etc/bind/zones.rfc1918";
         include "/etc/bind/named.conf.default-zones";
 
         zone "javierpzh.gonzalonazareno.org" {
           type master;
-          file "/var/cache/bind/db.externa.javierpzh.gonzalonazareno.org";
+          file "db.externa.javierpzh.gonzalonazareno.org";
         };
 };
 
 view red_DMZ {
         match-clients {10.0.2.0/24;};
-        allow-recursion { any; };
 
         include "/etc/bind/zones.rfc1918";
         include "/etc/bind/named.conf.default-zones";
 
         zone "javierpzh.gonzalonazareno.org" {
           type master;
-          file "/var/cache/bind/db.DMZ.javierpzh.gonzalonazareno.org";
+          file "db.DMZ.javierpzh.gonzalonazareno.org";
         };
 
         zone "1.0.10.in-addr.arpa" {
           type master;
-          file "/var/cache/bind/db.1.0.10";
+          file "db.1.0.10";
         };
 
         zone "2.0.10.in-addr.arpa" {
           type master;
-          file "/var/cache/bind/db.2.0.10";
+          file "db.2.0.10";
         };
 };
 
 view red_interna {
-        match-clients {10.0.1.0/24;};
-        allow-recursion { any; };
+        match-clients {10.0.1.0/24; localhost;};
 
         include "/etc/bind/zones.rfc1918";
         include "/etc/bind/named.conf.default-zones";
 
         zone "javierpzh.gonzalonazareno.org" {
           type master;
-          file "/var/cache/bind/db.interna.javierpzh.gonzalonazareno.org";
+          file "db.interna.javierpzh.gonzalonazareno.org";
         };
 
         zone "1.0.10.in-addr.arpa" {
           type master;
-          file "/var/cache/bind/db.1.0.10";
+          file "db.1.0.10";
         };
 
         zone "2.0.10.in-addr.arpa" {
           type master;
-          file "/var/cache/bind/db.2.0.10";
+          file "db.2.0.10";
         };
 };
 </pre>
@@ -112,6 +109,8 @@ view red_interna {
 Vamos a explicar las líneas que acabamos de añadir.
 
 En primer lugar, vemos que hemos añadido tres vistas distintas, una para cada una de las redes con las que vamos a interaccionar. La primera está destinada a la **red externa**, la segunda a la **red DMZ**, y la tercera a la **red interna**.
+
+Al principio de cada vista, he introducido una línea llamada **match-clients**. Esta línea identifica desde que red será accesible esa vista.
 
 Podemos ver que he escrito una línea que hacer referencia a un archivo llamado `zones.rfc1918`, que es un fichero de configuración de las zonas privadas que queremos definir.
 
@@ -285,9 +284,9 @@ $TTL    604800
 
 $ORIGIN 1.0.10.in-addr.arpa.
 
-11     IN      PTR     dulcinea.javierpzh.gonzalonazareno.org.
-6      IN      PTR     freston.javierpzh.gonzalonazareno.org.
-8      IN      PTR     sancho.javierpzh.gonzalonazareno.org.
+11     IN      PTR     dulcinea
+6      IN      PTR     freston
+8      IN      PTR     sancho
 </pre>
 
 En mi caso, el fichero `/var/cache/bind/db.2.0.10` tendría este aspecto:
@@ -305,7 +304,8 @@ $TTL    604800
 
 $ORIGIN 2.0.10.in-addr.arpa.
 
-6     IN      PTR     quijote.javierpzh.gonzalonazareno.org.
+10    IN      PTR     dulcinea
+6     IN      PTR     quijote
 </pre>
 
 Hemos terminado de crear las diferentes zonas, y tan solo nos quedaría crear la regla **DNAT** en **Dulcinea** para poder realizar las consultas a nuestro servidor DNS instalado en **Freston**.
@@ -420,7 +420,13 @@ nameserver 10.0.1.6
 ...
 </pre>
 
-Posee el aspecto que deseamos.
+Posee el aspecto que deseamos, pero aún nos falta por añadir la línea:
+
+<pre>
+search javierpzh.gonzalonazareno.org
+</pre>
+
+(Aún no he conseguido configurarla para que permanezca a pesar de los reinicios, así que de momento la he añadido hasta que lo consiga.)
 
 Hecho esto, ahora nuestros clientes utilizarán el servidor DNS *bind9* ubicado en *Freston*.
 
@@ -455,7 +461,59 @@ dulcinea.javierpzh.gonzalonazareno.org.	86400 IN A 172.22.200.183
 ;; MSG SIZE  rcvd: 125
 </pre>
 
-Comprobaciones:
+Voy a mostrar, como por ejemplo, puedo hacer uso del DNS desde **Quijote**:
+
+<pre>
+[centos@quijote ~]$ ping dulcinea
+PING dulcinea.javierpzh.gonzalonazareno.org (10.0.2.10) 56(84) bytes of data.
+64 bytes from dulcinea.2.0.10.in-addr.arpa (10.0.2.10): icmp_seq=1 ttl=64 time=0.735 ms
+64 bytes from dulcinea.2.0.10.in-addr.arpa (10.0.2.10): icmp_seq=2 ttl=64 time=0.913 ms
+64 bytes from dulcinea.2.0.10.in-addr.arpa (10.0.2.10): icmp_seq=3 ttl=64 time=0.605 ms
+^C
+--- dulcinea.javierpzh.gonzalonazareno.org ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 5ms
+rtt min/avg/max/mdev = 0.605/0.751/0.913/0.126 ms
+
+[centos@quijote ~]$ ping sancho
+PING sancho.javierpzh.gonzalonazareno.org (10.0.1.8) 56(84) bytes of data.
+64 bytes from sancho.1.0.10.in-addr.arpa (10.0.1.8): icmp_seq=1 ttl=63 time=2.67 ms
+64 bytes from sancho.1.0.10.in-addr.arpa (10.0.1.8): icmp_seq=2 ttl=63 time=1.78 ms
+64 bytes from sancho.1.0.10.in-addr.arpa (10.0.1.8): icmp_seq=3 ttl=63 time=1.68 ms
+^C
+--- sancho.javierpzh.gonzalonazareno.org ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 5ms
+rtt min/avg/max/mdev = 1.677/2.041/2.666/0.443 ms
+
+[centos@quijote ~]$ ping freston
+PING freston.javierpzh.gonzalonazareno.org (10.0.1.6) 56(84) bytes of data.
+64 bytes from freston.1.0.10.in-addr.arpa (10.0.1.6): icmp_seq=1 ttl=63 time=1.15 ms
+64 bytes from freston.1.0.10.in-addr.arpa (10.0.1.6): icmp_seq=2 ttl=63 time=1.60 ms
+64 bytes from freston.1.0.10.in-addr.arpa (10.0.1.6): icmp_seq=3 ttl=63 time=1.73 ms
+^C
+--- freston.javierpzh.gonzalonazareno.org ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 6ms
+rtt min/avg/max/mdev = 1.148/1.492/1.734/0.254 ms
+
+[centos@quijote ~]$ ping www
+PING quijote.javierpzh.gonzalonazareno.org (10.0.2.6) 56(84) bytes of data.
+64 bytes from quijote.2.0.10.in-addr.arpa (10.0.2.6): icmp_seq=1 ttl=64 time=0.052 ms
+64 bytes from quijote.2.0.10.in-addr.arpa (10.0.2.6): icmp_seq=2 ttl=64 time=0.106 ms
+64 bytes from quijote.2.0.10.in-addr.arpa (10.0.2.6): icmp_seq=3 ttl=64 time=0.100 ms
+^C
+--- quijote.javierpzh.gonzalonazareno.org ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 66ms
+rtt min/avg/max/mdev = 0.052/0.086/0.106/0.024 ms
+
+[centos@quijote ~]$ ping ldap
+PING freston.javierpzh.gonzalonazareno.org (10.0.1.6) 56(84) bytes of data.
+64 bytes from freston.1.0.10.in-addr.arpa (10.0.1.6): icmp_seq=1 ttl=63 time=1.23 ms
+64 bytes from freston.1.0.10.in-addr.arpa (10.0.1.6): icmp_seq=2 ttl=63 time=1.75 ms
+64 bytes from freston.1.0.10.in-addr.arpa (10.0.1.6): icmp_seq=3 ttl=63 time=1.68 ms
+^C
+--- freston.javierpzh.gonzalonazareno.org ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 5ms
+rtt min/avg/max/mdev = 1.226/1.550/1.747/0.230 ms
+</pre>
 
 
 

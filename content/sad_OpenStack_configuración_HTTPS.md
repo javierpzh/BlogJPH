@@ -168,11 +168,11 @@ Yo lo haré sobre *Mozilla Firefox*, pero es bastante parecido en los demás nav
 
 Nos dirigimos a **Preferencias**, a la sección **Privacidad & Seguridad**, y al apartado **Certificados**, *clickamos* en **Ver certificados** y nos sale una ventana como esta:
 
-![.](images/sad_OpenStack_configuracion_HTTPS/importar.png)
+![.](images/sad_OpenStack_configuración_HTTPS/importar.png)
 
-Seleccionamos **Importar ...**, e importamos el certificado de la *CA*:
+Seleccionamos **Importar ...**, e importamos el certificado de la *CA*, seleccionando
 
-
+Ya hemos importado el certificado de la entidad
 
 
 

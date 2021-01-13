@@ -784,24 +784,24 @@ installation should now be secure.
 Thanks for using MariaDB!
 </pre>
 
-Es el turno de crear un usuario propio, asignarle privilegios y especificarle que sea accesible desde *Quijote*, es decir, desde cualquier dirección IP dentro de **10.0.2.XXX**. En realidad, podría poner que solo sea accesible para la IP de *Quijote*, ya que éste tiene la IP estática, pero prefiero hacerlo así por si en algún momento tenemos que cambiar la IP de *Quijote*. Para hacer esto debemos conectarnos como *root*:
+Es el turno de crear un usuario propio, asignarle privilegios y especificarle que sea accesible desde *Quijote*, es decir, desde **10.0.2.6**, ya que éste tiene la IP estática. Para hacer esto debemos conectarnos como *root*:
 
 <pre>
 root@sancho:~# mysql -u root -p
 Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 57
+Your MariaDB connection id is 39
 Server version: 10.3.25-MariaDB-0ubuntu0.20.04.1 Ubuntu 20.04
 
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-MariaDB [(none)]> CREATE USER 'javier'@'10.0.2.*' IDENTIFIED BY 'contraseña';
-Query OK, 0 rows affected (0.001 sec)
+MariaDB [(none)]> CREATE USER 'javierquijote'@'10.0.2.6' IDENTIFIED BY 'contraseña';
+Query OK, 0 rows affected (0.050 sec)
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO 'javier'@'10.0.2.*';
-Query OK, 0 rows affected (0.001 sec)
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO 'javierquijote'@'10.0.2.6';
+Query OK, 0 rows affected (0.152 sec)
 
 MariaDB [(none)]> exit
 Bye
@@ -815,8 +815,6 @@ bind-address = 0.0.0.0
 
 Esto hará que el servidor escuche las peticiones que provienen de todas las interfaces, a diferencia del punto anterior, que estaba configurado para que solo escuchara en *localhost*.
 
---------------------------------------------------------------------------------
-
 Hecho esto podemos dirigirnos al **cliente**, es decir, vamos a comprobar el acceso remoto desde *Quijote*. Para ello necesitamos instalar *MySQL*:
 
 <pre>
@@ -826,15 +824,29 @@ dnf install mysql-server -y
 Ahora probamos a acceder:
 
 <pre>
-mysql -h 10.0.1.8 -u javier -p
+mysql -h sancho -u javierquijote -p
 </pre>
 
-El parámetro **-h** indica la dirección del servidor, y los parámetros **-u** y **-p**, como ya sabemos, indican el usuario y la autenticación mediante contraseña.
+El parámetro **-h** indica la dirección del servidor (como nuestro DNS resuelve el nombre de *Sancho* no hace falta indicar su dirección), y los parámetros **-u** y **-p**, como ya sabemos, indican el usuario y la autenticación mediante contraseña.
 
 Obtenemos este resultado:
 
 <pre>
-[root@quijote ~]# mysql -h sancho -u javier -p
+[root@quijote ~]# mysql -h sancho -u javierquijote -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 41
+Server version: 5.5.5-10.3.25-MariaDB-0ubuntu0.20.04.1 Ubuntu 20.04
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
 </pre>
 
 

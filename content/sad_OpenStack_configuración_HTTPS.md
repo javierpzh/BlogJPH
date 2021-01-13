@@ -6,6 +6,8 @@ Tags: OpenStack, HTTPS
 
 **En este *post* vamos a configurar de forma adecuada el protocolo HTTPs en nuestro servidor web para nuestra aplicaciones web. Para ello vamos a emitir un certificado *wildcard* en la entidad certificadora [Gonzalo Nazareno](https://blogsaverroes.juntadeandalucia.es/iesgonzalonazareno/).**
 
+Este servidor web, fue creado en el *post* [Servidores OpenStack: DNS, Web y Base de Datos](https://javierpzh.github.io/servidores-openstack-dns-web-y-base-de-datos.html), en el apartado **Servidor Web**.
+
 - **Explica los pasos fundamentales para la creación del certificado. Especificando los campos que has rellenado en el fichero CSR.**
 
 Lo primero que debemos hacer es solicitar el certificado **wildcard**.
@@ -118,7 +120,7 @@ En este punto, vamos a pasar con la configuración del protocolo *HTTPs*, para e
 dnf install mod_ssl -y
 </pre>
 
-Para forzar que se acceda a la página a través del protocolo **HTTPs**, vamos a añadir al fichero de configuración de nuestro *virtualhost* la siguiente línea:
+Para forzar que se acceda a la página a través del protocolo **HTTPs**, vamos a añadir al fichero de configuración de nuestro *virtualhost*, es decir, `javierpzh.` la siguiente línea:
 
 <pre>
 Redirect / https://www.javierpzh.gonzalonazareno.org

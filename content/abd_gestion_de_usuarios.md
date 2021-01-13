@@ -490,20 +490,78 @@ Pues para ello, debemos emplear el siguiente comando:
 
 **4. Explica como puede consultarse el diccionario de datos de *MongoDB* para saber que roles han sido concedidos a un usuario y qué privilegios incluyen.**
 
+Si queremos saber que roles posee un usuario en concreto, podemos hacer uso del siguiente comando:
 
+<pre>
+db.getUser("nombreusuario")
+</pre>
 
+Por ejemplo, vamos a comprobar que roles se le han concedido al usuario **javier** de mi sistema:
 
+<pre>
+\> use admin
+switched to db admin
 
+\> db.getUser("javier")
+{
+	"_id" : "admin.javier",
+	"userId" : UUID("3da264ea-1f70-4fdc-8231-82bdc6d70cce"),
+	"user" : "javier",
+	"db" : "admin",
+	"roles" : [
+		{
+			"role" : "root",
+			"db" : "admin"
+		}
+	],
+	"mechanisms" : [
+		"SCRAM-SHA-1",
+		"SCRAM-SHA-256"
+	]
+}
 
+\>
+</pre>
 
+Podemos ver como nos muestra que el usuario **javier**, posee el rol de `root` para la base de datos **admin**.
 
+Bien, ¿y si queremos saber que privilegios incluye un determinado rol?
 
+Para ello, podemos utilizar el comando:
 
+<pre>
+db.system.roles.find("nombredelrol").pretty()
+</pre>
 
+Por ejemplo, vamos a comprobar que privilegios incluye el rol **rol_acceso_coleccion** de mi sistema:
 
+<pre>
+\> use admin
+switched to db admin
 
+\> db.system.roles.find().pretty("rol_acceso_coleccion")
+{
+	"_id" : "empresa_mongodb.rol_acceso_coleccion",
+	"role" : "rol_acceso_coleccion",
+	"db" : "empresa_mongodb",
+	"privileges" : [
+		{
+			"resource" : {
+				"db" : "empresa_mongodb",
+				"collection" : "Productos"
+			},
+			"actions" : [
+				"find",
+				"insert",
+				"remove",
+				"update"
+			]
+		}
+	],
+	"roles" : [ ]
+}
 
+\>
+</pre>
 
-
-
-.
+Vemos que incluye privilegios sobre las acciones `find`, `insert`, `remove` y `update`.

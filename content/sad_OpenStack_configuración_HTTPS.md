@@ -170,7 +170,7 @@ Nos dirigimos a **Preferencias**, a la sección **Privacidad & Seguridad**, y al
 
 ![.](images/sad_OpenStack_configuracion_HTTPS/importar.png)
 
-Seleccionamos **Importar ...**, e importamos el fichero *cacert.pem*:
+Seleccionamos **Importar ...**, e importamos el certificado de la *CA*:
 
 
 

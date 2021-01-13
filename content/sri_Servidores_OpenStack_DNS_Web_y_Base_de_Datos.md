@@ -652,6 +652,12 @@ En este punto, tan solo nos quedaría crear un fichero `index.html` en la ruta e
 
 También debemos crear dentro del directorio `/var/www/iesgn`, una carpeta llamada `log`.
 
+Debemos modificar la política de **SELinux**:
+
+<pre>
+setsebool -P httpd_unified 1
+</pre>
+
 Reiniciamos nuestro servidor web:
 
 <pre>

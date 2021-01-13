@@ -126,7 +126,9 @@ Redirect / https://www.javierpzh.gonzalonazareno.org
 
 
 
-
+<pre>
+[root@quijote sites-availble]# ln -s /etc/httpd/sites-availble/javierpzh.gonzalonazareno.https.conf /etc/httpd/sites-enabled/
+</pre>
 
 
 

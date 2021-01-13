@@ -1,5 +1,5 @@
 Title: Gestión de Usuarios de bases de datos
-Date: 2018/01/13
+Date: 2018/01/14
 Category: Administración de Bases de Datos
 Header_Cover: theme/images/banner-basededatos.png
 Tags: Base de Datos, Oracle, MySQL, MariaDB, PostgreSQL, MongoDB
@@ -525,7 +525,7 @@ switched to db admin
 
 Podemos ver como nos muestra que el usuario **javier**, posee el rol de `root` para la base de datos **admin**.
 
-Bien, ¿y si queremos saber que privilegios incluye un determinado rol?
+Bien, ¿y si queremos saber qué privilegios incluye un determinado rol?
 
 Para ello, podemos utilizar el comando:
 

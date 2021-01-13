@@ -170,14 +170,10 @@ Nos dirigimos a **Preferencias**, a la sección **Privacidad & Seguridad**, y al
 
 ![.](images/sad_OpenStack_configuración_HTTPS/importar.png)
 
-Seleccionamos **Importar ...**, e importamos el certificado de la *CA*, seleccionando
+Seleccionamos **Importar ...**, e importamos el certificado de la *CA*, seleccionando los permisos para confiar en esta entidad.
 
-Ya hemos importado el certificado de la entidad
+Ya hemos importado el certificado de la entidad, y si ahora nos dirigimos a la web `https://www.javierpzh.gonzalonazareno.org`.
 
+![.](images/sad_OpenStack_configuración_HTTPS/webhttps.png)
 
-
-
-
-
-
-.
+Podemos ver como efectivamente estamos haciendo uso del protocolo HTTPs, por lo que habríamos terminado este *post*.

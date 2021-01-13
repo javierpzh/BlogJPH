@@ -596,7 +596,7 @@ Ya tendríamos nuestro sitio web configurado para que utilice *https* pero en nu
 
 Para instalar el certificado en nuestro navegador, *Firefox* en mi caso, nos dirigimos a **Preferencias**, a la sección **Privacidad & Seguridad**, y al apartado **Certificados**, *clickamos* en **Ver certificados** y nos sale una ventana como esta:
 
-![.](images/sad_certificados_digitales_HTTPS/caalvaroimportar.png)
+![.](images/sad_certificados_digitales_HTTPS/importar.png)
 
 Seleccionamos **Importar ...**, e importamos el fichero *cacert.pem*:
 

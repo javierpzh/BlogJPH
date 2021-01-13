@@ -849,7 +849,4 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql>
 </pre>
 
-
-
-
-.
+Hemos accedido correctamente por lo que habríamos finalizado este *post*.

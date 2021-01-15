@@ -185,11 +185,45 @@ Una vez aquí, lo configuramos a nuestro gusto y una vez finalizado, podemos ver
 
 ![.](images/iaw_instalación_de_aplicación_web_Python/localhostblog.png)
 
+Es la hora de pasar esta aplicación al entorno de producción, para ello tendremos que realizar la copia de seguridad adecuada para restaurarla en este entorno. Como he comentado anteriormente, vamos a utilizar gestores de bases de datos distintos, por lo que, tendremos que buscar una solución para solventar esto.
 
+Es por ello que existe el comando:
 
+<pre>
+python manage.py dumpdata
+</pre>
 
+Este comando lo que hace es imprimirnos por pantalla toda la información almacenada en la base de datos en formato **.json**, es decir, información que se puede restaurar en **MySQL**. Genial, ya tendríamos el "problema" solventado, ya que con guardar la salida de dicho comando en un fichero tendríamos la copia de seguridad. Pues eso es lo que vamos a hacer con el siguiente comando:
 
+<pre>
+(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/javierpzh$ python manage.py dumpdata> copiadeseguridad.json
 
+(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/javierpzh$ ls
+copiadeseguridad.json  deploy  dev.db  fabfile.py  javierpzh  manage.py  requirements.txt  static
+</pre>
+
+En el entorno de desarrollo ya hemos terminado nuestro trabajo, y si recordamos, íbamos a utilizar un repositorio de GitHub para almacenar esta información y descargarla en el entorno de desarrollo.
+
+Almacenamos todos los nuevos ficheros, entre los que se encuentra la copia de seguridad:
+
+<pre>
+(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ git add *
+...
+
+(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ git commit -am "aplicación mezzanine"
+...
+
+(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ git push
+Enumerando objetos: 12103, listo.
+Contando objetos: 100% (12103/12103), listo.
+Compresión delta usando hasta 12 hilos
+Comprimiendo objetos: 100% (7709/7709), listo.
+Escribiendo objetos: 100% (12102/12102), 22.34 MiB | 4.51 MiB/s, listo.
+Total 12102 (delta 2845), reusado 12102 (delta 2845)
+remote: Resolving deltas: 100% (2845/2845), done.
+To github.com:javierpzh/Web-Python-OpenStack.git
+   69c2563..c41a53a  main -> main
+</pre>
 
 
 

@@ -1,8 +1,8 @@
 Title: Instalación de aplicación web Python en OpenStack
-Date: 2021/01/11
+Date: 2021/01/15
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
-Tags: OpenStack, Python, Django, virtualenv, git
+Tags: OpenStack, Python, Django, Mezzanine, virtualenv, git
 
 **En esta tarea vamos a realizar la instalación de un *CMS Python* basado en *Django*. Puedes encontrar varios en el siguiente [enlace](https://djangopackages.org/grids/g/cms/).**
 

@@ -4,11 +4,19 @@ Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: OpenStack, Python, Django, virtualenv, git
 
-**En esta tarea vamos a desplegar un *CMS Python*. Tienes que realizar la instalación de un *CMS Python* basado en *Django*. Puedes encontrar varios en el siguiente [enlace](https://djangopackages.org/grids/g/cms/).**
+**En esta tarea vamos a realizar la instalación de un *CMS Python* basado en *Django*. Puedes encontrar varios en el siguiente [enlace](https://djangopackages.org/grids/g/cms/).**
 
 #### Instala el CMS en el entorno de desarrollo. Debes utilizar un entorno virtual.
 
 Vamos a utilizar un repositorio de *GitHub* en el que guardaremos los ficheros que se generen durante la instalación del *CMS*. He creado un nuevo repositorio y lo voy a clonar en la dirección `entornos_virtuales`:
+
+Para clonar dicho repositorio, obviamente necesitamos tener instalado el paquete `git`:
+
+<pre>
+apt install git -y
+</pre>
+
+Ahora sí, lo clonamos:
 
 <pre>
 javier@debian:~/entornos_virtuales$ git clone git@github.com:javierpzh/Web-Python-OpenStack.git

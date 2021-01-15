@@ -138,7 +138,36 @@ Superuser created successfully.
 ...
 </pre>
 
-Veremos como tras introducir nuestro nombre de usuario
+Veremos como tras introducir nuestra información de administrador, se ejecutarán una serie de procesos que desembocarán en la creación de la nueva aplicación.
+
+Probaremos a acceder a ella desde nuestro navegador, para ello, antes necesitaremos ejecutar un proceso para servirla localmente:
+
+<pre>
+(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/javierpzh$ python manage.py runserver
+              .....
+          _d^^^^^^^^^b_
+       .d''           ''b.
+     .p'                'q.
+    .d'                   'b.
+   .d'                     'b.   * Mezzanine 4.3.1
+   ::                       ::   * Django 1.11.29
+  ::    M E Z Z A N I N E    ::  * Python 3.7.3
+   ::                       ::   * SQLite 3.27.2
+   'p.                     .q'   * Linux 4.19.0-13-amd64
+    'p.                   .q'
+     'b.                 .d'
+       'q..          ..p'
+          ^q........p^
+              ''''
+
+Performing system checks...
+
+System check identified no issues (0 silenced).
+January 15, 2021 - 13:08:21
+Django version 1.11.29, using settings 'javierpzh.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+</pre>
 
 
 

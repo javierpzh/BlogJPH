@@ -244,44 +244,44 @@ Updating files: 100% (8886/8886), done.
 cgi-bin  html  iesgn  Web-Python-OpenStack
 </pre>
 
-Ya disponemos de todos los datos, por lo que, tan solo nos faltaría mover la copia de seguridad a **Sancho**, que es donde se encuentra la base de datos.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---------------------------------------------------------------------------------
+Vamos a crear un nuevo entorno virtual:
 
 <pre>
-dnf install virtualenv -y
+[root@quijote Web-Python-OpenStack]# dnf install virtualenv -y
+
+[root@quijote Web-Python-OpenStack]# python3 -m venv entornoproduccion
+
+[root@quijote Web-Python-OpenStack]# source entornoproduccion/bin/activate
+
+(entornoproduccion) [root@quijote Web-Python-OpenStack]# pip install --upgrade pip
+
+(entornoproduccion) [root@quijote Web-Python-OpenStack]# pip install mezzanine
 </pre>
+
+Una vez tenemos nuestro entorno virtual en producción, vamos a 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 --------------------------------------------------------------------------------
 

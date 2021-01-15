@@ -173,7 +173,7 @@ Si accedemos a la dirección `127.0.0.1:8000`:
 
 ![.](images/iaw_instalación_de_aplicación_web_Python/localhost.png)
 
-Nuestra aplicación ya se está ejecutando. Nos *logueamos*:
+Nuestra aplicación ya se está ejecutando. Ahora vamos a crear nuestro blog y vamos a personalizar un poco la web, para ello, nos *logueamos*:
 
 ![.](images/iaw_instalación_de_aplicación_web_Python/localhostlogin.png)
 
@@ -181,6 +181,9 @@ Y así accederemos al panel de administración:
 
 ![.](images/iaw_instalación_de_aplicación_web_Python/localhostadmin.png)
 
+Una vez aquí, lo configuramos a nuestro gusto y una vez finalizado, podemos ver el resultado:
+
+![.](images/iaw_instalación_de_aplicación_web_Python/localhostblog.png)
 
 
 
@@ -197,9 +200,6 @@ Y así accederemos al panel de administración:
 
 
 
-
-
-#### Personaliza la página (cambia el nombre al blog y pon tu nombre) y añade contenido (algún artículo con alguna imagen).
 
 
 

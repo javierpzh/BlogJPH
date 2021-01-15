@@ -54,7 +54,7 @@ pip install --upgrade pip
 
 Ya tendríamos el entorno virtual listo para trabajar con él.
 
-
+Llegó el momento de decidir qué CMS instalaremos. En mi caso, he decidido instalar ****.
 
 
 

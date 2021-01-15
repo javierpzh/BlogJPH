@@ -225,7 +225,24 @@ To github.com:javierpzh/Web-Python-OpenStack.git
    69c2563..c41a53a  main -> main
 </pre>
 
+Ya en el entorno de producción, en primer lugar en **Quijote**, que es donde se encuentra el servidor web *Apache*, vamos a dirigirnos a la ruta `/var/www/` y clonaremos el repositorio, por lo que tenemos que tener instalado el paquete `git`:
 
+<pre>
+[root@quijote www]# dnf install git -y
+
+[root@quijote www]# git clone https://github.com/javierpzh/Web-Python-OpenStack.git
+Cloning into 'Web-Python-OpenStack'...
+remote: Enumerating objects: 12105, done.
+remote: Counting objects: 100% (12105/12105), done.
+remote: Compressing objects: 100% (7711/7711), done.
+remote: Total 12105 (delta 2845), reused 12102 (delta 2845), pack-reused 0
+Receiving objects: 100% (12105/12105), 22.34 MiB | 6.47 MiB/s, done.
+Resolving deltas: 100% (2845/2845), done.
+Updating files: 100% (8886/8886), done.
+
+[root@quijote www]# ls
+cgi-bin  html  iesgn  Web-Python-OpenStack
+</pre>
 
 
 

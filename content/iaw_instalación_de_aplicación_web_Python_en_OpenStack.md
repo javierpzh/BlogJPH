@@ -167,9 +167,12 @@ January 15, 2021 - 13:08:21
 Django version 1.11.29, using settings 'javierpzh.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
+
 </pre>
 
+Si accedemos a la dirección `127.0.0.1:8000`:
 
+![.](images/iaw_instalación_de_aplicación_web_Python/localhost.png)
 
 
 

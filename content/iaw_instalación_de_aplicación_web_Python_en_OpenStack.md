@@ -174,7 +174,13 @@ Si accedemos a la dirección `127.0.0.1:8000`:
 
 ![.](images/iaw_instalación_de_aplicación_web_Python/localhost.png)
 
+Nuestra aplicación ya se está ejecutando. Nos *logueamos*:
 
+![.](images/iaw_instalación_de_aplicación_web_Python/localhostlogin.png)
+
+Y así accederemos al panel de administración:
+
+![.](images/iaw_instalación_de_aplicación_web_Python/localhostadmin.png)
 
 
 

@@ -75,20 +75,53 @@ Para instalar *Btrfs* en nuestro sistema *Debian*, tenemos disponible el paquete
 apt install btrfs-tools -y
 </pre>
 
-En primer lugar, vamos a formatear estos volúmenes y asignarle como sistema de ficheros *Btrfs*. Para ello, hacemos uso de la herramienta `mkfs.()` seguido de los dispositivos:
+En primer lugar, vamos a formatear uno de estos volúmenes y asignarle como sistema de ficheros *Btrfs*. Para ello, hacemos uso de la herramienta `mkfs.()` seguido del dispositivo:
 
 <pre>
-root@btrfs:~# mkfs.btrfs /dev/vdb /dev/vdc /dev/vdd
+root@btrfs:~# mkfs.btrfs /dev/vdb
+</pre>
+
+Comprobamos que hemos asignado este *filesystem* correctamente:
+
+<pre>
+root@btrfs:~# lsblk -f
+NAME   FSTYPE LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINT
+vda                                                                     
+└─vda1 ext4         9659e5d4-dd87-42af-bf70-0bb6f7b2e31b  846.4M    51% /
+vdb    btrfs        800a0dc3-d7d2-433a-8445-69e0d09d99cd                
+vdc
+vdd
+</pre>
+
+Efectivamente ya estaríamos gestionando el dispositivo `vdb` con *Btrfs*.
+
+¿Y qué pasa si quisiéramos crear un sistema **RAID** con los 3 nuevos volúmenes? Bien, pues para llevar a cabo esto, nos valdría con introducir el mismo comando que hemos utilizado para formatear un dispositivo, pero indicando los tres discos en este caso.
+
+Esto ocurre ya que *Btrfs* lo interpreta como un RAID para su gestión aunque no lo estemos indicando. Si queremos indicar el tipo de RAID que debe crear, podemos utilizar los parámetros `-d` y `-m` para especificar el perfil de redundancia para los datos y metadatos. En mi caso, voy a crear un RAID 1:
+
+<pre>
+root@btrfs:~# mkfs.btrfs -d raid1 -m raid1 /dev/vdb /dev/vdc /dev/vdd
+btrfs-progs v4.20.1
+See http://btrfs.wiki.kernel.org for more information.
+
+/dev/vdb appears to contain an existing filesystem (btrfs).
+ERROR: use the -f option to force overwrite of /dev/vdb
+</pre>
+
+Al haber utilizado anteriormente el disco `vdb` nos avisa que ya tiene un sistema de ficheros y que si queremos asignarle nuevamente este sistema, tendremos que indicar el parámetro `-f` y de esta manera forzarlo.
+
+<pre>
+root@btrfs:~# mkfs.btrfs -f -d raid1 -m raid1 /dev/vdb /dev/vdc /dev/vdd
 btrfs-progs v4.20.1
 See http://btrfs.wiki.kernel.org for more information.
 
 Label:              (null)
-UUID:               800a0dc3-d7d2-433a-8445-69e0d09d99cd
+UUID:               1675b6b0-4741-4341-bb5b-403e1e7c2932
 Node size:          16384
 Sector size:        4096
 Filesystem size:    3.00GiB
 Block group profiles:
-  Data:             RAID0           307.12MiB
+  Data:             RAID1           153.56MiB
   Metadata:         RAID1           153.56MiB
   System:           RAID1             8.00MiB
 SSD detected:       no
@@ -108,9 +141,9 @@ root@btrfs:~# lsblk -f
 NAME   FSTYPE LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINT
 vda                                                                     
 └─vda1 ext4         9659e5d4-dd87-42af-bf70-0bb6f7b2e31b  846.4M    51% /
-vdb    btrfs        800a0dc3-d7d2-433a-8445-69e0d09d99cd                
-vdc    btrfs        800a0dc3-d7d2-433a-8445-69e0d09d99cd                
-vdd    btrfs        800a0dc3-d7d2-433a-8445-69e0d09d99cd
+vdb    btrfs        1675b6b0-4741-4341-bb5b-403e1e7c2932                
+vdc    btrfs        1675b6b0-4741-4341-bb5b-403e1e7c2932                
+vdd    btrfs        1675b6b0-4741-4341-bb5b-403e1e7c2932
 </pre>
 
 

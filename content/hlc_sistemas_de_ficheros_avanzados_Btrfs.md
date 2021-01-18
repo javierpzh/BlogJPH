@@ -18,6 +18,8 @@ Elige uno de los dos sistemas de ficheros "avanzados".
 
 Esta tarea se puede realizar en una instancia de OpenStack y documentarla como habitualmente o bien grabar un vídeo con una demo de las características y hacer la entrega con el enlace del vídeo.
 
+-----------------------------------------------------------------------------------------------------------
+
 En este *post* vamos a ver el sistema de ficheros **Btrfs**.
 
 **Btrfs** *(B-tree FS)* es un sistema de archivos **copy-on-write** *(CoW)* anunciado por *Oracle Corporation* para *GNU/Linux*. *Btrfs* existe porque los desarrolladores querían expandir la funcionalidad de un sistema de archivos para incluir funcionalidades adicionales tales como agrupación, instantáneas y sumas de verificación.
@@ -55,11 +57,77 @@ Veamos algunas características de este sistema de ficheros:
 - Desfragmentación sin desmontar
 
 
+Para empezar a trabajar con este sistema de ficheros, he creado un escenario en *OpenStack* que se resume en una instancia con *Debian*, a la que le he añadido dos volúmenes de 1 GB cada uno, como podemos observar aquí:
+
+<pre>
+root@btrfs:~# lsblk
+NAME   MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+vda    254:0    0   2G  0 disk
+└─vda1 254:1    0   2G  0 part /
+vdb    254:16   0   1G  0 disk
+vdc    254:32   0   1G  0 disk
+</pre>
+
 Para instalar *Btrfs* en nuestro sistema *Debian*, tenemos disponible el paquete **btrfs-tools**, que incluye todas las herramientas y características de este sistema de ficheros.
 
 <pre>
 apt install btrfs-tools -y
 </pre>
+
+En primer lugar, vamos a formatear estas particiones y asignarle como sistema de ficheros *Btrfs*. Para ello, hacemos uso de la herramienta `mkfs.()` seguido de los dispositivos:
+
+<pre>
+root@btrfs:~# mkfs.btrfs /dev/vdb /dev/vdc
+btrfs-progs v4.20.1
+See http://btrfs.wiki.kernel.org for more information.
+
+Label:              (null)
+UUID:               e4a0df33-403d-40f7-8fbb-7ad67696807f
+Node size:          16384
+Sector size:        4096
+Filesystem size:    2.00GiB
+Block group profiles:
+  Data:             RAID0           204.75MiB
+  Metadata:         RAID1           102.38MiB
+  System:           RAID1             8.00MiB
+SSD detected:       no
+Incompat features:  extref, skinny-metadata
+Number of devices:  2
+Devices:
+   ID        SIZE  PATH
+    1     1.00GiB  /dev/vdb
+    2     1.00GiB  /dev/vdc
+</pre>
+
+Vemos como efectivamente ahora ambos poseen *Btrfs*:
+
+<pre>
+root@btrfs:~# lsblk -f
+NAME   FSTYPE LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINT
+vda                                                                     
+└─vda1 ext4         9659e5d4-dd87-42af-bf70-0bb6f7b2e31b  846.4M    51% /
+vdb    btrfs        e4a0df33-403d-40f7-8fbb-7ad67696807f                
+vdc    btrfs        e4a0df33-403d-40f7-8fbb-7ad67696807f
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

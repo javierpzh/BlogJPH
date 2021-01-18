@@ -97,7 +97,7 @@ Efectivamente ya estaríamos gestionando el dispositivo `vdb` con *Btrfs*.
 
 ¿Y qué pasa si quisiéramos crear un sistema **RAID** con los 3 nuevos volúmenes? Bien, pues para llevar a cabo esto, nos valdría con introducir el mismo comando que hemos utilizado para formatear un dispositivo, pero indicando los tres discos en este caso.
 
-Esto ocurre ya que *Btrfs* lo interpreta como un RAID para su gestión aunque no lo estemos indicando. Si queremos indicar el tipo de RAID que debe crear, podemos utilizar los parámetros `-d` y `-m` para especificar el perfil de redundancia para los datos y metadatos. En mi caso, voy a crear un RAID 1:
+Esto ocurre ya que *Btrfs* lo interpreta como un RAID para su gestión aunque no lo estemos indicando. Si queremos indicar el tipo de RAID que debe crear, podemos utilizar los parámetros `-d` y `-m` para especificar el perfil de redundancia para los datos y metadatos. En mi caso, voy a crear un RAID 1, que recordemos que se caracteriza por duplicar el almacenamiento de los datos en todos los dispositivos:
 
 <pre>
 root@btrfs:~# mkfs.btrfs -d raid1 -m raid1 /dev/vdb /dev/vdc /dev/vdd
@@ -108,7 +108,7 @@ See http://btrfs.wiki.kernel.org for more information.
 ERROR: use the -f option to force overwrite of /dev/vdb
 </pre>
 
-Al haber utilizado anteriormente el disco `vdb` nos avisa que ya tiene un sistema de ficheros y que si queremos asignarle nuevamente este sistema, tendremos que indicar el parámetro `-f` y de esta manera forzarlo.
+Al haber utilizado anteriormente el disco `vdb` nos avisa que ya tiene un sistema de ficheros y que si queremos asignarle nuevamente este *filesystem*, tendremos que indicar el parámetro `-f` y de esta manera forzarlo.
 
 <pre>
 root@btrfs:~# mkfs.btrfs -f -d raid1 -m raid1 /dev/vdb /dev/vdc /dev/vdd
@@ -146,7 +146,13 @@ vdc    btrfs        1675b6b0-4741-4341-bb5b-403e1e7c2932
 vdd    btrfs        1675b6b0-4741-4341-bb5b-403e1e7c2932
 </pre>
 
+Además de poseer este sistema de ficheros, apreciamos como los identificadores de los tres dispositivos son idénticos, esto se debe a que el sistema lo identifica como tan sólo uno.
 
+Vamos a probar a ver que pasaría en caso de que uno de los discos fallara. Para ello antes, vamos a montar el sistema RAID en nuestro sistema:
+
+<pre>
+
+</pre>
 
 
 

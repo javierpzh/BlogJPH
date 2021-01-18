@@ -18,4 +18,50 @@ Elige uno de los dos sistemas de ficheros "avanzados".
 
 Esta tarea se puede realizar en una instancia de OpenStack y documentarla como habitualmente o bien grabar un vídeo con una demo de las características y hacer la entrega con el enlace del vídeo.
 
-En este *post* vamos a ver el sistema de ficheros **Btrfs**
+En este *post* vamos a ver el sistema de ficheros **Btrfs**.
+
+**Btrfs** *(B-tree FS)* es un sistema de archivos **copy-on-write** anunciado por *Oracle Corporation* para *GNU/Linux*. *Btrfs* existe porque los desarrolladores querían expandir la funcionalidad de un sistema de archivos para incluir funcionalidades adicionales tales como agrupación, instantáneas y sumas de verificación.
+
+El proyecto comenzó en *Oracle*, pero desde entonces, otras compañías importantes han desempeñado un papel en el desarrollo, como pueden ser *Facebook*, *Intel*, *Netgear*, *Red Hat* y *SUSE*.
+
+Veamos algunas características de este sistema de ficheros:
+
+- 2^64 bytes = 16 EiB *(Exbibyte)* tamaño máximo de archivo
+
+- Empaquetado eficiente en espacio de archivos pequeños y directorios indexados
+
+- Asignación dinámica de inodos (no se fija un número máximo de archivos al crear el sistema de archivos)
+
+- *Snapshots* escribibles y *snapshots* de *snapshots*
+
+- Subvolúmenes
+
+- *Mirroring* y *Striping* a nivel de objeto
+
+- Comprobación de datos y metadatos
+
+- Compresión
+
+- *Copy-on-write* del registro de todos los datos y metadatos
+
+- Gran integración con *device-mapper* para soportar múltiples dispositivos, con varios algoritmos de RAID incluidos
+
+- Comprobación del sistema de archivos sin desmontar y comprobación muy rápida del sistema de archivos desmontado
+
+- Copias de seguridad incrementales eficaces y *mirroring* del sistema de archivos
+
+- Modo optimizado para SSD
+
+- Desfragmentación sin desmontar
+
+
+
+
+
+
+
+
+
+
+
+.

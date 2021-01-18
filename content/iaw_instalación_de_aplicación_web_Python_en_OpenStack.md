@@ -1,5 +1,5 @@
 Title: Instalación de aplicación web Python en OpenStack
-Date: 2021/01/15
+Date: 2021/01/18
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: OpenStack, Python, Django, Mezzanine, virtualenv, git
@@ -258,15 +258,43 @@ Vamos a crear un nuevo entorno virtual:
 (entornoproduccion) [root@quijote Web-Python-OpenStack]# pip install mezzanine
 </pre>
 
-Una vez tenemos nuestro entorno virtual en producción, vamos a 
+Una vez tenemos nuestro entorno virtual en producción, vamos a crear en nuestro usuario de *MySQL*, del servidor de *Sancho*, la base de datos **webpython**, para almacenar los datos de la copia de seguridad:
+
+<pre>
+[root@quijote ~]# mysql -h sancho -u javierquijote -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 50
+Server version: 5.5.5-10.3.25-MariaDB-0ubuntu0.20.04.1 Ubuntu 20.04
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE webpython;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| webpython          |
++--------------------+
+4 rows in set (0.00 sec)
+</pre>
 
 
 
-
-
-
-
-
+<pre>
+ALLOWED_HOSTS = ["sancho"]
+</pre>
 
 
 

@@ -20,7 +20,7 @@ Esta tarea se puede realizar en una instancia de OpenStack y documentarla como h
 
 En este *post* vamos a ver el sistema de ficheros **Btrfs**.
 
-**Btrfs** *(B-tree FS)* es un sistema de archivos **copy-on-write** anunciado por *Oracle Corporation* para *GNU/Linux*. *Btrfs* existe porque los desarrolladores querían expandir la funcionalidad de un sistema de archivos para incluir funcionalidades adicionales tales como agrupación, instantáneas y sumas de verificación.
+**Btrfs** *(B-tree FS)* es un sistema de archivos **copy-on-write** *(CoW)* anunciado por *Oracle Corporation* para *GNU/Linux*. *Btrfs* existe porque los desarrolladores querían expandir la funcionalidad de un sistema de archivos para incluir funcionalidades adicionales tales como agrupación, instantáneas y sumas de verificación.
 
 El proyecto comenzó en *Oracle*, pero desde entonces, otras compañías importantes han desempeñado un papel en el desarrollo, como pueden ser *Facebook*, *Intel*, *Netgear*, *Red Hat* y *SUSE*.
 
@@ -55,6 +55,11 @@ Veamos algunas características de este sistema de ficheros:
 - Desfragmentación sin desmontar
 
 
+Para instalar *Btrfs* en nuestro sistema *Debian*, tenemos disponible el paquete **btrfs-tools**, que incluye todas las herramientas y características de este sistema de ficheros.
+
+<pre>
+apt install btrfs-tools -y
+</pre>
 
 
 

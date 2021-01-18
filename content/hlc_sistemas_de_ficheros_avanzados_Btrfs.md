@@ -1,7 +1,7 @@
 Title: Sistema de ficheros "avanzados" Btrfs
 Date: 2021/01/18
 Category: Cloud Computing
-Header_Cover: theme/images/banner-sistemas.jpg
+Header_Cover: theme/images/banner-hlc.jpg
 Tags: FileSystem, Btrfs
 
 Elige uno de los dos sistemas de ficheros "avanzados".

@@ -225,7 +225,7 @@ To github.com:javierpzh/Web-Python-OpenStack.git
    69c2563..c41a53a  main -> main
 </pre>
 
-Ya en el entorno de producción, en primer lugar en **Quijote**, que es donde se encuentra el servidor web *Apache*, vamos a dirigirnos a la ruta `/var/www/` y clonaremos el repositorio, por lo que tenemos que tener instalado el paquete `git`:
+Ya en el entorno de producción, en **Quijote**, que es donde se encuentra el servidor web *Apache*, vamos a dirigirnos a la ruta `/var/www/` y clonaremos el repositorio, por lo que tenemos que tener instalado el paquete `git`:
 
 <pre>
 [root@quijote www]# dnf install git -y

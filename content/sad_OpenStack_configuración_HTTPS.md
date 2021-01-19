@@ -8,8 +8,6 @@ Tags: OpenStack, HTTPS
 
 Este servidor web, fue creado en el *post* [Servidores OpenStack: DNS, Web y Base de Datos](https://javierpzh.github.io/servidores-openstack-dns-web-y-base-de-datos.html), en el apartado **Servidor Web**.
 
-- **Explica los pasos fundamentales para la creación del certificado. Especificando los campos que has rellenado en el fichero CSR.**
-
 Lo primero que debemos hacer es solicitar el certificado **wildcard**.
 
 (Este certificado ya lo creé anteriormente para el uso del protocolo *LDAPs*, puedes ver el *post* [aquí](https://javierpzh.github.io/ldaps.html) y por ello el proceso lo llevo a cabo en la máquina *Freston*. La clave privada y los certificados `.crt` los he copiado a la máquina *Quijote*.)
@@ -112,8 +110,6 @@ Los certificados `wildcard.crt` y `gonzalonazareno.crt` los vamos a mover a la r
 [centos@quijote ~]$ sudo mv freston.key /etc/pki/tls/private/
 </pre>
 
-- **Debes hacer una redirección para forzar el protocolo HTTPs.**
-
 En este punto, vamos a pasar con la configuración del protocolo *HTTPs*, para ello es necesario tener instalado el módulo `mod_ssl`. Lo instalamos:
 
 <pre>
@@ -129,8 +125,30 @@ Redirect / https://www.javierpzh.gonzalonazareno.org
 Hecho esto, nos faltaría crear el *virtualhost* que defina la web con HTTPs. En mi caso recibirá el nombre de `javierpzh.gonzalonazareno.https.conf` y su contenido será el siguiente:
 
 <pre>
+<\VirtualHost *:443\>
 
+    ServerName www.javierpzh.gonzalonazareno.org
+    DocumentRoot /var/www/iesgn
+
+    ErrorLog /var/www/iesgn/log/error.log
+    CustomLog /var/www/iesgn/log/requests.log combined
+
+    <\Proxy "unix:/run/php-fpm/www.sock|fcgi://php-fpm"\>
+        ProxySet disablereuse=off
+    <\/Proxy\>
+
+    <\FilesMatch \.php$\>
+        SetHandler proxy:fcgi://php-fpm
+    <\/FilesMatch\>
+
+    SSLEngine on
+    SSLCertificateFile /etc/pki/tls/certs/wildcard.crt
+    SSLCertificateKeyFile /etc/pki/tls/private/freston.key
+
+<\/VirtualHost\>
 </pre>
+
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
 Habilitamos el nuevo *virtualhost* creando un enlace simbólico hacia la ruta `/etc/httpd/sites-enabled`.
 
@@ -143,8 +161,6 @@ Por último, vamos a reiniciar nuestro servidor web para que se apliquen los nue
 <pre>
 systemctl restart httpd
 </pre>
-
-- **Investiga la regla DNAT en el cortafuego para abrir el puerto 443.**
 
 Vamos a crear la regla necesaria para hacer **DNAT**. La regla debe estar en **Dulcinea** ya que es la máquina que posea conexión hacia el exterior, y es la siguiente:
 
@@ -160,9 +176,7 @@ Esta regla, lo que hace, es redirigir el tráfico que proviene desde la interfaz
 iptables-save > /etc/iptables/rules.v4
 </pre>
 
-- **Instala el certificado del Gonzalo Nazareno en tu navegador para que se pueda verificar tu certificado.**
-
-Para poder utilizar el protocolo HTTPs, debemos tener instalado en nuestro navegador el certificado firmado por la CA, en mi caso, tengo que instalar el certificado del *Gonzalo Nazareno*.
+Por último, para poder utilizar el protocolo HTTPs, debemos tener instalado en nuestro navegador el certificado firmado por la CA, en mi caso, tengo que instalar el certificado del *Gonzalo Nazareno*.
 
 Yo lo haré sobre *Mozilla Firefox*, pero es bastante parecido en los demás navegadores.
 

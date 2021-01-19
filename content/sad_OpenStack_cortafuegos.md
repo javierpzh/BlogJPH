@@ -41,7 +41,7 @@ La política por defecto que vamos a configurar en nuestro cortafuegos será de 
 
 - **Configura de manera adecuada las reglas NAT para que todas las máquinas de nuestra red tenga acceso al exterior.**
 
-En mi caso, poseo una serie de reglas que fueron creadas en artículos anteriores y las cuáles fueron creadas con `iptables`, pero no hay problema, ya que las podemos convertir a `nftables` utilizando la herramienta `iptables-translate`.
+En mi caso, ya poseo esta serie de reglas, ya que fueron creadas en artículos anteriores, pero fueron creadas con `iptables`. Tranquilidad, esto no supone un problema, ya que las podemos convertir a `nftables` utilizando la herramienta `iptables-translate`.
 
 Reglas creadas hasta el momento:
 
@@ -52,14 +52,18 @@ iptables -t nat -A POSTROUTING -s 10.0.2.0/24 -o eth0 -j MASQUERADE
 Las convierto a reglas de `nftables`:
 
 <pre>
+root@dulcinea:~# iptables-translate -t nat -A POSTROUTING -s 10.0.1.0/24 -o eth0 -j MASQUERADE
+nft add rule ip nat POSTROUTING oifname "eth0" ip saddr 10.0.1.0/24 counter masquerade
 
+root@dulcinea:~# iptables-translate -t nat -A POSTROUTING -s 10.0.2.0/24 -o eth0 -j MASQUERADE
+nft add rule ip nat POSTROUTING oifname "eth0" ip saddr 10.0.2.0/24 counter masquerade
 </pre>
 
-
-
-
+Listo, ya las tendríamos.
 
 - **Configura de manera adecuada todas las reglas NAT necesarias para que los servicios expuestos al exterior sean accesibles.**
+
+Al igual que en el caso anterior, ya me encuentro con que estas reglas fueron creadas anteriormente con `iptables`.
 
 Reglas creadas hasta el momento:
 
@@ -68,6 +72,21 @@ iptables -t nat -A PREROUTING -p udp --dport 53 -i eth0 -j DNAT --to 10.0.1.6:53
 iptables -t nat -A PREROUTING -p tcp --dport 80 -i eth0 -j DNAT --to 10.0.2.6:80
 
 iptables -t nat -A PREROUTING -p tcp --dport 443 -i eth0 -j DNAT --to 10.0.2.6:443
+
+Las convierto a reglas de `nftables`:
+
+<pre>
+root@dulcinea:~# iptables-translate -t nat -A PREROUTING -p udp --dport 53 -i eth0 -j DNAT --to 10.0.1.6:53
+nft add rule ip nat PREROUTING iifname "eth0" udp dport 53 counter dnat to 10.0.1.6:53
+
+root@dulcinea:~# iptables-translate -t nat -A PREROUTING -p tcp --dport 80 -i eth0 -j DNAT --to 10.0.2.6:80
+nft add rule ip nat PREROUTING iifname "eth0" tcp dport 80 counter dnat to 10.0.2.6:80
+
+root@dulcinea:~# iptables-translate -t nat -A PREROUTING -p tcp --dport 443 -i eth0 -j DNAT --to 10.0.2.6:443
+nft add rule ip nat PREROUTING iifname "eth0" tcp dport 443 counter dnat to 10.0.2.6:443
+</pre>
+
+Listo, ya las tendríamos.
 
 
 ## Reglas

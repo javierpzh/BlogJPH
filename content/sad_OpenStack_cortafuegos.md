@@ -97,29 +97,35 @@ Para cada configuración, hay que mostrar las reglas que se han configurado y un
 
 - **Todas las máquinas de las dos redes pueden hacer ping entre ellas.**
 
+
+
 - **Todas las máquinas pueden hacer ping a una máquina del exterior.**
 
+
+
 - **Desde el exterior se puede hacer ping a dulcinea.**
+
+
 
 - **A dulcinea se le puede hacer ping desde la DMZ, pero desde la LAN se le debe rechazar la conexión (REJECT).**
 
 
 #### SSH
 
-- **Podemos acceder por ssh a todas las máquinas.**
+- **Podemos acceder por SSH a todas las máquinas.**
 
 
 
-- **Todas las máquinas pueden hacer ssh a máquinas del exterior.**
+- **Todas las máquinas pueden hacer SSH a máquinas del exterior.**
 
 
 
-- **La máquina dulcinea tiene un servidor ssh escuchando por el puerto 22, pero al acceder desde el exterior habrá que conectar al puerto 2222.**
+- **La máquina *Dulcinea* tiene un servidor SSH escuchando por el puerto 22, pero al acceder desde el exterior habrá que conectar al puerto 2222.**
 
 
 #### DNS
 
-- **El único dns que pueden usar los equipos de las dos redes es freston, no pueden utilizar un DNS externo.**
+- **El único DNS que pueden usar los equipos de las dos redes es *Freston*, no pueden utilizar un DNS externo.**
 
 
 
@@ -127,7 +133,7 @@ Para cada configuración, hay que mostrar las reglas que se han configurado y un
 
 
 
-- **Tenemos que permitir consultas dns desde el exterior a freston, para que, por ejemplo, papion-dns pueda preguntar.**
+- **Tenemos que permitir consultas DNS desde el exterior a *Freston*, para que, por ejemplo, papion-dns pueda preguntar.**
 
 
 #### Base de datos
@@ -137,32 +143,11 @@ Para cada configuración, hay que mostrar las reglas que se han configurado y un
 
 #### Web
 
-- **Las páginas web de quijote (80, 443) pueden ser accedidas desde todas las máquinas de nuestra red y desde el exterior.**
+- **Las páginas web de *Quijote* (80, 443) pueden ser accedidas desde todas las máquinas de nuestra red y desde el exterior.**
 
 
 #### Más servicios
 
 - **Configura de manera adecuada el cortafuegos, para otros servicios que tengas instalado en tu red (ldap, correo, ...)**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .

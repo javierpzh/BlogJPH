@@ -39,31 +39,35 @@ La política por defecto que vamos a configurar en nuestro cortafuegos será de 
 
 ## NAT
 
+- **Configura de manera adecuada las reglas NAT para que todas las máquinas de nuestra red tenga acceso al exterior.**
+
+En mi caso, poseo una serie de reglas que fueron creadas en artículos anteriores y las cuáles fueron creadas con `iptables`, pero no hay problema, ya que las podemos convertir a `nftables` utilizando la herramienta `iptables-translate`.
+
 Reglas creadas hasta el momento:
 
 iptables -t nat -A POSTROUTING -s 10.0.1.0/24 -o eth0 -j MASQUERADE
 
 iptables -t nat -A POSTROUTING -s 10.0.2.0/24 -o eth0 -j MASQUERADE
 
-iptables -t nat -A PREROUTING -p udp --dport 53 -i eth0 -j DNAT --to 10.0.1.6:53
+Las convierto a reglas de `nftables`:
 
-iptables -t nat -A PREROUTING -p tcp --dport 80 -i eth0 -j DNAT --to 10.0.2.6:80
+<pre>
 
-iptables -t nat -A PREROUTING -p tcp --dport 443 -i eth0 -j DNAT --to 10.0.2.6:443
-
-- **Configura de manera adecuada las reglas NAT para que todas las máquinas de nuestra red tenga acceso al exterior.**
-
-En mi caso, poseo una serie de reglas que fueron creadas en artículos anteriores y las cuáles fueron creadas con `iptables`, pero no hay problema, ya que las podemos convertir a `nftables` utilizando la herramienta `iptables-translate`.
-
-
-
-
+</pre>
 
 
 
 
 
 - **Configura de manera adecuada todas las reglas NAT necesarias para que los servicios expuestos al exterior sean accesibles.**
+
+Reglas creadas hasta el momento:
+
+iptables -t nat -A PREROUTING -p udp --dport 53 -i eth0 -j DNAT --to 10.0.1.6:53
+
+iptables -t nat -A PREROUTING -p tcp --dport 80 -i eth0 -j DNAT --to 10.0.2.6:80
+
+iptables -t nat -A PREROUTING -p tcp --dport 443 -i eth0 -j DNAT --to 10.0.2.6:443
 
 
 ## Reglas

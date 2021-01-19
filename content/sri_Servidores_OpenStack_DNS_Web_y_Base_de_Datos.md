@@ -4,9 +4,14 @@ Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: OpenStack, bind9, Apache, MySQL, MariaDB
 
+En este *post* vamos a realizar la instalación de tres servidores: DNS, Web y Base de Datos. Estos servidores se encontrarán en el escenario de OpenStack montado en artículos anteriores. Si quieres saber más acerca del escenario, puedes visitar los siguientes *posts*:
+
+- [Creación del escenario de trabajo en OpenStack](https://javierpzh.github.io/creacion-del-escenario-de-trabajo-en-openstack.html)
+- [Modificación del escenario de trabajo en OpenStack](https://javierpzh.github.io/modificacion-del-escenario-de-trabajo-en-openstack.html)
+
 ## Servidor DNS
 
-**Vamos a instalar un servidor DNS en *Freston* que nos permita gestionar la resolución directa e inversa de nuestros nombres. Mi subdominio dentro del dominio principal `gonzalonazareno.org`, se llamará `javierpzh.gonzalonazareno.org`. A partir de este momento no será necesario la resolución estática en los servidores.**
+**Vamos a instalar un servidor DNS en *Freston* que nos permita gestionar la resolución directa e inversa de nuestros nombres. Mi subdominio dentro del dominio principal `gonzalonazareno.org`, se llamará `javierpzh.gonzalonazareno.org`.**
 
 Vamos a instalar el servidor bind9:
 

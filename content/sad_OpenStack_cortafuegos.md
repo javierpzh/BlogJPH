@@ -73,6 +73,8 @@ iptables -t nat -A PREROUTING -p tcp --dport 80 -i eth0 -j DNAT --to 10.0.2.6:80
 
 iptables -t nat -A PREROUTING -p tcp --dport 443 -i eth0 -j DNAT --to 10.0.2.6:443
 
+iptables -t nat -A PREROUTING -p tcp --dport 25 -i eth0 -j DNAT --to 10.0.1.6:25
+
 Las convierto a reglas de `nftables`:
 
 <pre>
@@ -84,6 +86,9 @@ nft add rule ip nat PREROUTING iifname "eth0" tcp dport 80 counter dnat to 10.0.
 
 root@dulcinea:~# iptables-translate -t nat -A PREROUTING -p tcp --dport 443 -i eth0 -j DNAT --to 10.0.2.6:443
 nft add rule ip nat PREROUTING iifname "eth0" tcp dport 443 counter dnat to 10.0.2.6:443
+
+root@dulcinea:~# iptables-translate -t nat -A PREROUTING -p tcp --dport 25 -i eth0 -j DNAT --to 10.0.1.6:25
+nft add rule ip nat PREROUTING iifname "eth0" tcp dport 25 counter dnat to 10.0.1.6:25
 </pre>
 
 Listo, ya las tendríamos.

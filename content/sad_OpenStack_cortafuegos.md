@@ -53,7 +53,9 @@ iptables -t nat -A PREROUTING -p tcp --dport 443 -i eth0 -j DNAT --to 10.0.2.6:4
 
 - **Configura de manera adecuada las reglas NAT para que todas las máquinas de nuestra red tenga acceso al exterior.**
 
-En mi caso, poseo una serie de reglas que fueron creadas en artículos anteriores y las cuáles fueron creadas con `iptables`,
+En mi caso, poseo una serie de reglas que fueron creadas en artículos anteriores y las cuáles fueron creadas con `iptables`, pero no hay problema, ya que las podemos convertir a `nftables` utilizando la herramienta `iptables-translate`.
+
+
 
 
 

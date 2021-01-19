@@ -6,11 +6,44 @@ Tags: OpenStack, Cortafuegos, nftables
 
 Vamos a construir un cortafuegos en **Dulcinea** que nos permita controlar el tráfico de nuestra red. El cortafuegos que vamos a construir debe funcionar tras un reinicio.
 
+Empezaremos por instalar el paquete `nftables`:
+
+<pre>
+apt install nftables -y
+</pre>
+
+Una vez instalado, debemos habilitarlo para que se inicie en cada arranque:
+
+<pre>
+systemctl enable nftables.service
+</pre>
+
+Al igual que pasa con `iptables`, `nftables` también permite guardar las reglas en un fichero para que así las configuraciones perduren a pesar de los reinicios del sistema. Para hacer esto empleamos el siguiente comando:
+
+<pre>
+nft list ruleset > firewall.config
+</pre>
+
+Explicado esto, podemos empezar con las configuraciones de nuestro cortafuegos.
+
+
 ## Política por defecto
 
 La política por defecto que vamos a configurar en nuestro cortafuegos será de tipo **DROP**.
 
 ## NAT
+
+Reglas creadas hasta el momento:
+
+iptables -t nat -A POSTROUTING -s 10.0.1.0/24 -o eth0 -j MASQUERADE
+
+iptables -t nat -A POSTROUTING -s 10.0.2.0/24 -o eth0 -j MASQUERADE
+
+iptables -t nat -A PREROUTING -p udp --dport 53 -i eth0 -j DNAT --to 10.0.1.6:53
+
+iptables -t nat -A PREROUTING -p tcp --dport 80 -i eth0 -j DNAT --to 10.0.2.6:80
+
+iptables -t nat -A PREROUTING -p tcp --dport 443 -i eth0 -j DNAT --to 10.0.2.6:443
 
 - **Configura de manera adecuada las reglas NAT para que todas las máquinas de nuestra red tenga acceso al exterior.**
 

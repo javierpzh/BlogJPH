@@ -262,9 +262,22 @@ Hecho esto, habríamos resuelto este problema y habríamos sustituido el disco e
 
 Bien, ¿y si tuviéramos dudas entre elegir RAID mediante *Btrfs* o mediante la herramienta `mdadm`, qué diferencia tendríamos entre ellas? Pues para responder esta pregunta es necesario conocer las ventajas y los inconvenientes de cada una de las opciones, así que pasaremos a analizarlas.
 
-Una ventaja de RAID software mediante `mdadm` es que sencillo de realizar, forma un sistema estable y tiene un mayor rendimiento. Por otro lado, con *Btrfs* los datos se encuentran protegidos con un mayor sistema de seguridad. Pero sobre todo, la principal diferencia, es que haciendo uso de *Btrfs*, podemos crear un RAID 1 con discos de diferentes tamaños, incluso con la posibilidad de ampliarlos, mientras que con `mdadm` es necesario el mismo tamaño en los discos.
+Una ventaja de RAID software mediante `mdadm` es que sencillo de realizar, forma un sistema estable y tiene un mayor rendimiento. Por otro lado, con *Btrfs* los datos se encuentran protegidos con un mayor sistema de seguridad. Pero sobre todo, la principal diferencia, es que haciendo uso de *Btrfs*, podemos crear un RAID 1 con discos de diferentes tamaños, incluso con la posibilidad de ampliarlos, mientras que con `mdadm` es necesario el mismo tamaño en los discos. Por último, una cosa que no he comentado anteriormente y es bastante interesante, es que por ejemplo, hemos montado un RAID 1, que consta de 4 discos de 1 GB cada uno, y conociendo las características de este tipo de RAID, el espacio total sería de 1 GB, como el menor de sus discos, pues vamos a comprobar el tamaño de este RAID:
+
+<pre>
+root@btrfs:~# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+
+...
+
+/dev/vdb        2.0G   17M  1.7G   1% /mnt
+</pre>
+
+¡Anda! Resulta que duplica el tamaño esperado, y esto es porque *Btrfs* gestiona el almacenamiento de una manera distinta, ya que reparte la información entre los diferentes dispositivos, aprovechando el máximo espacio posible, al mismo tiempo que asegura que la información se encuentra lo más segura posible. Así que imaginemos que creamos un RAID 1 con discos de distintos tamaños, ya no tendríamos el inconveniente de que el tamaño será igual al menor de sus discos.
 
 Lógicamente la elección de uno u otro es algo subjetivo y dependerá de gustos, costumbres y necesidades, pero en resumen, poseemos más flexibilidad y muchas más características útiles en el RAID con *Btrfs* respecto al RAID con `mdadm`.
+
+
 
 
 

@@ -262,6 +262,9 @@ Hecho esto, habríamos resuelto este problema y habríamos sustituido el disco e
 
 Bien, ¿y si tuviéramos dudas entre elegir RAID mediante *Btrfs* o mediante la herramienta `mdadm`, qué diferencia tendríamos entre ellas? Pues para responder esta pregunta es necesario conocer las ventajas y los inconvenientes de cada una de las opciones, así que pasaremos a analizarlas.
 
+Una ventaja de RAID software mediante `mdadm` es que sencillo de realizar, forma un sistema estable y tiene un mayor rendimiento. Por otro lado, con *Btrfs* los datos se encuentran protegidos con un mayor sistema de seguridad. Pero sobre todo, la principal diferencia, es que haciendo uso de *Btrfs*, podemos crear un RAID 1 con discos de diferentes tamaños, incluso con la posibilidad de ampliarlos, mientras que con `mdadm` es necesario el mismo tamaño en los discos.
+
+Lógicamente la elección de uno u otro es algo subjetivo y dependerá de gustos, costumbres y necesidades, pero en resumen, poseemos más flexibilidad y muchas más características útiles en el RAID con *Btrfs* respecto al RAID con `mdadm`.
 
 
 

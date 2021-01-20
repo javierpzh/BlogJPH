@@ -18,7 +18,7 @@ Elige uno de los dos sistemas de ficheros "avanzados".
 
 Esta tarea se puede realizar en una instancia de OpenStack y documentarla como habitualmente o bien grabar un vídeo con una demo de las características y hacer la entrega con el enlace del vídeo.
 
------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 En este *post* vamos a ver el sistema de ficheros **Btrfs**.
 
@@ -259,6 +259,31 @@ Label: none  uuid: 1675b6b0-4741-4341-bb5b-403e1e7c2932
 </pre>
 
 Hecho esto, habríamos resuelto este problema y habríamos sustituido el disco estropeado.
+
+Bien, ¿y si tuviéramos dudas entre elegir RAID mediante *Btrfs* o mediante la herramienta `mdadm`, qué diferencia tendríamos entre ellas? Pues para responder esta pregunta es necesario conocer las ventajas y los inconvenientes de cada una de las opciones, así que pasaremos a analizarlas.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

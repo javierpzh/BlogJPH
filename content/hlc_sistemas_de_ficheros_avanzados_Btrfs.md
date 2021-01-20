@@ -73,6 +73,8 @@ vdc    254:32   0   1G  0 disk
 vdd    254:48   0   1G  0 disk
 </pre>
 
+Pasemos con la instalación.
+
 #### Instalación
 
 Para instalar *Btrfs* en nuestro sistema *Debian*, tenemos disponible el paquete **btrfs-tools**, que incluye todas las herramientas y características de este sistema de ficheros.
@@ -80,6 +82,8 @@ Para instalar *Btrfs* en nuestro sistema *Debian*, tenemos disponible el paquete
 <pre>
 apt install btrfs-tools -y
 </pre>
+
+Ya habremos instalado las herramientas.
 
 #### Gestión de los discos
 

@@ -318,4 +318,15 @@ Lógicamente la elección de uno u otro es algo subjetivo y dependerá de gustos
 
 
 
+
+
+#### CoW
+
+
+#### Deduplicación
+
+
+#### Cifrado
+
+
 .

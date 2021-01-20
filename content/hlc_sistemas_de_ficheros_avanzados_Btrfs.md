@@ -69,11 +69,15 @@ vdc    254:32   0   1G  0 disk
 vdd    254:48   0   1G  0 disk
 </pre>
 
+#### Instalación
+
 Para instalar *Btrfs* en nuestro sistema *Debian*, tenemos disponible el paquete **btrfs-tools**, que incluye todas las herramientas y características de este sistema de ficheros.
 
 <pre>
 apt install btrfs-tools -y
 </pre>
+
+#### Gestión de los discos
 
 En primer lugar, vamos a formatear uno de estos volúmenes y asignarle como sistema de ficheros *Btrfs*. Para ello, hacemos uso de la herramienta `mkfs.()` seguido del dispositivo:
 
@@ -94,6 +98,8 @@ vdd
 </pre>
 
 Efectivamente ya estaríamos gestionando el dispositivo `vdb` con *Btrfs*.
+
+#### RAID
 
 ¿Y qué pasa si quisiéramos crear un sistema **RAID** con los 3 nuevos volúmenes? Bien, pues para llevar a cabo esto, nos valdría con introducir el mismo comando que hemos utilizado para formatear un dispositivo, pero indicando los tres discos en este caso.
 
@@ -277,7 +283,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 
 Lógicamente la elección de uno u otro es algo subjetivo y dependerá de gustos, costumbres y necesidades, pero en resumen, poseemos más flexibilidad y muchas más características útiles en el RAID con *Btrfs* respecto al RAID con `mdadm`.
 
-
+#### Compresión
 
 
 

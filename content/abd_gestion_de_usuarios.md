@@ -44,10 +44,12 @@ Pista: Si no recuerdas el nombre de un privilegio, puedes buscarlo en el diccion
 
 **6. Muestra el texto de la última sentencia *SQL* que se ejecuto en el servidor, junto con el número de veces que se ha ejecutado desde que se cargó en el *Shared Pool* y el tiempo de CPU empleado en su ejecución. (10)**
 
+<pre>
 select distinct sql_text, executions, CPU_TIME
 from v$sqlarea
 order by first_load_TIME desc
 fetch first 1 rows only;
+</pre>
 
 **7. Realiza un procedimiento que genere un *script* que cree un rol conteniendo todos los permisos que tenga el usuario cuyo nombre reciba como parámetro, le hayan sido asignados a aquel directamente o a través de roles. El nuevo rol deberá llamarse `BackupPrivsNombreUsuario`. (25)**
 
@@ -58,7 +60,7 @@ fetch first 1 rows only;
 
 **1. Escribe una consulta que obtenga un *script* para quitar el privilegio de borrar registros en alguna tabla de *SCOTT* a los usuarios que lo tengan. (6)**
 
-Creamos las tablas en la base de datos **Scott**:
+Creamos las tablas en la base de datos **Scott** mediante el siguiente [script](images/abd_gestion_de_usuarios/scriptcreacionscottmysql.txt):
 
 <pre>
 CREATE TABLE scott.DEPT
@@ -123,9 +125,7 @@ Da como resultado:
 
 **1. Escribe una consulta que obtenga un *script* para quitar el privilegio de borrar registros en alguna tabla de *SCOTT* a los usuarios que lo tengan. (6)**
 
---------------------------------------------------------------------------------
-
-Para empezar, creamos el rol de usuario "scott":
+Creamos las tablas en la base de datos **Scott** mediante el siguiente [script](images/abd_gestion_de_usuarios/scriptcreacionscottpostgres.txt):
 
 <pre>
 CREATE TABLE scott.DEPT

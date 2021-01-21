@@ -54,6 +54,16 @@ Podemos observar que nos muestra una serie de mensajes de los que podemos sacar 
 
 Vemos que efectivamente hemos recibido el correo procedente de `debian@iesgn15.es`.
 
+Antes de terminar, vamos a analizar más a fondo el código del correo, para ello hacemos *click* en *Mostrar original*:
+
+<pre>
+...
+Received-SPF: pass (google.com: domain of debian@iesgn15.es designates 51.210.105.17 as permitted sender) client-ip=51.210.105.17;
+...
+</pre>
+
+En estas líneas se apreciar como ha pasado correctamente y ha hecho uso del registro **SPF** y por tanto no nos muestra este mensaje como *Spam*.
+
 - **Tarea 2: Vamos a enviar un correo desde el exterior (Gmail) a nuestro servidor local. Muestra el `log` donde se vea el envío. Muestra cómo has leído el correo. Muestra el registro MX de tu dominio.**
 
 Para hacer esto, debemos crear un registro de tipo **MX** en nuestro DNS de OVH,

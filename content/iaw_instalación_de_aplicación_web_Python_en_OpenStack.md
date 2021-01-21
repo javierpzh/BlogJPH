@@ -303,7 +303,9 @@ mysql> show databases;
 
 
 
-
+<pre>
+pip install mysql-connector-python
+</pre>
 
 --------------------------------------------------------------------------------
 <pre>

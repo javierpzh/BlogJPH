@@ -71,13 +71,13 @@ Llegó el momento de decidir qué CMS instalaremos. En mi caso, he decidido inst
 Una vez instalado, vamos a crear nuestra web/proyecto con el siguiente comando:
 
 <pre>
-(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ mezzanine-project javierpzh
+(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ mezzanine-project appmezzanine
 </pre>
 
-Hecho esto, podremos ver como nos ha creado una carpeta con el nombre que hayamos decidido establecerle a nuestro proyecto. Dentro de esta carpeta podremos encontrar varios directorios/ficheros, pero el que nos interesa en este punto es el llamado `javierpzh/local_settings.py`, ya que, en él se encuentra la configuración básica de la base de datos.
+Hecho esto, podremos ver como nos ha creado una carpeta con el nombre que hayamos decidido establecerle a nuestro proyecto. Dentro de esta carpeta podremos encontrar varios directorios/ficheros, pero el que nos interesa en este punto es el llamado `appmezzanine/local_settings.py`, ya que, en él se encuentra la configuración básica de la base de datos.
 
 <pre>
-(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/javierpzh/javierpzh$ ls
+(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/appmezzanine/appmezzanine$ ls
 __init__.py  local_settings.py  settings.py  urls.py  wsgi.py
 </pre>
 
@@ -107,10 +107,10 @@ Vamos a utilizar esta, ya que nos viene por defecto, pero en el entorno de produ
 Comentado estos detalles, vamos a proceder a crear la propia aplicación, y para ello nos vamos a situar en el primer directorio y haremos uso del siguiente comando:
 
 <pre>
-(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/javierpzh$ ls
-deploy  fabfile.py  javierpzh  manage.py  requirements.txt
+(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/appmezzanine$ ls
+appmezzanine  deploy  fabfile.py  manage.py  requirements.txt
 
-(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/javierpzh$ python manage.py createdb
+(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/appmezzanine$ python manage.py createdb
 Operations to perform:
 
 ...
@@ -143,7 +143,7 @@ Veremos como tras introducir nuestra información de administrador, se ejecutar�
 Probaremos a acceder a ella desde nuestro navegador, para ello, antes necesitaremos ejecutar un proceso para servirla localmente:
 
 <pre>
-(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/javierpzh$ python manage.py runserver
+(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/appmezzanine$ python manage.py runserver
               .....
           _d^^^^^^^^^b_
        .d''           ''b.
@@ -163,8 +163,8 @@ Probaremos a acceder a ella desde nuestro navegador, para ello, antes necesitare
 Performing system checks...
 
 System check identified no issues (0 silenced).
-January 15, 2021 - 13:08:21
-Django version 1.11.29, using settings 'javierpzh.settings'
+January 21, 2021 - 12:47:34
+Django version 1.11.29, using settings 'appmezzanine.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 </pre>

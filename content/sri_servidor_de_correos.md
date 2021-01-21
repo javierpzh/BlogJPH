@@ -123,6 +123,7 @@ Este es el correo de prueba enviado desde Gmail
 ...
 </pre>
 
+Efectivamente hemos recibido el correo, por lo que vamos a pasar con el siguiente ejercicio.
 
 
 #### Uso de alias y redirecciones

@@ -8,11 +8,23 @@ En este *post* vamos a instalar y configurar de manera adecuada un servidor de c
 
 #### Gestión de correos desde el servidor
 
-- **Tarea 1: Documenta una prueba de funcionamiento, donde envíes desde tu servidor local al exterior. Muestra el `log` donde se vea el envío. Muestra el correo que has recibido. Muestra el registro SPF.**
+- **Tarea 1: Vamos a enviar un correo desde nuestro servidor local al exterior. Muestra el `log` donde se vea el envío. Muestra el correo que has recibido. Muestra el registro SPF.**
 
 
 
-- **Tarea 2: Documenta una prueba de funcionamiento, donde envíes un correo desde el exterior (gmail, hotmail,…) a tu servidor local. Muestra el `log` donde se vea el envío. Muestra cómo has leído el correo. Muestra el registro MX de tu dominio.**
+<pre>
+
+</pre>
+
+
+
+- **Tarea 2: Vamos a enviar un correo desde el exterior (gmail, hotmail,…) a nuestro servidor local. Muestra el `log` donde se vea el envío. Muestra cómo has leído el correo. Muestra el registro MX de tu dominio.**
+
+![.](images/sri_servidor_de_correos/registromx.png)
+
+<pre>
+
+</pre>
 
 
 

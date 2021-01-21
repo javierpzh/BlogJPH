@@ -52,6 +52,7 @@ nft add rule ip FILTER OUTPUT ct state established,related counter accept
 </pre>
 
 nft add rule ip FILTER OUTPUT oif eth0 tcp dport 22 counter accept
+
 nft add rule ip FILTER INPUT ct state established,related counter accept
 
 

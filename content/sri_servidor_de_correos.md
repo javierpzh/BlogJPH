@@ -1,6 +1,6 @@
 Title: Servidor de correos
 Date: 2021/01/21
-Category: Servicios de Redes e Internet
+Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Correos, postfix, dovecot, imap, imaps, SMTPS
 

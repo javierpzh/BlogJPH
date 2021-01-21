@@ -19,7 +19,7 @@ Comencemos.
 
 #### Gestión de correos desde el servidor
 
-- **Tarea 1: Vamos a enviar un correo desde nuestro servidor local al exterior (Gmail). Muestra el `log` donde se vea el envío. Muestra el correo que has recibido. Muestra el registro SPF.**
+- **Tarea 1: Vamos a enviar un correo desde nuestro servidor local al exterior (Gmail).**
 
 Antes de realizar este paso, vamos a crear un registro de tipo **SPF** en nuestro DNS de OVH, esto le servirá a **Gmail** para identificar que nuestro correo no es **Spam**. He creado el siguiente registro:
 
@@ -62,7 +62,7 @@ Received-SPF: pass (google.com: domain of debian@iesgn15.es designates 51.210.10
 ...
 </pre>
 
-En estas líneas se apreciar como ha pasado correctamente y ha hecho uso del registro **SPF** y por tanto no nos muestra este mensaje como *Spam*.
+En estas líneas se aprecia como ha pasado correctamente y ha hecho uso del registro **SPF** y por tanto no nos muestra este mensaje como *Spam*.
 
 - **Tarea 2: Vamos a enviar un correo desde el exterior (Gmail) a nuestro servidor local. Muestra el `log` donde se vea el envío. Muestra cómo has leído el correo. Muestra el registro MX de tu dominio.**
 

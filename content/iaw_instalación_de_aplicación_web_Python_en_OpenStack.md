@@ -1,5 +1,5 @@
 Title: Instalación de aplicación web Python en OpenStack
-Date: 2021/01/18
+Date: 2021/01/21
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: OpenStack, Python, Django, Mezzanine, virtualenv, git
@@ -39,19 +39,19 @@ apt install python3-venv -y
 Ya instalado, podemos crear el entorno virtual, y para ello, empleamos el siguiente comando:
 
 <pre>
-javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ python3 -m venv webpython
+javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ python3 -m venv desarrollo
 </pre>
 
 Una vez creado, vamos a activarlo mediante el siguiente comando:
 
 <pre>
-javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ source webpython/bin/activate
+javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ source desarrollo/bin/activate
 </pre>
 
 Si nos fijamos, vemos como el aspecto del *prompt* ha cambiado y ahora aparece el entorno virtual como activo:
 
 <pre>
-(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$
+(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$
 </pre>
 
 Para actualizar `pip`:
@@ -65,19 +65,19 @@ Ya tendríamos el entorno virtual listo para trabajar con él.
 Llegó el momento de decidir qué CMS instalaremos. En mi caso, he decidido instalar **Mezzanine**.
 
 <pre>
-(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ pip install mezzanine
+(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ pip install mezzanine
 </pre>
 
 Una vez instalado, vamos a crear nuestra web/proyecto con el siguiente comando:
 
 <pre>
-(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ mezzanine-project javierpzh
+(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ mezzanine-project javierpzh
 </pre>
 
 Hecho esto, podremos ver como nos ha creado una carpeta con el nombre que hayamos decidido establecerle a nuestro proyecto. Dentro de esta carpeta podremos encontrar varios directorios/ficheros, pero el que nos interesa en este punto es el llamado `javierpzh/local_settings.py`, ya que, en él se encuentra la configuración básica de la base de datos.
 
 <pre>
-(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/javierpzh/javierpzh$ ls
+(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/javierpzh/javierpzh$ ls
 __init__.py  local_settings.py  settings.py  urls.py  wsgi.py
 </pre>
 

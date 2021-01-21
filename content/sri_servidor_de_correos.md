@@ -25,7 +25,7 @@ Antes de realizar este paso, vamos a crear un registro de tipo **SPF** en nuestr
 
 ![.](images/sri_servidor_de_correos/registrospf.png)
 
-Ahora vamos a probar a enviar un correo electrónico desde nuestro servidor local:
+Ahora vamos a probar a enviar un correo electrónico desde nuestro servidor local, para ello haremos uso de la herramienta `mail`:
 
 <pre>
 debian@vpsjavierpzh:~$ mail javierperezhidalgo01@gmail.com
@@ -91,11 +91,38 @@ Jan 21 10:45:33 vpsjavierpzh postfix/smtpd[25717]: disconnect from mail-io1-f43.
 You have mail in /var/mail/debian
 </pre>
 
-Vaya, parece que tenemos un nuevo correo procedente de la dirección `javierperezhidalgo01@gmail.com` y que lo ha almacenado en la ruta `/var/mail/debian`, así que vamos a verificarlo:
+Vaya, parece que tenemos un nuevo correo procedente de la dirección `javierperezhidalgo01@gmail.com` y que lo ha almacenado en la ruta `/var/mail/debian`, así que vamos a verificarlo.
+
+Para leer los nuevos correos, haremos uso de la herramienta `mail`.
 
 <pre>
-
+debian@vpsjavierpzh:~$ mail
+Mail version 8.1.2 01/15/2001.  Type ? for help.
+"/var/mail/debian": 1 message 1 new
+\>N  1 javierperezhidalg  Thu Jan 21 10:45   54/2768  Correo de prueba
+& 1
 </pre>
+
+Vemos que nos indica que tenemos un correo sin leer, si indicamos su número y lo leemos:
+
+<pre>
+Message 1:
+From javierperezhidalgo01@gmail.com  Thu Jan 21 10:45:33 2021
+X-Original-To: debian@iesgn15.es
+
+...
+
+Subject: Correo de prueba
+To: debian@iesgn15.es
+Content-Type:
+
+...
+
+Este es el correo de prueba enviado desde Gmail
+
+...
+</pre>
+
 
 
 #### Uso de alias y redirecciones

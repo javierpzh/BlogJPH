@@ -98,6 +98,8 @@ Perfecto, ya poseemos una política por defecto **DROP**.
 
 ## NAT
 
+Comenzaremos por crear una tabla llamada **NAT** y añadimos las siguientes cadenas;
+
 <pre>
 nft add table NAT
 nft add chain NAT PREROUTING { type nat hook prerouting priority 1 \; }

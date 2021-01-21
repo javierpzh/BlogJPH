@@ -74,11 +74,11 @@ Al igual que en la tarea anterior, antes de realizar este ejercicio, vamos a cre
 
 --------------------------------------------------------------------------------
 
-Enviamos correo desde gmail:
+Hecho esto, vamos a enviar un correo desde **Gmail** hacia `debian@iesgn15.es`:
 
 ![.](images/sri_servidor_de_correos/correoenviadogmail.png)
 
-
+Una vez enviado, vamos a comprobar que lo hayamos recibido en nuestro servidor local, para ello vamos a visualizar de nuevo los *logs* del fichero `/var/log/mail.log`:
 
 <pre>
 Jan 21 10:45:32 vpsjavierpzh postfix/smtpd[25717]: connect from mail-io1-f43.google.com[209.85.166.43]

@@ -66,13 +66,19 @@ En estas líneas se aprecia como ha pasado correctamente y ha hecho uso del regi
 
 - **Tarea 2: Vamos a enviar un correo desde el exterior (Gmail) a nuestro servidor local. Muestra el `log` donde se vea el envío. Muestra cómo has leído el correo. Muestra el registro MX de tu dominio.**
 
-Para hacer esto, debemos crear un registro de tipo **MX** en nuestro DNS de OVH,
+Al igual que en la tarea anterior, antes de realizar este ejercicio, vamos a crear un registro de tipo **MX** en nuestro DNS de OVH, esto le servirá . He creado el siguiente registro:
 
 --------------------------------------------------------------------------------
 
 ![.](images/sri_servidor_de_correos/registromx.png)
 
 --------------------------------------------------------------------------------
+
+Enviamos correo desde gmail:
+
+![.](images/sri_servidor_de_correos/correoenviadogmail.png)
+
+
 
 <pre>
 

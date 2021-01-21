@@ -1,5 +1,5 @@
 Title: OpenStack: Cortafuegos
-Date: 2021/01/19
+Date: 2021/01/21
 Category: Seguridad y Alta Disponibilidad
 Header_Cover: theme/images/banner-seguridad.jpg
 Tags: OpenStack, Cortafuegos, nftables
@@ -27,7 +27,7 @@ systemctl enable nftables.service
 Al igual que pasa con `iptables`, `nftables` también permite guardar las reglas en un fichero para que así las configuraciones perduren a pesar de los reinicios del sistema. Para hacer esto empleamos el siguiente comando:
 
 <pre>
-nft list ruleset > firewall.config
+nft list ruleset > /etc/nftables.conf
 </pre>
 
 Explicado esto, podemos empezar con las configuraciones de nuestro cortafuegos.
@@ -35,7 +35,31 @@ Explicado esto, podemos empezar con las configuraciones de nuestro cortafuegos.
 
 ## Política por defecto
 
-La política por defecto que vamos a configurar en nuestro cortafuegos será de tipo **DROP**.
+La política por defecto que vamos a configurar en nuestro cortafuegos será de tipo **DROP**, pero como estoy conectado por SSH, no voy a aplicar esta política de momento, ya que sino perdería la conexión Por tanto, empezaremos con crear la tabla **FILTER** y las cadenas.
+
+<pre>
+nft add table ip FILTER
+nft add chain ip FILTER INPUT { type filter hook input priority 0 \;}
+nft add chain ip FILTER OUTPUT { type filter hook output priority 0 \; }
+nft add chain ip FILTER FORWARD { type filter hook forward priority 0 \; }
+</pre>
+
+Ahora añadiré las reglas necesarias para poder acceder por SSH:
+
+<pre>
+nft add rule ip FILTER INPUT iif eth0 tcp dport 22 counter accept
+nft add rule ip FILTER OUTPUT ct state established,related counter accept
+</pre>
+
+En este punto, ya si podemos establecer la política por defecto a **DROP**, ya que poseemos la regla necesaria para tener acceso mediante SSH y no perderemos la conexión:
+
+<pre>
+nft add chain ip FILTER INPUT { type filter hook input priority 0 \; policy drop \;}
+nft add chain ip FILTER OUTPUT { type filter hook output priority 0 \; policy drop \;}
+nft add chain ip FILTER FORWARD { type filter hook forward priority 0 \; policy drop \;}
+</pre>
+
+Pasamos con las reglas.
 
 ## NAT
 

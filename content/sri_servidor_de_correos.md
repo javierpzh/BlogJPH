@@ -8,13 +8,13 @@ En este *post* vamos a instalar y configurar de manera adecuada un servidor de c
 
 #### Instalación
 
-
+Para comenzar el artículo vamos a instalar las utilidades principales que necesitamos para crear nuestro servidor de correos. Empezaremos por instalar los paquetes `postfix` y `bsd-mailx` que corresponden al servidor y a las utilidades del cliente respectivamente.
 
 <pre>
 apt install postfix bsd-mailx -y
 </pre>
 
-
+Comencemos.
 
 
 #### Gestión de correos desde el servidor

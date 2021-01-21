@@ -4,7 +4,7 @@ Category: Servicios de Redes e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Correos, postfix, dovecot, imap, imaps, SMTPS
 
-**Instala y configura de manera adecuada el servidor de correos en tu máquina de OVH, para tu dominio iesgn15.es. El nombre del servidor de correo será mail.iesgn15.es (Este es el nombre que deberá aparecer en el registro MX)**
+En este *post* vamos a instalar y configurar de manera adecuada un servidor de correos en una máquina de **OVH**. Mi dominio es `iesgn15.es`. El nombre del servidor de correo será `mail.iesgn15.es` (Este es el nombre que deberá aparecer en el registro MX).
 
 #### Gestión de correos desde el servidor
 

@@ -28,10 +28,31 @@ Antes de realizar este paso, vamos a crear un registro de tipo **SPF** en nuestr
 Ahora vamos a probar a enviar un correo electrónico desde nuestro servidor local:
 
 <pre>
-
+debian@vpsjavierpzh:~$ mail javierperezhidalgo01@gmail.com
+Subject: Correo de prueba       
+Este es el correo de prueba enviado desde mi servidor local
+Cc:
 </pre>
 
+Parece que ya hemos enviado el correo, pero para asegurarnos vamos a visualizar los *logs* de nuestro servidor, que se encuentran en el fichero `/var/log/mail.log`:
 
+<pre>
+...
+Jan 21 10:24:22 vpsjavierpzh postfix/pickup[24623]: A492F101017: uid=1000 from=<debian>
+Jan 21 10:24:22 vpsjavierpzh postfix/cleanup[25286]: A492F101017: message-id=<20210121092422.A492F101017@vpsjavierpzh.iesgn15.es>
+Jan 21 10:24:22 vpsjavierpzh postfix/qmgr[9341]: A492F101017: from=<debian@iesgn15.es>, size=488, nrcpt=1 (queue active)
+Jan 21 10:24:30 vpsjavierpzh postfix/smtp[25289]: A492F101017: to=<javierperezhidalgo01@gmail.com>, relay=gmail-smtp-in.l.google.com[173.194.76.26]:25, delay=7.8, delays=0.05/0.01/0.26/7.5, dsn=2.0.0, status=sent (250 2.0.0 OK  1611221070 h17si4006834wmq.57 - gsmtp)
+Jan 21 10:24:30 vpsjavierpzh postfix/qmgr[9341]: A492F101017: removed
+...
+</pre>
+
+Podemos observar que nos muestra una serie de mensajes de los que podemos sacar que hemos enviado un correo desde `debian@iesgn15.es` hacia `javierperezhidalgo01@gmail.com` y que el estado es *sent*, por lo que en teoría el correo debería haber llegado correctamente. Si nos dirigimos a la bandeja de entrada del correo `javierperezhidalgo01@gmail.com`:
+
+![.](images/sri_servidor_de_correos/correorecibidogmail.png)
+
+![.](images/sri_servidor_de_correos/correorecibidogmailinfo.png)
+
+Vemos que efectivamente hemos recibido el correo procedente de `debian@iesgn15.es`.
 
 - **Tarea 2: Vamos a enviar un correo desde el exterior (Gmail) a nuestro servidor local. Muestra el `log` donde se vea el envío. Muestra cómo has leído el correo. Muestra el registro MX de tu dominio.**
 

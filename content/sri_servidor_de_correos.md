@@ -11,7 +11,7 @@ En este *post* vamos a instalar y configurar de manera adecuada un servidor de c
 
 
 <pre>
-
+apt install postfix bsd-mailx -y
 </pre>
 
 

@@ -196,10 +196,10 @@ python manage.py dumpdata
 Este comando lo que hace es imprimirnos por pantalla toda la información almacenada en la base de datos en formato **.json**, es decir, información que se puede restaurar en **MySQL**. Genial, ya tendríamos el "problema" solventado, ya que con guardar la salida de dicho comando en un fichero tendríamos la copia de seguridad. Pues eso es lo que vamos a hacer con el siguiente comando:
 
 <pre>
-(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/javierpzh$ python manage.py dumpdata> copiadeseguridad.json
+(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/appmezzanine$ python manage.py dumpdata> copiadeseguridad.json
 
-(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/javierpzh$ ls
-copiadeseguridad.json  deploy  dev.db  fabfile.py  javierpzh  manage.py  requirements.txt  static
+(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/appmezzanine$ ls
+appmezzanine  copiadeseguridad.json  deploy  dev.db  fabfile.py  manage.py  requirements.txt  static
 </pre>
 
 En el entorno de desarrollo ya hemos terminado nuestro trabajo, y si recordamos, íbamos a utilizar un repositorio de GitHub para almacenar esta información y descargarla en el entorno de desarrollo.
@@ -207,22 +207,23 @@ En el entorno de desarrollo ya hemos terminado nuestro trabajo, y si recordamos,
 Almacenamos todos los nuevos ficheros, entre los que se encuentra la copia de seguridad:
 
 <pre>
-(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ git add *
+(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/appmezzanine$ git add * -f
+
 ...
 
-(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ git commit -am "aplicación mezzanine"
+(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/appmezzanine$ git commit -am "aplicación mezzanine"
+
 ...
 
-(webpython) javier@debian:~/entornos_virtuales/Web-Python-OpenStack$ git push
-Enumerando objetos: 12103, listo.
-Contando objetos: 100% (12103/12103), listo.
+(desarrollo) javier@debian:~/entornos_virtuales/Web-Python-OpenStack/appmezzanine$ git push
+Enumerando objetos: 18, listo.
+Contando objetos: 100% (18/18), listo.
 Compresión delta usando hasta 12 hilos
-Comprimiendo objetos: 100% (7709/7709), listo.
-Escribiendo objetos: 100% (12102/12102), 22.34 MiB | 4.51 MiB/s, listo.
-Total 12102 (delta 2845), reusado 12102 (delta 2845)
-remote: Resolving deltas: 100% (2845/2845), done.
+Comprimiendo objetos: 100% (15/15), listo.
+Escribiendo objetos: 100% (18/18), 18.35 KiB | 9.18 MiB/s, listo.
+Total 18 (delta 0), reusado 0 (delta 0)
 To github.com:javierpzh/Web-Python-OpenStack.git
-   69c2563..c41a53a  main -> main
+ * [new branch]      master -> master
 </pre>
 
 Ya en el entorno de producción, en **Quijote**, que es donde se encuentra el servidor web *Apache*, vamos a dirigirnos a la ruta `/var/www/` y clonaremos el repositorio, por lo que tenemos que tener instalado el paquete `git`:

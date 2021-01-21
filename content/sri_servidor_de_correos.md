@@ -10,7 +10,9 @@ En este *post* vamos a instalar y configurar de manera adecuada un servidor de c
 
 - **Tarea 1: Vamos a enviar un correo desde nuestro servidor local al exterior. Muestra el `log` donde se vea el envío. Muestra el correo que has recibido. Muestra el registro SPF.**
 
+Para hacer esto, debemos crear un registro de tipo **SPF** en nuestro DNS de OVH,
 
+![.](images/sri_servidor_de_correos/registrospf.png)
 
 <pre>
 
@@ -19,6 +21,8 @@ En este *post* vamos a instalar y configurar de manera adecuada un servidor de c
 
 
 - **Tarea 2: Vamos a enviar un correo desde el exterior (gmail, hotmail,…) a nuestro servidor local. Muestra el `log` donde se vea el envío. Muestra cómo has leído el correo. Muestra el registro MX de tu dominio.**
+
+Para hacer esto, debemos crear un registro de tipo **MX** en nuestro DNS de OVH,
 
 ![.](images/sri_servidor_de_correos/registromx.png)
 

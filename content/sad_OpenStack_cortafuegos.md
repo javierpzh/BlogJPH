@@ -35,7 +35,7 @@ Explicado esto, podemos empezar con las configuraciones de nuestro cortafuegos.
 
 ## Política por defecto
 
-La política por defecto que vamos a configurar en nuestro cortafuegos será de tipo **DROP**, pero como estoy conectado por SSH, no voy a aplicar esta política de momento, ya que sino perdería la conexión Por tanto, empezaremos con crear la tabla **FILTER** y las cadenas.
+La política por defecto que vamos a configurar en nuestro cortafuegos será de tipo **DROP**, pero como estoy conectado por SSH, no voy a aplicar esta política de primeras, ya que sino perdería la conexión. Por tanto, empezaremos con crear la tabla **FILTER**, las cadenas, y añadir la regla para el acceso por el puerto 22, que es el que utiliza SSH:
 
 <pre>
 nft add table ip FILTER
@@ -44,12 +44,18 @@ nft add chain ip FILTER OUTPUT { type filter hook output priority 0 \; }
 nft add chain ip FILTER FORWARD { type filter hook forward priority 0 \; }
 </pre>
 
-Ahora añadiré las reglas necesarias para poder acceder por SSH:
+Añadimos las reglas para SSH:
 
 <pre>
 nft add rule ip FILTER INPUT iif eth0 tcp dport 22 counter accept
 nft add rule ip FILTER OUTPUT ct state established,related counter accept
 </pre>
+
+nft add rule ip FILTER OUTPUT oif eth0 tcp dport 22 counter accept
+nft add rule ip FILTER INPUT ct state established,related counter accept
+
+
+
 
 En este punto, ya si podemos establecer la política por defecto a **DROP**, ya que poseemos la regla necesaria para tener acceso mediante SSH y no perderemos la conexión:
 
@@ -59,9 +65,36 @@ nft add chain ip FILTER OUTPUT { type filter hook output priority 0 \; policy dr
 nft add chain ip FILTER FORWARD { type filter hook forward priority 0 \; policy drop \;}
 </pre>
 
-Pasamos con las reglas.
+Miramos la lista de reglas:
+
+<pre>
+root@dulcinea:~# nft list ruleset
+table ip FILTER {
+	chain INPUT {
+		type filter hook input priority 0; policy drop;
+		iif "eth0" tcp dport ssh counter packets 133 bytes 8241 accept
+	}
+
+	chain OUTPUT {
+		type filter hook output priority 0; policy drop;
+		ct state established,related counter packets 138 bytes 16980 accept
+	}
+
+	chain FORWARD {
+		type filter hook forward priority 0; policy drop;
+	}
+}
+</pre>
+
+Perfecto, ya poseemos una política por defecto **DROP**.
 
 ## NAT
+
+<pre>
+nft add table NAT
+nft add chain NAT PREROUTING { type nat hook prerouting priority 1 \; }
+nft add chain NAT POSTROUTING { type nat hook postrouting priority 1 \; }
+</pre>
 
 - **Configura de manera adecuada las reglas NAT para que todas las máquinas de nuestra red tenga acceso al exterior.**
 

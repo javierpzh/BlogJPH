@@ -91,7 +91,11 @@ Jan 21 10:45:33 vpsjavierpzh postfix/smtpd[25717]: disconnect from mail-io1-f43.
 You have mail in /var/mail/debian
 </pre>
 
+Vaya, parece que tenemos un nuevo correo procedente de la dirección `javierperezhidalgo01@gmail.com` y que lo ha almacenado en la ruta `/var/mail/debian`, así que vamos a verificarlo:
 
+<pre>
+
+</pre>
 
 
 #### Uso de alias y redirecciones

@@ -72,8 +72,9 @@ Configura el `cron` para enviar correo al usuario **root**. Comprueba que están
 
 - **Tarea 9: Instala configura `dovecot` para ofrecer el protocolo `IMAP`. Configura `dovecot` de manera adecuada para ofrecer autentificación y cifrado. Para realizar el cifrado de la comunicación crea un certificado en LetsEncrypt para el dominio mail.iesgn15.es. Recuerda que para el ofrecer el cifrado tiene varias soluciones:**
 
-    IMAP con STARTTLS: STARTTLS transforma una conexión insegura en una segura mediante el uso de SSL/TLS. Por lo tanto usando el mismo puerto 143/tcp tenemos cifrada la comunicación.
-    IMAPS: Versión segura del protocolo IMAP que usa el puerto 993/tcp.
+    - IMAP con STARTTLS: STARTTLS transforma una conexión insegura en una segura mediante el uso de SSL/TLS. Por lo tanto usando el mismo puerto 143/tcp tenemos cifrada la comunicación.
+
+    - IMAPS: Versión segura del protocolo IMAP que usa el puerto 993/tcp.
     Ofrecer las dos posibilidades.
 
 Elige una de las opciones anterior para realizar el cifrado. Y muestra la configuración de un cliente de correo (evolution, thunderbird, …) y muestra como puedes leer los correos enviado a tu usuario.
@@ -82,7 +83,7 @@ Elige una de las opciones anterior para realizar el cifrado. Y muestra la config
 
 
 
-- **Tarea 11: Configura de manera adecuada postfix para que podamos mandar un correo desde un cliente remoto. La conexión entre cliente y servidor debe estar autentificada con SASL usando dovecor y además debe estar cifrada. Para cifrar esta comunicación puedes usar dos opciones:**
+- **Tarea 11: Configura de manera adecuada `postfix` para que podamos mandar un correo desde un cliente remoto. La conexión entre cliente y servidor debe estar autentificada con SASL usando `dovecot` y además debe estar cifrada. Para cifrar esta comunicación puedes usar dos opciones:**
 
     - ESMTP + STARTTLS: Usando el puerto 567/tcp enviamos de forma segura el correo al servidor.
 

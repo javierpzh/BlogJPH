@@ -250,13 +250,13 @@ Vamos a crear un nuevo entorno virtual:
 <pre>
 [root@quijote Web-Python-OpenStack]# dnf install virtualenv -y
 
-[root@quijote Web-Python-OpenStack]# python3 -m venv entornoproduccion
+[root@quijote Web-Python-OpenStack]# python3 -m venv produccion
 
-[root@quijote Web-Python-OpenStack]# source entornoproduccion/bin/activate
+[root@quijote Web-Python-OpenStack]# source produccion/bin/activate
 
-(entornoproduccion) [root@quijote Web-Python-OpenStack]# pip install --upgrade pip
+(produccion) [root@quijote Web-Python-OpenStack]# pip install --upgrade pip
 
-(entornoproduccion) [root@quijote Web-Python-OpenStack]# pip install mezzanine
+(produccion) [root@quijote Web-Python-OpenStack]# pip install mezzanine
 </pre>
 
 Una vez tenemos nuestro entorno virtual en producción, vamos a crear en nuestro usuario de *MySQL*, del servidor de *Sancho*, la base de datos **webpython**, para almacenar los datos de la copia de seguridad:

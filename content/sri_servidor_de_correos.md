@@ -123,7 +123,16 @@ Este es el correo de prueba enviado desde Gmail
 ...
 </pre>
 
-Efectivamente hemos recibido el correo, por lo que vamos a pasar con el siguiente ejercicio.
+Efectivamente hemos recibido el correo.
+
+Una vez leído, salimos del programa y vemos que guarda el correo en la dirección `/home/debian/mbox`:
+
+<pre>
+& q
+Saved 1 message in /home/debian/mbox
+</pre>
+
+Explicado esto, vamos a pasar con el siguiente ejercicio.
 
 
 #### Uso de alias y redirecciones

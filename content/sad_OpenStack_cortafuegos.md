@@ -102,13 +102,13 @@ En mi caso, ya poseo esta serie de reglas, ya que fueron creadas en artículos a
 
 *Reglas creadas hasta el momento:*
 
-Para que las máquinas de la red interna posean conexión:
+Para que las máquinas de la red interna posean conexión al exterior a través de *Dulcinea*:
 
 <pre>
 iptables -t nat -A POSTROUTING -s 10.0.1.0/24 -o eth0 -j MASQUERADE
 </pre>
 
-Para que las máquinas de la red DMZ posean conexión:
+Para que las máquinas de la red DMZ posean conexión al exterior a través de *Dulcinea*:
 
 <pre>
 iptables -t nat -A POSTROUTING -s 10.0.2.0/24 -o eth0 -j MASQUERADE

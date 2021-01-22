@@ -820,4 +820,4 @@ Una vez introducida la contraseña habríamos terminado.
 
 --------------------------------------------------------------------------------
 
-Ya habríamos realizado este apartado y por tanto, el contenido de este *post* ha finalizado.
+Una vez vistos estos apartados, el contenido de este *post* habría finalizado.

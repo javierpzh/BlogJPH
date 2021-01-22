@@ -359,7 +359,7 @@ Label: none  uuid: 1675b6b0-4741-4341-bb5b-403e1e7c2932
 	devid    6 size 1.00GiB used 1023.00MiB path /dev/vdf
 </pre>
 
-Y efectivamente, estamos almacenando un fichero comprimido de 55 GB en un espacio real de 1.79 GiB.
+Y efectivamente, estamos almacenando un fichero comprimido de 55 GB, en un espacio real de 1.79 GiB.
 
 
 #### Copy on Write (CoW)

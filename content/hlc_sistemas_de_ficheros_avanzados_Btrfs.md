@@ -305,10 +305,19 @@ Existen dos maneras de compresión al vuelo, que son las llamadas **ZLIB** y **L
 - **LZO**: es una compresión mas rápida pero menos exigente, lo que penaliza la capacidad de compresión, es decir, no llega a comprimir tanto la información.
 - **ZLIB**: es más exigente y por ello, comprime más la información, con el *hándicap* en cuanto a tiempo y en cuanto a la carga de CPU, que es un poco mayor.
 
-En mi caso voy a utilizar la opción *LZIB*.
+En mi caso voy a utilizar la opción *LZIB*. La compresión con esta opción, se lleva a cabo con el siguiente comando:
 
+<pre>
+mount -o compress=zlib /dev/(dispositivo) /(punto de montaje)/
+</pre>
 
+En mi caso, voy a comprimir el volumen denominado `vdb`, por lo que utilizo el siguiente comando:
 
+<pre>
+mount -o compress=zlib /dev/vdb /mnt/
+</pre>
+
+Hay que recordar que esta unidad, pertenece al RAID 1 creado anteriormente, por lo que,
 
 
 

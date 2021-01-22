@@ -2,7 +2,7 @@ Title: Sistema de ficheros "avanzados" Btrfs
 Date: 2021/01/22
 Category: Cloud Computing
 Header_Cover: theme/images/banner-hlc.jpg
-Tags: FileSystem, Btrfs
+Tags: FileSystem, Btrfs, Compresión, CoW, Copy on Write, Deduplicación, Cifrado
 
 Elige uno de los dos sistemas de ficheros "avanzados".
 
@@ -362,9 +362,9 @@ Label: none  uuid: 1675b6b0-4741-4341-bb5b-403e1e7c2932
 Y efectivamente, estamos almacenando un fichero comprimido de 55 GB en un espacio real de 1.79 GiB.
 
 
-#### CoW
+#### Copy on Write (CoW)
 
-
+**Copy on Write** conocido también por sus siglas **CoW**, es una optimización que permite almacenar una sola vez copias de datos indistinguibles. Es en el momento en el que una de estas copias se modifica en el que se realiza físicamente la copia. Así, aquellas copias que no llegan a modificarse nunca, solo existen en apariencia y remiten a los datos originales.
 
 
 

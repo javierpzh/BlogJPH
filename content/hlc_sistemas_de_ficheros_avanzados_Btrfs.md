@@ -762,16 +762,53 @@ Listo.
 
 
 
+#### Conversión de sistemas de ficheros basados en ext*
 
-.
-Primero, asegúrese de que el sistema no se encuentra montada:
-root #umount <dispositivo_montado>
+Otra de las características de *Btrfs*, es que permite convertir sistemas **ext2**, **ext3** y **ext4** a **Btrfs**.
 
-Compruebe la integridad del sistema de ficheros usando la herramienta apropiada de fsck. En el siguiente ejemplo, el sistema de ficheros es ext4:
-root #fsck.ext4 -f <dispositivo_desmontado>
+Las conversiones deben realizarse en sistemas de ficheros que se encuentran desmontados.
 
-Use btrfs-convert para convertir el dispositivo con formato ext* a un dispositivo formateado en Btrfs:
-root #btrfs-convert <dispositivo_desmontado>
+Explicado esto, vamos a realizar una conversión de un sistema de ficheros *ext4* a *Btrfs*, para ello voy a formatear el dispositivo `vdf` con un sistema de ficheros *ext4*:
+
+<pre>
+root@btrfs:~# mkfs.ext4 /dev/vdf
+mke2fs 1.44.5 (15-Dec-2018)
+/dev/vdf contains a btrfs file system
+Proceed anyway? (y,N) y
+Creating filesystem with 262144 4k blocks and 65536 inodes
+Filesystem UUID: a8e136e4-06a5-4183-ae6a-e22dca2a4658
+Superblock backups stored on blocks:
+	32768, 98304, 163840, 229376
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (8192 blocks): done
+Writing superblocks and filesystem accounting information: done
+
+root@btrfs:~# lsblk -f | grep 'vdf'
+vdf    ext4         a8e136e4-06a5-4183-ae6a-e22dca2a4658
+</pre>
+
+Hecho esto, y desmontado, vamos a usar `btrfs-convert` para convertir el dispositivo con formato *ext4* a un dispositivo formateado en *Btrfs*:
+
+<pre>
+btrfs-convert /dev/vdf
+</pre>
 
 Asegúrese de editar el fichero /etc/fstab después de que el dispositivo haya sido formateado para cambiar la columna de sistema de ficheros de ext4 a Btrfs:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .

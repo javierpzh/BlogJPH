@@ -760,11 +760,15 @@ Por último, debemos editar el fichero `/etc/fstab` para cambiar la columna del 
 
 #### Cifrado
 
-Para finalizar el artículo, vamos a ver el **cifrado**
+Para finalizar el artículo, vamos a ver el **cifrado** con *Btrfs*.
 
+Necesitamos instalar el siguiente paquete en nuestro sistema:
 
+<pre>
+apt install cryptsetup -y
+</pre>
 
-
+Una vez instalado, 
 
 
 

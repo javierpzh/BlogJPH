@@ -366,7 +366,18 @@ Y efectivamente, estamos almacenando un fichero comprimido de 55 GB, en un espac
 
 **Copy on Write** conocido también por sus siglas **CoW**, es una optimización que permite almacenar una sola vez copias de datos indistinguibles. Es en el momento en el que una de estas copias se modifica en el que se realiza físicamente la copia. Así, aquellas copias que no llegan a modificarse nunca, solo existen en apariencia y remiten a los datos originales.
 
+Para realizar ejercicios y mostrar el funcionamiento de *CoW*, voy a eliminar en primer lugar, el fichero creado en el apartado anterior y de esta manera seguir trabajando con la totalidad del RAID, aunque también podría sacar un disco del RAID y trabajar con él, pero prefiero la primera opción.
 
+<pre>
+root@btrfs:/mnt# ls
+fichero
+
+root@btrfs:/mnt# rm fichero
+
+root@btrfs:/mnt# df -h /mnt
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vdb        2.0G   17M  1.7G   1% /mnt
+</pre>
 
 
 

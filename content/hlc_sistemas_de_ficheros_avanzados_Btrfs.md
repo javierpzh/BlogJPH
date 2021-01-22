@@ -291,11 +291,21 @@ Filesystem      Size  Used Avail Use% Mounted on
 
 Lógicamente la elección de uno u otro es algo subjetivo y dependerá de gustos, costumbres y necesidades, pero en resumen, poseemos más flexibilidad y muchas más características útiles en el RAID con *Btrfs* respecto al RAID con `mdadm`.
 
+
 #### Compresión
 
+Como vimos al principio del artículo cuando enumerábamos las características de *Btrfs*, este sistema de ficheros posee la capacidad para realizar la llamada **compresión al vuelo**, por tanto, en este apartado vamos a realizar algunos ejercicios y pruebas de este funcionamiento.
 
+Antes de empezar, me gustaría explicar un poco que significa este término y para qué nos sirve. Es la posibilidad de almacenar la información comprimida, y en el momento que necesitemos hacer uso de esta información, el propio sistema es capaz de descomprimirla, leerla y acto seguido, volverla a comprimir para almacenarla.
 
+Existen dos maneras de compresión al vuelo, que son las llamadas **ZLIB** y **LZO**.
 
+¿Y qué diferencias hay entre estas dos opciones?
+
+- **LZO**: es una compresión mas rápida pero menos exigente, lo que penaliza la capacidad de compresión, es decir, no llega a comprimir tanto la información.
+- **ZLIB**: es más exigente y por ello, comprime más la información, con el *hándicap* en cuanto a tiempo y en cuanto a la carga de CPU, que es un poco mayor.
+
+En mi caso voy a utilizar la opción *LZIB*.
 
 
 

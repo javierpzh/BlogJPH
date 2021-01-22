@@ -776,7 +776,7 @@ Por último, debemos editar el fichero `/etc/fstab` para cambiar la columna del 
 
 #### Cifrado
 
-
+Para finalizar el artículo, vamos a ver el **cifrado**
 
 
 
@@ -808,3 +808,4 @@ Por último, debemos editar el fichero `/etc/fstab` para cambiar la columna del 
 
 
 .
+Ya habríamos realizado este apartado y por tanto, el contenido de este *post* ha finalizado.

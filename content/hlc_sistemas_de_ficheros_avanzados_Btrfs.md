@@ -296,7 +296,7 @@ Lógicamente la elección de uno u otro es algo subjetivo y dependerá de gustos
 
 Como vimos al principio del artículo cuando enumerábamos las características de *Btrfs*, este sistema de ficheros posee la capacidad para realizar la llamada **compresión al vuelo**, por tanto, en este apartado vamos a realizar algunos ejercicios y pruebas de este funcionamiento.
 
-Antes de empezar, me gustaría explicar un poco que significa este término y para qué nos sirve. Es la posibilidad de almacenar la información comprimida, y en el momento que necesitemos hacer uso de esta información, el propio sistema es capaz de descomprimirla, leerla y acto seguido, volverla a comprimir para almacenarla.
+Antes de empezar, me gustaría explicar un poco que significa este término y para qué nos sirve. Es la posibilidad de almacenar la información comprimida, y en el momento que necesitemos hacer uso de esta información, el propio sistema es capaz de descomprimirla, leerla y acto seguido, volverla a comprimir para almacenarla. Esto nos da la posibilidad de almacenar muchísima más información que la que en un principio podríamos guardar, ya que como sabemos, un archivo comprimido reduce bastante su tamaño original.
 
 Existen dos maneras de compresión al vuelo, que son las llamadas **ZLIB** y **LZO**.
 
@@ -317,37 +317,85 @@ En mi caso, voy a comprimir el volumen denominado `vdb`, por lo que utilizo el s
 mount -o compress=zlib /dev/vdb /mnt/
 </pre>
 
-Hay que recordar que esta unidad, pertenece al RAID 1 creado anteriormente, por lo que,
+Hay que recordar que esta unidad, pertenece al RAID 1 creado anteriormente, que constaba de 4 discos de 1 GB cada uno, obteniendo un espacio total de **2 GB**:
 
+<pre>
+root@btrfs:~# btrfs filesystem show
+Label: none  uuid: 1675b6b0-4741-4341-bb5b-403e1e7c2932
+	Total devices 4 FS bytes used 256.00KiB
+	devid    1 size 1.00GiB used 288.00MiB path /dev/vdb
+	devid    2 size 1.00GiB used 448.00MiB path /dev/vdc
+	devid    4 size 1.00GiB used 256.00MiB path /dev/vde
+	devid    6 size 1.00GiB used 416.00MiB path /dev/vdf
+</pre>
 
+Dicho esto, vamos a probar a introducir la máxima información posible, para comprobar que podemos almacenar más espacio del que realmente poseemos gracias a la compresión. Con el siguiente comando vamos crear un fichero lleno de ceros, y posteriormente, miraremos el espacio que realmente ocupa dicho fichero.
 
+<pre>
+root@btrfs:~# dd if=/dev/zero of=/mnt/fichero
+dd: writing to '/mnt/fichero': No space left on device
+113354259+0 records in
+113354258+0 records out
+58037380096 bytes (58 GB, 54 GiB) copied, 835.45 s, 69.5 MB/s
 
+root@btrfs:~# ls -la /mnt/ && du -h /mnt/
+total 56677152
+drwxr-xr-x  1 root root          34 Jan 22 16:20 .
+drwxr-xr-x 18 root root        4096 Jan 18 18:06 ..
+-rw-r--r--  1 root root 58037380096 Jan 22 16:34 fichero
 
+55G	/mnt/
+</pre>
 
+¡Vaya! Resulta que dicho fichero ocupa alrededor de **55 GB**, cuando el espacio total del RAID era de 2 GB. Por si acaso, vamos a ver de nuevo los detalles de esta unidad:
 
+<pre>
+root@btrfs:~# btrfs filesystem show
+Label: none  uuid: 1675b6b0-4741-4341-bb5b-403e1e7c2932
+	Total devices 4 FS bytes used 1.79GiB
+	devid    1 size 1.00GiB used 1023.00MiB path /dev/vdb
+	devid    2 size 1.00GiB used 1023.00MiB path /dev/vdc
+	devid    4 size 1.00GiB used 1023.00MiB path /dev/vde
+	devid    6 size 1.00GiB used 1023.00MiB path /dev/vdf
+</pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Y efectivamente, estamos almacenando un fichero comprimido de 55 GB en un espacio real de 1.79 GiB.
 
 
 #### CoW
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #### Deduplicación

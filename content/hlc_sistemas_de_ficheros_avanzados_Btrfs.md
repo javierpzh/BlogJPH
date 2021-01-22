@@ -723,8 +723,16 @@ Hasta ahora, prácticamente todo lo que hemos visto de *Btrfs* han sido aspectos
 Si queremos realizar una desfragmentación tenemos que introducir el siguiente comando:
 
 <pre>
-root@apache:/# btrfs filesystem defrag /mnt/
+root@btrfs:~# btrfs filesystem defrag /mnt
 </pre>
+
+Si queremos realizar una desfragmentación recursiva tenemos que introducir el siguiente comando:
+
+<pre>
+root@btrfs:~# btrfs filesystem defrag -r /mnt
+</pre>
+
+Listo.
 
 
 #### Cifrado

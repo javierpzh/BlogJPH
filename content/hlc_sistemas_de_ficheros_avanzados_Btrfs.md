@@ -716,6 +716,17 @@ Label: none  uuid: 6e1e1285-8652-445b-b44f-af22438387fc
 Hemos aumentado el espacio del dispositivo en 100 MB.
 
 
+#### Desfragmentación
+
+Hasta ahora, prácticamente todo lo que hemos visto de *Btrfs* han sido aspectos positivos, pero tiene un pequeño punto negativo, y éste es, que sufre fragmentación. Sin embargo, también disponemos de una herramienta para aplicar una **desfragmentación** en caso de que fuera necesario.
+
+Si queremos realizar una desfragmentación tenemos que introducir el siguiente comando:
+
+<pre>
+root@apache:/# btrfs filesystem defrag /mnt/
+</pre>
+
+
 #### Cifrado
 
 

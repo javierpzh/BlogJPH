@@ -768,32 +768,56 @@ Necesitamos instalar el siguiente paquete en nuestro sistema:
 apt install cryptsetup -y
 </pre>
 
-Una vez instalado, 
+Una vez instalado, vamos a crear un fichero llamado *KeyFile* y lo cifraremos:
 
+<pre>
+root@btrfs:~# dd if=/dev/urandom of=/root/KeyFile bs=1 count=4096
+4096+0 records in
+4096+0 records out
+4096 bytes (4.1 kB, 4.0 KiB) copied, 0.018509 s, 221 kB/s
+</pre>
 
+Vamos a cifrar el disco `vdf` con el comando:
 
+<pre>
+root@btrfs:~# dd if=/dev/urandom of=/root/KeyFile bs=1 count=4096
+4096+0 records in
+4096+0 records out
+4096 bytes (4.1 kB, 4.0 KiB) copied, 0.0185828 s, 220 kB/s
+root@btrfs:~# cryptsetup luksFormat --key-file /root/KeyFile /dev/vdf
+WARNING: Device /dev/vdf already contains a 'btrfs' superblock signature.
 
+WARNING!
+========
+This will overwrite data on /dev/vdf irrevocably.
 
+Are you sure? (Type uppercase yes): YES
+</pre>
 
+El disco ya se encontraría cifrado, pero si queremos que utilice una contraseña debemos usar este comando:
 
+<pre>
+root@btrfs:~# cryptsetup luksFormat /dev/vdf
+WARNING: Device /dev/vdf already contains a 'crypto_LUKS' superblock signature.
 
+WARNING!
+========
+This will overwrite data on /dev/vdf irrevocably.
 
+Are you sure? (Type uppercase yes): YES
+Enter passphrase for /dev/vdf:
+Verify passphrase:
+</pre>
 
+Para descifrar el disco, introduciremos:
 
+<pre>
+root@btrfs:~# cryptsetup open /dev/vdf vdf
+Enter passphrase for /dev/vdf:
+</pre>
 
+Una vez introducida la contraseña habríamos terminado.
 
+--------------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-.
 Ya habríamos realizado este apartado y por tanto, el contenido de este *post* ha finalizado.

@@ -485,28 +485,7 @@ Unallocated:
    /dev/vdf	 561.62MiB
 </pre>
 
-Apreciamos que el nuevo fichero no ha afectado en absoluto al espacio ocupado del dispositivo, ya que aún no se ha realizado ninguna modificación. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Apreciamos que el nuevo fichero no ha afectado en absoluto al espacio ocupado del dispositivo, ya que aún no se ha realizado ninguna modificación.
 
 
 #### Deduplicación

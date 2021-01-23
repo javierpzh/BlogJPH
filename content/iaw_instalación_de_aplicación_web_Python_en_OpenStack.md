@@ -323,7 +323,28 @@ En teoría, ya tendríamos disponible nuestro servidor de aplicaciones *uWSGI*, 
 (produccion) [root@quijote Web-Python-OpenStack]# uwsgi --http 8080 --plugin python35 --chdir /var/www/Web-Python-OpenStack/appmezzanine/ --wsgi-file /var/www/Web-Python-OpenStack/appmezzanine/appmezzanine/wsgi.py --process 4 --threads 2 --master
 </pre>
 
-Una vez tenemos nuestro servidor de aplicaciones listo, tan sólo nos quedaría, restaurar la copia de seguridad en nuestra base de datos *MySQL*.  
+Una vez tenemos nuestro servidor de aplicaciones listo, tan sólo nos quedaría, restaurar la copia de seguridad en nuestra base de datos *MySQL*.
+
+Antes de realizar la restauración, vamos a configurar *Mezzanine* para que utilice dicha base de datos. Esta configuración se encuentra dentro del fichero `appmezzanine/settings.py`, en el siguiente bloque:
+
+<pre>
+DATABASES = {
+    "default": {
+        # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
+        "ENGINE": "django.db.mysql",
+        # DB name or path to database file if using sqlite3.
+        "NAME": "webpython",
+        # Not used with sqlite3.
+        "USER": "javierquijote",
+        # Not used with sqlite3.
+        "PASSWORD": "contraseña",
+        # Set to empty string for localhost. Not used with sqlite3.
+        "HOST": "sancho",
+        # Set to empty string for default. Not used with sqlite3.
+        "PORT": "3306",
+    }
+}
+</pre>
 
 
 

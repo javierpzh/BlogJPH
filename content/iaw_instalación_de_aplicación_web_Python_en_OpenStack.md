@@ -291,21 +291,39 @@ mysql> show databases;
 4 rows in set (0.00 sec)
 </pre>
 
+En este punto, nos faltaría por configurar la conexión entre nuestro servidor web, y nuestra aplicación *Python*, por lo que necesitamos un servidor de aplicaciones, en mi caso, he elegido **uWSGI**.
 
+Lo instalamos en nuestro sistema *CentOS* con el siguiente comando:
 
+<pre>
+dnf install python3-mod_wsgi -y
+</pre>
 
-
-
-
-
-
-
-
-
+En nuestro entorno virtual, debemos instalar el conector necesario para que nuestra aplicación pueda conectar con la base de datos *MySQL*, para ello:
 
 <pre>
 pip install mysql-connector-python
 </pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 --------------------------------------------------------------------------------
 <pre>

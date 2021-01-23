@@ -349,6 +349,8 @@ DATABASES = {
 
 
 
+[root@quijote Web-Python-OpenStack]# dnf install mysql-devel
+
 
 
 

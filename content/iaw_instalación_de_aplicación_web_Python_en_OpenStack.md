@@ -296,16 +296,26 @@ En este punto, nos faltaría por configurar la conexión entre nuestro servidor 
 Lo instalamos en nuestro sistema *CentOS* con el siguiente comando:
 
 <pre>
-dnf install python3-mod_wsgi -y
+[root@quijote Web-Python-OpenStack]# dnf install python3-mod_wsgi -y
 </pre>
 
 En nuestro entorno virtual, debemos instalar el conector necesario para que nuestra aplicación pueda conectar con la base de datos *MySQL*, para ello:
 
 <pre>
-pip install mysql-connector-python
+(produccion) [root@quijote Web-Python-OpenStack]# pip install mysql-connector-python
 </pre>
 
+De la misma manera que hicimos en nuestro sistema, debemos instalar en nuestro entorno de trabajo el servidor **uWSGI**:
 
+<pre>
+(produccion) [root@quijote Web-Python-OpenStack]# pip install uwsgi
+</pre>
+
+Seguramente nos reporte un error, para solventarlo, debemos asegurarnos que tenemos instalado en nuestro sistema los siguientes paquetes:
+
+<pre>
+dnf install gcc python3-devel -y
+</pre>
 
 
 

@@ -317,9 +317,13 @@ Seguramente nos reporte un error, para solventarlo, debemos asegurarnos que tene
 dnf install gcc python3-devel -y
 </pre>
 
+En teoría, ya tendríamos disponible nuestro servidor de aplicaciones *uWSGI*, pero vamos a asegurarnos probando su funcionamiento:
 
+<pre>
+(produccion) [root@quijote Web-Python-OpenStack]# uwsgi --http 8080 --plugin python35 --chdir /var/www/Web-Python-OpenStack/appmezzanine/ --wsgi-file /var/www/Web-Python-OpenStack/appmezzanine/appmezzanine/wsgi.py --process 4 --threads 2 --master
+</pre>
 
-
+Una vez tenemos nuestro servidor de aplicaciones listo, tan sólo nos quedaría, restaurar la copia de seguridad en nuestra base de datos *MySQL*.  
 
 
 

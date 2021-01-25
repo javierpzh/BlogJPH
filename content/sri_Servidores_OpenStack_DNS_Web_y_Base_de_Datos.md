@@ -748,10 +748,10 @@ bind-address = 0.0.0.0
 
 Esto hará que el servidor escuche las peticiones que provienen de todas las interfaces, a diferencia del punto anterior, que estaba configurado para que solo escuchara en *localhost*.
 
-Hecho esto podemos dirigirnos al **cliente**, es decir, vamos a comprobar el acceso remoto desde *Quijote*. Para ello necesitamos instalar *MySQL*:
+Hecho esto podemos dirigirnos al **cliente**, es decir, vamos a comprobar el acceso remoto desde *Quijote*. Para ello necesitamos instalar *MariaDB*:
 
 <pre>
-dnf install mysql -y
+dnf install mariadb -y
 </pre>
 
 Ahora probamos a acceder:
@@ -767,19 +767,15 @@ Obtenemos este resultado:
 <pre>
 [root@quijote ~]# mysql -h sancho -u javierquijote -p
 Enter password:
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 41
-Server version: 5.5.5-10.3.25-MariaDB-0ubuntu0.20.04.1 Ubuntu 20.04
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 66
+Server version: 10.3.25-MariaDB-0ubuntu0.20.04.1 Ubuntu 20.04
 
-Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-mysql>
+MariaDB [(none)]>
 </pre>
 
 Hemos accedido correctamente por lo que habríamos finalizado este *post*.

@@ -487,9 +487,9 @@ Genial, podemos ver como únicamente nos muestra la colección sobre la que pose
 
 En **Oracle** existen dos tipos de privilegios de usuario:
 
-- **System**
+- *System*
 
-- **Object**
+- *Object*
 
 **System**
 

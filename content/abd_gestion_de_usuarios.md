@@ -505,42 +505,9 @@ Permite al usuario realizar ciertas acciones en objetos de la base de datos, com
 
 Este tipo de permisos los da el dueño del objeto, el administrador o alguien que haya recibido este permiso explícitamente.
 
-Por el contrario, en **MongoDB**,
+Por el contrario, en **MongoDB**, no existe el concepto de privilegio como tal, sino que nos encontramos con los determinados **roles**.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.
-
-**3. Explica los roles por defecto que incorpora *MongoDB* y como se asignan a los usuarios. (6)**
-
-Primeramente veo conveniente explicar lo que es un **rol**.
+¿Y qué son los *roles*?
 
 Un *rol* se define como un conjunto de privilegios. Cuando a un usuario se le asigna un rol, los privilegios de ese rol son accesibles por el usuario.
 
@@ -559,7 +526,15 @@ Un rol puede además heredar privilegios de uno o varios roles.
 
 - **Roles definidos por el usuario:** son los creados por el administrador del sistema.
 
-En este caso, nos interesan los **roles predefinidos**.
+
+
+
+
+.
+
+**3. Explica los roles por defecto que incorpora *MongoDB* y como se asignan a los usuarios. (6)**
+
+Como ya sabemos lo qué es un **rol** gracias al apartado anterior, vamos a pasar, en este caso, con os roles que nos interesan, los **roles predefinidos**.
 
 Dentro de éstos, podemos clasificar los distintos roles en varias categorías.
 

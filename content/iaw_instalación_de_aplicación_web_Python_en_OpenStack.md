@@ -4,7 +4,7 @@ Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: OpenStack, Python, Django, MySQL, MariaDB, Mezzanine, virtualenv, git
 
-**En esta tarea vamos a realizar la instalación de un *CMS Python* basado en *Django*. Puedes encontrar varios en el siguiente [enlace](https://djangopackages.org/grids/g/cms/).**
+**En este *post* vamos a realizar la instalación de un *CMS Python* basado en *Django*. Puedes encontrar varios en el siguiente [enlace](https://djangopackages.org/grids/g/cms/).**
 
 En primer lugar, me gustaría aclarar un poco cuál va a ser el entorno de trabajo, y es que el escenario sobre el que vamos a trabajar, ha sido construido en diferentes *posts* previamente elaborados. Los dejo ordenados a continuación por si te interesa:
 

@@ -153,7 +153,7 @@ Hecho esto, nos faltaría crear el *virtualhost* que defina la web con HTTPs. En
 Habilitamos el nuevo *virtualhost* creando un enlace simbólico hacia la ruta `/etc/httpd/sites-enabled`.
 
 <pre>
-[root@quijote sites-availble]# ln -s /etc/httpd/sites-availble/javierpzh.gonzalonazareno.https.conf /etc/httpd/sites-enabled/
+[root@quijote sites-availables]# ln -s /etc/httpd/sites-availables/javierpzh.gonzalonazareno.https.conf /etc/httpd/sites-enabled/
 </pre>
 
 Por último, vamos a reiniciar nuestro servidor web para que se apliquen los nuevos cambios:

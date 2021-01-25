@@ -1,5 +1,5 @@
 Title: Gestión de Usuarios de bases de datos
-Date: 2018/01/21
+Date: 2018/01/25
 Category: Administración de Bases de Datos
 Header_Cover: theme/images/banner-basededatos.png
 Tags: Base de Datos, Oracle, MySQL, MariaDB, PostgreSQL, MongoDB
@@ -486,6 +486,39 @@ Genial, podemos ver como únicamente nos muestra la colección sobre la que pose
 **2. Averigua si en *MongoDB* existe el concepto de privilegio del sistema y muestra las diferencias más importantes con *Oracle*. (6)**
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
 
 **3. Explica los roles por defecto que incorpora *MongoDB* y como se asignan a los usuarios. (6)**
 

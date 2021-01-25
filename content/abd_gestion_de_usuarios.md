@@ -501,7 +501,9 @@ Los privilegios de sistema más importantes son: **SYSDBA** y **SYSOPER**, que s
 
 **Object**
 
-Permite al usuario realizar ciertas acciones en objetos de la base de datos, como una tabla, una vista, un procedimiento, una función, ... Si a un usuario no se le dan estos permisos sólo puede acceder a sus propios objetos. Este tipo de permisos los da el dueño del objeto, el administrador o alguien que haya recibido este permiso explícitamente.
+Permite al usuario realizar ciertas acciones en objetos de la base de datos, como una tabla, una vista, un procedimiento, una función, ... Si a un usuario no se le dan estos permisos sólo puede acceder a sus propios objetos.
+
+Este tipo de permisos los da el dueño del objeto, el administrador o alguien que haya recibido este permiso explícitamente.
 
 Por el contrario, en **MongoDB**,
 

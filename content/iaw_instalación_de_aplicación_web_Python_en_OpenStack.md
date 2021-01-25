@@ -2,7 +2,7 @@ Title: Instalación de aplicación web Python en OpenStack
 Date: 2021/01/21
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
-Tags: OpenStack, Python, Django, Mezzanine, virtualenv, git
+Tags: OpenStack, Python, Django, MySQL, MariaDB, Mezzanine, virtualenv, git
 
 **En esta tarea vamos a realizar la instalación de un *CMS Python* basado en *Django*. Puedes encontrar varios en el siguiente [enlace](https://djangopackages.org/grids/g/cms/).**
 
@@ -348,9 +348,9 @@ DATABASES = {
 
 
 
-
-[root@quijote Web-Python-OpenStack]# dnf install mysql-devel
-
+<pre>
+[root@quijote ~]# dnf install mariadb-devel
+</pre>
 
 
 

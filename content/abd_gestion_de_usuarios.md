@@ -526,9 +526,9 @@ Un rol puede además heredar privilegios de uno o varios roles.
 
 - **Roles definidos por el usuario:** son los creados por el administrador del sistema.
 
-Una vez explicado como funcionan los privilegios en un gestor y otro, vamos a señalar las diferencias más importantes, aunque creo que se pueden ver con bastante facilidad.
+Una vez explicado como funcionan los privilegios en un gestor y otro, creo que se pueden ver las diferencias más importantes con bastante facilidad, pero por si acaso, voy a poner un ejemplo práctico.
 
-Por ejemplo, si quisiéramos que un usuario pudiera acceder a una tabla, o una colección, de la cuál no es dueño, en *Oracle* nos bastaría con ejecutar una sentencia (*GRANT*) que le permitiera acceder a ese recurso, y en *MongoDB* deberíamos asignarle el rol adecuado para que pudiera tener acceso a dicho recurso.
+Supongamos que quisiéramos que un usuario pudiera acceder a una tabla, o una colección, de la cuál no es dueño. Por un lado, en *Oracle* nos bastaría con ejecutar una sentencia (*GRANT*) que le permitiera al usuario acceder a ese recurso, y por otro lado, en *MongoDB*, al usuario deberíamos asignarle el rol que poseiera el privilegio adecuado que le permitiera realizar dicha acción en el recurso.
 
 **3. Explica los roles por defecto que incorpora *MongoDB* y como se asignan a los usuarios. (6)**
 

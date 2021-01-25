@@ -541,10 +541,10 @@ En *Centos*, la instalación de un servidor *Apache* es distinta respecto a lo q
 [root@quijote ~]# ls /etc/httpd/
 conf  conf.d  conf.modules.d  logs  modules  run  state
 
-[root@quijote ~]# mkdir /etc/httpd/{sites-availble,sites-enabled}
+[root@quijote ~]# mkdir /etc/httpd/{sites-availables,sites-enabled}
 
 [root@quijote ~]# ls /etc/httpd/
-conf  conf.d  conf.modules.d  logs  modules  run  sites-availble  sites-enabled  state
+conf  conf.d  conf.modules.d  logs  modules  run  sites-availables  sites-enabled  state
 </pre>
 
 Una vez disponemos de las carpetas donde almacenaremos nuestros *virtualhost*, debemos dirigirnos al fichero `/etc/httpd/conf/httpd.conf` e indicar que los *virtualhost* se almacenan en la carpeta `sites-enabled`. Para ello añadimos la siguiente línea en dicho fichero:
@@ -572,7 +572,7 @@ Hecho esto, ya procederemos a crear nuestro primer *virtualhost*. En mi caso rec
 Ahora, vamos a habilitar este nuevo *virtualhost*, creando un enlace simbólico hacia la ruta `/etc/httpd/sites-enabled`.
 
 <pre>
-[root@quijote sites-availble]# ln -s /etc/httpd/sites-availble/javierpzh.gonzalonazareno.conf /etc/httpd/sites-enabled/
+[root@quijote sites-availables]# ln -s /etc/httpd/sites-availables/javierpzh.gonzalonazareno.conf /etc/httpd/sites-enabled/
 </pre>
 
 En este punto, tan solo nos quedaría crear un fichero `index.html` en la ruta especificada en el apartado **DocumentRoot**, que en mi caso, es `/var/www/iesgn`. Mi fichero `index.html` quedaría así:

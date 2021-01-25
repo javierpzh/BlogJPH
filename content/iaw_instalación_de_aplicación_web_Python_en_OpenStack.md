@@ -6,8 +6,6 @@ Tags: OpenStack, Python, Django, MySQL, MariaDB, Mezzanine, virtualenv, git
 
 **En esta tarea vamos a realizar la instalación de un *CMS Python* basado en *Django*. Puedes encontrar varios en el siguiente [enlace](https://djangopackages.org/grids/g/cms/).**
 
-#### Instala el CMS en el entorno de desarrollo. Debes utilizar un entorno virtual.
-
 En primer lugar, me gustaría aclarar un poco cuál va a ser el entorno de trabajo, y es que el escenario sobre el que vamos a trabajar, ha sido construido en diferentes *posts* previamente elaborados. Los dejo ordenados a continuación por si te interesa:
 
 - [Creación del escenario de trabajo en OpenStack](https://javierpzh.github.io/creacion-del-escenario-de-trabajo-en-openstack.html)

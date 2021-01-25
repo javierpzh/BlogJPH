@@ -663,6 +663,8 @@ Pues para ello, debemos emplear el siguiente comando:
 )
 </pre>
 
+Listo.
+
 **4. Explica como puede consultarse el diccionario de datos de *MongoDB* para saber que roles han sido concedidos a un usuario y qué privilegios incluyen. (6)**
 
 Si queremos saber que roles posee un usuario en concreto, podemos hacer uso del siguiente comando:

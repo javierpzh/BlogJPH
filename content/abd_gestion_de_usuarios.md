@@ -513,10 +513,10 @@ Un *rol* se define como un conjunto de privilegios. Cuando a un usuario se le as
 
 Un privilegio define una acción o acciones que se pueden efectuar sobre un recurso. Los recursos pueden ser de varios tipos:
 
-- Una base de datos.
-- Una colección.
-- Un conjunto de colecciones.
-- A nivel de *cluster*: representa operaciones sobre el conjunto de réplicas o el *cluster* de *shards*.
+- Una base de datos
+- Una colección
+- Un conjunto de colecciones
+- A nivel de *cluster*: representa operaciones sobre el conjunto de réplicas o el *cluster* de *shards*
 
 Un rol puede además heredar privilegios de uno o varios roles.
 
@@ -526,6 +526,8 @@ Un rol puede además heredar privilegios de uno o varios roles.
 
 - **Roles definidos por el usuario:** son los creados por el administrador del sistema.
 
+Una vez explicado como funcionan los privilegios en un gestor y otro, vamos a señalar las diferencias más importantes, aunque creo que se pueden ver con bastante facilidad.
+
 
 
 
@@ -534,7 +536,7 @@ Un rol puede además heredar privilegios de uno o varios roles.
 
 **3. Explica los roles por defecto que incorpora *MongoDB* y como se asignan a los usuarios. (6)**
 
-Como ya sabemos lo qué es un **rol** gracias al apartado anterior, vamos a pasar, en este caso, con os roles que nos interesan, los **roles predefinidos**.
+Como ya sabemos lo qué es un **rol** gracias al apartado anterior, vamos a pasar, en este caso, con los que nos interesan, los **roles predefinidos**.
 
 Dentro de éstos, podemos clasificar los distintos roles en varias categorías.
 

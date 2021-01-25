@@ -485,7 +485,23 @@ Genial, podemos ver como únicamente nos muestra la colección sobre la que pose
 
 **2. Averigua si en *MongoDB* existe el concepto de privilegio del sistema y muestra las diferencias más importantes con *Oracle*. (6)**
 
+En *Oracle* existen dos tipos de privilegios de usuario:
 
+- **System**
+
+- **Object**
+
+**System**
+
+Permite al usuario hacer ciertas tareas sobre la base de datos, como por ejemplo crear un *tablespace*. Estos permisos son otorgados por el administrador o por alguien que haya recibido el permiso para administrar ese tipo de privilegio. Existen como 100 tipos distintos de privilegios de este tipo.
+
+En general los permisos de sistema, permiten ejecutar comandos del tipo **DDL**, como *CREATE*, *ALTER* y *DROP* o del tipo **DML**.
+
+Los privilegios de sistema más importantes son: **SYSDBA** y **SYSOPER**, que son dados a usuarios que serán administradores de base de datos.
+
+**Object**
+
+Permite al usuario realizar ciertas acciones en objetos de la base de datos, como una tabla, una vista, un procedimiento, una función, ... Si a un usuario no se le dan estos permisos sólo puede acceder a sus propios objetos. Este tipo de permisos los da el dueño del objeto, el administrador o alguien que haya recibido este permiso explícitamente.
 
 
 

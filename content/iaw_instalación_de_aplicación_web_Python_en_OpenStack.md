@@ -357,6 +357,12 @@ DATABASES = {
 }
 </pre>
 
+En este fichero, también tenemos que establecer en la directiva **ALLOWED_HOSTS**, la dirección de nuesto servidor de base de datos, de manera que quedaría así:
+
+<pre>
+ALLOWED_HOSTS = ["sancho"]
+</pre>
+
 Es importante asegurarnos que no poseemos el fichero llamado `local_settings.py`, ya que sino, la configuración realizada en el fichero `settings.py` la ignorará, y buscara los recursos de manera local.
 
 Debemos realizar una modificación en un fichero que se encuentra dentro del directorio de nuestro entorno virtual, en mi caso, en la ruta `/produccion/lib64/python3.6/site-packages/django/conf/__init__.py`. En él debemos comentar el siguiente bloque:
@@ -418,7 +424,12 @@ Running migrations:
   Applying twitter.0001_initial... OK
 </pre>
 
+Creadas las tablas, podremos restaurar los datos de nuestra copia de seguridad. Para ello empleamos el siguiente comando:
 
+<pre>
+(produccion) [root@quijote appmezzanine]# python manage.py loaddata copiadeseguridad.json
+Installed 126 object(s) from 1 fixture(s)
+</pre>
 
 
 

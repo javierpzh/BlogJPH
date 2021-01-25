@@ -359,13 +359,14 @@ DATABASES = {
 
 Es importante asegurarnos que no poseemos el fichero llamado `local_settings.py`, ya que sino, la configuración realizada en el fichero `settings.py` la ignorará, y buscara los recursos de manera local.
 
-En el fichero `__init__` debemos comentar el siguiente bloque:
+Debemos realizar una modificación en un fichero que se encuentra dentro del directorio de nuestro entorno virtual, en mi caso, en la ruta `/produccion/lib64/python3.6/site-packages/django/conf/__init__.py`. En él debemos comentar el siguiente bloque:
 
 <pre>
-
+if not self.SECRET_KEY:
+ ImproperlyConfigured("The SECRET_KEY setting must not be empty.")
 </pre>
 
-Es hora de crear las tablas en nuestra base de datos mediante el comando `python manage.py migrate`:
+Hecho esto, es hora de crear las tablas en nuestra base de datos mediante el comando `python manage.py migrate`:
 
 <pre>
 (produccion) [root@quijote appmezzanine]# python manage.py migrate

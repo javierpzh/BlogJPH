@@ -259,36 +259,47 @@ Vamos a crear un nuevo entorno virtual:
 (produccion) [root@quijote Web-Python-OpenStack]# pip install mezzanine
 </pre>
 
-Una vez tenemos nuestro entorno virtual en producción, vamos a crear en nuestro usuario de *MySQL*, del servidor de *Sancho*, la base de datos **webpython**, para almacenar los datos de la copia de seguridad:
+Una vez tenemos nuestro entorno virtual en producción, vamos a crear el usuario **javiermezzanine** en el servidor *MariaDB* de *Sancho*, y posteriormente, la base de datos **mezzanine**, para almacenar los datos de la copia de seguridad:
 
 <pre>
-[root@quijote ~]# mysql -h sancho -u javierquijote -p
+root@sancho:~# mysql -u root -p
 Enter password:
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 50
-Server version: 5.5.5-10.3.25-MariaDB-0ubuntu0.20.04.1 Ubuntu 20.04
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 67
+Server version: 10.3.25-MariaDB-0ubuntu0.20.04.1 Ubuntu 20.04
 
-Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-mysql> CREATE DATABASE webpython;
-Query OK, 1 row affected (0.00 sec)
+MariaDB [(none)]> CREATE USER 'javiermezzanine'@'10.0.2.6' IDENTIFIED BY 'contraseña';
+Query OK, 0 rows affected (0.099 sec)
 
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-| webpython          |
-+--------------------+
-4 rows in set (0.00 sec)
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO 'javiermezzanine'@'10.0.2.6';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> exit
+Bye
+</pre>
+
+Una vez creado el usuario, vamos a probar a acceder a él desde *Quijote*, y crearemos la base de datos necesaria:
+
+<pre>
+[root@quijote ~]# mysql -h sancho -u javiermezzanine -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 69
+Server version: 10.3.25-MariaDB-0ubuntu0.20.04.1 Ubuntu 20.04
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE mezzanine;
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [(none)]> exit
+Bye
 </pre>
 
 En este punto, nos faltaría por configurar la conexión entre nuestro servidor web, y nuestra aplicación *Python*, por lo que necesitamos un servidor de aplicaciones, en mi caso, he elegido **uWSGI**.
@@ -333,9 +344,9 @@ DATABASES = {
         # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
         "ENGINE": "django.db.mysql",
         # DB name or path to database file if using sqlite3.
-        "NAME": "webpython",
+        "NAME": "mezzanine",
         # Not used with sqlite3.
-        "USER": "javierquijote",
+        "USER": "javiermezzanine",
         # Not used with sqlite3.
         "PASSWORD": "contraseña",
         # Set to empty string for localhost. Not used with sqlite3.

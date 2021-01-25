@@ -751,7 +751,7 @@ Esto hará que el servidor escuche las peticiones que provienen de todas las int
 Hecho esto podemos dirigirnos al **cliente**, es decir, vamos a comprobar el acceso remoto desde *Quijote*. Para ello necesitamos instalar *MySQL*:
 
 <pre>
-dnf install mysql-server -y
+dnf install mysql -y
 </pre>
 
 Ahora probamos a acceder:

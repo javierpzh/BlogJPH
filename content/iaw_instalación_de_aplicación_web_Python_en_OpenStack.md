@@ -430,6 +430,83 @@ Installed 126 object(s) from 1 fixture(s)
 </pre>
 
 
+*http*:
+
+<pre>
+<\VirtualHost *:80\>
+
+    ServerName www.python.javierpzh.gonzalonazareno.org
+    DocumentRoot /var/www/Web-Python-OpenStack/appmezzanine
+
+    ErrorLog /var/www/iesgn/log/error.log
+    CustomLog /var/www/iesgn/log/requests.log combined
+
+    Redirect / https://www.python.javierpzh.gonzalonazareno.org
+
+<\/VirtualHost\>
+</pre>
+
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
+
+*https*:
+
+<pre>
+<\VirtualHost *:443\>
+
+    ServerName www.python.javierpzh.gonzalonazareno.org
+    DocumentRoot /var/www/Web-Python-OpenStack
+
+    ErrorLog /var/www/iesgn/log/error.log
+    CustomLog /var/www/iesgn/log/requests.log combined
+
+    <\Directory /var/www/Web-Python-OpenStack/appmezzanine/static\>
+      Require all granted
+      Options FollowSymlinks
+    <\/Directory\>
+
+    ProxyPass /static !
+    ProxyPass / http://127.0.0.1:8080/
+
+    SSLEngine on
+    SSLCertificateFile /etc/pki/tls/certs/wildcard.crt
+    SSLCertificateKeyFile /etc/pki/tls/private/freston.key
+
+<\/VirtualHost\>
+</pre>
+
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
+
+
+
+<pre>
+[root@quijote sites-availables]# ln -s /etc/httpd/sites-availables/python.javierpzh.gonzalonazareno.conf /etc/httpd/sites-enabled/
+
+[root@quijote sites-availables]# ln -s /etc/httpd/sites-availables/python.javierpzh.gonzalonazareno.https.conf /etc/httpd/sites-enabled/
+
+[root@quijote sites-availables]# ls -l /etc/httpd/sites-enabled/
+total 0
+lrwxrwxrwx 1 root root 58 Jan 25 17:26 javierpzh.gonzalonazareno.conf -> /etc/httpd/sites-availables/javierpzh.gonzalonazareno.conf
+lrwxrwxrwx 1 root root 64 Jan 25 17:25 javierpzh.gonzalonazareno.https.conf -> /etc/httpd/sites-availables/javierpzh.gonzalonazareno.https.conf
+lrwxrwxrwx 1 root root 65 Jan 25 17:24 python.javierpzh.gonzalonazareno.conf -> /etc/httpd/sites-availables/python.javierpzh.gonzalonazareno.conf
+lrwxrwxrwx 1 root root 71 Jan 25 17:24 python.javierpzh.gonzalonazareno.https.conf -> /etc/httpd/sites-availables/python.javierpzh.gonzalonazareno.https.conf
+
+[root@quijote sites-availables]# systemctl restart httpd
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -437,10 +514,3 @@ Installed 126 object(s) from 1 fixture(s)
 
 
 --------------------------------------------------------------------------------
-
-
-#### Guarda los ficheros generados durante la instalación en un repositorio *GitHub*. Guarda también en ese repositorio la copia de seguridad de la base de datos. Ten en cuenta que en el entorno de desarrollo vas a tener una base de datos **sqlite**, y en el entorno de producción una **MariaDB**, por lo tanto, es recomendable para hacer la copia de seguridad y recuperarla los comandos: `python manage.py dumpdata` y `python manage.py loaddata`, para [más información](https://coderwall.com/p/mvsoyg/django-dumpdata-and-loaddata).
-
-
-
-#### Realiza el despliegue de la aplicación en tu entorno de producción (servidor web y servidor de base de datos en el *cloud*). Utiliza un entorno virtual. Como servidor de aplicación puedes usar *gunicorn* o *uwsgi* (crea una unidad *systemd* para gestionar este servicio). El contenido estático debe servirlo el servidor web. La aplicación será accesible en la URL `python.javierpzh.gonzalonazareno.org`.

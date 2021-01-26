@@ -214,9 +214,17 @@ JobDefs {
 }
 </pre>
 
+A continuación nos encontramos con la sección donde definiremos las tareas de los clientes a los que vamos a realizar las copias de seguridad. En los siguientes bloques indicamos
+
+<pre>
+Job {
+  Name = "BackupClient1"
+  Client = 
+  JobDefs = "DefaultJob"
+}
 
 
-
+</pre>
 
 
 

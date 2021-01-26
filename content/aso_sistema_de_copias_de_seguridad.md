@@ -554,6 +554,40 @@ Client {
 
 
 
+<pre>
+Storage {
+ Name = File
+ Address = 10.0.1.11
+ SDPort = 9103
+ Password = "bacula"
+ Device = FileChgr1
+ Media Type = File
+ Maximum Concurrent Jobs = 10
+}
+</pre>
+
+
+
+
+
+
+
+<pre>
+
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

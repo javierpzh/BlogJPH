@@ -165,6 +165,10 @@ Os preguntaréis qué es cada apartado, pues vamos a verlos uno a uno:
 
 - **Write Bootstrap:** este apartado indica donde esta el fichero *bacula*
 
+En mi caso, introduciré tres tipos de tareas distintas, una para las copias diarias, otra para las copias semanales y otra para las copias mensuales.
+
+
+
 
 
 

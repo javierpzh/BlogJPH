@@ -75,10 +75,32 @@ En mi caso, he decidido escoger como servidor (también conocido como **director
 Empezaremos por instalar el *software* de *Bacula* y *MySQL*.
 
 <pre>
-
+apt install mariadb-server mariadb-client bacula bacula-common-mysql bacula-director-mysql -y
 </pre>
 
+Durante la instalación de *Bacula*, nos saldrá este mensaje emergente, en el que seleccionaremos **Yes**, para especificarle a la aplicación que deseamos configurarla con la base de datos *MySQL*:
 
+<pre>
+┌───────────────────────────────┤ Configuring bacula-director-mysql ├───────────────────────────────┐
+│                                                                                                   │
+│ The bacula-director-mysql package must have a database installed and configured before it can be  │
+│ used. This can be optionally handled with dbconfig-common.                                        │
+│                                                                                                   │
+│ If you are an advanced database administrator and know that you want to perform this              │
+│ configuration manually, or if your database has already been installed and configured, you        │
+│ should refuse this option. Details on what needs to be done should most likely be provided in     │
+│ /usr/share/doc/bacula-director-mysql.                                                             │
+│                                                                                                   │
+│ Otherwise, you should probably choose this option.                                                │
+│                                                                                                   │
+│ Configure database for bacula-director-mysql with dbconfig-common?                                │
+│                                                                                                   │
+│                            <\Yes\>                               <\No\>                           │
+│                                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+
+A continuación, nos pedirá que introduzcamos una contraseña.
 
 
 

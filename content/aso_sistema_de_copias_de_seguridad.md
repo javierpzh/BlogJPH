@@ -549,10 +549,17 @@ Client {
 }
 </pre>
 
+Una vez definidos los clientes, lo que tendremos que definir es que tipo de almacenamiento vamos a tener, en mi caso, los parámetros a modificar son:
 
+- **Nombre:** para que concuerde con el que hacemos referencia al principio del fichero en el segundo apartado
 
+- **IP:** indicaremos la de nuestro propio servidor para así indicar donde almacenar la información
 
+- **Password:** para que sea la misma que hemos indicado anteriormente
 
+- **Device:** tipo de dispositivo que en nuestro caso es *File*
+
+Nos quedaría un bloque como este:
 
 <pre>
 Storage {

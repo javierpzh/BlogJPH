@@ -319,7 +319,7 @@ Job {
   Type = Restore
   Client=dulcinea-fd
   Storage = File1
-  FileSet="Full Set"
+  FileSet="Dulcinea-Datos"
   Pool = File
   Messages = Standard
 }
@@ -330,7 +330,7 @@ Job {
   Type = Restore
   Client=sancho-fd
   Storage = File1
-  FileSet="Full Set"
+  FileSet="Sancho-Datos"
   Pool = File
   Messages = Standard
 }
@@ -341,7 +341,7 @@ Job {
   Type = Restore
   Client=freston-fd
   Storage = File1
-  FileSet="Full Set"
+  FileSet="Freston-Datos"
   Pool = File
   Messages = Standard
 }
@@ -352,15 +352,115 @@ Job {
   Type = Restore
   Client=quijote-fd
   Storage = File1
-  FileSet="Full Set"
+  FileSet="Quijote-Datos"
   Pool = File
   Messages = Standard
 }
 </pre>
 
+Seguimos con la sección donde indicaremos, que tipo de información se almacenarán en los *backups*, indicando que directorios se copiarán y cuáles no, y el tipo de almacenamiento, que en mi caso se tratará de un almacenamiento comprimido para así ahorrar espacio.
 
+<pre>
+# Dulcinea
+FileSet {
+ Name = "Dulcinea-Datos"
+ Include {
+   Options {
+     signature = MD5
+     compression = GZIP
+   }
+   File = /home
+   File = /etc
+   File = /var
+   File = /bacula
+ }
+ Exclude {
+   File = /nonexistant/path/to/file/archive/dir
+   File = /proc
+   File = /var/cache
+   File = /var/tmp
+   File = /tmp
+   File = /sys
+   File = /.journal
+   File = /.fsck
+ }
+}
 
+# Sancho
+FileSet {
+ Name = "Sancho-Datos"
+ Include {
+   Options {
+     signature = MD5
+     compression = GZIP
+   }
+   File = /home
+   File = /etc
+   File = /var
+ }
+ Exclude {
+   File = /var/lib/bacula
+   File = /nonexistant/path/to/file/archive/dir
+   File = /proc
+   File = /var/cache
+   File = /var/tmp
+   File = /tmp
+   File = /sys
+   File = /.journal
+   File = /.fsck
+ }
+}
 
+# Freston
+FileSet {
+ Name = "Freston-Datos"
+ Include {
+   Options {
+     signature = MD5
+     compression = GZIP
+   }
+   File = /home
+   File = /etc
+   File = /var
+ }
+ Exclude {
+   File = /var/lib/bacula
+   File = /nonexistant/path/to/file/archive/dir
+   File = /proc
+   File = /var/tmp
+   File = /tmp
+   File = /sys
+   File = /.journal
+   File = /.fsck
+ }
+}
+
+# Quijote
+FileSet {
+ Name = "Quijote-Datos"
+ Include {
+   Options {
+     signature = MD5
+     compression = GZIP
+   }
+   File = /home
+   File = /etc
+   File = /var
+ }
+ Exclude {
+   File = /var/lib/bacula
+   File = /nonexistant/path/to/file/archive/dir
+   File = /proc
+   File = /var/tmp
+   File = /tmp
+   File = /sys
+   File = /.journal
+   File = /.fsck
+ }
+}
+</pre>
+
+Llegamos a la sección de los bloques de tipo **SCHEDULE**, en éstos 
 
 
 

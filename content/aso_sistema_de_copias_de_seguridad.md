@@ -72,9 +72,11 @@ Para manejar mejor *Bacula* es importante conocer ciertos conceptos:
 
 En mi caso, he decidido escoger como servidor (también conocido como **director**) de copias de seguridad a *Dulcinea*. Le he añadido un nuevo volumen de 10 GB de espacio, donde se irán almacenando las copias de las distintas máquinas.
 
+Empezaremos por instalar el *software* de *Bacula* y *MySQL*.
 
+<pre>
 
-
+</pre>
 
 
 

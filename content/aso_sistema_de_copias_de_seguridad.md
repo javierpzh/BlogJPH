@@ -332,7 +332,7 @@ Job {
   Client=dulcinea-fd
   Storage = volcopias
   FileSet="Dulcinea-Datos"
-  Pool = File
+  Pool = Backup-Restore
   Messages = Standard
 }
 
@@ -343,7 +343,7 @@ Job {
   Client=sancho-fd
   Storage = volcopias
   FileSet="Sancho-Datos"
-  Pool = File
+  Pool = Backup-Restore
   Messages = Standard
 }
 
@@ -354,7 +354,7 @@ Job {
   Client=freston-fd
   Storage = volcopias
   FileSet="Freston-Datos"
-  Pool = File
+  Pool = Backup-Restore
   Messages = Standard
 }
 
@@ -365,7 +365,7 @@ Job {
   Client=quijote-fd
   Storage = volcopias
   FileSet="Quijote-Datos"
-  Pool = File
+  Pool = Backup-Restore
   Messages = Standard
 }
 </pre>
@@ -646,7 +646,7 @@ Pool {
 }
 
 Pool {
- Name = Vol-Backup
+ Name = Backup-Restore
  Pool Type = Backup
  Recycle = yes
  AutoPrune = yes

@@ -1,10 +1,22 @@
 Title: Sistema de copias de seguridad
-Date: 2021/01/24
+Date: 2021/01/26
 Category: Administración de Sistemas Operativos
 Header_Cover: theme/images/banner-sistemas.jpg
 Tags: OpenStack, Bacula, Backup
 
-Implementa un sistema de copias de seguridad para las instancias del cloud y el VPS, teniendo en cuenta las siguientes características:
+**En este artículo vamos a implementar un sistema de copias de seguridad para las máquinas del escenario de *OpenStack* y la máquina de *OVH*.**
+
+En primer lugar, me gustaría aclarar un poco cuál va a ser el entorno de trabajo, y es que el escenario sobre el que vamos a trabajar, ha sido construido en diferentes *posts* previamente elaborados. Los dejo ordenados a continuación por si te interesa:
+
+- [Creación del escenario de trabajo en OpenStack](https://javierpzh.github.io/creacion-del-escenario-de-trabajo-en-openstack.html)
+- [Modificación del escenario de trabajo en OpenStack](https://javierpzh.github.io/modificacion-del-escenario-de-trabajo-en-openstack.html)
+- [Servidores OpenStack: DNS, Web y Base de Datos](https://javierpzh.github.io/servidores-openstack-dns-web-y-base-de-datos.html)
+
+He hecho más tareas sobre este escenario, las puedes encontrar todas [aquí](https://javierpzh.github.io/tag/openstack.html).
+
+Explicado esto, vamos a pasar con el contenido del *post* en cuestión.
+
+--------------------------------------------------------------------------------
 
 - Selecciona una aplicación para realizar el proceso: bacula, amanda, shell script con tar, rsync, dar, afio, etc.
 - Utiliza una de las instancias como servidor de copias de seguridad, añadiéndole un volumen y almacenando localmente las copias de seguridad que consideres adecuadas en él.

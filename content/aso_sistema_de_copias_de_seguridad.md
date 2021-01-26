@@ -573,7 +573,14 @@ Storage {
 }
 </pre>
 
+En la sección **Catalog**, nos encontraremos con la configuración relativa a la base de datos:
 
+<pre>
+Catalog {
+  Name = MyCatalog
+  dbname = "bacula"; DB Address = "localhost"; DB Port= "3306"; dbuser = "bacula"; dbpassword = "bacula"
+}
+</pre>
 
 
 
@@ -582,8 +589,6 @@ Storage {
 <pre>
 
 </pre>
-
-
 
 
 

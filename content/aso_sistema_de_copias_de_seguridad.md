@@ -100,11 +100,13 @@ Durante la instalación de *Bacula*, nos saldrá este mensaje emergente, en el q
 └───────────────────────────────────────────────────────────────────────────────────────────────────┘
 </pre>
 
-A continuación, nos pedirá que introduzcamos una contraseña.
+A continuación, nos pedirá que introduzcamos una contraseña y habremos finalizado el proceso de instalación.
 
+Vamos a pasar directamente con el fichero de configuración del servidor *Bacula*, que se encuentra en `/etc/bacula/bacula-dir.conf`,
 
+<pre>
 
-
+</pre>
 
 
 

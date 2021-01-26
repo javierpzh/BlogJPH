@@ -14,6 +14,8 @@ En primer lugar, me gustaría aclarar un poco cuál va a ser el entorno de traba
 
 He hecho más tareas sobre este escenario, las puedes encontrar todas [aquí](https://javierpzh.github.io/tag/openstack.html).
 
+Respecto al equipo de **OVH**, se trata de un *VPS* con un sistema *Debian*.
+
 Explicado esto, vamos a pasar con el contenido del *post* en cuestión.
 
 --------------------------------------------------------------------------------

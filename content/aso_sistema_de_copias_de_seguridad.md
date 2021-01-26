@@ -34,12 +34,49 @@ He hecho más tareas sobre este escenario, las puedes encontrar todas [aquí](ht
 
 Respecto al equipo de **OVH**, se trata de un *VPS* con un sistema *Debian*.
 
-Explicado esto, vamos a pasar con el contenido del *post* en cuestión.
+Explicado esto, vamos a pasar con el contenido del *post* en cuestión, no sin antes explicar un poco la aplicación que vamos a utilizar y sus componentes.
+
+## Bacula
 
 He decidido escoger **Bacula** como aplicación para llevar a cabo este sistema de *backups*.
 
 *Bacula* es una colección de herramientas de respaldo capaz de cubrir las necesidades de respaldo de equipos bajo redes IP. Se basa en una arquitectura cliente-servidor que resulta eficaz y fácil de manejar, dada la amplia gama de funciones y características que brinda. Además, debido a su desarrollo y estructura modular, *Bacula* se adapta tanto al uso personal como profesional, desde un equipo hasta grandes parques de servidores. Todo el conjunto de elementos que forman *Bacula* trabajan en sincronía y son totalmente compatibles con bases de datos como **MySQL**, **SQLite** y **PostgreSQL**.
 
+#### Componentes de *Bacula*:
+
+- **Director** *(DIR, bacula-director)***:** es el programa servidor que supervisa todas las funciones necesarias para las operaciones de copia de seguridad y restauración. Es el eje central de *Bacula* y en él se declaran todos los parámetros necesarios. Se ejecuta como un *demonio* en el servidor.
+
+- **Storage** *(SD, bacula-sd)***:** es el programa que gestiona las unidades de almacenamiento donde se almacenarán los datos. Es el responsable de escribir y leer en los medios que utilizaremos para nuestras copias de seguridad. Se ejecuta como un *demonio* en la máquina propietaria de los medios utilizados. En muchos casos será en el propio servidor, pero también puede ser otro equipo independiente.
+
+- **Catalog**: es la base de datos (*MySQL* en mi caso) que almacena la información necesaria para localizar donde se encuentran los datos salvaguardados de cada archivo, de cada cliente, ... En muchos casos será en el propio servidor, pero también puede ser otro equipo independiente.
+
+- **Console** *(bconsole)***:** es el programa que permite la interacción con el *Director* para todas las funciones del servidor. La versión original es una aplicación en modo texto *(bconsole)*. Existen igualmente aplicaciones GUI para Windows y Linux *(Webmin, Bacula Admin Tool, Bacuview, Webacula, Reportula, Bacula-Web, ...)*.
+
+- **File *(FD)* **:** Este servicio, conocido como **cliente** o servidor de ficheros está instalado en cada máquina a salvaguardar y es específico al sistema operativo donde se ejecuta. Responsable para enviar al *Director* los datos cuando este lo requiera.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Sistema de copias de seguridad
+
+En mi caso, he decidido escoger como servidor (también conocido como **director**) de copias de seguridad a *Dulcinea*. Le he añadido un nuevo volumen de 10 GB de espacio, donde se irán almacenando las copias de las distintas máquinas.
 
 
 

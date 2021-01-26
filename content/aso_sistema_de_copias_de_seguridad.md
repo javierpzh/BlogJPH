@@ -9,6 +9,7 @@ Tags: OpenStack, Bacula, Backup
 - Selecciona una aplicación para realizar el proceso: bacula, amanda, shell script con tar, rsync, dar, afio, etc.
 - Utiliza una de las instancias como servidor de copias de seguridad, añadiéndole un volumen y almacenando localmente las copias de seguridad que consideres adecuadas en él.
 - El proceso debe realizarse de forma completamente automática
+--------------------------------------------------------------------------------
 - Selecciona qué información es necesaria guardar (listado de paquetes, ficheros de configuración, documentos, datos, etc.)
 - Realiza semanalmente una copia completa
 - Realiza diariamente una copia incremental, diferencial o delta diferencial (decidir cual es más adecuada)

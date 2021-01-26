@@ -62,24 +62,9 @@ Para manejar mejor *Bacula* es importante conocer ciertos conceptos:
 
 - El **FILESET** es lo que vamos a guardar, el *CLIENT* es la proveniencia de los datos, el *SCHEDULE* determina cuando lo vamos a ejecutar y el *POOL* es el destino de la copia de seguridad.
 
-- Típicamente una combinación **CLIENT/FILESET** generará un determinado *JOB*. Además de los *JOB* de *backup*, existirán también *JOB* de *restore* y otros de control y administración.
+- Normalmente, una combinación **CLIENT/FILESET** generará un determinado *JOB*. Además de los *JOB* de *backup*, existirán también *JOB* de *restore* y otros de control y administración.
 
 - Los medios de almacenamiento se definen como **POOL**. El *POOL* es un conjunto de volúmenes, son ficheros que actúan como un disco duro, y dentro de ellos están las copias de seguridad.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ## Sistema de copias de seguridad

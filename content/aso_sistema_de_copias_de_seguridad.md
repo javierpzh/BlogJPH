@@ -294,6 +294,21 @@ Job {
 }
 </pre>
 
+Igualmente que hemos definido en los clientes las tareas de *backups*, debemos definir las tareas de restauración (*restore*), para poder restaurar las copias de seguridad. En esta sección, tendremos bloques con el siguiente aspecto:
+
+- **Name:** nombre de la tarea
+
+- **Type:** tipo que de la tarea (*restore*)
+
+- **Client:** cliente al que le vamos a poder realizar la restauración de la copia
+
+- **FileSet:** tipo de tarea al que hace referencia la copia de la que queremos realizar la restauración
+
+- **Storage:** nombre del cargador virtual automático que cargará el recurso de almacenamiento
+
+- **Pool:** indicaremos el nombre del apartado *Pool* que se configurará mas adelante y en él estamos indicando el volumen de almacenamiento donde se creará y almacenará las copias
+
+- **Messages:** tipo de mensaje, indica como mandará los mensajes de sucesos
 
 
 

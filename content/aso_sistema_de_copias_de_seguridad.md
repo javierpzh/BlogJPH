@@ -52,7 +52,7 @@ He decidido escoger **Bacula** como aplicación para llevar a cabo este sistema 
 
 - **Console *(bconsole)*:** es el programa que permite la interacción con el *Director* para todas las funciones del servidor. La versión original es una aplicación en modo texto *(bconsole)*. Existen igualmente aplicaciones GUI para Windows y Linux *(Webmin, Bacula Admin Tool, Bacuview, Webacula, Reportula, Bacula-Web, ...)*.
 
-- **File *(FD)*:** este servicio, conocido como **cliente** o servidor de ficheros está instalado en cada máquina a salvaguardar y es específico al sistema operativo donde se ejecuta. Responsable para enviar al *Director* los datos cuando este lo requiera.
+- **File *(FD)*:** este servicio, conocido como *cliente* o servidor de ficheros está instalado en cada máquina a salvaguardar y es específico al sistema operativo donde se ejecuta. Responsable para enviar al *Director* los datos cuando este lo requiera.
 
 
 

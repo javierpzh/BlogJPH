@@ -112,7 +112,7 @@ Director {
   WorkingDirectory = "/var/lib/bacula"
   PidDirectory = "/run/bacula"
   Maximum Concurrent Jobs = 20
-  Password = "contraseña"
+  Password = "bacula"
   Messages = Daemon
   DirAddress = 127.0.0.1
 }
@@ -479,7 +479,75 @@ Schedule {
 }
 </pre>
 
-Estamos llegando al final de la configuración de este fichero, en este caso nos encontramos con los equipos clientes, 
+Estamos llegando al final de la configuración de este fichero, en este caso nos encontramos con los equipos clientes, cuyos bloques incluirán las siguientes opciones:
+
+- **Name:** Nombre distintivo del cliente
+
+- **Address:** Direccion ip del cliente
+
+- **FDPort:** puerto que se utilizará en las conexiones
+
+- **Catalog:** dejamos el valor por defecto
+
+- **Password:** contraseña del cliente
+
+- **File Retention:** dejamos el valor por defecto
+
+- **Job Retention:** dejamos el valor por defecto
+
+- **AutoPrune:** dejamos el valor por defecto
+
+Añado mis clientes:
+
+<pre>
+# Dulcinea
+Client {
+ Name = dulcinea-fd
+ Address = 10.0.1.11
+ FDPort = 9102
+ Catalog = MyCatalog
+ Password = "bacula"
+ File Retention = 60 days
+ Job Retention = 6 months
+ AutoPrune = yes
+}
+
+# Sancho
+Client {
+ Name = sancho-fd
+ Address = 10.0.1.8
+ FDPort = 9102
+ Catalog = MyCatalog
+ Password = "bacula"
+ File Retention = 60 days
+ Job Retention = 6 months
+ AutoPrune = yes
+}
+
+# Freston
+Client {
+ Name = freston-fd
+ Address = 10.0.1.6
+ FDPort = 9102
+ Catalog = MyCatalog
+ Password = "bacula"
+ File Retention = 60 days
+ Job Retention = 6 months
+ AutoPrune = yes
+}
+
+# Quijote
+Client {
+ Name = quijote-fd
+ Address = 10.0.2.6
+ FDPort = 9102
+ Catalog = MyCatalog
+ Password = "bacula"
+ File Retention = 60 days
+ Job Retention = 6 months
+ AutoPrune = yes
+}
+</pre>
 
 
 

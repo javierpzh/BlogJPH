@@ -54,9 +54,17 @@ He decidido escoger **Bacula** como aplicación para llevar a cabo este sistema 
 
 - **File *(FD)*:** este servicio, conocido como *cliente* o servidor de ficheros está instalado en cada máquina a salvaguardar y es específico al sistema operativo donde se ejecuta. Responsable para enviar al *Director* los datos cuando este lo requiera.
 
+#### Conceptos importantes
 
+Para manejar mejor *Bacula* es importante conocer ciertos conceptos:
 
+- Un **backup** consiste en una tarea *(JOB)*, un conjunto de directorios/archivos *(FILESET)*, un cliente *(CLIENT)*, un horario *(SCHEDULE)* y unos recursos *(POOL)*.
 
+- En otros términos, el **Fileset** es lo que vamos a salvaguardar, el *Client* es la proveniencia de los datos, el *Schedule* determina cuando lo vamos a ejecutar y el *Pool* es el destino de la copia de seguridad.
+
+- Típicamente una combinación **CLIENT/FILESET** generará un determinado *JOB*. Además de los *JOB* de *backup*, existirán también *JOB* de *restore* y otros de control y administración.
+
+- Los medios de almacenamiento se definen como **POOL**. El *POOL* es un conjunto de volúmenes, son ficheros que actúan como un disco duro dentro de ellos están las copias de seguridad.
 
 
 

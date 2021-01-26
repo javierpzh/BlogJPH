@@ -42,7 +42,7 @@ He decidido escoger **Bacula** como aplicación para llevar a cabo este sistema 
 
 *Bacula* es una colección de herramientas de respaldo capaz de cubrir las necesidades de respaldo de equipos bajo redes IP. Se basa en una arquitectura cliente-servidor que resulta eficaz y fácil de manejar, dada la amplia gama de funciones y características que brinda. Además, debido a su desarrollo y estructura modular, *Bacula* se adapta tanto al uso personal como profesional, desde un equipo hasta grandes parques de servidores. Todo el conjunto de elementos que forman *Bacula* trabajan en sincronía y son totalmente compatibles con bases de datos como **MySQL**, **SQLite** y **PostgreSQL**.
 
-#### Componentes de *Bacula*:
+#### Componentes de *Bacula*
 
 - **Director *(DIR, bacula-director)*:** es el programa servidor que supervisa todas las funciones necesarias para las operaciones de copia de seguridad y restauración. Es el eje central de *Bacula* y en él se declaran todos los parámetros necesarios. Se ejecuta como un *demonio* en el servidor.
 

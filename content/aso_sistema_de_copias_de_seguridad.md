@@ -165,7 +165,55 @@ Os preguntaréis qué es cada apartado, pues vamos a verlos uno a uno:
 
 - **Write Bootstrap:** este apartado indica donde esta el fichero *bacula*
 
-En mi caso, introduciré tres tipos de tareas distintas, una para las copias diarias, otra para las copias semanales y otra para las copias mensuales.
+En mi caso, introduciré tres tipos de tareas distintas, una para las copias diarias, otra para las copias semanales y otra para las copias mensuales, de manera que me queda un bloque como el siguiente:
+
+<pre>
+JobDefs {
+  Name = "BackupDiario"
+  Type = Backup
+  Level = Incremental
+  Client = dulcinea-fd
+  FileSet = "Full Set"
+  Schedule = "Daily"
+  Storage = File1
+  Messages = Standard
+  Pool = File
+  SpoolAttributes = yes
+  Priority = 10
+  Write Bootstrap = "/var/lib/bacula/%c.bsr"
+}
+
+JobDefs {
+  Name = "BackupSemanal"
+  Type = Backup
+  Level = Incremental
+  Client = dulcinea-fd
+  FileSet = "Full Set"
+  Schedule = "Weekly"
+  Storage = File1
+  Messages = Standard
+  Pool = File
+  SpoolAttributes = yes
+  Priority = 10
+  Write Bootstrap = "/var/lib/bacula/%c.bsr"
+}
+
+JobDefs {
+  Name = "BackupMensual"
+  Type = Backup
+  Level = Incremental
+  Client = dulcinea-fd
+  FileSet = "Full Set"
+  Schedule = "Monthly"
+  Storage = File1
+  Messages = Standard
+  Pool = File
+  SpoolAttributes = yes
+  Priority = 10
+  Write Bootstrap = "/var/lib/bacula/%c.bsr"
+}
+</pre>
+
 
 
 

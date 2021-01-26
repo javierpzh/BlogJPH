@@ -102,13 +102,68 @@ Durante la instalación de *Bacula*, nos saldrá este mensaje emergente, en el q
 
 A continuación, nos pedirá que introduzcamos una contraseña y habremos finalizado el proceso de instalación.
 
-Vamos a pasar directamente con el fichero de configuración del servidor *Bacula*, que se encuentra en `/etc/bacula/bacula-dir.conf`,
+Vamos a pasar directamente con el fichero de configuración del director *Bacula*, que se encuentra en `/etc/bacula/bacula-dir.conf`. En este archivo nos encontraremos diferentes secciones, que tenemos que diferenciar, veamos la primera, que se trata de la configuración del **director** de copias de seguridad:
 
 <pre>
-
+Director {
+  Name = dulcinea-dir
+  DIRport = 9101
+  QueryFile = "/etc/bacula/scripts/query.sql"
+  WorkingDirectory = "/var/lib/bacula"
+  PidDirectory = "/run/bacula"
+  Maximum Concurrent Jobs = 20
+  Password = "contraseña"
+  Messages = Daemon
+  DirAddress = 127.0.0.1
+}
 </pre>
 
+La siguiente sección trata de las tareas que se van a realizar, es decir, los procesos encargados de hacer las copias de seguridad.
 
+En este apartado tendremos bloques como el siguiente:
+
+<pre>
+JobDefs {
+ Name =
+ Type =
+ Level =
+ Client =
+ FileSet =
+ Schedule =
+ Storage =
+ Messages =
+ Pool =
+ SpoolAttributes =
+ Priority =
+ Write Bootstrap =
+}
+</pre>
+
+Os preguntaréis qué es cada apartado, pues vamos a verlos uno a uno:
+
+- **Name:** nombre de la tarea
+
+- **Type:** tipo de tarea (*backup*)
+
+- **Level:** nivel de la tarea
+
+- **Client:** nombre del cliente en el que se va a ejecutar esta tarea
+
+- **FileSet:** información que va a copiar. Será definida más adelante en el apartado *FileSet*
+
+- **Schedule:** programación que tendrá dicha tarea
+
+- **Storage:** nombre del cargador virtual automático que cargará el recurso de almacenamiento
+
+- **Messages:** tipo de mensaje, indica como mandará los mensajes de sucesos
+
+- **Pool:** indicaremos el nombre del apartado *Pool* que se configurará mas adelante y en él estamos indicando el volumen de almacenamiento donde se creará y almacenará las copias
+
+- **SpoolAttributes:** esta opción permite trabajar con los atributos del *Spool* en un fichero temporal
+
+- **Priority:** indica el nivel de prioridad
+
+- **Write Bootstrap:** este apartado indica donde esta el fichero *bacula*
 
 
 

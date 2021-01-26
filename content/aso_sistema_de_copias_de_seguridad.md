@@ -460,9 +460,26 @@ FileSet {
 }
 </pre>
 
-Llegamos a la sección de los bloques de tipo **SCHEDULE**, en éstos 
+Llegamos a la sección de los bloques de tipo **SCHEDULE**, en éstos definiremos la programación de estas tareas, es decir, cuando se llevarán a cabo cada una. En mi caso:
 
+<pre>
+Schedule {
+ Name = "Diario"
+ Run = Level=Incremental Pool=Daily daily at 02:00
+}
 
+Schedule {
+ Name = "Semanal"
+ Run = Level=Full Pool=Weekly sun at 02:00
+}
+
+Schedule {
+ Name = "Mensual"
+ Run = Level=Full Pool=Monthly 1st sun at 02:00
+}
+</pre>
+
+Estamos llegando al final de la configuración de este fichero, en este caso nos encontramos con los equipos clientes, 
 
 
 

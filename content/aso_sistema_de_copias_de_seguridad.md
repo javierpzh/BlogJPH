@@ -302,15 +302,61 @@ Igualmente que hemos definido en los clientes las tareas de *backups*, debemos d
 
 - **Client:** cliente al que le vamos a poder realizar la restauración de la copia
 
-- **FileSet:** tipo de tarea al que hace referencia la copia de la que queremos realizar la restauración
-
 - **Storage:** nombre del cargador virtual automático que cargará el recurso de almacenamiento
+
+- **FileSet:** tipo de tarea al que hace referencia la copia de la que queremos realizar la restauración
 
 - **Pool:** indicaremos el nombre del apartado *Pool* que se configurará mas adelante y en él estamos indicando el volumen de almacenamiento donde se creará y almacenará las copias
 
 - **Messages:** tipo de mensaje, indica como mandará los mensajes de sucesos
 
+En mi caso, introduzco los siguientes bloques:
 
+<pre>
+# Dulcinea
+Job {
+  Name = "DulcineaRestore"
+  Type = Restore
+  Client=dulcinea-fd
+  Storage = File1
+  FileSet="Full Set"
+  Pool = File
+  Messages = Standard
+}
+
+# Sancho
+Job {
+  Name = "SanchoRestore"
+  Type = Restore
+  Client=sancho-fd
+  Storage = File1
+  FileSet="Full Set"
+  Pool = File
+  Messages = Standard
+}
+
+# Freston
+Job {
+  Name = "FrestonRestore"
+  Type = Restore
+  Client=freston-fd
+  Storage = File1
+  FileSet="Full Set"
+  Pool = File
+  Messages = Standard
+}
+
+# Quijote
+Job {
+  Name = "QuijoteRestore"
+  Type = Restore
+  Client=quijote-fd
+  Storage = File1
+  FileSet="Full Set"
+  Pool = File
+  Messages = Standard
+}
+</pre>
 
 
 

@@ -9,7 +9,6 @@ Tags: OpenStack, Bacula, Backup
 - Selecciona una aplicación para realizar el proceso: bacula, amanda, shell script con tar, rsync, dar, afio, etc.
 - Utiliza una de las instancias como servidor de copias de seguridad, añadiéndole un volumen y almacenando localmente las copias de seguridad que consideres adecuadas en él.
 - El proceso debe realizarse de forma completamente automática
---------------------------------------------------------------------------------
 - Selecciona qué información es necesaria guardar (listado de paquetes, ficheros de configuración, documentos, datos, etc.)
 - Realiza semanalmente una copia completa
 - Realiza diariamente una copia incremental, diferencial o delta diferencial (decidir cual es más adecuada)
@@ -70,7 +69,7 @@ Para manejar mejor *Bacula* es importante conocer ciertos conceptos:
 
 ## Sistema de copias de seguridad
 
-En mi caso, he decidido escoger como servidor (también conocido como **director**) de copias de seguridad a **Dulcinea**. Le he añadido un nuevo volumen de 10 GB de espacio, donde se irán almacenando las copias de las distintas máquinas.
+En mi caso, he decidido escoger como servidor (también conocido como **director**) de copias de seguridad a **Dulcinea** (máquina que también actuará como cliente). Le he añadido un nuevo volumen de 10 GB de espacio, donde se irán almacenando las copias de las distintas máquinas.
 
 Empezaremos por instalar el *software* de *Bacula* y *MySQL*.
 
@@ -882,16 +881,57 @@ Director {
 }
 </pre>
 
-Hecho esto, habremos terminado la configuración en la parte del director, es decir, en *Dulcinea*.
+Hecho esto, habremos terminado la configuración en la parte del director.
 
 Pasamos a la parte de los **clientes**.
 
-Empezaremos con la máquina **Sancho**.
+Aunque hayamos terminado de configurar el servidor, aún no hemos terminado nuestro trabajo en **Dulcinea**, ya que esta máquina también va a formar parte de los clientes como hemos visto antes. Hay que decir que las configuraciones de los clientes se realizan todas de la misma forma, por lo que, explicaré ésta primera con más detalle y las siguientes obviando los hechos.
 
+El primer paso sería instalar el *software* necesario, que en *Dulcinea* ya se encuentra instalado:
 
+<pre>
+apt install bacula-client -y
+</pre>
 
+El fichero que debemos modificar es el que se encuentra en la ruta `/etc/bacula/bacula-fd.conf`.
 
+En dicho archivo indicaremos los parámetros del director, que en este primer caso, es el propio equipo. Además, indicaremos el director que gestionará el *demonio*. También tendremos que definir el cliente, del que debemos indicar el nombre y la dirección IP. Por último, en el bloque llamado *Messages*, indicaremos el nombre del director, esto nos permitirá realizar un *restore* cuando nos sea necesario.
 
+En mi caso, el fichero `/etc/bacula/bacula-fd.conf` de la máquina *Dulcinea* queda de esta forma:
+
+<pre>
+Director {
+  Name = dulcinea-dir
+  Password = "bacula"
+}
+
+Director {
+  Name = dulcinea-mon
+  Password = "bacula"
+  Monitor = yes
+}
+
+FileDaemon {                          # this is me
+  Name = dulcinea-fd
+  FDport = 9102                  # where we listen for the director
+  WorkingDirectory = /var/lib/bacula
+  Pid Directory = /run/bacula
+  Maximum Concurrent Jobs = 20
+  Plugin Directory = /usr/lib/bacula
+  FDAddress = 10.0.1.11
+}
+
+Messages {
+  Name = Standard
+  director = dulcinea-dir = all, !skipped, !restored
+}
+</pre>
+
+Una vez terminada la configuración, reiniciamos el servicio y aplicaremos los cambios:
+
+<pre>
+systemctl restart bacula-fd.service
+</pre>
 
 
 

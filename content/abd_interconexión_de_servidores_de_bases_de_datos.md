@@ -8,10 +8,10 @@ Tags: Base de Datos, Oracle, MySQL, MariaDB, PostgreSQL
 
 **En este artículo veremos varias formas de crear un enlace entre distintos servidores de bases de datos. Los servidores enlazados siempre estarán instalados en máquinas diferentes.**
 
-#### Enlace entre dos servidores de bases de datos ORACLE.
+#### Enlace entre dos servidores de bases de datos ORACLE
 
 
-#### Enlace entre dos servidores de bases de datos Postgres.
+#### Enlace entre dos servidores de bases de datos Postgres
 
 
-#### Enlace entre un servidor ORACLE y otro PostgreSQL o MySQL empleando Heterogeneus Services.
+#### Enlace entre un servidor ORACLE y otro PostgreSQL o MySQL empleando Heterogeneus Services

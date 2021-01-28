@@ -1375,14 +1375,6 @@ Requesting to mount FileChgr1 ...
 </pre>
 
 
-<pre>
-root@dulcinea:~# ls -l /bacula/backup/
-total 12
--rw-r----- 1 bacula tape 255 Jan 28 14:44 backup-diario
--rw-r----- 1 bacula tape 258 Jan 28 14:45 backup-mensual
--rw-r----- 1 bacula tape 257 Jan 28 14:45 backup-semanal
-</pre>
-
 
 
 

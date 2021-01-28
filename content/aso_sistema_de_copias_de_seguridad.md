@@ -373,6 +373,31 @@ Job {
 Seguimos con la sección donde indicaremos, que tipo de información se almacenarán en los *backups*, indicando que directorios se copiarán y cuáles no, y el tipo de almacenamiento, que en mi caso se tratará de un almacenamiento comprimido para así ahorrar espacio.
 
 <pre>
+# Full Set
+FileSet {
+ Name = "Full Set"
+ Include {
+   Options {
+     signature = MD5
+     compression = GZIP
+   }
+   File = /home
+   File = /etc
+   File = /var
+ }
+ Exclude {
+   File = /var/lib/bacula
+   File = /nonexistant/path/to/file/archive/dir
+   File = /proc
+   File = /var/cache
+   File = /var/tmp
+   File = /tmp
+   File = /sys
+   File = /.journal
+   File = /.fsck
+ }
+}
+
 # Dulcinea
 FileSet {
  Name = "Dulcinea-Datos"
@@ -656,6 +681,28 @@ Pool {
  Label Format = "Remoto"
 }
 </pre>
+
+En este punto, ya habríamos terminado de modificar el fichero `/etc/bacula/bacula-dir.conf`, ya que los apartados siguientes los dejaríamos como vienen por defecto.
+
+Para comprobar que no hay ningún error en nuestra configuración anterior, podemos emplear el siguiente comando:
+
+<pre>
+bacula-dir -tc /etc/bacula/bacula-dir.conf
+</pre>
+
+¿No nos reporta ningún error? Perfecto, podemos seguir con el siguiente punto.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

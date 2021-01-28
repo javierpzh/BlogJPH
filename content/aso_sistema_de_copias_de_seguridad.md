@@ -114,7 +114,7 @@ Director {
   Maximum Concurrent Jobs = 20
   Password = "bacula"
   Messages = Daemon
-  DirAddress = 127.0.0.1
+  DirAddress = 10.0.1.11
 }
 </pre>
 
@@ -124,18 +124,18 @@ En este apartado tendremos bloques como el siguiente:
 
 <pre>
 JobDefs {
- Name =
- Type =
- Level =
- Client =
- FileSet =
- Schedule =
- Storage =
- Messages =
- Pool =
- SpoolAttributes =
- Priority =
- Write Bootstrap =
+  Name =
+  Type =
+  Level =
+  Client =
+  FileSet =
+  Schedule =
+  Storage =
+  Messages =
+  Pool =
+  SpoolAttributes =
+  Priority =
+  Write Bootstrap =
 }
 </pre>
 

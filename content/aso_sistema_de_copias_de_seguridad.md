@@ -863,11 +863,13 @@ bacula-sd -tc /etc/bacula/bacula-sd.conf
 
 ¿No nos reporta ningún error? Perfecto, podemos seguir con el siguiente y último fichero por parte del servidor.
 
-Vamos a reiniciar los servicios que hacen uso de los ficheros modificados hasta este punto para que las nuevas configuraciones sean cargadas:
+Vamos a reiniciar los servicios que hacen uso de los ficheros modificados hasta este punto para que las nuevas configuraciones sean cargadas, y además los habilitaremos para que se inicien en cada arranque:
 
 <pre>
 systemctl restart bacula-sd.service
+systemctl enable bacula-sd.service
 systemctl restart bacula-director.service
+systemctl enable bacula-director.service
 </pre>
 
 Estamos a punto de terminar las configuraciones del servidor, de hecho nos falta tan sólo un fichero, y es el `/etc/bacula/bconsole.conf`. Este fichero contiene la configuración que nos permite acceder a la consola, y dentro de él tendremos que asegurarnos que los apartados de nombre, dirección y contraseña se encuentran correctamente.
@@ -887,10 +889,17 @@ Pasamos a la parte de los **clientes**.
 
 Aunque hayamos terminado de configurar el servidor, aún no hemos terminado nuestro trabajo en **Dulcinea**, ya que esta máquina también va a formar parte de los clientes como hemos visto antes. Hay que decir que las configuraciones de los clientes se realizan todas de la misma forma, por lo que, explicaré ésta primera con más detalle y las siguientes obviando los hechos.
 
-El primer paso sería instalar el *software* necesario, que en *Dulcinea* ya se encuentra instalado:
+El primer paso sería instalar el *software* necesario, que en *Dulcinea* ya se encuentra instalado, y además habilitar su funcionamiento en cada inicio:
 
 <pre>
 apt install bacula-client -y
+systemctl enable bacula-fd.service
+</pre>
+
+En *CentOS* (*Quijote*) se instala con el comando:
+
+<pre>
+dnf install bacula-client -y
 </pre>
 
 El fichero que debemos modificar es el que se encuentra en la ruta `/etc/bacula/bacula-fd.conf`.
@@ -933,12 +942,94 @@ Una vez terminada la configuración, reiniciamos el servicio y aplicaremos los c
 systemctl restart bacula-fd.service
 </pre>
 
+Llegó el turno de **Sancho**. Su configuración queda de la siguiente forma:
 
+<pre>
+Director {
+  Name = dulcinea-dir
+  Password = "bacula"
+}
 
+Director {
+  Name = dulcinea-mon
+  Password = "bacula"
+  Monitor = yes
+}
 
+FileDaemon {                          # this is me
+  Name = sancho-fd
+  FDport = 9102                  # where we listen for the director
+  WorkingDirectory = /var/lib/bacula
+  Pid Directory = /run/bacula
+  Maximum Concurrent Jobs = 20
+  Plugin Directory = /usr/lib/bacula
+  FDAddress = 10.0.1.8
+}
 
+Messages {
+  Name = Standard
+  director = dulcinea-dir = all, !skipped, !restored
+}
+</pre>
 
+Es el turno de **Freston**. Su configuración queda de la siguiente forma:
 
+<pre>
+Director {
+  Name = dulcinea-dir
+  Password = "bacula"
+}
+
+Director {
+  Name = dulcinea-mon
+  Password = "bacula"
+  Monitor = yes
+}
+
+FileDaemon {                          # this is me
+  Name = freston-fd
+  FDport = 9102                  # where we listen for the director
+  WorkingDirectory = /var/lib/bacula
+  Pid Directory = /run/bacula
+  Maximum Concurrent Jobs = 20
+  Plugin Directory = /usr/lib/bacula
+  FDAddress = 10.0.1.6
+}
+
+Messages {
+  Name = Standard
+  director = dulcinea-dir = all, !skipped, !restored
+}
+</pre>
+
+En **Quijote** el contenido del fichero sería:
+
+<pre>
+Director {
+  Name = dulcinea-dir
+  Password = "bacula"
+}
+
+Director {
+  Name = dulcinea-mon
+  Password = "bacula"
+  Monitor = yes
+}
+
+FileDaemon {                          # this is me
+  Name = quijote-fd
+  FDport = 9102                  # where we listen for the director
+  WorkingDirectory = /var/spool/bacula
+  Pid Directory = /var/run
+  Maximum Concurrent Jobs = 20
+  Plugin Directory = /usr/lib64/bacula
+}
+
+Messages {
+  Name = Standard
+  director = dulcinea-dir = all, !skipped, !restored
+}
+</pre>
 
 
 

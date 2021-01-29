@@ -423,7 +423,6 @@ FileSet {
    File = /home
    File = /etc
    File = /var
-   File = /bacula
  }
  Exclude {
    File = /nonexistant/path/to/file/archive/dir

@@ -463,7 +463,6 @@ El fichero para el protocolo *HTTPs* se identifica como `python.javierpzh.gonzal
       Options FollowSymlinks
     <\/Directory\>
 
-    ProxyPass /static !
     ProxyPass / http://127.0.0.1:8080/
 
     SSLEngine on
@@ -528,6 +527,11 @@ Y ahora sí, llegó la hora de la verdad, vamos a probar a acceder a la direcci�
 
 ![.](images/iaw_instalación_de_aplicación_web_Python/produccionsinhojadeestilo.png)
 
+Parece que nos sirve la aplicación pero podemos apreciar que no hace uso de las hojas de estilos.
+
+<pre>
+ProxyPass /static !
+</pre>
 
 
 
@@ -542,4 +546,18 @@ Y ahora sí, llegó la hora de la verdad, vamos a probar a acceder a la direcci�
 
 
 
---------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

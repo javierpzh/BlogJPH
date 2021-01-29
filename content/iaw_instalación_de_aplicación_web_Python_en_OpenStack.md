@@ -332,7 +332,7 @@ En teoría, ya tendríamos disponible nuestro servidor de aplicaciones *uWSGI*, 
 (produccion) [root@quijote Web-Python-OpenStack]# uwsgi --http :8080 --plugin python35 --chdir /var/www/Web-Python-OpenStack/appmezzanine/ --wsgi-file /var/www/Web-Python-OpenStack/appmezzanine/appmezzanine/wsgi.py --process 4 --threads 2 --master
 </pre>
 
-Una vez tenemos nuestro servidor de aplicaciones listo, tan sólo nos quedaría, restaurar la copia de seguridad en nuestra base de datos *MySQL*.
+Una vez tenemos nuestro servidor de aplicaciones listo, tan sólo nos quedaría, restaurar la copia de seguridad en nuestra base de datos *MySQL*. Hay que decir, que para acceder a nuestra aplicación, debe estar ejecutándose el comando anterior.
 
 Antes de realizar la restauración, vamos a configurar *Mezzanine* para que utilice dicha base de datos. Esta configuración se encuentra dentro del fichero `appmezzanine/settings.py`, en el siguiente bloque:
 

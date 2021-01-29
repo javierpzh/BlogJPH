@@ -355,7 +355,7 @@ DATABASES = {
 }
 </pre>
 
-En este fichero, también tenemos que establecer en la directiva **ALLOWED_HOSTS**, el valor *****, ya que en mi caso deseo que pueda acceder quien quiera, de manera que quedaría así:
+En este fichero, también tenemos que establecer en la directiva **ALLOWED_HOSTS**, el valor **"*"**, ya que en mi caso deseo que pueda acceder quien quiera, de manera que quedaría así:
 
 <pre>
 ALLOWED_HOSTS = ["*"]

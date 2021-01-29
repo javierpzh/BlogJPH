@@ -527,13 +527,13 @@ Y ahora sí, llegó la hora de la verdad, vamos a probar a acceder a la direcci�
 
 ![.](images/iaw_instalación_de_aplicación_web_Python/produccionsinhojadeestilo.png)
 
-Parece que nos sirve la aplicación pero podemos apreciar que no hace uso de las hojas de estilos. Eso es porque aún no hemos importado las hojas de estilos de nuestra aplicación, vamos a ello:
+Parece que nos sirve la aplicación pero podemos apreciar que no hace uso de las hojas de estilos. Eso es porque estamos utilizando el servidor *uWSGI* que solo ejecuta el código *Python*. De manera que tendríamos que realizar un **proxy inverso**, además, como aún no hemos importado las hojas de estilos de nuestra aplicación, vamos a ello:
 
 <pre>
 (produccion) [root@quijote appmezzanine]# python manage.py collectstatic
 </pre>
 
-Terminaremos añadiendo a nuestro *virtualhost* la siguiente línea:
+Terminaremos añadiendo a nuestro *virtualhost* la siguiente línea para que haga uso del nuevo *proxy*:
 
 <pre>
 ProxyPass /static !

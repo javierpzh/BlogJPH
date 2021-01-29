@@ -348,7 +348,7 @@ DATABASES = {
         # Not used with sqlite3.
         "PASSWORD": "contraseña",
         # Set to empty string for localhost. Not used with sqlite3.
-        "HOST": "sancho",
+        "HOST": "10.0.1.8",
         # Set to empty string for default. Not used with sqlite3.
         "PORT": "3306",
     }
@@ -358,7 +358,7 @@ DATABASES = {
 En este fichero, también tenemos que establecer en la directiva **ALLOWED_HOSTS**, la dirección de nuestro servidor de base de datos, y también hacer referencia a *localhost*, ya que el servidor de aplicaciones *uWSGI* servirá en esa dirección, de manera que quedaría así:
 
 <pre>
-ALLOWED_HOSTS = ["sancho","127.0.0.1"]
+ALLOWED_HOSTS = ["10.0.1.8","127.0.0.1"]
 </pre>
 
 Es importante asegurarnos que no poseemos el fichero llamado `local_settings.py`, ya que sino, la configuración realizada en el fichero `settings.py` la ignorará, y buscara los recursos de manera local.
@@ -526,7 +526,7 @@ systemctl restart bind9
 
 Y ahora sí, llegó la hora de la verdad, vamos a probar a acceder a la dirección `python.javierpzh.gonzalonazareno.org` en nuestro navegador:
 
-![.](images/iaw_instalación_de_aplicación_web_Python/apache.png)
+![.](images/iaw_instalación_de_aplicación_web_Python/produccionsinhojadeestilo.png)
 
 
 

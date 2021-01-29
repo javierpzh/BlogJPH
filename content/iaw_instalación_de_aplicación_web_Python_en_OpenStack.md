@@ -527,18 +527,25 @@ Y ahora sí, llegó la hora de la verdad, vamos a probar a acceder a la direcci�
 
 ![.](images/iaw_instalación_de_aplicación_web_Python/produccionsinhojadeestilo.png)
 
-Parece que nos sirve la aplicación pero podemos apreciar que no hace uso de las hojas de estilos.
+Parece que nos sirve la aplicación pero podemos apreciar que no hace uso de las hojas de estilos. Lo solucionamos añadiendo a nuestro *virtualhost* la siguiente línea:
 
 <pre>
 ProxyPass /static !
 </pre>
 
+Reiniciamos el servidor web para que vuelva a cargar la nueva configuración:
+
+<pre>
+systemctl restart httpd
+</pre>
+
+Volvemos a acceder a `python.javierpzh.gonzalonazareno.org`:
+
+![.](images/iaw_instalación_de_aplicación_web_Python/produccionhojadeestilo.png)
 
 
 
-
-
-
+![.](images/iaw_instalación_de_aplicación_web_Python/produccionhojadeestiloblog.png)
 
 
 

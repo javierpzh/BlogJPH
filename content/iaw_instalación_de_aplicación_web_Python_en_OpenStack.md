@@ -543,7 +543,7 @@ Volvemos a acceder a `python.javierpzh.gonzalonazareno.org`:
 
 ![.](images/iaw_instalación_de_aplicación_web_Python/produccionhojadeestilo.png)
 
-
+Ahora sí parece estar funcionando totalmente. Vamos a dirigirnos al blog creado en el entorno de desarrollo para comprobar que todo está correcto:
 
 ![.](images/iaw_instalación_de_aplicación_web_Python/produccionhojadeestiloblog.png)
 

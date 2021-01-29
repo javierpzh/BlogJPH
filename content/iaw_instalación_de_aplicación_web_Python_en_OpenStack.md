@@ -547,24 +547,4 @@ Ahora sí parece estar funcionando totalmente. Vamos a dirigirnos al blog creado
 
 ![.](images/iaw_instalación_de_aplicación_web_Python/produccionhojadeestiloblog.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.
+Efectivamente, el resultado es el esperado y por tanto damos por finalizado este *post*.

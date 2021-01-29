@@ -355,10 +355,10 @@ DATABASES = {
 }
 </pre>
 
-En este fichero, también tenemos que establecer en la directiva **ALLOWED_HOSTS**, la dirección de nuesto servidor de base de datos, de manera que quedaría así:
+En este fichero, también tenemos que establecer en la directiva **ALLOWED_HOSTS**, la dirección de nuestro servidor de base de datos, y también hacer referencia a *localhost*, ya que el servidor de aplicaciones *uWSGI* servirá en esa dirección, de manera que quedaría así:
 
 <pre>
-ALLOWED_HOSTS = ["sancho"]
+ALLOWED_HOSTS = ["sancho","127.0.0.1"]
 </pre>
 
 Es importante asegurarnos que no poseemos el fichero llamado `local_settings.py`, ya que sino, la configuración realizada en el fichero `settings.py` la ignorará, y buscara los recursos de manera local.
@@ -434,7 +434,7 @@ Bien, ya tenemos restaurada la copia de seguridad en nuestra base de datos de pr
 <pre>
 <\VirtualHost *:80\>
 
-    ServerName www.python.javierpzh.gonzalonazareno.org
+    ServerName python.javierpzh.gonzalonazareno.org
     DocumentRoot /var/www/Web-Python-OpenStack/appmezzanine
 
     ErrorLog /var/www/iesgn/log/error.log
@@ -453,7 +453,7 @@ El fichero para el protocolo *HTTPs* se identifica como `python.javierpzh.gonzal
 <\VirtualHost *:443\>
 
     ServerName python.javierpzh.gonzalonazareno.org
-    DocumentRoot /var/www/Web-Python-OpenStack
+    DocumentRoot /var/www/Web-Python-OpenStack/appmezzanine
 
     ErrorLog /var/www/iesgn/log/error.log
     CustomLog /var/www/iesgn/log/requests.log combined

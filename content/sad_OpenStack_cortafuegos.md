@@ -280,7 +280,7 @@ nft add rule inet filter forward ip saddr 10.0.2.0/24 iifname "eth2" ip daddr 10
 nft add rule inet filter forward ip saddr 10.0.1.0/24 iifname "eth1" ip daddr 10.0.2.0/24 oifname "eth2" icmp type echo-reply counter accept
 </pre>
 
-En teoría ya tendríamos
+En teoría ya tendríamos que poder hacer *ping* entre las diferentes máquinas, pero vamos a comprobarlo:
 
 <pre>
 debian@dulcinea:~$ ping 10.0.1.8

@@ -425,16 +425,40 @@ Listo, ya las tendríamos.
 
 - **A *Dulcinea* se le puede hacer *ping* desde la DMZ, pero desde la LAN se le debe rechazar la conexión (REJECT).**
 
-
+Reglas para las máquinas de la red DMZ:
 
 <pre>
+nft add rule inet filter input ip saddr 10.0.2.0/24 iifname "eth2" icmp type echo-request counter accept
 
+nft add rule inet filter output ip daddr 10.0.2.0/24 oifname "eth2" icmp type echo-reply counter accept
 </pre>
 
-
+Regla para las máquinas de la red interna:
 
 <pre>
+nft add rule inet filter input ip saddr 10.0.1.0/24 iifname "eth1" icmp type echo-request counter reject
+</pre>
 
+Pruebas de funcionamiento:
+
+<pre>
+[centos@quijote ~]$ ping 10.0.2.10
+PING 10.0.2.10 (10.0.2.10) 56(84) bytes of data.
+64 bytes from 10.0.2.10: icmp_seq=1 ttl=64 time=0.530 ms
+64 bytes from 10.0.2.10: icmp_seq=2 ttl=64 time=0.687 ms
+64 bytes from 10.0.2.10: icmp_seq=3 ttl=64 time=0.568 ms
+^C
+--- 10.0.2.10 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 39ms
+rtt min/avg/max/mdev = 0.530/0.595/0.687/0.066 ms
+
+--------------------------------------------------------------------------------
+
+ubuntu@sancho:~$ ping 10.0.1.11
+PING 10.0.1.11 (10.0.1.11) 56(84) bytes of data.
+^C
+--- 10.0.1.11 ping statistics ---
+4 packets transmitted, 0 received, 100% packet loss, time 3064ms
 </pre>
 
 Listo, ya las tendríamos.

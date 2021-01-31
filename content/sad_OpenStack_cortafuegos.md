@@ -175,6 +175,44 @@ Listo, ya las tendríamos.
 
 - **Todas las máquinas pueden hacer SSH a máquinas del exterior.**
 
+Creamos las siguientes reglas.
+
+Reglas para *Dulcinea*:
+
+<pre>
+nft add rule inet filter output oifname "eth0" tcp dport 22 ct state new,established counter accept
+
+nft add rule inet filter input iifname "eth0" tcp sport 22 ct state established counter accept
+</pre>
+
+Reglas para las máquinas de la red interna:
+
+<pre>
+nft add rule inet filter forward ip saddr 10.0.1.0/24 iifname "eth1" oifname "eth0" tcp dport 22 ct state new,established counter accept
+
+nft add rule inet filter forward ip daddr 10.0.1.0/24 iifname "eth0" oifname "eth1" tcp sport 22 ct state established counter accept
+</pre>
+
+Reglas para las máquinas de la red DMZ:
+
+<pre>
+nft add rule inet filter forward ip saddr 10.0.2.0/24 iifname "eth2" oifname "eth0" tcp dport 22 ct state new,established counter accept
+
+nft add rule inet filter forward ip daddr 10.0.2.0/24 iifname "eth0" oifname "eth2" tcp sport 22 ct state established counter accept
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #### ping

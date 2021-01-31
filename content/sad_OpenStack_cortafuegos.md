@@ -177,11 +177,6 @@ Listo, ya las tendríamos.
 
 
 
-- **La máquina *Dulcinea* tiene un servidor SSH escuchando por el puerto 22, pero al acceder desde el exterior habrá que conectar al puerto 2222.**
-
-
-
-
 #### ping
 
 - **Todas las máquinas de las dos redes pueden hacer *ping* entre ellas.**

@@ -399,23 +399,45 @@ Listo, ya las tendríamos.
 
 - **Desde el exterior se puede hacer *ping* a *Dulcinea*.**
 
+Reglas a añadir:
 
+<pre>
+nft add rule inet filter input iifname "eth0" icmp type echo-request counter accept
 
+nft add rule inet filter output oifname "eth0" icmp type echo-reply counter accept
+</pre>
 
+Prueba de funcionamiento:
 
+<pre>
+javier@debian:~$ ping dulcinea
+PING dulcinea (172.22.200.183) 56(84) bytes of data.
+64 bytes from dulcinea (172.22.200.183): icmp_seq=1 ttl=61 time=88.3 ms
+64 bytes from dulcinea (172.22.200.183): icmp_seq=2 ttl=61 time=87.8 ms
+64 bytes from dulcinea (172.22.200.183): icmp_seq=3 ttl=61 time=88.2 ms
+^C
+--- dulcinea ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 3ms
+rtt min/avg/max/mdev = 87.803/88.115/88.308/0.222 ms
+</pre>
 
-
-
-
-
-
-
-
-
+Listo, ya las tendríamos.
 
 - **A *Dulcinea* se le puede hacer *ping* desde la DMZ, pero desde la LAN se le debe rechazar la conexión (REJECT).**
 
 
+
+<pre>
+
+</pre>
+
+
+
+<pre>
+
+</pre>
+
+Listo, ya las tendríamos.
 
 
 #### DNS

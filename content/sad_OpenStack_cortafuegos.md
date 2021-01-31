@@ -1,5 +1,5 @@
 Title: OpenStack: Cortafuegos
-Date: 2021/01/21
+Date: 2021/01/31
 Category: Seguridad y Alta Disponibilidad
 Header_Cover: theme/images/banner-seguridad.jpg
 Tags: OpenStack, Cortafuegos, nftables
@@ -21,6 +21,7 @@ apt install nftables -y
 Una vez instalado, debemos habilitarlo para que se inicie en cada arranque:
 
 <pre>
+systemctl start nftables.service
 systemctl enable nftables.service
 </pre>
 
@@ -35,152 +36,87 @@ Explicado esto, podemos empezar con las configuraciones de nuestro cortafuegos.
 
 ## Política por defecto
 
-La política por defecto que vamos a configurar en nuestro cortafuegos será de tipo **DROP**, pero como estoy conectado por SSH, no voy a aplicar esta política de primeras, ya que sino perdería la conexión. Por tanto, empezaremos con crear la tabla **FILTER**, las cadenas, y añadir la regla para el acceso por el puerto 22, que es el que utiliza SSH:
+La política por defecto que vamos a configurar en nuestro cortafuegos será de tipo **DROP**, pero como estoy conectado por SSH, no voy a aplicar esta política de primeras, ya que sino perdería la conexión. Por tanto, empezaremos con añadir la regla para el acceso por el puerto 22, que es el que utiliza SSH:
+
+Añadimos las reglas para SSH para poder acceder a *Dulcinea*:
 
 <pre>
-nft add table ip FILTER
-nft add chain ip FILTER INPUT { type filter hook input priority 0 \;}
-nft add chain ip FILTER OUTPUT { type filter hook output priority 0 \; }
-nft add chain ip FILTER FORWARD { type filter hook forward priority 0 \; }
+nft add rule inet filter input ip saddr 172.22.0.0/15 iifname "eth0" tcp dport 22 ct state new, established counter accept
+
+nft add rule inet filter output ip daddr 172.22.0.0/15 oifname "eth0" tcp sport 22 ct state established counter accept
 </pre>
-
-Añadimos las reglas para SSH:
-
-<pre>
-nft add rule ip FILTER INPUT iif eth0 tcp dport 22 counter accept
-nft add rule ip FILTER OUTPUT ct state established,related counter accept
-</pre>
-
-<pre>
-nft add rule ip FILTER OUTPUT oif eth0 tcp dport 22 counter accept
-nft add rule ip FILTER INPUT ct state established,related counter accept
-</pre>
-
-
-
-
-
-
-
 
 En este punto, ya si podemos establecer la política por defecto a **DROP**, ya que poseemos la regla necesaria para tener acceso mediante SSH y no perderemos la conexión:
 
 <pre>
-nft add chain ip FILTER INPUT { type filter hook input priority 0 \; policy drop \;}
-nft add chain ip FILTER OUTPUT { type filter hook output priority 0 \; policy drop \;}
-nft add chain ip FILTER FORWARD { type filter hook forward priority 0 \; policy drop \;}
+nft add chain inet filter input { policy drop \;}
+
+nft add chain inet filter output { policy drop \;}
+
+nft add chain inet filter forward { policy drop \;}
 </pre>
 
 Miramos la lista de reglas:
 
 <pre>
 root@dulcinea:~# nft list ruleset
-table ip FILTER {
-	chain INPUT {
+table inet filter {
+	chain input {
 		type filter hook input priority 0; policy drop;
-		iif "eth0" tcp dport ssh counter packets 370 bytes 27194 accept
-		ct state established,related counter packets 0 bytes 0 accept
+		ip saddr 172.22.0.0/15 iifname "eth0" tcp dport ssh ct state established,new counter packets 65 bytes 4664 accept
 	}
 
-	chain OUTPUT {
-		type filter hook output priority 0; policy drop;
-		ct state established,related counter packets 363 bytes 45733 accept
-		oif "eth0" tcp dport ssh counter packets 0 bytes 0 accept
-	}
-
-	chain FORWARD {
+	chain forward {
 		type filter hook forward priority 0; policy drop;
+	}
+
+	chain output {
+		type filter hook output priority 0; policy drop;
+		ip daddr 172.22.0.0/15 oifname "eth0" tcp sport ssh ct state established counter packets 37 bytes 8804 accept
 	}
 }
 </pre>
 
 Perfecto, ya poseemos una política por defecto **DROP**.
 
+
 ## NAT
 
-Comenzaremos por crear una tabla llamada **NAT** y añadimos las siguientes cadenas;
+Comenzaremos por crear una tabla llamada **NAT** y añadimos las siguientes cadenas:
 
 <pre>
-nft add table NAT
-nft add chain NAT PREROUTING { type nat hook prerouting priority 1 \; }
-nft add chain NAT POSTROUTING { type nat hook postrouting priority 1 \; }
+nft add table nat
+
+nft add chain nat postrouting { type nat hook postrouting priority 100 \; }
+
+nft add chain nat prerouting { type nat hook prerouting priority 0 ; }
 </pre>
 
 - **Configura de manera adecuada las reglas NAT para que todas las máquinas de nuestra red tenga acceso al exterior.**
 
-En mi caso, ya poseo esta serie de reglas, ya que fueron creadas en artículos anteriores, pero fueron creadas con `iptables`. Tranquilidad, esto no supone un problema, ya que las podemos convertir a `nftables` utilizando la herramienta `iptables-translate`.
-
-*Reglas creadas hasta el momento:*
-
-Para que las máquinas de la red interna posean conexión al exterior a través de *Dulcinea*:
+Creamos las siguientes reglas:
 
 <pre>
-iptables -t nat -A POSTROUTING -s 10.0.1.0/24 -o eth0 -j MASQUERADE
-</pre>
+nft add rule ip nat postrouting oifname "eth0" ip saddr 10.0.1.0/24 counter snat to 10.0.0.8
 
-Para que las máquinas de la red DMZ posean conexión al exterior a través de *Dulcinea*:
-
-<pre>
-iptables -t nat -A POSTROUTING -s 10.0.2.0/24 -o eth0 -j MASQUERADE
-</pre>
-
-*Las convierto a reglas de `nftables`:*
-
-<pre>
-root@dulcinea:~# iptables-translate -t nat -A POSTROUTING -s 10.0.1.0/24 -o eth0 -j MASQUERADE
-nft add rule ip nat POSTROUTING oifname "eth0" ip saddr 10.0.1.0/24 counter masquerade
-
-root@dulcinea:~# iptables-translate -t nat -A POSTROUTING -s 10.0.2.0/24 -o eth0 -j MASQUERADE
-nft add rule ip nat POSTROUTING oifname "eth0" ip saddr 10.0.2.0/24 counter masquerade
+nft add rule ip nat postrouting oifname "eth0" ip saddr 10.0.2.0/24 counter snat to 10.0.0.8
 </pre>
 
 Listo, ya las tendríamos.
 
 - **Configura de manera adecuada todas las reglas NAT necesarias para que los servicios expuestos al exterior sean accesibles.**
 
-Al igual que en el caso anterior, ya me encuentro con que estas reglas fueron creadas anteriormente con `iptables`.
-
-*Reglas creadas hasta el momento:*
-
-Para que las peticiones del exterior lleguen al servidor DNS:
+Creamos las siguientes reglas:
 
 <pre>
-iptables -t nat -A PREROUTING -p udp --dport 53 -i eth0 -j DNAT --to 10.0.1.6:53
+nft add rule ip nat prerouting iifname "eth0" udp dport 53 counter dnat to 10.0.1.6
+
+nft add rule ip nat prerouting iifname "eth0" tcp dport 80 counter dnat to 10.0.2.6
+
+nft add rule ip nat prerouting iifname "eth0" tcp dport 443 counter dnat to 10.0.2.6
 </pre>
 
-Para que las peticiones del exterior lleguen al servidor web al puerto 80:
-
-<pre>
-iptables -t nat -A PREROUTING -p tcp --dport 80 -i eth0 -j DNAT --to 10.0.2.6:80
-</pre>
-
-Para que las peticiones del exterior lleguen al servidor web al puerto 443:
-
-<pre>
-iptables -t nat -A PREROUTING -p tcp --dport 443 -i eth0 -j DNAT --to 10.0.2.6:443
-</pre>
-
-Para que las peticiones del exterior lleguen al servidor de correos:
-
-<pre>
-iptables -t nat -A PREROUTING -p tcp --dport 25 -i eth0 -j DNAT --to 10.0.1.6:25
-</pre>
-
-*Las convierto a reglas de `nftables`:*
-
-<pre>
-root@dulcinea:~# iptables-translate -t nat -A PREROUTING -p udp --dport 53 -i eth0 -j DNAT --to 10.0.1.6:53
-nft add rule ip nat PREROUTING iifname "eth0" udp dport 53 counter dnat to 10.0.1.6:53
-
-root@dulcinea:~# iptables-translate -t nat -A PREROUTING -p tcp --dport 80 -i eth0 -j DNAT --to 10.0.2.6:80
-nft add rule ip nat PREROUTING iifname "eth0" tcp dport 80 counter dnat to 10.0.2.6:80
-
-root@dulcinea:~# iptables-translate -t nat -A PREROUTING -p tcp --dport 443 -i eth0 -j DNAT --to 10.0.2.6:443
-nft add rule ip nat PREROUTING iifname "eth0" tcp dport 443 counter dnat to 10.0.2.6:443
-
-root@dulcinea:~# iptables-translate -t nat -A PREROUTING -p tcp --dport 25 -i eth0 -j DNAT --to 10.0.1.6:25
-nft add rule ip nat PREROUTING iifname "eth0" tcp dport 25 counter dnat to 10.0.1.6:25
-</pre>
+La primera hace referencia al servidor DNS ubicado en *Freston*, y las dos siguientes al servidor web ubicado en *Quijote*.
 
 Listo, ya las tendríamos.
 
@@ -210,7 +146,13 @@ Para cada configuración, hay que mostrar las reglas que se han configurado y un
 
 - **Podemos acceder por SSH a todas las máquinas.**
 
+Reglas para las máquinas de la red interna:
 
+<pre>
+nft add rule inet filter input input ip saddr 10.0.1.0/24 iifname "eth1" tcp sport 22 ct state established counter accept
+
+nft add rule inet filter output ip daddr 10.0.1.0/24 oifname "eth1" tcp dport 22 ct state new, established counter accept
+</pre>
 
 - **Todas las máquinas pueden hacer SSH a máquinas del exterior.**
 

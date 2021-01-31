@@ -123,11 +123,51 @@ Listo, ya las tendríamos.
 
 ## Reglas
 
-Para cada configuración, hay que mostrar las reglas que se han configurado y una prueba de funcionamiento de la misma:
+Para cada configuración, hay que mostrar las reglas que se han configurado y una prueba de funcionamiento de la misma.
 
 #### ping:
 
-- **Todas las máquinas de las dos redes pueden hacer ping entre ellas.**
+- **Todas las máquinas de las dos redes pueden hacer *ping* entre ellas.**
+
+Para permitir que todas las máquinas puedan hacer *ping* entre sí, debemos añadir las siguientes reglas que he ordenado de la siguiente manera para que quede más claro.
+
+*Dulcinea* a la red interna:
+
+<pre>
+nft add rule inet filter output ip daddr 10.0.1.0/24 oifname "eth1" icmp type echo-request counter accept
+
+nft add rule inet filter input ip saddr 10.0.1.0/24 iifname "eth1" icmp type echo-reply counter accept
+</pre>
+
+*Dulcinea* a la red DMZ:
+
+<pre>
+nft add rule inet filter output ip daddr 10.0.2.0/24 oifname "eth2" icmp type echo-request counter accept
+
+nft add rule inet filter input ip saddr 10.0.2.0/24 iifname "eth2" icmp type echo-reply counter accept
+</pre>
+
+Máquinas de la red interna a la red DMZ:
+
+<pre>
+nft add rule inet filter forward ip saddr 10.0.1.0/24 iifname "eth1" ip daddr 10.0.2.0/24 oifname "eth2" icmp type echo-request counter accept
+
+nft add rule inet filter forward ip saddr 10.0.2.0/24 iifname "eth2" ip daddr 10.0.1.0/24 oifname "eth1" icmp type echo-reply counter accept
+</pre>
+
+Máquinas de la red DMZ a la red interna:
+
+<pre>
+nft add rule inet filter forward ip saddr 10.0.2.0/24 iifname "eth2" ip daddr 10.0.1.0/24 oifname "eth1" icmp type echo-request counter accept
+
+nft add rule inet filter forward ip saddr 10.0.1.0/24 iifname "eth1" ip daddr 10.0.2.0/24 oifname "eth2" icmp type echo-reply counter accept
+</pre>
+
+
+
+
+
+
 
 
 

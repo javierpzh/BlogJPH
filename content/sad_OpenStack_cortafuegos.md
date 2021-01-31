@@ -41,7 +41,7 @@ La política por defecto que vamos a configurar en nuestro cortafuegos será de 
 Añadimos las reglas para SSH para poder acceder a *Dulcinea*:
 
 <pre>
-nft add rule inet filter input ip saddr 172.22.0.0/15 iifname "eth0" tcp dport 22 ct state new, established counter accept
+nft add rule inet filter input ip saddr 172.22.0.0/15 iifname "eth0" tcp dport 22 ct state new,established counter accept
 
 nft add rule inet filter output ip daddr 172.22.0.0/15 oifname "eth0" tcp sport 22 ct state established counter accept
 </pre>
@@ -89,7 +89,7 @@ nft add table nat
 
 nft add chain nat postrouting { type nat hook postrouting priority 100 \; }
 
-nft add chain nat prerouting { type nat hook prerouting priority 0 ; }
+nft add chain nat prerouting { type nat hook prerouting priority 0 \; }
 </pre>
 
 - **Configura de manera adecuada las reglas NAT para que todas las máquinas de nuestra red tenga acceso al exterior.**
@@ -125,11 +125,44 @@ Listo, ya las tendríamos.
 
 Para cada configuración, hay que mostrar las reglas que se han configurado y una prueba de funcionamiento de la misma.
 
-#### ping:
+#### SSH
+
+- **Podemos acceder por SSH a todas las máquinas.**
+
+Parte de este apartado lo vimos al principio del artículo, al crear las reglas necesarias para permitir el acceso por SSH a *Dulcinea*. Ahora haremos lo mismo pero para permitir el acceso mediante SSH a las máquinas de la red interna y de la DMZ.
+
+Reglas para las máquinas de la red interna:
+
+<pre>
+nft add rule inet filter input ip saddr 10.0.1.0/24 iifname "eth1" tcp sport 22 ct state established counter accept
+
+nft add rule inet filter output ip daddr 10.0.1.0/24 oifname "eth1" tcp dport 22 ct state new, established counter accept
+</pre>
+
+Reglas para las máquinas de la red DMZ:
+
+<pre>
+nft add rule inet filter output ip daddr 10.0.2.0/24 oifname "eth2" tcp dport 22 ct state new,established counter accept
+
+nft add rule inet filter input ip saddr 10.0.2.0/24 iifname "eth2" tcp sport 22 ct state established counter accept
+</pre>
+
+Listo, ya las tendríamos.
+
+- **Todas las máquinas pueden hacer SSH a máquinas del exterior.**
+
+
+
+- **La máquina *Dulcinea* tiene un servidor SSH escuchando por el puerto 22, pero al acceder desde el exterior habrá que conectar al puerto 2222.**
+
+
+
+
+#### ping
 
 - **Todas las máquinas de las dos redes pueden hacer *ping* entre ellas.**
 
-Para permitir que todas las máquinas puedan hacer *ping* entre sí, debemos añadir las siguientes reglas que he ordenado de la siguiente manera para que quede más claro.
+Para permitir que todas las máquinas puedan hacer *ping* entre sí, debemos añadir las siguientes reglas que he ordenado de la siguiente manera para que quede más claro. En todos los bloques el orden es el siguiente, la primera regla permite el inicio de la conexión, es decir la petición, y la segunda la respuesta por parte del otro cliente.
 
 *Dulcinea* a la red interna:
 
@@ -163,6 +196,7 @@ nft add rule inet filter forward ip saddr 10.0.2.0/24 iifname "eth2" ip daddr 10
 nft add rule inet filter forward ip saddr 10.0.1.0/24 iifname "eth1" ip daddr 10.0.2.0/24 oifname "eth2" icmp type echo-reply counter accept
 </pre>
 
+En teoría ya tendríamos
 
 
 
@@ -170,6 +204,12 @@ nft add rule inet filter forward ip saddr 10.0.1.0/24 iifname "eth1" ip daddr 10
 
 
 
+
+
+
+
+
+Listo, ya las tendríamos.
 
 - **Todas las máquinas pueden hacer ping a una máquina del exterior.**
 
@@ -182,23 +222,6 @@ nft add rule inet filter forward ip saddr 10.0.1.0/24 iifname "eth1" ip daddr 10
 - **A dulcinea se le puede hacer ping desde la DMZ, pero desde la LAN se le debe rechazar la conexión (REJECT).**
 
 
-#### SSH
-
-- **Podemos acceder por SSH a todas las máquinas.**
-
-Reglas para las máquinas de la red interna:
-
-<pre>
-nft add rule inet filter input input ip saddr 10.0.1.0/24 iifname "eth1" tcp sport 22 ct state established counter accept
-
-nft add rule inet filter output ip daddr 10.0.1.0/24 oifname "eth1" tcp dport 22 ct state new, established counter accept
-</pre>
-
-- **Todas las máquinas pueden hacer SSH a máquinas del exterior.**
-
-
-
-- **La máquina *Dulcinea* tiene un servidor SSH escuchando por el puerto 22, pero al acceder desde el exterior habrá que conectar al puerto 2222.**
 
 
 #### DNS

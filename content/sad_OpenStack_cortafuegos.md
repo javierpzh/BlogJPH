@@ -201,18 +201,45 @@ nft add rule inet filter forward ip saddr 10.0.2.0/24 iifname "eth2" oifname "et
 nft add rule inet filter forward ip daddr 10.0.2.0/24 iifname "eth0" oifname "eth2" tcp sport 22 ct state established counter accept
 </pre>
 
+Vamos a probar su funcionamiento intentando acceder mediante SSH a la máquina de *OVH*, ya que aunque no poseamos acceso mediante el par de clave pública-privada, dicha máquina tiene habilitado el acceso mediante contraseña:
 
+<pre>
+root@dulcinea:~# ssh debian@51.210.105.17
+The authenticity of host '51.210.105.17 (51.210.105.17)' can't be established.
+ECDSA key fingerprint is SHA256:LDFXW0tFS0C4p8BBQTjDdyObkSnQmMTUZgfiVnCn9zk.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '51.210.105.17' (ECDSA) to the list of known hosts.
+debian@51.210.105.17's password:
+...
+Last login: Sun Jan 31 20:32:56 2021 from 217.216.68.244
+debian@vpsjavierpzh:~$
 
+--------------------------------------------------------------------------------
 
+debian@freston:~$ ssh debian@51.210.105.17
+The authenticity of host '51.210.105.17 (51.210.105.17)' can't be established.
+ECDSA key fingerprint is SHA256:LDFXW0tFS0C4p8BBQTjDdyObkSnQmMTUZgfiVnCn9zk.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '51.210.105.17' (ECDSA) to the list of known hosts.
+debian@51.210.105.17's password:
+...
+Last login: Sun Jan 31 20:33:39 2021 from 80.59.1.152
+debian@vpsjavierpzh:~$
 
+--------------------------------------------------------------------------------
 
+[centos@quijote ~]$ ssh debian@51.210.105.17
+The authenticity of host '51.210.105.17 (51.210.105.17)' can't be established.
+ECDSA key fingerprint is SHA256:LDFXW0tFS0C4p8BBQTjDdyObkSnQmMTUZgfiVnCn9zk.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '51.210.105.17' (ECDSA) to the list of known hosts.
+debian@51.210.105.17's password:
+...
+Last login: Sun Jan 31 20:34:48 2021 from 80.59.1.152
+debian@vpsjavierpzh:~$
+</pre>
 
-
-
-
-
-
-
+Listo, ya las tendríamos.
 
 
 #### ping

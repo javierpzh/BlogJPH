@@ -28,11 +28,15 @@ Primeramente vamos a ver qué es esto de la integración y el despliegue continu
 
 ![.](images/iaw_introducción_a_la_IC-DC/EC-DC.png)
 
-Explicados los diferentes conceptos, vamos a realizar una pequeña práctica que trata sobre generar una página web estática que conste de despliegue continuo.
+Explicados los diferentes conceptos, vamos a realizar una pequeña práctica que trata sobre generar una página web estática (en mi caso voy a automatizar el despliegue de este blog) que conste de despliegue continuo.
 
+En mi caso, he decidido utilizar la herramienta llamada [CodeShip](https://www.cloudbees.com/products/codeship) para llevar a cabo este proceso. También necesitaremos un repositorio de *GitHub*, donde iremos guardando las distintas informaciones que se irán desplegando en nuestra nueva web.
 
+Como servicio de *hosting* he elegido [Surge](https://surge.sh/) ya que es gratuito y ya tengo experiencia previa con él.
 
+Una vez presentada la práctica vamos a empezar el proceso.
 
+El primer paso que debemos realizar es la creación del repositorio que vayamos a utilizar. Una vez creado, vamos a dirigirnos a la web de *CodeShip* y nos registraremos. 
 
 
 

@@ -529,7 +529,7 @@ Listo, ya las tendríamos.
 
 - **A la base de datos de sancho sólo pueden acceder las máquinas de la DMZ.**
 
-
+Creamos las siguientes reglas:
 
 <pre>
 nft add rule inet filter forward ip saddr 10.0.2.0/24 iifname "eth2" ip daddr 10.0.1.8 oifname "eth1" tcp dport 3306 ct state new,established counter accept
@@ -549,6 +549,8 @@ Listo, ya las tendríamos.
 #### Web
 
 - **Las páginas web de *Quijote* (80, 443) pueden ser accedidas desde todas las máquinas de nuestra red y desde el exterior.**
+
+Creamos las siguientes reglas:
 
 <pre>
 nft add rule inet filter forward ip saddr 10.0.1.0/24 iifname "eth1" ip daddr 10.0.2.6 oifname "eth2" tcp dport 80 ct state new,established counter accept
@@ -573,7 +575,11 @@ Listo, ya las tendríamos.
 
 - **Configura de manera adecuada el cortafuegos, para otros servicios que tengas instalado en tu red (ldap, correo, ...)**
 
+Creamos las siguientes reglas para **Bacula**:
 
+<pre>
+
+</pre>
 
 
 

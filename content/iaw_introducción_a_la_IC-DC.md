@@ -68,9 +68,9 @@ Seleccionamos nuestro repositorio y hacemos *click* en **Connect**:
 
 ![.](images/iaw_introducción_a_la_IC-DC/codeshiprepositorio.png)
 
+Por último nos pedirá indicar que tipo de proyecto vamos a utilizar, en nuestro caso utilizaremos la versión básica y gratuita, ya que la versión *pro* es de pago.
 
-
-![.](images/iaw_introducción_a_la_IC-DC/.png)
+![.](images/iaw_introducción_a_la_IC-DC/codeshipbasic.png)
 
 
 

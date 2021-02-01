@@ -476,36 +476,51 @@ nft add rule inet filter forward ip saddr 10.0.2.0/24 iifname "eth2" ip daddr 10
 nft add rule inet filter forward ip daddr 10.0.2.0/24 iifname "eth1" ip saddr 10.0.1.6 oifname "eth2" udp sport 53 ct state established counter accept
 </pre>
 
+Pruebas de funcionamiento:
+
+<pre>
 
 
+--------------------------------------------------------------------------------
 
 
-
-
-
+</pre>
 
 Listo, ya las tendríamos.
 
 - **Dulcinea puede usar cualquier servidor DNS.**
 
+Creamos las siguientes reglas:
 
+<pre>
+nft add rule inet filter output udp dport 53 ct state new,established counter accept
 
+nft add rule inet filter input udp sport 53 ct state established counter accept
+</pre>
 
+Prueba de funcionamiento:
 
+<pre>
 
-
+</pre>
 
 Listo, ya las tendríamos.
 
 - **Tenemos que permitir consultas DNS desde el exterior a *Freston*, para que, por ejemplo, papion-dns pueda preguntar.**
 
+Creamos las siguientes reglas:
 
+<pre>
+nft add rule inet filter forward ip daddr 10.0.1.6 iifname "eth0" oifname "eth1" udp dport 53 ct state new,established counter accept
 
+nft add rule inet filter forward ip saddr 10.0.1.6 iifname "eth1" oifname "eth0" udp sport 53 ct state established counter accept
+</pre>
 
+Prueba de funcionamiento:
 
+<pre>
 
-
-
+</pre>
 
 Listo, ya las tendríamos.
 
@@ -516,11 +531,17 @@ Listo, ya las tendríamos.
 
 
 
+<pre>
+nft add rule inet filter forward ip saddr 10.0.2.0/24 iifname "eth2" ip daddr 10.0.1.8 oifname "eth1" tcp dport 3306 ct state new,established counter accept
 
+nft add rule inet filter forward ip daddr 10.0.2.0/24 iifname "eth1" ip saddr 10.0.1.8 oifname "eth2" tcp sport 3306 ct state established counter accept
+</pre>
 
+Prueba de funcionamiento:
 
+<pre>
 
-
+</pre>
 
 Listo, ya las tendríamos.
 
@@ -529,14 +550,21 @@ Listo, ya las tendríamos.
 
 - **Las páginas web de *Quijote* (80, 443) pueden ser accedidas desde todas las máquinas de nuestra red y desde el exterior.**
 
+<pre>
+nft add rule inet filter forward ip saddr 10.0.1.0/24 iifname "eth1" ip daddr 10.0.2.6 oifname "eth2" tcp dport 80 ct state new,established counter accept
 
+nft add rule inet filter forward ip daddr 10.0.1.0/24 iifname "eth2" ip saddr 10.0.2.6 oifname "eth1" tcp sport 80 ct state established counter accept
 
+nft add rule inet filter forward ip saddr 10.0.1.0/24 iifname "eth1" ip daddr 10.0.2.6 oifname "eth2" tcp dport 443 ct state new,established counter accept
 
+nft add rule inet filter forward ip daddr 10.0.1.0/24 iifname "eth2" ip saddr 10.0.2.6 oifname "eth1" tcp sport 443 ct state established counter accept
+</pre>
 
+Prueba de funcionamiento:
 
+<pre>
 
-
-
+</pre>
 
 Listo, ya las tendríamos.
 

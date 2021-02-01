@@ -28,6 +28,8 @@ Primeramente vamos a ver qué es esto de la integración y el despliegue continu
 
 ![.](images/iaw_introducción_a_la_IC-DC/EC-DC.png)
 
+Explicados los diferentes conceptos, vamos a realizar una pequeña práctica que trata sobre generar una página web estática que conste de despliegue continuo.
+
 
 
 

@@ -56,15 +56,15 @@ Nos aparecerá esta ventana en la cuál debemos elegir cuál será nuestro prove
 
 ![.](images/iaw_introducción_a_la_IC-DC/codeshipcms.png)
 
-
+Y en este punto tendremos que vincular el repositorio que queremos utilizar, para ello hacemos *click* en el enlace llamado *installed the CodeShip GitHub App* para instalar la aplicación llamada **CodeShip GitHub App**.
 
 ![.](images/iaw_introducción_a_la_IC-DC/codeship1.png)
 
-
+En mi caso instalo la aplicación en todos los repositorios de mi cuenta de *GitHub*, aunque podemos seleccionar simplemente el repositorio en cuestión.
 
 ![.](images/iaw_introducción_a_la_IC-DC/codeshipcuentagithub.png)
 
-
+Seleccionamos nuestro repositorio y hacemos *click* en **Connect**:
 
 ![.](images/iaw_introducción_a_la_IC-DC/codeshiprepositorio.png)
 

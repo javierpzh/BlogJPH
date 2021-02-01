@@ -52,16 +52,25 @@ Una vez aquí ya hemos completado el proceso de registro, y vamos a hacer *click
 
 ![.](images/iaw_introducción_a_la_IC-DC/codeshipnewproject.png)
 
-
+Nos aparecerá esta ventana en la cuál debemos elegir cuál será nuestro proveedor, seleccionamos *GitHub*:
 
 ![.](images/iaw_introducción_a_la_IC-DC/codeshipcms.png)
 
 
 
+![.](images/iaw_introducción_a_la_IC-DC/codeship1.png)
 
-![.](images/iaw_introducción_a_la_IC-DC/EC-DC.png)
 
 
+![.](images/iaw_introducción_a_la_IC-DC/codeshipcuentagithub.png)
+
+
+
+![.](images/iaw_introducción_a_la_IC-DC/codeshiprepositorio.png)
+
+
+
+![.](images/iaw_introducción_a_la_IC-DC/.png)
 
 
 

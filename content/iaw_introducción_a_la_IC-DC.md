@@ -72,7 +72,7 @@ Por último nos pedirá indicar que tipo de proyecto vamos a utilizar, en nuestr
 
 ![.](images/iaw_introducción_a_la_IC-DC/codeshipbasic.png)
 
-
+Habríamos terminado la creación de nuestro proyecto, pero aún nos faltaría configurarlo y así indicarle que acciones tiene que llevar a cabo antes de cada despliegue.
 
 
 

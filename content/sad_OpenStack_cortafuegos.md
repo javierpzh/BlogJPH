@@ -468,6 +468,18 @@ Listo, ya las tendríamos.
 
 - **El único DNS que pueden usar los equipos de las dos redes es *Freston*, no pueden utilizar un DNS externo.**
 
+Creamos las siguientes reglas para que el servidor DNS de *Freston* pueda hacer las preguntas recursivas en el caso de que sea necesario, es decir, pueda consultar a un DNS externo:
+
+<pre>
+nft add rule inet filter forward ip saddr 10.0.1.6 iifname "eth1" oifname "eth0" udp dport 53 ct state new,established counter accept
+
+nft add rule inet filter forward ip daddr 10.0.1.6 iifname "eth0" oifname "eth1" udp sport 53 ct state established counter accept
+
+nft add rule inet filter forward ip saddr 10.0.1.6 iifname "eth1" oifname "eth0" tcp dport 53 ct state new,established counter accept
+
+nft add rule inet filter forward ip daddr 10.0.1.6 iifname "eth0" oifname "eth1" tcp sport 53 ct state established counter accept
+</pre>
+
 Creamos las siguientes reglas:
 
 <pre>
@@ -479,11 +491,40 @@ nft add rule inet filter forward ip daddr 10.0.2.0/24 iifname "eth1" ip saddr 10
 Pruebas de funcionamiento:
 
 <pre>
-
+debian@freston:~$ ping www.google.es
+PING www.google.es (216.58.215.131) 56(84) bytes of data.
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=1 ttl=112 time=43.4 ms
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=2 ttl=112 time=611 ms
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=3 ttl=112 time=550 ms
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=4 ttl=112 time=123 ms
+^C
+--- www.google.es ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 4ms
+rtt min/avg/max/mdev = 43.364/331.710/611.155/251.229 ms
 
 --------------------------------------------------------------------------------
 
+ubuntu@sancho:~$ ping www.google.es
+PING www.google.es (216.58.215.131) 56(84) bytes of data.
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=1 ttl=112 time=586 ms
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=2 ttl=112 time=473 ms
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=3 ttl=112 time=133 ms
+^C
+--- www.google.es ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 133.200/397.179/585.780/192.299 ms
 
+--------------------------------------------------------------------------------
+
+[centos@quijote ~]$ ping www.google.es
+PING www.google.es (216.58.215.131) 56(84) bytes of data.
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=1 ttl=112 time=42.8 ms
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=2 ttl=112 time=43.2 ms
+64 bytes from mad41s04-in-f3.1e100.net (216.58.215.131): icmp_seq=3 ttl=112 time=87.8 ms
+^C
+--- www.google.es ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 5ms
+rtt min/avg/max/mdev = 42.818/57.951/87.790/21.100 ms
 </pre>
 
 Listo, ya las tendríamos.
@@ -540,7 +581,17 @@ nft add rule inet filter forward ip daddr 10.0.2.0/24 iifname "eth1" ip saddr 10
 Prueba de funcionamiento:
 
 <pre>
+[centos@quijote ~]$ mysql -h sancho -u javierquijote -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 36
+Server version: 10.3.25-MariaDB-0ubuntu0.20.04.1 Ubuntu 20.04
 
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]>
 </pre>
 
 Listo, ya las tendríamos.

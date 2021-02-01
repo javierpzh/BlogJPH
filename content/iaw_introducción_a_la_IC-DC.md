@@ -36,9 +36,30 @@ Como servicio de *hosting* he elegido [Surge](https://surge.sh/) ya que es gratu
 
 Una vez presentada la práctica vamos a empezar el proceso.
 
-El primer paso que debemos realizar es la creación del repositorio que vayamos a utilizar. Una vez creado, vamos a dirigirnos a la web de *CodeShip* y nos registraremos. 
+El primer paso que debemos realizar es la creación del repositorio que vayamos a utilizar. Una vez creado, vamos a dirigirnos a la web de *CodeShip* y nos registraremos.
+
+![.](images/iaw_introducción_a_la_IC-DC/codeshipregistro.png)
+
+En mi caso lo hago mediante mi cuenta de *GitHub* y de esta manera ya vinculo ambos servicios.
+
+![.](images/iaw_introducción_a_la_IC-DC/codeshipautorizacion.png)
+
+Introducimos un nombre para nuestra nueva organización:
+
+![.](images/iaw_introducción_a_la_IC-DC/codeshiporganizacion.png)
+
+Una vez aquí ya hemos completado el proceso de registro, y vamos a hacer *click* en el botón **New Project**:
+
+![.](images/iaw_introducción_a_la_IC-DC/codeshipnewproject.png)
 
 
+
+![.](images/iaw_introducción_a_la_IC-DC/codeshipcms.png)
+
+
+
+
+![.](images/iaw_introducción_a_la_IC-DC/EC-DC.png)
 
 
 

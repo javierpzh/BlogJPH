@@ -183,17 +183,11 @@ Cuando se modifica este fichero, debemos ejecutar el siguiente comando para apli
 newaliases
 </pre>
 
+Hecho esto, vamos a enviar un correo desde **Gmail** hacia `root@iesgn15.es`:
 
+![.](images/sri_servidor_de_correos/correoenviadogmailparareenvioadebian.png)
 
-
-
-
-
-
-
-
-
-
+Una vez enviado, vamos a comprobar que lo hayamos recibido en nuestro servidor local, en el usuario **debian**, para leer los nuevos correos, haremos uso de la herramienta anterior en el usuario *debian*.
 
 <pre>
 debian@vpsjavierpzh:~$ mail
@@ -204,7 +198,7 @@ Mail version 8.1.2 01/15/2001.  Type ? for help.
  & 2
 </pre>
 
-
+Vemos que nos indica que tenemos dos correos sin leer (el primero es una prueba), si indicamos su número, en esta caso el 2, y lo leemos:
 
 <pre>
 Message 2:
@@ -224,7 +218,7 @@ hola, llega al usuario debian?
 ...
 </pre>
 
-
+Efectivamente hemos recibido el correo en el usuario *debian* y podemos apreciar que el destinatario del correo es **root**.
 
 
 

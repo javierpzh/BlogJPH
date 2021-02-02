@@ -214,39 +214,29 @@ hola, llega al usuario debian?
 ...
 </pre>
 
-Efectivamente hemos recibido el correo en el usuario *debian* y podemos apreciar que el destinatario del correo es **root**.
+Efectivamente hemos recibido el correo en el usuario *debian* y podemos apreciar que el destinatario del correo es **root**, por tanto el alias estaría bien configurado.
 
+Pasamos a realizar una redirección. Se utilizan para enviar el correo que llegue a un usuario, a una cuenta de correo externa. Para usuarios reales, las redirecciones se definen en el fichero `~/.forward` y el formato de este fichero es simplemente un listado de cuentas de correo a las que se quiere redirigir el correo.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Una redirección se utiliza para enviar el correo que llegue a un usuario, a una cuenta de correo externa. Para usuarios reales, las redirecciones se definen en el fichero `~/.forward` y el formato de este fichero es simplemente un listado de cuentas de correo a las que se quiere redirigir el correo.
-
-En mi caso, en dicho fichero introduzco mi dirección de correo externa:
+En mi caso, creo dicho fichero en el usuario **debian** e introduzco una dirección de correo externa distinta de la que va a enviar el correo:
 
 <pre>
-javierperezhidalgo01@gmail.com
+reyole111@gmail.com
 </pre>
+
+Hecho esto, vamos a enviar un correo desde **Gmail** hacia `root@iesgn15.es`:
+
+![.](images/sri_servidor_de_correos/correoenviadogmailparareenvioadebianygmail.png)
+
+
+
+![.](images/sri_servidor_de_correos/correorecibidogmailreyole.png)
+
+![.](images/sri_servidor_de_correos/correorecibidogmailreyoleinfo.png)
+
+
+
+
 
 
 

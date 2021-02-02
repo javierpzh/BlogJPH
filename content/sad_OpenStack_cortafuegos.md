@@ -673,7 +673,7 @@ Listo, ya las tendríamos.
 
 #### Más servicios
 
-##### Webs exteriores
+- **Webs exteriores**
 
 Al terminar el cortafuegos me dí cuenta que no podía conectar con ninguna web del exterior, ya que no poseía ninguna regla con la que pudiera conectar con ellas, ni por el puerto 80, ni por el 443, por tanto vamos a crearlas:
 
@@ -710,9 +710,9 @@ nft add rule inet filter forward ip daddr 10.0.2.0/24 iifname "eth0" oifname "et
 Listo, ya las tendríamos.
 
 
-##### Bacula
+- **Bacula**
 
-Creamos las siguientes reglas para **Bacula**.
+Creamos las siguientes reglas para *Bacula*.
 
 --------------------------------------------------------------------------------
 

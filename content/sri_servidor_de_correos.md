@@ -214,7 +214,7 @@ hola, llega al usuario debian?
 ...
 </pre>
 
-Efectivamente hemos recibido el correo en el usuario *debian* y podemos apreciar que el destinatario del correo es **root**, por tanto el alias estaría bien configurado.
+Efectivamente hemos recibido el correo en el usuario *debian* y podemos apreciar que el destinatario del correo es **root**, por tanto el alias está bien configurado.
 
 Pasamos a realizar una redirección. Las redirecciones se utilizan para enviar los correos que lleguen a un usuario, a una cuenta de correo externa. Para usuarios reales, las redirecciones se definen en el fichero `~/.forward` y el formato de este fichero es simplemente un listado de cuentas de correo a las que se quiere redirigir el correo.
 
@@ -228,15 +228,21 @@ Hecho esto, vamos a enviar un correo desde **Gmail** hacia `root@iesgn15.es`:
 
 ![.](images/sri_servidor_de_correos/correoenviadogmailparareenvioadebianygmail.png)
 
-Supuestamente, lo que ahora debería ocurrir es lo siguiente. El correo cuyo destinatario es **root**, debe llegar a **debian**, lo cuál es señal de que el alias está actuando correctamente, y acto después, el usuario **debian** debe reenviar dicho correo a la dirección **reyole111@gmail.com**.
+Supuestamente, lo que ahora debería ocurrir es lo siguiente. El correo cuyo destinatario es **root**, debe llegar a **debian**, lo cuál es señal de que el alias está actuando correctamente, y acto después, el correo debe ser reenviado a la dirección **reyole111@gmail.com**.
 
-Vamos a ver si hemos recibido el correo en la bandeja de entrada de **reyole111@gmail.com**.
+Vamos a ver si hemos recibido el correo en la bandeja de entrada del usuario **debian**.
+
+<pre>
+
+</pre>
+
+Efectivamente lo hemos recibido, así que por último, vamos a ver si hemos recibido el correo en la bandeja de entrada de **reyole111@gmail.com**.
 
 ![.](images/sri_servidor_de_correos/correorecibidogmailreyole.png)
 
 ![.](images/sri_servidor_de_correos/correorecibidogmailreyoleinfo.png)
 
-
+Efectivamente, también hemos recibido el correo en la dirección *reyole111@gmail.com*, por tanto la redirección está bien configurada.
 
 
 

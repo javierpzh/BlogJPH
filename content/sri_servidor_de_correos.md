@@ -187,6 +187,14 @@ newaliases
 
 
 
+
+
+
+
+
+
+
+
 <pre>
 debian@vpsjavierpzh:~$ mail
 Mail version 8.1.2 01/15/2001.  Type ? for help.

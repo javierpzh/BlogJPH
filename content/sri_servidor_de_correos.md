@@ -228,7 +228,7 @@ Hecho esto, vamos a enviar un correo desde **Gmail** hacia `root@iesgn15.es`:
 
 ![.](images/sri_servidor_de_correos/correoenviadogmailparareenvioadebianygmail.png)
 
-
+Supuestamente, lo que ahora debería ocurrir es lo siguiente. El correo cuyo destinatario es **root**, debe llegar a **debian**, lo cuál es señal de que el alias está actuando correctamente, y acto después, 
 
 ![.](images/sri_servidor_de_correos/correorecibidogmailreyole.png)
 

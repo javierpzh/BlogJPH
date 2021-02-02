@@ -157,17 +157,7 @@ Posteriormente usando alias y redirecciones podemos hacer llegar esos correos a 
 
 Configura el `cron` para enviar correo al usuario **root**. Comprueba que están llegando esos correos al root. Crea un nuevo alias para que se manden a un usuario sin privilegios. Comprueban que llegan a ese usuario. Por último crea una redirección para enviar esos correo a tu correo personal (gmail,hotmail,…).
 
-
-
-
-
-
-
-
-
-
-
-
+--------------------------------------------------------------------------------
 
 En primer lugar vamos a configurar un nuevo **alias**, para que los correos que tengan como destinatario al usuario **root**, también lleguen al buzón del usuario **debian**. Para ello vamos a editar el fichero `/etc/aliases` y añadiremos la siguiente línea:
 

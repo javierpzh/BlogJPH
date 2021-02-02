@@ -74,7 +74,7 @@ Por último nos pedirá indicar que tipo de proyecto vamos a utilizar, en nuestr
 
 Habríamos terminado la creación de nuestro proyecto, pero aún nos faltaría configurarlo y así indicarle que acciones tiene que llevar a cabo antes de cada despliegue.
 
-prueba
+
 
 
 

@@ -160,6 +160,109 @@ Configura el `cron` para enviar correo al usuario **root**. Comprueba que están
 
 
 
+
+
+
+
+
+
+
+
+
+`/etc/aliases` añadamos la línea `root: debian`:
+
+<pre>
+# See man 5 aliases for format
+postmaster:    root
+root: debian
+</pre>
+
+Cuando se modifica este fichero, debemos ejecutar el siguiente comando para aplicar los cambios:
+
+<pre>
+newaliases
+</pre>
+
+
+
+
+
+<pre>
+debian@vpsjavierpzh:~$ mail
+Mail version 8.1.2 01/15/2001.  Type ? for help.
+"/var/mail/debian": 2 messages 2 new
+...
+\>N  2 javierperezhidalg  Tue Feb  2 13:53   54/2752  =?UTF-8?Q?prueba_de_reenv=C3=ADo?=
+ & 2
+</pre>
+
+
+
+<pre>
+Message 2:
+From javierperezhidalgo01@gmail.com  Tue Feb  2 13:53:29 2021
+X-Original-To: root@iesgn15.es
+
+...
+
+Subject: =?UTF-8?Q?prueba_de_reenv=C3=ADo?=
+To: root@iesgn15.es
+Content-Type:
+
+...
+
+hola, llega al usuario debian?
+
+...
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Una redirección se utiliza para enviar el correo que llegue a un usuario, a una cuenta de correo externa. Para usuarios reales, las redirecciones se definen en el fichero `~/.forward` y el formato de este fichero es simplemente un listado de cuentas de correo a las que se quiere redirigir el correo.
+
+En mi caso, en dicho fichero introduzco mi dirección de correo externa:
+
+<pre>
+javierperezhidalgo01@gmail.com
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #### Para asegurar el envío
 
 - **Tarea 4 (No obligatoria): Configura de manera adecuada DKIM es tu sistema de correos. Comprueba el registro DKIM en la página https://mxtoolbox.com/dkim.aspx. Configura `postfix` para que firme los correos que envía. Manda un correo y comprueba la verificación de las firmas en ellos.**

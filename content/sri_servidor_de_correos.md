@@ -216,7 +216,7 @@ hola, llega al usuario debian?
 
 Efectivamente hemos recibido el correo en el usuario *debian* y podemos apreciar que el destinatario del correo es **root**, por tanto el alias estaría bien configurado.
 
-Pasamos a realizar una redirección. Se utilizan para enviar el correo que llegue a un usuario, a una cuenta de correo externa. Para usuarios reales, las redirecciones se definen en el fichero `~/.forward` y el formato de este fichero es simplemente un listado de cuentas de correo a las que se quiere redirigir el correo.
+Pasamos a realizar una redirección. Las redirecciones se utilizan para enviar los correos que lleguen a un usuario, a una cuenta de correo externa. Para usuarios reales, las redirecciones se definen en el fichero `~/.forward` y el formato de este fichero es simplemente un listado de cuentas de correo a las que se quiere redirigir el correo.
 
 En mi caso, creo dicho fichero en el usuario **debian** e introduzco una dirección de correo externa distinta de la que va a enviar el correo:
 

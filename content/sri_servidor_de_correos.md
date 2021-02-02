@@ -169,7 +169,13 @@ Configura el `cron` para enviar correo al usuario **root**. Comprueba que están
 
 
 
-`/etc/aliases` añadamos la línea `root: debian`:
+En primer lugar vamos a configurar un nuevo **alias**, para que los correos que tengan como destinatario al usuario **root**, también lleguen al buzón del usuario **debian**. Para ello vamos a editar el fichero `/etc/aliases` y añadiremos la siguiente línea:
+
+<pre>
+root: debian
+</pre>
+
+De manera que el contenido total del fichero `/etc/aliases` sería:
 
 <pre>
 # See man 5 aliases for format

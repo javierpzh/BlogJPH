@@ -410,7 +410,51 @@ CODIGO NOMBRE               SEDE
 Como hemos visto, hemos podido realizar la consulta correctamente, por lo que habríamos terminado este ejercicio.
 
 
-#### Enlace entre dos servidores de bases de datos Postgres
+#### Enlace entre dos servidores de bases de datos PostgreSQL
+
+En este apartado vamos a realizar un enlace entre dos servidores **PostgreSQL**.
+
+*PostgreSQL* hace uso de la extensión `dblink` para realizar o aceptar consultas desde enlaces, por lo que debemos instalar esta herramienta que se encuentra en el paquete llamado `postgresql-contrib`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #### Enlace entre un servidor ORACLE y otro PostgreSQL o MySQL empleando Heterogeneus Services

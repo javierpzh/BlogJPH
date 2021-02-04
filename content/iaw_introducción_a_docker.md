@@ -198,7 +198,7 @@ Nos dirigimos a la dirección `http://localhost:8080`:
 
 ![.](images/iaw_introducción_a_docker/nextcloud.png)
 
-Lo instalamos con una base de datos **sqlite** y una vez lo tengamos instalado, subimos cualquier fichero.
+Lo instalamos con una base de datos **sqlite** y una vez lo tengamos instalado, subimos cualquier fichero. En mi caso he subido el fichero llamado **logojp.jpg**.
 
 ![.](images/iaw_introducción_a_docker/nextcloud2.png)
 
@@ -217,7 +217,7 @@ Listo.
 
 - **Crea un contenedor nuevo con la misma configuración de volúmenes. Comprueba que la información que teníamos (ficheros, usuaurio, …), sigue existiendo.**
 
-Creamos e nuevo contenedor llamado **Nextcloud2**:
+Creamos el nuevo contenedor llamado **Nextcloud2**:
 
 <pre>
 javier@debian:~$ docker run -d --name Nextcloud2 -v /home/javier/nextcloud:/var/www/html -p 8080:80 nextcloud

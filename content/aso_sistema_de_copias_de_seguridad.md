@@ -1114,11 +1114,11 @@ Messages {
 En teoría, ya tendríamos configurados todos los clientes, por lo que supuestamente ya podrían conectar con nuestro director ubicado en *Dulcinea*. Vamos a ver si es así, pero antes, debemos reiniciar los servicios del director:
 
 <pre>
-root@dulcinea:~# restart bacula-fd.service
+root@dulcinea:~# systemctl restart bacula-fd.service
 
-root@dulcinea:~# restart bacula-sd.service
+root@dulcinea:~# systemctl restart bacula-sd.service
 
-root@dulcinea:~# restart bacula-director.service
+root@dulcinea:~# systemctl restart bacula-director.service
 
 root@dulcinea:~# bconsole
 Connecting to Director 10.0.1.11:9101

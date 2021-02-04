@@ -136,12 +136,28 @@ Al igual que en el ejercicio anterior, podemos ver que sí, ya que estamos utili
 - **Crea un contenedor desde la imagen *Nextcloud* (usando *sqlite*) configurando el almacenamiento como nos muestra la documentación de la imagen en *Docker Hub* (pero utilizando bind mount). Sube algún fichero.**
 
 <pre>
+javier@debian:~$ mkdir pruebadockernextcloud
 
+javier@debian:~$ docker run -d --name Nextcloud -v /home/javier/nextcloud:/var/www/html -p 8080:80 nextcloud
+1fd90edb9161d28a68c58799ddeea2c58ce0acec3e85663997baae9987709274
 </pre>
+
+![.](images/iaw_introducción_a_docker/nextcloud.png)
+
+Lo instalamos con una base de datos **sqlite** y una vez lo tengamos instalado, subimos cualquier fichero.
+
+![.](images/iaw_introducción_a_docker/nextcloud2.png)
+
+Listo.
 
 - **Elimina el contenedor.**
 
+<pre>
+javier@debian:~$ docker rm -f Nextcloud
+Nextcloud
+</pre>
 
+Listo.
 
 - **Crea un contenedor nuevo con la misma configuración de volúmenes. Comprueba que la información que teníamos (ficheros, usuaurio, …), sigue existiendo.**
 

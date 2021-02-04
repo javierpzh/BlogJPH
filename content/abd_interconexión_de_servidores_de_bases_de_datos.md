@@ -416,7 +416,9 @@ En este apartado vamos a realizar un enlace entre dos servidores **PostgreSQL**.
 
 *PostgreSQL* hace uso de la extensión `dblink` para realizar o aceptar consultas desde enlaces, por lo que debemos instalar esta herramienta que se encuentra en el paquete llamado `postgresql-contrib`
 
-
+<pre>
+apt install postgresql-contrib -y
+</pre>
 
 
 

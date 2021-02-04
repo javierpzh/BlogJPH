@@ -420,9 +420,11 @@ En este apartado vamos a realizar un enlace entre dos servidores **PostgreSQL**.
 apt install postgresql-contrib -y
 </pre>
 
+Hecho esto, procederemos a editar el fichero de configuración de ambos servidores `/etc/postgresql/XXX/main/postgresql.conf`, y en él descomentaremos la línea llamada `listen_addresses`. Como valor le estableceremos la IP que nos interese que escuche nuestro servidor, en mi caso introduzco el valor ***** para que así escuche cualquier petición. De manera que la línea resultante sería la siguiente:
 
-
-
+<pre>
+listen_addresses = '*'
+</pre>
 
 
 

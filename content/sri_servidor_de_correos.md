@@ -255,7 +255,7 @@ Efectivamente, también hemos recibido el correo en la dirección *reyole111@gma
 
 #### Para asegurar el envío
 
-- **Tarea 4 (No obligatoria): Configura de manera adecuada DKIM en tu sistema de correos. Comprueba el registro DKIM en la página [https://mxtoolbox.com/dkim.aspx](https://mxtoolbox.com/dkim.aspx). Configura `postfix` para que firme los correos que envía. Manda un correo y comprueba la verificación de las firmas en ellos.**
+- **Tarea 4 (No obligatoria): Vamos a configurar *DKIM* en nuestro sistema de correos. Comprobaremos el registro *DKIM* en la página [https://mxtoolbox.com/dkim.aspx](https://mxtoolbox.com/dkim.aspx). Configuraremos `Postfix` para que firme los correos que envíe. Mandaremos un correo y comprobaremos la verificación de las firmas en ellos.**
 
 
 

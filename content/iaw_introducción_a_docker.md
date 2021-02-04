@@ -188,7 +188,7 @@ Al igual que en el ejercicio anterior, podemos ver que sí, ya que estamos utili
 Creamos el contenedor:
 
 <pre>
-javier@debian:~$ mkdir pruebadockernextcloud
+javier@debian:~$ mkdir nextcloud
 
 javier@debian:~$ docker run -d --name Nextcloud -v /home/javier/nextcloud:/var/www/html -p 8080:80 nextcloud
 1fd90edb9161d28a68c58799ddeea2c58ce0acec3e85663997baae9987709274
@@ -236,6 +236,13 @@ Efectivamente se encuentra el logo que hemos subido en el anterior contenedor, p
 
 - **Comprueba el contenido de directorio que se ha creado en el *host*.**
 
+Visualizamos el contenido del directorio `/home/javier/nextcloud`:
 
+<pre>
+javier@debian:~/nextcloud$ ls
+3rdparty  config       core         data        lib           ocs           remote.php  status.php
+apps      console.php  cron.php     index.html  occ           ocs-provider  resources   themes
+AUTHORS   COPYING      custom_apps  index.php   ocm-provider  public.php    robots.txt  version.php
+</pre>
 
-.
+Podemos ver como efectivamente se encuentran todos los datos de la web.

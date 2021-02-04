@@ -304,11 +304,19 @@ Primeramente vamos a ver que diferencias encontramos entre los dos.
 
 Explicado esto, vamos a proceder a configurar *Postfix* para que empiece a utilizar el formato *Maildir*.
 
-En primer lugar, nos dirigimos al fichero `/etc/postfix/main.cf` y 
+En primer lugar, nos dirigimos al fichero `/etc/postfix/main.cf` e introduciremos la siguiente línea en él:
 
+<pre>
+home_mailbox = Maildir/
+</pre>
 
+(Es importante la `/` final.)
 
+Hecho esto, ya habremos configurado *Postfix* para que utilice *Maildir*, por tanto vamos a reiniciar el servicio y a hacer una prueba para comprobar el cambio.
 
+<pre>
+systemctl restart postfix
+</pre>
 
 
 

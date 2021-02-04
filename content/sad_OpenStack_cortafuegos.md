@@ -710,6 +710,8 @@ nft add rule inet filter forward ip daddr 10.0.2.0/24 iifname "eth0" oifname "et
 Listo, ya las tendríamos.
 
 
+#### Zona en pruebas
+
 - **Bacula**
 
 Creamos las siguientes reglas para *Bacula*.
@@ -735,26 +737,22 @@ nft add chain inet filter forward { policy accept \;}
 
 
 
+-A INPUT -i eth1 -s 0.0.0.0/0 -p tcp --dport 9101 --ctstate new,established
+-A OUTPUT -o eth0 -d 0.0.0.0/0 -p tcp --sport 9101 state established
+
+-A OUTPUT -o eth0 -d 0.0.0.0/0 --dport 9102 new,established
+-A INPUT -i eth0 -s 0.0.0.0/0 --sport 9102 established
+
+nft add rule inet filter input ip saddr 0.0.0.0/0 iifname "eth1" tcp dport 9101 ct state new,established counter accept
+nft add rule inet filter output ip daddr 0.0.0.0/0 oifname "eth0" tcp sport 9101 ct state established counter accept
+
+nft add rule inet filter output ip daddr 0.0.0.0/0 oifname "eth0" tcp dport 9102 ct state new,established counter accept
+nft add rule inet filter input ip saddr 0.0.0.0/0 iifname "eth0" tcp sport 9102 ct state established counter accept
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-<pre>
-nft add rule inet filter output oifname "eth1" tcp dport 9102 ct state new,established counter accept
-nft add rule inet filter input iifname "eth1" tcp sport 9102 ct state established counter accept
-</pre>
 
 
 

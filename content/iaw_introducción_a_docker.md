@@ -57,9 +57,7 @@ javier@debian:~$ docker cp info.php pruebavolumendocker:/var/www/html
 
 - **Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `info.php`.**
 
-<pre>
-javier@debian:~$ curl http://localhost:8080
-</pre>
+![.](images/iaw_introducción_a_docker/info.php.png)
 
 - **Borra el contenedor.**
 

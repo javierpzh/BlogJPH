@@ -45,19 +45,20 @@ c5a84dbdd6a5: Already exists
 Digest: sha256:584d2109fa4f3f0cf25358828254dc5668882167634384ad68537a3069d31652
 Status: Downloaded newer image for php:7.4-apache
 
-
+javier@debian:~$ docker run -d --name pruebavolumendocker -v miweb:/var/www/html -p 8080:80 php:7.4-apache
+9b350c4f505b085d9633f8f46bb3a200266d4d09785c6311adae82daf1834403
 </pre>
 
 - **Utiliza el comando `docker cp` para copiar un fichero `info.php` en el directorio `/var/www/html`.**
 
 <pre>
-
+javier@debian:~$ docker cp info.php pruebavolumendocker:/var/www/html
 </pre>
 
 - **Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `info.php`.**
 
 <pre>
-
+javier@debian:~$ curl http://localhost:8080
 </pre>
 
 - **Borra el contenedor.**

@@ -13,6 +13,8 @@ Tags: Docker
 
 - **Crea un volumen docker que se llame `miweb`.**
 
+Creamos el nuevo volumen:
+
 <pre>
 javier@debian:~$ docker volume create miweb
 miweb
@@ -24,7 +26,11 @@ local               e1be424428521f02e06f73a92c2100b8cc42aaf813680bc3ee792c1353ae
 local               miweb
 </pre>
 
+Listo.
+
 - **Crea un contenedor desde la imagen `php:7.4-apache` donde montes en el directorio `/var/www/html`, (que sabemos que es el *document root* del servidor que nos ofrece esa imagen) el volumen docker que has creado.**
+
+Creamos el contenedor:
 
 <pre>
 javier@debian:~$ docker pull php:7.4-apache
@@ -49,29 +55,47 @@ javier@debian:~$ docker run -d --name pruebavolumendocker -v miweb:/var/www/html
 9b350c4f505b085d9633f8f46bb3a200266d4d09785c6311adae82daf1834403
 </pre>
 
+Listo.
+
 - **Utiliza el comando `docker cp` para copiar un fichero `info.php` en el directorio `/var/www/html`.**
+
+Copiamos el archivo `info.php`:
 
 <pre>
 javier@debian:~$ docker cp info.php pruebavolumendocker:/var/www/html
 </pre>
 
+Listo.
+
 - **Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `info.php`.**
+
+Nos dirigimos a la dirección `http://localhost:8080/info.php`:
 
 ![.](images/iaw_introducción_a_docker/info.php.png)
 
+Efectivamente podemos visualizar el fichero `info.php`.
+
 - **Borra el contenedor.**
+
+Eliminamos el contenedor:
 
 <pre>
 javier@debian:~$ docker rm -f pruebavolumendocker
 pruebavolumendocker
 </pre>
 
+Listo.
+
 - **Crea un nuevo contenedor y monta el mismo volumen como en el ejercicio anterior.**
+
+Creamos el contenedor:
 
 <pre>
 javier@debian:~$ docker run -d --name pruebavolumendocker2 -v miweb:/var/www/html -p 8080:80 php:7.4-apache
 4fe9ed47558cbc4e44c73c2d4507228828bf003048c137491df434ec6e3ca58c
 </pre>
+
+Listo.
 
 - **Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `info.php`. ¿Seguía existiendo ese fichero?**
 
@@ -85,44 +109,70 @@ Podemos ver que sí, ya que estamos utilizando el mismo volumen.
 
 - **Crea un directorio en tu *host* y dentro crea un fichero `index.html`.**
 
+Creamos el directorio y el fichero:
+
 <pre>
 javier@debian:~$ mkdir pruebadocker
 
 javier@debian:~$ nano pruebadocker/index.html
 </pre>
 
+Listo.
+
 - **Crea un contenedor desde la imagen `php:7.4-apache` donde montes en el directorio `/var/www/html` el directorio que has creado por medio de bind mount.**
+
+Creamos el contenedor:
 
 <pre>
 javier@debian:~$ docker run -d --name bindmount -v /home/javier/pruebadocker:/var/www/html -p 8080:80 php:7.4-apache
 6796f397cf0f9c1331778dc917caff72885bf3e594272d46e1fa65f3b58c686f
 </pre>
 
+Listo.
+
 - **Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `index.html`.**
+
+Nos dirigimos a la dirección `http://localhost:8080`:
 
 ![.](images/iaw_introducción_a_docker/bindmount1.png)
 
+Podemos visualizar la información.
+
 - **Modifica el contenido del fichero `index.html` en tu *host* y comprueba que al refrescar la página ofrecida por el contenedor, el contenido ha cambiado.**
+
+Modificamos el contenido del fichero `index.html`:
 
 <pre>
 javier@debian:~$ nano pruebadocker/index.html
 </pre>
 
+Nos dirigimos a la dirección `http://localhost:8080`:
+
 ![.](images/iaw_introducción_a_docker/bindmount2.png)
 
+Efectivamente ha cambiado el contenido.
+
 - **Borra el contenedor**
+
+Eliminamos el contenedor:
 
 <pre>
 javier@debian:~$ docker rm -f bindmount
 bindmount
 </pre>
 
+Listo.
+
 - **Crea un nuevo contenedor y monta el mismo directorio como en el ejercicio anterior.**
+
+Creamos el contenedor:
 
 <pre>
 javier@debian:~$ docker run -d --name bindmount2 -v /home/javier/pruebadocker:/var/www/html -p 8080:80 php:7.4-apache
 5a1d596d751ae93fb1acc99f32f830573e89652cfb5d3a4900cfc9c835ea2fdb
 </pre>
+
+Listo.
 
 - **Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `index.html`. ¿Se sigue viendo el mismo contenido?**
 
@@ -135,12 +185,16 @@ Al igual que en el ejercicio anterior, podemos ver que sí, ya que estamos utili
 
 - **Crea un contenedor desde la imagen *Nextcloud* (usando *sqlite*) configurando el almacenamiento como nos muestra la documentación de la imagen en *Docker Hub* (pero utilizando bind mount). Sube algún fichero.**
 
+Creamos el contenedor:
+
 <pre>
 javier@debian:~$ mkdir pruebadockernextcloud
 
 javier@debian:~$ docker run -d --name Nextcloud -v /home/javier/nextcloud:/var/www/html -p 8080:80 nextcloud
 1fd90edb9161d28a68c58799ddeea2c58ce0acec3e85663997baae9987709274
 </pre>
+
+Nos dirigimos a la dirección `http://localhost:8080`:
 
 ![.](images/iaw_introducción_a_docker/nextcloud.png)
 
@@ -151,6 +205,8 @@ Lo instalamos con una base de datos **sqlite** y una vez lo tengamos instalado, 
 Listo.
 
 - **Elimina el contenedor.**
+
+Eliminamos el contenedor:
 
 <pre>
 javier@debian:~$ docker rm -f Nextcloud

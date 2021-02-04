@@ -62,20 +62,23 @@ javier@debian:~$ docker cp info.php pruebavolumendocker:/var/www/html
 - **Borra el contenedor.**
 
 <pre>
-
+javier@debian:~$ docker rm -f pruebavolumendocker
+pruebavolumendocker
 </pre>
 
 - **Crea un nuevo contenedor y monta el mismo volumen como en el ejercicio anterior.**
 
 <pre>
-
+javier@debian:~$ docker run -d --name pruebavolumendocker2 -v miweb:/var/www/html -p 8080:80 php:7.4-apache
+4fe9ed47558cbc4e44c73c2d4507228828bf003048c137491df434ec6e3ca58c
 </pre>
 
 - **Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `info.php`. ¿Seguía existiendo ese fichero?**
 
-<pre>
+Podemos ver que sí, ya que estamos utilizando el mismo volumen.
 
-</pre>
+![.](images/iaw_introducción_a_docker/info.php2.png)
+
 
 
 #### 2. Vamos a trabajar con bind mount:

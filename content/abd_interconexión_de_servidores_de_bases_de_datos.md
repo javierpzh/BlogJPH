@@ -426,11 +426,23 @@ Hecho esto, procederemos a editar el fichero de configuración de ambos servidor
 listen_addresses = '*'
 </pre>
 
+Como segunda modificación, que también debe realizarse en ambos servidores, tenemos que dirigirnos al fichero `/etc/postgresql/XXX/main/pg_hba.conf` y buscar la siguiente línea:
 
+<pre>
+host    all             all             127.0.0.1/32            md5
+</pre>
 
+Esta línea actualmente define que no se permita la conexión remota, ya que por defecto solo escucha peticiones de *localhost*. Por tanto cambiamos este valor y la línea queda de esta manera:
 
+<pre>
+host    all             all             0.0.0.0/0            md5
+</pre>
 
+Realizados los cambios, vamos a reiniciar los servicios de los dos servidores para así aplicar los nuevos cambios:
 
+<pre>
+systemctl restart postgresql
+</pre>
 
 
 

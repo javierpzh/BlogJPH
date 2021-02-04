@@ -85,15 +85,25 @@ Podemos ver que sí, ya que estamos utilizando el mismo volumen.
 
 - **Crea un directorio en tu *host* y dentro crea un fichero `index.html`.**
 
+<pre>
+javier@debian:~$ mkdir pruebadocker
 
+javier@debian:~$ nano pruebadocker/index.html
+
+javier@debian:~$ cat pruebadocker/index.html
+<h1>Esto es una prueba con volumenes Docker</h1>
+</pre>
 
 - **Crea un contenedor desde la imagen `php:7.4-apache` donde montes en el directorio `/var/www/html` el directorio que has creado por medio de bind mount.**
 
-
+<pre>
+javier@debian:~$ docker run -d --name bindmount -v /home/javier/pruebadocker:/var/www/html -p 8080:80 php:7.4-apache
+6796f397cf0f9c1331778dc917caff72885bf3e594272d46e1fa65f3b58c686f
+</pre>
 
 - **Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `index.html`.**
 
-
+![.](images/iaw_introducción_a_docker/bindmount1.png)
 
 - **Modifica el contenido del fichero `index.html` en tu *host* y comprueba que al refrescar la página ofrecida por el contenedor, el contenido ha cambiado.**
 

@@ -112,22 +112,32 @@ javier@debian:~$ nano pruebadocker/index.html
 
 - **Borra el contenedor**
 
-
+<pre>
+javier@debian:~$ docker rm -f bindmount
+bindmount
+</pre>
 
 - **Crea un nuevo contenedor y monta el mismo directorio como en el ejercicio anterior.**
 
-
+<pre>
+javier@debian:~$ docker run -d --name bindmount2 -v /home/javier/pruebadocker:/var/www/html -p 8080:80 php:7.4-apache
+5a1d596d751ae93fb1acc99f32f830573e89652cfb5d3a4900cfc9c835ea2fdb
+</pre>
 
 - **Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `index.html`. ¿Se sigue viendo el mismo contenido?**
 
+Al igual que en el ejercicio anterior, podemos ver que sí, ya que estamos utilizando el mismo volumen.
 
+![.](images/iaw_introducción_a_docker/bindmount2.png)
 
 
 ####Contenedores con almacenamiento persistente
 
 - **Crea un contenedor desde la imagen *Nextcloud* (usando *sqlite*) configurando el almacenamiento como nos muestra la documentación de la imagen en *Docker Hub* (pero utilizando bind mount). Sube algún fichero.**
 
+<pre>
 
+</pre>
 
 - **Elimina el contenedor.**
 

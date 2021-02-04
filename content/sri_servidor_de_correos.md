@@ -1,5 +1,5 @@
 Title: Servidor de correos
-Date: 2021/01/21
+Date: 2021/02/05
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Correos, postfix, dovecot, imap, imaps, SMTPS
@@ -255,33 +255,33 @@ Efectivamente, también hemos recibido el correo en la dirección *reyole111@gma
 
 #### Para asegurar el envío
 
-- **Tarea 4 (No obligatoria): Configura de manera adecuada DKIM es tu sistema de correos. Comprueba el registro DKIM en la página https://mxtoolbox.com/dkim.aspx. Configura `postfix` para que firme los correos que envía. Manda un correo y comprueba la verificación de las firmas en ellos.**
+- **Tarea 4 (No obligatoria): Configura de manera adecuada DKIM en tu sistema de correos. Comprueba el registro DKIM en la página [https://mxtoolbox.com/dkim.aspx](https://mxtoolbox.com/dkim.aspx). Configura `postfix` para que firme los correos que envía. Manda un correo y comprueba la verificación de las firmas en ellos.**
 
 
 
 
 #### Para luchar contra el SPAM
 
-- **Tarea 5 (No obligatorio): Configura de manera adecuada `Postfix` para que tenga en cuenta el registro SPF de los correos que recibe. Muestra el *log* del correo para comprobar que se está haciendo el testeo del registro SPF.**
+- **Tarea 5 (No obligatoria): Vamos a configurar `Postfix` para que tenga en cuenta el registro *SPF* de los correos que recibe. Mostraremos el *log* del correo para comprobar que se está haciendo el *testeo* del registro *SPF*.**
 
 
 
-- **Tarea 6 (No obligatoria): Configura un sistema antispam. Realiza comprobaciones para comprobarlo.**
+- **Tarea 6 (No obligatoria): Vamos a configurar un sistema *antispam*. Realizaremos comprobaciones para comprobarlo.**
 
 
 
-- **Tarea 7 (No obligatoria): Configura un sistema antivirus. Realiza comprobaciones para comprobarlo.**
+- **Tarea 7 (No obligatoria): Vamos a configurar un sistema antivirus. Realizaremos comprobaciones para comprobarlo.**
 
 
 
 
 #### Gestión de correos desde un cliente
 
-- **Tarea 8: Configura el buzón de los usuarios de tipo `Maildir`. Envía un correo a tu usuario y comprueba que el correo se ha guardado en el buzón `Maildir` del usuario del sistema correspondiente. Recuerda que ese tipo de buzón no se puede leer con la utilidad `mail`.**
+- **Tarea 8: Vamos a configurar el buzón de los usuarios de tipo `Maildir`. Envía un correo a tu usuario y comprueba que el correo se ha guardado en el buzón `Maildir` del usuario del sistema correspondiente. Recuerda que ese tipo de buzón no se puede leer con la utilidad `mail`.**
 
 
 
-- **Tarea 9: Instala configura `dovecot` para ofrecer el protocolo `IMAP`. Configura `dovecot` de manera adecuada para ofrecer autentificación y cifrado. Para realizar el cifrado de la comunicación crea un certificado en LetsEncrypt para el dominio mail.iesgn15.es. Recuerda que para el ofrecer el cifrado tiene varias soluciones:**
+- **Tarea 9: Instalar y configurar `dovecot` para ofrecer el protocolo `IMAP`. Vamos a configurar `dovecot` para ofrecer autentificación y cifrado. Para realizar el cifrado de la comunicación crea un certificado en LetsEncrypt para el dominio `mail.iesgn15.es`. Recuerda que para el ofrecer el cifrado tiene varias soluciones:**
 
     - IMAP con STARTTLS: STARTTLS transforma una conexión insegura en una segura mediante el uso de SSL/TLS. Por lo tanto usando el mismo puerto 143/tcp tenemos cifrada la comunicación.
 

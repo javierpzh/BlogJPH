@@ -161,6 +161,17 @@ Listo.
 
 - **Crea un contenedor nuevo con la misma configuración de volúmenes. Comprueba que la información que teníamos (ficheros, usuaurio, …), sigue existiendo.**
 
+<pre>
+javier@debian:~$ docker run -d --name Nextcloud2 -v /home/javier/nextcloud:/var/www/html -p 8080:80 nextcloud
+b102fd06e36cba2e26db09414359892e3ad403a64715f7e4311cad460b2d7684
+</pre>
+
+![.](images/iaw_introducción_a_docker/nextcloud3.png)
+
+
+
+![.](images/iaw_introducción_a_docker/nextcloud4.png)
+
 
 
 - **Comprueba el contenido de directorio que se ha creado en el *host*.**

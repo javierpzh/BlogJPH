@@ -432,7 +432,7 @@ Como segunda modificación, que también debe realizarse en ambos servidores, te
 host    all             all             127.0.0.1/32            md5
 </pre>
 
-Esta línea actualmente define que no se permita la conexión remota, ya que por defecto solo escucha peticiones de *localhost*. Por tanto cambiamos este valor y la línea queda de esta manera:
+Esta línea actualmente define que no se permita la conexión remota, ya que por defecto solo escucha peticiones de *localhost*. Por tanto cambiamos este valor, en mi caso especifico que escuche peticiones desde cualquier interfaz, y la línea queda de esta manera:
 
 <pre>
 host    all             all             0.0.0.0/0            md5

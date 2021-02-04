@@ -13,31 +13,70 @@ Tags: Docker
 
 - **Crea un volumen docker que se llame `miweb`.**
 
+<pre>
+javier@debian:~$ docker volume create miweb
+miweb
+
+javier@debian:~$ docker volume ls
+DRIVER              VOLUME NAME
+local               051b59979e0527c228be360c9b7568856a8cf37b16b9ce415f3e5fa48b812891
+local               e1be424428521f02e06f73a92c2100b8cc42aaf813680bc3ee792c1353ae3abf
+local               miweb
+</pre>
+
+- **Crea un contenedor desde la imagen `php:7.4-apache` donde montes en el directorio `/var/www/html`, (que sabemos que es el *document root* del servidor que nos ofrece esa imagen) el volumen docker que has creado.**
+
+<pre>
+javier@debian:~$ docker pull php:7.4-apache
+7.4-apache: Pulling from library/php
+a076a628af6f: Already exists
+02bab8795938: Already exists
+657d9d2c68b9: Already exists
+f47b5ee58e91: Already exists
+2b62153f094c: Already exists
+60b09083723b: Already exists
+1701d4d0a478: Already exists
+bae0c4dc63ea: Already exists
+a1c05958a901: Already exists
+5964d339be93: Already exists
+1319bb6aacaa: Already exists
+71860efe761d: Already exists
+c5a84dbdd6a5: Already exists
+Digest: sha256:584d2109fa4f3f0cf25358828254dc5668882167634384ad68537a3069d31652
+Status: Downloaded newer image for php:7.4-apache
 
 
-- **Crea un contenedor desde la imagen `php:7.4-apache` donde montes en el directorio `/var/www/html` (que sabemos que es el *document root* del servidor que nos ofrece esa imagen) el volumen docker que has creado.**
-
-
+</pre>
 
 - **Utiliza el comando `docker cp` para copiar un fichero `info.php` en el directorio `/var/www/html`.**
 
+<pre>
 
+</pre>
 
 - **Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `info.php`.**
 
+<pre>
 
+</pre>
 
 - **Borra el contenedor.**
 
+<pre>
 
+</pre>
 
 - **Crea un nuevo contenedor y monta el mismo volumen como en el ejercicio anterior.**
 
+<pre>
 
+</pre>
 
 - **Accede al contenedor desde el navegador para ver la información ofrecida por el fichero `info.php`. ¿Seguía existiendo ese fichero?**
 
+<pre>
 
+</pre>
 
 
 #### 2. Vamos a trabajar con bind mount:

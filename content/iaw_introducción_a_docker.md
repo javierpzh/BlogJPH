@@ -161,18 +161,22 @@ Listo.
 
 - **Crea un contenedor nuevo con la misma configuración de volúmenes. Comprueba que la información que teníamos (ficheros, usuaurio, …), sigue existiendo.**
 
+Creamos e nuevo contenedor llamado **Nextcloud2**:
+
 <pre>
 javier@debian:~$ docker run -d --name Nextcloud2 -v /home/javier/nextcloud:/var/www/html -p 8080:80 nextcloud
 b102fd06e36cba2e26db09414359892e3ad403a64715f7e4311cad460b2d7684
 </pre>
 
+Nos dirigimos a la dirección `http://localhost:8080`:
+
 ![.](images/iaw_introducción_a_docker/nextcloud3.png)
 
-
+Podemos ver como esta vez no nos pide instalar la aplicación, sino que directamente nos pide que iniciemos sesión. Iniciamos sesión con el usuario creado anteriormente y visualizamos los archivos:
 
 ![.](images/iaw_introducción_a_docker/nextcloud4.png)
 
-
+Efectivamente se encuentra el logo que hemos subido en el anterior contenedor, por lo que no hemos perdido la información al eliminar el contenedor.
 
 - **Comprueba el contenido de directorio que se ha creado en el *host*.**
 

@@ -725,7 +725,11 @@ nft add rule inet filter input iifname "eth0" tcp sport 9101 ct state establishe
 
 
 
+nft add chain inet filter input { policy accept \;}
 
+nft add chain inet filter output { policy accept \;}
+
+nft add chain inet filter forward { policy accept \;}
 
 
 

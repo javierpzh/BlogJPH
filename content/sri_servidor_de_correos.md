@@ -257,6 +257,21 @@ Efectivamente, también hemos recibido el correo en la dirección *reyole111@gma
 
 - **Tarea 4 (No obligatoria): Vamos a configurar *DKIM* en nuestro sistema de correos. Comprobaremos el registro *DKIM* en la página [https://mxtoolbox.com/dkim.aspx](https://mxtoolbox.com/dkim.aspx). Configuraremos `Postfix` para que firme los correos que envíe. Mandaremos un correo y comprobaremos la verificación de las firmas en ellos.**
 
+--------------------------------------------------------------------------------
+
+Si queremos que los correos enviados desde nuestro servidor *Postfix* salgan firmados, debemos instalar y configurar **DKIM**.
+
+Y para trabajar con *DKIM* es necesario instalar los siguientes paquetes:
+
+<pre>
+apt install opendkim opendkim-tools -y
+</pre>
+
+Una vez instalados, nos dirigimos al fichero de configuración de *DKIM*, que es el llamado `/etc/opendkim.conf`.
+
+--------------------------------------------------------------------------------
+
+
 
 
 
@@ -279,9 +294,52 @@ Efectivamente, también hemos recibido el correo en la dirección *reyole111@gma
 
 - **Tarea 8: Vamos a configurar el buzón de los usuarios de tipo `Maildir`. Envía un correo a tu usuario y comprueba que el correo se ha guardado en el buzón `Maildir` del usuario del sistema correspondiente. Recuerda que ese tipo de buzón no se puede leer con la utilidad `mail`.**
 
+Como ya sabemos, por defecto al instalar *Postfix*, estaremos utilizando el formato **mbox** para almacenar los correos electrónicos, pero, ¿como hacemos para cambiar al formato **Maildir**?
+
+Primeramente vamos a ver que diferencias encontramos entre los dos.
+
+- **mbox:** guarda todos los mensajes en un solo archivo.
+
+- **Maildir:** utiliza un directorio, con subdirectorios, para guardar los mensajes en ficheros individuales.
+
+Explicado esto, vamos a proceder a configurar *Postfix* para que empiece a utilizar el formato *Maildir*.
+
+En primer lugar, nos dirigimos al fichero `/etc/postfix/main.cf` y 
 
 
-- **Tarea 9: Instalar y configurar `dovecot` para ofrecer el protocolo `IMAP`. Vamos a configurar `dovecot` para ofrecer autentificación y cifrado. Para realizar el cifrado de la comunicación crea un certificado en LetsEncrypt para el dominio `mail.iesgn15.es`. Recuerda que para el ofrecer el cifrado tiene varias soluciones:**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- **Tarea 9: Instalar y configurar `dovecot` para ofrecer el protocolo `IMAP`. Vamos a configurar `dovecot` para ofrecer autentificación y cifrado. Para realizar el cifrado de la comunicación crea un certificado en *LetsEncrypt* para el dominio `mail.iesgn15.es`. Recuerda que para el ofrecer el cifrado tiene varias soluciones:**
 
     - IMAP con STARTTLS: STARTTLS transforma una conexión insegura en una segura mediante el uso de SSL/TLS. Por lo tanto usando el mismo puerto 143/tcp tenemos cifrada la comunicación.
 

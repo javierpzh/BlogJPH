@@ -247,7 +247,7 @@ Para configurar el servicio *Nagios NRPE* editaremos su archivo de configuració
 En *Dulcinea*, *Sancho* y *Freston*:
 
 <pre>
-
+allowed_hosts=127.0.0.1,::1,10.0.2.6
 </pre>
 
 En la máquina de *OVH*:

@@ -102,6 +102,76 @@ Accedemos a la carpeta y llevaremos a cabo la instalación mediantes los siguien
 [root@quijote nagios-4.4.6]# make all
 </pre>
 
+La instalación de *Nagios* está repartida en una serie de objetos distintos, que veremos a continuación.
+
+Comenzaremos creando el usuario y el grupo que utilizará el servicio *Nagios* en nuestro sistema:
+
+<pre>
+make install-groups-users
+</pre>
+
+Seguimos con la instalación de los archivos de *Nagios*:
+
+<pre>
+make install
+</pre>
+
+Ahora pasaremos con los archivos de configuración necesarias para nuestro futuro panel de administración web:
+
+<pre>
+make install-webconf
+</pre>
+
+archivos de configuración de *Nagios*:
+
+<pre>
+make install-config
+</pre>
+
+Instalamos los *scripts* del servicio:
+
+<pre>
+make install-init
+</pre>
+
+Instalamos y habilitamos el servicio de *Nagios*:
+
+<pre>
+make install-daemoninit
+</pre>
+
+Configuramos el directorio para comandos externos:
+
+<pre>
+make install-commandmode
+</pre>
+
+Para poder acceder a *Nagios*, debemos crear el usuario administrador, en mi caso, **nagiosadmin**:
+
+<pre>
+[root@quijote ~]# htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+New password:
+Re-type new password:
+Adding password for user nagiosadmin
+</pre>
+
+Introducida la contraseña, habremos terminado.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

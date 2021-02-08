@@ -1,5 +1,5 @@
 Title: Introducción a Docker
-Date: 2021/02/04
+Date: 2021/02/08
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: Docker
@@ -246,3 +246,62 @@ AUTHORS   COPYING      custom_apps  index.php   ocm-provider  public.php    robo
 </pre>
 
 Podemos ver como efectivamente se encuentran todos los datos de la web.
+
+
+## Redes
+
+
+- **Ejecuta una instrucción docker para visualizar el contenido del fichero `wp-config.php` y verifica que los parámetros de conexión a la base de datos son los mismo que los indicados en las variables de entorno.**
+
+
+
+- **Ejecuta una instrucción docker para comprobar que desde el *servidor_wp* podemos hacer *ping* usando el nombre *servidor_mysql*. (Tendrás que instalar el paquete `iputils-ping` en el contenedor).**
+
+
+
+- **Visualiza el fichero `/etc/mysql/mariadb.conf.d/50-server.cnf` del contenedor con la base de datos y comprueba cómo está configurado el parámetro `bind-address`.**
+
+
+
+- **Instala otro CMS PHP siguiendo la documentación de [Docker Hub](https://hub.docker.com/) de la aplicación seleccionada.**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

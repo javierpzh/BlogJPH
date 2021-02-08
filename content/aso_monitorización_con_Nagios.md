@@ -363,7 +363,7 @@ define host {
 }
 </pre>
 
-
+A continuación añadiremos otros para definir los distintos servicios que queremos supervisar, obviamente el cliente nos lo debe permitir en su configuración.
 
 
 

@@ -175,6 +175,15 @@ dnf install perl perl-CGI
 systemctl restart httpd
 </pre>
 
+Nos aseguramos que el módulo CGI se encuentre cargado en *Apache*:
+
+<pre>
+[root@quijote ~]# apachectl -t -D DUMP_MODULES | grep 'cgi'
+ proxy_fcgi_module (shared)
+ proxy_scgi_module (shared)
+ cgid_module (shared)
+</pre>
+
 Si nos dirigimos a nuestra dirección web */nagios*, según esté configurado en nuestro servidor web, en mi caso `www.javierpzh.gonzalonazareno.org/nagios` nos aparecerá esta ventana:
 
 ![.](images/aso_monitorización_con_Nagios/nagiosautentificacion.png)

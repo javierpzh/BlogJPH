@@ -196,7 +196,7 @@ Vemos como podemos acceder al panel de administración de *Nagios*, por lo que h
 
 ## Configuración en los clientes
 
-Ya tenemos instalado *Nagios* en el servidor y ya estamos monitorizando los servicios que se encuentran en él, pero además de los servicios de esa máquina, queremos monitorizar los servicios de las máquinas *Dulcinea*, *Sancho*, *Freston* y nuestra VPS, la máquina de *OVH*.
+Ya tenemos instalado *Nagios* en el servidor y ya estamos monitorizando los servicios que se encuentran en él, pero además de los servicios de esa máquina, queremos monitorizar los servicios de las máquinas **Dulcinea**, **Sancho**, **Freston** y nuestra *VPS*, la máquina de **OVH**.
 
 Para ello debemos llevar a cabo la instalación de **Nagios NRPE**. Descargaremos *Nagios NRPE* tanto en la parte del servidor, como en los clientes, ya que el mismo paquete contiene, tanto el servicio *Nagios NRPE* para las máquinas remotas, como el *plugin NRPE* para el servidor *Nagios Core*.
 

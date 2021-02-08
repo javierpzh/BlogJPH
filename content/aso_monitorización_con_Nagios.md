@@ -194,11 +194,11 @@ Si introducimos el usuario y la contraseña que hemos creado anteriormente:
 
 Vemos como podemos acceder al panel de administración de *Nagios*, por lo que habríamos finalizado la instalación de *Nagios* en nuestro sistema.
 
-## Configuración en los clientes
+## Instalación en los clientes
 
 Ya tenemos instalado *Nagios* en el servidor y ya estamos monitorizando los servicios que se encuentran en él, pero además de los servicios de esa máquina, queremos monitorizar los servicios de las máquinas **Dulcinea**, **Sancho**, **Freston** y nuestra *VPS*, la máquina de **OVH**.
 
-Para ello debemos llevar a cabo la instalación de **Nagios NRPE**. Descargaremos *Nagios NRPE* tanto en la parte del servidor, como en los clientes, ya que el mismo paquete contiene, tanto el servicio *Nagios NRPE* para las máquinas remotas, como el *plugin NRPE* para el servidor *Nagios Core*.
+Para ello debemos llevar a cabo la instalación de **Nagios NRPE**. Descargaremos *Nagios NRPE* tanto en la parte del servidor, como en los clientes, ya que el mismo paquete contiene, tanto el servicio *Nagios NRPE* para las máquinas remotas, como el *plugin NRPE* para el servidor *Nagios Core*. En mi caso, mostraré tan solo la instalación en *Quijote*, ya que en todas las máquinas es de la misma manera.
 
 La descarga la llevaremos a cabo desde su [sitio web](https://github.com/NagiosEnterprises/nrpe/releases). Al igual que antes, dejo [aquí](images/aso_monitorización_con_Nagios/nrpe-4.0.3.zip) la última versión disponible a día de hoy, que es la 4.0.3.
 
@@ -211,6 +211,56 @@ Una vez descargado, lo descomprimimos:
 <pre>
 unzip nrpe-4.0.3.zip
 </pre>
+
+El proceso es similar al anterior. Empezaremos por configurar la compilación:
+
+<pre>
+[root@quijote nrpe-4.0.3]# ./configure
+</pre>
+
+Y compilamos:
+
+<pre>
+[root@quijote nrpe-4.0.3]# make nrpe
+</pre>
+
+Terminada la compilación instalamos los binarios, archivos de configuración, *scripts*, ... :
+
+<pre>
+[root@quijote nrpe-4.0.3]# make install-groups-users install-daemon install-config install-init
+</pre>
+
+Con esto habríamos terminado la instalación de *Nagios NRPE* y para finalizar, iniciaremos su servicio y lo habilitaremos en cada arranque:
+
+<pre>
+[root@quijote nrpe-4.0.3]# systemctl start nrpe
+
+[root@quijote nrpe-4.0.3]# systemctl enable nrpe
+</pre>
+
+Listo.
+
+## Configuración en los clientes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

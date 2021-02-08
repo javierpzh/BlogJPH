@@ -20,7 +20,7 @@ Detalla en la documentación claramente las características de la implementaci�
 
 Cuenta con una extensa, sólida y organizada comunidad de soporte que ofrece de modo gratuito *addons* y *plugins* para extender sus funcionalidades a través de **Nagios Exchange**, información de fondo y ayuda a través de **Nagios Community** e información técnica a través de **Nagios Wiki**.
 
-#### Características principales
+## Características principales
 
 - Monitorización de servicios de red como: SMTP, POP3, HTTP, SNMP, ...
 
@@ -47,6 +47,39 @@ Las alertas que genera pueden ser recibidas por correo electrónico y mensajes S
 Así luce el panel web de *Nagios*:
 
 ![.](images/aso_monitrozicación_con_Nagios/nagios.png)
+
+
+## Instalación
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

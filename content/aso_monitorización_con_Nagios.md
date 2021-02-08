@@ -81,7 +81,7 @@ dnf install gcc make unzip wget
 
 Hecha la introducción, es el momento de empezar con la propia instalación en sí.
 
-
+Para descargar *Nagios* nos dirigiremos a su [sitio web](https://github.com/NagiosEnterprises/nagioscore/releases)
 
 
 

@@ -63,7 +63,7 @@ Explicado esto, vamos a proceder con la instalación de nuestro sistema de monit
 
 En mi caso, voy a llevar a cabo la instalación de *Nagios* en la máquina **Quijote**, es decir, que ésta será el servidor principal. Hay que recordar que *Quijote* consta de un sistemas *CentOS 8*.
 
-He decidido escoger como servidor este equipo principalmente porque *Nagios* necesita un servidor web para poder acceder a su panel de administración web, y esto es algo que me interesa ya que, es en esta máquina donde se encuentra instalado el servidor web de mi escenario. No queda solo ahí, ya que nuestro servidor web, en mi caso, *Apache*, tiene que ser capaz de ejecutar código PHP. Si no dispones de estos requisitos, puedes visitar el tercer artículo *indexado* anteriomente, donde llevo a cabo la instalación de estos requisitos.
+He decidido escoger como servidor este equipo principalmente porque *Nagios* necesita un servidor web para poder acceder a su panel de administración web, y esto es algo que me interesa ya que, es en esta máquina donde se encuentra instalado el servidor web de mi escenario. No queda solo ahí, ya que nuestro servidor web, en mi caso, *Apache*, tiene que ser capaz de ejecutar código PHP. Si no dispones de estos requisitos, puedes visitar el tercer artículo *indexado* anteriormente, donde llevo a cabo la instalación de estos requisitos.
 
 Para seguir con la instalación necesitamos tener instalados los siguientes paquetes.
 
@@ -157,8 +157,35 @@ Adding password for user nagiosadmin
 
 Introducida la contraseña, habremos terminado.
 
+Llegó el turno de activar el módulo CGI de *Apache*.
 
+En *Debian/Ubuntu*:
 
+<pre>
+a2enmod cgi
+
+systemctl restart apache2
+</pre>
+
+En *CentOS*:
+
+<pre>
+dnf install perl perl-CGI
+
+systemctl restart httpd
+</pre>
+
+Si nos dirigimos a nuestra dirección web */nagios*, según esté configurado en nuestro servidor web, en mi caso `www.javierpzh.gonzalonazareno.org/nagios` nos aparecerá esta ventana:
+
+![.](images/aso_monitorización_con_Nagios/nagiosautentificacion.png)
+
+Si introducimos el usuario y la contraseña que hemos creado anteriormente:
+
+![.](images/aso_monitorización_con_Nagios/nagiospanel1.png)
+
+Vemos como podemos acceder al panel de administración de *Nagios*, por lo que habríamos finalizado la instalación de *Nagios* en nuestro sistema.
+
+## Configuración en los clientes
 
 
 

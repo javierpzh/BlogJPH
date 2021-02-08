@@ -61,6 +61,26 @@ He hecho más tareas sobre este escenario, las puedes encontrar todas [aquí](ht
 
 Explicado esto, vamos a proceder con la instalación de nuestro sistema de monitorización.
 
+En mi caso, voy a llevar a cabo la instalación de *Nagios* en la máquina **Quijote**, es decir, que ésta será el servidor principal. Hay que recordar que *Quijote* consta de un sistemas *CentOS 8*.
+
+He decidido escoger como servidor este equipo principalmente porque *Nagios* necesita un servidor web para poder acceder a su panel de administración web, y esto es algo que me interesa ya que, es en esta máquina donde se encuentra instalado el servidor web de mi escenario. No queda solo ahí, ya que nuestro servidor web, en mi caso, *Apache*, tiene que ser capaz de ejecutar código PHP. Si no dispones de estos requisitos, puedes visitar el tercer artículo *indexado* anteriomente, donde llevo a cabo la instalación de estos requisitos.
+
+Para seguir con la instalación necesitamos tener instalados los siguientes paquetes.
+
+En *Debian/Ubuntu*:
+
+<pre>
+apt install gcc make unzip wget
+</pre>
+
+En *CentOS*:
+
+<pre>
+dnf install gcc make unzip wget
+</pre>
+
+Hecha la introducción, es el momento de empezar con la propia instalación en sí.
+
 
 
 

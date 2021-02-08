@@ -93,7 +93,14 @@ Una vez descargado, lo descomprimimos:
 tar xf nagios-4.4.6.tar.gz
 </pre>
 
+Accedemos a la carpeta y llevaremos a cabo la instalación mediantes los siguientes comandos. El primero para configurar la instalación y el segundo para compilar los *plugins*:
 
+<pre>
+[root@quijote nagios-4.4.6]# ./configure
+...
+
+[root@quijote nagios-4.4.6]# make all
+</pre>
 
 
 

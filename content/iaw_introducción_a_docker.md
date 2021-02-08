@@ -250,6 +250,69 @@ Podemos ver como efectivamente se encuentran todos los datos de la web.
 
 ## Redes
 
+#### Instalación de WordPress
+
+Para la instalación de WordPress necesitamos dos contenedores: la base de datos (imagen *mariadb*) y el servidor web con la aplicación (imagen *wordpress*). Los dos contenedores tienen que estar en la misma red y deben tener acceso por nombres (resolución DNS), ya que en un principio no sabemos que IP va a poseer cada contenedor. Por lo tanto vamos a crear los contenedores en la misma red:
+
+<pre>
+docker network create red_wp
+</pre>
+
+Siguiendo la documentación de la imagen *mariadb* y la imagen *wordpress* podemos ejecutar los siguientes comandos para crear los dos contenedores:
+
+<pre>
+docker run -d --name servidor_mysql \
+           --network red_wp \
+           -v /opt/mysql_wp:/var/lib/mysql \
+           -e MYSQL_DATABASE=bd_wp \
+           -e MYSQL_USER=user_wp \
+           -e MYSQL_PASSWORD=asdasd \
+           -e MYSQL_ROOT_PASSWORD=asdasd \
+           mariadb
+
+
+docker run -d --name servidor_wp \
+             --network red_wp \
+             -v /opt/wordpress:/var/www/html/wp-content \
+             -e WORDPRESS_DB_HOST=servidor_mysql \
+             -e WORDPRESS_DB_USER=user_wp \
+             -e WORDPRESS_DB_PASSWORD=asdasd \
+             -e WORDPRESS_DB_NAME=bd_wp \
+             -p 80:80  
+             wordpress
+
+
+docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                NAMES
+5b2c5a82a524        wordpress           "docker-entrypoint.s…"   9 minutes ago       Up 9 minutes        0.0.0.0:80->80/tcp   servidor_wp
+f70f22aed3d1        mariadb             "docker-entrypoint.s…"   9 minutes ago       Up 9 minutes        3306/tcp             servidor_mysql
+</pre>
+
+Algunas observaciones:
+
+- El contenedor *servidor_mysql* ejecuta un *script* `docker-entrypoint.sh` que es el encargado, a partir de las variables de entorno, de configurar la base de datos: crea un usuario, crea la base de datos, cambia la contraseña del usuario *root*, ... y termina ejecutando el servidor *mariadb*.
+
+- Al crear la imagen *mariadb* han tenido en cuenta de que tiene que permitir la conexión desde otra máquina, por lo que en la configuración tenemos comentado el parámetro `bind-address`.
+
+- Del mismo modo, el contenedor *servidor_wp* ejecuta un *script* `docker-entrypoint.sh`, que entre otras cosas, a partir de las variables de entorno, ha creado el fichero `wp-config.php` de *wordpress*, por lo que durante la instalación no nos pedirá las credenciales de la base de datos.
+
+- Si nos fijamos, la variable de entorno `WORDPRESS_DB_HOST` la hemos inicializado al nombre del servidor de base de datos. Como ambos contenedores están conectados a la misma red definida por el usuario, el contenedor *wordpress* al intentar acceder al nombre *servidor_mysql*, estará accediendo al contenedor de la base de datos.
+
+- Al servicio al que vamos a acceder desde el exterior es al servidor web, es por lo que hemos mapeado los puertos con la opción `-p`. Sin embargo en el contenedor de la base de datos no es necesario mapear los puertos porque no vamos a acceder a ella desde el exterior. Sin embargo, el contenedor *servidor_wp* puede acceder al puerto 3306 del *servidor_mysql* sin problemas ya que están conectados a la misma red.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 - **Ejecuta una instrucción docker para visualizar el contenido del fichero `wp-config.php` y verifica que los parámetros de conexión a la base de datos son los mismo que los indicados en las variables de entorno.**
 

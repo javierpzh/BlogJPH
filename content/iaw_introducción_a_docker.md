@@ -284,10 +284,10 @@ docker run -d --name servidor_wp \
 
 ...
 
-docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                NAMES
-5b2c5a82a524        wordpress           "docker-entrypoint.s…"   9 minutes ago       Up 9 minutes        0.0.0.0:80->80/tcp   servidor_wp
-f70f22aed3d1        mariadb             "docker-entrypoint.s…"   9 minutes ago       Up 9 minutes        3306/tcp             servidor_mysql
+javier@debian:~$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                NAMES
+454c7149baba        wordpress           "docker-entrypoint.s…"   8 seconds ago        Up 7 seconds        0.0.0.0:80->80/tcp   servidor_wp
+1923a8dc9f48        mariadb             "docker-entrypoint.s…"   About a minute ago   Up About a minute   3306/tcp             servidor_mysql
 </pre>
 
 Algunas observaciones:
@@ -306,6 +306,35 @@ Algunas observaciones:
 #### Ejercicios
 
 - **Ejecuta una instrucción docker para visualizar el contenido del fichero `wp-config.php` y verifica que los parámetros de conexión a la base de datos son los mismo que los indicados en las variables de entorno.**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

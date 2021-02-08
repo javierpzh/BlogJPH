@@ -81,7 +81,7 @@ dnf install gcc make unzip wget
 
 Hecha la introducción, es el momento de empezar con la propia instalación en sí.
 
-Para descargar *Nagios* nos dirigiremos a su [sitio web](https://github.com/NagiosEnterprises/nagioscore/releases) y copiaremos el enlace del archivo `.tar.gz`, para posteriormente descargarlo en nuestro sistema mediante la herramienta `wget`. En mi caso, cuando estoy escribiendo este *post*, la última versión disponible es la 4.4.6. Puedes descargarlo desde [aquí](images/aso_monitorización_con_Nagios/nagios-4.4.6.zip)
+Para descargar *Nagios Core* nos dirigiremos a su [sitio web](https://github.com/NagiosEnterprises/nagioscore/releases) y copiaremos el enlace del archivo `.tar.gz`, para posteriormente descargarlo en nuestro sistema mediante la herramienta `wget`. En mi caso, cuando estoy escribiendo este *post*, la última versión disponible es la 4.4.6. Puedes descargarlo desde [aquí](images/aso_monitorización_con_Nagios/nagios-4.4.6.zip).
 
 <pre>
 wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.4.6/nagios-4.4.6.tar.gz
@@ -200,7 +200,7 @@ Ya tenemos instalado *Nagios* en el servidor y ya estamos monitorizando los serv
 
 Para ello debemos llevar a cabo la instalación de **Nagios NRPE**. Descargaremos *Nagios NRPE* tanto en la parte del servidor, como en los clientes, ya que el mismo paquete contiene, tanto el servicio *Nagios NRPE* para las máquinas remotas, como el *plugin NRPE* para el servidor *Nagios Core*.
 
-
+La descarga la llevaremos a cabo desde su [sitio web](https://github.com/NagiosEnterprises/nrpe/releases). Al igual que antes, dejo [aquí](images/aso_monitorización_con_Nagios/nrpe-4.0.3.zip) la última versión disponible a día de hoy, que es la 4.0.3.
 
 
 

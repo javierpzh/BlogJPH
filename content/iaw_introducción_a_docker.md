@@ -296,9 +296,9 @@ Algunas observaciones:
 
 - Los creadores de la imagen *mariadb*, han tenido en cuenta que tiene que permitir la conexión desde otra máquina, por lo que, en su configuración, se encuentra descomentado el parámetro `bind-address`.
 
-- Del mismo modo, el contenedor *servidor_wp* ejecuta un *script* `docker-entrypoint.sh`, que entre otras cosas, a partir de las variables de entorno, ha creado el fichero `wp-config.php` de *wordpress*, por lo que durante la instalación no nos pedirá las credenciales de la base de datos.
+- Del mismo modo, el contenedor *servidor_wp* ejecuta un *script* `docker-entrypoint.sh`, que entre otras cosas, a partir de las variables de entorno, ha creado el fichero `wp-config.php` de *WordPress*, por lo que durante la instalación no nos pedirá las credenciales de la base de datos.
 
-- Si nos fijamos, la variable de entorno `WORDPRESS_DB_HOST` la hemos inicializado al nombre del servidor de base de datos. Como ambos contenedores están conectados a la misma red definida por el usuario, el contenedor *wordpress* al intentar acceder al nombre *servidor_mysql*, estará accediendo al contenedor de la base de datos.
+- Si nos fijamos, la variable de entorno `WORDPRESS_DB_HOST` la hemos inicializado al nombre del servidor de base de datos. Como ambos contenedores están conectados a la misma red definida por el usuario, el contenedor *WordPress* al intentar acceder al nombre *servidor_mysql*, estará accediendo al contenedor de la base de datos.
 
 - El servicio al que vamos a acceder desde el exterior es al servidor web, es por lo que hemos mapeado los puertos con la opción `-p`. Sin embargo, en el contenedor de la base de datos no es necesario mapear los puertos porque no vamos a acceder a ella desde el exterior. Eso sí, el contenedor *servidor_wp*, sí puede acceder al puerto 3306 del *servidor_mysql* sin problemas, ya que están conectados a la misma red.
 

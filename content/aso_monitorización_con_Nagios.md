@@ -271,10 +271,13 @@ Realizamos la instalación:
 [root@quijote nrpe-4.0.3]# make install-plugin
 </pre>
 
-Una vez terminada la instalación, vamos a añadir una configuración para el uso del comando en el fichero `commands.cfg`, que se encuentra en la ruta `/usr/local/nagios/etc/objects/commands.cfg`:
+Una vez terminada la instalación, vamos a añadir una configuración para el uso del comando en el fichero `commands.cfg`, que se encuentra en la ruta `/usr/local/nagios/etc/objects/commands.cfg`. Añadimos el siguiente bloque al final del fichero, para definir el comando para el *plugin NRPE*:
 
 <pre>
-
+define command {
+        command_name    check_nrpe
+        command_line    $USER1$/check_nrpe -H $HOSTADDRESS$ -c $ARG1$
+}
 </pre>
 
 

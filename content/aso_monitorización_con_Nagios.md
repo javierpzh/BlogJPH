@@ -256,7 +256,11 @@ En la máquina de *OVH*:
 
 </pre>
 
+Hecha esta modificación, tendremos que reiniciar el servicio para que se apliquen los cambios:
 
+<pre>
+systemctl restart nrpe
+</pre>
 
 
 

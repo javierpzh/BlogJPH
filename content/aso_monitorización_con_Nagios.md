@@ -286,6 +286,82 @@ Hecho esto, nos toca configurar el fichero `nagios.cfg`, que se encuentra en la 
 cfg_dir=/usr/local/nagios/etc/servers
 </pre>
 
+El subdirectorio `servers/` que acabamos de habilitar en la configuración no existe, así que lo creamos antes de continuar:
+
+<pre>
+mkdir /usr/local/nagios/etc/servers
+</pre>
+
+Dentro de éste, crearemos un archivo de configuración por cada cliente que deseemos monitorizar, en mi caso creo los siguientes ficheros:
+
+<pre>
+nano /usr/local/nagios/etc/servers/dulcinea.cfg
+
+nano /usr/local/nagios/etc/servers/sancho.cfg
+
+nano /usr/local/nagios/etc/servers/freston.cfg
+
+nano /usr/local/nagios/etc/servers/ovh.cfg
+</pre>
+
+El contenido de estos ficheros será el siguiente:
+
+<pre>
+# Dulcinea
+
+define host {
+        use                     linux-server
+        host_name               dulcinea
+        alias                   Debian 10 (remota)
+        address                 dulcinea
+        max_check_attempts      5
+        check_period            24x7
+        notification_interval   30
+        notification_period     24x7
+}
+
+
+# Sancho
+
+define host {
+        use                     linux-server
+        host_name               sancho
+        alias                   Ubuntu (remota)
+        address                 sancho
+        max_check_attempts      5
+        check_period            24x7
+        notification_interval   30
+        notification_period     24x7
+}
+
+
+# Freston
+
+define host {
+        use                     linux-server
+        host_name               freston
+        alias                   Debian 10 (remota)
+        address                 freston
+        max_check_attempts      5
+        check_period            24x7
+        notification_interval   30
+        notification_period     24x7
+}
+
+
+# OVH
+
+define host {
+        use                     linux-server
+        host_name               ovh
+        alias                   Debian 10 (remota)
+        address                 51.210.105.17
+        max_check_attempts      5
+        check_period            24x7
+        notification_interval   30
+        notification_period     24x7
+}
+</pre>
 
 
 

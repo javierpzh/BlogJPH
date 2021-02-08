@@ -307,44 +307,71 @@ Algunas observaciones:
 
 - **Ejecuta una instrucción docker para visualizar el contenido del fichero `wp-config.php` y verifica que los parámetros de conexión a la base de datos son los mismo que los indicados en las variables de entorno.**
 
+<pre>
+javier@debian:~$ docker exec servidor_wp cat wp-config.php
 
+...
 
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define( 'DB_NAME', 'bd_wp');
 
+/** MySQL database username */
+define( 'DB_USER', 'user_wp');
 
+/** MySQL database password */
+define( 'DB_PASSWORD', 'asdasd');
 
+/** MySQL hostname */
+define( 'DB_HOST', 'servidor_mysql');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+...
+</pre>
 
 
 
 - **Ejecuta una instrucción docker para comprobar que desde el *servidor_wp* podemos hacer *ping* usando el nombre *servidor_mysql*. (Tendrás que instalar el paquete `iputils-ping` en el contenedor).**
 
+<pre>
+javier@debian:~$ docker exec -it servidor_wp /bin/bash
+
+root@454c7149baba:/var/www/html# apt update
+...
+
+root@454c7149baba:/var/www/html# apt install iputils-ping
+...
+
+root@454c7149baba:/var/www/html# ping servidor_mysql
+PING servidor_mysql (172.18.0.2) 56(84) bytes of data.
+64 bytes from servidor_mysql.red_wp (172.18.0.2): icmp_seq=1 ttl=64 time=0.127 ms
+64 bytes from servidor_mysql.red_wp (172.18.0.2): icmp_seq=2 ttl=64 time=0.093 ms
+64 bytes from servidor_mysql.red_wp (172.18.0.2): icmp_seq=3 ttl=64 time=0.094 ms
+^C
+--- servidor_mysql ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 22ms
+rtt min/avg/max/mdev = 0.093/0.104/0.127/0.019 ms
+</pre>
+
+
+
+
+
+
+
 
 
 - **Visualiza el fichero `/etc/mysql/mariadb.conf.d/50-server.cnf` del contenedor con la base de datos y comprueba cómo está configurado el parámetro `bind-address`.**
 
+<pre>
+javier@debian:~$ docker exec servidor_mysql cat /etc/mysql/mariadb.conf.d/50-server.cnf
+...
 
+# Instead of skip-networking the default is now to listen only on
+# localhost which is more compatible and is not less secure.
+#bind-address            = 127.0.0.1
+
+...
+</pre>
 
 - **Instala otro CMS PHP siguiendo la documentación de [Docker Hub](https://hub.docker.com/) de la aplicación seleccionada.**
 

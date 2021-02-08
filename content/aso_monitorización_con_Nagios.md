@@ -84,13 +84,13 @@ Hecha la introducción, es el momento de empezar con la propia instalación en s
 Para descargar *Nagios Core* nos dirigiremos a su [sitio web](https://github.com/NagiosEnterprises/nagioscore/releases) y copiaremos el enlace del archivo `.tar.gz`, para posteriormente descargarlo en nuestro sistema mediante la herramienta `wget`. En mi caso, cuando estoy escribiendo este *post*, la última versión disponible es la 4.4.6. Puedes descargarlo desde [aquí](images/aso_monitorización_con_Nagios/nagios-4.4.6.zip).
 
 <pre>
-wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.4.6/nagios-4.4.6.tar.gz
+wget https://javierpzh.github.io/images/aso_monitorizaci%C3%B3n_con_Nagios/nagios-4.4.6.zip
 </pre>
 
 Una vez descargado, lo descomprimimos:
 
 <pre>
-tar xf nagios-4.4.6.tar.gz
+unzip nagios-4.4.6.zip
 </pre>
 
 Accedemos a la carpeta y llevaremos a cabo la instalación mediantes los siguientes comandos. El primero para configurar la instalación y el segundo para compilar los *plugins*:
@@ -202,9 +202,15 @@ Para ello debemos llevar a cabo la instalación de **Nagios NRPE**. Descargaremo
 
 La descarga la llevaremos a cabo desde su [sitio web](https://github.com/NagiosEnterprises/nrpe/releases). Al igual que antes, dejo [aquí](images/aso_monitorización_con_Nagios/nrpe-4.0.3.zip) la última versión disponible a día de hoy, que es la 4.0.3.
 
+<pre>
+wget https://javierpzh.github.io/images/aso_monitorizaci%C3%B3n_con_Nagios/nrpe-4.0.3.zip
+</pre>
 
+Una vez descargado, lo descomprimimos:
 
-
+<pre>
+unzip nrpe-4.0.3.zip
+</pre>
 
 
 

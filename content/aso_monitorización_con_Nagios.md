@@ -233,14 +233,16 @@ Terminada la compilación instalamos los binarios, archivos de configuración, *
 Con esto habríamos terminado la instalación de *Nagios NRPE* y para finalizar, iniciaremos su servicio y lo habilitaremos en cada arranque:
 
 <pre>
-[root@quijote nrpe-4.0.3]# systemctl start nrpe
-
-[root@quijote nrpe-4.0.3]# systemctl enable nrpe
+systemctl start nrpe && systemctl enable nrpe
 </pre>
 
 Listo.
 
 ## Configuración en los clientes
+
+Es el momento de llevar a cabo la configuración en la parte de los clientes.
+
+Para configurar el servicio *Nagios NRPE* editaremos su archivo de configuración principal, el llamado `nrpe.cfg`, que se encuentra en el directorio `/usr/local/nagios/etc/`.
 
 
 

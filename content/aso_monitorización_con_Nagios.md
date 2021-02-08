@@ -238,6 +238,44 @@ systemctl start nrpe && systemctl enable nrpe
 
 Listo.
 
+
+## Configuración en el servidor del plugin NRPE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Por último, como nuestro servidor *Nagios Core* se encuentra en un sistema *CentOS*, recordaremos que nos encontramos con su *firewall* por defecto. Por tanto, tendremos que añadir una regla para que el servidor *Nagios Core* pueda conectar al servicio *Nagios NRPE*:
+
+<pre>
+firewall-cmd --permanent --add-service=nrpe
+</pre>
+
+Recargamos la configuración del *firewall* para aplicar los cambios:
+
+<pre>
+firewall-cmd --reload
+</pre>
+
+
+
+
+
+
+
+
+
 ## Configuración en los clientes
 
 Es el momento de llevar a cabo la configuración en la parte de los clientes.

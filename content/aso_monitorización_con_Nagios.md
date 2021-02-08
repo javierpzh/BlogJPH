@@ -46,7 +46,7 @@ Las alertas que genera pueden ser recibidas por correo electrónico y mensajes S
 
 Así luce el panel web de *Nagios*:
 
-![.](images/aso_monitrozicación_con_Nagios/nagios.png)
+![.](images/aso_monitorización_con_Nagios/nagios.png)
 
 
 ## Instalación

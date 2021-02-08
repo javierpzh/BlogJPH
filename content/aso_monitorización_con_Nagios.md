@@ -81,7 +81,7 @@ dnf install gcc make unzip wget
 
 Hecha la introducción, es el momento de empezar con la propia instalación en sí.
 
-Para descargar *Nagios* nos dirigiremos a su [sitio web](https://github.com/NagiosEnterprises/nagioscore/releases) y copiaremos el enlace del archivo `.tar.gz`, para posteriormente descargarlo en nuestro sistema mediante la herramienta `wget`. En mi caso, cuando estoy escribiendo este *post*, la última versión disponible es la 4.4.6. [aquí](images/aso_monitorización_con_Nagios/nagios-4.4.6.zip)
+Para descargar *Nagios* nos dirigiremos a su [sitio web](https://github.com/NagiosEnterprises/nagioscore/releases) y copiaremos el enlace del archivo `.tar.gz`, para posteriormente descargarlo en nuestro sistema mediante la herramienta `wget`. En mi caso, cuando estoy escribiendo este *post*, la última versión disponible es la 4.4.6. Puedes descargarlo desde [aquí](images/aso_monitorización_con_Nagios/nagios-4.4.6.zip)
 
 <pre>
 wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.4.6/nagios-4.4.6.tar.gz

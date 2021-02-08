@@ -16,11 +16,37 @@ Detalla en la documentación claramente las características de la implementaci�
 
 --------------------------------------------------------------------------------
 
+**Nagios** es un sistema de monitorización de redes ampliamente utilizado, que vigila los equipos y los servicios que se especifiquen, alertando cuando el comportamiento de los mismos no sea el deseado.
 
+Cuenta con una extensa, sólida y organizada comunidad de soporte que ofrece de modo gratuito *addons* y *plugins* para extender sus funcionalidades a través de **Nagios Exchange**, información de fondo y ayuda a través de **Nagios Community** e información técnica a través de **Nagios Wiki**.
 
+#### Características principales
 
+- Monitorización de servicios de red como: SMTP, POP3, HTTP, SNMP, ...
 
+- Monitorización de los recursos del sistema hardware como: carga de CPU, uso de los discos, RAM, estado de los puertos, ...
 
+- Independencia de sistemas operativos
+
+- Posibilidad de monitorización remota mediante túneles SSL cifrados o SSH
+
+- Posibilidad de programar *plugins* específicos para nuevos sistemas
+
+- Chequeo de servicios paralizados
+
+- Notificaciones cuando ocurren problemas en servicios o *hosts*, así como cuando son resueltos
+
+- Posibilidad de definir manejadores de eventos que se ejecuten al ocurrir un evento de un servicio o *host* (acciones pro-activas)
+
+- Soporte para implementar *hosts* de monitores redundantes
+
+- Visualización del estado de la red en tiempo real a través de su interfaz web, con la posibilidad de generar informes y gráficas de comportamiento de los sistemas monitorizados, y visualización del listado de notificaciones enviadas, historial de problemas, archivos de registros, ...
+
+Las alertas que genera pueden ser recibidas por correo electrónico y mensajes SMS, entre otros.
+
+Así luce el panel web de *Nagios*:
+
+![.](images/aso_monitrozicación_con_Nagios/nagios.png)
 
 
 

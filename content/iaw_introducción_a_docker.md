@@ -308,7 +308,6 @@ Primeramente, vamos a comprobar en el fichero `wp-config.php` del contenedor de 
 
 <pre>
 javier@debian:~$ docker exec servidor_wp cat wp-config.php
-
 ...
 
 // ** MySQL settings - You can get this info from your web host ** //

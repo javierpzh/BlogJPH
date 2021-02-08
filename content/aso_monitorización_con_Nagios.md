@@ -280,7 +280,13 @@ define command {
 }
 </pre>
 
+Hecho esto, nos toca configurar el fichero `nagios.cfg`, que se encuentra en la ruta `/usr/local/nagios/etc/nagios.cfg`, para que incluya los archivos de configuración de los clientes:
 
+<pre>
+
+</pre>
+
+nano /usr/local/nagios/etc/nagios.cfg
 
 
 

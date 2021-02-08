@@ -61,7 +61,7 @@ He hecho más tareas sobre este escenario, las puedes encontrar todas [aquí](ht
 
 Explicado esto, vamos a proceder con la instalación de nuestro sistema de monitorización.
 
-En mi caso, voy a llevar a cabo la instalación de *Nagios* en la máquina **Quijote**, es decir, que ésta será el servidor principal. Hay que recordar que *Quijote* consta de un sistemas *CentOS 8*.
+En mi caso, voy a llevar a cabo la instalación de **Nagios Core** en la máquina **Quijote**, es decir, que ésta será el servidor principal. Hay que recordar que *Quijote* consta de un sistemas *CentOS 8*.
 
 He decidido escoger como servidor este equipo principalmente porque *Nagios* necesita un servidor web para poder acceder a su panel de administración web, y esto es algo que me interesa ya que, es en esta máquina donde se encuentra instalado el servidor web de mi escenario. No queda solo ahí, ya que nuestro servidor web, en mi caso, *Apache*, tiene que ser capaz de ejecutar código PHP. Si no dispones de estos requisitos, puedes visitar el tercer artículo *indexado* anteriormente, donde llevo a cabo la instalación de estos requisitos.
 
@@ -122,7 +122,7 @@ Ahora pasaremos con los archivos de configuración necesarias para nuestro futur
 make install-webconf
 </pre>
 
-archivos de configuración de *Nagios*:
+Instalamos los archivos de configuración de *Nagios*:
 
 <pre>
 make install-config
@@ -196,7 +196,9 @@ Vemos como podemos acceder al panel de administración de *Nagios*, por lo que h
 
 ## Configuración en los clientes
 
+Ya tenemos instalado *Nagios* en el servidor y ya estamos monitorizando los servicios que se encuentran en él, pero además de los servicios de esa máquina, queremos monitorizar los servicios de las máquinas *Dulcinea*, *Sancho*, *Freston* y nuestra VPS, la máquina de *OVH*.
 
+Para ello debemos llevar a cabo la instalación de **Nagios NRPE**. Descargaremos *Nagios NRPE* tanto en la parte del servidor, como en los clientes, ya que el mismo paquete contiene, tanto el servicio *Nagios NRPE* para las máquinas remotas, como el *plugin NRPE* para el servidor *Nagios Core*.
 
 
 

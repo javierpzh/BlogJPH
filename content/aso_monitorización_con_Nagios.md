@@ -242,11 +242,19 @@ Listo.
 
 Es el momento de llevar a cabo la configuración en la parte de los clientes.
 
-Para configurar el servicio *Nagios NRPE* editaremos su archivo de configuración principal, el llamado `nrpe.cfg`, que se encuentra en el directorio `/usr/local/nagios/etc/`.
+Para configurar el servicio *Nagios NRPE* editaremos su archivo de configuración principal, el llamado `nrpe.cfg`, que se encuentra en el directorio `/usr/local/nagios/etc/`. En él, buscaremos la directiva `allowed_hosts`, que indica los servidores *Nagios Core* que podrán conectarse con el servicio, y añadiremos la dirección IP de nuestro servidor *Quijote*. De manera que quedaría de la siguiente manera:
 
+En *Dulcinea*, *Sancho* y *Freston*:
 
+<pre>
 
+</pre>
 
+En la máquina de *OVH*:
+
+<pre>
+
+</pre>
 
 
 

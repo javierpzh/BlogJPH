@@ -286,10 +286,28 @@ allowed_hosts=127.0.0.1,::1,10.0.2.6
 En la máquina de *OVH*:
 
 <pre>
+allowed_hosts=127.0.0.1,::1,172.22.200.183
+</pre>
+
+Regla DNAT:
+
+<pre>
 
 </pre>
 
-Hecha esta modificación, tendremos que reiniciar el servicio para que se apliquen los cambios:
+Este archivo contiene también varias definiciones de muestra de comandos que pueden ser admitidos en las peticiones desde el servidor *Nagios Core*, y en una de ellas, se hace referencia a un dispositivo `/dev/hda1` que no existe, sino que debería tratarse de `/dev/vda1`, así que modificamos el comando `check_hda1` de forma adecuada. Por defecto posee este aspecto:
+
+<pre>
+command[check_hda1]=/usr/lib/nagios/plugins/check_disk -w 20% -c 10% -p /dev/hda1
+</pre>
+
+En mi caso, queda con el siguiente aspecto:
+
+<pre>
+command[check_vda1]=/usr/lib/nagios/plugins/check_disk -w 20% -c 10% -p /dev/vda1
+</pre>
+
+Hechas estas modificaciones, tendremos que reiniciar el servicio para que se apliquen los cambios:
 
 <pre>
 systemctl restart nrpe

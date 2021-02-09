@@ -320,8 +320,22 @@ dnf install https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/get
 Una vez instalado y terminado el proceso, es el momento de instalar nuestro servidor de base de datos, por lo que vamos a ello:
 
 <pre>
-
+[root@oracleservidor ~]# rpm -Uhv oracle-database-ee-19c-1.0-1.x86_64.rpm
+advertencia:oracle-database-ee-19c-1.0-1.x86_64.rpm: EncabezadoV3 RSA/SHA256 Signature, ID de clave ec551f03: NOKEY
+Verifying...                          ################################# [100%]
+Preparando...                         ################################# [100%]
+Actualizando / instalando...
+   1:oracle-database-ee-19c-1.0-1     ################################# [100%]
+[INFO] Executing post installation scripts...
+[INFO] Oracle home installed successfully and ready to be configured.
+To configure a sample Oracle Database you can execute the following service configuration script as root: /etc/init.d/oracledb_ORCLCDB-19c configure
 </pre>
+
+Indicamos los siguientes parámetros:
+
+- **U:** elimina cualquier versión anterior del paquete en caso de existir.
+- **h:** muestra la barra de progreso de la instalación.
+- **v:** muestra más información respectiva a la instalación.
 
 Terminada la instalación, vamos a ejecutar el *script* al que nos hace referencia al final del proceso de instalación. Este *script* se encargará de crear una base de datos de ejemplo.
 

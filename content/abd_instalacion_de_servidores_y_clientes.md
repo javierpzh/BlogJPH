@@ -317,11 +317,21 @@ Antes de empezar con la propia instalación, vamos a instalar un paquete que nos
 dnf install https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/getPackage/oracle-database-preinstall-19c-1.0-1.el8.x86_64.rpm
 </pre>
 
+Una vez instalado y terminado el proceso, es el momento de instalar nuestro servidor de base de datos, por lo que vamos a ello:
 
+<pre>
+[root@servidororacle ~]# rpm -Uhv oracle-database-ee-19c-1.0-1.x86_64.rpm
+warning: oracle-database-ee-19c-1.0-1.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID ec551f03: NOKEY
+Verifying...                          ################################# [100%]
+Preparing...                          ################################# [100%]
+	installing package oracle-database-ee-19c-1.0-1.x86_64 needs 3516MB on the / filesystem
+</pre>
 
+Terminada la instalación, vamos a ejecutar el *script* al que nos hace referencia al final del proceso de instalación. Este *script* se encargará de crear una base de datos de ejemplo.
 
-
-
+<pre>
+/etc/init.d/oracledb_ORCLCDB-19c configure
+</pre>
 
 
 

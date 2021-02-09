@@ -304,8 +304,8 @@ Ahora vamos a realizar el mismo proceso, pero esta vez instalaremos tanto el ser
 
 En mi caso voy a llevar a cabo la instalación de **Oracle** sobre sistemas **CentOS 8**, que se ejecutarán en máquinas virtuales conectadas en modo puente a mi red local.
 
-- La máquina *servidor* posee la IP **192.168.0.**.
-- La máquina *cliente* posee la IP **192.168.0.**.
+- La máquina *servidor* posee la IP **192.168.0.31**.
+- La máquina *cliente* posee la IP **192.168.0.35**.
 
 Lo primero que debemos hacer, al igual que antes, sería descargarnos el paquete de instalación desde la [web oficial de Oracle](https://www.oracle.com/es/database/technologies/oracle-database-software-downloads.html#19c), para realizar la descarga nos hará falta estar registrados como usuarios de *Oracle*.
 

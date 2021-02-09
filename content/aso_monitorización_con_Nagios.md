@@ -199,16 +199,12 @@ NRPE v3.2.1
 </pre>
 
 
+(falta ovh)
 
 
+Podemos observar como la versión de la dirección `10.0.1.8`, que corresponde a *Sancho*, es distinta a las demás versiones. Esto seguramente sea, porque todos los equipos menos *Sancho*, poseen *Debian 10*, y *Sancho* un sistema *Ubuntu*, por lo que seguramente en *Ubuntu*, han desarrollado una versión más reciente de este paquete, que aún en *Debian* no se encuentra.
 
-
-
-
-
-
-
-vamos a añadir una configuración para el uso del comando en el fichero `commands.cfg`, que se encuentra en la ruta `/etc/nagios/objects/commands.cfg`. Añadimos el siguiente bloque al final del fichero, para definir el comando para el *plugin NRPE*:
+Para seguir con el proceso de configuración, vamos a añadir una serie de líneas en el fichero `commands.cfg`, que se encuentra en la ruta `/etc/nagios/objects/commands.cfg`. Añadimos el siguiente bloque al final del fichero, para definir el comando para el *plugin NRPE*:
 
 <pre>
 define command {
@@ -241,6 +237,8 @@ nano /etc/nagios/servers/freston.cfg
 nano /etc/nagios/servers/ovh.cfg
 </pre>
 
+En estos ficheros de configuración, vamos a definir al respectivo cliente y posteriormente, los servicios que queremos supervisar, obviamente el cliente nos lo debe permitir en su configuración.
+
 El contenido de estos ficheros será el siguiente:
 
 <pre>
@@ -249,12 +247,8 @@ El contenido de estos ficheros será el siguiente:
 define host {
         use                     linux-server
         host_name               dulcinea
-        alias                   Debian 10 (remota)
-        address                 dulcinea
-        max_check_attempts      5
-        check_period            24x7
-        notification_interval   30
-        notification_period     24x7
+        alias                   Dulcinea
+        address                 10.0.2.10
 }
 
 
@@ -263,12 +257,8 @@ define host {
 define host {
         use                     linux-server
         host_name               sancho
-        alias                   Ubuntu (remota)
-        address                 sancho
-        max_check_attempts      5
-        check_period            24x7
-        notification_interval   30
-        notification_period     24x7
+        alias                   Sancho
+        address                 10.0.1.8
 }
 
 
@@ -277,12 +267,8 @@ define host {
 define host {
         use                     linux-server
         host_name               freston
-        alias                   Debian 10 (remota)
-        address                 freston
-        max_check_attempts      5
-        check_period            24x7
-        notification_interval   30
-        notification_period     24x7
+        alias                   Freston
+        address                 10.0.1.6
 }
 
 
@@ -291,16 +277,12 @@ define host {
 define host {
         use                     linux-server
         host_name               ovh
-        alias                   Debian 10 (remota)
+        alias                   OVH
         address                 51.210.105.17
-        max_check_attempts      5
-        check_period            24x7
-        notification_interval   30
-        notification_period     24x7
 }
 </pre>
 
-A continuación añadiremos otros para definir los distintos servicios que queremos supervisar, obviamente el cliente nos lo debe permitir en su configuración.
+
 
 
 

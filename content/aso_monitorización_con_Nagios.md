@@ -314,38 +314,15 @@ Recargamos la configuración del *firewall* para aplicar los cambios:
 firewall-cmd --reload
 </pre>
 
+Para terminar, reiniciamos el servidor *Nagios Core*:
 
+<pre>
+systemctl restart nagios
+</pre>
 
+Si nos dirigimos a nuestro panel web, en la sección **Hosts**, ahora además de *Quijote*, nos aparecen los nuevos clientes:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![.](images/aso_monitorización_con_Nagios/nagiospanelfinal.png)
 
 
 

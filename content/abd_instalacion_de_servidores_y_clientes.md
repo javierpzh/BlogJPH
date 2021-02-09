@@ -4,20 +4,8 @@ Category: Administración de Bases de Datos
 Header_Cover: theme/images/banner-basededatos.png
 Tags: Base de Datos, Oracle, MySQL, MariaDB, PostgreSQL, MongoDB
 
-**Con esta práctica aprenderéis la instalación y configuración de distintos servidores y clientes de bases de datos.**
+En este artículo aprenderemos la instalación y configuración de distintos servidores y clientes de bases de datos.
 
-**Tras la instalación de cada servidor,  debe crearse una base de datos con al menos tres tablas o colecciones y poblarse de datos adecuadamente. Debe crearse un usuario y dotarlo de los privilegios necesarios para acceder remotamente a los datos. Se proporcionará esta información al resto de los miembros del grupo.**
-
-**Los clientes deben estar siempre en máquinas diferentes de los respectivos servidores a los que acceden.**
-
-**Se documentará todo el proceso de configuración de los servidores.**
-
-**Se aportarán pruebas del funcionamiento remoto de cada uno de los clientes.**
-
-**Se aportará el código de las aplicaciones realizadas y prueba de funcionamiento de las mismas.**
-
-
-**El trabajo constará de las siguientes partes:**
 
 #### Instalación de un servidor de ORACLE 19c y prueba desde un cliente remoto de SQL*Plus
 
@@ -308,6 +296,77 @@ SQL>
 </pre>
 
 Como hemos visto, hemos accedido correctamente, y hemos comprobado que tenemos acceso a todos los datos, por lo que habríamos terminado este ejercicio.
+
+
+#### Instalación de un servidor de ORACLE 19c en CentOS y prueba desde un cliente remoto de SQL*Plus
+
+Ahora vamos a realizar el mismo proceso, pero esta vez instalaremos tanto el servidor como el cliente, en máquinas **Linux**.
+
+En mi caso voy a llevar a cabo la instalación de **Oracle** sobre sistemas **CentOS 8**, que se ejecutarán en máquinas virtuales conectadas en modo puente a mi red local.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #### Instalación de un servidor MySQL y configuración para permitir el acceso remoto desde la red local
 
@@ -683,6 +742,7 @@ Si accedemos a la dirección `.../phppgadmin` en nuestro navegador e iniciamos s
 ![.](images/abd_instalacion_de_servidores_y_clientes/postgresqlaplicacionweb.png)
 
 Podemos ver como nuestra aplicación nos muestra las bases de datos existentes en el servidor, y podemos eliminarlas, modificarlas y establecer privilegios, entre otras cosas, ya que también podemos realizar consultas, ...
+
 
 #### Instalación de una herramienta de administración para MongoDB y prueba desde un cliente remoto
 

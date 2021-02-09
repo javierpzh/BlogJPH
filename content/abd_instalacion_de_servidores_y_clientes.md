@@ -311,7 +311,11 @@ Lo primero que debemos hacer, al igual que antes, sería descargarnos el paquete
 
 Una vez descargado, en mi caso ya que utilizo *CentOS*, el archivo *.rpm*, tenemos que extraerlo y ahora empezaremos el proceso de instalación.
 
+Antes de empezar con la propia instalación, vamos a instalar un paquete que nos proporciona *Oracle*, que básicamente lo que hace, es preparar nuestro sistema para la posterior instalación de nuestro servidor de base de datos. Para ello, ejecutamos el siguiente comando:
 
+<pre>
+dnf install https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/getPackage/oracle-database-preinstall-19c-1.0-1.el8.x86_64.rpm
+</pre>
 
 
 

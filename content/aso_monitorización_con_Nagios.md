@@ -213,7 +213,7 @@ define command {
 }
 </pre>
 
-Hecho esto, nos toca configurar el fichero `nagios.cfg`, que se encuentra en la ruta `/etc/nagios/nagios.cfg`, para que incluya los archivos de configuración de los clientes. Para hacer esto, debemos buscar la siguiente línea y descomentarla, ya que inicialmente se encuentra comentada:
+Hecho esto, nos toca configurar el fichero `nagios.cfg`, que se encuentra en la ruta `/etc/nagios/nagios.cfg`, para que incluya las de configuraciones de los clientes. Para hacer esto, debemos buscar la siguiente línea y descomentarla, ya que inicialmente se encuentra comentada:
 
 <pre>
 cfg_dir=/etc/nagios/servers
@@ -225,25 +225,20 @@ El subdirectorio `servers/` que acabamos de habilitar en la configuración no ex
 mkdir /etc/nagios/servers
 </pre>
 
-Dentro de éste, crearemos un archivo de configuración por cada cliente que deseemos monitorizar, en mi caso creo los siguientes ficheros:
+Dentro de éste, crearemos un archivo de configuración en el que definiremos a cada cliente que deseemos monitorizar, en mi caso creo el siguiente fichero:
 
 <pre>
-nano /etc/nagios/servers/dulcinea.cfg
-
-nano /etc/nagios/servers/sancho.cfg
-
-nano /etc/nagios/servers/freston.cfg
-
-nano /etc/nagios/servers/ovh.cfg
+nano /etc/nagios/servers/config.cfg
 </pre>
 
-En estos ficheros de configuración, vamos a definir al respectivo cliente y posteriormente, los servicios que queremos supervisar, obviamente el cliente nos lo debe permitir en su configuración.
+En este fichero de configuración, vamos a definir al respectivo cliente y posteriormente, los servicios que queremos supervisar, obviamente el cliente nos lo debe permitir en su configuración.
 
-El contenido de estos ficheros será el siguiente:
+El contenido de este fichero será el siguiente:
 
 <pre>
-# Dulcinea
+# HOSTS
 
+# Dulcinea
 define host {
         use                     linux-server
         host_name               dulcinea
@@ -251,9 +246,7 @@ define host {
         address                 10.0.2.10
 }
 
-
 # Sancho
-
 define host {
         use                     linux-server
         host_name               sancho
@@ -261,9 +254,7 @@ define host {
         address                 10.0.1.8
 }
 
-
 # Freston
-
 define host {
         use                     linux-server
         host_name               freston
@@ -271,25 +262,17 @@ define host {
         address                 10.0.1.6
 }
 
-
 # OVH
-
 define host {
         use                     linux-server
         host_name               ovh
         alias                   OVH
         address                 51.210.105.17
 }
+
+
+# SERVICIOS
 </pre>
-
-
-
-
-
-
-
-
-
 
 
 

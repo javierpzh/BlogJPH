@@ -304,7 +304,12 @@ Ahora vamos a realizar el mismo proceso, pero esta vez instalaremos tanto el ser
 
 En mi caso voy a llevar a cabo la instalación de **Oracle** sobre sistemas **CentOS 8**, que se ejecutarán en máquinas virtuales conectadas en modo puente a mi red local.
 
+- La máquina *servidor* posee la IP **192.168.0.**.
+- La máquina *cliente* posee la IP **192.168.0.**.
 
+Lo primero que debemos hacer, al igual que antes, sería descargarnos el paquete de instalación desde la [web oficial de Oracle](https://www.oracle.com/es/database/technologies/oracle-database-software-downloads.html#19c), para realizar la descarga nos hará falta estar registrados como usuarios de *Oracle*.
+
+Una vez descargado, en mi caso ya que utilizo *CentOS*, el archivo *.rpm*, tenemos que extraerlo y ahora empezaremos el proceso de instalación.
 
 
 
@@ -380,13 +385,13 @@ Vagrant.configure("2") do |config|
   config.vm.define :servidor do |servidor|
         servidor.vm.box="debian/buster64"
         servidor.vm.hostname="servidor"
-	servidor.vm.network :public_network, :bridge=>"wlo1"
+	      servidor.vm.network :public_network, :bridge=>"wlo1"
   end
 
   config.vm.define :cliente do |cliente|
         cliente.vm.box="debian/buster64"
         cliente.vm.hostname="cliente"
-	cliente.vm.network :public_network, :bridge=>"wlo1"
+	      cliente.vm.network :public_network, :bridge=>"wlo1"
   end
 
 end

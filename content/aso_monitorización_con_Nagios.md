@@ -125,7 +125,7 @@ apt install nagios-nrpe-server nagios-plugins-basic nagios-plugins -y
 Terminada la instalación de *Nagios NRPE*, iniciaremos su servicio y lo habilitaremos en cada arranque:
 
 <pre>
-systemctl start nrpe && systemctl enable nrpe
+systemctl start nagios-nrpe-server && systemctl enable nagios-nrpe-server
 </pre>
 
 Listo.
@@ -310,7 +310,7 @@ command[check_vda1]=/usr/lib/nagios/plugins/check_disk -w 20% -c 10% -p /dev/vda
 Hechas estas modificaciones, tendremos que reiniciar el servicio para que se apliquen los cambios:
 
 <pre>
-systemctl restart nrpe
+systemctl restart nagios-nrpe-server
 </pre>
 
 

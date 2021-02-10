@@ -55,38 +55,39 @@ He decidido escoger como servidor este equipo principalmente porque *Nagios* nec
 
 Hecha la introducción, es el momento de empezar con la propia instalación en sí.
 
-Para descargar *Nagios Core* tenemos dos opciones, o bien descargar los paquetes desde los repositorios oficiales, o, como prefiero hacer en mi caso, nos dirigimos a su [sitio web](https://github.com/NagiosEnterprises/nagioscore/releases) y descargamos directamente el archivo `.tar.gz`.
+Para descargar *Nagios Core* tenemos dos opciones, o bien descargar los paquetes desde los repositorios oficiales, o, como prefiero hacer en mi caso, ya que con los paquetes oficiales he tenido problemas, nos dirigimos a su [sitio web](https://github.com/NagiosEnterprises/nagioscore/releases) y descargamos directamente el archivo `.tar.gz`. A día de hoy, la versión más reciente disponible es la 2.3.3, la dejo [aquí](images/aso_monitorización_con_Nagios/nagios-4.4.6.zip).
 
 Pero antes de ello, debemos descargar los *plugins* de *Nagios*. Esto es algo que se debe hacer tanto en la máquina servidor como en cada cliente que queramos supervisar.
 
 Para descargar estos *plugins*, nos dirigimos a su [sitio web](https://nagios-plugins.org/) y descargamos directamente el archivo `.tar.gz`. A día de hoy, la versión más reciente disponible es la 2.3.3, la dejo [aquí](images/aso_monitorización_con_Nagios/nagios-plugins-2.3.3.zip).
 
-Una vez descargado y descomprimido el archivo, s
+Una vez descargado y descomprimido el archivo, antes de llevar a cabo la instalación, debemos instalar algunos paquetes y dependencias que nos harán falta durante todo el proceso de instalación.
 
+<pre>
+dnf install bind-utils libpq-devel gcc make unzip -y
+</pre>
 
+Accedemos a la carpeta resultante de la descompresión y pasamos a configurar la compilación:
 
+<pre>
+./configure
+</pre>
 
+Compilamos los *plugins*:
 
+<pre>
+make
+</pre>
 
+Finalizada la compilación, instalamos los *plugins*:
 
+<pre>
+make install
+</pre>
 
+Una vez instalados los *plugins* de *Nagios*, quedan instalados como comandos ejecutables en la ruta `/usr/local/nagios/libexec/`, y pueden ser utilizados directamente desde consola.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Una vez instalados los *plugins* es el momento de instalar **Nagios Core**. Para ello, descomprimimos el archivo descargado anteriormente, accedemos al directorio resultante y 
 
 <pre>
 dnf install nagios -y

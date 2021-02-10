@@ -123,9 +123,13 @@ Listo. Ahora podremos acceder al panel web de *Nagios*, por tanto, si nos dirigi
 
 Si introducimos el usuario y la contraseña que hemos creado anteriormente:
 
-![.](images/aso_monitorización_con_Nagios/nagiospanel1.png)
+![.](images/aso_monitorización_con_Nagios/nagiospanel.png)
 
-Vemos como podemos acceder al panel de administración de *Nagios*, por lo que habríamos finalizado la instalación de *Nagios Core* en nuestro sistema.
+Vemos como podemos acceder al panel de administración de *Nagios*. Si accedemos al apartado **Hosts**:
+
+![.](images/aso_monitorización_con_Nagios/nagioshosts.png)
+
+Vemos que actualmente nos muestra nuestro equipo local, por lo que habríamos finalizado la instalación de *Nagios Core* en nuestro sistema.
 
 
 ## Instalación en los clientes

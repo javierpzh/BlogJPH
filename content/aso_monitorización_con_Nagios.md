@@ -99,7 +99,11 @@ Y procedemos con el proceso de compilación:
 make all
 </pre>
 
+Llegó la hora de la instalación, que consta de varios pasos, aunque lo resumiremos en el siguiente comando:
 
+<pre>
+make install-groups-users install install-webconf install-config install-init install-daemoninit install-commandmode
+</pre>
 
 
 

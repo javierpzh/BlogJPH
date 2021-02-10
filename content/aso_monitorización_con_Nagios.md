@@ -105,25 +105,11 @@ Llegó la hora de la instalación, que consta de varios pasos, aunque lo resumir
 make install-groups-users install install-webconf install-config install-init install-daemoninit install-commandmode
 </pre>
 
+Para concluir y poder acceder a nuestro panel web, vamos a crear el usuario **nagiosadmin**:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<pre>
+htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+</pre>
 
 Terminada la instalación, iniciaremos su servicio y lo habilitaremos en cada arranque:
 
@@ -131,9 +117,7 @@ Terminada la instalación, iniciaremos su servicio y lo habilitaremos en cada ar
 systemctl start nagios && systemctl enable nagios
 </pre>
 
-Listo. Ahora podremos acceder al panel web de *Nagios*, y os preguntaréis, ¿no debemos crear el usuario administrador? Pues no, ya que por defecto *Nagios* incorpora un usuario administrador llamado **nagiosadmin**, cuya contraseña también es **nagiosadmin**.
-
-Por tanto, si nos dirigimos a nuestra dirección web */nagios*, según esté configurado en nuestro servidor web, en mi caso `www.javierpzh.gonzalonazareno.org/nagios` nos aparecerá esta ventana:
+Listo. Ahora podremos acceder al panel web de *Nagios*, por tanto, si nos dirigimos a nuestra dirección web */nagios*, según esté configurado en nuestro servidor web, en mi caso `www.javierpzh.gonzalonazareno.org/nagios` nos aparecerá esta ventana:
 
 ![.](images/aso_monitorización_con_Nagios/nagiosautentificacion.png)
 

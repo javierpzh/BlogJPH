@@ -55,7 +55,38 @@ He decidido escoger como servidor este equipo principalmente porque *Nagios* nec
 
 Hecha la introducción, es el momento de empezar con la propia instalación en sí.
 
-Para descargar *Nagios Core* tenemos dos opciones, o bien nos dirigimos a su [sitio web](https://github.com/NagiosEnterprises/nagioscore/releases) y descargamos directamente el archivo `.tar.gz`, o, como prefiero hacer en mi caso, descargar los paquetes desde los repositorios oficiales.
+Para descargar *Nagios Core* tenemos dos opciones, o bien descargar los paquetes desde los repositorios oficiales, o, como prefiero hacer en mi caso, nos dirigimos a su [sitio web](https://github.com/NagiosEnterprises/nagioscore/releases) y descargamos directamente el archivo `.tar.gz`.
+
+Pero antes de ello, debemos descargar los *plugins* de *Nagios*. Esto es algo que se debe hacer tanto en la máquina servidor como en cada cliente que queramos supervisar.
+
+Para descargar estos *plugins*, nos dirigimos a su [sitio web](https://nagios-plugins.org/) y descargamos directamente el archivo `.tar.gz`. A día de hoy, la versión más reciente disponible es la 2.3.3, la dejo [aquí](iages/aso_monitorización_con_Nagios/nagios-plugins-2.3.3.zip).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <pre>
 dnf install nagios -y

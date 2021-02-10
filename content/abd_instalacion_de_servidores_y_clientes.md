@@ -298,14 +298,11 @@ SQL>
 Como hemos visto, hemos accedido correctamente, y hemos comprobado que tenemos acceso a todos los datos, por lo que habríamos terminado este ejercicio.
 
 
-#### Instalación de un servidor de ORACLE 19c en CentOS y prueba desde un cliente remoto de SQL*Plus
+#### Instalación de un servidor de ORACLE 19c en CentOS
 
-Ahora vamos a realizar el mismo proceso, pero esta vez instalaremos tanto el servidor como el cliente, en máquinas **Linux**.
+Ahora vamos a realizar el proceso de instalación de **Oracle 19c**, pero esta vez en una máquina **Linux**.
 
-En mi caso voy a llevar a cabo la instalación de **Oracle** sobre sistemas **CentOS 8**, que se ejecutarán en máquinas virtuales conectadas en modo puente a mi red local.
-
-- La máquina *servidor* posee la IP **192.168.0.31**.
-- La máquina *cliente* posee la IP **192.168.0.35**.
+En mi caso voy a llevar a cabo la instalación de **Oracle** sobre un sistema **CentOS 8**, que se ejecutará en una máquina virtual conectada en modo puente a mi red local.
 
 Lo primero que debemos hacer, al igual que antes, sería descargarnos el paquete de instalación desde la [web oficial de Oracle](https://www.oracle.com/es/database/technologies/oracle-database-software-downloads.html#19c), para realizar la descarga nos hará falta estar registrados como usuarios de *Oracle*.
 

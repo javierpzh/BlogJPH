@@ -61,7 +61,7 @@ Pero antes de ello, debemos descargar los *plugins* de *Nagios*. Esto es algo qu
 
 Para descargar estos *plugins*, nos dirigimos a su [sitio web](https://nagios-plugins.org/) y descargamos directamente el archivo `.tar.gz`. A día de hoy, la versión más reciente disponible es la 2.3.3, la dejo [aquí](iages/aso_monitorización_con_Nagios/nagios-plugins-2.3.3.zip).
 
-Una vez descargado y descomprimido el archivo, 
+Una vez descargado y descomprimido el archivo, s
 
 
 

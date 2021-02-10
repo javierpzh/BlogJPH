@@ -447,6 +447,8 @@ define service{
 
 
 
+
+
 Por último, como nuestro servidor *Nagios Core* se encuentra en un sistema *CentOS*, recordaremos que nos encontramos con su *firewall* por defecto. Por tanto, tendremos que añadir una regla para que el servidor *Nagios Core* pueda conectar al servicio *Nagios NRPE*:
 
 <pre>
@@ -476,6 +478,18 @@ Perfecto, ya habríamos añadido y estaríamos monitorizando todos los clientes 
 
 
 
+
+Por último y para finalizar el artículo, vamos a configurar *Nagios* para que nos notifique en el caso de que cualquier servicio no se esté comportando correctamente. Para ello, debemos editar el fichero `/usr/local/nagios/etc/objects/contacts.cfg` y definir el siguiente bloque de este manera:
+
+<pre>
+define contact {
+
+    contact_name            nagiosadmin
+    use                     generic-contact
+    alias                   Nagios Admin
+    email                   javierperezhidalgo01@gmail.com
+}
+</pre>
 
 
 

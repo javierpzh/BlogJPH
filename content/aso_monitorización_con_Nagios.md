@@ -447,10 +447,6 @@ define service{
 
 
 
-
-
-
-
 Por último, como nuestro servidor *Nagios Core* se encuentra en un sistema *CentOS*, recordaremos que nos encontramos con su *firewall* por defecto. Por tanto, tendremos que añadir una regla para que el servidor *Nagios Core* pueda conectar al servicio *Nagios NRPE*:
 
 <pre>
@@ -473,9 +469,9 @@ Si nos dirigimos a nuestro panel web, en la sección **Hosts**, ahora además de
 
 ![.](images/aso_monitorización_con_Nagios/nagioshostsfinal.png)
 
-Perfecto, ya habríamos añadido y estaríamos monitorizando todos los clientes deseados, pero aún no hemos llevado a cabo la configuración que indica los servicios a monitorizar en cada cliente.
+Perfecto, ya habríamos añadido y estaríamos monitorizando todos los clientes deseados.
 
-
+![.](images/aso_monitorización_con_Nagios/nagiosserviciosfinal.png)
 
 
 

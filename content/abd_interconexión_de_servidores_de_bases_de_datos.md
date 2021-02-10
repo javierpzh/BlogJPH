@@ -444,7 +444,49 @@ Realizados los cambios, vamos a reiniciar los servicios de los dos servidores pa
 systemctl restart postgresql
 </pre>
 
+Ya tenemos ambos servidores configurados correctamente y tan solo nos faltaría crear el enlace desde el primer servidor al segundo, y al revés.
 
+Para ello, antes, voy a crear en ambos servidores un usuario llamado **javierservX**, y una base de datos de prueba llamada **empresaX**, en la que introduciré algunos registros de prueba.
+
+<pre>
+root@servidor:~# su - postgres
+
+postgres@servidor:~$ psql postgres
+psql (11.9 (Debian 11.9-0+deb10u1))
+Type "help" for help.
+
+postgres=# CREATE USER javierserv1 WITH PASSWORD 'martaguapa7';
+CREATE ROLE
+
+postgres=# CREATE DATABASE empresa1;
+CREATE DATABASE
+
+postgres=# GRANT ALL PRIVILEGES ON DATABASE empresa1 TO javierserv1;
+GRANT
+
+postgres=# exit
+
+--------------------------------------------------------------------------------
+
+root@cliente:~# su - postgres
+
+postgres@cliente:~$ psql postgres
+psql (11.9 (Debian 11.9-0+deb10u1))
+Type "help" for help.
+
+postgres=# CREATE USER javierserv2 WITH PASSWORD 'martaguapa7';
+CREATE ROLE
+
+postgres=# CREATE DATABASE empresa2;
+CREATE DATABASE
+
+postgres=# GRANT ALL PRIVILEGES ON DATABASE empresa2 TO javierserv2;
+GRANT
+
+postgres=# exit
+</pre>
+
+Una vez creados ambos usuarios y ambas bases de datos, inserto una serie de tablas con sus respectivos registros. Puedes encontrar la información [aquí](images/abd_interconexiones_de_servidores_de_bases_de_datos/scriptpostgresql.txt).
 
 
 

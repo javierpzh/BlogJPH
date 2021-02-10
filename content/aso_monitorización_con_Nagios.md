@@ -248,7 +248,7 @@ NRPE v3.2.1
 
 Podemos observar como la versión de la dirección `10.0.1.8`, que corresponde a *Sancho*, es distinta a las demás versiones. Esto seguramente sea, porque todos los equipos menos *Sancho*, poseen *Debian 10*, y *Sancho* un sistema *Ubuntu*, por lo que seguramente en *Ubuntu*, han desarrollado una versión más reciente de este paquete, que aún en *Debian* no se encuentra.
 
-Para seguir con el proceso de configuración, vamos a añadir una serie de líneas en el fichero `commands.cfg`, que se encuentra en la ruta `/etc/nagios/objects/commands.cfg`. Añadimos el siguiente bloque al final del fichero, para definir el comando para el *plugin NRPE*:
+Para seguir con el proceso de configuración, vamos a añadir una serie de líneas en el fichero `commands.cfg`, que se encuentra en la ruta `/usr/local/nagios/etc/objects/commands.cfg`. Añadimos el siguiente bloque al final del fichero, para definir el comando para el *plugin NRPE*:
 
 <pre>
 define command {
@@ -257,16 +257,16 @@ define command {
 }
 </pre>
 
-Hecho esto, nos toca configurar el fichero `nagios.cfg`, que se encuentra en la ruta `/etc/nagios/nagios.cfg`, para que incluya las de configuraciones de los clientes. Para hacer esto, debemos buscar la siguiente línea y descomentarla, ya que inicialmente se encuentra comentada:
+Hecho esto, nos toca configurar el fichero `nagios.cfg`, que se encuentra en la ruta `/usr/local/nagios/etc/nagios.cfg`, para que incluya las de configuraciones de los clientes. Para hacer esto, debemos buscar la siguiente línea y descomentarla, ya que inicialmente se encuentra comentada:
 
 <pre>
-cfg_dir=/etc/nagios/servers
+cfg_dir=/usr/local/nagios/etc/servers
 </pre>
 
 El subdirectorio `servers/` que acabamos de habilitar en la configuración no existe, así que lo creamos antes de continuar:
 
 <pre>
-mkdir /etc/nagios/servers
+mkdir /usr/local/nagios/etc/servers
 </pre>
 
 Dentro de éste, crearemos un archivo de configuración en el que definiremos a cada cliente que deseemos monitorizar, en mi caso creo el siguiente fichero:
@@ -318,17 +318,6 @@ define host {
 # SERVICIOS
 </pre>
 
-
-
-
-
-
-
-
-
-
-
-
 Por último, como nuestro servidor *Nagios Core* se encuentra en un sistema *CentOS*, recordaremos que nos encontramos con su *firewall* por defecto. Por tanto, tendremos que añadir una regla para que el servidor *Nagios Core* pueda conectar al servicio *Nagios NRPE*:
 
 <pre>
@@ -349,7 +338,7 @@ systemctl restart nagios
 
 Si nos dirigimos a nuestro panel web, en la sección **Hosts**, ahora además de *Quijote*, nos aparecen los nuevos clientes:
 
-![.](images/aso_monitorización_con_Nagios/nagiospanelfinal.png)
+![.](images/aso_monitorización_con_Nagios/nagioshostsfinal.png)
 
 
 

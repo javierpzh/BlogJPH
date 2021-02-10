@@ -597,46 +597,7 @@ codigo |   nombretienda    | especialidad | localizacion |    nif    |  nombreem
 (5 rows)
 </pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Lógicamente funciona igualmente, por lo que este apartado habría terminado.
 
 
 #### Enlace entre un servidor ORACLE y otro PostgreSQL o MySQL empleando Heterogeneus Services

@@ -129,7 +129,11 @@ Vemos como podemos acceder al panel de administración de *Nagios*. Si accedemos
 
 ![.](images/aso_monitorización_con_Nagios/nagioshosts.png)
 
-Vemos que actualmente nos muestra nuestro equipo local, por lo que habríamos finalizado la instalación de *Nagios Core* en nuestro sistema.
+Vemos que actualmente nos muestra nuestro equipo local. Si accedemos al apartado **Services**:
+
+![.](images/aso_monitorización_con_Nagios/nagiosservicios.png)
+
+Vemos que actualmente nos muestra los servicios de nuestro equipo local, por lo que habríamos finalizado la instalación de *Nagios Core* en nuestro sistema.
 
 
 ## Instalación en los clientes

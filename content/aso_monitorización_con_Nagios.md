@@ -205,6 +205,8 @@ Hechas estas modificaciones, tendremos que reiniciar el servicio para que se apl
 systemctl restart nagios-nrpe-server
 </pre>
 
+Listo.
+
 
 ## Configuración en el servidor del plugin NRPE
 

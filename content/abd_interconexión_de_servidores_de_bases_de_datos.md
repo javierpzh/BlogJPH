@@ -455,7 +455,7 @@ postgres@servidor:~$ psql postgres
 psql (11.9 (Debian 11.9-0+deb10u1))
 Type "help" for help.
 
-postgres=# CREATE USER javierserv1 WITH PASSWORD 'martaguapa7';
+postgres=# CREATE USER javierserv1 WITH PASSWORD 'contraseña';
 CREATE ROLE
 
 postgres=# CREATE DATABASE empresa1;
@@ -474,7 +474,7 @@ postgres@cliente:~$ psql postgres
 psql (11.9 (Debian 11.9-0+deb10u1))
 Type "help" for help.
 
-postgres=# CREATE USER javierserv2 WITH PASSWORD 'martaguapa7';
+postgres=# CREATE USER javierserv2 WITH PASSWORD 'contraseña';
 CREATE ROLE
 
 postgres=# CREATE DATABASE empresa2;
@@ -487,6 +487,58 @@ postgres=# exit
 </pre>
 
 Una vez creados ambos usuarios y ambas bases de datos, inserto una serie de tablas con sus respectivos registros. Puedes encontrar la información [aquí](images/abd_interconexiones_de_servidores_de_bases_de_datos/scriptpostgresql.txt).
+
+Hecho esto, llegó el momento de crear los enlaces entre ambos servidores. Los enlaces deben crearse con el usuario administrador **postgres** ya que es el usuario que posee los permisos para ello, y deben crearse en las bases de datos **empresaX**, ya que los usuarios **javierservX**, solo poseen permisos sobre ellas.
+
+Explicado esto, en primer lugar, crearemos el enlace desde el primer servidor hacia el segundo:
+
+<pre>
+postgres@servidor:~$ psql postgres
+psql (11.9 (Debian 11.9-0+deb10u1))
+Type "help" for help.
+
+postgres=# \c empresa1
+You are now connected to database "empresa1" as user "postgres".
+
+empresa1=# CREATE EXTENSION dblink;
+CREATE EXTENSION
+
+empresa1=# exit
+</pre>
+
+
+
+
+
+<pre>
+SELECT Empleados.DNI AS DNI, Empleados.Nombre AS Nombre, Empleados.Direccion AS Direccion, Empleados.Telefono AS Telefono, Empleados.FechaNacimiento AS FechaNacimiento, Empleados.Salario AS Salario, Departamentos.Nombre AS Departamento prueba1
+
+FROM Empleados, dblink('dbname=prueba2 host=192.168.1.161 user=alvaro2 password=alvaro2', 'SELECT Identificador, Nombre FROM Departamentos') AS Departamentos (Identificador NUMERIC, Nombre VARCHAR) prueba1
+
+WHERE Empleados.Departamento = Departamentos.Identificador;
+</pre>
+
+
+select * from dblink('dbname=prueba1 host=192.168.0.44 user=javierserv2 password=martaguapa7', 'select * from paises') as paises (codigo varchar, nombre varchar, capital varchar);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

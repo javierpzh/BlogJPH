@@ -510,12 +510,7 @@ empresa1=# exit
 
 
 
-<pre>
 
-</pre>
-
-
-select * from dblink('dbname=empresa2 host=192.168.0.44 user=javierserv2 password=martaguapa7', 'select * from Empleados') as Empleados (codigo varchar, nombre varchar, capital varchar);
 
 
 

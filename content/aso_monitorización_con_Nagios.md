@@ -142,7 +142,7 @@ Ya tenemos instalado *Nagios Core* en el servidor y ya estamos monitorizando los
 
 Para ello debemos llevar a cabo la instalación de **Nagios NRPE**. Descargaremos *Nagios NRPE* tanto en la parte del servidor, como en los clientes, ya que ambos lo necesitan. En la parte del cliente el propio paquete *Nagios NRPE*, y en el servidor el *plugin NRPE* para *Nagios Core*. En mi caso, mostraré tan solo la instalación en *Dulcinea*, ya que en las demás máquinas el proceso es idéntico.
 
-La descarga, al igual que antes, la podremos llevar a cabo desde su [sitio web](https://github.com/NagiosEnterprises/nrpe/releases), o desde repositorios.
+La descarga, al igual que antes, la podremos llevar a cabo desde su [sitio web](https://github.com/NagiosEnterprises/nrpe/releases), o desde repositorios, y en este caso, sí realizaré la descarga desde los repositorios oficiales.
 
 <pre>
 apt install nagios-nrpe-server nagios-plugins-basic nagios-plugins -y
@@ -173,12 +173,6 @@ En la máquina de *OVH*:
 
 <pre>
 allowed_hosts=127.0.0.1,::1,172.22.200.183
-</pre>
-
-Regla DNAT:
-
-<pre>
-
 </pre>
 
 También debemos buscar la siguiente línea, y habilitar los permisos para que el servidor *Nagios Core* pueda obtener los datos necesarios. Para ello, debemos asegurarnos que el valor de la directiva `dont_blame_nrpe` sea **1**, es decir, esté habilitado:
@@ -340,7 +334,7 @@ Si nos dirigimos a nuestro panel web, en la sección **Hosts**, ahora además de
 
 ![.](images/aso_monitorización_con_Nagios/nagioshostsfinal.png)
 
-
+Perfecto, ya habríamos añadido y estaríamos monitorizando todos los clientes deseados, pero aún no hemos llevado a cabo la configuración que indica los servicios a monitorizar en cada cliente.
 
 
 

@@ -20,7 +20,7 @@ En este artículo vamos a configurar un escenario con *Vagrant* que incluirá va
 
 Es una gran alternativa económica a *FiberChannel*.
 
-[.](images/hlc_iSCSI/iscsi.png)
+![.](images/hlc_iSCSI/iscsi.png)
 
 Y respecto a la **velocidad**, ¿es rápido, es lento? Un requisito indispensable de un buen disco es que sea rápido. Los discos *SCSI* suelen entregar excelentes tasas de transferencia. Pero recordemos que *iSCSI* se lleva sobre la red, por eso mismo, *iSCSI* es recomendado solo para redes conmutadas de alta velocidad.
 

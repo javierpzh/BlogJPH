@@ -20,11 +20,11 @@ En este artículo vamos a configurar un escenario con *Vagrant* que incluirá va
 
 Es una gran alternativa económica a *Fibre Channel*.
 
-[.](images/hlc_iSCSI/iscsi.jpg)
+[.](images/hlc_iSCSI/iscsi.png)
 
-Y respecto a la velocidad, ¿es rápido, es lento? Un requisito indispensable de un buen disco es que sea rápido. Los discos *SCSI* suelen entregar excelentes tasas de transferencia. Pero si SCSI se lleva sobre la red entonces la velocidad podría bajar y el rendimiento decaer gravemente. Por eso iSCSI es recomendado solo para redes conmutadas de alta velocidad como las que proveen Gigabit Ethernet. Aunque iSCSI puede funcionar incluso sobre FastEthernet, no es recomendable en el caso de que busquemos performance, ya que el acceso al disco se ralentizaría mucho.
+Y respecto a la velocidad, ¿es rápido, es lento? Un requisito indispensable de un buen disco es que sea rápido. Los discos *SCSI* suelen entregar excelentes tasas de transferencia. Pero recordemos que *iSCSI* se lleva sobre la red, por eso mismo, *iSCSI* es recomendado solo para redes conmutadas de alta velocidad.
 
-La velocidad de transferencia del iSCSI es de 1000 MB/Seg, aunque debido al protocolo, la velocidad baja hasta 800 MB/Seg.  En caso de que utilicemos tarjetas DUAL CHANNEL, como las que tienen los QNAP, podremos llegar a 1600 MB/Seg, teniendo en cuenta las pérdidas por protocolo.
+La velocidad de transferencia del *iSCSI* es de **1000 MB/seg**, aunque debido al protocolo, la velocidad baja hasta *800 MB/seg*. En caso de que utilicemos tarjetas DUAL CHANNEL, como las que tienen los QNAP, podremos llegar a 1600 MB/Seg, teniendo en cuenta las pérdidas por protocolo.
 
 
 

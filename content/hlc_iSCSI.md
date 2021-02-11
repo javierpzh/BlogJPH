@@ -37,7 +37,7 @@ Hablemos sobre el **target iSCSI**. En pocas palabras, es el servidor. Un *targe
 - Discos enteros
 - Particiones comunes
 - Archivos
-- Dispositivos de CD, cintas, etc.
+- Dispositivos de CD
 
 Y por el otro lado, nos encontramos con el **iniciador iSCSI**. El iniciador es el cliente de *iSCSI*. Generalmente el iniciador consta de dos partes: los módulos o *drivers* que proveen soporte para que el sistema operativo pueda reconocer discos de tipo *iSCSI* y un programa que gestiona las conexiones a dichos discos. En *Linux* hay varias opciones, y en las últimas versiones de *Windows* nos encontramos con un iniciador instalado por defecto.
 

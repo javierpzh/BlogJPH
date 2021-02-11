@@ -10,7 +10,7 @@ Tags: iSCSI
 
 --------------------------------------------------------------------------------
 
-En este artículo vamos a configurar un escenario con *Vagrant* que incluirá varias máquinas, y permitirá realizar la configuración de un servidor **iSCSI** y dos clientes, (uno linux y otro windows).
+En este artículo vamos a configurar un escenario con *Vagrant* que incluirá varias máquinas, y permitirá realizar la configuración de un servidor **iSCSI** y dos clientes, uno *Linux* y otro *Windows*.
 
 ## ¿Qué es iSCSI? ¿Cómo funciona?
 
@@ -46,7 +46,7 @@ Y por el otro lado, nos encontramos con el **iniciador iSCSI**. El iniciador es 
 Creo que no hace falta decirlo, pero por si acaso, imaginemos tener un *target* montado en *Linux*, obviamente podremos utilizar los discos de dicho servidor en sistemas *Windows*, *MacOSX* o incluso *Solaris*.
 
 
-##
+## Configuración
 
 
 

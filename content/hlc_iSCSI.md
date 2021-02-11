@@ -46,13 +46,9 @@ Y por el otro lado, nos encontramos con el **iniciador iSCSI**. El iniciador es 
 Creo que no hace falta decirlo, pero por si acaso, imaginemos tener un *target* montado en *Linux*, obviamente podremos utilizar los discos de dicho servidor en sistemas *Windows*, *MacOSX* o incluso *Solaris*.
 
 
-## Configuración
+## Configuración del target iSCSI
 
-
-
-
-
-
+En primer lugar, vamos a crear el escenario *Vagrant* que comentamos anteriormente. Para ello, he creado este fichero [Vagrantfile](images/hlc_iSCSI/Vagrantfile), en el que defino el servidor *iSCSI* y el primer cliente, en este caso, el cliente *Linux*. El cliente *Windows* lo he creado con interfaz gráfica y también se encuentra conectado en modo puente a mi red doméstica, al igual que estas dos máquinas.
 
 
 

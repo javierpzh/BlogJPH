@@ -30,11 +30,21 @@ Respecto al **acceso a los datos**, en teoría, *iSCSI* no soporta múltiples co
 
 Aún así, existen alternativas para que *iSCSI* pueda soportar múltiples usuarios. Por ejemplo, el global *filesystem (GFS)* de *RedHat*, que es un *filesystem* especialmente diseñado para permitir concurrencia de usuarios en dispositivos que normalmente no lo permiten, como *iSCSI*.
 
+Hablemos sobre el **target iSCSI**. En pocas palabras, es el servidor. Un *target* puede ofrecer uno o más recursos *iSCSI* por la red. En las soluciones *Linux* para *iSCSI*, no hace falta que el dispositivo a exportar sea necesariamente un disco *SCSI*. Se pueden usar medios de almacenamiento de distinta naturaleza como:
+
+- Particiones RAID
+- Particiones LVM
+- Discos enteros
+- Particiones comunes
+- Archivos
+- Dispositivos de CD, cintas, etc.
+
+Y por el otro lado, nos encontramos con el **iniciador iSCSI**. El iniciador es el cliente de *iSCSI*. Generalmente el iniciador consta de dos partes: los módulos o *drivers* que proveen soporte para que el sistema operativo pueda reconocer discos de tipo *iSCSI* y un programa que gestiona las conexiones a dichos discos. En *Linux* hay varias opciones, y en las últimas versiones de *Windows* nos encontramos con un iniciador instalado por defecto.
+
+Creo que no hace falta decirlo, pero por si acaso, imaginemos tener un *target* montado en *Linux*, obviamente podremos utilizar los discos en dicho *target* en un sistema *Windows*, *MacOSX* o incluso *Solaris*.
 
 
-
-
-
+##
 
 
 

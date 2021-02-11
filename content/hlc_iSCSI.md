@@ -18,7 +18,7 @@ En este artículo vamos a configurar un escenario con *Vagrant* que incluirá va
 
 ¿Eso quiere decir que es lo mismo que *Samba* o *NFS*? Pues no, ya que esos sistemas trabajan importando un sistema de archivos mediante la red, mientras que *iSCSI* importa todo el dispositivo hardware por la red, de manera que en el cliente es detectado como un dispositivo *SCSI* más. Todo esto se hace de forma transparente, como si el disco estuviera conectado directamente al hardware.
 
-Es una gran alternativa económica a *Fibre Channel*.
+Es una gran alternativa económica a *FiberChannel*.
 
 [.](images/hlc_iSCSI/iscsi.png)
 

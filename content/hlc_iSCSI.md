@@ -12,7 +12,7 @@ Tags: iSCSI
 
 En este artículo vamos a configurar un escenario con *Vagrant* que incluirá varias máquinas, y permitirá realizar la configuración de un servidor **iSCSI** y dos clientes, (uno linux y otro windows).
 
-## ¿Qué es iSCSI?
+## ¿Qué es iSCSI? ¿Cómo funciona?
 
 **iSCSI** es un extensión de *SCSI*, que es un protocolo para comunicación de dispositivos. *SCSI* suele usarse en dispositivos conectados físicamente a un *host* o servidor, tales como discos duros, lectoras de CDs, ... En *iSCSI*, los comandos *SCSI* que manejan el dispositivo, se envían a través de la red. De forma que en vez de tener un disco *SCSI* conectado físicamente a nuestro equipo, lo conectamos por medio de la red.
 

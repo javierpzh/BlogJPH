@@ -26,7 +26,9 @@ Y respecto a la **velocidad**, ¿es rápido, es lento? Un requisito indispensabl
 
 La velocidad de transferencia del *iSCSI* es de **1000 MB/seg**, aunque debido al protocolo, la velocidad baja hasta *800 MB/seg*. En caso de que utilicemos tarjetas *DUAL CHANNEL*, podremos llegar a *1600 MB/seg*, teniendo en cuenta las pérdidas por protocolo.
 
+Respecto al **acceso a los datos**, en teoría, *iSCSI* no soporta múltiples conexiones a la vez. Por ejemplo, dos equipos no podrían utilizar el mismo disco *iSCSI* para escribir en él. Eso sería como tener un disco rígido conectado a dos máquinas a la vez. Lo más probable es que surgieran inconsistencias en los datos o problemas en los accesos de lectura y escritura de la información.
 
+Aún así, existen alternativas para que *iSCSI* pueda soportar múltiples usuarios. Por ejemplo, el global *filesystem (GFS)* de *RedHat*, que es un *filesystem* especialmente diseñado para permitir concurrencia de usuarios en dispositivos que normalmente no lo permiten, como *iSCSI*.
 
 
 

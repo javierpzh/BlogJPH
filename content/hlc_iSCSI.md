@@ -50,7 +50,7 @@ Creo que no hace falta decirlo, pero por si acaso, imaginemos tener un *target* 
 
 En primer lugar, vamos a crear el escenario *Vagrant* que comentamos anteriormente. Para ello, he creado este fichero [Vagrantfile](images/hlc_iSCSI/Vagrantfile.txt), en el que defino el servidor *iSCSI* y el primer cliente, en este caso, el cliente *Linux*. El cliente *Windows* lo he creado con interfaz gráfica y también se encuentra conectado en modo puente a mi red doméstica, al igual que estas dos máquinas.
 
-
+Explicado 
 
 
 

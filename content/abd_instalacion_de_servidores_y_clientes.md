@@ -377,10 +377,16 @@ Es el momento de pasar con las configuraciones. En primer lugar, vamos a definir
 Para esto, vamos a modificar el fichero `.bash_profile` del usuario **oracle**, que por defecto posee esta configuración:
 
 <pre>
-
+if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+fi
 </pre>
 
+En este archivo, definimos las siguientes variables de entorno:
 
+<pre>
+
+</pre>
 
 
 

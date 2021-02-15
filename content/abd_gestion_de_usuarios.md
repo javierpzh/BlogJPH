@@ -86,15 +86,7 @@ MariaDB [scott]> select * from DEPT;
 4 rows in set (0.001 sec)
 </pre>
 
-
-Ahora vamos a crear el **script** y le vamos a dar el privilegio *DELETE* sobre dichas tablas al usuario *javierpzh*:
-
-<pre>
-GRANT DELETE ON TABLE 'scott.EMP' TO javierpzh;
-GRANT DELETE ON TABLE 'scott.DEPT' TO javierpzh;
-</pre>
-
-Realizamos la consulta de la siguiente manera:
+Ahora vamos a crear el **script**, para el que realizamos la consulta de la siguiente manera:
 
 <pre>
 Select concat('Revoke Delete on ',table_schema,'.',table_name,' from ',grantee,';') as script
@@ -143,14 +135,7 @@ scott=> select * from dept;
 (4 rows)
 </pre>
 
-Ahora vamos a crear el **script** y le vamos a dar el privilegio *DELETE* sobre dichas tablas al usuario *javierpzh*:
-
-<pre>
-GRANT DELETE ON TABLE 'scott.EMP' TO javierpzh;
-GRANT DELETE ON TABLE 'scott.DEPT' TO javierpzh;
-</pre>
-
-Realizamos la consulta de la siguiente manera:
+Ahora vamos a crear el **script**, para el que realizamos la consulta de la siguiente manera:
 
 <pre>
 select 'Revoke Delete on '||table_catalog||'.'||table_name||' from '||grantee||';'
@@ -167,7 +152,6 @@ Da como resultado:
 -------------------------------------------
 Revoke Delete on scott.dept from scott;
 Revoke Delete on scott.emp from scott;
-Revoke Delete on scott.emp from postgres;
 </pre>
 
 ## MongoDB

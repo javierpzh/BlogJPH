@@ -60,31 +60,7 @@ fetch first 1 rows only;
 
 **1. Escribe una consulta que obtenga un *script* para quitar el privilegio de borrar registros en alguna tabla de *SCOTT* a los usuarios que lo tengan. (6)**
 
-Creamos las tablas en la base de datos **Scott** mediante el siguiente [script](images/abd_gestion_de_usuarios/scriptcreacionscottmysql.txt):
-
-<pre>
-CREATE TABLE scott.DEPT
-(
-DEPTNO NUMERIC(2),
-DNAME VARCHAR(14),
-LOC VARCHAR(13),
-CONSTRAINT PK_DEPT PRIMARY KEY (DEPTNO)
-);
-
-CREATE TABLE scott.EMP
-(
-EMPNO NUMERIC(4),
-ENAME VARCHAR(10),
-JOB VARCHAR(9),
-MGR NUMERIC(4),
-HIREDATE TIMESTAMP,
-SAL NUMERIC(7, 2),
-COMM NUMERIC(7, 2),
-DEPTNO NUMERIC(2),
-CONSTRAINT FK_DEPTNO FOREIGN KEY (DEPTNO) REFERENCES DEPT (DEPTNO),
-CONSTRAINT PK_EMP PRIMARY KEY (EMPNO)
-);
-</pre>
+Creamos las tablas en la base de datos **Scott** mediante el siguiente [script](images/abd_gestion_de_usuarios/scriptcreacionscottmysql.txt).
 
 Insertamos los registros:
 
@@ -125,31 +101,7 @@ Da como resultado:
 
 **1. Escribe una consulta que obtenga un *script* para quitar el privilegio de borrar registros en alguna tabla de *SCOTT* a los usuarios que lo tengan. (6)**
 
-Creamos las tablas en la base de datos **Scott** mediante el siguiente [script](images/abd_gestion_de_usuarios/scriptcreacionscottpostgres.txt):
-
-<pre>
-CREATE TABLE scott.DEPT
-(
- DEPTNO NUMERIC(2),
- DNAME VARCHAR(14),
- LOC VARCHAR(13),
- CONSTRAINT PK_DEPT PRIMARY KEY (DEPTNO)
-);
-
-CREATE TABLE scott.EMP
-(
- EMPNO NUMERIC(4),
- ENAME VARCHAR(10),
- JOB VARCHAR(9),
- MGR NUMERIC(4),
- HIREDATE TIMESTAMP,
- SAL NUMERIC(7, 2),
- COMM NUMERIC(7, 2),
- DEPTNO NUMERIC(2),
- CONSTRAINT FK_DEPTNO FOREIGN KEY (DEPTNO) REFERENCES DEPT (DEPTNO),
- CONSTRAINT PK_EMP PRIMARY KEY (EMPNO)
-);
-</pre>
+Creamos las tablas en la base de datos **Scott** mediante el siguiente [script](images/abd_gestion_de_usuarios/scriptcreacionscottpostgres.txt).
 
 Insertamos los registros:
 

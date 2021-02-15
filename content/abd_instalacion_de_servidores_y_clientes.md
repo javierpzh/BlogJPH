@@ -426,6 +426,7 @@ Database Buffers	  264241152 bytes
 Redo Buffers		    3440640 bytes
 Base de datos montada.
 Base de datos abierta.
+
 SQL>
 </pre>
 
@@ -443,31 +444,17 @@ Concesion terminada correctamente.
 SQL>
 </pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 En este punto, nos faltaría configurar el acceso remoto. El proceso es muy parecido al que hemos seguido en *Windows*, por lo que no supone nada nuevo.
 
+Volvemos al usuario **root**, y en primer lugar, debemos configurar el fichero `/etc/hosts` para establecer una resolución estática de nombres en la máquina.
 
+Tendremos que añadir una nueva línea en la que indicaremos, la IP de nuestra máquina, con su respectivo *hostname* y su respectivo *alias*. La línea que en mi caso añado es la siguiente:
 
+<pre>
+192.168.0.47   servidororacle     servidororacle
+</pre>
 
-
-
+Tras ello, debemos reiniciar nuestro sistema para aplicar los cambios.
 
 
 

@@ -331,7 +331,7 @@ La nueva unidad funciona correctamente, por lo que este apartado estaría termin
 
 ## Configuración de target con 2 LUN y autenticación por CHAP
 
-Para este apartado, he creado un nuevo escenario en *Vagrant*, construido mediante el siguiente fichero [Vagrantfile]((images/hlc_iSCSI/Vagrantfile2.txt), en el que defino el servidor *iSCSI*. El cliente *Windows* lo he creado con interfaz gráfica y también se encuentra conectado en modo puente a mi red doméstica, al igual que esta máquina.
+Para este apartado, he creado un nuevo escenario en *Vagrant*, construido mediante el siguiente fichero [Vagrantfile](images/hlc_iSCSI/Vagrantfile2.txt), en el que defino el servidor *iSCSI*. El cliente *Windows* lo he creado con interfaz gráfica y también se encuentra conectado en modo puente a mi red doméstica, al igual que esta máquina.
 
 Al igual que en el primer apartado, vamos a empezar con la instalación de los siguientes paquetes en la parte del **servidor**. Por un lado, instalaremos el paquete `lvm2` para crear un grupo de volúmenes y posteriormente un volumen lógico en el disco adicional que hemos añadido, en resumen, para preparar el disco para su uso como **iSCSI LUN**. Y por otra parte, necesitaremos instalar el paquete `tgt` que es el que nos proporcionará todo el *software* necesario para trabajar con *iSCSI*.
 

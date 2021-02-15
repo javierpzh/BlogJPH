@@ -401,12 +401,33 @@ source ~/.bash_profile
 Hecho esto, vamos a probar a acceder por primera vez a nuestro nuevo gestor de base de datos. Para ello, hacemos uso del comando `sqlplus` y accederemos con el usuario administrador llamado **sysdba**:
 
 <pre>
+[oracle@servidororacle ~]$ sqlplus / as sysdba
 
+SQL*Plus: Release 19.0.0.0.0 - Production on Mon Feb 15 11:10:07 2021
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Connected to an idle instance.
+
+SQL>
 </pre>
 
+Efectivamente podemos acceder correctamente al cliente *sqlplus*. Ahora debemos montar la base de datos, para así poder hacer uso de la misma. Para ello utilizamos el comando `STARTUP`.
 
+<pre>
+SQL> STARTUP                
+ORACLE instance started.
 
-
+Total System Global Area  763360520 bytes
+Fixed Size		    9139464 bytes
+Variable Size		  486539264 bytes
+Database Buffers	  264241152 bytes
+Redo Buffers		    3440640 bytes
+Base de datos montada.
+Base de datos abierta.
+SQL>
+</pre>
 
 
 

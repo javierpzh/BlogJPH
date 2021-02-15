@@ -1,5 +1,5 @@
 Title: Introducción a Docker
-Date: 2021/02/08
+Date: 2021/02/15
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
 Tags: Docker
@@ -9,7 +9,83 @@ Tags: Docker
 --------------------------------------------------------------------------------
 ## Almacenamiento
 
-#### 1. Vamos a trabajar con volúmenes docker:
+#### Los contenedores son efímeros
+
+**Los contenedores son efímeros**, es decir, los ficheros, datos y configuraciones que creamos en los contenedores sobreviven a las paradas de los mismos, pero, sin embargo, son destruidos si el contenedor es destruido.
+
+Veamos un ejemplo:
+
+<pre>
+$ docker run -d --name my-apache-app -p 8080:80 httpd:2.4
+ac50cc24ef71ae0263be7794278600d5cc4f085b88cebbf97b7b268212f2a82f
+
+$ docker exec my-apache-app bash -c 'echo "<h1>Hola</h1>" > htdocs/index.html'
+
+$ curl http://localhost:8080
+<h1>Hola</h1>
+
+$ docker rm -f my-apache-app
+my-apache-app
+
+$ docker run -d --name my-apache-app -p 8080:80 httpd:2.4
+bb94716205c780ec4a3a2695722fb35ac616ae4cea573308d9446208afb164dc
+
+$ curl http://localhost:8080
+<html><body><h1>It works!</h1></body></html>
+</pre>
+
+Vemos como al eliminar el contenedor, la información que habíamos guardado en el fichero `index.html` se pierde, y al crear un nuevo contenedor ese fichero tendrá el contenido original.
+
+**NOTA: En la instrucción `docker exec` hemos ejecutado el comando con *bash* `-c` que nos permite ejecutar uno o más comandos en el contenedor de forma más compleja (por ejemplo, indicando ficheros dentro del contenedor).**
+
+
+#### Los datos en los contenedores
+
+![.](images/iaw_introducción_a_docker/docker.png)
+
+Ante la situación anteriormente descrita, *Docker* nos proporciona varias soluciones para persistir los datos de los contenedores. En este *post* nos vamos a centrar en las dos que considero que son más importantes:
+
+- **volúmenes docker**
+- **bind mount**
+- **tmpfs mounts**: almacenan en memoria la información (no lo vamos a ver con detalle)
+
+#### Volúmenes docker y bind mount
+
+- **Volúmenes docker:** si elegimos conseguir la persistencia usando volúmenes, estamos haciendo que los datos de los contenedores que nosotros decidamos, se almacenen en una parte del sistema de ficheros que es gestionada por *Docker* y a la que, debido a sus permisos, sólo *Docker* tendrá acceso. En Linux se guardan en la ruta `/var/lib/docker/volumes`. Este tipo de volúmenes se suele usar en los siguiente casos:
+
+    - Para compartir datos entre contenedores. Simplemente tendrán que usar el mismo volumen.
+    - Para copias de seguridad ya sea para que sean usadas posteriormente por otros contenedores o para mover esos volúmenes a otros *hosts*.
+    - Cuando quiero almacenar los datos de mi contenedor no localmente, sino en un proveedor *cloud*.
+
+- **Bind mounts:** si elegimos conseguir la persistencia de los datos de los contenedores usando *bind mount*, lo que estamos haciendo es “mapear” (montar) una parte de nuestro sistema de ficheros, de la que normalmente tenemos el control, con una parte del sistema de ficheros del contenedor. De esta manera conseguimos:
+
+    - Compartir ficheros entre el *host* y los *containers*.
+    - Que otras aplicaciones que no sean *Docker* tengan acceso a esos ficheros, ya sean código, ficheros, ...
+
+#### Gestionando volúmenes
+
+Algunos comando útiles para trabajar con volúmenes *Docker*:
+
+- **docker volumen create:** crea un volumen con el nombre indicado.
+- **docker volume rm:** elimina el volumen indicado.
+- **docker volumen prune:** para eliminar los volúmenes que no están siendo usados por ningún contenedor.
+- **docker volume ls:** nos proporciona una lista de los volúmenes creados y algo de información adicional.
+- **docker volume inspect:** nos dará una información mucho más detallada de el volumen que hayamos elegido.
+
+#### Asociando almacenamiento a los contenedores
+
+Veamos como podemos usar los volúmenes y los *bind mounts* en los contenedores. Para cualquiera de los dos casos lo haremos mediante el uso de dos *flags* de la orden *docker run*:
+
+- El *flag* `--volume` o `-v`
+- El *flag* `--mount`
+
+Es importante que tengamos en cuenta dos cosas importantes a la hora de realizar estas operaciones:
+
+- Al usar tanto volúmenes como *bind mounts*, el contenido de lo que tenemos sobrescribirá la carpeta destino en el sistema de ficheros del contenedor en caso de que exista.
+- Si nuestra carpeta origen no existe y hacemos un *bind mount*, esa carpeta se creará pero lo que tendremos en el contenedor es una carpeta vacía.
+- Si usamos imágenes de *DockerHub*, debemos leer la información que cada imagen nos proporciona en su página, ya que esa información suele indicar cómo persistir los datos de esa imagen, ya sea con volúmenes o *bind mounts*, y cuáles son las carpetas importantes en caso de ser imágenes que contengan ciertos servicios (web, base de datos, ...).
+
+#### Trabajando con volúmenes docker:
 
 - **Crea un volumen docker que se llame `miweb`.**
 
@@ -105,7 +181,7 @@ Podemos ver que sí, ya que estamos utilizando el mismo volumen.
 
 
 
-#### 2. Vamos a trabajar con bind mount:
+#### Trabajando con bind mount:
 
 - **Crea un directorio en tu *host* y dentro crea un fichero `index.html`.**
 
@@ -181,7 +257,7 @@ Al igual que en el ejercicio anterior, podemos ver que sí, ya que estamos utili
 ![.](images/iaw_introducción_a_docker/bindmount2.png)
 
 
-####Contenedores con almacenamiento persistente
+#### Trabajando con contenedores con almacenamiento persistente
 
 - **Crea un contenedor desde la imagen *Nextcloud* (usando *sqlite*) configurando el almacenamiento como nos muestra la documentación de la imagen en *Docker Hub* (pero utilizando bind mount). Sube algún fichero.**
 

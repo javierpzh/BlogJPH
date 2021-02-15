@@ -429,7 +429,19 @@ Base de datos abierta.
 SQL>
 </pre>
 
+En este punto, crearemos un usuario personal y le asignaremos permisos:
 
+<pre>
+SQL> CREATE USER c##javier IDENTIFIED BY contraseña;
+
+Usuario creado.
+
+SQL> GRANT ALL PRIVILEGES TO c##javier;
+
+Concesion terminada correctamente.
+
+SQL>
+</pre>
 
 
 

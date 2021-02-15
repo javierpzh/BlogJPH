@@ -60,13 +60,32 @@ fetch first 1 rows only;
 
 **1. Escribe una consulta que obtenga un *script* para quitar el privilegio de borrar registros en alguna tabla de *SCOTT* a los usuarios que lo tengan. (6)**
 
-Creamos las tablas en la base de datos **Scott** mediante el siguiente [script](images/abd_gestion_de_usuarios/scriptcreacionscottmysql.txt).
+Creamos las tablas e insertamos los registros en la base de datos **Scott** mediante el siguiente [script](images/abd_gestion_de_usuarios/scriptcreacionscottmysql.txt).
 
-Insertamos los registros:
+Comprobamos que se han creado correctamente:
 
 <pre>
+MariaDB [scott]> show tables;
++-----------------+
+| Tables_in_scott |
++-----------------+
+| DEPT            |
+| EMP             |
++-----------------+
+2 rows in set (0.001 sec)
 
+MariaDB [scott]> select * from DEPT;
++--------+------------+----------+
+| DEPTNO | DNAME      | LOC      |
++--------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK |
+|     20 | RESEARCH   | DALLAS   |
+|     30 | SALES      | CHICAGO  |
+|     40 | OPERATIONS | BOSTON   |
++--------+------------+----------+
+4 rows in set (0.001 sec)
 </pre>
+
 
 Ahora vamos a crear el **script** y le vamos a dar el privilegio *DELETE* sobre dichas tablas al usuario *javierpzh*:
 
@@ -101,34 +120,11 @@ Da como resultado:
 
 **1. Escribe una consulta que obtenga un *script* para quitar el privilegio de borrar registros en alguna tabla de *SCOTT* a los usuarios que lo tengan. (6)**
 
-Creamos las tablas en la base de datos **Scott** mediante el siguiente [script](images/abd_gestion_de_usuarios/scriptcreacionscottpostgres.txt).
+Creamos las tablas e insertamos los registros en la base de datos **Scott** mediante el siguiente [script](images/abd_gestion_de_usuarios/scriptcreacionscottpostgres.txt).
 
-Insertamos los registros:
+Comprobamos que se han creado correctamente:
 
 <pre>
-INSERT INTO DEPT VALUES (10, 'ACCOUNTING', 'NEW YORK');
-INSERT INTO DEPT VALUES (20, 'RESEARCH', 'DALLAS');
-INSERT INTO DEPT VALUES (30, 'SALES', 'CHICAGO');
-INSERT INTO DEPT VALUES (40, 'OPERATIONS', 'BOSTON');
-
-INSERT INTO EMP VALUES(7369, 'SMITH', 'CLERK', 7902,TO_TIMESTAMP('17-12-1980', 'DD-MM-YYYY'), 800, NULL, 20);
-INSERT INTO EMP VALUES(7499, 'ALLEN', 'SALESMAN', 7698,TO_TIMESTAMP('20-02-1981', 'DD-MM-YYYY'), 1600, 300, 30);
-INSERT INTO EMP VALUES(7521, 'WARD', 'SALESMAN', 7698,TO_TIMESTAMP('22-02-1981', 'DD-MM-YYYY'), 1250, 500, 30);
-INSERT INTO EMP VALUES(7566, 'JONES', 'MANAGER', 7839,TO_TIMESTAMP('02-04-1981', 'DD-MM-YYYY'), 2975, NULL, 20);
-INSERT INTO EMP VALUES(7654, 'MARTIN', 'SALESMAN', 7698,TO_TIMESTAMP('28-09-1981', 'DD-MM-YYYY'), 1250, 1400, 30);
-INSERT INTO EMP VALUES(7698, 'BLAKE', 'MANAGER', 7839,TO_TIMESTAMP('01-05-1981', 'DD-MM-YYYY'), 2850, NULL, 30);
-INSERT INTO EMP VALUES(7782, 'CLARK', 'MANAGER', 7839,TO_TIMESTAMP('09-06-1981', 'DD-MM-YYYY'), 2450, NULL, 10);
-INSERT INTO EMP VALUES(7788, 'SCOTT', 'ANALYST', 7566,TO_TIMESTAMP('09-12-1982', 'DD-MM-YYYY'), 3000, NULL, 20);
-INSERT INTO EMP VALUES(7839, 'KING', 'PRESIDENT', NULL,TO_TIMESTAMP('17-11-1981', 'DD-MM-YYYY'), 5000, NULL, 10);
-INSERT INTO EMP VALUES(7844, 'TURNER', 'SALESMAN', 7698,TO_TIMESTAMP('08-09-1981', 'DD-MM-YYYY'), 1500, 0, 30);
-INSERT INTO EMP VALUES(7876, 'ADAMS', 'CLERK', 7788,TO_TIMESTAMP('12-01-1983', 'DD-MM-YYYY'), 1100, NULL, 20);
-INSERT INTO EMP VALUES(7900, 'JAMES', 'CLERK', 7698,TO_TIMESTAMP('03-12-1981', 'DD-MM-YYYY'), 950, NULL, 30);
-INSERT INTO EMP VALUES(7902, 'FORD', 'ANALYST', 7566,TO_TIMESTAMP('03-12-1981', 'DD-MM-YYYY'), 3000, NULL, 20);
-INSERT INTO EMP VALUES(7934, 'MILLER', 'CLERK', 7782,TO_TIMESTAMP('23-01-1982', 'DD-MM-YYYY'), 1300, NULL, 10);
-</pre>
-
-Comprobamos que se ha creado correctamente:
-
 scott=> \d
        List of relations
  Schema | Name | Type  | Owner
@@ -136,6 +132,16 @@ scott=> \d
  scott  | dept | table | scott
  scott  | emp  | table | scott
 (2 rows)
+
+scott=> select * from dept;
+ deptno |   dname    |   loc    
+--------+------------+----------
+     10 | ACCOUNTING | NEW YORK
+     20 | RESEARCH   | DALLAS
+     30 | SALES      | CHICAGO
+     40 | OPERATIONS | BOSTON
+(4 rows)
+</pre>
 
 Ahora vamos a crear el **script** y le vamos a dar el privilegio *DELETE* sobre dichas tablas al usuario *javierpzh*:
 

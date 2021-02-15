@@ -580,25 +580,7 @@ Accedo a mi servidor de base de datos desde la máquina *cliente*:
 sqlplus c##javier/contraseña@192.168.0.47/orcl
 </pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Ya podríamos acceder correctamente, y tendríamos acceso a los datos, por lo que habríamos terminado este ejercicio.
 
 
 #### Instalación de un servidor MySQL y configuración para permitir el acceso remoto desde la red local

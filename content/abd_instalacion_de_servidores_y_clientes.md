@@ -385,12 +385,24 @@ fi
 En este archivo, definimos las siguientes variables de entorno:
 
 <pre>
-
+umask 022
+export ORACLE_SID=ORCLCDB
+export ORACLE_BASE=/opt/oracle/oradata
+export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
+export PATH=$PATH:$ORACLE_HOME/bin
 </pre>
 
+Una vez modificado el fichero, debemos emplear el siguiente comando para volver a cargar las variables de entorno:
 
+<pre>
+source ~/.bash_profile
+</pre>
 
+Hecho esto, vamos a probar a acceder por primera vez a nuestro nuevo gestor de base de datos. Para ello, hacemos uso del comando `sqlplus` y accederemos con el usuario administrador llamado **sysdba**:
 
+<pre>
+
+</pre>
 
 
 

@@ -464,7 +464,7 @@ Por defecto, posee este aspecto:
 LISTENER =
   (DESCRIPTION_LIST =
     (DESCRIPTION =
-      (ADDRESS = (PROTOCOL = TCP)(HOST = servidororacle)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
       (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))
     )
   )

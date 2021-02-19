@@ -251,7 +251,7 @@ Efectivamente, también hemos recibido el correo en la dirección *reyole111@gma
 
 #### Para asegurar el envío
 
-- **Tarea 4 (No obligatoria): Vamos a configurar *DKIM* en nuestro sistema de correos. Comprobaremos el registro *DKIM* en la página [https://mxtoolbox.com/dkim.aspx](https://mxtoolbox.com/dkim.aspx). Configuraremos `Postfix` para que firme los correos que envíe. Mandaremos un correo y comprobaremos la verificación de las firmas en ellos.**
+**4. Vamos a configurar *DKIM* en nuestro sistema de correos. Comprobaremos el registro *DKIM* en la página [https://mxtoolbox.com/dkim.aspx](https://mxtoolbox.com/dkim.aspx). Configuraremos `Postfix` para que firme los correos que envíe. Mandaremos un correo y comprobaremos la verificación de las firmas en ellos.**
 
 --------------------------------------------------------------------------------
 
@@ -273,22 +273,22 @@ Una vez instalados, nos dirigimos al fichero de configuración de *DKIM*, que es
 
 #### Para luchar contra el SPAM
 
-- **Tarea 5 (No obligatoria): Vamos a configurar `Postfix` para que tenga en cuenta el registro *SPF* de los correos que recibe. Mostraremos el *log* del correo para comprobar que se está haciendo el *testeo* del registro *SPF*.**
+**5. Vamos a configurar `Postfix` para que tenga en cuenta el registro *SPF* de los correos que recibe. Mostraremos el *log* del correo para comprobar que se está haciendo el *testeo* del registro *SPF*.**
 
 
 
-- **Tarea 6 (No obligatoria): Vamos a configurar un sistema *antispam*. Realizaremos comprobaciones para comprobarlo.**
+**6. Vamos a configurar un sistema *antispam*. Realizaremos comprobaciones para comprobarlo.**
 
 
 
-- **Tarea 7 (No obligatoria): Vamos a configurar un sistema antivirus. Realizaremos comprobaciones para comprobarlo.**
+**7. Vamos a configurar un sistema antivirus. Realizaremos comprobaciones para comprobarlo.**
 
 
 
 
 #### Gestión de correos desde un cliente
 
-- **Tarea 8: Vamos a configurar el buzón de los usuarios de tipo `Maildir`. Envía un correo a tu usuario y comprueba que el correo se ha guardado en el buzón `Maildir` del usuario del sistema correspondiente. Recuerda que ese tipo de buzón no se puede leer con la utilidad `mail`.**
+**8. Vamos a configurar el buzón de los usuarios de tipo `Maildir`. Envía un correo a tu usuario y comprueba que el correo se ha guardado en el buzón `Maildir` del usuario del sistema correspondiente. Recuerda que ese tipo de buzón no se puede leer con la utilidad `mail`.**
 
 Como ya sabemos, por defecto al instalar *Postfix*, estaremos utilizando el formato **mbox** para almacenar los correos electrónicos, pero, ¿como hacemos para cambiar al formato **Maildir**?
 
@@ -343,7 +343,7 @@ systemctl restart postfix
 
 
 
-- **Tarea 9: Instalar y configurar `dovecot` para ofrecer el protocolo `IMAP`. Vamos a configurar `dovecot` para ofrecer autentificación y cifrado. Para realizar el cifrado de la comunicación crea un certificado en *LetsEncrypt* para el dominio `mail.iesgn15.es`. Recuerda que para el ofrecer el cifrado tiene varias soluciones:**
+**9. Instalar y configurar `dovecot` para ofrecer el protocolo `IMAP`. Vamos a configurar `dovecot` para ofrecer autentificación y cifrado. Para realizar el cifrado de la comunicación crea un certificado en *LetsEncrypt* para el dominio `mail.iesgn15.es`. Recuerda que para el ofrecer el cifrado tiene varias soluciones:**
 
     - IMAP con STARTTLS: STARTTLS transforma una conexión insegura en una segura mediante el uso de SSL/TLS. Por lo tanto usando el mismo puerto 143/tcp tenemos cifrada la comunicación.
 
@@ -352,11 +352,11 @@ systemctl restart postfix
 
 Elige una de las opciones anterior para realizar el cifrado. Y muestra la configuración de un cliente de correo (evolution, thunderbird, …) y muestra como puedes leer los correos enviado a tu usuario.
 
-- **Tarea 10 (No obligatoria): Instala un webmail (roundcube, horde, rainloop) para gestionar el correo del equipo mediante una interfaz web. Muestra la configuración necesaria y cómo eres capaz de leer los correos que recibe tu usuario.**
+**10. Instala un webmail (roundcube, horde, rainloop) para gestionar el correo del equipo mediante una interfaz web. Muestra la configuración necesaria y cómo eres capaz de leer los correos que recibe tu usuario.**
 
 
 
-- **Tarea 11: Configura de manera adecuada `postfix` para que podamos mandar un correo desde un cliente remoto. La conexión entre cliente y servidor debe estar autentificada con SASL usando `dovecot` y además debe estar cifrada. Para cifrar esta comunicación puedes usar dos opciones:**
+**11. Configura de manera adecuada `postfix` para que podamos mandar un correo desde un cliente remoto. La conexión entre cliente y servidor debe estar autentificada con SASL usando `dovecot` y además debe estar cifrada. Para cifrar esta comunicación puedes usar dos opciones:**
 
     - ESMTP + STARTTLS: Usando el puerto 567/tcp enviamos de forma segura el correo al servidor.
 
@@ -364,13 +364,13 @@ Elige una de las opciones anterior para realizar el cifrado. Y muestra la config
 
 Elige una de las opciones anterior para realizar el cifrado. Y muestra la configuración de un cliente de correo (evolution, thunderbird, …) y muestra como puedes enviar los correos.
 
-- **Tarea 12 (No obligatoria): Configura el cliente webmail para el envío de correo. Realiza una prueba de envío con el webmail.**
+**12. Configura el cliente webmail para el envío de correo. Realiza una prueba de envío con el webmail.**
 
 
 
 
 #### Comprobación final
 
-- **Tarea 13 (No obligatoria): Prueba de envío de correo. En [https://www.mail-tester.com/](https://www.mail-tester.com/) tenemos una herramienta completa y fácil de usar a la que podemos enviar un correo para que verifique y puntúe el correo que enviamos. Captura la pantalla y muestra la puntuación que has sacado.**
+**13. Prueba de envío de correo. En [https://www.mail-tester.com/](https://www.mail-tester.com/) tenemos una herramienta completa y fácil de usar a la que podemos enviar un correo para que verifique y puntúe el correo que enviamos. Captura la pantalla y muestra la puntuación que has sacado.**
 
 .

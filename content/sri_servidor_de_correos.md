@@ -299,12 +299,45 @@ Podemos ver como ahora si está llevando a cabo la comprobación del registro *S
 
 **5. Vamos a configurar un sistema *antispam*. Realizaremos comprobaciones para comprobarlo.**
 
+En este apartado vamos a ver como instalar un sistema *antispam* en nuestro servidor de correos. Para ello necesitaremos instalar los siguientes paquetes:
 
+<pre>
+apt install spamc spamassassin -y
+</pre>
 
+Una vez instalados, habilitaremos e iniciaremos el servicio:
 
+<pre>
+systemctl enable spamassassin && systemctl start spamassassin
+</pre>
 
+Posteriormente, nos dirigiremos al fichero `/etc/postfix/master.cf` y añadiremos las siguientes líneas para que tenga en cuenta el sistema que implementaremos a continuación:
 
+<pre>
+smtp      inet  n       -       y       -       -       smtpd
+-o content_filter=spamassassin
 
+submission inet n       -       y       -       -       smtpd
+-o content_filter=spamassassin
+
+spamassassin unix -     n       n       -       -       pipe
+  user=debian-spamd argv=/usr/bin/spamc -f -e /usr/sbin/sendmail -oi -f ${sender} ${recipient}
+</pre>
+
+Por último, tendremos que configurar **Spamassassin**. Su configuración es bastante simple y se llevará a cabo en el fichero `/etc/spamassassin/local.cf`. En él necesitaremos descomentar la siguiente línea, ya que por defecto aparece comentada:
+
+<pre>
+rewrite_header Subject *****SPAM*****
+</pre>
+
+Realizados todas las modificaciones, aplicaremos los cambios reiniciando ambos servicios:
+
+<pre>
+systemctl restart postfix
+systemctl restart spamassassin
+</pre>
+
+Llegó el momento de realizar la prueba, enviaremos un correo desde *Gmail* 
 
 
 

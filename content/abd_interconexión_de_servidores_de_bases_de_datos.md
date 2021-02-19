@@ -1,5 +1,5 @@
 Title: Interconexiones de Servidores de bases de datos
-Date: 2018/02/19
+Date: 2021/02/05
 Category: Administración de Bases de Datos
 Header_Cover: theme/images/banner-basededatos.png
 Tags: Base de Datos, Oracle, PostgreSQL

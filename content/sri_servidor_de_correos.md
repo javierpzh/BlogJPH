@@ -19,7 +19,7 @@ Comencemos.
 
 #### Gestión de correos desde el servidor
 
-1. **Vamos a enviar un correo desde nuestro servidor local al exterior (Gmail).**
+**1. Vamos a enviar un correo desde nuestro servidor local al exterior (Gmail).**
 
 Antes de realizar este ejercicio, vamos a crear un registro de tipo **SPF** en nuestro DNS de OVH, esto le servirá a **Gmail** para identificar que nuestro correo no es **Spam**. He creado el siguiente registro:
 
@@ -64,7 +64,7 @@ Received-SPF: pass (google.com: domain of debian@iesgn15.es designates 51.210.10
 
 En estas líneas se aprecia como ha pasado correctamente y ha hecho uso del registro **SPF** y por tanto no nos muestra este mensaje como *Spam*.
 
-2. **Vamos a enviar un correo desde el exterior (Gmail) a nuestro servidor local.**
+**2. Vamos a enviar un correo desde el exterior (Gmail) a nuestro servidor local.**
 
 Al igual que en la tarea anterior, antes de realizar este ejercicio, vamos a crear un registro de tipo **MX** en nuestro DNS de OVH. He creado el siguiente registro:
 
@@ -133,7 +133,7 @@ Explicado esto, vamos a pasar con el siguiente ejercicio.
 
 #### Uso de alias y redirecciones
 
-3. **Uso de alias y redirecciones.**
+**3. Uso de alias y redirecciones.**
 
 Vamos a comprobar como los procesos del servidor pueden mandar correos para informar sobre su estado. Por ejemplo cada vez que se ejecuta una tarea `cron` podemos enviar un correo informando del resultado. Normalmente estos correos se mandan al usuario **root** del servidor, para ello:
 

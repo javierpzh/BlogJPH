@@ -1065,9 +1065,11 @@ COD_TIENDA
 
 Podemos apreciar como efectivamente podemos realizar la consulta correctamente.
 
-#### PostgreSQL a ORACLE
+##### PostgreSQL a ORACLE
 
+Nos situamos en la máquina que contiene el servidor **PostgreSQL**.
 
+El primer paso que debemos realizar consiste en la instalación de un ***Data Wrappers***, pero, ¿qué son estos *Data Wrappers*?
 
 
 

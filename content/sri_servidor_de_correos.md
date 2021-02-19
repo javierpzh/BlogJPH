@@ -19,7 +19,7 @@ Comencemos.
 
 #### Gestión de correos desde el servidor
 
-- **1 Vamos a enviar un correo desde nuestro servidor local al exterior (Gmail).**
+1. **Vamos a enviar un correo desde nuestro servidor local al exterior (Gmail).**
 
 Antes de realizar este paso, vamos a crear un registro de tipo **SPF** en nuestro DNS de OVH, esto le servirá a **Gmail** para identificar que nuestro correo no es **Spam**. He creado el siguiente registro:
 

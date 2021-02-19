@@ -147,7 +147,27 @@ E indico donde se envía el correo:
 MAILTO = root
 </pre>
 
-Puedes poner alguna tarea en el *cron* para ver como se mandan correo.
+Voy a añadir una nueva tarea en el *cron* para ver como se manda el correo cuando se lleve dicha tarea. Añado la siguiente línea a mi *crontab*:
+
+<pre>
+40 18 * * * apt update && apt upgrade -y
+</pre>
+
+Esta tarea lo que hará básicamente es una actualización de todos los paquetes que haya instalados en el sistema, y se llevará a cabo todos los días a las 18:40.
+
+<pre>
+root@vpsjavierpzh:~# crontab -e
+crontab: installing new crontab
+</pre>
+
+
+
+
+![.](images/sri_servidor_de_correos/crontab.png)
+
+
+
+
 
 Posteriormente usando alias y redirecciones podemos hacer llegar esos correos a nuestro correo personal.
 

@@ -714,16 +714,16 @@ SQL>
 Vemos como se nos abre una especie de cliente en el que podemos ejecutar órdenes *SQL*:
 
 <pre>
-SQL> select * from Tiendas;
-+-------+---------------------+-------------+-----------------------------------------+
-| codigo| nombre              | especialidad| localizacion                            |
-+-------+---------------------+-------------+-----------------------------------------+
-| 000001| Javi s Pet          | Animales    | Sevilla                                 |
-| 000002| Javi s Sport        | Deportes    | Cordoba                                 |
-| 000003| Javi s Food         | Comida      | Granada                                 |
-| 000004| Javi s Technology   | Tecnologia  | Cadiz                                   |
-| 000005| Javi s Clothes      | Ropa        | Huelva                                  |
-+-------+---------------------+-------------+-----------------------------------------+
+SQL> select * from empleados;
++----------+-------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+-----------+
+| nif      | nombre                                                                                                                                                | anyonacimiento| cod_tienda|
++----------+-------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+-----------+
+| 12345678A| Rodrigo Fernandez                                                                                                                                     | 1974          | 000001    |
+| 12345678B| Cristina Perez                                                                                                                                        | 1976          | 000002    |
+| 12345678C| Ramon Fuentes                                                                                                                                         | 1983          | 000003    |
+| 12345678D| Maria Diaz                                                                                                                                            | 1969          | 000004    |
+| 12345678E| Alejandro Cortes                                                                                                                                      | 1978          | 000005    |
++----------+-------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+-----------+
 SQLRowCount returns 5
 5 rows fetched
 </pre>
@@ -903,17 +903,219 @@ Con esto, habríamos terminado la creación del enlace.
 Vamos a probarlo haciendo una consulta sencilla:
 
 <pre>
-SQL> select "nombre" from "tiendas"@linkservpostgresql;
+SQL> select "nombre" from "empleados"@linkservpostgresql;
 
 nombre
 --------------------------------------------------------------------------------
-Javi s Pet
-Javi s Sport
-Javi s Food
-Javi s Technology
-Javi s Clothes
+Rodrigo Fernandez
+Cristina Perez
+Ramon Fuentes
+Maria Diaz
+Alejandro Cortes
 </pre>
 
-Obviamente, gracias a este enlace también podremos realizar consultas combinadas, es decir, que incluyan informaciones de ambos servidores.
+Obviamente, gracias a este enlace también podremos realizar consultas combinadas, es decir, que incluyan informaciones de ambos servidores, vamos a verlo haciendo una consulta a la tabla **Tiendas**(tabla almacenada en el primer servidor) y la tabla **Empleados** (tabla almacenada en el segundo servidor):
+
+<pre>
+SQL> SELECT Tiendas.Codigo AS Codigo, Tiendas.Nombre AS NombreTienda, Tiendas.Especialidad AS Especialidad, Tiendas.Localizacion AS Localizacion, Empleados."nif" AS NIF, Empleados."nombre" AS NombreEmpleado, Empleados."anyonacimiento" AS AnyoNacimiento, Empleados."cod_tienda" AS Cod_Tienda
+  2  FROM Tiendas, "empleados"@linkservpostgresql Empleados
+  3  WHERE Tiendas.Codigo = Empleados."cod_tienda";
+
+CODIGO NOMBRETIENDA	    ESPECIALID LOCALIZACION
+------ -------------------- ---------- ----------------------------------------
+NIF
+--------------------------------------------------------------------------------
+NOMBREEMPLEADO
+--------------------------------------------------------------------------------
+ANYONACIMIENTO
+--------------
+COD_TIENDA
+------------------------------------------------------------------------
+000001 Javi s Pet	    Animales   Sevilla
+12345678A
+Rodrigo Fernandez
+
+CODIGO NOMBRETIENDA	    ESPECIALID LOCALIZACION
+------ -------------------- ---------- ----------------------------------------
+NIF
+--------------------------------------------------------------------------------
+NOMBREEMPLEADO
+--------------------------------------------------------------------------------
+ANYONACIMIENTO
+--------------
+COD_TIENDA
+------------------------------------------------------------------------
+	  1974
+000001
+
+
+CODIGO NOMBRETIENDA	    ESPECIALID LOCALIZACION
+------ -------------------- ---------- ----------------------------------------
+NIF
+--------------------------------------------------------------------------------
+NOMBREEMPLEADO
+--------------------------------------------------------------------------------
+ANYONACIMIENTO
+--------------
+COD_TIENDA
+------------------------------------------------------------------------
+000002 Javi s Sport	    Deportes   Cordoba
+12345678B
+Cristina Perez
+
+CODIGO NOMBRETIENDA	    ESPECIALID LOCALIZACION
+------ -------------------- ---------- ----------------------------------------
+NIF
+--------------------------------------------------------------------------------
+NOMBREEMPLEADO
+--------------------------------------------------------------------------------
+ANYONACIMIENTO
+--------------
+COD_TIENDA
+------------------------------------------------------------------------
+	  1976
+000002
+
+
+CODIGO NOMBRETIENDA	    ESPECIALID LOCALIZACION
+------ -------------------- ---------- ----------------------------------------
+NIF
+--------------------------------------------------------------------------------
+NOMBREEMPLEADO
+--------------------------------------------------------------------------------
+ANYONACIMIENTO
+--------------
+COD_TIENDA
+------------------------------------------------------------------------
+000003 Javi s Food	    Comida     Granada
+12345678C
+Ramon Fuentes
+
+CODIGO NOMBRETIENDA	    ESPECIALID LOCALIZACION
+------ -------------------- ---------- ----------------------------------------
+NIF
+--------------------------------------------------------------------------------
+NOMBREEMPLEADO
+--------------------------------------------------------------------------------
+ANYONACIMIENTO
+--------------
+COD_TIENDA
+------------------------------------------------------------------------
+	  1983
+000003
+
+
+CODIGO NOMBRETIENDA	    ESPECIALID LOCALIZACION
+------ -------------------- ---------- ----------------------------------------
+NIF
+--------------------------------------------------------------------------------
+NOMBREEMPLEADO
+--------------------------------------------------------------------------------
+ANYONACIMIENTO
+--------------
+COD_TIENDA
+------------------------------------------------------------------------
+000004 Javi s Technology    Tecnologia Cadiz
+12345678D
+Maria Diaz
+
+CODIGO NOMBRETIENDA	    ESPECIALID LOCALIZACION
+------ -------------------- ---------- ----------------------------------------
+NIF
+--------------------------------------------------------------------------------
+NOMBREEMPLEADO
+--------------------------------------------------------------------------------
+ANYONACIMIENTO
+--------------
+COD_TIENDA
+------------------------------------------------------------------------
+	  1969
+000004
+
+
+CODIGO NOMBRETIENDA	    ESPECIALID LOCALIZACION
+------ -------------------- ---------- ----------------------------------------
+NIF
+--------------------------------------------------------------------------------
+NOMBREEMPLEADO
+--------------------------------------------------------------------------------
+ANYONACIMIENTO
+--------------
+COD_TIENDA
+------------------------------------------------------------------------
+000005 Javi s Clothes	    Ropa       Huelva
+12345678E
+Alejandro Cortes
+
+CODIGO NOMBRETIENDA	    ESPECIALID LOCALIZACION
+------ -------------------- ---------- ----------------------------------------
+NIF
+--------------------------------------------------------------------------------
+NOMBREEMPLEADO
+--------------------------------------------------------------------------------
+ANYONACIMIENTO
+--------------
+COD_TIENDA
+------------------------------------------------------------------------
+	  1978
+000005
+</pre>
+
+(El resultado de la consulta no tiene mucho sentido, pero lo importante es mostrar el funcionamiento).
+
+Podemos apreciar como efectivamente podemos realizar la consulta correctamente.
 
 #### PostgreSQL a ORACLE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

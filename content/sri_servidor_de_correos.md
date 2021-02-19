@@ -4,7 +4,7 @@ Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Correos, postfix, dovecot, imap, imaps, SMTPS
 
-En este *post* vamos a instalar y configurar de manera adecuada un servidor de correos en una máquina de **OVH**. Mi dominio es `iesgn15.es`. El nombre del servidor de correo será `mail.iesgn15.es` (Este es el nombre que deberá aparecer en el registro MX).
+En este *post* vamos a instalar y configurar de manera adecuada un servidor de correos en una **VPS** alojada en **OVH**. Mi dominio es `iesgn15.es`. El nombre del servidor de correo será `mail.iesgn15.es` (Este es el nombre que deberá aparecer en el registro MX).
 
 #### Instalación
 
@@ -21,7 +21,7 @@ Comencemos.
 
 1. **Vamos a enviar un correo desde nuestro servidor local al exterior (Gmail).**
 
-Antes de realizar este paso, vamos a crear un registro de tipo **SPF** en nuestro DNS de OVH, esto le servirá a **Gmail** para identificar que nuestro correo no es **Spam**. He creado el siguiente registro:
+Antes de realizar este ejercicio, vamos a crear un registro de tipo **SPF** en nuestro DNS de OVH, esto le servirá a **Gmail** para identificar que nuestro correo no es **Spam**. He creado el siguiente registro:
 
 ![.](images/sri_servidor_de_correos/registrospf.png)
 

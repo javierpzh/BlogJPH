@@ -371,6 +371,6 @@ Elige una de las opciones anterior para realizar el cifrado. Y muestra la config
 
 #### Comprobación final
 
-**13. Prueba de envío de correo. En [https://www.mail-tester.com/](https://www.mail-tester.com/) tenemos una herramienta completa y fácil de usar a la que podemos enviar un correo para que verifique y puntúe el correo que enviamos. Captura la pantalla y muestra la puntuación que has sacado.**
+**13. Prueba de envío de correo. En [www.mail-tester.com/](https://www.mail-tester.com/) tenemos una herramienta completa y fácil de usar a la que podemos enviar un correo para que verifique y puntúe el correo que enviamos. Captura la pantalla y muestra la puntuación que has sacado.**
 
 .

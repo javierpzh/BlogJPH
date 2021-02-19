@@ -4,13 +4,13 @@ Category: Administración de Bases de Datos
 Header_Cover: theme/images/banner-basededatos.png
 Tags: Base de Datos, Oracle, PostgreSQL
 
-**Las interconexiones de servidores de bases de datos son operaciones que pueden ser muy útiles en diferentes contextos. Básicamente, se trata de acceder a datos que no están almacenados en nuestra base de datos, pudiendo combinarlos con los que ya tenemos.**
+Las interconexiones de servidores de bases de datos son operaciones que pueden ser muy útiles en diferentes contextos. Básicamente, se trata de acceder a datos que no están almacenados en nuestra base de datos, pudiendo combinarlos con los que ya tenemos.
 
-**En este artículo veremos varias formas de crear un enlace entre distintos servidores de bases de datos. Los servidores enlazados siempre estarán instalados en máquinas diferentes.**
+En este artículo veremos varias formas de crear un enlace entre distintos servidores de bases de datos. Los servidores enlazados siempre estarán instalados en máquinas diferentes.
 
-**Es muy importante recordar que los enlaces son unidireccionales, es decir, si creamos un enlace en el *servidor1* hacia el *servidor2*, será el *servidor1* el que pueda acceder a los datos del *servidor2*, pero el *servidor2* no podrá acceder a los datos del *servidor1*.**
+Es muy importante recordar que los enlaces son unidireccionales, es decir, si creamos un enlace en el *servidor1* hacia el *servidor2*, será el *servidor1* el que pueda acceder a los datos del *servidor2*, pero el *servidor2* no podrá acceder a los datos del *servidor1*.
 
-**Hay que decir que trabajaré sobre los escenarios creados en el *post* anterior, que trataba sobre [Instalación de Servidores y Clientes de bases de datos](https://javierpzh.github.io/instalacion-de-servidores-y-clientes-de-bases-de-datos.html), por lo que ya dispongo de los servidores instalados y con las configuraciones básicas.**
+Hay que decir que trabajaré sobre los escenarios creados en el *post* anterior, que trataba sobre [Instalación de Servidores y Clientes de bases de datos](https://javierpzh.github.io/instalacion-de-servidores-y-clientes-de-bases-de-datos.html), por lo que ya dispongo de los servidores instalados y con las configuraciones básicas.
 
 #### Enlace entre dos servidores de bases de datos ORACLE
 

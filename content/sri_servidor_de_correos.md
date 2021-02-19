@@ -155,25 +155,14 @@ Voy a añadir una nueva tarea en el *cron* para ver como se manda el correo cuan
 
 Esta tarea lo que hará básicamente es una actualización de todos los paquetes que haya instalados en el sistema, y se llevará a cabo todos los días a las 18:40.
 
+Al cerrar y guardar nuestro *crontab* apreciaremos la siguiente salida que indica que hemos realizado cambios en él:
+
 <pre>
 root@vpsjavierpzh:~# crontab -e
 crontab: installing new crontab
 </pre>
 
-
-
-
-![.](images/sri_servidor_de_correos/crontab.png)
-
-
-
-
-
-Posteriormente usando alias y redirecciones podemos hacer llegar esos correos a nuestro correo personal.
-
-Configura el `cron` para enviar correo al usuario **root**. Comprueba que están llegando esos correos al root. Crea un nuevo alias para que se manden a un usuario sin privilegios. Comprueban que llegan a ese usuario. Por último crea una redirección para enviar esos correo a tu correo personal (gmail,hotmail,…).
-
---------------------------------------------------------------------------------
+Aún queda algo de tiempo hasta las 18:40, lo que me da margen para configurar una serie de **alias** y **redirecciones** para hacer llegar esos correos a nuestro correo personal.
 
 En primer lugar vamos a configurar un nuevo **alias**, para que los correos que tengan como destinatario al usuario **root**, también lleguen al buzón del usuario **debian**. Para ello vamos a editar el fichero `/etc/aliases` y añadiremos la siguiente línea:
 
@@ -199,7 +188,7 @@ Hecho esto, vamos a enviar un correo desde **Gmail** hacia `root@iesgn15.es`:
 
 ![.](images/sri_servidor_de_correos/correoenviadogmailparareenvioadebian.png)
 
-Una vez enviado, vamos a comprobar que lo hayamos recibido en nuestro servidor local, en el usuario **debian**, para leer los nuevos correos, haremos uso de la herramienta anterior en el usuario *debian*.
+Una vez enviado, vamos a comprobar que lo hayamos recibido en nuestro servidor local, en el usuario **debian**. Para leer los nuevos correos, haremos uso de la herramienta `mail` en el usuario *debian*.
 
 <pre>
 debian@vpsjavierpzh:~$ mail
@@ -210,7 +199,7 @@ Mail version 8.1.2 01/15/2001.  Type ? for help.
  & 2
 </pre>
 
-Vemos que nos indica que tenemos dos correos sin leer (el primero es una prueba), si indicamos su número, en esta caso el 2, y lo leemos:
+Vemos que nos indica que tenemos dos correos sin leer (el primero es una prueba), si indicamos su número, en este caso el 2, y lo leemos:
 
 <pre>
 Message 2:
@@ -244,7 +233,7 @@ Hecho esto, vamos a enviar un correo desde **Gmail** hacia `root@iesgn15.es`:
 
 ![.](images/sri_servidor_de_correos/correoenviadogmailparareenvioadebianygmail.png)
 
-Supuestamente, lo que ahora debería ocurrir es lo siguiente. El correo cuyo destinatario es **root**, debe llegar a **debian**, lo cuál es señal de que el alias está actuando correctamente, y acto después, el correo debe ser reenviado a la dirección **reyole111@gmail.com**.
+Supuestamente, lo que ahora debería ocurrir es lo siguiente. El correo cuyo destinatario es **root**, debe llegar a **debian**, lo cuál es señal de que el alias está actuando correctamente, y automáticamente después, el correo debe ser reenviado a la dirección **reyole111@gmail.com**.
 
 Vamos a ver si hemos recibido el correo en la bandeja de entrada de **reyole111@gmail.com**.
 
@@ -253,6 +242,16 @@ Vamos a ver si hemos recibido el correo en la bandeja de entrada de **reyole111@
 ![.](images/sri_servidor_de_correos/correorecibidogmailreyoleinfo.png)
 
 Efectivamente, también hemos recibido el correo en la dirección *reyole111@gmail.com*, por tanto la redirección está bien configurada.
+
+¿Recordáis que teníamos programada una tarea en el *cron* para las 18:40? Bien, pues resulta que acabo de recibir en `reyole111@gmail.com` el siguiente correo:
+
+![.](images/sri_servidor_de_correos/correocron.png)
+
+Se puede apreciar la salida de los comandos que indiqué en la tarea del *cron*, y una vez más han actuado tanto el alias como la redirección configurada.
+
+
+
+
 
 
 

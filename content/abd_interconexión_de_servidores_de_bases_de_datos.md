@@ -2,11 +2,13 @@ Title: Interconexiones de Servidores de bases de datos
 Date: 2018/02/19
 Category: Administración de Bases de Datos
 Header_Cover: theme/images/banner-basededatos.png
-Tags: Base de Datos, Oracle, MySQL, MariaDB, PostgreSQL
+Tags: Base de Datos, Oracle, PostgreSQL
 
 **Las interconexiones de servidores de bases de datos son operaciones que pueden ser muy útiles en diferentes contextos. Básicamente, se trata de acceder a datos que no están almacenados en nuestra base de datos, pudiendo combinarlos con los que ya tenemos.**
 
 **En este artículo veremos varias formas de crear un enlace entre distintos servidores de bases de datos. Los servidores enlazados siempre estarán instalados en máquinas diferentes.**
+
+**Es muy importante recordar que los enlaces son unidireccionales, es decir, si creamos un enlace en el *servidor1* hacia el *servidor2*, será el *servidor1* el que pueda acceder a los datos del *servidor2*, pero el *servidor2* no podrá acceder a los datos del *servidor1*.**
 
 **Hay que decir que trabajaré sobre los escenarios creados en el *post* anterior, que trataba sobre [Instalación de Servidores y Clientes de bases de datos](https://javierpzh.github.io/instalacion-de-servidores-y-clientes-de-bases-de-datos.html), por lo que ya dispongo de los servidores instalados y con las configuraciones básicas.**
 
@@ -1069,7 +1071,7 @@ Podemos apreciar como efectivamente podemos realizar la consulta correctamente.
 
 Nos situamos en la máquina que contiene el servidor **PostgreSQL**.
 
-El primer paso que debemos realizar consiste en la instalación de un ***Data Wrappers***, pero, ¿qué son estos *Data Wrappers*?
+El primer paso que debemos realizar consiste en la instalación de un ***Data Wrappers***, pero, ¿qué son estos *Data Wrappers*? Pues son una especie de extensiones que permiten conectar servidores *PostgreSQL* con otros gestores de bases de datos, como pueden ser *Oracle*, *MySQL* o *MongoDB*. En el caso de *Oracle*, que es el que nos interesa, podemos recurrir al paquete `oracle_fdw`.
 
 
 

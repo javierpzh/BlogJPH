@@ -4,7 +4,7 @@ Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Correos, postfix, dovecot, imap, imaps, SMTPS
 
-En este *post* vamos a instalar y configurar de manera adecuada un servidor de correos en una **VPS** alojada en **OVH**. Mi dominio es `iesgn15.es`. El nombre del servidor de correo será `mail.iesgn15.es` (Este es el nombre que deberá aparecer en el registro MX).
+En este *post* vamos a instalar y configurar de manera adecuada un servidor de correos en una **VPS** alojada en **OVH**. Mi dominio es `iesgn15.es`. El nombre del servidor de correo será `mail.iesgn15.es` (este es el nombre que deberá aparecer en el registro MX).
 
 #### Instalación
 
@@ -64,15 +64,11 @@ Received-SPF: pass (google.com: domain of debian@iesgn15.es designates 51.210.10
 
 En estas líneas se aprecia como ha pasado correctamente y ha hecho uso del registro **SPF** y por tanto no nos muestra este mensaje como *Spam*.
 
-- **Tarea 2: Vamos a enviar un correo desde el exterior (Gmail) a nuestro servidor local.**
+2. **Vamos a enviar un correo desde el exterior (Gmail) a nuestro servidor local.**
 
-Al igual que en la tarea anterior, antes de realizar este ejercicio, vamos a crear un registro de tipo **MX** en nuestro DNS de OVH, esto le servirá . He creado el siguiente registro:
-
---------------------------------------------------------------------------------
+Al igual que en la tarea anterior, antes de realizar este ejercicio, vamos a crear un registro de tipo **MX** en nuestro DNS de OVH. He creado el siguiente registro:
 
 ![.](images/sri_servidor_de_correos/registromx.png)
-
---------------------------------------------------------------------------------
 
 Hecho esto, vamos a enviar un correo desde **Gmail** hacia `debian@iesgn15.es`:
 
@@ -137,7 +133,7 @@ Explicado esto, vamos a pasar con el siguiente ejercicio.
 
 #### Uso de alias y redirecciones
 
-- **Tarea 3 (No obligatoria): Uso de alias y redirecciones.**
+3. **Uso de alias y redirecciones.**
 
 Vamos a comprobar como los procesos del servidor pueden mandar correos para informar sobre su estado. Por ejemplo cada vez que se ejecuta una tarea `cron` podemos enviar un correo informando del resultado. Normalmente estos correos se mandan al usuario **root** del servidor, para ello:
 

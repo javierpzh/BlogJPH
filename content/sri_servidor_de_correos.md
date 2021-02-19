@@ -297,7 +297,9 @@ Feb 19 19:14:22 vpsjavierpzh postfix/smtpd[19227]: disconnect from mail-io1-f42.
 
 Podemos ver como ahora si está llevando a cabo la comprobación del registro *SPF*.
 
-**5. Vamos a configurar un sistema *antispam*. Realizaremos comprobaciones para comprobarlo.**
+--------------------------------------------------------------------------------
+
+**5. Vamos a configurar un sistema *antispam*.**
 
 En este apartado vamos a ver como instalar un sistema *antispam* en nuestro servidor de correos. Para ello necesitaremos instalar los siguientes paquetes:
 
@@ -337,7 +339,16 @@ systemctl restart postfix
 systemctl restart spamassassin
 </pre>
 
-Llegó el momento de realizar la prueba, enviaremos un correo desde *Gmail* 
+Llegó el momento de realizar la prueba, enviaremos un correo desde *Gmail*
+
+<pre>
+
+</pre>
+
+
+--------------------------------------------------------------------------------
+
+**6. Vamos a configurar un sistema antivirus.**
 
 
 
@@ -351,13 +362,6 @@ Llegó el momento de realizar la prueba, enviaremos un correo desde *Gmail*
 
 
 
-
-
-
-
-
-
-**6. Vamos a configurar un sistema antivirus. Realizaremos comprobaciones para comprobarlo.**
 
 
 
@@ -421,10 +425,10 @@ systemctl restart postfix
 
 **8. Instalar y configurar `dovecot` para ofrecer el protocolo `IMAP`. Vamos a configurar `dovecot` para ofrecer autentificación y cifrado. Para realizar el cifrado de la comunicación crea un certificado en *LetsEncrypt* para el dominio `mail.iesgn15.es`. Recuerda que para el ofrecer el cifrado tiene varias soluciones:**
 
-    - IMAP con STARTTLS: STARTTLS transforma una conexión insegura en una segura mediante el uso de SSL/TLS. Por lo tanto usando el mismo puerto 143/tcp tenemos cifrada la comunicación.
+- IMAP con STARTTLS: STARTTLS transforma una conexión insegura en una segura mediante el uso de SSL/TLS. Por lo tanto usando el mismo puerto 143/tcp tenemos cifrada la comunicación.
 
-    - IMAPS: Versión segura del protocolo IMAP que usa el puerto 993/tcp.
-    Ofrecer las dos posibilidades.
+- IMAPS: Versión segura del protocolo IMAP que usa el puerto 993/tcp.
+Ofrecer las dos posibilidades.
 
 Elige una de las opciones anterior para realizar el cifrado. Y muestra la configuración de un cliente de correo (evolution, thunderbird, …) y muestra como puedes leer los correos enviado a tu usuario.
 

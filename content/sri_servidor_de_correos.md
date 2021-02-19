@@ -247,25 +247,7 @@ Efectivamente, también hemos recibido el correo en la dirección *reyole111@gma
 
 ![.](images/sri_servidor_de_correos/correocron.png)
 
-Se puede apreciar la salida de los comandos que indiqué en la tarea del *cron*, y una vez más han actuado tanto el alias como la redirección configurada.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Se puede apreciar la salida de los comandos que indiqué en la tarea del *cron*, por lo que, además de ver como nuestro *cron* nos ha notificado por correo, podemos ver que una vez más han actuado tanto el alias como la redirección configurada.
 
 
 #### Para asegurar el envío

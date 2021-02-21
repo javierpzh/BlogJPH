@@ -297,10 +297,129 @@ Feb 19 19:14:22 vpsjavierpzh postfix/smtpd[19227]: disconnect from mail-io1-f42.
 
 Podemos ver como ahora si está llevando a cabo la comprobación del registro *SPF*.
 
+**5. Vamos a configurar un sistema *antispam*.**
+
+En este apartado vamos a ver como instalar un sistema *antispam* en nuestro servidor de correos. Para ello necesitaremos instalar los siguientes paquetes:
+
+<pre>
+apt install spamc spamassassin -y
+</pre>
+
+Una vez instalados, habilitaremos e iniciaremos el servicio:
+
+<pre>
+systemctl enable spamassassin && systemctl start spamassassin
+</pre>
+
+Posteriormente, nos dirigiremos al fichero `/etc/postfix/master.cf` y veremos que nos encontramos con las siguientes líneas:
+
+<pre>
+smtp      inet  n       -       y       -       -       smtpd
+...
+#submission inet n       -       y       -       -       smtpd
+</pre>
+
+Una vez localizadas, tendremos que hacer unas modificaciones en ellas para que *Postfix* tenga en cuenta el sistema *antispam*, además de añadir una nueva directiva. Realizadas las modificaciones, las líneas tendrían el siguiente aspecto:
+
+<pre>
+smtp      inet  n       -       y       -       -       smtpd -o content_filter=spamassassin
+...
+submission inet n       -       y       -       -       smtpd -o content_filter=spamassassin
+...
+spamassassin unix -     n       n       -       -       pipe user=debian-spamd argv=/usr/bin/spamc -f -e /usr/sbin/sendmail -oi -f ${sender} ${recipient}
+</pre>
+
+Por último, tendremos que configurar **Spamassassin**. Su configuración es bastante simple y se llevará a cabo en el fichero `/etc/spamassassin/local.cf`. En él necesitaremos descomentar la siguiente línea, ya que por defecto aparece comentada:
+
+<pre>
+rewrite_header Subject *****SPAM*****
+</pre>
+
+Realizados todas las modificaciones, aplicaremos los cambios reiniciando ambos servicios:
+
+<pre>
+systemctl restart postfix
+systemctl restart spamassassin
+</pre>
+
+Llegó el momento de realizar la prueba, enviaremos un correo desde *Gmail*, y en el mensaje del correo, introduciré un mensaje de *spam*, que puedes encontrar [aquí](images/sri_servidor_de_correos/correospam.txt).
+
+Vamos a hacer la prueba visualizando los *logs*:
+
+<pre>
+Feb 19 19:43:56 vpsjavierpzh spamd[24888]: spamd: identified spam (999.9/5.0) for debian-spamd:112 in 0.2 seconds, 3818 bytes.
+Feb 19 19:43:56 vpsjavierpzh spamd[24888]: spamd: result: Y 999 - DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,GTUBE,HTML_MESSAGE,RCVD_IN_MSPIKE_H2,SPF_PASS,URIBL_BLOCKED scantime=0.2,size=3818,user=debian-spamd,uid=112,required_score=5.0,rhost=::1,raddr=::1,rport=38494,mid=<CA+kZvsg23JEMj32M6Frs1bc1UZ_2kSNeEpGKzP+wQ5wcdkQN-A@mail.gmail.com>,autolearn=no autolearn_force=no
+Feb 19 19:43:56 vpsjavierpzh postfix/pipe[25543]: B6A05826C7: to=<debian@iesgn15.es>, relay=spamassassin, delay=0.61, delays=0.32/0.01/0/0.29, dsn=2.0.0, status=sent (delivered via spamassassin service)
+</pre>
+
+Vemos como nos muestra un mensaje **identified spam**.
+
+**6. Vamos a configurar un sistema antivirus.**
+
+En este apartado vamos a ver como instalar un sistema antivirus en nuestro servidor de correos. En mi caso, voy a utilizar un antivirus llamado **clamAV**, que se instala mediante los siguientes paquetes:
+
+<pre>
+apt install clamsmtp clamav-daemon arc arj bzip2 cabextract lzop nomarch p7zip pax tnef unrar-free unzip -y
+</pre>
+
+Una vez instalados, habilitaremos e iniciaremos el servicio:
+
+<pre>
+systemctl enable clamav-daemon && systemctl start clamav-daemon
+</pre>
+
+Posteriormente, nos dirigiremos al fichero `/etc/postfix/main.cf` y añadiremos las siguientes líneas:
+
+<pre>
+content_filter = scan:127.0.0.1:10025
+receive_override_options = no_address_mappings
+</pre>
+
+También tendremos que editar el fichero `/etc/postfix/master.cf` y añadir las líneas siguientes. Estas líneas nos servirán para indicarle a nuestro servidor de correos, donde debe llevar a cabo las consultas referentes sobre si los diferentes correos llevan algún virus o no.
+
+<pre>
+scan      unix  -       -       n       -       16      smtp
+        -o smtp_send_xforward_command=yes
+
+127.0.0.1:10026      inet  n       -       n       -       16      smtpd
+        -o content_filter=
+        -o receive_override_options=no_unknown_recipient_checks,no_header_body_checks
+        -o smtpd_helo_restrictions=
+        -o smtpd_client_restrictions=
+        -o smtpd_sender_restrictions=
+        -o smtpd_recipient_restrictions=permit_mynetworks,reject
+        -o mynetworks_style=host
+        -o smtpd_authorized_xforward_hosts=127.0.0.0/8
+</pre>
+
+Realizados todas las modificaciones, aplicaremos los cambios reiniciando el servicio:
+
+<pre>
+systemctl restart postfix
+</pre>
+
+Vamos a hacer la prueba visualizando los *logs*:
+
+<pre>
+Feb 19 19:43:56 vpsjavierpzh spamd[24888]: spamd: clean message (-0.1/5.0) for debian-spamd:112 in 0.2 seconds, 2794 bytes.
+Feb 19 19:43:56 vpsjavierpzha spamd[24888]: spamd: result: . 0 - DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_MSPIKE_H2,SPF_PASS,TVD_SPACE_RATIO scantime=0.2,size=2794,user=debian-spamd,uid=112,required_score=5.0,rhost=::1,raddr=::1,rport=38584,mid=<CA+kZvsjbkMPbcUYhSfzzbGYCtVTZ07bVNT1+YvB=Ce2Ln9J_fQ@mail.gmail.com>,autolearn=ham autolearn_force=no
+Feb 19 19:43:56 vpsjavierpzh postfix/pipe[17795]: 9C5A0826CE: to=<debian@iesgn15.es>, relay=spamassassin, delay=0.51, delays=0.27/0.01/0/0.23, dsn=2.0.0, status=sent (delivered via spamassassin service)
+Feb 19 19:43:56 vpsjavierpzh postfix/qmgr[17773]: 9C5A0826CE: removed
+...
+Feb 19 20:32:15 vpsjavierpzh clamsmtpd: 100002: accepted connection from: 127.0.0.1
+Feb 19 19:32:15 vpsjavierpzh spamd[24887]: prefork: child states: II
+Feb 19 19:32:15 vpsjavierpzh postfix/smtpd[17803]: connect from localhost[127.0.0.1]
+Feb 19 19:32:15 vpsjavierpzh postfix/smtpd[17803]: ECB66826CE: client=localhost[127.0.0.1]
+Feb 19 19:32:15 vpsjavierpzh postfix/smtp[17801]: D79E0826D0: to=<debian@iesgn15.es>, relay=127.0.0.1[127.0.0.1]:10025, delay=0.09, delays=0.01/0.02/0.07/0.01, dsn=2.0.0, status=sent (250 Virus Detected; Discarded Email)
+Feb 19 19:32:15 vpsjavierpzh postfix/qmgr[17773]: D79E0826D0: removed
+</pre>
+
+Vemos como nos muestra un mensaje **250 Virus Detected**.
+
 
 #### Gestión de correos desde un cliente
 
-**5. Vamos a configurar el buzón de los usuarios de tipo `Maildir`. Envía un correo a tu usuario y comprueba que el correo se ha guardado en el buzón `Maildir` del usuario del sistema correspondiente. Recuerda que ese tipo de buzón no se puede leer con la utilidad `mail`.**
+**7. Vamos a configurar el buzón de los usuarios de tipo `Maildir`. Envía un correo a tu usuario y comprueba que el correo se ha guardado en el buzón `Maildir` del usuario del sistema correspondiente. Recuerda que ese tipo de buzón no se puede leer con la utilidad `mail`.**
 
 Como ya sabemos, por defecto al instalar *Postfix*, estaremos utilizando el formato **mbox** para almacenar los correos electrónicos, pero, ¿cómo hacemos para cambiar al formato **Maildir**?
 
@@ -354,7 +473,7 @@ Abrimos el nuevo correo:
 
 Podemos ver como ya estamos utilizando un nuevo cliente de correos.
 
-**6. Vamos a instalar y configurar `dovecot` para ofrecer el protocolo `IMAP`. También vamos a configurar `dovecot` para ofrecer autentificación y cifrado.**
+**8. Vamos a instalar y configurar `dovecot` para ofrecer el protocolo `IMAP`. También vamos a configurar `dovecot` para ofrecer autentificación y cifrado.**
 
 En primer lugar, para realizar el cifrado de la comunicación tendremos que crear un certificado en *LetsEncrypt* para el dominio `mail.iesgn15.es`. Recordemos que para el ofrecer el cifrado poseemos varias opciones:
 
@@ -503,9 +622,14 @@ Abrimos el nuevo correo:
 
 Podemos apreciar como el correo ha sido recibido correctamente en nuestro cliente *Thunderbird*.
 
+**9. Vamos a configurar `postfix` para que podamos mandar un correo desde un cliente remoto. La conexión entre cliente y servidor estará autentificada con *SASL* usando `dovecot` y además estará cifrada.**
+
+No he conseguido configurarlo.
+
+
 #### Comprobación final
 
-**En [www.mail-tester.com/](https://www.mail-tester.com/) tenemos una herramienta completa y fácil de usar a la que podemos enviar un correo para que verifique y puntúe el correo que enviamos.**
+**12. En [www.mail-tester.com/](https://www.mail-tester.com/) tenemos una herramienta completa y fácil de usar a la que podemos enviar un correo para que verifique y puntúe el correo que enviamos.**
 
 Voy a enviar un correo como el siguiente para que esta herramienta me lo examine.
 

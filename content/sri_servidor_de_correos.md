@@ -538,10 +538,11 @@ Bien, seguiremos configurando *dovecot* editando el fichero `/etc/dovecot/conf.d
 <pre>
 ssl = yes
 ...
-ssl_cert = </etc/letsencrypt/live/mail.iesgn15.es/fullchain.pem
-ssl_key = </etc/letsencrypt/live/mail.iesgn15.es/privkey.pem
-
+ssl_cert = /etc/letsencrypt/live/mail.iesgn15.es/fullchain.pem
+ssl_key = /etc/letsencrypt/live/mail.iesgn15.es/privkey.pem
 </pre>
+
+**Atención:** al principio de los valores de los parámetros **ssl_cert** y **ssl_key**, debemos introducir el carácter `<`. Yo lo he omitido por una cuestión de formato. Ejemplo: `ssl_cert = </etc/letsencrypt/live/mail.iesgn15.es/fullchain.pem`.
 
 Hecho esto, debemos comprobar que en el fichero `/etc/dovecot/conf.d/10-mail.conf`, el siguiente parámetro posea el siguiente valor:
 

@@ -623,7 +623,7 @@ Para cifrar esta comunicación podemos usar dos opciones:
 
 - **SMTPS:** Utiliza un puerto no estándar *(465)* para *SMTPS (Simple Mail Transfer Protocol Secure)*. No es una extensión de *SMTP*. Es muy parecido a *HTTPS*.
 
-
+En mi caso, he decidido escoger la segunda opción, es decir, utilizar el protocolo **SMTPS**, 
 
 
 

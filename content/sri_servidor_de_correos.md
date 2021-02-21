@@ -66,7 +66,7 @@ En estas líneas se aprecia como ha pasado correctamente y ha hecho uso del regi
 
 **2. Vamos a enviar un correo desde el exterior (Gmail) a nuestro servidor local.**
 
-Al igual que en la tarea anterior, antes de realizar este ejercicio, vamos a crear un registro de tipo **MX** en nuestro DNS de OVH. He creado el siguiente registro:
+Al igual que en la tarea anterior, antes de realizar este ejercicio, vamos a crear un registro de tipo **MX** en nuestro DNS de OVH. He creado el siguiente registro que apunta a su vez a un registro tipo *A*:
 
 ![.](images/sri_servidor_de_correos/registromx.png)
 
@@ -466,12 +466,66 @@ Abrimos el nuevo correo:
 
 Podemos ver como ya estamos utilizando un nuevo cliente de correos.
 
-**8. Instalar y configurar `dovecot` para ofrecer el protocolo `IMAP`. Vamos a configurar `dovecot` para ofrecer autentificación y cifrado. Para realizar el cifrado de la comunicación crea un certificado en *LetsEncrypt* para el dominio `mail.iesgn15.es`. Recuerda que para el ofrecer el cifrado tiene varias soluciones:**
+**8. Vamos a instalar y configurar `dovecot` para ofrecer el protocolo `IMAP`. También vamos a configurar `dovecot` para ofrecer autentificación y cifrado.**
 
-- IMAP con STARTTLS: STARTTLS transforma una conexión insegura en una segura mediante el uso de SSL/TLS. Por lo tanto usando el mismo puerto 143/tcp tenemos cifrada la comunicación.
+En primer lugar, para realizar el cifrado de la comunicación tendremos que crear un certificado en *LetsEncrypt* para el dominio `mail.iesgn15.es`. Recordemos que para el ofrecer el cifrado poseemos varias opciones:
 
-- IMAPS: Versión segura del protocolo IMAP que usa el puerto 993/tcp.
-Ofrecer las dos posibilidades.
+- **IMAP con STARTTLS:** *STARTTLS* transforma una conexión insegura en una segura mediante el uso de *SSL/TLS*. Por lo tanto usando el mismo puerto, *143/tcp*, tenemos cifrada la comunicación.
+
+- **IMAPS:** Versión segura del protocolo *IMAP* que usa el puerto *993/tcp*.
+
+En mi caso, voy a utilzar el protocolo **IMAPS**, por lo que me será necesario solicitar un certificado, lo haré a través de *LetsEncrypt*.
+
+Para generar este certificado, voy a utilizar **Certbot**.
+
+<pre>
+apt install certbot -y
+</pre>
+
+Una vez instalado, procederemos a generar los certificados necesario.
+
+Es importante parar el servicio en caso de que dispongamos de algún servidor web, para que *Certbot* pueda realizar el *challenge*:
+
+<pre>
+certbot certonly --standalone -d mail.iesgn15.es
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Elige una de las opciones anterior para realizar el cifrado. Y muestra la configuración de un cliente de correo (evolution, thunderbird, …) y muestra como puedes leer los correos enviado a tu usuario.
 

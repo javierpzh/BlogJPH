@@ -482,52 +482,136 @@ Para generar este certificado, voy a utilizar **Certbot**.
 apt install certbot -y
 </pre>
 
-Una vez instalado, procederemos a generar los certificados necesario.
+Una vez instalado, procederemos a generar el certificado necesario.
 
-Es importante parar el servicio en caso de que dispongamos de algún servidor web, para que *Certbot* pueda realizar el *challenge*:
+Es importante parar el servicio en caso de que dispongamos de algún servidor web, para que *Certbot* pueda realizar el *challenge*. Utilizaremos el siguiente comando para generar el certificado:
 
 <pre>
 certbot certonly --standalone -d mail.iesgn15.es
 </pre>
 
+Veamos el proceso:
 
+<pre>
+root@vpsjavierpzh:~# certbot certonly --standalone -d mail.iesgn15.es
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator standalone, Installer None
+Obtaining a new certificate
 
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/mail.iesgn15.es/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/mail.iesgn15.es/privkey.pem
+   Your cert will expire on 2021-05-22. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot
+   again. To non-interactively renew *all* of your certificates, run
+   "certbot renew"
+ - If you like Certbot, please consider supporting our work by:
 
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+</pre>
 
+Una vez hemos generado y poseemos nuestro certificado, vamos a seguir con la instalación de *dovecot*. Para ello instalaremos los siguientes paquetes:
 
+<pre>
+apt install dovecot-imapd dovecot-pop3d dovecot-common -y
+</pre>
 
+Ahora vamos a proceder a configurar *dovecot* para que haga uso del protocolo *IMAPS*.
 
+Empezaremos modificando el fichero `/etc/dovecot/conf.d/10-auth.conf`, y en él, debemos buscar la siguiente línea:
 
+<pre>
+#disable_plaintext_auth = yes
+</pre>
 
+Encontrada, vamos a descomentarla y a cambiarle su valor a **no**, de manera que quedaría de esta forma:
 
+<pre>
+disable_plaintext_auth = no
+</pre>
 
+Bien, seguiremos configurando *dovecot* editando el fichero `/etc/dovecot/conf.d/10-ssl.conf`. Dentro de él, buscaremos las siguientes directivas, en las que tendremos que indicar las rutas en las que se encuentran tanto el certificado firmado por *LetsEncrypt*, como la clave privada asociada al certificado.
 
+<pre>
+ssl = yes
+...
+ssl_cert = </etc/letsencrypt/live/mail.iesgn15.es/fullchain.pem
+ssl_key = </etc/letsencrypt/live/mail.iesgn15.es/privkey.pem
+</pre>
 
+Hecho esto, debemos comprobar que en el fichero `/etc/dovecot/conf.d/10-mail.conf`, el siguiente parámetro posea el siguiente valor:
 
+<pre>
+mail_location = maildir:~/Maildir
+</pre>
 
+Por último, para terminar de configurar *dovecot*, nos situamos en el archivo `/etc/dovecot/conf.d/10-master.conf`. Buscaremos el siguiente bloque que se encuentra por defecto:
 
+<pre>
+service imap-login {
+  inet_listener imap {
+    #port = 143
+  }
+  inet_listener imaps {
+    #port = 993
+    #ssl = yes
+</pre>
 
+En él, debemos descomentar todas las líneas para que *dovecot* pueda hacer uso del protocolo *IMAPS*, quedando el bloque así:
 
+<pre>
+service imap-login {
+  inet_listener imap {
+    port = 143
+  }
+  inet_listener imaps {
+    port = 993
+    ssl = yes
+  }
+</pre>
 
+Si nos desplazamos un poco más abajo, nos encontraremos con el siguiente bloque totalmente comentado:
 
+<pre>
+#unix_listener /var/spool/postfix/private/auth {
+  #  mode = 0666
+  #}
+</pre>
 
+Debemos modificarlo para que quede igual que éste:
 
+<pre>
+unix_listener /var/spool/postfix/private/auth {
+  mode = 0666
+  user = postfix
+  group = postfix
+}
+</pre>
 
+Nuestra configuración de *dovecot* para que haga uso del protocolo *IMAPS* ha finalizado, de manera que es momento de reiniciar dicho servicio:
 
+<pre>
+systemctl restart dovecot
+</pre>
 
+Ya podríamos entrar a nuestro cliente de correos. Para ello he instalado en mi máquina anfitriona el cliente **Thunderbird**.
 
+<pre>
+apt install thunderbird -y
+</pre>
 
+Inicio sesión:
 
+![.](images/sri_servidor_de_correos/thunderbird.png)
 
+Abrimos el nuevo correo:
 
+![.](images/sri_servidor_de_correos/correothunderbird.png)
 
-
-
-
-
-
-
-Elige una de las opciones anterior para realizar el cifrado. Y muestra la configuración de un cliente de correo (evolution, thunderbird, …) y muestra como puedes leer los correos enviado a tu usuario.
+Podemos apreciar como el correo ha sido recibido correctamente en nuestro cliente *Thunderbird*.
 
 **9. Instala un webmail (roundcube, horde, rainloop) para gestionar el correo del equipo mediante una interfaz web. Muestra la configuración necesaria y cómo eres capaz de leer los correos que recibe tu usuario.**
 

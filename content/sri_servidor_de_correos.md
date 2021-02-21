@@ -629,7 +629,7 @@ No he conseguido configurarlo.
 
 #### Comprobación final
 
-**12. En [www.mail-tester.com/](https://www.mail-tester.com/) tenemos una herramienta completa y fácil de usar a la que podemos enviar un correo para que verifique y puntúe el correo que enviamos.**
+**En [www.mail-tester.com/](https://www.mail-tester.com/) tenemos una herramienta completa y fácil de usar a la que podemos enviar un correo para que verifique y puntúe el correo que enviamos.**
 
 Voy a enviar un correo como el siguiente para que esta herramienta me lo examine.
 

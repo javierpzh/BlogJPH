@@ -350,6 +350,66 @@ Llegó el momento de realizar la prueba, enviaremos un correo desde *Gmail*
 
 **6. Vamos a configurar un sistema antivirus.**
 
+En este apartado vamos a ver como instalar un sistema antivirus en nuestro servidor de correos. En mi caso, voy a utilizar un antivirus llamado **clamAV**, que se instala mediante los siguientes paquetes:
+
+<pre>
+apt install clamav clamav-freshclam clamsmtp -y
+</pre>
+
+Una vez instalados, habilitaremos e iniciaremos el servicio:
+
+<pre>
+systemctl enable clamsmtp && systemctl start clamsmtp
+</pre>
+
+Posteriormente, nos dirigiremos al fichero `/etc/postfix/main.cf` y añadiremos las siguientes líneas:
+
+<pre>
+content_filter = scan:127.0.0.1:10025
+receive_override_options = no_address_mappings
+</pre>
+
+También tendremos que editar el fichero `/etc/postfix/master.cf` y añadir las líneas siguientes. Estas líneas nos servirán para indicarle a nuestro servidor de correos, donde debe llevar a cabo las consultas referentes sobre si los diferentes correos llevan algún virus o no.
+
+<pre>
+scan      unix  -       -       n       -       16      smtp
+        -o smtp_send_xforward_command=yes
+
+127.0.0.1:10026      inet  n       -       n       -       16      smtpd
+        -o content_filter=
+        -o receive_override_options=no_unknown_recipient_checks,no_header_body_checks
+        -o smtpd_helo_restrictions=
+        -o smtpd_client_restrictions=
+        -o smtpd_sender_restrictions=
+        -o smtpd_recipient_restrictions=permit_mynetworks,reject
+        -o mynetworks_style=host
+        -o smtpd_authorized_xforward_hosts=127.0.0.0/8
+</pre>
+
+Por último, tendremos que configurar *clamAV*. Su configuración se llevará a cabo en el fichero `/etc/clamsmtpd.conf`. En él necesitaremos establecer los siguientes valores en los apartados `OutAddress` y `Listen`:
+
+<pre>
+OutAddress: 10026
+...
+Listen: 127.0.0.1:10025
+</pre>
+
+Realizados todas las modificaciones, aplicaremos los cambios reiniciando ambos servicios:
+
+<pre>
+systemctl restart postfix
+systemctl restart clamsmtp
+</pre>
+
+
+
+<pre>
+
+</pre>
+
+
+
+
 
 
 

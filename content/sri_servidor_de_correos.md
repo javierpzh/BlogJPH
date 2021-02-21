@@ -1,5 +1,5 @@
 Title: Servidor de correos
-Date: 2018/02/19
+Date: 2018/02/21
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Correos, postfix, dovecot, imap, imaps, SMTPS
@@ -313,17 +313,22 @@ Una vez instalados, habilitaremos e iniciaremos el servicio:
 systemctl enable spamassassin && systemctl start spamassassin
 </pre>
 
-Posteriormente, nos dirigiremos al fichero `/etc/postfix/master.cf` y añadiremos las siguientes líneas para que tenga en cuenta el sistema que implementaremos a continuación:
+Posteriormente, nos dirigiremos al fichero `/etc/postfix/master.cf` y veremos que nos encontramos con las siguientes líneas:
 
 <pre>
 smtp      inet  n       -       y       -       -       smtpd
--o content_filter=spamassassin
+...
+#submission inet n       -       y       -       -       smtpd
+</pre>
 
-submission inet n       -       y       -       -       smtpd
--o content_filter=spamassassin
+Una vez localizadas, tendremos que hacer unas modificaciones en ellas para que *Postfix* tenga en cuenta el sistema *antispam*, además de añadir una nueva directiva. Realizadas las modificaciones, las líneas tendrían el siguiente aspecto:
 
-spamassassin unix -     n       n       -       -       pipe
-  user=debian-spamd argv=/usr/bin/spamc -f -e /usr/sbin/sendmail -oi -f ${sender} ${recipient}
+<pre>
+smtp      inet  n       -       y       -       -       smtpd -o content_filter=spamassassin
+...
+submission inet n       -       y       -       -       smtpd -o content_filter=spamassassin
+...
+spamassassin unix -     n       n       -       -       pipe user=debian-spamd argv=/usr/bin/spamc -f -e /usr/sbin/sendmail -oi -f ${sender} ${recipient}
 </pre>
 
 Por último, tendremos que configurar **Spamassassin**. Su configuración es bastante simple y se llevará a cabo en el fichero `/etc/spamassassin/local.cf`. En él necesitaremos descomentar la siguiente línea, ya que por defecto aparece comentada:
@@ -339,7 +344,9 @@ systemctl restart postfix
 systemctl restart spamassassin
 </pre>
 
-Llegó el momento de realizar la prueba, enviaremos un correo desde *Gmail*
+Llegó el momento de realizar la prueba, enviaremos un correo desde *Gmail*, y en el mensaje del correo, introduciré un mensaje de *spam*, que puedes encontrar [aquí](images/sri_servidor_de_correos/correospam.txt).
+
+Vamos a hacer la prueba visualizando los *logs*:
 
 <pre>
 
@@ -353,13 +360,13 @@ Llegó el momento de realizar la prueba, enviaremos un correo desde *Gmail*
 En este apartado vamos a ver como instalar un sistema antivirus en nuestro servidor de correos. En mi caso, voy a utilizar un antivirus llamado **clamAV**, que se instala mediante los siguientes paquetes:
 
 <pre>
-apt install clamav clamav-freshclam clamsmtp -y
+apt install clamsmtp clamav-daemon arc arj bzip2 cabextract lzop nomarch p7zip pax tnef unrar-free unzip -y
 </pre>
 
 Una vez instalados, habilitaremos e iniciaremos el servicio:
 
 <pre>
-systemctl enable clamsmtp && systemctl start clamsmtp
+systemctl enable clamav-daemon && systemctl start clamav-daemon
 </pre>
 
 Posteriormente, nos dirigiremos al fichero `/etc/postfix/main.cf` y añadiremos las siguientes líneas:
@@ -386,19 +393,10 @@ scan      unix  -       -       n       -       16      smtp
         -o smtpd_authorized_xforward_hosts=127.0.0.0/8
 </pre>
 
-Por último, tendremos que configurar *clamAV*. Su configuración se llevará a cabo en el fichero `/etc/clamsmtpd.conf`. En él necesitaremos establecer los siguientes valores en los apartados `OutAddress` y `Listen`:
-
-<pre>
-OutAddress: 10026
-...
-Listen: 127.0.0.1:10025
-</pre>
-
-Realizados todas las modificaciones, aplicaremos los cambios reiniciando ambos servicios:
+Realizados todas las modificaciones, aplicaremos los cambios reiniciando el servicio:
 
 <pre>
 systemctl restart postfix
-systemctl restart clamsmtp
 </pre>
 
 
@@ -408,21 +406,7 @@ systemctl restart clamsmtp
 </pre>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--------------------------------------------------------------------------------
 
 
 
@@ -430,7 +414,7 @@ systemctl restart clamsmtp
 
 **7. Vamos a configurar el buzón de los usuarios de tipo `Maildir`. Envía un correo a tu usuario y comprueba que el correo se ha guardado en el buzón `Maildir` del usuario del sistema correspondiente. Recuerda que ese tipo de buzón no se puede leer con la utilidad `mail`.**
 
-Como ya sabemos, por defecto al instalar *Postfix*, estaremos utilizando el formato **mbox** para almacenar los correos electrónicos, pero, ¿como hacemos para cambiar al formato **Maildir**?
+Como ya sabemos, por defecto al instalar *Postfix*, estaremos utilizando el formato **mbox** para almacenar los correos electrónicos, pero, ¿cómo hacemos para cambiar al formato **Maildir**?
 
 Primeramente vamos a ver que diferencias encontramos entre los dos.
 
@@ -454,34 +438,33 @@ Hecho esto, ya habremos configurado *Postfix* para que utilice *Maildir*, por ta
 systemctl restart postfix
 </pre>
 
+Desde este momento, no podremos ver los correos con la herramienta `mail`. Para solucionarlo, instalaremos un nuevo cliente llamado `mutt`:
 
+<pre>
+apt install mutt -y
+</pre>
 
+Instalado, debemos crear en el directorio del usuario un fichero `.muttrc` que posea el siguiente contenido:
 
+<pre>
+set mbox_type=Maildir
+set folder="/Maildir"
+set mask="!^\.[^.]"
+set mbox="/Maildir"
+set record="+.Sent"
+set postponed="+.Drafts"
+set spoolfile="~/Maildir"
+</pre>
 
+Hecho esto, voy a enviar un correo desde *Gmail* y posteriormente utilizaré el comando `mutt` para abrir el nuevo cliente.
 
+![.](images/sri_servidor_de_correos/mutt1.png)
 
+Abrimos el nuevo correo:
 
+![.](images/sri_servidor_de_correos/mutt2.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Podemos ver como ya estamos utilizando un nuevo cliente de correos.
 
 **8. Instalar y configurar `dovecot` para ofrecer el protocolo `IMAP`. Vamos a configurar `dovecot` para ofrecer autentificación y cifrado. Para realizar el cifrado de la comunicación crea un certificado en *LetsEncrypt* para el dominio `mail.iesgn15.es`. Recuerda que para el ofrecer el cifrado tiene varias soluciones:**
 

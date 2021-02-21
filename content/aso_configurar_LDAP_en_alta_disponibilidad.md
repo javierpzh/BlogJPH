@@ -80,7 +80,7 @@ userPassword: {SSHA}Sgk2gyc+tAc3P2dQ+lKphIikCZOWsuGp
 Habéis podido notar que la contraseña que he introducido se encuentra encriptada, y esto es porque la he cifrado previamente con la herramienta `slappasswd`, ya que sino la contraseña quedaría en texto plano al público.
 
 <pre>
-root@sancho:~# slappasswd
+root@freston:~# slappasswd
 New password:
 Re-enter new password:
 {SSHA}Sgk2gyc+tAc3P2dQ+lKphIikCZOWsuGp
@@ -90,7 +90,6 @@ Una vez tenemos ese archivo listo, lo insertamos mediante el siguiente comando:
 
 <pre>
 root@freston:~# ldapadd -x -D "cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org" -W -f mirrormode1.ldif
-
 Enter LDAP Password:
 adding new entry "uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org"
 </pre>
@@ -102,39 +101,28 @@ dn: olcDatabase={1}mdb,cn=config
 changetype: modify
 add: olcAccess
 olcAccess: to attrs=userPassword
-by self =xw
-by dn.exact="cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org" =xw
-by dn.exact="uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org" read
-by anonymous auth
-by * none
+  by self =xw
+  by dn.exact="cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org" =xw
+  by dn.exact="uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org" read
+  by anonymous auth
+  by * none
 olcAccess: to *
-by anonymous auth
-by self write
-by dn.exact="uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org" read
-by users read
-by * none
+  by anonymous auth
+  by self write
+  by dn.exact="uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org" read
+  by users read
+  by * none
 </pre>
 
 De nuevo, añadimos y asignamos los cambios con este comando:
 
 <pre>
-ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode2.ldif
-</pre>
-
-En este punto, por alguna razón que desconozco, me salta este error que aún no he logrado solucionar:
-
-<pre>
 root@freston:~# ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode2.ldif
-
 SASL/EXTERNAL authentication started
 SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
 SASL SSF: 0
-ldapmodify: invalid format (line 5) entry: "olcDatabase={1}mdb,cn=config"
+modifying entry "olcDatabase={1}mdb,cn=config"
 </pre>
-
-Toda la documentación que he encontrado, concuerda con el contenido de mi fichero, y hablando con varios compañeros, también. En un principio pensé que podía ser porque al configurar por primera vez el servidor, estableciera un motor de base de datos distintos al predeterminado (MDB), pero no, lo he consultado y estoy haciendo uso de éste, así que ahora mismo la verdad que me encuentro perdido. Además he consultado el error en clase con Rafa Luengo, pero seguimos sin encontrar la solución.
-
-Toda la información se encuentra sin espacios, ni tabulaciones, ... A partir de aquí, el ejercicio sigue con lo que se debería hacer, pero sin poder mostrar el resultado final obviamente. Alberto, a ver si sabrías decirme donde está el error por favor. Cuando consiga arreglarlo, modificaré el artículo.
 
 Pasamos con el tercer archivo, `mirrormode3.ldif`, este será el encargado de cargar el módulo **syncprov** que es necesario para que se lleve a cabo la sincronización. El resultado del contenido de este fichero sería:
 
@@ -148,7 +136,11 @@ olcModuleLoad: syncprov
 Lo importamos con el comando:
 
 <pre>
-ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode3.ldif
+root@freston:~# ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode3.ldif
+SASL/EXTERNAL authentication started
+SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+SASL SSF: 0
+modifying entry "cn=module{0},cn=config"
 </pre>
 
 El cuarto archivo sería `mirrormode4.ldif`, y este se encargará de establecer la configuración del módulo que hemos cargado en el paso anterior:
@@ -164,7 +156,11 @@ olcSpCheckpoint: 100 10
 Añadimos la nueva configuración:
 
 <pre>
-ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode4.ldif
+root@freston:~# ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode4.ldif
+SASL/EXTERNAL authentication started
+SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+SASL SSF: 0
+adding new entry "olcOverlay=syncprov,olcDatabase={1}mdb,cn=config"
 </pre>
 
 Es el turno de asignarle un número identificativo al servidor, para ello creamos el archivo `mirrormode5.ldif`:
@@ -179,7 +175,11 @@ olcServerId: 1
 Añadimos los cambios del nuevo archivo:
 
 <pre>
-ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode5.ldif
+root@freston:~# ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode5.ldif
+SASL/EXTERNAL authentication started
+SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+SASL SSF: 0
+modifying entry "cn=config"
 </pre>
 
 Llegamos al sexto y último fichero necesario, `mirrormode6.ldif`, que será el encargado de habilitar la propia sincronización:
@@ -189,14 +189,14 @@ dn: olcDatabase={1}mdb,cn=config
 changetype: modify
 add: olcSyncrepl
 olcsyncrepl: rid=000
-provider=ldaps://sancho.javierpzh.gonzalonazareno.org
-type=refreshAndPersist
-retry="5 5 300 +"
-searchbase="dc=javierpzh,dc=gonzalonazareno,dc=org"
-attrs="*,+"
-bindmethod=simple
-binddn="uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org"
-credentials="contraseña"
+  provider=ldaps://sancho.javierpzh.gonzalonazareno.org
+  type=refreshAndPersist
+  retry="5 5 300 +"
+  searchbase="dc=javierpzh,dc=gonzalonazareno,dc=org"
+  attrs="*,+"
+  bindmethod=simple
+  binddn="uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org"
+  credentials=[contraseña]
 -
 add: olcDbIndex
 olcDbIndex: entryUUID eq
@@ -209,25 +209,58 @@ olcMirrorMode: TRUE
 Importamos el último fichero de configuración:
 
 <pre>
-ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode6.ldif
+root@freston:~# ldapmodify -H ldapi:/// -Y EXTERNAL -f mirrormode6.ldif
+SASL/EXTERNAL authentication started
+SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+SASL SSF: 0
+modifying entry "olcDatabase={1}mdb,cn=config"
 </pre>
 
 Hecho esto, ya habríamos terminado de configurar el servidor principal de *LDAP*, así que vamos a pasar con el servidor secundario. En éste, tendremos que realizar exactamente la misma configuración cambiando dos pequeños detalles.
 
 El primero de ellos es que debemos cambiar en el llamado `mirrormode5.ldif` el valor del campo **olcServerId**, ya que esto indica el número identificativo del servidor, en mi caso le he asignado el valor **2**.
 
-Y por último, debemos cambiar en el fichero `mirrormode6.ldif` la línea **provider** y asignarle como valor la dirección del servidor principal, para que haga referencia a éste. En mi caso **ldaps://sancho.javierpzh.gonzalonazareno.org**.
+Y por último, debemos cambiar en el fichero `mirrormode6.ldif` la línea **provider** y asignarle como valor la dirección del servidor principal, para que haga referencia a éste. En mi caso **ldaps://freston.javierpzh.gonzalonazareno.org**.
 
---------------------------------------------------------------------------------
+Terminada la configuración en ambas máquinas, vamos a proceder a realizar una serie de pruebas para comprobar que el funcionamiento es el correcto.
 
-**Zona de pruebas** (post-arreglo)
+**Zona de pruebas**
 
 En este punto, ya tendríamos ambos servidores replicados, por lo que vamos a pasar a hacer una prueba y a consultar en el servidor secundario los elementos, de manera que deben aparecer los datos que fueron creados en el principal.
 
 Realizamos la consulta:
 
 <pre>
-ldapsearch -x -b "dc=javierpzh,dc=gonzalonazareno,dc=org"
+root@sancho:~# ldapsearch -x -b "dc=javierpzh,dc=gonzalonazareno,dc=org"
+...
+
+# javierpzh.gonzalonazareno.org
+dn: dc=javierpzh,dc=gonzalonazareno,dc=org
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: javierpzh.gonzalonazareno.org
+dc: javierpzh
+
+# admin, javierpzh.gonzalonazareno.org
+dn: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: LDAP administrator
+
+# mirrormode, javierpzh.gonzalonazareno.org
+dn: uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org
+objectClass: top
+objectClass: account
+objectClass: simpleSecurityObject
+description: usuario LDAP
+uid: mirrormode
+
+# search result
+search: 2
+result: 0 Success
+...
 </pre>
 
 Podemos apreciar que nos muestra todos los datos que fueron creados en el primer servidor.
@@ -246,13 +279,52 @@ ou: Prueba
 Para cargar la configuración de este nuevo fichero, debemos hacer uso del siguiente comando:
 
 <pre>
-ldapadd -x -D 'cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org' -W -f prueba.ldif
+root@freston:~# ldapadd -x -D "cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org" -f prueba.ldif -W
+Enter LDAP Password:
+adding new entry "ou=Prueba,dc=javierpzh,dc=gonzalonazareno,dc=org"
 </pre>
 
 Si ahora hacemos una nueva consulta desde el servidor de respaldo, es decir, *Sancho*:
 
 <pre>
-ldapsearch -x -b "dc=javierpzh,dc=gonzalonazareno,dc=org"
+root@sancho:~# ldapsearch -x -b "dc=javierpzh,dc=gonzalonazareno,dc=org"
+...
+
+# javierpzh.gonzalonazareno.org
+dn: dc=javierpzh,dc=gonzalonazareno,dc=org
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: javierpzh.gonzalonazareno.org
+dc: javierpzh
+
+# admin, javierpzh.gonzalonazareno.org
+dn: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: LDAP administrator
+
+# mirrormode, javierpzh.gonzalonazareno.org
+dn: uid=mirrormode,dc=javierpzh,dc=gonzalonazareno,dc=org
+objectClass: top
+objectClass: account
+objectClass: simpleSecurityObject
+description: usuario LDAP
+uid: mirrormode
+
+# Prueba, javierpzh.gonzalonazareno.org
+dn: ou=Prueba,dc=javierpzh,dc=gonzalonazareno,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: Prueba
+
+# search result
+search: 2
+result: 0 Success
+...
 </pre>
 
 De nuevo vemos que los datos se encuentran sincronizados, por tanto este *post* habría terminado.
+
+(Alberto, he preparado en *Freston* un fichero llamado `pruebacorrecion.ldif`, que no ha sido insertado, para que puedas comprobar el funcionamiento por ti mismo.)

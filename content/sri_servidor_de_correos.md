@@ -616,15 +616,46 @@ Podemos apreciar como el correo ha sido recibido correctamente en nuestro client
 
 **9. Vamos a configurar `postfix` para que podamos mandar un correo desde un cliente remoto. La conexión entre cliente y servidor estará autentificada con *SASL* usando `dovecot` y además estará cifrada.**
 
-Para cifrar esta comunicación puedes usar dos opciones:
+Para cifrar esta comunicación podemos usar dos opciones:
 
-- ESMTP + STARTTLS: Usando el puerto 567/tcp enviamos de forma segura el correo al servidor.
+- **ESMTP + STARTTLS:** Usando el puerto *567/tcp* enviamos de forma segura el correo al servidor.
 
-- SMTPS: Utiliza un puerto no estándar (465) para SMTPS (Simple Mail Transfer Protocol Secure). No es una extensión de smtp. Es muy parecido a HTTPS.
+- **SMTPS:** Utiliza un puerto no estándar *(465)* para *SMTPS (Simple Mail Transfer Protocol Secure)*. No es una extensión de *SMTP*. Es muy parecido a *HTTPS*.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Elige una de las opciones anterior para realizar el cifrado. Y muestra la configuración de un cliente de correo (evolution, thunderbird, …) y muestra como puedes enviar los correos.
-
-**11. Configura el cliente webmail para el envío de correo. Realiza una prueba de envío con el webmail.**
 
 
 

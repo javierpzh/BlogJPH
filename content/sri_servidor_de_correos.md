@@ -665,6 +665,16 @@ Elige una de las opciones anterior para realizar el cifrado. Y muestra la config
 
 #### Comprobación final
 
-**12. Prueba de envío de correo. En [www.mail-tester.com/](https://www.mail-tester.com/) tenemos una herramienta completa y fácil de usar a la que podemos enviar un correo para que verifique y puntúe el correo que enviamos. Captura la pantalla y muestra la puntuación que has sacado.**
+**12. En [www.mail-tester.com/](https://www.mail-tester.com/) tenemos una herramienta completa y fácil de usar a la que podemos enviar un correo para que verifique y puntúe el correo que enviamos.**
 
-.
+Voy a enviar un correo como el siguiente para que esta herramienta me lo examine.
+
+<pre>
+echo "Esto es una prueba" | mutt  -s 'Test' test-6noihtep7@srv1.mail-tester.com
+</pre>
+
+Veamos el resultado:
+
+![.](images/sri_servidor_de_correos/puntos.png)
+
+¡Genial, me ha dado un **9/10**!

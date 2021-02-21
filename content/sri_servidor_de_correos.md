@@ -322,11 +322,14 @@ smtp      inet  n       -       y       -       -       smtpd
 Una vez localizadas, tendremos que hacer unas modificaciones en ellas para que *Postfix* tenga en cuenta el sistema *antispam*, además de añadir una nueva directiva. Realizadas las modificaciones, las líneas tendrían el siguiente aspecto:
 
 <pre>
-smtp      inet  n       -       y       -       -       smtpd -o content_filter=spamassassin
+smtp      inet  n       -       y       -       -       smtpd
+  -o content_filter=spamassassin
 ...
-submission inet n       -       y       -       -       smtpd -o content_filter=spamassassin
+submission inet n       -       y       -       -       smtpd
+  -o content_filter=spamassassin
 ...
-spamassassin unix -     n       n       -       -       pipe user=debian-spamd argv=/usr/bin/spamc -f -e /usr/sbin/sendmail -oi -f ${sender} ${recipient}
+spamassassin unix -     n       n       -       -       pipe
+  user=debian-spamd argv=/usr/bin/spamc -f -e /usr/sbin/sendmail -oi -f ${sender} ${recipient}
 </pre>
 
 Por último, tendremos que configurar **Spamassassin**. Su configuración es bastante simple y se llevará a cabo en el fichero `/etc/spamassassin/local.cf`. En él necesitaremos descomentar la siguiente línea, ya que por defecto aparece comentada:
@@ -371,25 +374,28 @@ systemctl enable clamav-daemon && systemctl start clamav-daemon
 Posteriormente, nos dirigiremos al fichero `/etc/postfix/main.cf` y añadiremos las siguientes líneas:
 
 <pre>
-content_filter = scan:127.0.0.1:10025
-receive_override_options = no_address_mappings
+content_filter = scan:127.0.0.1:10026
 </pre>
 
 También tendremos que editar el fichero `/etc/postfix/master.cf` y añadir las líneas siguientes. Estas líneas nos servirán para indicarle a nuestro servidor de correos, donde debe llevar a cabo las consultas referentes sobre si los diferentes correos llevan algún virus o no.
 
 <pre>
-scan      unix  -       -       n       -       16      smtp
-        -o smtp_send_xforward_command=yes
+scan unix -       -       n       -       16       smtp
+  -o smtp_data_done_timeout=1200
+  -o smtp_send_xforward_command=yes
+  -o disable_dns_lookups=yes
 
-127.0.0.1:10026      inet  n       -       n       -       16      smtpd
-        -o content_filter=
-        -o receive_override_options=no_unknown_recipient_checks,no_header_body_checks
-        -o smtpd_helo_restrictions=
-        -o smtpd_client_restrictions=
-        -o smtpd_sender_restrictions=
-        -o smtpd_recipient_restrictions=permit_mynetworks,reject
-        -o mynetworks_style=host
-        -o smtpd_authorized_xforward_hosts=127.0.0.0/8
+127.0.0.1:10025 inet n       -       n       -       16       smtpd
+  -o content_filter=
+  -o local_recipient_maps=
+  -o relay_recipient_maps=
+  -o smtpd_restriction_classes=
+  -o smtpd_client_restrictions=
+  -o smtpd_helo_restrictions=
+  -o smtpd_sender_restrictions=
+  -o smtpd_recipient_restrictions=permit_mynetworks,reject
+  -o mynetworks_style=host
+  -o smtpd_authorized_xforward_hosts=127.0.0.0/8
 </pre>
 
 Realizados todas las modificaciones, aplicaremos los cambios reiniciando el servicio:

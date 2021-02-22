@@ -15,8 +15,35 @@ Tags: Docker
 - La imagen la tienes que crear en tu máquina con el comando `docker build`.
 - Crea un *script* con `docker compose` que levante el escenario con los dos contenedores.(Usuario: admin, contraseña: admin).
 
-- **Entrega la url del repositorio GitHub donde tengas la construcción (directorio build y el despliegue (directorio deploy))**
-- **Entrega una captura de pantalla donde se vea funcionando la aplicación, una vez que te has logueado.**
+- **Entrega la URL del repositorio *GitHub* donde tengas la construcción (directorio build y el despliegue (directorio deploy))**
+- **Entrega una captura de pantalla donde se vea funcionando la aplicación, una vez que te has *logueado*.**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 **2. Ejecución de una aplicación web PHP en Docker.**
 

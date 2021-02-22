@@ -137,7 +137,7 @@ root@proxy:~# tail -f /var/log/squid/access.log
 
 Vemos como nos muestra los *logs* referentes a los accesos que acabamos de realizar.
 
-Ahora, vamos a configurar nuestro máquina para que haga uso del *proxy Squid*, pero esta vez la configuración no la haremos en el navegador, sino en el propio sistema.
+Ahora, vamos a configurar nuestra máquina para que haga uso del *proxy Squid*, pero esta vez la configuración no la haremos en el navegador, sino en el propio sistema.
 
 Para ello, antes, vamos a dirigirnos de nuevo a la configuración del navegador, a la parte de la configuración del *proxy* e indicaremos que use la configuración *proxy* del sistema.
 

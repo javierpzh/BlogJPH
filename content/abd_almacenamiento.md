@@ -258,34 +258,41 @@ Tras insertar una serie de registros, podemos ver como me ha devuelto un error. 
 
 #### Vamos a realizar una consulta al diccionario de datos que muestre qué índices existen para objetos pertenecientes al esquema de SCOTT y sobre qué columnas están definidos. ¿En qué fichero o ficheros de datos se encuentran las extensiones de sus segmentos correspondientes?
 
-
+Realizamos la siguiente consulta:
 
 <pre>
-SELECT a.TABLE_NAME, a.INDEX_NAME, a.COLUMN_NAME, c.FILE_NAME
-FROM DBA_IND_COLUMNS a, DBA_EXTENTS b, DBA_DATA_FILES c
-WHERE a.TABLE_NAME = b.SEGMENT_NAME
-AND b.FILE_ID = c.FILE_ID
-AND a.TABLE_OWNER='SCOTT';
+SQL> SELECT a.TABLE_NAME, a.INDEX_NAME, a.COLUMN_NAME, c.FILE_NAME
+  2  FROM DBA_IND_COLUMNS a, DBA_EXTENTS b, DBA_DATA_FILES c
+  3  WHERE a.TABLE_NAME = b.SEGMENT_NAME
+  4  AND b.FILE_ID = c.FILE_ID
+  5  AND a.TABLE_OWNER='SCOTT';
+
+TABLE_NAME                     INDEX_NAME
+------------------------------ ------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+FILE_NAME
+--------------------------------------------------------------------------------
+DEPT                           PK_DEPT
+DEPTNO
+C:\APP\JAVIER\ORADATA\ORCL\USERS01.DBF
+
+EMP                            PK_EMP
+EMPNO
+C:\APP\JAVIER\ORADATA\ORCL\USERS01.DBF
+
+TABLE_NAME                     INDEX_NAME
+------------------------------ ------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+FILE_NAME
+--------------------------------------------------------------------------------
+
+TABLA_ARTICULOS                SYS_C0011484
+CODIGO
+C:\APP\JAVIER\ORADATA\ORCL\USERS01.DBF
+
 </pre>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

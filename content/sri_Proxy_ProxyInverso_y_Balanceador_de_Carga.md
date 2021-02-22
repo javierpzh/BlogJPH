@@ -113,7 +113,7 @@ Para configurar el *proxy* en nuestro navegador, en mi caso, explicaré como es 
 
 ![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/proxyfirefox.png)
 
-Establecido el *proxy* vamos a probar a acceder a diferentes webs como pueden ser [https://javierpzh.github.io/](https://javierpzh.github.io/), [https://www.youtube.com](https://www.youtube.com) y [https://www.google.com/](https://www.google.com/).
+Establecido el *proxy* vamos a probar a acceder a diferentes webs como pueden ser [javierpzh.github.io](https://javierpzh.github.io/), [www.youtube.com](https://www.youtube.com) y [www.google.com](https://www.google.com/).
 
 Una vez comprobamos que podemos acceder correctamente, vamos a revisar el proceso que dejamos en ejecución en nuestra terminal:
 
@@ -141,11 +141,69 @@ Ahora, vamos a dirigirnos de nuevo a la configuración del navegador, a la parte
 
 ![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/proxyfirefox2.png)
 
+Hecho esto, tendremos que configurar nuestro propio sistema para que por defecto utilice nuestro *proxy*. Este proceso lo realizaremos en el apartado **Configuración del sistema**, y dentro
+
+![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/configuracionred.png)
+
+![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/configuracionredproxy.png)
 
 
 
 
 
+Antes de dirigirnos a nuestro navegador para acceder a las webs, en la terminal, volveremos a dejar el siguiente proceso activo para ver a tiempo real los *logs* de acceso al *proxy*:
+
+<pre>
+tail -f /var/log/squid/access.log
+</pre>
+
+Establecido el *proxy* vamos a probar a acceder a diferentes webs como pueden ser [github.com](https://github.com), y [hub.docker.com](https://hub.docker.com/).
+
+Una vez comprobamos que podemos acceder correctamente, vamos a revisar el proceso que dejamos en ejecución en nuestra terminal:
+
+<pre>
+root@proxy:~# tail -f /var/log/squid/access.log
+1613986400.038    327 192.168.200.1 TCP_TUNNEL/200 39 CONNECT github.githubassets.com:443 - HIER_DIRECT/185.199.111.154 -
+1613986400.038    326 192.168.200.1 TCP_TUNNEL/200 39 CONNECT github.githubassets.com:443 - HIER_DIRECT/185.199.111.154 -
+1613986400.038    249 192.168.200.1 TCP_TUNNEL/200 39 CONNECT github.githubassets.com:443 - HIER_DIRECT/185.199.111.154 -
+1613986400.039    328 192.168.200.1 TCP_TUNNEL/200 39 CONNECT github.githubassets.com:443 - HIER_DIRECT/185.199.111.154 -
+1613986400.039    249 192.168.200.1 TCP_TUNNEL/200 39 CONNECT github.githubassets.com:443 - HIER_DIRECT/185.199.111.154 -
+1613986400.045    113 192.168.200.1 TCP_TUNNEL/200 39 CONNECT github.githubassets.com:443 - HIER_DIRECT/185.199.111.154 -
+1613986400.045    256 192.168.200.1 TCP_TUNNEL/200 39 CONNECT github.githubassets.com:443 - HIER_DIRECT/185.199.111.154 -
+1613986400.045    256 192.168.200.1 TCP_TUNNEL/200 39 CONNECT github.githubassets.com:443 - HIER_DIRECT/185.199.111.154 -
+1613986400.045    334 192.168.200.1 TCP_TUNNEL/200 39 CONNECT github.githubassets.com:443 - HIER_DIRECT/185.199.111.154 -
+1613986400.045    334 192.168.200.1 TCP_TUNNEL/200 39 CONNECT github.githubassets.com:443 - HIER_DIRECT/185.199.111.154 -
+1613986400.098    386 192.168.200.1 TCP_TUNNEL/200 6018 CONNECT avatars.githubusercontent.com:443 - HIER_DIRECT/185.199.110.133 -
+1613986400.099    387 192.168.200.1 TCP_TUNNEL/200 7055 CONNECT avatars.githubusercontent.com:443 - HIER_DIRECT/185.199.110.133 -
+1613986400.244    532 192.168.200.1 TCP_TUNNEL/200 25697 CONNECT avatars.githubusercontent.com:443 - HIER_DIRECT/185.199.110.133 -
+1613986408.461    236 192.168.200.1 TCP_MISS/200 1171 POST http://ocsp.sca1b.amazontrust.com/ - HIER_DIRECT/54.230.104.69 application/ocsp-response
+1613986408.795   8858 192.168.200.1 TCP_TUNNEL/200 4450 CONNECT alive.github.com:443 - HIER_DIRECT/140.82.113.25 -
+1613986408.981    289 192.168.200.1 TCP_TUNNEL/200 19141 CONNECT d36jcksde1wxzq.cloudfront.net:443 - HIER_DIRECT/54.230.104.29 -
+1613986409.034    342 192.168.200.1 TCP_TUNNEL/200 116639 CONNECT d36jcksde1wxzq.cloudfront.net:443 - HIER_DIRECT/54.230.104.29 -
+1613986409.113    421 192.168.200.1 TCP_TUNNEL/200 794202 CONNECT d36jcksde1wxzq.cloudfront.net:443 - HIER_DIRECT/54.230.104.29 -
+1613986413.616   5897 192.168.200.1 TCP_TUNNEL/200 6879 CONNECT hub.docker.com:443 - HIER_DIRECT/34.202.113.184 -
+1613986416.414  61653 192.168.200.1 TCP_TUNNEL/200 4246 CONNECT profile.accounts.firefox.com:443 - HIER_DIRECT/54.148.210.55 -
+1613986463.364  62781 192.168.200.1 TCP_TUNNEL/200 4225 CONNECT collector.githubapp.com:443 - HIER_DIRECT/3.218.144.29 -
+1613986475.322  66631 192.168.200.1 TCP_TUNNEL/200 82917 CONNECT cdn-pci.optimizely.com:443 - HIER_DIRECT/104.126.101.248 -
+1613986475.571     68 192.168.200.1 TCP_MISS/200 1087 POST http://ocsp.sectigo.com/ - HIER_DIRECT/151.139.128.14 application/ocsp-response
+1613986476.296      0 192.168.200.1 NONE/000 0 NONE error:transaction-end-before-headers - HIER_NONE/- -
+1613986476.307     11 192.168.200.1 TCP_TUNNEL/200 39 CONNECT fonts.gstatic.com:443 - HIER_DIRECT/216.58.211.227 -
+1613986476.308     19 192.168.200.1 TCP_TUNNEL/200 39 CONNECT fonts.gstatic.com:443 - HIER_DIRECT/216.58.211.227 -
+1613986477.279     60 192.168.200.1 TCP_MISS/200 895 POST http://ocsp.pki.goog/gts1d2 - HIER_DIRECT/216.58.211.227 application/ocsp-response
+1613986477.526    269 192.168.200.1 TCP_TUNNEL/200 13094 CONNECT d1q6f0aelx0por.cloudfront.net:443 - HIER_DIRECT/54.230.104.101 -
+1613986477.530    273 192.168.200.1 TCP_TUNNEL/200 22145 CONNECT d1q6f0aelx0por.cloudfront.net:443 - HIER_DIRECT/54.230.104.101 -
+1613986477.531    274 192.168.200.1 TCP_TUNNEL/200 15931 CONNECT d1q6f0aelx0por.cloudfront.net:443 - HIER_DIRECT/54.230.104.101 -
+1613986477.543    286 192.168.200.1 TCP_TUNNEL/200 13682 CONNECT d1q6f0aelx0por.cloudfront.net:443 - HIER_DIRECT/54.230.104.101 -
+1613986477.597    353 192.168.200.1 TCP_TUNNEL/200 22513 CONNECT d1q6f0aelx0por.cloudfront.net:443 - HIER_DIRECT/54.230.104.101 -
+1613986477.789     88 192.168.200.1 TCP_MISS/200 993 POST http://ocsp.digicert.com/ - HIER_DIRECT/93.184.220.29 application/ocsp-response
+1613986478.201    147 192.168.200.1 TCP_MISS/200 895 POST http://ocsp.pki.goog/gts1o1core - HIER_DIRECT/216.58.211.227 application/ocsp-response
+1613986478.470     18 192.168.200.1 TCP_TUNNEL/200 39 CONNECT www.gstatic.com:443 - HIER_DIRECT/142.250.184.3 -
+1613986482.408   7070 192.168.200.1 TCP_TUNNEL/200 6133 CONNECT hub.docker.com:443 - HIER_DIRECT/34.202.113.184 -
+1613986482.444   6668 192.168.200.1 TCP_TUNNEL/200 1808 CONNECT hub.docker.com:443 - HIER_DIRECT/34.202.113.184 -
+1613986486.742 119497 192.168.200.1 TCP_TUNNEL/200 1043044 CONNECT abs.twimg.com:443 - HIER_DIRECT/152.199.21.141 -
+</pre>
+
+Vemos como nos muestra los *logs* referentes a los accesos que acabamos de realizar.
 
 
 

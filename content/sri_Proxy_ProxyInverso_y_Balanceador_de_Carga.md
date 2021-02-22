@@ -28,6 +28,9 @@ En este artículo vamos a instalar un *proxy* **Squid** para configurar nuestro 
 
 El escenario en el que vamos a trabajar, está definido en este [Vagrantfile](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/Vagrantfile.txt).
 
+
+#### Instalación
+
 En primer lugar, vamos a llevar a cabo la instalación de *Squid* en la primera máquina llamada *proxy*. Para ello empleamos el siguiente comando:
 
 <pre>
@@ -39,6 +42,9 @@ Y lo iniciaremos, además de habilitarlo en cada inicio del sistema:
 <pre>
 systemctl enable squid && systemctl start squid
 </pre>
+
+
+#### Configuración Squid
 
 Una vez instalado, tendremos que llevar a cabo su configuración. En mi caso, me interesa que *Squid* permita conexiones desde mi red local. Por defecto, escuchará peticiones en el puerto **3128**. Para que no permita conexiones desde cualquier dirección, nos dirigiremos a su fichero de configuración `/etc/squid/squid.conf` y en él debemos buscar la siguiente línea:
 
@@ -102,6 +108,10 @@ Hecho esto, reiniciaremos el servicio:
 <pre>
 systemctl restart squid
 </pre>
+
+Ya podríamos utilizar nuestro *proxy*.
+
+#### Configuración en el cliente para que utilice el proxy Squid
 
 Antes de dirigirnos a nuestro navegador para establecer el nuevo *proxy*, en la terminal, dejaremos el siguiente proceso activo para ver a tiempo real los *logs* de acceso al *proxy*:
 
@@ -206,6 +216,41 @@ root@proxy:~# tail -f /var/log/squid/access.log
 </pre>
 
 Vemos como nos muestra los *logs* referentes a los accesos que acabamos de realizar.
+
+
+#### Configuración en Squid y en el cliente interno para que utilice el proxy Squid
+
+
+
+
+
+
+
+
+
+
+
+
+#### Filtros de acceso
+
+En este apartado vamos a ver como podemos configurar *Squid* para implementar distintos filtros que controlen el acceso a las diferentes webs.
+
+En primer lugar, implementaremos un filtro que funcionará como lista negra, es decir, limitaremos el acceso únicamente a determinadas webs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,5 +1,5 @@
 Title: Aumento de rendimiento de servidores web con Varnish
-Date: 2021/02/22
+Date: 2018/02/22
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Nginx, PHP_FPM, Varnish

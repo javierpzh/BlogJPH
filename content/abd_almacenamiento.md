@@ -27,7 +27,7 @@ SQL> alter tablespace TS1 offline;
 Tablespace modificado.
 </pre>
 
-
+Modificamos el *tablespace TS1*:
 
 <pre>
 SQL> ALTER TABLESPACE TS1

@@ -408,7 +408,7 @@ acl lista-blanca dstdomain "/etc/squid/listablanca"
 http_access allow lista-blanca
 </pre>
 
-Podemos apreciar que hemos hecho referencia al fichero `/etc/squid/listanegra`. Este fichero será el que crearemos y en él indicaremos las URLs que estarán bloqueadas. En mi caso, si visualizamos su contenido:
+Podemos apreciar que hemos hecho referencia al fichero `/etc/squid/listablanca`. Este fichero será el que crearemos y en él indicaremos las URLs que estarán permitidas. En mi caso, si visualizamos su contenido:
 
 <pre>
 root@proxy:~# cat /etc/squid/listablanca

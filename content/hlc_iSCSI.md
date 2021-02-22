@@ -246,7 +246,13 @@ Y sí, estamos manejando un dispositivo de manera remota, con el que podemos int
 
 ## Automontaje del target con systemd
 
-Este proceso es bastante sencillo, y como es de esperar, se llevará a cabo completamente en la parte del cliente. En primer lugar, debemos dirigirnos a la ruta `/etc/systemd/system/` y crear un nuevo fichero en el que definiremos la nueva unidad de **systemd**. En mi caso, creo el fichero `/etc/systemd/system/iSCSI.mount`, y su contenido es el siguiente:
+Este proceso es bastante sencillo, y como es de esperar, se llevará a cabo completamente en la parte del cliente. En primer lugar, debemos indicarle a `open-iscsi` que realice la conexión a dicho *target* de manera automática durante el arranque del sistema, ejecutando para ello el comando:
+
+<pre>
+iscsiadm -m node -T iqn.iSCSI.com:target1 --portal "192.168.0.54" -o update -n node.startup -v automatic
+</pre>
+
+Posteriormente, debemos dirigirnos a la ruta `/etc/systemd/system/` y crear un nuevo fichero en el que definiremos la nueva unidad de **systemd**. En mi caso, creo el fichero `/etc/systemd/system/iSCSI.mount`, y su contenido es el siguiente:
 
 <pre>
 [Unit]

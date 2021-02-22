@@ -54,12 +54,14 @@ Tags: Docker
 
 **2. Ejecución de una aplicación web PHP en Docker.**
 
-- Realiza la imagen *Docker* de la aplicación a partir de la imagen oficial PHP que encuentras en DockerHub. Lee la documentación de la imagen para configurar una imagen con *Apache2* y *PHP*, además seguramente tengas que instalar alguna extensión de php.
-- Crea esta imagen en docker hub.
-- Crea un script con docker compose que levante el escenario con los dos contenedores.
+- Realiza la imagen *Docker* de la aplicación a partir de la imagen oficial *PHP* que encuentras en *DockerHub*. Lee la documentación de la imagen para configurar una imagen con *Apache2* y *PHP*, además seguramente tengas que instalar alguna extensión de *PHP*.
+
+- Crea esta imagen en *DockerHub*.
+
+- Crea un *script* con `docker compose` que levante el escenario con los dos contenedores.
 
 - **Entrega la URL del repositorio *GitHub* donde tengas la construcción (directorio build y el despliegue (directorio deploy))**
-- **Entrega una captura de pantalla donde se vea funcionando la aplicación, una vez que te has logueado.**
+- **Entrega una captura de pantalla donde se vea funcionando la aplicación, una vez que te has *logueado*.**
 
 
 

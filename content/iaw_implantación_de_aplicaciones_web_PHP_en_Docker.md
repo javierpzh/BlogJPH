@@ -31,6 +31,31 @@ Tags: Docker
 
 
 
+Vamos a clonar el siguiente [repositorio](https://github.com/evilnapsis/bookmedik) que contiene la aplicación **bookMedik**.
+
+<pre>
+javier@debian:~$ mkdir Docker
+
+javier@debian:~$ cd Docker/
+
+javier@debian:~/Docker$ git clone https://github.com/evilnapsis/bookmedik.git
+Clonando en 'bookmedik'...
+remote: Enumerating objects: 856, done.
+remote: Total 856 (delta 0), reused 0 (delta 0), pack-reused 856
+Recibiendo objetos: 100% (856/856), 1.90 MiB | 3.63 MiB/s, listo.
+Resolviendo deltas: 100% (372/372), listo.
+
+javier@debian:~/Docker$ ls
+bookmedik
+
+javier@debian:~/Docker$ ls bookmedik/
+assets  core  index.php  instalation.txt  logout.php  PhpWord  README.md  report  schema.sql
+</pre>
+
+
+
+
+
 
 
 

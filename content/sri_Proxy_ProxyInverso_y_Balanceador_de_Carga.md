@@ -237,7 +237,9 @@ En este apartado vamos a ver como podemos configurar *Squid* para implementar di
 
 En primer lugar, implementaremos un filtro que funcionará como lista negra, es decir, limitaremos el acceso únicamente a determinadas webs.
 
+Por ejemplo, imaginemos que somos los administradores de una empresa y queremos evitar que nuestros trabajadores accedan a sus redes sociales para que así no puedan distraerse del trabajo. Esto lo podemos solucionar con una *blacklist*.
 
+Para añadir estos filtros a nuestro *proxy*, nos dirigiremos al fichero ``
 
 
 

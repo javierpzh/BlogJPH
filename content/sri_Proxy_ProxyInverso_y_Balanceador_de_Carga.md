@@ -141,15 +141,15 @@ Ahora, vamos a dirigirnos de nuevo a la configuración del navegador, a la parte
 
 ![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/proxyfirefox2.png)
 
-Hecho esto, tendremos que configurar nuestro propio sistema para que por defecto utilice nuestro *proxy*. Este proceso lo realizaremos en el apartado **Configuración del sistema**, y dentro
+Hecho esto, tendremos que configurar nuestro propio sistema para que por defecto utilice nuestro *proxy*. Este proceso lo realizaremos en el apartado **Configuración del sistema**, en la sección de **Red**:
 
 ![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/configuracionred.png)
 
+Configuraremos el *proxy* de manera manual de la siguiente manera:
+
 ![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/configuracionredproxy.png)
 
-
-
-
+Con esto habríamos terminado de configurar nuestro sistema para que utilice el *proxy Squid*.
 
 Antes de dirigirnos a nuestro navegador para acceder a las webs, en la terminal, volveremos a dejar el siguiente proceso activo para ver a tiempo real los *logs* de acceso al *proxy*:
 

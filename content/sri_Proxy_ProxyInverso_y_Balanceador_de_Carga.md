@@ -239,23 +239,103 @@ En primer lugar, implementaremos un filtro que funcionará como lista negra, es 
 
 Por ejemplo, imaginemos que somos los administradores de una empresa y queremos evitar que nuestros trabajadores accedan a sus redes sociales para que así no puedan distraerse del trabajo. Esto lo podemos solucionar con una *blacklist*.
 
-Para añadir estos filtros a nuestro *proxy*, nos dirigiremos al fichero ``
+Para añadir este tipo de filtro a nuestro *proxy*, nos dirigiremos al fichero `/etc/squid/squid.conf` y en él, en la parte de las *ACLs* introduciremos las siguientes líneas:
 
+<pre>
+#LISTA NEGRA
+acl lista-negra dstdomain "/etc/squid/listanegra"
 
+http_access deny lista-negra
+</pre>
 
+De manera que el resultado sería algo así:
 
+<pre>
+acl localnet src 0.0.0.1-0.255.255.255  # RFC 1122 "this" network (LAN)
+acl localnet src 10.0.0.0/8             # RFC 1918 local private network (LAN)
+acl localnet src 100.64.0.0/10          # RFC 6598 shared address space (CGN)
+acl localnet src 169.254.0.0/16         # RFC 3927 link-local (directly plugged) machines
+acl localnet src 172.16.0.0/12          # RFC 1918 local private network (LAN)
+acl localnet src 192.168.0.0/16         # RFC 1918 local private network (LAN)
+acl localnet src fc00::/7               # RFC 4193 local private network range
+acl localnet src fe80::/10              # RFC 4291 link-local (directly plugged) machines
 
+acl localnet src 172.22.9.28
+acl localnet src 192.168.15.151
 
+acl SSL_ports port 443
+acl Safe_ports port 80          # http
+acl Safe_ports port 21          # ftp
+acl Safe_ports port 443         # https
+acl Safe_ports port 70          # gopher
+acl Safe_ports port 210         # wais
+acl Safe_ports port 1025-65535  # unregistered ports
+acl Safe_ports port 280         # http-mgmt
+acl Safe_ports port 488         # gss-http
+acl Safe_ports port 591         # filemaker
+acl Safe_ports port 777         # multiling http
+acl CONNECT method CONNECT
 
+#LISTA NEGRA
+acl lista-negra dstdomain "/etc/squid/listanegra"
 
+http_access deny lista-negra
+</pre>
 
+Podemos apreciar que hemos hecho referencia al fichero `/etc/squid/listanegra`. Este fichero será el que crearemos y en él indicaremos las URLs que estarán bloqueadas. En mi caso, si visualizamos su contenido: 
 
+<pre>
+root@proxy:~# cat /etc/squid/listanegra
+.facebook.com
+</pre>
 
+Hecho esto, reiniciaremos el servicio:
 
+<pre>
+systemctl restart squid
+</pre>
 
+Antes de dirigirnos a nuestro navegador para acceder a la web de *Facebook*, en la terminal, volveremos a dejar el siguiente proceso activo para ver a tiempo real los *logs* de acceso al *proxy*:
 
+<pre>
+tail -f /var/log/squid/access.log
+</pre>
 
+En mi caso, sigo teniendo establecida la configuración del *proxy*, de manera que vamos a probar a acceder a [www.facebook.com](https://www.facebook.com/).
 
+![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/facebook.png)
+
+Vemos que no nos permite acceder a la web, por lo que parece que el funcionamiento es el correcto, pero ahora, voy a probar a acceder a cualquier otra web, para asegurarme que el *proxy* solo esté bloqueando la conexión a *Facebook* y no a todas las webs. Intento acceder a [www.amazon.es](https://www.amazon.es/):
+
+![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/amazon.png)
+
+Una vez comprobamos que no nos permite acceder, vamos a revisar el proceso que dejamos en ejecución en nuestra terminal:
+
+<pre>
+root@proxy:~# tail -f /var/log/squid/access.log
+1613988887.582      0 192.168.200.1 TCP_DENIED/403 3968 CONNECT www.facebook.com:443 - HIER_NONE/- text/html
+1613988891.778    437 192.168.200.1 TCP_TUNNEL/200 39 CONNECT images-eu.ssl-images-amazon.com:443 - HIER_DIRECT/52.84.68.73 -
+1613988891.778    437 192.168.200.1 TCP_TUNNEL/200 39 CONNECT images-eu.ssl-images-amazon.com:443 - HIER_DIRECT/52.84.68.73 -
+1613988892.131    178 192.168.200.1 TCP_TUNNEL/200 13411 CONNECT m.media-amazon.com:443 - HIER_DIRECT/52.84.68.73 -
+1613988892.151    197 192.168.200.1 TCP_TUNNEL/200 12365 CONNECT m.media-amazon.com:443 - HIER_DIRECT/52.84.68.73 -
+1613988892.152    199 192.168.200.1 TCP_TUNNEL/200 14711 CONNECT m.media-amazon.com:443 - HIER_DIRECT/52.84.68.73 -
+1613988892.155    201 192.168.200.1 TCP_TUNNEL/200 14846 CONNECT m.media-amazon.com:443 - HIER_DIRECT/52.84.68.73 -
+1613988892.166    127 192.168.200.1 TCP_TUNNEL/200 5553 CONNECT m.media-amazon.com:443 - HIER_DIRECT/52.84.68.73 -
+1613988892.174    220 192.168.200.1 TCP_TUNNEL/200 11651 CONNECT m.media-amazon.com:443 - HIER_DIRECT/52.84.68.73 -
+1613988892.673    160 192.168.200.1 TCP_MISS/200 1170 POST http://ocsp.sca1b.amazontrust.com/ - HIER_DIRECT/13.33.234.111 application/ocsp-response
+1613988892.681    169 192.168.200.1 TCP_MISS/200 1170 POST http://ocsp.sca1b.amazontrust.com/ - HIER_DIRECT/13.33.234.111 application/ocsp-response
+1613988892.689    177 192.168.200.1 TCP_MISS/200 1170 POST http://ocsp.sca1b.amazontrust.com/ - HIER_DIRECT/13.33.234.111 application/ocsp-response
+1613988892.690    178 192.168.200.1 TCP_MISS/200 1170 POST http://ocsp.sca1b.amazontrust.com/ - HIER_DIRECT/13.33.234.111 application/ocsp-response
+1613988892.739    430 192.168.200.1 TCP_TUNNEL/200 6107 CONNECT fls-eu.amazon.es:443 - HIER_DIRECT/3.248.163.40 -
+1613988892.742    434 192.168.200.1 TCP_TUNNEL/200 6107 CONNECT fls-eu.amazon.es:443 - HIER_DIRECT/3.248.163.40 -
+1613988892.749    440 192.168.200.1 TCP_TUNNEL/200 6107 CONNECT fls-eu.amazon.es:443 - HIER_DIRECT/3.248.163.40 -
+1613988892.749    440 192.168.200.1 TCP_TUNNEL/200 6107 CONNECT fls-eu.amazon.es:443 - HIER_DIRECT/3.248.163.40 -
+1613988892.773    261 192.168.200.1 TCP_MISS/200 1170 POST http://ocsp.sca1b.amazontrust.com/ - HIER_DIRECT/13.33.234.111 application/ocsp-response
+1613988892.830    522 192.168.200.1 TCP_TUNNEL/200 6107 CONNECT fls-eu.amazon.es:443 - HIER_DIRECT/3.248.163.40 -
+1613988894.470    137 192.168.200.1 TCP_TUNNEL/200 30872 CONNECT images-na.ssl-images-amazon.com:443 - HIER_DIRECT/52.84.68.73 -
+</pre>
+
+¡Perfecto! Ya tendríamos funcionando nuestra lista negra.
 
 
 

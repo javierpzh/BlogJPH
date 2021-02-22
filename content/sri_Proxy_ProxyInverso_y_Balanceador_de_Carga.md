@@ -62,6 +62,8 @@ Y lo iniciaremos, además de habilitarlo en cada inicio del sistema:
 systemctl enable squid && systemctl start squid
 </pre>
 
+Listo.
+
 
 #### Configuración Squid
 
@@ -129,6 +131,7 @@ systemctl restart squid
 </pre>
 
 Ya podríamos utilizar nuestro *proxy*.
+
 
 #### Configuración en el cliente para que utilice el proxy Squid
 

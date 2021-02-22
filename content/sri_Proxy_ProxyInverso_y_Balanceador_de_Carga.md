@@ -137,11 +137,13 @@ root@proxy:~# tail -f /var/log/squid/access.log
 
 Vemos como nos muestra los *logs* referentes a los accesos que acabamos de realizar.
 
-Ahora, vamos a dirigirnos de nuevo a la configuración del navegador, a la parte de la configuración del *proxy* e indicaremos que use la configuración *proxy* del sistema.
+Ahora, vamos a configurar nuestro máquina para que haga uso del *proxy Squid*, pero esta vez la configuración no la haremos en el navegador, sino en el propio sistema.
+
+Para ello, antes, vamos a dirigirnos de nuevo a la configuración del navegador, a la parte de la configuración del *proxy* e indicaremos que use la configuración *proxy* del sistema.
 
 ![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/proxyfirefox2.png)
 
-Hecho esto, tendremos que configurar nuestro propio sistema para que por defecto utilice nuestro *proxy*. Este proceso lo realizaremos en el apartado **Configuración del sistema**, en la sección de **Red**:
+Hecho esto, tendremos que configurar el sistema para que por defecto utilice nuestro *proxy*. Este proceso lo realizaremos en el apartado **Configuración del sistema**, en la sección de **Red**:
 
 ![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/configuracionred.png)
 

@@ -29,7 +29,7 @@ Después de hacer muchas pruebas de rendimiento con un número variable de petic
 **NOTA:** No es importante el número concreto de peticiones/segundo. Puede variar por muchas razones, como pueden ser:
 
 - Desde donde haga las pruebas (no es lo mismo hacerlas desde *localhost*, o desde una máquina en la misma red, o desde internet).
-- Del estado del servidor, que recursos tenga libre,...
+- El estado del servidor, que recursos tenga libre,...
 
 Lo importante es calcular una media intentando hacer las pruebas en un escenario lo más similar posible (por eso después de realizar cada prueba es recomendable reiniciar los servicios).
 

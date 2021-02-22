@@ -43,6 +43,29 @@ Para ello vamos a llevar a cabo los siguientes apartados:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 **2. Vamos a hacer las pruebas de rendimiento desde la misma máquina, es decir vamos a ejecutar instrucciones similares a esta:**
 
 <pre>

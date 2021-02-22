@@ -404,6 +404,8 @@ Realizados todas las modificaciones, aplicaremos los cambios reiniciando el serv
 systemctl restart postfix
 </pre>
 
+Llegó el momento de realizar la prueba, enviaremos un correo desde *Gmail*, y en el mensaje del correo, introduciré un mensaje que es detectado como *virus*. El mensaje de virus es el siguiente: `X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*`.
+
 Vamos a hacer la prueba visualizando los *logs*:
 
 <pre>

@@ -361,7 +361,45 @@ La única referencia al sistema de almacenamiento, es que la unidad mínima de a
 
 ## MySQL
 
-#### Averigua si existe el concepto de espacio de tablas en MySQL y las diferencias con los tablespaces de Oracle.
+#### Averigua si ¿Existe el concepto de espacio de tablas en MySQL? y las ¿Qué diferencias presentan con los tablespaces de Oracle?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

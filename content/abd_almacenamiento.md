@@ -352,7 +352,7 @@ En *PostgreSQL* estos conceptos no existen como en *Oracle*, sino que se comport
 
 Cada *tablespace* creado se asigna a un subdirectorio del directorio que hayamos definido como directorio de datos (*data_directory*) en la instalación de *PostgreSQL*. (Para consultar cuál es nuestro directorio de datos podemos emplear el siguiente comando: `SHOW data_directory;`).
 
-En dicho directorio del *tablespace* se crearán archivos distintos para cada uno de los *segmentos*. Es decir, cuando se crea un *segmento*, se crea un archivo de datos dentro del directorio asignado al *tablespace*. A este archivo no se le puede indicar el tamaño ni el nombre directamente, y no es compartido por otras tablas.
+En dicho directorio del *tablespace* se crearán archivos distintos para cada uno de los *segmentos*. Es decir, cuando se crea un *segmento*, se crea un archivo de datos dentro del directorio asignado al *tablespace*. A este archivo no se le puede indicar el tamaño ni el nombre, y no es compartido por otras tablas.
 
 Respecto a las *extensiones*, no existe tal concepto en *PostgreSQL* como lo conocemos en *Oracle*. Pero sí existe este concepto como librerías o módulos que agregan funcionalidades específicas (se deben instalar con `create extension`).
 

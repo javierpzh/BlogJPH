@@ -334,8 +334,13 @@ e) Lidia y Jaime dejan la empresa, borra los usuarios y el espacio de tablas cor
 
 En *Oracle*, la organización del almacenamiento dentro de un *tablespace*, se organiza en **segmentos**, que a su vez, contienen una o varias **extensiones**.
 
-Cuando se crea un *segmento* en un *tablespace*, *Oracle* asigna una o varias *extensiones* en alguno de los archivos de datos del *tablespace*. Cuando el espacio inicialmente asignado se agota, *Oracle* asigna una nueva *extensión* al *segmento*, y así sucesivamente. 
+Cuando se crea un *segmento* en un *tablespace*, *Oracle* asigna una o varias *extensiones* en alguno de los archivos de datos del *tablespace*. Cuando el espacio inicialmente asignado se agota, *Oracle* asigna una nueva *extensión* al *segmento*, y así sucesivamente.
 
+Las *extensiones* asignadas a un *segmento* están en el *tablespace* de creación del *segmento*, aunque no tienen porque estar juntas, ni en el mismo archivo de datos (si el *tablespace* tuviera varios archivos de datos).
+
+Cuando se elimina un *segmento*, las *extensiones* que ocupa se liberan y vuelven a quedar disponibles.
+
+Este gráfico resume lo explicado:
 
 ![.](images/abd_almacenamiento/grafico.ej.postgresql.png)
 

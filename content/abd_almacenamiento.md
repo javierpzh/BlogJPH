@@ -344,6 +344,8 @@ Este gráfico resume lo explicado:
 
 ![.](images/abd_almacenamiento/grafico.ej.postgresql.png)
 
+Entendido lo que son los *segmentos* y las *extensiones* en *Oracle*, vamos a ver su comportamiento en *PostgreSQL*.
+
 
 
 

@@ -362,7 +362,8 @@ La única referencia al sistema de almacenamiento, es que la unidad mínima de a
 
 ## MySQL
 
-#### ¿Existe el concepto de espacio de tablas en MySQL? ¿Qué diferencias presentan con los tablespaces de Oracle?
+#### ¿Existe el concepto de espacio de tablas en MySQL?
+#### ¿Qué diferencias presentan con los tablespaces de Oracle?
 
 
 
@@ -406,7 +407,7 @@ La única referencia al sistema de almacenamiento, es que la unidad mínima de a
 
 ## MongoDB
 
-#### Averigua si existe la posibilidad en MongoDB de decidir en qué archivo se almacena una colección.
+#### ¿Existe la posibilidad en MongoDB de decidir en qué archivo se almacena una colección?
 
 
 

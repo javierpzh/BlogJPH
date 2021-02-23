@@ -88,7 +88,7 @@ http_access allow localnet
 http_access allow localhost
 </pre>
 
-Comprobado estos detalles, añadiremos la siguiente línea:
+Esto significa, que nos permitirá realizar peticiones desde ambas redes especificadas. Comprobado estos detalles, añadiremos la siguiente línea:
 
 <pre>
 acl localnet src 172.22.9.28
@@ -327,7 +327,7 @@ En mi caso, sigo teniendo establecida la configuración del *proxy*, de manera q
 
 ![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/facebook.png)
 
-Vemos que no nos permite acceder a la web, por lo que parece que el funcionamiento es el correcto, pero ahora, voy a probar a acceder a cualquier otra web, para asegurarme que el *proxy* solo esté bloqueando la conexión a *Facebook* y no a todas las webs. Intento acceder a [www.amazon.es](https://www.amazon.es/):
+Vemos que no nos permite acceder a la web, por lo que, parece que el funcionamiento es el correcto, pero ahora, voy a probar a acceder a cualquier otra web, para asegurarme que el *proxy* solo esté bloqueando la conexión a *Facebook* y no a todas las webs. Intento acceder a [www.amazon.es](https://www.amazon.es/):
 
 ![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/amazon.png)
 
@@ -418,7 +418,11 @@ root@proxy:~# cat /etc/squid/listablanca
 .javierpzh.github.io
 </pre>
 
-Ya casi 
+Ya casi habríamos terminado, pero analicemos el cambio que hemos hecho. Hemos permitido el acceso a una determinada web, pero no hemos bloqueado el acceso a las demás webs. Para hacer esto y bloquear todas las webs menos las que especifiquemos en nuestra *whitelist*, debemos cambiar el valor de la siguiente línea:
+
+<pre>
+http_access deny localnet
+</pre>
 
 Hecho esto, reiniciaremos el servicio:
 
@@ -436,7 +440,7 @@ En mi caso, sigo teniendo establecida la configuración del *proxy*, de manera q
 
 ![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/mipagina.png)
 
-Vemos que nos permite acceder a la web, por lo de momento el funcionamiento es el correcto, pero ahora, para terminar de comprobarlo, voy a probar a acceder a cualquier otra web, para asegurarme que el *proxy* esté bloqueando cualquier tipo de conexión que no sea a mi web. Intento acceder a [www.amazon.es](https://www.amazon.es/):
+Vemos que nos permite acceder a la web, por lo que, de momento el funcionamiento es el correcto, pero ahora, para terminar de comprobarlo, voy a probar a acceder a cualquier otra web, para asegurarme que el *proxy* esté bloqueando cualquier tipo de conexión que no sea a mi web. Intento acceder a [www.amazon.es](https://www.amazon.es/):
 
 ![.](images/sri_Proxy_ProxyInverso_y_Balanceador_de_Carga/amazon2.png)
 

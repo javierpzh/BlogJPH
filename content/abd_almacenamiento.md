@@ -261,11 +261,11 @@ Tras insertar una serie de registros, podemos ver como me ha devuelto un error. 
 Realizamos la siguiente consulta:
 
 <pre>
-SQL> SELECT a.TABLE_NAME, a.INDEX_NAME, a.COLUMN_NAME, c.FILE_NAME
-  2  FROM DBA_IND_COLUMNS a, DBA_EXTENTS b, DBA_DATA_FILES c
-  3  WHERE a.TABLE_NAME = b.SEGMENT_NAME
-  4  AND b.FILE_ID = c.FILE_ID
-  5  AND a.TABLE_OWNER='SCOTT';
+SQL> SELECT columns.TABLE_NAME, columns.INDEX_NAME, columns.COLUMN_NAME, files.FILE_NAME
+  2  FROM DBA_IND_COLUMNS columns, DBA_EXTENTS extents, DBA_DATA_FILES files
+  3  WHERE columns.TABLE_NAME = extents.SEGMENT_NAME
+  4  AND extents.FILE_ID = files.FILE_ID
+  5  AND columns.TABLE_OWNER='SCOTT';
 
 TABLE_NAME                     INDEX_NAME
 ------------------------------ ------------------------------

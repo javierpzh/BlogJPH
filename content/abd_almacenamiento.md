@@ -332,7 +332,7 @@ e) Lidia y Jaime dejan la empresa, borra los usuarios y el espacio de tablas cor
 
 #### Averigua si ¿Existen los conceptos de segmento y de extensión en PostgreSQL, en qué consisten? ¿Cuáles son las diferencias con los conceptos correspondientes de Oracle?
 
-En *Oracle*, la organización del almacenamiento dentro de un *tablespace*, se organiza en **segmentos**, que a su vez, contienen una o varias **extensiones**.
+En **Oracle**, la organización del almacenamiento dentro de un *tablespace*, se organiza en **segmentos**, que a su vez, contienen una o varias **extensiones**.
 
 Cuando se crea un *segmento* en un *tablespace*, *Oracle* asigna una o varias *extensiones* en alguno de los archivos de datos del *tablespace*. Cuando el espacio inicialmente asignado se agota, *Oracle* asigna una nueva *extensión* al *segmento*, y así sucesivamente.
 
@@ -344,7 +344,7 @@ Este gráfico resume lo explicado:
 
 ![.](images/abd_almacenamiento/grafico.ej.postgresql.png)
 
-Entendido lo que son los *segmentos* y las *extensiones* en *Oracle*, vamos a ver su comportamiento en *PostgreSQL*.
+Entendido lo que son los *segmentos* y las *extensiones* en *Oracle*, vamos a ver su comportamiento en **PostgreSQL**.
 
 
 

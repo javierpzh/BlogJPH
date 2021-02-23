@@ -330,7 +330,8 @@ e) Lidia y Jaime dejan la empresa, borra los usuarios y el espacio de tablas cor
 
 ## PostgreSQL
 
-#### ¿Existen los conceptos de segmento y de extensión en PostgreSQL, en qué consisten? ¿Cuáles son las diferencias con los conceptos correspondientes de Oracle?
+#### ¿Existen los conceptos de segmento y de extensión en PostgreSQL, en qué consisten?
+#### ¿Cuáles son las diferencias con los conceptos correspondientes de Oracle?
 
 En **Oracle**, la organización del almacenamiento dentro de un *tablespace*, se organiza en **segmentos**, que a su vez, contienen una o varias **extensiones**.
 
@@ -361,7 +362,7 @@ La única referencia al sistema de almacenamiento, es que la unidad mínima de a
 
 ## MySQL
 
-#### Averigua si ¿Existe el concepto de espacio de tablas en MySQL? y las ¿Qué diferencias presentan con los tablespaces de Oracle?
+#### ¿Existe el concepto de espacio de tablas en MySQL? ¿Qué diferencias presentan con los tablespaces de Oracle?
 
 
 

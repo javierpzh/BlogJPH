@@ -356,7 +356,7 @@ En dicho directorio del *tablespace* se crearán archivos distintos para cada un
 
 Respecto a las *extensiones*, no existe tal concepto en *PostgreSQL* como lo conocemos en *Oracle*. Pero sí existe este concepto como librerías o módulos que agregan funcionalidades específicas (se deben instalar con `create extension`).
 
-La única referencia al sistema de almacenamiento, es que la unidad mínima de almacenamiento se denomina pagina o bloque. Un bloque en *PostgreSQL* ocupa por defecto 8 *kilobytes*.
+La única referencia al sistema de almacenamiento, es que la unidad mínima de almacenamiento se denomina *página* o *bloque*. Un *bloque* en *PostgreSQL* ocupa por defecto 8 *kilobytes*.
 
 
 ## MySQL

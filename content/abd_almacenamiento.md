@@ -226,15 +226,16 @@ Una vez creado, vamos a crear una tabla en él con una cláusula de almacenamien
 <pre>
 SQL> create table Tabla3
   2  (
-  3  Campo1 VARCHAR2(2000),
-  4  Campo2 VARCHAR2(2000),
-  5  Campo3 VARCHAR2(2000)
-  6  )
-  7  storage
-  8  (
-  9  Initial 20K
- 10  )
- 11  tablespace TS2;
+  3  Campo1 VARCHAR2(100),
+  4  Campo2 VARCHAR2(100),
+  5  Campo3 VARCHAR2(100),
+  6  Campo4 VARCHAR2(100)
+  7  )
+  8  storage
+  9  (
+ 10  Initial 20K
+ 11  )
+ 12  tablespace TS2;
 
 Tabla creada.
 </pre>
@@ -242,12 +243,12 @@ Tabla creada.
 En este punto, voy a insertar registros hasta que el espacio del *tablespace* se agote.
 
 <pre>
-SQL> insert into Tabla3 (Campo1,Campo2,Campo3) values('Registro de prueba 1','Registro de prueba 2','Registro de prueba 3');
+SQL> insert into Tabla3 (Campo1,Campo2,Campo3,Campo4) values('Registro de prueba 1','Registro de prueba 2','Registro de prueba 3','Registro de prueba 4');
 
 1 fila creada.
 
-SQL> insert into Tabla3 (Campo1,Campo2,Campo3) values('Registro de prueba 1','Registro de prueba 2','Registro de prueba 3');
-insert into Tabla3 (Campo1,Campo2,Campo3) values('Registro de prueba 1','Registro de prueba 2','Registro de prueba 3')
+SQL> insert into Tabla3 (Campo1,Campo2,Campo3,Campo4) values('Registro de prueba 1','Registro de prueba 2','Registro de prueba 3','Registro de prueba 4');
+insert into Tabla3 (Campo1,Campo2,Campo3,Campo4) values('Registro de prueba 1','Registro de prueba 2','Registro de prueba 3','Registro de prueba 4')
 *
 ERROR en lÝnea 1:
 ORA-01653: no se ha podido ampliar la tabla SYSTEM.TABLA3 con 128 en el tablespace TS2

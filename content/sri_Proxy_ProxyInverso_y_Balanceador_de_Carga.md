@@ -418,6 +418,8 @@ root@proxy:~# cat /etc/squid/listablanca
 .javierpzh.github.io
 </pre>
 
+Ya casi 
+
 Hecho esto, reiniciaremos el servicio:
 
 <pre>
@@ -441,7 +443,9 @@ Vemos que nos permite acceder a la web, por lo de momento el funcionamiento es e
 Una vez comprobamos que a ésta web no nos permite acceder, vamos a revisar el proceso que dejamos en ejecución en nuestra terminal:
 
 <pre>
-tail -f /var/log/squid/access.log
+root@proxy:~# tail -f /var/log/squid/access.log
+1614082229.707   1058 192.168.200.1 TCP_TUNNEL/200 39 CONNECT javierpzh.github.io:443 - HIER_DIRECT/185.199.110.153 -
+1614082237.344      0 192.168.200.1 TCP_DENIED/403 3959 CONNECT www.amazon.es:443 - HIER_NONE/- text/html
 </pre>
 
 ¡Perfecto! Ya tendríamos funcionando nuestra lista blanca.

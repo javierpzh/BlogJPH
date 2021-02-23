@@ -330,7 +330,41 @@ e) Lidia y Jaime dejan la empresa, borra los usuarios y el espacio de tablas cor
 
 ## PostgreSQL
 
-#### Averigua si existe el concepto de segmento y el de extensión en PostgreSQL, en qué consiste y las diferencias con los conceptos correspondientes de Oracle.
+#### Averigua si ¿Existen los conceptos de segmento y de extensión en PostgreSQL, en qué consisten? ¿Cuáles son las diferencias con los conceptos correspondientes de Oracle?
+
+En *Oracle*, 
+
+![.](images/abd_almacenamiento/grafico.ej.postgresql.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

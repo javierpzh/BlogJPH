@@ -348,37 +348,15 @@ Este gráfico resume lo explicado:
 
 Entendido lo que son los *segmentos* y las *extensiones* en *Oracle*, vamos a ver su comportamiento en **PostgreSQL**.
 
+En *PostgreSQL* estos conceptos no existen como en *Oracle*, sino que se comportan de la siguiente manera.
 
+Cada *tablespace* creado se asigna a un subdirectorio del directorio que hayamos definido como directorio de datos (*data_directory*) en la instalación de *PostgreSQL*. (Para consultar cuál es nuestro directorio de datos podemos emplear el siguiente comando: `SHOW data_directory;`).
 
+En dicho directorio del *tablespace* se crearán archivos distintos para cada uno de los *segmentos*. Es decir, cuando se crea un *segmento*, se crea un archivo de datos dentro del directorio asignado al *tablespace*. A este archivo no se le puede indicar el tamaño ni el nombre directamente, y no es compartido por otras tablas.
 
+Respecto a las *extensiones*, no existe tal concepto en *PostgreSQL* como lo conocemos en *Oracle*. Pero sí existe este concepto como librerías o módulos que agregan funcionalidades específicas (se deben instalar con `create extension`).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+La única referencia al sistema de almacenamiento, es que la unidad mínima de almacenamiento se denomina pagina o bloque. Un bloque en *PostgreSQL* ocupa por defecto 8 *kilobytes*.
 
 
 ## MySQL

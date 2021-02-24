@@ -1,4 +1,4 @@
-Title: Servidor de correos 1
+Title: Servidor de correos
 Date: 2021/02/21
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg

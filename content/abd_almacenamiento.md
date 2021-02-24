@@ -365,11 +365,11 @@ La única referencia al sistema de almacenamiento, es que la unidad mínima de a
 #### ¿Existe el concepto de espacio de tablas en MySQL?
 #### ¿Qué diferencias presentan con los tablespaces de Oracle?
 
+En *MySQL* también disponemos de *tablespaces*, aunque su comportamiento es distinto, según
 
 
 
-
-
+Los espacios de tabla (tablespaces) son unidades de almacenamiento lógicas de motores de base de datos relacionales como InnoDB, que contienen todos los datos del sistema de base de datos. Cada uno de los espacios de tabla contiene como mínimo un fichero de datos físico del sistema operativo subyacente en el que se almacenan tanto tablas de bases de datos como índices.
 
 
 

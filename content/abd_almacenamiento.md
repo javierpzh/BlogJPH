@@ -1,5 +1,5 @@
 Title: Almacenamiento de Base de Datos
-Date: 2018/02/25
+Date: 2021/02/25
 Category: Administración de Bases de Datos
 Header_Cover: theme/images/banner-basededatos.png
 Tags: Almacenamiento, Oracle, PostgreSQL, MariaDB, MySQL, MongoDB

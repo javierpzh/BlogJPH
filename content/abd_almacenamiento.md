@@ -58,7 +58,7 @@ SYSTEM                         LOCAL
 
 Bien, y ¿podríamos hacer que la gestión de extensiones fuera por diccionario?
 
-Pues desgraciadamente no. La gestión de extensiones se elige en la instalación de *Oracle* y luego no puede modificarse. La gestión local proporciona un mejor rendimiento, pero se ignora la cláusula *STORAGE* de los objetos del *tablespace*.
+Pues desgraciadamente no. La gestión de extensiones se elige en la instalación de *Oracle* y luego no puede modificarse. La gestión local proporciona un mejor rendimiento, pero ignora la cláusula *STORAGE* de los objetos del *tablespace*.
 
 
 #### Vamos a crear dos tablas en el tablespace recién creado e insertaremos un registro en cada una de ellas. Comprobaremos el espacio libre existente en el tablespace. Borraremos una de las tablas y comprobaremos si ha aumentado el espacio disponible en el tablespace.

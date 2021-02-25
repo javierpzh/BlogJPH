@@ -1,5 +1,5 @@
 Title: Almacenamiento de Base de Datos
-Date: 2018/02/22
+Date: 2018/02/25
 Category: Administración de Bases de Datos
 Header_Cover: theme/images/banner-basededatos.png
 Tags: Almacenamiento, Oracle, PostgreSQL, MariaDB, MySQL, MongoDB
@@ -402,31 +402,44 @@ Aunque me haya centrado principalmente en *InnoDB*, en *MySQL*, disponemos de mu
 - Recomendable para aplicaciones en las que dominan las sentencias *SELECT* ante los *INSERT/UPDATE*
 - Al no tener que hacer comprobaciones de la integridad referencial, ni bloquear las tablas para realizar las operaciones, nos proporciona una mayor velocidad
 
+
 ## MongoDB
 
 #### ¿Existe la posibilidad en MongoDB de decidir en qué archivo se almacena una colección?
 
+En primer lugar, vamos a ver donde guarda *MongoDB* los archivos de la base de datos. Por defecto, se guardan en la ruta que viene establecida en su archivo de configuración llamado `mongod.conf`. En mi caso, al tener instalado *MongoDB* sobre un sistema *Debian*, dicho archivo se encuentra en la ruta `/etc/mongod.conf`. Si nos dirigimos a él, al principio nos encontraremos un bloque como el siguiente:
 
+<pre>
+# Where and how to store data.
+storage:
+  dbPath: /var/lib/mongodb
+...
+</pre>
 
+Podemos apreciar como nos indica donde se están guardando los datos de nuestra base de datos, en mi caso, la ruta por defecto es `/var/lib/mongodb`. A continuación voy a mostrar una salida del contenido de dicha ruta para comprobar que mis documentos se estén almacenando en tal lugar:
 
+<pre>
+root@servidor:~# ls /var/lib/mongodb
+collection-0-3377914449258320463.wt   index-1-3763332829671594932.wt   journal
+collection-0-3763332829671594932.wt   index-1--575804202552084677.wt   _mdb_catalog.wt
+collection-0--575804202552084677.wt   index-1--6595949044337281648.wt  mongod.lock
+collection-0--6595949044337281648.wt  index-2--6595949044337281648.wt  sizeStorer.wt
+collection-2-3763332829671594932.wt   index-3-3763332829671594932.wt   storage.bson
+collection-4-3377914449258320463.wt   index-5-3377914449258320463.wt   WiredTiger
+collection-4-3763332829671594932.wt   index-5-3763332829671594932.wt   WiredTigerHS.wt
+collection-7-3763332829671594932.wt   index-6-3763332829671594932.wt   WiredTiger.lock
+diagnostic.data			      index-8-3763332829671594932.wt   WiredTiger.turtle
+index-1-3377914449258320463.wt	      index-9-3763332829671594932.wt   WiredTiger.wt
+</pre>
 
+Efectivamente aquí podemos encontrar los distintos documentos.
 
+Bien, ya sabríamos como localizar la ruta donde se están almacenando los datos de nuestra base de datos, pero, ¿y si quisiéramos indicar una nueva ruta para que *MongoDB* almacene una determinada colección?
 
+Esto también es posible en dicho gestor no relacional, y podríamos hacerlo utilizando la herramienta `mongod` mediante el siguiente comando:
 
+<pre>
+mongod --dbpath {/ruta_a_almacenar} --fork --logpath {/ruta_a_almacenar/log}
+</pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.
+Es importante que dicha ruta exista previamente y posea los permisos adecuados para que `mongod` pueda leer y escribir en ella.

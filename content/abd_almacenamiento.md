@@ -44,7 +44,7 @@ ORA-25143: la clßusula de almacenamiento por defecto no es compatible con la
 polÝtica de asignaci¾n
 </pre>
 
-A la hora de hacer el *ALTER TABLE* nos reporta un error debido a que el *tablespace*, por defecto, está hecho en local, y no por diccionario, por lo que no podemos modificar las cláusulas de almacenamiento.
+A la hora de realizar la sentencia *ALTER TABLE* nos reporta un error debido a que el *tablespace*, por defecto, está hecho en local, y no por diccionario, por lo que no podemos modificar las cláusulas de almacenamiento.
 
 Podemos observar que el *tablespace system* está guardado en local.
 

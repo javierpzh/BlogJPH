@@ -365,45 +365,42 @@ La única referencia al sistema de almacenamiento, es que la unidad mínima de a
 #### ¿Existe el concepto de espacio de tablas en MySQL?
 #### ¿Qué diferencias presentan con los tablespaces de Oracle?
 
-En *MySQL* también disponemos de *tablespaces*, aunque su comportamiento es distinto, según
+La principal diferencia que presenta *MySQL* en comparación con *Oracle*, es que éste, sólo posee un tipo de motor de almacenamiento, y está pensado para una sola base de datos, al contrario que *MySQL*.
 
+En *MySQL* también disponemos de *tablespaces*, aunque su comportamiento puede variar según el motor de base de datos que escojamos.
 
+Los espacios de tabla (*tablespaces*) son unidades de almacenamiento lógicas de motores de base de datos relacionales como **InnoDB**, que contienen todos los datos del sistema de base de datos. Cada uno de los espacios de tabla contiene como mínimo, un fichero de datos físico del sistema operativo, en el que se almacenan tanto tablas de bases de datos, como índices.
 
-Los espacios de tabla (tablespaces) son unidades de almacenamiento lógicas de motores de base de datos relacionales como InnoDB, que contienen todos los datos del sistema de base de datos. Cada uno de los espacios de tabla contiene como mínimo un fichero de datos físico del sistema operativo subyacente en el que se almacenan tanto tablas de bases de datos como índices.
+Dentro de los motores de base de datos, me centraré en el más conocido, que es el llamado **InnoDB**. Este motor nos permite controlar la lógica del almacenamiento físico y acceso a los datos. Sus principales ventajas son las siguientes:
 
+- Soporte de transacciones
+- Bloqueo de registros
+- *Rollback*
+- Nos permite tener las características *ACID*, garantizando la integridad de nuestras tablas
+- Requiere bastante espacio de disco y bastante RAM
+- Aumento de rendimiento a la hora de un uso elevado de sentencias *INSERT* y *UPDATE*
 
+La sintaxis para crear un *tablespace* con *InnoDB* es la siguiente:
 
+<pre>
+create tablespace {Nombre tablespace}
+	add datafile '{Nombre de archivo}'
+	use logfile group logfile_group
+	[extent_size [=] extent_size]
+	[initial_size [=] initial_size]
+	[autoextend_size [=] autoextend_size]
+	[max_size [=] max_size]
+	[nodegroup [=] nodegroup_id]
+	[wait]
+	[comment [=] comment_text]
+	[engine [=] engine_name]
+</pre>
 
+Aunque me haya centrado principalmente en *InnoDB*, en *MySQL*, disponemos de muchos otros motores de almacenamiento, como por ejemplo **MyISAM**. Este motor de base de datos se utiliza para tablas que no requieran muchos espacio en disco ni mucha RAM. Sus principales ventajas son las siguientes:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- Gran velocidad a la hora de recuperar datos
+- Recomendable para aplicaciones en las que dominan las sentencias *SELECT* ante los *INSERT/UPDATE*
+- Al no tener que hacer comprobaciones de la integridad referencial, ni bloquear las tablas para realizar las operaciones, nos proporciona una mayor velocidad
 
 ## MongoDB
 

@@ -1,5 +1,5 @@
 Title: Aumento de rendimiento de servidores web con Varnish
-Date: 2018/02/22
+Date: 2021/02/26
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Nginx, PHP_FPM, Varnish
@@ -264,4 +264,4 @@ root@varnish:~# tail -f /var/log/nginx/access.log
 127.0.0.1 - - [26/Feb/2021:19:22:36 +0000] "GET /wordpress/index.php HTTP/1.1" 301 5 "-" "ApacheBench/2.3"
 </pre>
 
-Como podemos apreciar tenemos una sola petición.
+Como podemos apreciar tenemos una sola petición, lo que significa que habríamos terminado este pequeño ejercicio en el que se demuestra el aumento de rendimiento con *Varnish*, por lo que este *post* finalizaría aquí.

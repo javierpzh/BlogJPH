@@ -189,6 +189,53 @@ server {
 ...
 </pre>
 
+Obviamente, tras editar esto, debemos reiniciar nuestro servidor web para aplicar los nuevos cambios:
+
+<pre>
+systemctl restart nginx.service
+</pre>
+
+Hecho esto, aún nos quedaría la parte en que modificamos la configuración de *Varnish* para que escuche las peticiones en el puerto 80 y las redirija al 8080 que es donde tenemos nuestro servidor web.
+
+En primer lugar, empezaremos por redirigir el tráfico al puerto 8080. Para hacer esto, nos dirigimos al fichero `/etc/varnish/default.vcl` y debemos asegurarnos de que el bloque **backend_default** se encuentra con este aspecto:
+
+<pre>
+backend default {
+    .host = "127.0.0.1";
+    .port = "8080";
+}
+</pre>
+
+Bien, *Varnish* ya nos redirigirá el tráfico al puerto deseado, pero aún no está escuchando en el puerto 80, por lo que vamos a hacer que escuche en él. En el fichero `/etc/default/varnish`, tenemos que modificar el bloque **DAEMON_OPTS** y dejarlo como el siguiente:
+
+<pre>
+DAEMON_OPTS="-a :80 \
+             -T localhost:6082 \
+             -f /etc/varnish/default.vcl \
+             -S /etc/varnish/secret \
+             -s malloc,256m"
+</pre>
+
+En este punto, tan solo nos faltaría indicar en el demonio *systemd* que debe escuchar en el puerto 80. Este fichero se encuentra en la ruta `/lib/systemd/system/varnish.service`, y en él debemos modificar la siguiente línea hasta que posea este aspecto:
+
+<pre>
+...
+ExecStart=/usr/sbin/varnishd -j unix,user=vcache -F -a :80 -T localhost:6082 -f /etc/varnish/default.vc$
+...
+</pre>
+
+Ya hemos terminado todas las modificaciones necesarias, por lo que tan sólo nos faltaría reiniciar los servicios:
+
+<pre>
+systemctl restart varnish
+systemctl daemon-reload
+</pre>
+
+Por fin podemos realizar de nuevo las pruebas de funcionamiento y comparar los resultados con los anteriores:
+
+<pre>
+
+</pre>
 
 
 

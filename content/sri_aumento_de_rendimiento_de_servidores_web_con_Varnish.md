@@ -172,9 +172,22 @@ Requests per second:    16449.18 [#/sec] (mean)
 
 **3. Vistos los resultados, vamos a configurar un *proxy inverso - caché Varnish* escuchando en el puerto 80, que se comunicará con el servidor web por el puerto 8080. Posteriormente, volveremos a realizar varias pruebas de rendimiento.**
 
+Instalamos el *software* de *Varnish* mediante el siguiente comando:
 
+<pre>
+apt install varnish -y
+</pre>
 
+Una vez instalado, debemos tener en cuenta que, por defecto, *Varnish* escucha las peticiones en el puerto 6081, y en el 6082 para la interfaz de administración. En nuestro caso, queremos modificar este comportamiento de manera que *Varnish* escuche las peticiones en el puerto 80.
 
+Para cambiar esto, en primer lugar, nos dirigiremos a nuestro *virtualhost* del servidor *Nginx*, y en él, cambiaremos el puerto predeterminado (80) por el 8080. El resultado final de este *virtualhost* sería el siguiente:
+
+<pre>
+server {
+        listen 8080 default_server;
+        listen [::]:8080 default_server;
+...
+</pre>
 
 
 

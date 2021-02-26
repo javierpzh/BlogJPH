@@ -1,4 +1,4 @@
-Title: Almacenamiento de Base de Datos
+Title: Almacenamiento de bases de datos
 Date: 2021/02/25
 Category: Administración de Bases de Datos
 Header_Cover: theme/images/banner-basededatos.png

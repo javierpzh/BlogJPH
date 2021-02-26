@@ -39,7 +39,7 @@ A partir de esa configuración vamos a intentar aumentar el rendimiento de nuest
 
 Para ello vamos a llevar a cabo los siguientes apartados:
 
-**1. Vamos a configurar una máquina con la configuración ganadora: Nginx + PHP-FPM (socket unix). Para ello ejecuta la receta *Ansible* que encontraras en [este repositorio](https://github.com/josedom24/ansible_nginx_fpm_php). Accede al *Wordpress* y termina la configuración del sitio.**
+**1. Vamos a configurar una máquina con la configuración ganadora: Nginx + PHP-FPM (socket unix). Para ello ejecutaremos la receta *Ansible* que se encuentra en [este repositorio](https://github.com/josedom24/ansible_nginx_fpm_php).**
 
 Comenzaremos clonando el repositorio en nuestro sistema:
 

@@ -14,7 +14,7 @@ En este artículo vamos a configurar un escenario con *Vagrant* que incluirá va
 
 Es una gran alternativa económica a *FiberChannel*.
 
-![.](images/hlc_iSCSI/iscsi.png)
+![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/iscsi.png)
 
 Y respecto a la **velocidad**, ¿es rápido, es lento? Un requisito indispensable de un buen disco es que sea rápido. Los discos *SCSI* suelen entregar excelentes tasas de transferencia. Pero recordemos que *iSCSI* se lleva sobre la red, por eso mismo, *iSCSI* es recomendado solo para redes conmutadas de alta velocidad.
 
@@ -35,14 +35,14 @@ Hablemos sobre el **target iSCSI**. En pocas palabras, es el servidor. Un *targe
 
 Y por el otro lado, nos encontramos con el **iniciador iSCSI**. El iniciador es el cliente de *iSCSI*. Generalmente el iniciador consta de dos partes: los módulos o *drivers* que proveen soporte para que el sistema operativo pueda reconocer discos de tipo *iSCSI* y un programa que gestiona las conexiones a dichos discos. En *Linux* hay varias opciones, y en las últimas versiones de *Windows* nos encontramos con un iniciador instalado por defecto.
 
-![.](images/hlc_iSCSI/iscsi2.png)
+![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/iscsi2.png)
 
 Creo que no hace falta decirlo, pero por si acaso, imaginemos tener un *target* montado en *Linux*, obviamente podremos utilizar los discos de dicho servidor en sistemas *Windows*, *MacOSX* o incluso *Solaris*.
 
 
 ## Configuración de target iSCSI y conexión con iniciador iSCSI
 
-En primer lugar, vamos a crear el escenario *Vagrant* que comentamos anteriormente. Para ello, he creado este fichero [Vagrantfile](images/hlc_iSCSI/Vagrantfile.txt), en el que defino el servidor *iSCSI* y el cliente, en este caso, el cliente *Linux*.
+En primer lugar, vamos a crear el escenario *Vagrant* que comentamos anteriormente. Para ello, he creado este fichero [Vagrantfile](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/Vagrantfile.txt), en el que defino el servidor *iSCSI* y el cliente, en este caso, el cliente *Linux*.
 
 Explicado esto, vamos a empezar con la instalación de los siguientes paquetes en la parte del **servidor**. Por un lado, instalaremos el paquete `lvm2` para crear un grupo de volúmenes y posteriormente un volumen lógico en el disco adicional que hemos añadido, en resumen, para preparar el disco para su uso como **iSCSI LUN**. Y por otra parte, necesitaremos instalar el paquete `tgt` que es el que nos proporcionará todo el *software* necesario para trabajar con *iSCSI*.
 
@@ -337,7 +337,7 @@ La nueva unidad funciona correctamente, por lo que este apartado estaría termin
 
 ## Configuración de target con 2 LUN y autenticación por CHAP
 
-Para este apartado, he creado un nuevo escenario en *Vagrant*, construido mediante el siguiente fichero [Vagrantfile](images/hlc_iSCSI/Vagrantfile2.txt), en el que defino el servidor *iSCSI*. El cliente *Windows* lo he creado con interfaz gráfica y también se encuentra conectado en modo puente a mi red doméstica, al igual que esta máquina.
+Para este apartado, he creado un nuevo escenario en *Vagrant*, construido mediante el siguiente fichero [Vagrantfile](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/Vagrantfile2.txt), en el que defino el servidor *iSCSI*. El cliente *Windows* lo he creado con interfaz gráfica y también se encuentra conectado en modo puente a mi red doméstica, al igual que esta máquina.
 
 Al igual que en el primer apartado, vamos a empezar con la instalación de los siguientes paquetes en la parte del **servidor**. Por un lado, instalaremos el paquete `lvm2` para crear un grupo de volúmenes y posteriormente un volumen lógico en el disco adicional que hemos añadido, en resumen, para preparar el disco para su uso como **iSCSI LUN**. Y por otra parte, necesitaremos instalar el paquete `tgt` que es el que nos proporcionará todo el *software* necesario para trabajar con *iSCSI*.
 
@@ -453,11 +453,11 @@ Es hora de pasar con la configuración del **iniciador**. Ya en la máquina *Win
 
 Una vez estamos en la ventana de propiedades del *iniciador iSCSI*, nos situamos en la pestaña **Detección**, y *clickamos* en el botón llamado **Detectar portal**, hecho esto, se nos abrirá una ventana como la siguiente, en la que indicaremos la dirección IP del *target* y el puerto:
 
-![.](images/hlc_iSCSI/windows1.png)
+![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows1.png)
 
 Añadido nuestro servidor, si nos dirigimos en la pestaña **Destinos**, podremos apreciar como se ha añadido a nuestra lista, aunque actualmente se encuentre en un estado inactivo. Para activar la conexión, *clickamos* en **Conectar**. Acto seguido nos aparecerá una ventana emergente, en la que tendremos que abrir las opciones avanzadas, y en ellas, activaremos la opción llamada **Habilitar inicio de sesión CHAP**,
 
-![.](images/hlc_iSCSI/windows2.png)
+![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows2.png)
 
 
 

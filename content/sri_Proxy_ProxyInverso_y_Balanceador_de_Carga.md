@@ -207,21 +207,45 @@ Vemos como nos muestra los *logs* referentes a los accesos que acabamos de reali
 
 Configuraremos nuestro cliente interno para que también navegue a través de nuestro *proxy*. Este cliente no posee entorno gráfico, por lo que la configuración se llevará a cabo por consola.
 
-Para configurar un *proxy* en un sistema *Linux*, bastará con configurar una variable de entorno. Ducha variable de entorno recibe el nombre `http_proxy`.
-
-
+Para configurar un *proxy* en un sistema *Linux*, bastará con configurar una variable de entorno. Dicha variable de entorno recibe el nombre `http_proxy`. La sintaxis para establecer esta variable de entorno es la siguiente:
 
 <pre>
-export http_proxy=http://nombre-servidor:puerto/
+export http_proxy=http://(IP/URL):(PUERTO)/
 </pre>
 
+En mi caso, como mi *servidor proxy* posee la dirección IP interna `10.0.0.10`, introduzco la siguiente línea:
 
+<pre>
+root@buster:~# export http_proxy=http://10.0.0.10:3128/
 
+root@buster:~# echo $http_proxy
+http://10.0.0.10:3128/
+</pre>
 
+Hecho esto, estaremos navegando por el *proxy*, así que vamos a hacer una prueba accediendo a cualquier web, pero antes dejaremos el siguiente proceso activo para ver a tiempo real los *logs* de acceso al *proxy*:
 
+<pre>
+tail -f /var/log/squid/access.log
+</pre>
 
+Accedemos a `www.google.es`:
 
+<pre>
+root@buster:~# wget www.google.es
+--2021-03-02 20:21:00--  http://www.google.es/
+Connecting to 10.0.0.10:3128... connected.
+Proxy request sent, awaiting response... 403 Forbidden
+2021-03-02 20:21:00 ERROR 403: Forbidden.
+</pre>
 
+Si revisar el proceso que dejamos en ejecución en nuestra terminal:
+
+<pre>
+root@proxy:~# tail -f /var/log/squid/access.log
+1614716460.773      0 10.0.0.11 TCP_DENIED/403 3937 GET http://www.google.es/ - HIER_NONE/- text/html
+</pre>
+
+Podemos ver que efectivamente nuestro cliente interno está navegando por nuestro *proxy*.
 
 
 #### Filtros de acceso

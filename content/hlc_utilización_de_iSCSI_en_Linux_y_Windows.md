@@ -466,7 +466,7 @@ Una vez estamos en la ventana de propiedades del *iniciador iSCSI*, nos situamos
 
 ![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows1.png)
 
-Añadido nuestro servidor, si nos dirigimos en la pestaña **Destinos**, podremos apreciar como se ha añadido a nuestra lista, aunque actualmente se encuentre en un estado inactivo. Para activar la conexión, *clickamos* en **Conectar**. Acto seguido nos aparecerá una ventana emergente, en la que tendremos que abrir las opciones avanzadas, y en ellas, activaremos la opción llamada **Habilitar inicio de sesión CHAP**, e introduciremos nuestras credenciales.
+Añadido nuestro servidor, si nos dirigimos en la pestaña **Destinos**, podremos apreciar como se han añadido a nuestra lista los dos *targets*, aunque actualmente se encuentran en un estado inactivo. Para activar la conexión al segundo *target*, *clickamos* en **Conectar**. Acto seguido nos aparecerá una ventana emergente, en la que tendremos que abrir las opciones avanzadas, y en ellas, activaremos la opción llamada **Habilitar inicio de sesión CHAP**, e introduciremos nuestras credenciales.
 
 ![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows2.png)
 

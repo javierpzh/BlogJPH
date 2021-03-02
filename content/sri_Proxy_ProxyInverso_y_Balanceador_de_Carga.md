@@ -203,7 +203,7 @@ root@proxy:~# tail -f /var/log/squid/access.log
 Vemos como nos muestra los *logs* referentes a los accesos que acabamos de realizar.
 
 
-#### Configuración en Squid y en el cliente interno para que utilice el proxy Squid
+#### Configuración en el cliente interno para que utilice el proxy Squid
 
 Configuraremos nuestro cliente interno para que también navegue a través de nuestro *proxy*. Este cliente no posee entorno gráfico, por lo que la configuración se llevará a cabo por consola.
 

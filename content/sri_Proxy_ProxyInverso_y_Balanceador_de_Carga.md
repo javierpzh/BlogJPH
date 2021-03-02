@@ -205,7 +205,15 @@ Vemos como nos muestra los *logs* referentes a los accesos que acabamos de reali
 
 #### Configuración en Squid y en el cliente interno para que utilice el proxy Squid
 
+Configuraremos nuestro cliente interno para que también navegue a través de nuestro *proxy*. Este cliente no posee entorno gráfico, por lo que la configuración se llevará a cabo por consola.
 
+Para configurar un *proxy* en un sistema *Linux*, bastará con configurar una variable de entorno. Ducha variable de entorno recibe el nombre `http_proxy`.
+
+
+
+<pre>
+export http_proxy=http://nombre-servidor:puerto/
+</pre>
 
 
 

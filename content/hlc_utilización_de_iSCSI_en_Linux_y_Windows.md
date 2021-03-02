@@ -1,8 +1,8 @@
-Title: iSCSI
+Title: Utilización de iSCSI en Linux y Windows
 Date: 2021/02/10
 Category: Cloud Computing
 Header_Cover: theme/images/banner-hlc.jpg
-Tags: iSCSI
+Tags: iSCSI, Linux, Windows
 
 En este artículo vamos a configurar un escenario con *Vagrant* que incluirá varias máquinas, y permitirá realizar la configuración de un servidor **iSCSI** y dos clientes, uno *Linux* y otro *Windows*.
 

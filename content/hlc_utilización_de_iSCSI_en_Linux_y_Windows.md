@@ -54,12 +54,12 @@ El primer paso que debemos llevar a cabo, es la creación del grupo de volúmene
 
 <pre>
 root@servidor:~# lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sda      8:0    0 19.8G  0 disk
-├─sda1   8:1    0 18.8G  0 part /
-├─sda2   8:2    0    1K  0 part
-└─sda5   8:5    0 1021M  0 part [SWAP]
-sdb      8:16   0    1G  0 disk
+NAME   MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+sda      8:0    0  20G  0 disk
+└─sda1   8:1    0  20G  0 part /
+sdb      8:16   0   1G  0 disk
+sdc      8:32   0   1G  0 disk
+sdd      8:48   0   1G  0 disk
 
 root@servidor:~# pvcreate /dev/sdb
   Physical volume "/dev/sdb" successfully created.
@@ -71,7 +71,7 @@ root@servidor:~# lvcreate -L 500M -n vollog1 vollogs
   Logical volume "vollog1" created.
 </pre>
 
-Bien, una vez tenemos el volumen lógico creado, vamos a pasar con la configuración del **target**, es decir, del servidor. Su principal fichero de configuración se encuentra en la ruta `/etc/tgt/targets.conf`, y en él debemos añadir el siguiente bloque que será el encargado de definir nuestro *target*.
+Bien, una vez tenemos el volumen lógico creado, vamos a pasar con la configuración del **target**, es decir, del servidor. Su fichero de configuración será creado en la ruta `/etc/tgt/conf.d/` y recibirá el nombre `target1.conf`. En él debemos añadir el siguiente bloque que será el encargado de definir nuestro *target*.
 
 <pre>
 <\target iqn.iSCSI.com:target1\>
@@ -153,8 +153,8 @@ systemctl restart open-iscsi
 En teoría, ya nuestro cliente debe conectar con nuestro *target* que se encuentra en la máquina *servidor*. Para comprobarlo utilizaremos el siguiente comando:
 
 <pre>
-root@clientelinux:~# iscsiadm -m discovery -t st -p 192.168.0.54
-192.168.0.54:3260,1 iqn.iSCSI.com:target1
+root@clientelinux:~# iscsiadm -m discovery -t st -p 192.168.0.57
+192.168.0.57:3260,1 iqn.iSCSI.com:target1
 </pre>
 
 Podemos apreciar como efectivamente nos reporta la información correcta del *target* configurado anteriormente, por lo que obviamente puede conectar con él.
@@ -162,22 +162,20 @@ Podemos apreciar como efectivamente nos reporta la información correcta del *ta
 El siguiente paso sería conectarnos al propio *target*. Para elo utilizaremos el siguiente comando:
 
 <pre>
-iscsiadm -m node -T iqn.iSCSI.com:target1 --portal "192.168.0.54" --login
+iscsiadm -m node -T iqn.iSCSI.com:target1 --portal "192.168.0.57" --login
 </pre>
 
 El resultado sería el siguiente:
 
 <pre>
-root@clientelinux:~# iscsiadm -m node -T iqn.iSCSI.com:target1 --portal "192.168.0.54" --login
-Logging in to [iface: default, target: iqn.iSCSI.com:target1, portal: 192.168.0.54,3260] (multiple)
-Login to [iface: default, target: iqn.iSCSI.com:target1, portal: 192.168.0.54,3260] successful.
+root@clientelinux:~# iscsiadm -m node -T iqn.iSCSI.com:target1 --portal "192.168.0.57" --login
+Logging in to [iface: default, target: iqn.iSCSI.com:target1, portal: 192.168.0.57,3260] (multiple)
+Login to [iface: default, target: iqn.iSCSI.com:target1, portal: 192.168.0.57,3260] successful.
 
 root@clientelinux:~# lsblk
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sda      8:0    0 19.8G  0 disk
-├─sda1   8:1    0 18.8G  0 part /
-├─sda2   8:2    0    1K  0 part
-└─sda5   8:5    0 1021M  0 part [SWAP]
+sda      8:0    0   20G  0 disk
+└─sda1   8:1    0   20G  0 part /
 sdb      8:16   0  500M  0 disk
 </pre>
 
@@ -217,15 +215,19 @@ The operation has completed successfully.
 root@clientelinux:~# mkfs.ext4 /dev/sdb1
 mke2fs 1.44.5 (15-Dec-2018)
 Creating filesystem with 510956 1k blocks and 128016 inodes
-Filesystem UUID: 54e441b6-b767-4300-9645-4cbe674042db
-...
+Filesystem UUID: 0009d2d9-5fba-4bfa-9e18-6f0fc8a963cc
+Superblock backups stored on blocks:
+	8193, 24577, 40961, 57345, 73729, 204801, 221185, 401409
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (8192 blocks): done
+Writing superblocks and filesystem accounting information: done
 
 root@clientelinux:~# lsblk
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sda      8:0    0 19.8G  0 disk
-├─sda1   8:1    0 18.8G  0 part /
-├─sda2   8:2    0    1K  0 part
-└─sda5   8:5    0 1021M  0 part [SWAP]
+sda      8:0    0   20G  0 disk
+└─sda1   8:1    0   20G  0 part /
 sdb      8:16   0  500M  0 disk
 └─sdb1   8:17   0  499M  0 part
 
@@ -233,10 +235,8 @@ root@clientelinux:~# mount /dev/sdb1 /mnt
 
 root@clientelinux:~# lsblk
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sda      8:0    0 19.8G  0 disk
-├─sda1   8:1    0 18.8G  0 part /
-├─sda2   8:2    0    1K  0 part
-└─sda5   8:5    0 1021M  0 part [SWAP]
+sda      8:0    0   20G  0 disk
+└─sda1   8:1    0   20G  0 part /
 sdb      8:16   0  500M  0 disk
 └─sdb1   8:17   0  499M  0 part /mnt
 </pre>
@@ -249,7 +249,7 @@ Y sí, estamos manejando un dispositivo de manera remota, con el que podemos int
 Este proceso es bastante sencillo, y como es de esperar, se llevará a cabo completamente en la parte del cliente. En primer lugar, debemos indicarle a `open-iscsi` que realice la conexión a dicho *target* de manera automática durante el arranque del sistema, ejecutando para ello el comando:
 
 <pre>
-iscsiadm -m node -T iqn.iSCSI.com:target1 --portal "192.168.0.54" -o update -n node.startup -v automatic
+iscsiadm -m node -T iqn.iSCSI.com:target1 --portal "192.168.0.57" -o update -n node.startup -v automatic
 </pre>
 
 Posteriormente, debemos dirigirnos a la ruta `/etc/systemd/system/` y crear un nuevo fichero en el que definiremos la nueva unidad de **systemd**. En mi caso, creo el fichero `/etc/systemd/system/iSCSI.mount`, y su contenido es el siguiente:
@@ -279,14 +279,12 @@ Hecho esto, tan solo nos quedaría comprobar que el disco actualmente no se encu
 <pre>
 root@clientelinux:~# lsblk
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sda      8:0    0 19.8G  0 disk
-├─sda1   8:1    0 18.8G  0 part /
-├─sda2   8:2    0    1K  0 part
-└─sda5   8:5    0 1021M  0 part [SWAP]
+sda      8:0    0   20G  0 disk
+└─sda1   8:1    0   20G  0 part /
 sdb      8:16   0  500M  0 disk
 └─sdb1   8:17   0  499M  0 part
 
-root@clientelinux:~# cd ../
+root@clientelinux:~# cd ..
 
 root@clientelinux:/# mkdir iSCSI
 
@@ -294,10 +292,8 @@ root@clientelinux:/# systemctl start iSCSI.mount
 
 root@clientelinux:/# lsblk
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sda      8:0    0 19.8G  0 disk
-├─sda1   8:1    0 18.8G  0 part /
-├─sda2   8:2    0    1K  0 part
-└─sda5   8:5    0 1021M  0 part [SWAP]
+sda      8:0    0   20G  0 disk
+└─sda1   8:1    0   20G  0 part /
 sdb      8:16   0  500M  0 disk
 └─sdb1   8:17   0  499M  0 part /iSCSI
 
@@ -305,10 +301,8 @@ root@clientelinux:/# systemctl stop iSCSI.mount
 
 root@clientelinux:/# lsblk
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sda      8:0    0 19.8G  0 disk
-├─sda1   8:1    0 18.8G  0 part /
-├─sda2   8:2    0    1K  0 part
-└─sda5   8:5    0 1021M  0 part [SWAP]
+sda      8:0    0   20G  0 disk
+└─sda1   8:1    0   20G  0 part /
 sdb      8:16   0  500M  0 disk
 └─sdb1   8:17   0  499M  0 part
 
@@ -324,10 +318,8 @@ javier@debian:~/Vagrant/Deb10-iSCSI$ vagrant ssh clientelinux
 
 vagrant@clientelinux:~$ lsblk
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sda      8:0    0 19.8G  0 disk
-├─sda1   8:1    0 18.8G  0 part /
-├─sda2   8:2    0    1K  0 part
-└─sda5   8:5    0 1021M  0 part [SWAP]
+sda      8:0    0   20G  0 disk
+└─sda1   8:1    0   20G  0 part /
 sdb      8:16   0  500M  0 disk
 └─sdb1   8:17   0  499M  0 part /iSCSI
 </pre>
@@ -341,42 +333,12 @@ Para este apartado, he creado un nuevo escenario en *Vagrant*, construido median
 
 Al igual que en el primer apartado, vamos a empezar con la instalación de los siguientes paquetes en la parte del **servidor**. Por un lado, instalaremos el paquete `lvm2` para crear un grupo de volúmenes y posteriormente un volumen lógico en el disco adicional que hemos añadido, en resumen, para preparar el disco para su uso como **iSCSI LUN**. Y por otra parte, necesitaremos instalar el paquete `tgt` que es el que nos proporcionará todo el *software* necesario para trabajar con *iSCSI*.
 
-<pre>
-apt install lvm2 tgt -y
-</pre>
-
-El primer paso que debemos llevar a cabo, es la creación del grupo de volúmenes con sus correspondientes volúmenes lógicos:
-
-<pre>
-root@servidor:~# lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sda      8:0    0 19.8G  0 disk
-├─sda1   8:1    0 18.8G  0 part /
-├─sda2   8:2    0    1K  0 part
-└─sda5   8:5    0 1021M  0 part [SWAP]
-sdb      8:16   0    1G  0 disk
-sdc      8:32   0    1G  0 disk
-
-root@servidor:~# pvcreate /dev/sdb /dev/sdc
-  Physical volume "/dev/sdb" successfully created.
-  Physical volume "/dev/sdc" successfully created.
-
-root@servidor:~# vgcreate vollogs /dev/sdb /dev/sdc
-  Volume group "vollogs" successfully created
-
-root@servidor:~# lvcreate -L 500M -n vollog1 vollogs
-  Logical volume "vollog1" created.
-
-root@servidor:~# lvcreate -L 500M -n vollog2 vollogs
-  Logical volume "vollog2" created.
-</pre>
-
 Bien, una vez tenemos los volúmenes lógicos creados, vamos a pasar con la configuración del **target**, es decir, del servidor. Su principal fichero de configuración se encuentra en la ruta `/etc/tgt/targets.conf`, y en él debemos añadir el siguiente bloque que será el encargado de definir nuestro *target*.
 
 <pre>
-<\target iqn.iSCSI2.com:target1\>
-    backing-store /dev/vollogs/vollog1
-    backing-store /dev/vollogs/vollog2
+<\target iqn.iSCSI2.com:target2\>
+    backing-store /dev/sdc
+    backing-store /dev/sdd
     incominguser javier passwordjavier
 <\/target\>
 </pre>
@@ -393,11 +355,15 @@ Reiniciado el servicio, debe haber detectado el nuevo disco *iSCSI*, así que va
 
 <pre>
 root@servidor:~# tgtadm --lld iscsi --op show --mode target
-Target 1: iqn.iSCSI2.com:target1
+Target 1: iqn.iSCSI.com:target1
     System information:
         Driver: iscsi
         State: ready
     I_T nexus information:
+        I_T nexus: 1
+            Initiator: iqn.1993-08.org.debian:01:42628863363 alias: clientelinux
+            Connection: 0
+                IP Address: 192.168.0.58
     LUN information:
         LUN: 0
             Type: controller
@@ -427,11 +393,34 @@ Target 1: iqn.iSCSI2.com:target1
             Backing store type: rdwr
             Backing store path: /dev/vollogs/vollog1
             Backing store flags:
-        LUN: 2
+    Account information:
+    ACL information:
+        ALL
+Target 2: iqn.iSCSI2.com:target2
+    System information:
+        Driver: iscsi
+        State: ready
+    I_T nexus information:
+    LUN information:
+        LUN: 0
+            Type: controller
+            SCSI ID: IET     00020000
+            SCSI SN: beaf20
+            Size: 0 MB, Block size: 1
+            Online: Yes
+            Removable media: No
+            Prevent removal: No
+            Readonly: No
+            SWP: No
+            Thin-provisioning: No
+            Backing store type: null
+            Backing store path: None
+            Backing store flags:
+        LUN: 1
             Type: disk
-            SCSI ID: IET     00010002
-            SCSI SN: beaf12
-            Size: 524 MB, Block size: 512
+            SCSI ID: IET     00020001
+            SCSI SN: beaf21
+            Size: 1074 MB, Block size: 512
             Online: Yes
             Removable media: No
             Prevent removal: No
@@ -439,7 +428,21 @@ Target 1: iqn.iSCSI2.com:target1
             SWP: No
             Thin-provisioning: No
             Backing store type: rdwr
-            Backing store path: /dev/vollogs/vollog2
+            Backing store path: /dev/sdc
+            Backing store flags:
+        LUN: 2
+            Type: disk
+            SCSI ID: IET     00020002
+            SCSI SN: beaf22
+            Size: 1074 MB, Block size: 512
+            Online: Yes
+            Removable media: No
+            Prevent removal: No
+            Readonly: No
+            SWP: No
+            Thin-provisioning: No
+            Backing store type: rdwr
+            Backing store path: /dev/sdd
             Backing store flags:
     Account information:
         javier
@@ -447,7 +450,7 @@ Target 1: iqn.iSCSI2.com:target1
         ALL
 </pre>
 
-Efectivamente, nos muestra su información, por lo que el comportamiento es el esperado y el *target* se encuentra bien configurado.
+Efectivamente, nos muestra su información, además del *target1* configurado anteriormente, por lo que el comportamiento es el esperado y el nuevo *target* se encuentra bien configurado.
 
 Es hora de pasar con la configuración del **iniciador**. Ya en la máquina *Windows*, vamos a dirigirnos a la configuración de *iSCSI*.
 
@@ -455,38 +458,8 @@ Una vez estamos en la ventana de propiedades del *iniciador iSCSI*, nos situamos
 
 ![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows1.png)
 
-Añadido nuestro servidor, si nos dirigimos en la pestaña **Destinos**, podremos apreciar como se ha añadido a nuestra lista, aunque actualmente se encuentre en un estado inactivo. Para activar la conexión, *clickamos* en **Conectar**. Acto seguido nos aparecerá una ventana emergente, en la que tendremos que abrir las opciones avanzadas, y en ellas, activaremos la opción llamada **Habilitar inicio de sesión CHAP**,
+Añadido nuestro servidor, si nos dirigimos en la pestaña **Destinos**, podremos apreciar como se ha añadido a nuestra lista, aunque actualmente se encuentre en un estado inactivo. Para activar la conexión, *clickamos* en **Conectar**. Acto seguido nos aparecerá una ventana emergente, en la que tendremos que abrir las opciones avanzadas, y en ellas, activaremos la opción llamada **Habilitar inicio de sesión CHAP**, e introduciremos nuestras credenciales.
 
 ![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows2.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.
+Tras ello, podremos disfrutar de nuestro cliente *Windows* conectado a nuestro *target*.

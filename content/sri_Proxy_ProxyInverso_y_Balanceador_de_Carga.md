@@ -207,6 +207,12 @@ Vemos como nos muestra los *logs* referentes a los accesos que acabamos de reali
 
 Configuraremos nuestro cliente interno para que también navegue a través de nuestro *proxy*. Este cliente no posee entorno gráfico, por lo que la configuración se llevará a cabo por consola.
 
+En la parte del servidor, tan sólo debemos asegurarnos que la directiva siguiente esté habilitada:
+
+<pre>
+http_access allow localnet
+</pre>
+
 Para configurar un *proxy* en un sistema *Linux*, bastará con configurar una variable de entorno. Dicha variable de entorno recibe el nombre `http_proxy`. La sintaxis para establecer esta variable de entorno es la siguiente:
 
 <pre>
@@ -232,17 +238,22 @@ Accedemos a `www.google.es`:
 
 <pre>
 root@buster:~# wget www.google.es
---2021-03-02 20:21:00--  http://www.google.es/
+--2021-03-02 20:44:15--  http://www.google.es/
 Connecting to 10.0.0.10:3128... connected.
-Proxy request sent, awaiting response... 403 Forbidden
-2021-03-02 20:21:00 ERROR 403: Forbidden.
+Proxy request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘index.html’
+
+index.html                    [ <=>                                  ]  13.60K  --.-KB/s    in 0.009s  
+
+2021-03-02 20:44:15 (1.49 MB/s) - ‘index.html’ saved [13930]
 </pre>
 
-Si revisar el proceso que dejamos en ejecución en nuestra terminal:
+Una vez comprobamos que podemos acceder correctamente, vamos a revisar el proceso que dejamos en ejecución en nuestra terminal:
 
 <pre>
 root@proxy:~# tail -f /var/log/squid/access.log
-1614716460.773      0 10.0.0.11 TCP_DENIED/403 3937 GET http://www.google.es/ - HIER_NONE/- text/html
+1614717855.566    155 10.0.0.11 TCP_MISS/200 14718 GET http://www.google.es/ - HIER_DIRECT/142.250.184.3 text/html
 </pre>
 
 Podemos ver que efectivamente nuestro cliente interno está navegando por nuestro *proxy*.

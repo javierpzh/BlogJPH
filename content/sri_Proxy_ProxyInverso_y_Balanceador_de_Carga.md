@@ -4,43 +4,6 @@ Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Proxy, Proxy inverso, Balanceador de carga, Squid
 
-- Tarea 1: Instala squid en la máquina squid y configúralo para que permita conexiones desde la red donde este tu ordenador.
-
-- Tarea 2: Prueba que tu ordenador está navegando a través del proxy (HTTP/HTTPS) configurando el proxy de dos maneras diferentes:
-
-    - Directamente indicándolo en el navegador.
-
-    - Configurando el proxy del sistema en el entorno gráfico (tienes que indicar en el navegador que vas a hacer uso del proxy del sistema).
-
-Muestra el contenido del fichero `/var/log/squid/access.log` para comprobar que está funcionando el proxy.
-
-- Tarea 3: Configura squid para que pueda ser utilizado desde el cliente interno. En el cliente interno configura el proxy desde la línea de comandos (con una variable de entorno). Fíjate que no hemos puesto ninguna regla SNAT y podemos navegar (protocolo HTTP), pero no podemos hacer ping o utilizar otro servicio.
-
-- Tarea 4: Con squid podemos filtrar el acceso por url o dominios, realiza las configuraciones necesarias para implementar un filtro que funcione como lista negra (todo el acceso es permitido menos las url o dominios que indiquemos en un fichero.)
-
-- Tarea 5: Realiza las configuraciones necesarias para implementar un filtro que funcione como lista blanca (todo el acceso es denegado menos las url o dominios que indiquemos en un fichero.)
-
---------------------------------------------------------------------------------
-
-Proxy inverso
-
-**Opción 1**
-
-Para hacer esta práctica puedes utilizar el escenario del ejercicio anterior.
-
-En este caso queremos instalar dos servidores web en el apache1 y en apache2, estos servidores deben servir una web completa (con hoja de estilo, imágenes,…) busca alguna plantilla (debe tener algunas páginas html para probar los enlaces).
-
-Configura en el ordenador balanceador (tienes que detener haproxy) un proxy inverso para acceder a las aplicaciones de dos formas distintas:
-
-**Opción 2**
-
-En una máquina instala docker e instala con docker-compose dos aplicaciones: joomla y nextcloud. Instala un proxy inverso para acceder a las aplicaciones de dos formas distintas:
-
-- Tarea 1: Para que se acceda a la primera aplicación con la URL www.app1.org y a la segunda aplicación con la URL www.app2.org.
-- Tarea 2: Para que se acceda a la primera aplicación con la URL www.servidor.org\app1 y a la segunda aplicación con la URL www.servidor.org\app2.
-
---------------------------------------------------------------------------------
-
 ## Proxy
 
 En este artículo vamos a instalar un *proxy* **Squid** para configurar nuestro cliente para que acceda a internet por medio de este *proxy*.

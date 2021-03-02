@@ -44,13 +44,21 @@ Creo que no hace falta decirlo, pero por si acaso, imaginemos tener un *target* 
 
 En primer lugar, vamos a crear el escenario *Vagrant* que comentamos anteriormente. Para ello, he creado este fichero [Vagrantfile](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/Vagrantfile.txt), en el que defino el servidor *iSCSI* y el cliente, en este caso, el cliente *Linux*.
 
-Explicado esto, vamos a empezar con la instalación de los siguientes paquetes en la parte del **servidor**. Por un lado, instalaremos el paquete `lvm2` para crear un grupo de volúmenes y posteriormente un volumen lógico en el disco adicional que hemos añadido, en resumen, para preparar el disco para su uso como **iSCSI LUN**. Y por otra parte, necesitaremos instalar el paquete `tgt` que es el que nos proporcionará todo el *software* necesario para trabajar con *iSCSI*.
+Explicado esto, vamos a empezar con la instalación del siguiente paquete en la parte del **servidor**.
+
+Necesitaremos instalar el paquete `tgt` que es el que nos proporcionará todo el *software* necesario para trabajar con *iSCSI*.
 
 <pre>
-apt install lvm2 tgt -y
+apt install tgt -y
 </pre>
 
-El primer paso que debemos llevar a cabo, es la creación del grupo de volúmenes con su correspondiente volumen lógico:
+Por otra parte, voy a instalar el paquete `lvm2` para crear un grupo de volúmenes y posteriormente un volumen lógico en el primero de los discos adicionales que he añadido, pero **importante**, no es necesario crear volúmenes lógicos para utilizarlos como discos *iSCSI*, yo lo voy a hacer para mostrar que *iSCSI* también puede trabajar con ellos.
+
+<pre>
+apt install lvm2 -y
+</pre>
+
+El primer paso que voy a llevar a cabo, es la creación del grupo de volúmenes con su correspondiente volumen lógico, si tú no vas a utilizar volúmenes lógicos, lógicamente no hace falta que lo hagas:
 
 <pre>
 root@servidor:~# lsblk
@@ -87,7 +95,7 @@ Hecho esto, reiniciamos el servicio:
 systemctl restart tgt
 </pre>
 
-Reiniciado el servicio, debe haber detectado el nuevo disco *iSCSI*, así que vamos a comprobarlo:
+Reiniciado el servicio, debe haber detectado el nuevo *target iSCSI*, así que vamos a comprobarlo:
 
 <pre>
 root@servidor:~# tgtadm --lld iscsi --op show --mode target
@@ -329,11 +337,11 @@ La nueva unidad funciona correctamente, por lo que este apartado estaría termin
 
 ## Configuración de target con 2 LUN y autenticación por CHAP
 
-Para este apartado, he creado un nuevo escenario en *Vagrant*, construido mediante el siguiente fichero [Vagrantfile](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/Vagrantfile2.txt), en el que defino el servidor *iSCSI*. El cliente *Windows* lo he creado con interfaz gráfica y también se encuentra conectado en modo puente a mi red doméstica, al igual que esta máquina.
+El cliente *Windows* lo he creado con interfaz gráfica y también se encuentra conectado en modo puente a mi red doméstica, al igual que esta máquina.
 
-Al igual que en el primer apartado, vamos a empezar con la instalación de los siguientes paquetes en la parte del **servidor**. Por un lado, instalaremos el paquete `lvm2` para crear un grupo de volúmenes y posteriormente un volumen lógico en el disco adicional que hemos añadido, en resumen, para preparar el disco para su uso como **iSCSI LUN**. Y por otra parte, necesitaremos instalar el paquete `tgt` que es el que nos proporcionará todo el *software* necesario para trabajar con *iSCSI*.
+En este caso, no utilizaré volúmenes lógicos como anteriormente.
 
-Bien, una vez tenemos los volúmenes lógicos creados, vamos a pasar con la configuración del **target**, es decir, del servidor. Su principal fichero de configuración se encuentra en la ruta `/etc/tgt/targets.conf`, y en él debemos añadir el siguiente bloque que será el encargado de definir nuestro *target*.
+Al igual que en primer apartado, para crear un nuevo *target* en el **servidor**, deberemos crear un nuevo fichero en la ruta `/etc/tgt/conf.d/`, este recibirá el nombre `target2.conf` y su contenido será el siguiente:
 
 <pre>
 <\target iqn.iSCSI2.com:target2\>
@@ -351,7 +359,7 @@ Hecho esto, reiniciamos el servicio:
 systemctl restart tgt
 </pre>
 
-Reiniciado el servicio, debe haber detectado el nuevo disco *iSCSI*, así que vamos a comprobarlo:
+Reiniciado el servicio, debe haber detectado el nuevo *target iSCSI*, así que vamos a comprobarlo:
 
 <pre>
 root@servidor:~# tgtadm --lld iscsi --op show --mode target
@@ -463,3 +471,5 @@ Añadido nuestro servidor, si nos dirigimos en la pestaña **Destinos**, podremo
 ![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows2.png)
 
 Tras ello, podremos disfrutar de nuestro cliente *Windows* conectado a nuestro *target*.
+
+Con esto, ya hemos visto todo el contenido referente a este *post*, por lo que finalizaría aquí.

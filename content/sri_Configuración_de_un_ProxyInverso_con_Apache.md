@@ -12,7 +12,9 @@ Tendremos una máquina llamada **balanceador** que estará conectada a nuestra r
 
 La máquina **balanceador** actuará como *proxy inverso* y se encargará de redirigir las distintas peticiones, a las diferentes máquinas internas.
 
-En primer lugar, vamos a 
+En mi caso, ambas páginas webs serán de prueba, y puedes descargar ambas plantillas desde los siguientes enlaces: [Coffee-Master](images/sri_Configuración_de_un_ProxyInverso_con_Apache/coffee-master) y [Original-Master](images/sri_Configuración_de_un_ProxyInverso_con_Apache/original-master).
+
+En primer lugar, vamos a
 
 
 
@@ -21,6 +23,26 @@ En primer lugar, vamos a
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`/etc/hosts`
+
+<pre>
+192.168.0.74 www.app1.org
+192.168.0.74 www.app2.org
+</pre>
 
 
 

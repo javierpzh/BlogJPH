@@ -12,7 +12,7 @@ Tendremos una máquina llamada **balanceador** que estará conectada a nuestra r
 
 La máquina **balanceador** actuará como *proxy inverso* y se encargará de redirigir las distintas peticiones, a las diferentes máquinas internas.
 
-En mi caso, ambas páginas webs serán de prueba, y puedes descargar ambas plantillas desde los siguientes enlaces: [Coffee-Master](images/sri_Configuración_de_un_ProxyInverso_con_Apache/coffee-master) y [Original-Master](images/sri_Configuración_de_un_ProxyInverso_con_Apache/original-master).
+En mi caso, ambas páginas webs serán de prueba, y puedes descargar ambas plantillas desde los siguientes enlaces: [Coffee-Master](https://themewagon.com/themes/free-coffee-shop-bootstrap-template/) y [Original-Master](https://themewagon.com/themes/free-bootstrap-blog-website-template/).
 
 En primer lugar, vamos a
 

@@ -138,7 +138,7 @@ Si accedemos desde nuestro navegador a la web `www.app1.org`:
 
 ![.](images/sri_Configuración_de_un_ProxyInverso_con_Apache/web1.png)
 
-Y si accedemos desde nuestro navegador a la web `www.app1.org`:
+Y si accedemos desde nuestro navegador a la web `www.app2.org`:
 
 ![.](images/sri_Configuración_de_un_ProxyInverso_con_Apache/web2.png)
 

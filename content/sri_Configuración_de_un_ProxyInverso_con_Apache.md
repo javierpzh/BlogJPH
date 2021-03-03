@@ -142,7 +142,7 @@ Y si accedemos desde nuestro navegador a la web `www.app1.org`:
 
 ![.](images/sri_Configuración_de_un_ProxyInverso_con_Apache/web2.png)
 
-Podemos ver que como el funcionamiento es el correcto.
+Podemos ver como efectivamente, el funcionamiento es el correcto.
 
 
 

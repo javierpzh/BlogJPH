@@ -142,7 +142,7 @@ Y si accedemos desde nuestro navegador a la web `www.app2.org`:
 
 ![.](images/sri_Configuración_de_un_ProxyInverso_con_Apache/web2.png)
 
-Podemos ver como efectivamente, el funcionamiento es el correcto y estamos accediendo a las distintas webs diferenciado mediante nombres de dominio.
+Podemos ver como efectivamente, el funcionamiento es el correcto y estamos accediendo a las distintas webs diferenciando mediante nombres de dominio.
 
 Antes de finalizar el artículo, vamos a ver también como podemos configurar el *proxy inverso* para que, en vez de distinguir por nombre de dominio, lo haga por URL.
 

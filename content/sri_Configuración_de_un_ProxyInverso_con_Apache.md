@@ -1,5 +1,5 @@
 Title: Configuración de un proxy inverso con Apache
-Date: 2018/03/03
+Date: 2021/03/03
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Proxy Inverso, Apache
@@ -142,20 +142,66 @@ Y si accedemos desde nuestro navegador a la web `www.app1.org`:
 
 ![.](images/sri_Configuración_de_un_ProxyInverso_con_Apache/web2.png)
 
-Podemos ver como efectivamente, el funcionamiento es el correcto.
+Podemos ver como efectivamente, el funcionamiento es el correcto y estamos accediendo a las distintas webs diferenciado mediante nombres de dominio.
 
 Antes de finalizar el artículo, vamos a ver también como podemos configurar el *proxy inverso* para que, en vez de distinguir por nombre de dominio, lo haga por URL.
 
-En este caso, únicamente poseeremos un nombre de dominio y nuestro *proxy inverso* distinguirá mediante URLs, de manera que accederá a la primera web si la URL es `www.proxyinverso.org/app1`, y accederá a la segunda web si la URL es `www.proxyinverso.org/app2`.
+En este caso, únicamente poseeremos un nombre de dominio, y nuestro *proxy inverso* distinguirá mediante URLs, de manera que accederá a la primera web si la URL es `www.proxyinverso.org/app1/`, y accederá a la segunda web si la URL es `www.proxyinverso.org/app2/`.
 
+Para hacer esto, vamos a crear un nuevo *virtualhost* como el siguiente:
 
+<pre>
+<\VirtualHost *:80\>
 
+        ServerName www.proxyinverso.org
 
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
 
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
 
+        <\Location "/app1/"\>
+          ProxyPass "http://10.10.10.11/"
+          ProxyPassReverse "http://10.10.10.11/"
+        <\/Location\>
 
+        <\Location "/app2/"\>
+          ProxyPass "http://10.10.10.22/"
+          ProxyPassReverse "http://10.10.10.22/"
+        <\/Location\>
 
+<\/VirtualHost\>
+</pre>
 
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
+Vamos a comprobar que efectivamente el funcionamiento es el explicado, para ello antes, debemos habilitar el ficheros del *virtualhost*:
 
-.
+<pre>
+a2ensite proxyinverso.conf
+</pre>
+
+Reiniciamos el servidor web *Apache*:
+
+<pre>
+systemctl restart apache2
+</pre>
+
+Para poder acceder desde nuestro equipo, debemos añadir en nuestro fichero `/etc/hosts`, la siguiente línea, haciendo referencia a la IP de nuestra red doméstica que posea la máquina *balanceador*:
+
+<pre>
+192.168.0.74 www.proxyinverso.org
+</pre>
+
+Si accedemos desde nuestro navegador a la URL `www.proxyinverso.org/app1/`:
+
+![.](images/sri_Configuración_de_un_ProxyInverso_con_Apache/web1.2.png)
+
+Y si accedemos desde nuestro navegador a la URL `www.proxyinverso.org/app2/`:
+
+![.](images/sri_Configuración_de_un_ProxyInverso_con_Apache/web2.2.png)
+
+Podemos ver como efectivamente, el funcionamiento es el correcto y ahora estamos accediendo a las distintas webs diferenciado mediante las URLs.
+
+Ya hemos visto todo lo relativo a esta entrada, por lo que este *post* finalizaría aquí.

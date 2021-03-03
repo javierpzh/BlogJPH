@@ -1,5 +1,5 @@
 Title: Configuración de un proxy Squid
-Date: 2018/03/03
+Date: 2021/03/03
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Proxy, Squid

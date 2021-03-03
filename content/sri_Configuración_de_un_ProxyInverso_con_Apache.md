@@ -127,31 +127,22 @@ Reiniciamos el servidor web *Apache*:
 systemctl restart apache2
 </pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-`/etc/hosts`
+Para poder acceder desde nuestro equipo, debemos añadir en nuestro fichero `/etc/hosts`, las siguientes líneas, haciendo referencia a la IP de nuestra red doméstica que posea la máquina *balanceador*:
 
 <pre>
 192.168.0.74 www.app1.org
 192.168.0.74 www.app2.org
 </pre>
 
+Si accedemos desde nuestro navegador a la web `www.app1.org`:
 
+![.](images/sri_Configuración_de_un_ProxyInverso_con_Apache/web1.png)
 
+Y si accedemos desde nuestro navegador a la web `www.app1.org`:
 
+![.](images/sri_Configuración_de_un_ProxyInverso_con_Apache/web2.png)
 
-
+Podemos ver que como el funcionamiento es el correcto.
 
 
 

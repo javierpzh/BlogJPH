@@ -144,7 +144,7 @@ Y si accedemos desde nuestro navegador a la web `www.app1.org`:
 
 Podemos ver como efectivamente, el funcionamiento es el correcto.
 
-Antes de finalizar el artículo, vamos a ver también como podemos configurar nuestro *proxy inverso* para que, en vez de 
+Antes de finalizar el artículo, vamos a ver también como podemos configurar nuestro *proxy inverso* para que, en vez de distinguir por nombre de dominio, lo haga por URL, es decir, únicamente tendremos un nombre de dominio y nuestro *proxy inverso* distinguirá mediante URLs, de manera que si la URL es `www.proxyinverso.org/app1`, y que acceda a la segunda web si la URL es `www.proxyinverso.org/app2`.
 
 
 

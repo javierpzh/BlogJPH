@@ -89,7 +89,7 @@ Vamos a ver el contenido del fichero `/etc/apache2/sites-available/app1.conf` y 
 
 Podemos apreciar como este *virtualhost* actuará cuando se acceda a la web `www.app1.org`. Al acceder a esta web, lo que hará la máquina *balanceador* será redirigir la petición a la máquina cuya IP es `10.10.10.11`, que es la primera de las máquinas de nuestra red interna.
 
-Entendido el funcionamiento, vamos a ver el contenido del segundo fichero, el `/etc/apache2/sites-available/app1.conf`:
+Entendido el funcionamiento, vamos a ver el contenido del segundo fichero, el `/etc/apache2/sites-available/app2.conf`:
 
 <pre>
 <\VirtualHost *:80\>

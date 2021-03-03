@@ -58,7 +58,7 @@ Explicado esto, vamos a empezar con las configuraciones del propio *post*.
 
 Pongámonos en situación, ahora mismo nos encontramos con las dos máquinas internas sirviendo cada una, una web diferente. Obviamente para acceder a ellas tenemos que utilizar la máquina **balanceador**, que es la que posee una dirección de mi red local.
 
-Bien, ahora lo que vamos a hacer, es acceder a las webs a través de nombres de dominio. Para llevar a cabo esto, primeramente debemos habilitar el siguiente módulo de *Apache*:
+Bien, ahora lo que vamos a hacer, es acceder a las webs mediante nuestro *proxy inverso*, a través de nombres de dominio. Para llevar a cabo esto, primeramente debemos habilitar el siguiente módulo de *Apache*:
 
 <pre>
 a2enmod proxy proxy_http

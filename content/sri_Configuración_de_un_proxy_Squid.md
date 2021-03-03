@@ -4,8 +4,6 @@ Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Proxy, Squid
 
-## Proxy
-
 En este artículo vamos a instalar un *proxy* **Squid** para configurar nuestro cliente para que acceda a internet por medio de este *proxy*.
 
 El escenario en el que vamos a trabajar, está definido en este [Vagrantfile](images/sri_Configuración_de_un_proxy_Squid/Vagrantfile.txt).

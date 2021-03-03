@@ -58,12 +58,13 @@ Explicado esto, vamos a empezar con las configuraciones del propio *post*.
 
 Pongámonos en situación, ahora mismo nos encontramos con las dos máquinas internas sirviendo cada una, una web distinta. Obviamente para acceder a ellas tenemos que utilizar la máquina **balanceador**, que es la que posee una dirección de mi red local.
 
-Bien
+Bien, ahora lo que queremos hacer es acceder a las webs, a través de la máquina **balanceador**, y acceder a través del nombre que le indiquemos a cada web. Para llevar a cabo esto, primeramente debemos habilitar el siguiente módulo de *Apache*:
 
+<pre>
+a2enmod proxy proxy_http
+</pre>
 
-
-
-
+Hecho esto, necesitaremos crear los distintos *virtualhosts*, que en mi caso, se llamarán `/etc/apache2/sites-available/app1.conf` y `/etc/apache2/sites-available/app2.conf`. 
 
 
 

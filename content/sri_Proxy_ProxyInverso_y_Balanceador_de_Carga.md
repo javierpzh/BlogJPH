@@ -1,5 +1,5 @@
 Title: Proxy, proxy inverso y balanceador de carga
-Date: 2018/03/02
+Date: 2018/03/03
 Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Proxy, Proxy inverso, Balanceador de carga, Squid

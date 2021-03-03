@@ -4,7 +4,7 @@ Category: Servicios de Red e Internet
 Header_Cover: theme/images/banner-servicios.jpg
 Tags: Proxy Inverso, Apache
 
-## Proxy
+## Proxy Inverso
 
 En este artículo vamos a instalar un **proxy inverso** con *Apache* para que sirva dos páginas webs distintas mediante la misma dirección IP.
 

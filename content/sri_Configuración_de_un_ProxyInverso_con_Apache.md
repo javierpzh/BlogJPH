@@ -12,7 +12,9 @@ Tendremos una máquina llamada **balanceador** que estará conectada a nuestra r
 
 La máquina **balanceador** actuará como *proxy inverso* y se encargará de redirigir las distintas peticiones, a las diferentes máquinas internas.
 
-En mi caso, ambas páginas webs serán de prueba, y puedes descargar ambas plantillas desde los siguientes enlaces: [Coffee-Master](https://themewagon.com/themes/free-coffee-shop-bootstrap-template/) y [Original-Master](https://themewagon.com/themes/free-bootstrap-blog-website-template/).
+En mi caso, ambas páginas webs serán de prueba, y he utilizado dos plantillas cualquiera. Puedes descargar ambas desde los siguientes enlaces: [Coffee-Master](https://themewagon.com/themes/free-coffee-shop-bootstrap-template/) y [Original-Master](https://themewagon.com/themes/free-bootstrap-blog-website-template/).
+
+He 
 
 En primer lugar, vamos a
 

@@ -202,6 +202,6 @@ Y si accedemos desde nuestro navegador a la URL `www.proxyinverso.org/app2/`:
 
 ![.](images/sri_Configuración_de_un_ProxyInverso_con_Apache/web2.2.png)
 
-Podemos ver como efectivamente, el funcionamiento es el correcto y ahora estamos accediendo a las distintas webs diferenciado mediante las URLs.
+Podemos ver como efectivamente, el funcionamiento es el correcto y ahora estamos accediendo a las distintas webs diferenciando mediante las URLs.
 
 Ya hemos visto todo lo relativo a esta entrada, por lo que este *post* finalizaría aquí.

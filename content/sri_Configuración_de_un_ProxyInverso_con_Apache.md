@@ -64,7 +64,7 @@ Bien, ahora lo que vamos a hacer, es acceder a las webs mediante nuestro *proxy 
 a2enmod proxy proxy_http
 </pre>
 
-Hecho esto, necesitaremos crear los distintos *virtualhosts*, que en mi caso, se llamarán `/etc/apache2/sites-available/app1.conf` y `/etc/apache2/sites-available/app2.conf`.
+Hecho esto, necesitaremos crear los distintos *virtualhosts*, que se almacenarán en la ruta `/etc/apache2/sites-available/`, y que en mi caso, se llamarán `app1.conf` y `app2.conf`.
 
 Vamos a ver el contenido del fichero `/etc/apache2/sites-available/app1.conf` y luego explicaremos su funcionamiento:
 
@@ -148,7 +148,7 @@ Antes de finalizar el artículo, vamos a ver también como podemos configurar el
 
 En este caso, únicamente poseeremos un nombre de dominio, y nuestro *proxy inverso* distinguirá mediante URLs, de manera que accederá a la primera web si la URL es `www.proxyinverso.org/app1/`, y accederá a la segunda web si la URL es `www.proxyinverso.org/app2/`.
 
-Para hacer esto, vamos a crear un nuevo *virtualhost* como el siguiente:
+Para hacer esto, vamos a crear un nuevo *virtualhost*, que de nuevo se almacenará en la ruta `/etc/apache2/sites-available/`, y que en mi caso, se llamará `proxyinverso.conf`, como el siguiente:
 
 <pre>
 <\VirtualHost *:80\>

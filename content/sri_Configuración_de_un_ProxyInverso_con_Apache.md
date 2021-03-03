@@ -87,11 +87,9 @@ Vamos a ver el contenido del fichero `/etc/apache2/sites-available/app1.conf` y 
 
 **Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
+Podemos apreciar como este *virtualhost* actuará cuando se acceda a la web `www.app1.org`. Al acceder a esta web, lo que hará la máquina *balanceador* será redirigir la petición a la máquina cuya IP es `10.10.10.11`, que es la primera de las máquinas de nuestra red interna.
 
-que será el encargado de redirigir la petición
-
-
-
+Entendido el funcionamiento, vamos a ver el contenido del segundo fichero, el `/etc/apache2/sites-available/app1.conf`:
 
 <pre>
 <\VirtualHost *:80\>
@@ -112,16 +110,18 @@ que será el encargado de redirigir la petición
 
 **Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
+De igual manera, podemos ver como este *virtualhost* actuará cuando se acceda a la web `www.app2.org`, y al acceder a ella, la máquina *balanceador* redirigirá la petición a la máquina cuya IP es `10.10.10.22`, que es la segunda de las máquinas de nuestra red interna.
 
+De esta manera, lo que estaremos haciendo será utilizando la máquina *balanceador* como *proxy inverso* para acceder a las distintas webs de nuestra red interna.
 
-
+Vamos a comprobar que efectivamente el funcionamiento es el explicado, para ello antes, debemos habilitar los distintos ficheros de los *virtualhosts*:
 
 <pre>
 a2ensite app1.conf
 a2ensite app2.conf
 </pre>
 
-
+Reiniciamos el servidor web *Apache*:
 
 <pre>
 systemctl restart apache2

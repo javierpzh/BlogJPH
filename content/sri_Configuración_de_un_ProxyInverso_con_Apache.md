@@ -10,6 +10,34 @@ El escenario en el que vamos a trabajar, está definido en este [Vagrantfile](im
 
 Tendremos una máquina llamada **balanceador** que estará conectada a nuestra red doméstica, de manera que podremos acceder a ella, además de estar conectada a una red privada, a la que también pertenecerán dos máquinas, cada una con un servidor *Apache* y que servirán webs distintas.
 
-Este *proxy inverso* se encargará de servir
+La máquina **balanceador** actuará como *proxy inverso* y se encargará de redirigir las distintas peticiones, a las diferentes máquinas internas.
 
- para que sirva dos páginas webs distintas mediante la misma dirección IP.
+En primer lugar, vamos a 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

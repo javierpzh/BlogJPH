@@ -64,9 +64,51 @@ Bien, ahora lo que queremos hacer es acceder a las webs, a través de la máquin
 a2enmod proxy proxy_http
 </pre>
 
-Hecho esto, necesitaremos crear los distintos *virtualhosts*, que en mi caso, se llamarán `/etc/apache2/sites-available/app1.conf` y `/etc/apache2/sites-available/app2.conf`. 
+Hecho esto, necesitaremos crear los distintos *virtualhosts*, que en mi caso, se llamarán `/etc/apache2/sites-available/app1.conf` y `/etc/apache2/sites-available/app2.conf`.
+
+Vamos a ver en primer lugar el contenido del fichero `/etc/apache2/sites-available/app1.conf`:
+
+<pre>
+<\VirtualHost *:80\>
+
+        ServerName www.app1.org
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        ProxyPass "/" "http://10.10.10.11/"
+        ProxyPassReverse "/" "http://10.10.10.11/"
+
+<\/VirtualHost\>
+</pre>
+
+**Atención:** a esta configuración hay que eliminarle los carácteres `\`, que he tenido que introducir para escapar los carácteres siguientes, así que en caso de querer copiar la configuración, debemos tener en cuenta esto.
 
 
+que será el encargado de redirigir la petición
+
+
+
+
+
+
+
+
+
+
+<pre>
+a2ensite app1.conf
+a2ensite app2.conf
+</pre>
+
+
+
+<pre>
+systemctl restart apache2
+</pre>
 
 
 

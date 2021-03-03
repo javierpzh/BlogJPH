@@ -56,7 +56,9 @@ root@apache2:~# cat /etc/apache2/sites-available/000-default.conf
 
 Explicado esto, vamos a empezar con las configuraciones del propio *post*.
 
-Pongámonos en situación, ahora mismo nos encontramos con las dos máquinas internas sirviendo cada una, una web distinta. 
+Pongámonos en situación, ahora mismo nos encontramos con las dos máquinas internas sirviendo cada una, una web distinta. Obviamente para acceder a ellas tenemos que utilizar la máquina **balanceador**, que es la que posee una dirección de mi red local.
+
+Bien
 
 
 

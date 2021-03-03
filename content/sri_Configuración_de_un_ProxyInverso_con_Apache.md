@@ -56,9 +56,9 @@ root@apache2:~# cat /etc/apache2/sites-available/000-default.conf
 
 Explicado esto, vamos a empezar con las configuraciones del propio *post*.
 
-Pongámonos en situación, ahora mismo nos encontramos con las dos máquinas internas sirviendo cada una, una web distinta. Obviamente para acceder a ellas tenemos que utilizar la máquina **balanceador**, que es la que posee una dirección de mi red local.
+Pongámonos en situación, ahora mismo nos encontramos con las dos máquinas internas sirviendo cada una, una web diferente. Obviamente para acceder a ellas tenemos que utilizar la máquina **balanceador**, que es la que posee una dirección de mi red local.
 
-Bien, ahora lo que queremos hacer es acceder a las webs, a través de la máquina **balanceador**, y acceder a través del nombre que le indiquemos a cada web. Para llevar a cabo esto, primeramente debemos habilitar el siguiente módulo de *Apache*:
+Bien, ahora lo que vamos a hacer, es acceder a las webs a través de nombres de dominio. Para llevar a cabo esto, primeramente debemos habilitar el siguiente módulo de *Apache*:
 
 <pre>
 a2enmod proxy proxy_http
@@ -144,7 +144,7 @@ Y si accedemos desde nuestro navegador a la web `www.app1.org`:
 
 Podemos ver como efectivamente, el funcionamiento es el correcto.
 
-
+Antes de finalizar el artículo, vamos a ver también como podemos configurar nuestro *proxy inverso* para que, en vez de 
 
 
 

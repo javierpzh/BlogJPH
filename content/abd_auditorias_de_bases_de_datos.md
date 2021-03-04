@@ -241,10 +241,7 @@ Listo.
 
 #### Diferencias entre los valores 'DB' y 'DB, EXTENDED' del parámetro audit_trail.
 
-
-
-
-
+Ambos valores activan la auditoría y almacenan los datos en la tabla **SYS.AUD$** de *Oracle*, pero, la principal diferencia que existe entre estos valores es que, el valor **DB, EXTENDED**, además almacena los datos correspondientes en las columnas **SQLBIND** y **SQLTEXT** de dicha tabla, *SYS.AUD$*.
 
 
 

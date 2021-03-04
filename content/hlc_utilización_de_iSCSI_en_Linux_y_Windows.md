@@ -83,6 +83,8 @@ Bien, una vez tenemos el volumen lógico creado, vamos a pasar con la configurac
 
 <pre>
 <\target iqn.iscsi.com:target1\>
+    driver iscsi
+    controller_tid 1
     backing-store /dev/vollogs/vollog1
 <\/target\>
 </pre>
@@ -345,6 +347,8 @@ Al igual que en primer apartado, para crear un nuevo *target* en el **servidor**
 
 <pre>
 <\target iqn.iscsi2.com:target2\>
+    driver iscsi
+    controller_tid 2
     backing-store /dev/sdc
     backing-store /dev/sdd
     incominguser javier passwordjavier
@@ -423,7 +427,7 @@ Target 2: iqn.iscsi2.com:target2
             Thin-provisioning: No
             Backing store type: null
             Backing store path: None
-            Backing store flags:
+            Backing store flags: 
         LUN: 1
             Type: disk
             SCSI ID: IET     00020001
@@ -437,7 +441,7 @@ Target 2: iqn.iscsi2.com:target2
             Thin-provisioning: No
             Backing store type: rdwr
             Backing store path: /dev/sdc
-            Backing store flags:
+            Backing store flags: 
         LUN: 2
             Type: disk
             SCSI ID: IET     00020002
@@ -451,7 +455,7 @@ Target 2: iqn.iscsi2.com:target2
             Thin-provisioning: No
             Backing store type: rdwr
             Backing store path: /dev/sdd
-            Backing store flags:
+            Backing store flags: 
     Account information:
         javier
     ACL information:
@@ -492,10 +496,8 @@ Se nos abrirá una nueva emergente que nos guiará mediante el proceso, el cuál
 
 ![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows8.png)
 
-
+Podemos ver como efectivamente ya poseen un sistema de ficheros NTFS, de manera que ya se encontrarían totalmente operativos en el sistema.
 
 ![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows9.png)
-
-
 
 Con esto, ya hemos visto todo el contenido referente a este *post*, por lo que finalizaría aquí.

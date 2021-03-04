@@ -60,7 +60,7 @@ fetch first 1 rows only;
 
 **1. Escribe una consulta que obtenga un *script* para quitar el privilegio de borrar registros en alguna tabla de *SCOTT* a los usuarios que lo tengan. (6)**
 
-Creamos las tablas e insertamos los registros en la base de datos **Scott** mediante el siguiente [script](images/abd_gestion_de_usuarios/scriptcreacionscottmysql.txt).
+Creamos las tablas e insertamos los registros en la base de datos **Scott** mediante el siguiente [script](images/abd_gestion_de_usuarios_de_bases_de_datos/scriptcreacionscottmysql.txt).
 
 Comprobamos que se han creado correctamente:
 
@@ -112,7 +112,7 @@ Da como resultado:
 
 **1. Escribe una consulta que obtenga un *script* para quitar el privilegio de borrar registros en alguna tabla de *SCOTT* a los usuarios que lo tengan. (6)**
 
-Creamos las tablas e insertamos los registros en la base de datos **Scott** mediante el siguiente [script](images/abd_gestion_de_usuarios/scriptcreacionscottpostgres.txt).
+Creamos las tablas e insertamos los registros en la base de datos **Scott** mediante el siguiente [script](images/abd_gestion_de_usuarios_de_bases_de_datos/scriptcreacionscottpostgres.txt).
 
 Comprobamos que se han creado correctamente:
 

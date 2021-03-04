@@ -296,7 +296,7 @@ Cuando se elimina un *segmento*, las *extensiones* que ocupa se liberan y vuelve
 
 Este gráfico resume lo explicado:
 
-![.](images/abd_almacenamiento/grafico.ej.postgresql.png)
+![.](images/abd_almacenamiento_de_bases_de_datos/grafico.ej.postgresql.png)
 
 Entendido lo que son los *segmentos* y las *extensiones* en *Oracle*, vamos a ver su comportamiento en **PostgreSQL**.
 

@@ -474,4 +474,30 @@ Tras ello, podremos disfrutar de nuestro cliente *Windows* conectado a nuestro *
 
 ![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows3.png)
 
+Una vez conectado, si nos dirigimos a **Crear y formatear particiones del disco duro**, podremos visualizar como se han añadido los dos nuevos discos a nuestro sistema:
+
+![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows4.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Con esto, ya hemos visto todo el contenido referente a este *post*, por lo que finalizaría aquí.

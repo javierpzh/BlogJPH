@@ -223,10 +223,37 @@ INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO) VALUES (90
 Podemos ver como efectivamente nos muestra la información relativa a las acciones realizadas.
 
 
-#### Diferencias entre auditar una operación by access o by session.
+#### Diferencias entre auditar una operación 'BY ACCESS' o 'BY SESSION'.
+
+La principal diferencia entre ambas operaciones es la siguiente:
+
+- **BY ACCESS:** almacena un registro por cada acción realizada independientemente de si es repetida o no.
+- **BY SESSION:** almacena un solo registro de una misma acción que hagamos, evitando repetirlas.
+
+Para terminar, hay que saber, que al activar una auditoría, podemos indicar el tipo que deseamos, si **BY ACCESS** o **BY SESSION**. Por ejemplo:
+
+<pre>
+AUDIT INSERT TABLE, UPDATE TABLE, DELETE TABLE BY SCOTT BY {ACCESS/SESSION};
+</pre>
+
+Listo.
 
 
-#### Diferencias entre los valores db y db, extended del parámetro audit_trail. Demuéstralas poniendo un ejemplo de la información sobre una operación concreta recopilada con cada uno de ellos.
+#### Diferencias entre los valores 'DB' y 'DB, EXTENDED' del parámetro audit_trail. Demuéstralas poniendo un ejemplo de la información sobre una operación concreta recopilada con cada uno de ellos.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #### Localiza en Enterprise Manager las posibilidades para realizar una auditoría e intenta repetir con dicha herramienta los apartados 1, 3 y 4.

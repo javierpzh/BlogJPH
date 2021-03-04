@@ -82,7 +82,7 @@ root@servidor:~# lvcreate -L 500M -n vollog1 vollogs
 Bien, una vez tenemos el volumen lógico creado, vamos a pasar con la configuración del **target**, es decir, del servidor. Su fichero de configuración será creado en la ruta `/etc/tgt/conf.d/` y recibirá el nombre `target1.conf`. En él debemos añadir el siguiente bloque que será el encargado de definir nuestro *target*.
 
 <pre>
-<\target iqn.iSCSI.com:target1\>
+<\target iqn.iscsi.com:target1\>
     backing-store /dev/vollogs/vollog1
 <\/target\>
 </pre>
@@ -99,7 +99,7 @@ Reiniciado el servicio, debe haber detectado el nuevo *target iSCSI*, así que v
 
 <pre>
 root@servidor:~# tgtadm --lld iscsi --op show --mode target
-Target 1: iqn.iSCSI.com:target1
+Target 1: iqn.iscsi.com:target1
     System information:
         Driver: iscsi
         State: ready
@@ -162,7 +162,7 @@ En teoría, ya nuestro cliente debe conectar con nuestro *target* que se encuent
 
 <pre>
 root@clientelinux:~# iscsiadm -m discovery -t st -p 192.168.0.57
-192.168.0.57:3260,1 iqn.iSCSI.com:target1
+192.168.0.57:3260,1 iqn.iscsi.com:target1
 </pre>
 
 Podemos apreciar como efectivamente nos reporta la información correcta del *target* configurado anteriormente, por lo que obviamente puede conectar con él.
@@ -170,15 +170,15 @@ Podemos apreciar como efectivamente nos reporta la información correcta del *ta
 El siguiente paso sería conectarnos al propio *target*. Para elo utilizaremos el siguiente comando:
 
 <pre>
-iscsiadm -m node -T iqn.iSCSI.com:target1 --portal "192.168.0.57" --login
+iscsiadm -m node -T iqn.iscsi.com:target1 --portal "192.168.0.57" --login
 </pre>
 
 El resultado sería el siguiente:
 
 <pre>
-root@clientelinux:~# iscsiadm -m node -T iqn.iSCSI.com:target1 --portal "192.168.0.57" --login
-Logging in to [iface: default, target: iqn.iSCSI.com:target1, portal: 192.168.0.57,3260] (multiple)
-Login to [iface: default, target: iqn.iSCSI.com:target1, portal: 192.168.0.57,3260] successful.
+root@clientelinux:~# iscsiadm -m node -T iqn.iscsi.com:target1 --portal "192.168.0.57" --login
+Logging in to [iface: default, target: iqn.iscsi.com:target1, portal: 192.168.0.57,3260] (multiple)
+Login to [iface: default, target: iqn.iscsi.com:target1, portal: 192.168.0.57,3260] successful.
 
 root@clientelinux:~# lsblk
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
@@ -257,7 +257,7 @@ Y sí, estamos manejando un dispositivo de manera remota, con el que podemos int
 Este proceso es bastante sencillo, y como es de esperar, se llevará a cabo completamente en la parte del cliente. En primer lugar, debemos indicarle a `open-iscsi` que realice la conexión a dicho *target* de manera automática durante el arranque del sistema, ejecutando para ello el comando:
 
 <pre>
-iscsiadm -m node -T iqn.iSCSI.com:target1 --portal "192.168.0.57" -o update -n node.startup -v automatic
+iscsiadm -m node -T iqn.iscsi.com:target1 --portal "192.168.0.57" -o update -n node.startup -v automatic
 </pre>
 
 Posteriormente, debemos dirigirnos a la ruta `/etc/systemd/system/` y crear un nuevo fichero en el que definiremos la nueva unidad de **systemd**. En mi caso, creo el fichero `/etc/systemd/system/iSCSI.mount`, y su contenido es el siguiente:
@@ -344,7 +344,7 @@ En este caso, no utilizaré volúmenes lógicos como anteriormente.
 Al igual que en primer apartado, para crear un nuevo *target* en el **servidor**, deberemos crear un nuevo fichero en la ruta `/etc/tgt/conf.d/`, este recibirá el nombre `target2.conf` y su contenido será el siguiente:
 
 <pre>
-<\target iqn.iSCSI2.com:target2\>
+<\target iqn.iscsi2.com:target2\>
     backing-store /dev/sdc
     backing-store /dev/sdd
     incominguser javier passwordjavier
@@ -363,7 +363,7 @@ Reiniciado el servicio, debe haber detectado el nuevo *target iSCSI*, así que v
 
 <pre>
 root@servidor:~# tgtadm --lld iscsi --op show --mode target
-Target 1: iqn.iSCSI.com:target1
+Target 1: iqn.iscsi.com:target1
     System information:
         Driver: iscsi
         State: ready
@@ -404,7 +404,7 @@ Target 1: iqn.iSCSI.com:target1
     Account information:
     ACL information:
         ALL
-Target 2: iqn.iSCSI2.com:target2
+Target 2: iqn.iscsi2.com:target2
     System information:
         Driver: iscsi
         State: ready
@@ -471,5 +471,7 @@ Añadido nuestro servidor, si nos dirigimos en la pestaña **Destinos**, podremo
 ![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows2.png)
 
 Tras ello, podremos disfrutar de nuestro cliente *Windows* conectado a nuestro *target*.
+
+![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows3.png)
 
 Con esto, ya hemos visto todo el contenido referente a este *post*, por lo que finalizaría aquí.

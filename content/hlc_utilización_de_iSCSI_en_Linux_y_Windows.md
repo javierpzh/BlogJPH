@@ -478,25 +478,23 @@ Una vez conectado, si nos dirigimos a **Crear y formatear particiones del disco 
 
 ![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows4.png)
 
+Hecho esto, debemos inicializar ambos discos en nuestro sistema:
+
+![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows5.png)
+
+![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows6.png)
+
+![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows7.png)
+
+Una vez los tengamos inicializados en nuestro sistema ya tendrán una tabla de particiones en su interior, de forma que tan sólo nos quedaría establecer un sistema de ficheros NTFS en ellos. Para ello, haremos *click* derecho sobre cada uno de ellos y seleccionaremos la opción llamada **Nuevo volumen simple**.
+
+Se nos abrirá una nueva emergente que nos guiará mediante el proceso, el cuál consiste en pulsar **Siguiente** en repetidas ocasiones. El resultado final sería el siguiente:
+
+![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows8.png)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows9.png)
 
 
 

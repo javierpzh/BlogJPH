@@ -818,6 +818,4 @@ Enter passphrase for /dev/vdf:
 
 Una vez introducida la contraseña habríamos terminado.
 
---------------------------------------------------------------------------------
-
 Vistos estos apartados, el contenido de este *post* habría finalizado.

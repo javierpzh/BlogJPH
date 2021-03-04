@@ -239,7 +239,7 @@ AUDIT INSERT TABLE, UPDATE TABLE, DELETE TABLE BY SCOTT BY {ACCESS/SESSION};
 Listo.
 
 
-#### Diferencias entre los valores 'DB' y 'DB, EXTENDED' del parámetro audit_trail. Demuéstralas poniendo un ejemplo de la información sobre una operación concreta recopilada con cada uno de ellos.
+#### Diferencias entre los valores 'DB' y 'DB, EXTENDED' del parámetro audit_trail.
 
 
 

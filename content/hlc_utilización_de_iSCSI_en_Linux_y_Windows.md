@@ -490,7 +490,7 @@ Hecho esto, debemos inicializar ambos discos en nuestro sistema, para ello simpl
 
 Una vez los tengamos inicializados en nuestro sistema ya tendrán una tabla de particiones en su interior, de forma que tan sólo nos quedaría establecer un sistema de ficheros NTFS en ellos. Para ello, haremos *click* derecho sobre cada uno de ellos y seleccionaremos la opción llamada **Nuevo volumen simple**.
 
-Se nos abrirá una nueva emergente que nos guiará mediante el proceso, el cuál consiste en pulsar **Siguiente** en repetidas ocasiones. El resultado final sería el siguiente:
+Se nos abrirá una nueva ventana emergente que nos guiará mediante el proceso, el cuál consiste en pulsar **Siguiente** en repetidas ocasiones. El resultado final sería el siguiente:
 
 ![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows7.png)
 

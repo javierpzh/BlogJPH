@@ -427,7 +427,7 @@ Target 2: iqn.iscsi2.com:target2
             Thin-provisioning: No
             Backing store type: null
             Backing store path: None
-            Backing store flags: 
+            Backing store flags:
         LUN: 1
             Type: disk
             SCSI ID: IET     00020001
@@ -441,7 +441,7 @@ Target 2: iqn.iscsi2.com:target2
             Thin-provisioning: No
             Backing store type: rdwr
             Backing store path: /dev/sdc
-            Backing store flags: 
+            Backing store flags:
         LUN: 2
             Type: disk
             SCSI ID: IET     00020002
@@ -455,7 +455,7 @@ Target 2: iqn.iscsi2.com:target2
             Thin-provisioning: No
             Backing store type: rdwr
             Backing store path: /dev/sdd
-            Backing store flags: 
+            Backing store flags:
     Account information:
         javier
     ACL information:
@@ -482,22 +482,20 @@ Una vez conectado, si nos dirigimos a **Crear y formatear particiones del disco 
 
 ![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows4.png)
 
-Hecho esto, debemos inicializar ambos discos en nuestro sistema:
+Hecho esto, debemos inicializar ambos discos en nuestro sistema, para ello simplemente hacemos *click* derecho sobre el apartado de la izquierda y seleccionamos **Inicializar disco**. Nos aparecerá la siguiente ventana:
 
 ![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows5.png)
 
 ![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows6.png)
 
-![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows7.png)
-
 Una vez los tengamos inicializados en nuestro sistema ya tendrán una tabla de particiones en su interior, de forma que tan sólo nos quedaría establecer un sistema de ficheros NTFS en ellos. Para ello, haremos *click* derecho sobre cada uno de ellos y seleccionaremos la opción llamada **Nuevo volumen simple**.
 
 Se nos abrirá una nueva emergente que nos guiará mediante el proceso, el cuál consiste en pulsar **Siguiente** en repetidas ocasiones. El resultado final sería el siguiente:
 
-![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows8.png)
+![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows7.png)
 
 Podemos ver como efectivamente ya poseen un sistema de ficheros NTFS, de manera que ya se encontrarían totalmente operativos en el sistema.
 
-![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows9.png)
+![.](images/hlc_utilización_de_iSCSI_en_Linux_y_Windows/windows8.png)
 
 Con esto, ya hemos visto todo el contenido referente a este *post*, por lo que finalizaría aquí.

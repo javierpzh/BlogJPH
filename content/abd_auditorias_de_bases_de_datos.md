@@ -363,12 +363,12 @@ Listo.
 
 #### Vamos a activar la auditoría de los intentos de acceso fallidos al sistema.
 
-Este tipo de auditoría no es posible activar en PostgreSQL.
+Este tipo de auditoría no es posible activar en *PostgreSQL*.
 
 
-#### Vamos a activar la auditoría de las operaciones DML realizadas por SCOTT.
+#### Vamos a activar la auditoría de las operaciones DML.
 
-En este apartado vamos a activar la auditoría de las operaciones DML en la tabla *DEPT* del usuario *SCOTT*, para ello ejecutamos la siguiente sentencia SQL:
+En este apartado vamos a activar la auditoría de las operaciones DML en la tabla *DEPT*, para ello ejecutamos la siguiente sentencia SQL:
 
 <pre>
 scott=# select audit.audit_table('dept');
@@ -382,45 +382,29 @@ NOTICE:  CREATE TRIGGER audit_trigger_stm AFTER TRUNCATE ON dept FOR EACH STATEM
 (1 row)
 </pre>
 
+Una vez habilitada, para comprobar su funcionamiento, realizaremos un *INSERT*, un *UPDATE* y un *DELETE* y posteriormente, visualizaremos como se han registrado en dicha auditoría:
 
+<pre>
+scott=# INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (50,'Pruebas','Sevilla');
+INSERT 0 1
 
+scott=# UPDATE DEPT SET LOC='Dos Hermanas' WHERE DEPTNO=50;
+UPDATE 1
 
+scott=# DELETE FROM DEPT WHERE DEPTNO=50;
+DELETE 1
 
+scott=# select session_user_name, action, table_name, action_tstamp_clk, client_query
+from audit.logged_actions;
+ session_user_name | action | table_name |       action_tstamp_clk       |                              client_query                              
+-------------------+--------+------------+-------------------------------+------------------------------------------------------------------------
+ postgres          | I      | dept       | 2021-03-05 11:58:31.904308+00 | INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (50,'Pruebas','Sevilla');
+ postgres          | U      | dept       | 2021-03-05 11:58:31.905631+00 | UPDATE DEPT SET LOC='Dos Hermanas' WHERE DEPTNO=50;
+ postgres          | D      | dept       | 2021-03-05 11:58:32.84674+00  | DELETE FROM DEPT WHERE DEPTNO=50;
+(3 rows)
+</pre>
 
-
-
-
-
-
-
-
-
-
-#### Vamos a realizar una auditoría de grano fino para almacenar información sobre la inserción de empleados del departamento 10 de la tabla EMP de SCOTT.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Podemos ver como efectivamente nos muestra el usuario que ha realizado la acción, qué acción ha realizado, la fecha exacta, ... Pero además podemos apreciar como directamente, nos muestra las sentencias introducidas, por lo que esta auditoría sería de **grano fino**.
 
 
 ## MySQL

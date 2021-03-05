@@ -1,5 +1,5 @@
 Title: Despliegue de un cluster de Kubernetes
-Date: 2018/03/05
+Date: 2021/03/05
 Category: Cloud Computing
 Header_Cover: theme/images/banner-kubernetes.jpg
 Tags: Kubernetes, Let's Chat
@@ -414,31 +414,5 @@ letschat-7c66bd64f5-pl4gx   1/1     Running   0          4s     10.42.2.8    wor
 </pre>
 
 Podemos apreciar, como efectivamente el número de *pods* de *Let's Chat* se ha escalado a 4, donde uno de ellos se está ejecutando en el nodo maestro, dos de ellos en el *worker2*, y el último en el *worker1*.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.
 
 Visto esto, habremos terminado con el contenido de este *post*.

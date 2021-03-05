@@ -1,7 +1,7 @@
 Title: Configuración de un proxy Squid
 Date: 2021/03/03
 Category: Servicios de Red e Internet
-Header_Cover: theme/images/banner-servicios.jpg
+Header_Cover: theme/images/banner-squid.png
 Tags: Proxy, Squid
 
 En este artículo vamos a instalar un *proxy* **Squid** para configurar nuestro cliente para que acceda a internet por medio de este *proxy*.

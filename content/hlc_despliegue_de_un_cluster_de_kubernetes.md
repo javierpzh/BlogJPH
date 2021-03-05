@@ -6,13 +6,11 @@ Tags: Kubernetes
 
 En este artículo vamos a desplegar un **cluster de Kubernetes (k8s)** y para ello he decidido utilizar la distribución **k3s**.
 
-Todo el proceso se llevará a cabo en un escenario *Vagrant* que las siguientes máquinas:
+Todo el proceso se llevará a cabo en varias instancias de *OpenStack*:
 
-- **controlador:** máquina que controlará el *cluster*. Se encuentra conectada a mi red doméstica en modo puente, posee la dirección IP 192.168.0.90
-- **worker1:** máquina que actuará como *worker*. Se encuentra conectada a mi red doméstica en modo puente, posee la dirección IP 192.168.0.91
-- **worker2:** máquina que actuará como *worker*. Se encuentra conectada a mi red doméstica en modo puente, posee la dirección IP 192.168.0.92
-
-Puedes ver el fichero *Vagrantfile* desde [aquí](images/hlc_despliegue_de_un_cluster_de_kubernetes/Vagrantfile.txt).
+- **controlador:** máquina que controlará el *cluster*. Posee la dirección IP 172.22.201.59
+- **worker1:** máquina que actuará como *worker*. Posee la dirección IP 172.22.201.69
+- **worker2:** máquina que actuará como *worker*. Posee la dirección IP 172.22.201.79
 
 
 ## ¿Qué es k3s?

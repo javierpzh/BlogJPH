@@ -2,9 +2,9 @@ Title: Despliegue de un cluster de Kubernetes
 Date: 2018/03/05
 Category: Cloud Computing
 Header_Cover: theme/images/banner-kubernetes.jpg
-Tags: Kubernetes
+Tags: Kubernetes, Let's Chat
 
-En este artículo vamos a desplegar un **cluster de Kubernetes (k8s)** y para ello he decidido utilizar la distribución **k3s**.
+En este artículo vamos a crear un **cluster de Kubernetes (k8s)** y para ello he decidido utilizar la distribución **k3s**. Posteriormente, desplegaremos la aplicación **Let's Chat** en él.
 
 Todo el proceso se llevará a cabo en varias instancias de *OpenStack*:
 
@@ -224,7 +224,7 @@ controlador   Ready      control-plane,master   37m   v1.20.4+k3s1
 Efectivamente podemos ver los tanto el nodo maestro como los *workers* por lo que ya podríamos gestionar nuestro *cluster* de manera remota.
 
 
-## 
+## Desplegando una aplicación en nuestro cluster
 
 
 

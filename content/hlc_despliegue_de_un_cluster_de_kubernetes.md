@@ -226,12 +226,19 @@ Efectivamente podemos ver los tanto el nodo maestro como los *workers* por lo qu
 
 ## Desplegando una aplicación en nuestro cluster
 
-Para desplegar la aplicación **Let's Chat** utilizaremos [este repositorio](https://github.com/iesgn/kubernetes-storm/tree/master/unidad3/ejemplos-3.2/ejemplo8) de *GitHub*, que contiene todos los ficheros `.yaml` en los que se definen los *deployment*, los servicios, ...
+Para desplegar la aplicación **Let's Chat** utilizaremos [este repositorio](https://github.com/iesgn/kubernetes-storm) de *GitHub*, que contiene todos los ficheros `.yaml` en los que se definen los *deployment*, los servicios, ...
 
-En primer lugar, lógicamente clonaremos dicho repositorio:
+En primer lugar, lógicamente clonaremos dicho repositorio. Si no disponemos de la herramienta `git`, tendremos que instalarla.
 
 <pre>
-
+root@debian:/home/javier/Kubernetes# git clone https://github.com/iesgn/kubernetes-storm.git
+Clonando en 'kubernetes-storm'...
+remote: Enumerating objects: 288, done.
+remote: Counting objects: 100% (288/288), done.
+remote: Compressing objects: 100% (213/213), done.
+remote: Total 288 (delta 119), reused 224 (delta 60), pack-reused 0
+Recibiendo objetos: 100% (288/288), 6.36 MiB | 8.71 MiB/s, listo.
+Resolviendo deltas: 100% (119/119), listo.
 </pre>
 
 

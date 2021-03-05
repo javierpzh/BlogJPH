@@ -307,13 +307,13 @@ Esta herramienta consiste en una serie de *scripts* y *triggers* que realizan la
 Para descargarnos la herramienta debemos utilizar el siguiente comando:
 
 <pre>
-  wget https://raw.githubusercontent.com/2ndQuadrant/audit-trigger/master/audit.sql
+wget https://raw.githubusercontent.com/2ndQuadrant/audit-trigger/master/audit.sql
 </pre>
 
 Una vez descargada, nos conectaremos a nuestro servidor y ejecutaremos el siguiente comando:
 
 <pre>
-postgres=# \i audit.sql
+scott=# \i audit.sql
 CREATE EXTENSION
 CREATE SCHEMA
 REVOKE
@@ -366,11 +366,21 @@ Listo.
 Este tipo de auditoría no es posible activar en PostgreSQL.
 
 
-#### Vamos a activar la auditoría de las operaciones DML.
+#### Vamos a activar la auditoría de las operaciones DML realizadas por SCOTT.
 
+En este apartado vamos a activar la auditoría de las operaciones DML en la tabla *DEPT* del usuario *SCOTT*, para ello ejecutamos la siguiente sentencia SQL:
 
+<pre>
+scott=# select audit.audit_table('dept');
+NOTICE:  trigger "audit_trigger_row" for relation "dept" does not exist, skipping
+NOTICE:  trigger "audit_trigger_stm" for relation "dept" does not exist, skipping
+NOTICE:  CREATE TRIGGER audit_trigger_row AFTER INSERT OR UPDATE OR DELETE ON dept FOR EACH ROW EXECUTE PROCEDURE audit.if_modified_func('true');
+NOTICE:  CREATE TRIGGER audit_trigger_stm AFTER TRUNCATE ON dept FOR EACH STATEMENT EXECUTE PROCEDURE audit.if_modified_func('true');
+ audit_table
+-------------
 
-
+(1 row)
+</pre>
 
 
 

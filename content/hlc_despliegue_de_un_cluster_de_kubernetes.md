@@ -92,7 +92,20 @@ De igual manera, volveremos a necesitar la herramienta `curl` en nuestro sistema
 apt install curl -y
 </pre>
 
+Llevamos a cabo las instalaciones:
 
+**worker1**
+
+<pre>
+curl -sfL https://get.k3s.io | K3S\_URL=https://192.168.0.90:6443 K3S\_TOKEN=K1029e8b8d41dc51fdadcb3f1a27d19d552c0e6a33a393a0d21c7af242f7493fd5c::server:43add1f59252e7f700f6840d3dd9a700 sh -
+curl -sfL https://get.k3s.io | K3S\_URL=https://192.168.0.90:6443 K3S\_TOKEN=K1007e764762d120d437ad0ab8460e3710b2b8fb110f74829caf5b5d5e6ba41e1dc::server:da0b3b9a53d12bb2192394d61a59308a sh -
+</pre>
+
+**worker2**
+
+<pre>
+
+</pre>
 
 
 

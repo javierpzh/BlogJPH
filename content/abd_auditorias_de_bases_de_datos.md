@@ -1,8 +1,8 @@
 Title: Auditorías de bases de datos
-Date: 2018/03/05
+Date: 2021/03/05
 Category: Administración de Bases de Datos
 Header_Cover: theme/images/banner-basededatos.png
-Tags: Base de Datos, Oracle, MySQL, MariaDB, PostgreSQL, MongoDB
+Tags: Base de Datos, Oracle, PostgreSQL, MySQL, MariaDB
 
 ## Oracle
 
@@ -427,7 +427,9 @@ No es posible activar este tipo de auditoría en *MySQL*.
 
 #### Vamos a activar la auditoría de las operaciones DML.
 
+En este apartado vamos a ver como se auditan las operaciones DML.
 
+Para comprobar su funcionamiento, realizaremos un *INSERT*, un *UPDATE* y un *DELETE* y posteriormente, visualizaremos como se han registrado dichas operaciones:
 
 <pre>
 MariaDB [scott]> INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (50,'Pruebas','Sevilla');
@@ -455,54 +457,3 @@ MariaDB [scott]> SHOW PROFILES;
 </pre>
 
 Podemos ver como nos muestra las sentencias introducidas, por lo que esta auditoría sería de **grano fino**.
-
-
-## MongoDB
-
-#### Vamos a auditar los accesos al sistema.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### Averigua las posibilidades que ofrece MongoDB para auditar los cambios que va sufriendo un documento.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.

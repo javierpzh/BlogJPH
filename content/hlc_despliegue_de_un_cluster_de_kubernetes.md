@@ -2,7 +2,7 @@ Title: Despliegue de un cluster de Kubernetes
 Date: 2021/03/06
 Category: Cloud Computing
 Header_Cover: theme/images/banner-kubernetes.jpg
-Tags: Kubernetes, Let's Chat
+Tags: Kubernetes, Let's Chat, contenedores
 
 En este artículo vamos a crear un **cluster de Kubernetes (k8s)** y para ello he decidido utilizar la distribución **k3s**. Posteriormente, desplegaremos la aplicación **Let's Chat** en él.
 

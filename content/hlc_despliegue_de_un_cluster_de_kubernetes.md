@@ -380,6 +380,17 @@ Hecho esto, nos dirigimos a nuestro navegador e introducimos la dirección `www.
 
 ## Escalabilidad del cluster
 
+Para terminar con el artículo, vamos a ver otras de las grandes ventajas de *Kubernetes*, y se trata de la gran facilidad que nos presenta para escalar nuestro *cluster*.
+
+En este caso, recordemos que posee dos *pods* en funcionamiento, uno para *MongoDB* y otro para *Let's Chat*.
+
+Pero, imaginemos que vamos a realizar un despliegue de nuestra aplicación en un entorno de producción, a la cuál accederán una gran multitud de usuarios simultáneamente. Obviamente, esto será bastante difícil que lo soporte un sólo *pod*, por lo que necesitaríamos desplegar *pods* adicionales para soportar un mayor número de peticiones. 
+
+
+
+
+
+
 
 
 
@@ -404,3 +415,5 @@ Hecho esto, nos dirigimos a nuestro navegador e introducimos la dirección `www.
 
 
 .
+
+Visto esto, habremos terminado con el contenido de este *post*.

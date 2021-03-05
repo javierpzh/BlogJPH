@@ -15,3 +15,4 @@ Todo el proceso se llevará a cabo en un escenario *Vagrant* que las siguientes 
 Puedes descargar el fichero *Vagrantfile* desde [aquí](images/hlc_despliegue_de_un_cluster_de_kubernetes/Vagrantfile.txt).
 
 ## ¿Qué es k3s?
+s

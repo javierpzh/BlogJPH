@@ -146,8 +146,10 @@ worker1       Ready    <none>                 81s     v1.20.4+k3s1
 worker2       Ready    <none>                 51s     v1.20.4+k3s1
 </pre>
 
+Podemos ver como efectivamente, ahora sí nos muestra los dos *workers* que acabamos de vincular.
 
 
+## Conectando nuestro cluster a la máquina anfitriona
 
 
 

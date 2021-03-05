@@ -355,21 +355,36 @@ COMMENT
 Por último, tan sólo nos faltaría activar la recogida de datos en dichas auditorías, para ello ejecutamos la siguiente sentencia:
 
 <pre>
-select audit.audit_table('jugadores');
+select audit.audit_table({nombretabla});
 </pre>
 
-
-
-
-
-
-
-
+Listo.
 
 
 #### Vamos a activar la auditoría de los intentos de acceso fallidos al sistema.
 
+Este tipo de auditoría no es posible activar en PostgreSQL.
+
+
 #### Vamos a activar la auditoría de las operaciones DML realizadas por SCOTT.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #### Vamos a realizar una auditoría de grano fino para almacenar información sobre la inserción de empleados del departamento 10 de la tabla EMP de SCOTT.
 

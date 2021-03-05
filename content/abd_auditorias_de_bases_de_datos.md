@@ -411,7 +411,13 @@ Podemos ver como efectivamente nos muestra el usuario que ha realizado la acció
 
 #### Vamos a activar las auditorías en nuestro servidor.
 
-Tenemos que activar una opción y ponerlo como valor 1.
+Para activar las auditorías en *MySQL*, debemos ejecutar la siguiente sentencia:
+
+<pre>
+SET SESSION profiling = 1;
+</pre>
+
+Listo.
 
 
 #### Vamos a activar la auditoría de los intentos de acceso fallidos al sistema.
@@ -421,9 +427,34 @@ No es posible activar este tipo de auditoría en *MySQL*.
 
 #### Vamos a activar la auditoría de las operaciones DML.
 
-#### Vamos a realizar una auditoría de grano fino para almacenar información sobre la inserción de empleados del departamento 10 de la tabla EMP de SCOTT.
 
 
+<pre>
+MariaDB [scott]> INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (50,'Pruebas','Sevilla');
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [scott]> UPDATE DEPT SET LOC='Dos Hermanas' WHERE DEPTNO=50;
+Query OK, 1 row affected (0.001 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [scott]> DELETE FROM DEPT WHERE DEPTNO=50;
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [scott]> SHOW PROFILES;
++----------+------------+-----------------------------------------------------------------------+
+| Query_ID | Duration   | Query                                                                 |
++----------+------------+-----------------------------------------------------------------------+
+|        1 | 0.00027403 | SELECT DATABASE()                                                     |
+|        2 | 0.00060149 | show databases                                                        |
+|        3 | 0.00044156 | show tables                                                           |
+|        4 | 0.00363078 | INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (50,'Pruebas','Sevilla') |
+|        5 | 0.00136099 | UPDATE DEPT SET LOC='Dos Hermanas' WHERE DEPTNO=50                    |
+|        6 | 0.00401232 | DELETE FROM DEPT WHERE DEPTNO=50                                      |
++----------+------------+-----------------------------------------------------------------------+
+6 rows in set (0.000 sec)
+</pre>
+
+Podemos ver como nos muestra las sentencias introducidas, por lo que esta auditoría sería de **grano fino**.
 
 
 ## MongoDB

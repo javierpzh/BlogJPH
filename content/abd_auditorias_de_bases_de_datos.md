@@ -363,7 +363,7 @@ Listo.
 
 #### Vamos a activar la auditoría de los intentos de acceso fallidos al sistema.
 
-Este tipo de auditoría no es posible activar en *PostgreSQL*.
+No es posible activar este tipo de auditoría en *PostgreSQL*.
 
 
 #### Vamos a activar la auditoría de las operaciones DML.
@@ -411,7 +411,13 @@ Podemos ver como efectivamente nos muestra el usuario que ha realizado la acció
 
 #### Vamos a activar las auditorías en nuestro servidor.
 
+Tenemos que activar una opción y ponerlo como valor 1.
+
+
 #### Vamos a activar la auditoría de los intentos de acceso fallidos al sistema.
+
+No es posible activar este tipo de auditoría en *MySQL*.
+
 
 #### Vamos a activar la auditoría de las operaciones DML.
 

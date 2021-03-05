@@ -1,5 +1,5 @@
 Title: Auditorías de bases de datos
-Date: 2018/03/04
+Date: 2018/03/05
 Category: Administración de Bases de Datos
 Header_Cover: theme/images/banner-basededatos.png
 Tags: Base de Datos, Oracle, MySQL, MariaDB, PostgreSQL, MongoDB
@@ -243,14 +243,57 @@ Listo.
 
 Ambos valores activan la auditoría y almacenan los datos en la tabla **SYS.AUD$** de *Oracle*, pero, la principal diferencia que existe entre ellos es que, el valor **DB, EXTENDED**, además almacena los datos correspondientes en las columnas **SQLBIND** y **SQLTEXT** de dicha tabla, *SYS.AUD$*, mientras que el valor **DB** no lo hace.
 
+Ahora, vamos a ver como podríamos cambiar de un valor a otro.
 
+En primer lugar, para ver cuál de los dos estamos utilizando, ejecutaremos la siguiente sentencia:
 
+<pre>
+SQL> SHOW PARAMETER AUDIT_TRAIL
 
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+audit_trail                          string      DB
+</pre>
 
+Vemos como actualmente, en mi caso, poseo el valor **DB**. Ahora voy a cambiar al valor **DB, EXTENDED**:
 
+<pre>
+SQL> ALTER SYSTEM SET audit_trail = "DB_EXTENDED" SCOPE=SPFILE;
 
+Sistema modificado.
+</pre>
 
+Parece que ya se ha cambiado, pero no, para que se aplique este cambio, es necesario que reiniciemos la base de datos, por lo que vamos a ello:
 
+<pre>
+SQL> shutdown
+Base de datos cerrada.
+Base de datos desmontada.
+Instancia ORACLE cerrada.
+
+SQL> startup
+Instancia ORACLE iniciada.
+
+Total System Global Area 1720328192 bytes
+Fixed Size                  2176448 bytes
+Variable Size            1073744448 bytes
+Database Buffers          637534208 bytes
+Redo Buffers                6873088 bytes
+Base de datos montada.
+Base de datos abierta.
+</pre>
+
+Comprobamos de nuevo que valor estamos utilizando:
+
+<pre>
+SQL> SHOW PARAMETER AUDIT_TRAIL
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+audit_trail                          string      DB_EXTENDED
+</pre>
+
+Vemos como efectivamente ahora sí, hemos cambiado al nuevo valor.
 
 
 #### Localiza en Enterprise Manager las posibilidades para realizar una auditoría e intenta repetir con dicha herramienta los apartados 1, 3 y 4.

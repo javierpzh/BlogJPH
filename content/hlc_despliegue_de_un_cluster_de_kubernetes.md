@@ -1,7 +1,7 @@
 Title: Despliegue de un cluster de Kubernetes
 Date: 2018/03/05
 Category: Cloud Computing
-Header_Cover: theme/images/banner-hlc.jpg
+Header_Cover: theme/images/banner-kubernetes.jpg
 Tags: Kubernetes
 
 En este artículo vamos a configurar un **cluster de Kubernetes (k8s)** y para ello he decidido utilizar la distribución **k3s**.

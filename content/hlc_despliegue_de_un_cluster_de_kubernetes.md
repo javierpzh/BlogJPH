@@ -30,7 +30,7 @@ A continuación podemos ver un diagrama acerca de la estructura interna de *k3s*
 
 ## Instalación de k3s en el controlador
 
-Para llevar a cabo la instalación del *software* de **k3s**, vamos a utilizar el *script* de instalación que se nos proporciona. Para ello, necesitaremos disponer de la herramienta `curl` en nuestro sistema, así que vamos a instalarla:
+Para llevar a cabo la instalación del *software* de **k3s**, vamos a utilizar el *script* de instalación que se nos proporciona. Para ello, necesitaremos la herramienta `curl` en nuestro sistema, así que vamos a instalarla:
 
 <pre>
 apt install curl -y
@@ -82,11 +82,11 @@ Hecho esto, es el momento de pasar con la instalación de *k3s* en los *workers*
 
 Para llevar a cabo la instalación del *software* de **k3s** en estas máquinas, volveremos a utilizar el *script* de instalación que se nos proporciona, pero esta vez, tendremos que indicarle dos parámetros para llevar a cabo la vinculación al nodo maestro. Dichos parámetros son:
 
-- **K3S_URL:**
-- **K3S_TOKEN:**
+- **K3S_URL:** indica la URL del controlador, a la que se conectará el *worker*.
+- **K3S_TOKEN:** indica el *token* del nodo maestro.
 
 
-Para ello, necesitaremos disponer de la herramienta `curl` en nuestro sistema, así que vamos a instalarla:
+De igual manera, volveremos a necesitar la herramienta `curl` en nuestro sistema, así que vamos a instalarla:
 
 <pre>
 apt install curl -y

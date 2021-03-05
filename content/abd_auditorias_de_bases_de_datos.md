@@ -459,10 +459,32 @@ Podemos ver como nos muestra las sentencias introducidas, por lo que esta audito
 
 ## MongoDB
 
+#### Vamos a auditar los accesos al sistema.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #### Averigua las posibilidades que ofrece MongoDB para auditar los cambios que va sufriendo un documento.
 
 
-#### Averigua si en MongoDB se pueden auditar los accesos al sistema.
 
 
 

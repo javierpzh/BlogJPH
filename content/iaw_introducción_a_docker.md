@@ -1,12 +1,12 @@
 Title: Introducción a Docker
 Date: 2021/02/15
 Category: Implantación de Aplicaciones Web
-Header_Cover: theme/images/banner-aplicacionesweb.jpg
+Header_Cover: theme/images/banner-docker.png
 Tags: Docker
 
 
 
---------------------------------------------------------------------------------
+
 ## Almacenamiento
 
 #### Los contenedores son efímeros

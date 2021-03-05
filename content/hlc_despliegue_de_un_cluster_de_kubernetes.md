@@ -8,9 +8,9 @@ En este artículo vamos a desplegar un **cluster de Kubernetes (k8s)** y para el
 
 Todo el proceso se llevará a cabo en varias instancias de *OpenStack*:
 
-- **controlador:** máquina que controlará el *cluster*. Posee la dirección IP 172.22.201.59
-- **worker1:** máquina que actuará como *worker*. Posee la dirección IP 172.22.201.69
-- **worker2:** máquina que actuará como *worker*. Posee la dirección IP 172.22.201.79
+- **controlador:** máquina que controlará el *cluster*. Posee la dirección IP 10.0.0.13
+- **worker1:** máquina que actuará como *worker*. Posee la dirección IP 10.0.0.14
+- **worker2:** máquina que actuará como *worker*. Posee la dirección IP 10.0.0.15
 
 
 ## ¿Qué es k3s?
@@ -60,8 +60,8 @@ Realizada la instalación, ya dispondríamos de todas las herramientas necesaria
 
 <pre>
 root@controlador:~# kubectl get nodes
-NAME          STATUS   ROLES                  AGE     VERSION
-controlador   Ready    control-plane,master   2m24s   v1.20.4+k3s1
+NAME          STATUS   ROLES                  AGE    VERSION
+controlador   Ready    control-plane,master   113s   v1.20.4+k3s1
 </pre>
 
 Lógicamente tan sólo nos muestra uno, que hace referencia al propio nodo que acabamos de instalar, ya que aún no hemos asociado ningún *worker*.
@@ -70,7 +70,7 @@ Es el momento de vincular los *workers*, para ello, necesitaremos conocer el *to
 
 <pre>
 root@controlador:~# cat /var/lib/rancher/k3s/server/node-token
-K1029e8b8d41dc51fdadcb3f1a27d19d552c0e6a33a393a0d21c7af242f7493fd5c::server:43add1f59252e7f700f6840d3dd9a700
+K10fad848963eda043b3b917043618456893554b621a76f832e41883708a4dc094a::server:af342b2794ad1f7bcdfe0a7bd0ae9f31
 </pre>
 
 Hecho esto, es el momento de pasar con la instalación de *k3s* en los *workers*.
@@ -95,7 +95,7 @@ Llevamos a cabo las instalaciones:
 **worker1**
 
 <pre>
-root@worker1:~# curl -sfL https://get.k3s.io | K3S_URL=https://192.168.0.90:6443 K3S_TOKEN=K1029e8b8d41dc51fdadcb3f1a27d19d552c0e6a33a393a0d21c7af242f7493fd5c::server:43add1f59252e7f700f6840d3dd9a700 sh -
+root@worker1:~# curl -sfL https://get.k3s.io | K3S_URL=https://10.0.0.13:6443 K3S_TOKEN=K10fad848963eda043b3b917043618456893554b621a76f832e41883708a4dc094a::server:af342b2794ad1f7bcdfe0a7bd0ae9f31 sh -
 [INFO]  Finding release for channel stable
 [INFO]  Using v1.20.4+k3s1 as release
 [INFO]  Downloading hash https://github.com/k3s-io/k3s/releases/download/v1.20.4+k3s1/sha256sum-amd64.txt
@@ -117,10 +117,34 @@ Created symlink /etc/systemd/system/multi-user.target.wants/k3s-agent.service �
 **worker2**
 
 <pre>
-
+root@worker2:~# curl -sfL https://get.k3s.io | K3S_URL=https://10.0.0.13:6443 K3S_TOKEN=K10fad848963eda043b3b917043618456893554b621a76f832e41883708a4dc094a::server:af342b2794ad1f7bcdfe0a7bd0ae9f31 sh -
+[INFO]  Finding release for channel stable
+[INFO]  Using v1.20.4+k3s1 as release
+[INFO]  Downloading hash https://github.com/k3s-io/k3s/releases/download/v1.20.4+k3s1/sha256sum-amd64.txt
+[INFO]  Downloading binary https://github.com/k3s-io/k3s/releases/download/v1.20.4+k3s1/k3s
+[INFO]  Verifying binary download
+[INFO]  Installing k3s to /usr/local/bin/k3s
+[INFO]  Creating /usr/local/bin/kubectl symlink to k3s
+[INFO]  Creating /usr/local/bin/crictl symlink to k3s
+[INFO]  Creating /usr/local/bin/ctr symlink to k3s
+[INFO]  Creating killall script /usr/local/bin/k3s-killall.sh
+[INFO]  Creating uninstall script /usr/local/bin/k3s-agent-uninstall.sh
+[INFO]  env: Creating environment file /etc/systemd/system/k3s-agent.service.env
+[INFO]  systemd: Creating service file /etc/systemd/system/k3s-agent.service
+[INFO]  systemd: Enabling k3s-agent unit
+Created symlink /etc/systemd/system/multi-user.target.wants/k3s-agent.service → /etc/systemd/system/k3s-agent.service.
+[INFO]  systemd: Starting k3s-agent
 </pre>
 
+Finalizada la instalación en ambos *workers*, vamos a listar los nodos existentes en el nodo maestro:
 
+<pre>
+root@controlador:~# kubectl get nodes
+NAME          STATUS   ROLES                  AGE     VERSION
+controlador   Ready    control-plane,master   8m25s   v1.20.4+k3s1
+worker1       Ready    <none>                 81s     v1.20.4+k3s1
+worker2       Ready    <none>                 51s     v1.20.4+k3s1
+</pre>
 
 
 

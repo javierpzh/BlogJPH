@@ -1,7 +1,7 @@
 Title: VPN con OpenVPN y certificados x509
 Date: 2021/03/02
 Category: Seguridad y Alta Disponibilidad
-Header_Cover: theme/images/banner-seguridad.jpg
+Header_Cover: theme/images/banner-vpn.jpg
 Tags: VPN, OpenVPN, Site-to-Site
 
 ## ¿Qué es una VPN?

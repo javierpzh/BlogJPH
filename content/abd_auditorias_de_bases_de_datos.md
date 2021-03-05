@@ -366,7 +366,7 @@ Listo.
 Este tipo de auditoría no es posible activar en PostgreSQL.
 
 
-#### Vamos a activar la auditoría de las operaciones DML realizadas por SCOTT.
+#### Vamos a activar la auditoría de las operaciones DML.
 
 
 
@@ -419,7 +419,7 @@ Este tipo de auditoría no es posible activar en PostgreSQL.
 
 #### Vamos a activar la auditoría de los intentos de acceso fallidos al sistema.
 
-#### Vamos a activar la auditoría de las operaciones DML realizadas por SCOTT.
+#### Vamos a activar la auditoría de las operaciones DML.
 
 #### Vamos a realizar una auditoría de grano fino para almacenar información sobre la inserción de empleados del departamento 10 de la tabla EMP de SCOTT.
 

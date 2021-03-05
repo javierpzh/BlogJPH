@@ -392,22 +392,28 @@ En este caso, recordemos que posee dos *pods* en funcionamiento, uno para *Mongo
 
 Pero, imaginemos que vamos a realizar un despliegue de nuestra aplicación en un entorno de producción, a la cuál accederán una gran multitud de usuarios simultáneamente. Obviamente, esto será bastante difícil que lo soporte un sólo *pod*, por lo que necesitaríamos desplegar *pods* adicionales para soportar un mayor número de peticiones.
 
-En *Kubernetes* ampliar este número de *pods* es muy sencillo. Vamos a demostrarlo, escalando el número total de *pods* a 3. Para ello, tan solo debemos ejecutar el siguiente comando:
+En *Kubernetes* ampliar este número de *pods* es muy sencillo. Vamos a demostrarlo, escalando el número total de *pods* a 4. Para ello, tan solo debemos ejecutar el siguiente comando:
 
 <pre>
-root@debian:/home/javier/Kubernetes/kubernetes-storm/unidad3/ejemplos-3.2/ejemplo8# kubectl scale deployment.apps/letschat --replicas=3
+root@debian:/home/javier/Kubernetes/kubernetes-storm/unidad3/ejemplos-3.2/ejemplo8# kubectl scale deployment.apps/letschat --replicas=4
 deployment.apps/letschat scaled
 </pre>
 
-Listo, con esto habríamos pasado de tener un *pod*, a tener 3 *pods*.
+Listo, con esto habríamos pasado de tener un *pod*, a tener 4 *pods*.
 
 Vamos a ver ahora los *pods* existentes en nuestro *cluster*:
 
 <pre>
-
+root@debian:/home/javier/Kubernetes/kubernetes-storm/unidad3/ejemplos-3.2/ejemplo8# kubectl get po -o wide
+NAME                        READY   STATUS    RESTARTS   AGE   IP           NODE          NOMINATED NODE   READINESS GATES
+mongo-5c694c878b-m9zss      1/1     Running   0          27m   10.42.0.29   controlador   <none>           <none>
+letschat-7c66bd64f5-hvh7r   1/1     Running   0          18m   10.42.0.30   controlador   <none>           <none>
+letschat-7c66bd64f5-vtghs   1/1     Running   0          20m   10.42.1.8    worker2       <none>           <none>
+letschat-7c66bd64f5-bflgh   1/1     Running   0          64s   10.42.1.9    worker2       <none>           <none>
+letschat-7c66bd64f5-pl4gx   1/1     Running   0          4s    10.42.2.8    worker1       <none>           <none>
 </pre>
 
-
+Podemos apreciar, como efectivamente el número de *pods* de *Let's Chat* se ha escalado a 4, donde uno de ellos se está ejecutando en el nodo maestro, dos de ellos en el *worker2*, y el último en el *worker1*. 
 
 
 

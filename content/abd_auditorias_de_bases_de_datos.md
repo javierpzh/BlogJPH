@@ -307,16 +307,56 @@ Esta herramienta consiste en una serie de *scripts* y *triggers* que realizan la
 Para descargarnos la herramienta debemos utilizar el siguiente comando:
 
 <pre>
-wget https://raw.githubusercontent.com/2ndQuadrant/audit-trigger/master/audit.sql
+  wget https://raw.githubusercontent.com/2ndQuadrant/audit-trigger/master/audit.sql
 </pre>
 
 Una vez descargada, nos conectaremos a nuestro servidor y ejecutaremos el siguiente comando:
 
 <pre>
-
+postgres=# \i audit.sql
+CREATE EXTENSION
+CREATE SCHEMA
+REVOKE
+COMMENT
+CREATE TABLE
+REVOKE
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE FUNCTION
+COMMENT
+CREATE FUNCTION
+COMMENT
+CREATE FUNCTION
+CREATE FUNCTION
+COMMENT
+CREATE VIEW
+COMMENT
 </pre>
 
+Por último, tan sólo nos faltaría activar la recogida de datos en dichas auditorías, para ello ejecutamos la siguiente sentencia:
 
+<pre>
+select audit.audit_table('jugadores');
+</pre>
 
 
 
@@ -333,7 +373,6 @@ Una vez descargada, nos conectaremos a nuestro servidor y ejecutaremos el siguie
 
 #### Vamos a realizar una auditoría de grano fino para almacenar información sobre la inserción de empleados del departamento 10 de la tabla EMP de SCOTT.
 
-*PostgreSQL* por defecto no tiene una herramiento de auditoría y para conseguir realizar algo parecido tenemos que descargarnos la herramienta Audit trigger 91plus, que consiste en una serie de scripts y trigger realizando la acciones necesarias para una auditoría.
 
 
 

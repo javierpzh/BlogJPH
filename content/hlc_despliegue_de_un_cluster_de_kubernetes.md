@@ -378,6 +378,7 @@ Hecho esto, nos dirigimos a nuestro navegador e introducimos la dirección `www.
 ¡Bien! Ahora podremos acceder a *Let's Chat* siempre que queramos en la dirección `www.letschat.com`.
 
 
+## Escalabilidad del cluster
 
 
 

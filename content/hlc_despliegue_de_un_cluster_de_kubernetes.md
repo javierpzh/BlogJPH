@@ -226,7 +226,13 @@ Efectivamente podemos ver los tanto el nodo maestro como los *workers* por lo qu
 
 ## Desplegando una aplicación en nuestro cluster
 
+Para desplegar la aplicación **Let's Chat** utilizaremos [este repositorio](https://github.com/iesgn/kubernetes-storm/tree/master/unidad3/ejemplos-3.2/ejemplo8) de *GitHub*, que contiene todos los ficheros `.yaml` en los que se definen los *deployment*, los servicios, ...
 
+En primer lugar, lógicamente clonaremos dicho repositorio:
+
+<pre>
+
+</pre>
 
 
 

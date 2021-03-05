@@ -296,48 +296,78 @@ audit_trail                          string      DB_EXTENDED
 Vemos como efectivamente ahora sí, hemos cambiado al nuevo valor.
 
 
-#### Localiza en Enterprise Manager las posibilidades para realizar una auditoría e intenta repetir con dicha herramienta los apartados 1, 3 y 4.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## PostgreSQL
 
-#### Averigua si en PostgreSQL se pueden realizar los apartados 1, 3 y 4. Si es así, documenta el proceso adecuadamente.
+#### Vamos a activar las auditorías en nuestro servidor.
+
+*PostgreSQL* por defecto no incorpora una herramienta de auditorías, por lo que, si queremos conseguir realizar auditorías, tendremos que descargarnos una herramienta que ha desarrollado la comunidad, llamada **Audit trigger 91plus**.
+
+Esta herramienta consiste en una serie de *scripts* y *triggers* que realizan las acciones necesarias para simular las auditorías.
+
+Para descargarnos la herramienta debemos utilizar el siguiente comando:
+
+<pre>
+wget https://raw.githubusercontent.com/2ndQuadrant/audit-trigger/master/audit.sql
+</pre>
+
+Una vez descargada, nos conectaremos a nuestro servidor y ejecutaremos el siguiente comando:
+
+<pre>
+
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+#### Vamos a activar la auditoría de los intentos de acceso fallidos al sistema.
+
+#### Vamos a activar la auditoría de las operaciones DML realizadas por SCOTT.
+
+#### Vamos a realizar una auditoría de grano fino para almacenar información sobre la inserción de empleados del departamento 10 de la tabla EMP de SCOTT.
+
+*PostgreSQL* por defecto no tiene una herramiento de auditoría y para conseguir realizar algo parecido tenemos que descargarnos la herramienta Audit trigger 91plus, que consiste en una serie de scripts y trigger realizando la acciones necesarias para una auditoría.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 ## MySQL
 
-#### Averigua si en MySQL se pueden realizar los apartados 1, 3 y 4. Si es así, documenta el proceso adecuadamente.
+#### Vamos a activar las auditorías en nuestro servidor.
+
+#### Vamos a activar la auditoría de los intentos de acceso fallidos al sistema.
+
+#### Vamos a activar la auditoría de las operaciones DML realizadas por SCOTT.
+
+#### Vamos a realizar una auditoría de grano fino para almacenar información sobre la inserción de empleados del departamento 10 de la tabla EMP de SCOTT.
 
 
 

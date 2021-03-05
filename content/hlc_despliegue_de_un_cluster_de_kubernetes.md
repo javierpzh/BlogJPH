@@ -345,7 +345,7 @@ Pero, ¿no es demasiado incómodo tener que introducir este puerto tan inusual c
 
 ## Proxy inverso con Ingress
 
-Gracias a los controladores **Ingress** o **Ingress controller** podemos realizar un *proxy inverso*, y así evitar tener que acceder a direcciones como la anterior, indicando nuestras aplicaciones por medio de nombres.
+Gracias a los controladores **Ingress** o **Ingress controller** podemos realizar un *proxy inverso*, y así evitar tener que acceder a direcciones tan incómodas como la anterior, indicando nuestras aplicaciones por medio de nombres.
 
 Si recordamos, poseemos un fichero llamado `ingress.yaml` que aún no hemos utilizado. Al definir este fichero, cambiaremos el comportamiento y podremos acceder a nuestra aplicación en la dirección `www.letschat.com`, usando resolución estática claro. Ejecutamos el siguiente comando:
 

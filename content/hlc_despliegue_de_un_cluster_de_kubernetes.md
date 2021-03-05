@@ -70,7 +70,7 @@ Es el momento de vincular los *workers*, para ello, necesitaremos conocer el *to
 
 <pre>
 root@controlador:~# cat /var/lib/rancher/k3s/server/node-token
-K10fad848963eda043b3b917043618456893554b621a76f832e41883708a4dc094a::server:af342b2794ad1f7bcdfe0a7bd0ae9f31
+K10615847e0f0430ed497fa0037489ba29d2fe2c5b173632e0541e5a47ba23f0fc5::server:55221794658ca3660af7a2f3f80c93af
 </pre>
 
 Hecho esto, es el momento de pasar con la instalación de *k3s* en los *workers*.
@@ -95,7 +95,7 @@ Llevamos a cabo las instalaciones:
 **worker1**
 
 <pre>
-root@worker1:~# curl -sfL https://get.k3s.io | K3S_URL=https://172.22.201.59:6443 K3S_TOKEN=K10fad848963eda043b3b917043618456893554b621a76f832e41883708a4dc094a::server:af342b2794ad1f7bcdfe0a7bd0ae9f31 sh -
+root@worker1:~# curl -sfL https://get.k3s.io | K3S_URL=https://172.22.201.59:6443 K3S_TOKEN=K10615847e0f0430ed497fa0037489ba29d2fe2c5b173632e0541e5a47ba23f0fc5::server:55221794658ca3660af7a2f3f80c93af sh -
 [INFO]  Finding release for channel stable
 [INFO]  Using v1.20.4+k3s1 as release
 [INFO]  Downloading hash https://github.com/k3s-io/k3s/releases/download/v1.20.4+k3s1/sha256sum-amd64.txt
@@ -117,7 +117,7 @@ Created symlink /etc/systemd/system/multi-user.target.wants/k3s-agent.service �
 **worker2**
 
 <pre>
-root@worker2:~# curl -sfL https://get.k3s.io | K3S_URL=https://172.22.201.59:6443 K3S_TOKEN=K10fad848963eda043b3b917043618456893554b621a76f832e41883708a4dc094a::server:af342b2794ad1f7bcdfe0a7bd0ae9f31 sh -
+root@worker2:~# curl -sfL https://get.k3s.io | K3S_URL=https://172.22.201.59:6443 K3S_TOKEN=K10615847e0f0430ed497fa0037489ba29d2fe2c5b173632e0541e5a47ba23f0fc5::server:55221794658ca3660af7a2f3f80c93af sh -
 [INFO]  Finding release for channel stable
 [INFO]  Using v1.20.4+k3s1 as release
 [INFO]  Downloading hash https://github.com/k3s-io/k3s/releases/download/v1.20.4+k3s1/sha256sum-amd64.txt
@@ -174,11 +174,10 @@ root@debian:~# mkdir .kube
 Bien, el contenido del fichero `config` debe ser el mismo contenido que podemos encontrar en el fichero `/etc/rancher/k3s/k3s.yaml` del nodo maestro de nuestro *cluster*, por tanto copiamos dicho contenido. En mi caso queda de esta manera:
 
 <pre>
-root@debian:~# cat .kube/config
 apiVersion: v1
 clusters:
 - cluster:
-    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJkekNDQVIyZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQWpNU0V3SHdZRFZRUUREQmhyTTNNdGMyVnkKZG1WeUxXTmhRREUyTVRRNU5qZ3pPREl3SGhjTk1qRXdNekExTVRneE9UUXlXaGNOTXpFd016QXpNVGd4T1RReQpXakFqTVNFd0h3WURWUVFEREJock0zTXRjMlZ5ZG1WeUxXTmhRREUyTVRRNU5qZ3pPREl3V1RBVEJnY3Foa2pPClBRSUJCZ2dxaGtqT1BRTUJCd05DQUFTL254RkNkRk1kODlPQ1VObTJTa3h0cWk3WUlGUGFBVDR2ckRzY2tJYTkKVzNha3l1di9MNVVlakdXK1FrWVF1TXp5a1pXdGVOKytIQSt4SkZ5YkZPdW9vMEl3UURBT0JnTlZIUThCQWY4RQpCQU1DQXFRd0R3WURWUjBUQVFIL0JBVXdBd0VCL3pBZEJnTlZIUTRFRmdRVXlWM1lYS2Q2dWNYNDVhajY1Nk9mCktJZ2RnYmt3Q2dZSUtvWkl6ajBFQXdJRFNBQXdSUUloQUpBVTNDekpBME9RSGR1SnUyZzNSeXBjQUZnVHFyem8KbWZaMUhtN0YvWUZEQWlCbzhpSEdsUDZvUXJKYUI4Q2lKUnJWSVJQNkFWeGJzQTBjZlBsalBSMG9BZz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJkekNDQVIyZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQWpNU0V3SHdZRFZRUUREQmhyTTNNdGMyVnkKZG1WeUxXTmhRREUyTVRRNU9ESTBNRGd3SGhjTk1qRXdNekExTWpJeE16STRXaGNOTXpFd016QXpNakl4TXpJNApXakFqTVNFd0h3WURWUVFEREJock0zTXRjMlZ5ZG1WeUxXTmhRREUyTVRRNU9ESTBNRGd3V1RBVEJnY3Foa2pPClBRSUJCZ2dxaGtqT1BRTUJCd05DQUFTMUJ1amR6OEpVWHRHN0RocytDSnF4NS9YVVFkTEFSQXRqa3NiVlZuL1YKRDNtblQ4bU05RTVwOEo1M050aktUZ1NiNm91SDR5cnoyMWlLeENZa1BMZUZvMEl3UURBT0JnTlZIUThCQWY4RQpCQU1DQXFRd0R3WURWUjBUQVFIL0JBVXdBd0VCL3pBZEJnTlZIUTRFRmdRVWlIbndsZ3BSZmZ5ejhFcEk5cWorCkRSTU9WdlV3Q2dZSUtvWkl6ajBFQXdJRFNBQXdSUUlnQjIzV3JGeFU2MDJtUnZHMmNoQ3pWUmVsaHlaQ1JXMkcKaUJIWElWOE94aVFDSVFDMjJ6SVpmK2I5Z0VCZnljRkdiN1J6cklWZ3k4OWVzTmNZazh1NkdFbHREZz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
     server: https://127.0.0.1:6443
   name: default
 contexts:
@@ -192,8 +191,8 @@ preferences: {}
 users:
 - name: default
   user:
-    client-certificate-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJrakNDQVRlZ0F3SUJBZ0lJVWdQTGJDWXFFMWN3Q2dZSUtvWkl6ajBFQXdJd0l6RWhNQjhHQTFVRUF3d1kKYXpOekxXTnNhV1Z1ZEMxallVQXhOakUwT1RZNE16Z3lNQjRYRFRJeE1ETXdOVEU0TVRrME1sb1hEVEl5TURNdwpOVEU0TVRrME1sb3dNREVYTUJVR0ExVUVDaE1PYzNsemRHVnRPbTFoYzNSbGNuTXhGVEFUQmdOVkJBTVRESE41CmMzUmxiVHBoWkcxcGJqQlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDlBd0VIQTBJQUJKeDRyUkFsRWdpN0RQZGQKTTJ4NGFBQVVEdEdBSzR2Rzlhd2ZmL1RsZ0YxZ1NaRHZRMTBwKzd0WHg3RjdPajZoQVNGcWNWNlZxaEtidU53ZwpyT2ZLRFZXalNEQkdNQTRHQTFVZER3RUIvd1FFQXdJRm9EQVRCZ05WSFNVRUREQUtCZ2dyQmdFRkJRY0RBakFmCkJnTlZIU01FR0RBV2dCVEpTRE9YUnFZQzZuMWtZOHJkUHQ0VWo3VllDVEFLQmdncWhrak9QUVFEQWdOSkFEQkcKQWlFQTllUzhpUGpoaHloVWZYL01nZXJqOFN3dmlNMnUzNzFPanMycXVkanJNQlVDSVFDRG5qSmQzbFpoMVphZwpjUmcwdU1QMzdaQ0lTTnBtQWVDMHRjYXlCT3hOTHc9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCi0tLS0tQkVHSU4gQ0VSVElGSUNBVEUtLS0tLQpNSUlCZURDQ0FSMmdBd0lCQWdJQkFEQUtCZ2dxaGtqT1BRUURBakFqTVNFd0h3WURWUVFEREJock0zTXRZMnhwClpXNTBMV05oUURFMk1UUTVOamd6T0RJd0hoY05NakV3TXpBMU1UZ3hPVFF5V2hjTk16RXdNekF6TVRneE9UUXkKV2pBak1TRXdId1lEVlFRRERCaHJNM010WTJ4cFpXNTBMV05oUURFMk1UUTVOamd6T0RJd1dUQVRCZ2NxaGtqTwpQUUlCQmdncWhrak9QUU1CQndOQ0FBVFBhR0FxbFhkRk5LSW96VDFjZUhXVEFxTXlGczFCV0JnbjB6dDNnd0FnClEzUVJUb0QrRzJZQi84WTl0SDZQQzAzbktRYW1PakNjV3BlSkRxdFQzVzVBbzBJd1FEQU9CZ05WSFE4QkFmOEUKQkFNQ0FxUXdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QWRCZ05WSFE0RUZnUVV5VWd6bDBhbUF1cDlaR1BLM1Q3ZQpGSSsxV0Frd0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFNTGs3TDNhQk9Nc0kwWURRQVhkREs4bkpzNDZLR0pPCm50alRYcUNLL2JSRUFpRUF3QnowZll3S1BaY0toV0hhYUw2S1IydlFmTnhFTjNNZUZUS0l4VEViMXBRPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
-    client-key-data: LS0tLS1CRUdJTiBFQyBQUklWQVRFIEtFWS0tLS0tCk1IY0NBUUVFSUVaWDF5WkNMRDBEbExac3dZSWcvY1lSNysxYlMyTHJyb1JwMXRGVkJheGpvQW9HQ0NxR1NNNDkKQXdFSG9VUURRZ0FFbkhpdEVDVVNDTHNNOTEwemJIaG9BQlFPMFlBcmk4YjFyQjkvOU9XQVhXQkprTzlEWFNuNwp1MWZIc1hzNlBxRUJJV3B4WHBXcUVwdTQzQ0NzNThvTlZRPT0KLS0tLS1FTkQgRUMgUFJJVkFURSBLRVktLS0tLQo=
+    client-certificate-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJrakNDQVRlZ0F3SUJBZ0lJS1k0R25OMTlmSlV3Q2dZSUtvWkl6ajBFQXdJd0l6RWhNQjhHQTFVRUF3d1kKYXpOekxXTnNhV1Z1ZEMxallVQXhOakUwT1RneU5EQTRNQjRYRFRJeE1ETXdOVEl5TVRNeU9Gb1hEVEl5TURNdwpOVEl5TVRNeU9Gb3dNREVYTUJVR0ExVUVDaE1PYzNsemRHVnRPbTFoYzNSbGNuTXhGVEFUQmdOVkJBTVRESE41CmMzUmxiVHBoWkcxcGJqQlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDlBd0VIQTBJQUJJN20zRUdqWnNja3kwK1gKcENUbzFmdnIxTUwxcFBQdFZTc3I1aTFyVnMwZVlxNTlHWVZRVlRlV2FXRmZJTmJ2TWdUbVUxdWRaNUN2MWt3ZgpNbVVLekI2alNEQkdNQTRHQTFVZER3RUIvd1FFQXdJRm9EQVRCZ05WSFNVRUREQUtCZ2dyQmdFRkJRY0RBakFmCkJnTlZIU01FR0RBV2dCUkdMaS84Q2Q1NjVPVnNHNFlKZXlwVE5rd0syakFLQmdncWhrak9QUVFEQWdOSkFEQkcKQWlFQXZJMnFKbWJDSjVwSTBoMUYzUTBtclZqZm0rd2RFczA5elhVUzQySTBSVkVDSVFDWXAwcE9HT3pDVFdVVwp3VkNpYWhZM1VaNTdjeEdCY2liVFVhL0RzWGRFL3c9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCi0tLS0tQkVHSU4gQ0VSVElGSUNBVEUtLS0tLQpNSUlCZGpDQ0FSMmdBd0lCQWdJQkFEQUtCZ2dxaGtqT1BRUURBakFqTVNFd0h3WURWUVFEREJock0zTXRZMnhwClpXNTBMV05oUURFMk1UUTVPREkwTURnd0hoY05NakV3TXpBMU1qSXhNekk0V2hjTk16RXdNekF6TWpJeE16STQKV2pBak1TRXdId1lEVlFRRERCaHJNM010WTJ4cFpXNTBMV05oUURFMk1UUTVPREkwTURnd1dUQVRCZ2NxaGtqTwpQUUlCQmdncWhrak9QUU1CQndOQ0FBUW04Wm1HbWJUZnBqc0dodmNKbjFvR0x5RzQ5U3ZVd01TRkozYWNwRG50Ckw5M1luZUZ2cjRabjd1RCtmOFRLSVVjc0NFa1QwSGN5cnRkRzd4U2l3VnBmbzBJd1FEQU9CZ05WSFE4QkFmOEUKQkFNQ0FxUXdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QWRCZ05WSFE0RUZnUVVSaTR2L0FuZWV1VGxiQnVHQ1hzcQpVelpNQ3Rvd0NnWUlLb1pJemowRUF3SURSd0F3UkFJZ1lhMk8wUDNpa0pCaDRzSTBqNjFPYmRTRmNSRWNwVDVPCm5zVDhCUVVFWWdNQ0lHazR6emZmeU1PeXpNUkk5bGVTclVFQm1RckVxbW9OT3Y0emRkaUJGbC9HCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    client-key-data: LS0tLS1CRUdJTiBFQyBQUklWQVRFIEtFWS0tLS0tCk1IY0NBUUVFSURoTFl6TWZVRmhFazVaYlRHZ0NhY0JCcmlBZ1N3OXNvelpCSzMzT2ZzM01vQW9HQ0NxR1NNNDkKQXdFSG9VUURRZ0FFanViY1FhTm14eVRMVDVla0pPalYrK3ZVd3ZXazgrMVZLeXZtTFd0V3pSNWlybjBaaFZCVgpONVpwWVY4ZzF1OHlCT1pUVzUxbmtLL1dUQjh5WlFyTUhnPT0KLS0tLS1FTkQgRUMgUFJJVkFURSBLRVktLS0tLQo=
 </pre>
 
 Una vez tenemos el mismo contenido en nuestro equipo anfitrión, debemos cambiar el valor del parámetro `server`, y en él establecer la dirección del nodo maestro del *cluster*. En mi caso esta directiva quedaría tal que así:
@@ -205,7 +204,14 @@ root@debian:~# cat .kube/config
 ...
 </pre>
 
-En teoría ya habríamos realizado toda la configuración y podríamos gestionar nuestro *cluster* remotamente, para ello vamos a intentar los nodos existentes en él mediante el siguiente comando: `kubectl get nodes`. En este punto, en mi caso, me reportó un error debido a certificados x509, que logré solucionar con el siguiente comando:
+En teoría ya habríamos realizado toda la configuración y podríamos gestionar nuestro *cluster* remotamente, para ello vamos a intentar los nodos existentes en él mediante el siguiente comando:
+
+<pre>
+root@debian:~# kubectl get nodes
+Unable to connect to the server: x509: certificate is valid for 10.0.0.13, 10.43.0.1, 127.0.0.1, not 172.22.201.59
+</pre>
+
+En este punto, en mi caso, me reportó un error debido a certificados x509, que logré solucionar con el siguiente comando:
 
 <pre>
 kubectl --insecure-skip-tls-verify cluster-info dump
@@ -216,9 +222,9 @@ Tras él, volvemos a intentar listar los nodos:
 <pre>
 root@debian:~# kubectl get nodes
 NAME          STATUS     ROLES                  AGE   VERSION
+controlador   Ready      control-plane,master   37m   v1.20.4+k3s1
 worker1       Ready      <none>                 30m   v1.20.4+k3s1
 worker2       Ready      <none>                 30m   v1.20.4+k3s1
-controlador   Ready      control-plane,master   37m   v1.20.4+k3s1
 </pre>
 
 Efectivamente podemos ver los tanto el nodo maestro como los *workers* por lo que ya podríamos gestionar nuestro *cluster* de manera remota.
@@ -384,9 +390,22 @@ Para terminar con el artículo, vamos a ver otras de las grandes ventajas de *Ku
 
 En este caso, recordemos que posee dos *pods* en funcionamiento, uno para *MongoDB* y otro para *Let's Chat*.
 
-Pero, imaginemos que vamos a realizar un despliegue de nuestra aplicación en un entorno de producción, a la cuál accederán una gran multitud de usuarios simultáneamente. Obviamente, esto será bastante difícil que lo soporte un sólo *pod*, por lo que necesitaríamos desplegar *pods* adicionales para soportar un mayor número de peticiones. 
+Pero, imaginemos que vamos a realizar un despliegue de nuestra aplicación en un entorno de producción, a la cuál accederán una gran multitud de usuarios simultáneamente. Obviamente, esto será bastante difícil que lo soporte un sólo *pod*, por lo que necesitaríamos desplegar *pods* adicionales para soportar un mayor número de peticiones.
 
+En *Kubernetes* ampliar este número de *pods* es muy sencillo. Vamos a demostrarlo, escalando el número total de *pods* a 3. Para ello, tan solo debemos ejecutar el siguiente comando:
 
+<pre>
+root@debian:/home/javier/Kubernetes/kubernetes-storm/unidad3/ejemplos-3.2/ejemplo8# kubectl scale deployment.apps/letschat --replicas=3
+deployment.apps/letschat scaled
+</pre>
+
+Listo, con esto habríamos pasado de tener un *pod*, a tener 3 *pods*.
+
+Vamos a ver ahora los *pods* existentes en nuestro *cluster*:
+
+<pre>
+
+</pre>
 
 
 

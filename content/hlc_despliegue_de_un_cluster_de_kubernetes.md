@@ -343,7 +343,48 @@ Podemos ver como, en mi caso, está utilizando el puerto 32094, por tanto yo int
 Pero, ¿no es demasiado incómodo tener que introducir este puerto tan inusual cada vez que queramos acceder a la aplicación? Para solucionar esto, pasaremos al siguiente apartado.
 
 
-## 
+## Proxy inverso con Ingress
+
+Gracias a los controladores **Ingress** o **Ingress controller** podemos realizar un *proxy inverso*, y así evitar tener que acceder a direcciones como la anterior, indicando nuestras aplicaciones por medio de nombres.
+
+Si recordamos, poseemos un fichero llamado `ingress.yaml` que aún no hemos utilizado. Al definir este fichero, cambiaremos el comportamiento y podremos acceder a nuestra aplicación en la dirección `www.letschat.com`, usando resolución estática claro. Ejecutamos el siguiente comando:
+
+<pre>
+root@debian:/home/javier/Kubernetes/kubernetes-storm/unidad3/ejemplos-3.2/ejemplo8# kubectl apply -f ingress.yaml
+Warning: networking.k8s.io/v1beta1 Ingress is deprecated in v1.19+, unavailable in v1.22+; use networking.k8s.io/v1 Ingress
+ingress.networking.k8s.io/ingress-letschat created
+</pre>
+
+Parece que se ha generado el nuevo *ingress*, pero vamos a comprobarlo listando los *ingress* existentes en nuestro *cluster*:
+
+<pre>
+root@debian:/home/javier/Kubernetes/kubernetes-storm/unidad3/ejemplos-3.2/ejemplo8# kubectl get ingress
+NAME               CLASS    HOSTS              ADDRESS     PORTS   AGE
+ingress-letschat   <none>   www.letschat.com   10.0.0.13   80      30s
+</pre>
+
+Podemos apreciar como efectivamente se ha creado el *ingress* y ahora está utilizando el puerto 80.
+
+Por último, añadiremos la línea relativa al nodo maestro en nuestro fichero `/etc/hosts`. En mi caso, añado la siguiente línea:
+
+<pre>
+172.22.201.59   www.letschat.com
+</pre>
+
+Hecho esto, nos dirigimos a nuestro navegador e introducimos la dirección `www.letschat.com`:
+
+![.](images/hlc_despliegue_de_un_cluster_de_kubernetes/letschat80.png)
+
+¡Bien! Ahora podremos acceder a *Let's Chat* siempre que queramos en la dirección `www.letschat.com`.
+
+
+
+
+
+
+
+
+
 
 
 

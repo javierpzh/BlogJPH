@@ -11,7 +11,7 @@ Todos los ficheros necesarios y utilizados, se pueden encontrar en [este reposit
 En todos los apartados utilizaremos dos directorios, el llamado `build`, destinado a la construcción, y el segundo directorio, `deploy`, utilizado para el despliegue.
 
 
-#### Ejecución de la aplicación BookMedik en Docker
+#### Ejecución de la aplicación BookMedik
 
 En este primer apartado, vamos a ver como sería el proceso para ejecutar la aplicación **BookMedik** en contenedores *Docker*.
 
@@ -348,7 +348,7 @@ Vamos a *loguearnos* mediante las credenciales por defecto: **admin/admin**.
 ¡Bien! Vemos como nos sigue mostrando la aplicación *BookMedik*, pero ahora está ejecutándose en un contenedor creado a partir de una imagen distinta, en esta caso, la oficial de PHP.
 
 
-## 
+#### Ejecución de la aplicación BookMedik en Nginx
 
 
 

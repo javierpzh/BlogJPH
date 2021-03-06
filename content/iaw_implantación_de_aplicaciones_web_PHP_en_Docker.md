@@ -2,7 +2,7 @@ Title: Implantación de aplicaciones web PHP en Docker
 Date: 2018/03/06
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-docker.png
-Tags: Docker, PHP, contenedores, BookMedik
+Tags: Docker, PHP, contenedores, BookMedik, Nginx
 
 En este artículo voy a realizar el despliegue de varias aplicaciones web escritas en **PHP** en contenedores **Docker**.
 

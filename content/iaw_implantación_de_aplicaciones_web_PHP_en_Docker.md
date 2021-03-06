@@ -185,10 +185,14 @@ Efectivamente se están ejecutando los dos contenedores, por lo que es el moment
 
 ![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/bookmedik1.png)
 
-
+Vamos a *loguearnos* mediante las credenciales por defecto: **admin/admin**.
 
 ![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/bookmedik2.png)
 
+¡Bien! Vemos como nos muestra la aplicación *BookMedik* por lo que habríamos finalizado este apartado.
+
+
+#### Creando la imagen de BookMedik a partir de la imagen PHP
 
 
 
@@ -222,16 +226,42 @@ Efectivamente se están ejecutando los dos contenedores, por lo que es el moment
 
 
 
-**2. Ejecución de una aplicación web PHP en Docker.**
 
-- Realiza la imagen *Docker* de la aplicación a partir de la imagen oficial *PHP* que encuentras en *DockerHub*. Lee la documentación de la imagen para configurar una imagen con *Apache2* y *PHP*, además seguramente tengas que instalar alguna extensión de *PHP*.
 
-- Crea esta imagen en *DockerHub*.
 
-- Crea un *script* con `docker compose` que levante el escenario con los dos contenedores.
 
-- **Entrega la URL del repositorio *GitHub* donde tengas la construcción (directorio build y el despliegue (directorio deploy))**
-- **Entrega una captura de pantalla donde se vea funcionando la aplicación, una vez que te has *logueado*.**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -350,7 +350,7 @@ Vamos a *loguearnos* mediante las credenciales por defecto: **admin/admin**.
 
 #### Ejecución de la aplicación BookMedik en Nginx
 
-
+En este 
 
 
 

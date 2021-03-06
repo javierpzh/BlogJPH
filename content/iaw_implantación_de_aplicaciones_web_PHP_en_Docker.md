@@ -350,16 +350,212 @@ Vamos a *loguearnos* mediante las credenciales por defecto: **admin/admin**.
 
 #### Ejecución de la aplicación BookMedik en Nginx
 
-En este 
+En este apartado vamos a ver como volver a desplegar la aplicación **BookMedik** con *Docker*, pero esta vez, utilizando tres contenedores:
+
+- **bookmedik-mysql:** contenedor basado en una imagen *mariadb*, que como ya se puede intuir ejecutará nuestra base de datos.
+- **nginx:** contenedor basado en una imagen personalizada, basada en una imagen *nginx*, que ejecutará la aplicación.
+- **bookmedik-php:** contenedor basado en una imagen *PHP*, que ejecutará el servidor *PHP-FPM*.
+
+El "escenario" sobre el que trabajaremos es algo así:
+
+<pre>
+javier@debian:~/Docker/Implantacion-de-aplicaciones-web-PHP-en-Docker/Tarea3$ ls -l
+total 0
+drwxr-xr-x 3 javier javier 78 mar  7 00:15 build-nginx
+drwxr-xr-x 2 javier javier 24 mar  7 00:01 build-php
+drwxr-xr-x 2 javier javier 33 mar  7 00:15 deploy
+</pre>
+
+En primer lugar, nos situamos en el directorio `build-nginx`, ya que en él, es donde realizaremos la mayor parte del trabajo, ya que poseemos tres ficheros además del [repositorio](https://github.com/evilnapsis/bookmedik) de la aplicación:
+
+<pre>
+javier@debian:~/Docker/Implantacion-de-aplicaciones-web-PHP-en-Docker/Tarea3/build-nginx$ ls -l
+total 12
+drwxr-xr-x 7 javier javier 166 mar  6 19:41 bookmedik
+-rw-r--r-- 1 javier javier 514 mar  7 00:02 default.conf
+-rw-r--r-- 1 javier javier 336 mar  7 00:15 Dockerfile
+-rw-r--r-- 1 javier javier 387 mar  7 00:15 script.sh
+</pre>
+
+Vamos a empezar viendo el aspecto del fichero `Dockerfile`:
+
+<pre>
+FROM nginx
+MAINTAINER Javier Pérez "javierperezhidalgo01@gmail.com"
+
+EXPOSE 80
+
+ADD default.conf /etc/nginx/conf.d/default.conf
+ADD script.sh /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/script.sh
+
+ENV DATABASE_USER bookmedik
+ENV DATABASE_PASSWORD bookmedik
+ENV DATABASE_HOST db
+
+ENTRYPOINT ["script.sh"]
+</pre>
+
+Seguiremos con el fichero `script.sh`:
+
+<pre>
+#!/bin/bash
+
+sed -i "s/$this->user="root";/$this->user="$DATABASE_USER";/g" /bookmedik/core/controller/Database.php
+sed -i "s/$this->pass="";/$this->pass="$DATABASE_PASSWORD";/g" /bookmedik/core/controller/Database.php
+sed -i "s/$this->host="localhost";/$this->host="$DATABASE_HOST";/g" /bookmedik/core/controller/Database.php
+
+nginx -g 'daemon off;'
+</pre>
+
+Y para finalizar, el fichero `default.conf` que será el fichero de configuración de nuestro *virtualhost* de *Nginx*:
+
+<pre>
+server {
+    index index.php index.html;
+    server_name www.bookmedik.com;
+    error_log  /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+    root /bookmedik;
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass php:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+}
+</pre>
+
+Visto todo el contenido del directorio `build-nginx`, procederemos a crear la imagen:
+
+<pre>
+javier@debian:~/Docker/Implantacion-de-aplicaciones-web-PHP-en-Docker/Tarea3/build-nginx$ docker build -t javierpzh/nginx:v1 .
+Sending build context to Docker daemon  5.775MB
+Step 1/10 : FROM nginx
+ ---> 35c43ace9216
+Step 2/10 : MAINTAINER Javier Pérez "javierperezhidalgo01@gmail.com"
+ ---> Running in b3fed2b62aa9
+Removing intermediate container b3fed2b62aa9
+ ---> 58c5819c8161
+Step 3/10 : EXPOSE 80
+ ---> Running in fb032eabf6bf
+Removing intermediate container fb032eabf6bf
+ ---> f6d8519513c1
+Step 4/10 : ADD default.conf /etc/nginx/conf.d/default.conf
+ ---> 3db249b151cf
+Step 5/10 : ADD script.sh /usr/local/bin/
+ ---> 40bd15c1b5c9
+Step 6/10 : RUN chmod +x /usr/local/bin/script.sh
+ ---> Running in 08c8bbd4a4e5
+Removing intermediate container 08c8bbd4a4e5
+ ---> 67da303c3bf2
+Step 7/10 : ENV DATABASE_USER bookmedik
+ ---> Running in 0d4bb6c08356
+Removing intermediate container 0d4bb6c08356
+ ---> ccd372739104
+Step 8/10 : ENV DATABASE_PASSWORD bookmedik
+ ---> Running in 188eee28ffe8
+Removing intermediate container 188eee28ffe8
+ ---> 35dc8e23b27d
+Step 9/10 : ENV DATABASE_HOST db
+ ---> Running in 2475c18ea322
+Removing intermediate container 2475c18ea322
+ ---> 430ae7eb838f
+Step 10/10 : ENTRYPOINT ["script.sh"]
+ ---> Running in 5d6b4466a190
+Removing intermediate container 5d6b4466a190
+ ---> 8f6aa9a30207
+Successfully built 8f6aa9a30207
+Successfully tagged javierpzh/nginx:v1
+</pre>
+
+En el directorio `build-php` solo nos encontraremos con el fichero `Dockerfile`, que posee este aspecto:
+
+<pre>
+FROM php:7.4-apache
+MAINTAINER Javier Pérez "javierperezhidalgo01@gmail.com"
+
+RUN docker-php-ext-install mysqli
+</pre>
+
+Construimos la nueva imagen:
+
+<pre>
+javier@debian:~/Docker/Implantacion-de-aplicaciones-web-PHP-en-Docker/Tarea3/build-php$ docker build -t javierpzh/php-fpm:v1 .
+Sending build context to Docker daemon  2.048kB
+Step 1/3 : FROM php:7.4-apache
+ ---> 82e6dd286f92
+Step 2/3 : MAINTAINER Javier Pérez "javierperezhidalgo01@gmail.com"
+ ---> Using cache
+ ---> af250719abe4
+Step 3/3 : RUN docker-php-ext-install mysqli
+ ---> Running in 4175235d4ec5
+
+ ...
+
+ ---> e34648669ee1
+Successfully built e34648669ee1
+Successfully tagged javierpzh/php-fpm:v1
+</pre>
+
+En este punto, ya tendríamos las imágenes necesarias para poner en marcha nuestra aplicación, por lo que nos trasladamos al directorio `deploy` y creamos el fichero `docker.compose.yaml` que definirá el escenario:
+
+<pre>
+version: "3.1"
+
+services:
+
+  db:
+    container_name: bookmedik-mysql
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: bookmedik
+      MYSQL_USER: bookmedik
+      MYSQL_PASSWORD: bookmedik
+      MYSQL_ROOT_PASSWORD: javier
+    volumes:
+      - /home/javier/Docker/Volumes:/var/lib/mysql
+
+  bookmedik:
+    container_name: bookmedik
+    image: javierpzh/nginx:v1
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - /home/javier/Docker/Implantacion-de-aplicaciones-web-PHP-en-Docker/Tarea3/build-nginx/bookmedik/:/bookmedik
+
+  php:
+    container_name: bookmedik-php
+    image: javierpzh/php-fpm:v1
+    restart: always
+    volumes:
+      - /home/javier/Docker/Implantacion-de-aplicaciones-web-PHP-en-Docker/Tarea3/build-nginx/bookmedik/:/bookmedik
+</pre>
+
+Una vez creado, desplegamos los contenedores:
+
+<pre>
+javier@debian:~/Docker/Implantacion-de-aplicaciones-web-PHP-en-Docker/Tarea3/deploy$ docker-compose up -d
+bookmedik-mysql is up-to-date
+Recreating bookmedik   ... done
+Creating bookmedik-php ... done
+</pre>
+
+Es el momento de a acceder a la dirección `127.0.0.1:8080`:
+
+![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/403.png)
+
+Aún no he conseguido solventar este problema.
 
 
-
-
-
-
-
-
-
+#### Despliegue 
 
 
 

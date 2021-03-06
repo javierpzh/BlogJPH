@@ -350,7 +350,7 @@ Vamos a *loguearnos* mediante las credenciales por defecto: **admin/admin**.
 
 #### Ejecución de la aplicación BookMedik en Nginx
 
-En este apartado vamos a ver como volver a desplegar la aplicación **BookMedik** con *Docker*, pero esta vez, utilizando tres contenedores:
+En este tercer apartado vamos a ver como volver a desplegar la aplicación **BookMedik** con *Docker*, pero esta vez, utilizando tres contenedores:
 
 - **bookmedik-mysql:** contenedor basado en una imagen *mariadb*, que como ya se puede intuir ejecutará nuestra base de datos.
 - **nginx:** contenedor basado en una imagen personalizada, basada en una imagen *nginx*, que ejecutará la aplicación.
@@ -555,9 +555,53 @@ Es el momento de a acceder a la dirección `127.0.0.1:8080`:
 Aún no he conseguido solventar este problema.
 
 
-#### Despliegue 
+#### Ejecución del CMS Drupal
+
+En este nuevo apartado vamos a
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<pre>
+
+</pre>
 
 
 

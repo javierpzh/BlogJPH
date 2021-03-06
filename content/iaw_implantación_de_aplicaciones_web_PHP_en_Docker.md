@@ -339,11 +339,11 @@ Efectivamente se están ejecutando los dos contenedores, y podemos observar, com
 
 Es el momento de a acceder a la dirección `127.0.0.1:8080`:
 
-![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/tarea2bookmedik1.png)
+![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/phpbookmedik1.png)
 
 Vamos a *loguearnos* mediante las credenciales por defecto: **admin/admin**.
 
-![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/tarea2bookmedik2.png)
+![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/phpbookmedik2.png)
 
 ¡Bien! Vemos como nos sigue mostrando la aplicación *BookMedik*, pero ahora está ejecutándose en un contenedor creado a partir de una imagen distinta, en esta caso, la oficial de PHP.
 

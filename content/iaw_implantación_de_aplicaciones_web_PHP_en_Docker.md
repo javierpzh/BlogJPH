@@ -555,105 +555,240 @@ Es el momento de a acceder a la dirección `127.0.0.1:8080`:
 Aún no he conseguido solventar este problema.
 
 
-#### Ejecución del CMS Drupal
+#### Ejecución del CMS Prestashop
 
-En este nuevo apartado vamos a
+En este nuevo apartado vamos a llevar a cabo el despliegue del CMS PHP llamado **Prestashop**.
 
+Como consecuencia, poseeremos dos contenedores, uno que ejecutará la base de datos, y otro que ejecutará la aplicación. Este último estará basado en una imagen personalizada, que vamos a crear a partir de la imagen oficial PHP.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Para ello, en nuestro directorio `build` generaremos el siguiente fichero `Dockerfile`:
 
 <pre>
+FROM php:7.4-apache
+MAINTAINER Javier Pérez "javierperezhidalgo01@gmail.com"
 
+EXPOSE 80
+
+WORKDIR /var/www/html/
+
+ADD script.sh /usr/local/bin/
+
+RUN apt-get update \
+&& apt-get -y install \
+unzip wget \
+zlib1g-dev libzip-dev libicu-dev libpng-dev \
+&& wget https://download.prestashop.com/download/releases/prestashop_1.7.7.2.zip -P /var/www/html/ \
+&& docker-php-ext-install zip gd pdo_mysql intl \
+&& apt-get clean \
+&& rm -rf /var/lib/apt/lists/* \
+&& a2enmod rewrite \
+&& chmod +x /usr/local/bin/script.sh
+
+ENTRYPOINT ["script.sh"]
 </pre>
 
+También debemos crear el fichero `script.sh`:
+
+<pre>
+#!/bin/bash
+
+unzip prestashop_1.7.7.2.zip
+unzip -o prestashop.zip
+rm -rf prestashop.zip prestashop_1.7.7.2.zip
+chown -R www-data:www-data /var/www/html
+
+apache2ctl -D FOREGROUND
+</pre>
+
+Una vez poseemos ambos archivos, es hora de construir la imagen que utilizará el contenedor de nuestra aplicación:
+
+<pre>
+javier@debian:~/Docker/Implantacion-de-aplicaciones-web-PHP-en-Docker/Tarea4/build$ docker build -t javierpzh/prestashop:v1 .
+Sending build context to Docker daemon  3.584kB
+Step 1/7 : FROM php:7.4-apache
+ ---> 82e6dd286f92
+Step 2/7 : MAINTAINER Javier Pérez "javierperezhidalgo01@gmail.com"
+ ---> Using cache
+ ---> af250719abe4
+Step 3/7 : EXPOSE 80
+ ---> Using cache
+ ---> 131de1a87b20
+Step 4/7 : WORKDIR /var/www/html/
+ ---> Running in 52f2af2bc8d6
+Removing intermediate container 52f2af2bc8d6
+ ---> 2f03fc19c53d
+Step 5/7 : ADD script.sh /usr/local/bin/
+ ---> 00800fe4c3a3
+Step 6/7 : RUN apt-get update && apt-get -y install unzip wget zlib1g-dev libzip-dev libicu-dev libpng-dev && wget https://download.prestashop.com/download/releases/prestashop_1.7.7.2.zip -P /opt/ && docker-php-ext-install zip gd pdo_mysql intl && apt-get clean && rm -rf /var/lib/apt/lists/* && a2enmod rewrite && chmod +x /usr/local/bin/script.sh
+ ---> Running in bffe857f3412
+
+ ...
+
+ ---> 2f9eb9bb9d47
+Step 7/7 : ENTRYPOINT ["script.sh"]
+ ---> Running in 091a0d754fdf
+Removing intermediate container 091a0d754fdf
+ ---> bfbc6637a891
+Successfully built bfbc6637a891
+Successfully tagged javierpzh/prestashop:v1
+</pre>
+
+Finalizada la construcción de la imagen, nos situaremos en el directorio `deploy` y generaremos el fichero `docker-compose.yaml` que será el encargado de crear los distintos contenedores:
+
+<pre>
+version: "3.1"
+
+services:
+
+  db:
+    container_name: prestashop-mysql
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: prestashop
+      MYSQL_USER: prestashop
+      MYSQL_PASSWORD: prestashop
+      MYSQL_ROOT_PASSWORD: javier
+    volumes:
+      - /home/javier/Docker/Volumes/tarea4/db:/var/lib/mysql
+
+  prestashop:
+    container_name: prestashop
+    image: javierpzh/prestashop:v1
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - /home/javier/Docker/Volumes/tarea4/app:/var/www/html
+</pre>
+
+Podemos apreciar en él, como también lo hemos configurado, para que la información de nuestra aplicación sea persistente, es decir, que no se pierda a la hora de destruir los contenedores.
+
+Hecho esto, ya podemos construir los contenedores:
+
+<pre>
+javier@debian:~/Docker/Implantacion-de-aplicaciones-web-PHP-en-Docker/Tarea4/deploy$ docker-compose up -d
+Creating prestashop-mysql ... done
+Creating prestashop       ... done
+</pre>
+
+Es el momento de a acceder a la dirección `127.0.0.1:8080`:
+
+![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/prestashop1.png)
+
+Podemos ver como nos muestra el instalador de *Prestashop*.
+
+Conectamos la aplicación al contenedor que se encuentra ejecutando la base de datos:
+
+![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/prestashop2.png)
+
+Y terminada la instalación, podremos ver nuestro CMS listo:
+
+![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/prestashop3.png)
+
+![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/prestashop4.png)
+
+Para finalizar, vamos a destruir los contenedores y los volveremos a generar, para ver como seguimos poseyendo la información:
+
+<pre>
+javier@debian:~/Docker/Implantacion-de-aplicaciones-web-PHP-en-Docker/Tarea4/deploy$ docker rm -f prestashop prestashop-mysql
+prestashop
+prestashop-mysql
+
+javier@debian:~/Docker/Implantacion-de-aplicaciones-web-PHP-en-Docker/Tarea4/deploy$ docker-compose up -d
+Creating prestashop-mysql ... done
+Creating prestashop       ... done
+</pre>
+
+Accedemos de nuevo a la dirección `127.0.0.1:8080`:
+
+![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/prestashop5.png)
+
+¡Bien! Podemos ver como nuestra aplicación sigue manteniendo los datos de nuestra tienda, por lo que habría terminado el proceso.
 
 
+#### Ejecución del CMS Drupal a partir de su imagen oficial
 
+En este último apartado vamos a ver como desplegar el CMS PHP llamado **Drupal**.
 
+Poseeremos dos contenedores, uno que ejecutará la base de datos, y otro en el que se ejecutará la aplicación. Este último estará basado en la imagen oficial de *Drupal*.
 
+Para ello, en nuestro directorio `deploy` generaremos el siguiente fichero `docker-compose.yaml`:
 
+<pre>
+version: "3.1"
 
+services:
 
+  db:
+    container_name: drupal-mysql
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_ROOT_PASSWORD: javier
+    volumes:
+      - /home/javier/Docker/Volumes/tarea5/drupal/db:/var/lib/mysql
 
+  drupal:
+    container_name: drupal
+    image: drupal
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - /var/www/html/modules
+      - /var/www/html/profiles
+      - /var/www/html/themes
+      - /var/www/html/sites
+</pre>
 
+Una vez creado el fichero, podríamos desplegar nuestro escenario y por tanto, crear nuestros contenedores.
 
+<pre>
+javier@debian:~/Docker/Implantacion-de-aplicaciones-web-PHP-en-Docker/Tarea5/deploy$ docker-compose up -d
+Pulling drupal (drupal:)...
+latest: Pulling from library/drupal
+45b42c59be33: Already exists
+366d949cba16: Already exists
+4c65628244f3: Already exists
+79a8e4ec25c6: Already exists
+3512b0c25baf: Already exists
+a983b5b9a384: Already exists
+0def93a72fb4: Already exists
+8b8bec9fa383: Pull complete
+80713ac3f2c7: Pull complete
+549982e9dd23: Pull complete
+6d487548f700: Pull complete
+ee1dd2a59f0a: Pull complete
+a92ec02c1897: Pull complete
+a880c8e72363: Pull complete
+49a0baa978da: Pull complete
+f15ffc6b3e10: Pull complete
+7317421d31fe: Pull complete
+e3f350043ad2: Pull complete
+Digest: sha256:347d566bb770c27dabc8de84f7d9996157e9f9e26fd84ca1637df59ec24b12e1
+Status: Downloaded newer image for drupal:latest
+Creating drupal       ... done
+Creating drupal-mysql ... done
+</pre>
 
+Es el momento de a acceder a la dirección `127.0.0.1:8080`:
 
+![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/drupal1.png)
 
+Podemos ver como nos muestra el instalador de *Drupal*, por lo que continuamos el proceso indicando las credenciales de nuestra base de datos:
 
+![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/drupal2.png)
 
+Esperamos que terminen de instalarse los distintos componentes de *Drupal*:
 
+![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/drupal3.png)
 
+Y terminada la instalación, ya podríamos disfruta de nuestro CMS:
 
+![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/drupal4.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.
+¡Bien! Ya habríamos terminado de desplegar *Drupal* en contenedores *Docker*, y con ello este apartado y también el *post* en sí.

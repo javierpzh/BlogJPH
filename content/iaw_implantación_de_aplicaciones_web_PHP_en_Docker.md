@@ -2,7 +2,7 @@ Title: Implantación de aplicaciones web PHP en Docker
 Date: 2021/03/06
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-docker.png
-Tags: Docker, PHP, contenedores, BookMedik, Nginx, Prestashop, Drupal, CMS
+Tags: Docker, PHP, contenedores, BookMedik, Nginx, Prestashop, Drupal, DrupalCMS, CMS
 
 En este artículo voy a realizar el despliegue de varias aplicaciones web escritas en **PHP** en contenedores **Docker**.
 

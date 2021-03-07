@@ -2,7 +2,7 @@ Title: Instalación / migración de aplicaciones web PHP
 Date: 2020/11/20
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-aplicacionesweb.jpg
-Tags: LEMP, Linux, Nginx, MySQL, MariaDB, PHP, Apache, Drupal, Nextcloud, migraciones
+Tags: LEMP, Linux, Nginx, MySQL, MariaDB, PHP, Apache, Drupal, DrupalCMS, Nextcloud, CMS, migraciones
 
 ### Realizar la migración de la aplicación Drupal que tienes instalada en el entorno de desarrollo a nuestro entorno de producción, para ello ten en cuenta lo siguiente:
 

@@ -2,7 +2,7 @@ Title: Implantación de aplicaciones web PHP en Docker
 Date: 2018/03/06
 Category: Implantación de Aplicaciones Web
 Header_Cover: theme/images/banner-docker.png
-Tags: Docker, PHP, contenedores, BookMedik, Nginx
+Tags: Docker, PHP, contenedores, BookMedik, Nginx, Prestashop, Drupal, CMS
 
 En este artículo voy a realizar el despliegue de varias aplicaciones web escritas en **PHP** en contenedores **Docker**.
 
@@ -577,7 +577,7 @@ RUN apt-get update \
 && apt-get -y install \
 unzip wget \
 zlib1g-dev libzip-dev libicu-dev libpng-dev \
-&& wget https://download.prestashop.com/download/releases/prestashop_1.7.7.2.zip -P /var/www/html/ \
+&& wget https://download.prestashop.com/download/releases/prestashop_1.7.7.2.zip -P /opt/ \
 && docker-php-ext-install zip gd pdo_mysql intl \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/* \
@@ -592,6 +592,7 @@ También debemos crear el fichero `script.sh`:
 <pre>
 #!/bin/bash
 
+mv /opt/prestashop_1.7.7.2.zip /var/www/html/
 unzip prestashop_1.7.7.2.zip
 unzip -o prestashop.zip
 rm -rf prestashop.zip prestashop_1.7.7.2.zip
@@ -703,6 +704,8 @@ Creating prestashop       ... done
 Accedemos de nuevo a la dirección `127.0.0.1:8080`:
 
 ![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/prestashop5.png)
+
+![.](images/iaw_implantación_de_aplicaciones_web_PHP_en_Docker/prestashop4.png)
 
 ¡Bien! Podemos ver como nuestra aplicación sigue manteniendo los datos de nuestra tienda, por lo que habría terminado el proceso.
 

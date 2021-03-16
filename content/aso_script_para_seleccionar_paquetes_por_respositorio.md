@@ -9,7 +9,7 @@ Tags: script
 **El *script* acepta los siguientes formatos:**
 
 <pre>
-./script.sh security.debian.org**
+./script.sh security.debian.org
 </pre>
 
 <pre>

@@ -4,9 +4,7 @@ Category: Administración de Sistemas Operativos
 Header_Cover: theme/images/banner-sistemas.jpg
 Tags: compilar, GCC, C, Makefile, wget
 
-## Descripción
-
-**Elige el programa escrito en C que prefieras y comprueba en las fuentes que exista un fichero Makefile para compilarlo.**
+**En esta nueva entrada, vamos a ver como compilar un programa escrito en lenguaje C, a través de un fichero *Makefile*.**
 
 **Realiza los pasos necesarios para compilarlo e instálalo en tu equipo en un directorio que no interfiera con tu sistema de paquetes (/opt, /usr/local, etc.)**
 

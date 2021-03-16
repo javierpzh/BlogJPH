@@ -4,7 +4,7 @@ Date: 2020/11/22
 Header_Cover: theme/images/banner-sistemas.jpg
 Tags: Actualización, CentOS7, CentOS8
 
-Vamos a realizar la actualización de la instancia **Quijote**, que creamos en este [post](https://javierpzh.github.io/creacion-del-escenario-de-trabajo-en-openstack.html) la cuál posee **CentOS 7**, a **CentOS 8**, garantizando que todos los servicios previos continúen funcionando.
+Vamos a realizar la actualización de la instancia **Quijote**, que creamos en este [post](https://javierpzh.github.io/creacion-del-escenario-de-trabajo-en-openstack.html) la cuál posee un sistema **CentOS 7**. Mostraré como actualizar a **CentOS 8**, garantizando que todos los servicios previos continúen funcionando.
 
 Para comprobar la versión de *CentOS* que tenemos instalada en este momento:
 

@@ -5,11 +5,9 @@ Header_Cover: theme/images/banner-sistemas.jpg
 Tags: LDAP, OpenStack
 
 
-#### Realiza la instalación y configuración básica de OpenLDAP en Freston utilizando como base el nombre DNS asignado.
+**En este artículo vamos a realizar la instalación y configuración básica de *OpenLDAP* en *Freston* utilizando como base el nombre DNS asignado.**
 
-#### Crea dos unidades organizativas, una para personas y otra para grupos.
-
-Vamos a proceeder con la instalación de **LDAP**.
+Vamos a proceder con la instalación de **LDAP**.
 
 El servidor **OpenLDAP** está disponible en el paquete `slapd`. También nos conviene instalar el paquete `ldap-utils` que contiene utilidades adicionales:
 
@@ -285,4 +283,4 @@ modifiersName: cn=admin,dc=javierpzh,dc=gonzalonazareno,dc=org
 modifyTimestamp: 20201214095528Z
 </pre>
 
-En la salida del comando, podemos apreciar como se han creado estos dos nuevos objetos **Personas** y **Grupos**.
+En la salida del comando, podemos apreciar como se han creado estos dos nuevos objetos **Personas** y **Grupos**, por lo que este *post* terminaría aquí.

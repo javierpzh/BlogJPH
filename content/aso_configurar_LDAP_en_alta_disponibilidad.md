@@ -326,5 +326,3 @@ result: 0 Success
 </pre>
 
 De nuevo vemos que los datos se encuentran sincronizados, por tanto este *post* habría terminado.
-
-(Alberto, he preparado en *Freston* un fichero llamado `pruebacorrecion.ldif`, que no ha sido insertado, para que puedas comprobar el funcionamiento por ti mismo.)

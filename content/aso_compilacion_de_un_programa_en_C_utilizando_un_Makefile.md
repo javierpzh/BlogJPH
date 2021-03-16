@@ -6,10 +6,6 @@ Tags: compilar, GCC, C, Makefile, wget
 
 **En esta nueva entrada, vamos a ver como compilar un programa escrito en lenguaje C, a través de un fichero *Makefile*.**
 
-**Realiza los pasos necesarios para compilarlo e instálalo en tu equipo en un directorio que no interfiera con tu sistema de paquetes (/opt, /usr/local, etc.)**
-
-**La corrección se hará en clase y deberás ser capaz de explicar qué son todos los ficheros que se hayan instalado y realizar una desinstalación limpia.**
-
 Como introducción, veo necesario explicar que significa la palabra *compilar* y en qué consiste el proceso que voy a realizar.
 
 Cuando nos referimos en términos informáticos a compilar un programa, a lo que nos estamos refiriendo, es a realizar una traducción del código fuente del programa, a un código ejecutable por un sistema. Esta traducción la lleva a cabo una herramienta de software llamada **compilador**.
@@ -20,11 +16,13 @@ Cuando nos referimos en términos informáticos a compilar un programa, a lo que
 
 He decidido elegir el programa **wget**, escrito en **C**, para compilarlo e instalarlo en mi equipo.
 
-El primer paso sería descargarlo. Para ello nos dirigimos a la [página de Debian](https://www.debian.org/distrib/packages) y lo buscamos por su nombre. Si entramos en la [información del paquete](https://packages.debian.org/buster/wget), podemos ver en qué lenguaje está escrito, paquetes similares, paquetes relacionados, bugs, ...
+El primer paso sería descargarlo. Para ello nos dirigimos a la [página de Debian](https://www.debian.org/distrib/packages) y lo buscamos por su nombre. Si entramos en la [información del paquete](https://packages.debian.org/buster/wget), podemos ver en qué lenguaje está escrito, paquetes similares, paquetes relacionados, *bugs*, ...
 
 Para descargar el paquete, nos dirigimos al apartado de la [fuente del paquete](https://packages.debian.org/source/buster/wget), y aquí nos descargamos el archivo que prefiramos, en mi caso voy a descargar [este](http://deb.debian.org/debian/pool/main/w/wget/wget_1.20.1.orig.tar.gz).
 
-Es importante, descargarlo en la ruta `/usr/local/bin` para que no interfiera con el sistema de paquetes. Lo descomprimimos:
+Es importante, descargarlo en la ruta `/usr/local/bin` para que no interfiera con el sistema de paquetes.
+
+Una vez descargado, lo descomprimimos:
 
 <pre>
 tar -xf wget_1.20.1.orig.tar.gz
@@ -32,7 +30,7 @@ tar -xf wget_1.20.1.orig.tar.gz
 
 Vemos que nos ha generado una serie de ficheros y directorios, entre los cuáles se encuentran los archivos ***README*** y ***INSTALL***. Es bastante recomendable leerlos antes de saltar al siguiente paso, ya que contienen información e instrucciones que nos resultarán bastantes útiles. Si no me equivoco, pero digo desde ya que no estoy seguro, hay algunos paquetes que no contienen estos archivos, pero son una gran minoría.
 
-Es necesario revisar que tenemos instalado el paquete `build-essential` y todas sus dependencias. Este paquete incluye todo lo necesario a la hora de compilar. Se trata de un paquete que contiene una lista informativa de los paquetes que se consideran esenciales para la creación de paquetes Debian. Para instalarlo:
+Es necesario revisar que tenemos instalado el paquete `build-essential` y todas sus dependencias. Este paquete incluye todo lo necesario a la hora de compilar. Se trata de un paquete que contiene una lista informativa de los paquetes que se consideran esenciales para la creación de paquetes *Debian*. Para instalarlo:
 
 <pre>
 apt install build-essential -y
@@ -50,13 +48,15 @@ Por último vamos a instalar el paquete `libgnutls28-dev`. **GnuTLS** es una bib
 apt install libgnutls28-dev -y
 </pre>
 
-En este punto, ya lo tenemos todo listo para empezar la compilación del paquete `wget` que queremos instalar. Ahora solo nos queda ejecutar el script `configure`, ejecutar el comando `make` que se encarga de la compilación y ejecutar el comando `make install` que instala la aplicación en el sistema.
+En este punto, ya lo tenemos todo listo para empezar la compilación del paquete `wget` que queremos instalar. Ahora solo nos queda ejecutar el *script* `configure`, ejecutar el comando `make` que se encarga de la compilación y ejecutar el comando `make install` que instala la aplicación en el sistema.
 
 <pre>
 ./configure && make && make install
 </pre>
 
-Siguiendo estos pasos ya habríamos instalado correctamente `wget` en nuestro equipo. Si quisiéramos desinstalarlo, tendríamos que dirigirnos al directorio donde hemos realizado la instalación, en mi caso `/usr/local/bin/wget-1.20.1` y una vez aquí, introducir el comando:
+Siguiendo estos pasos ya habríamos instalado correctamente `wget` en nuestro equipo.
+
+Si quisiéramos desinstalarlo, tendríamos que dirigirnos al directorio donde hemos realizado la instalación, en mi caso `/usr/local/bin/wget-1.20.1` y una vez aquí, introducir el comando:
 
 <pre>
 make uninstall

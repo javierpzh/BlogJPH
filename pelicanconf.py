@@ -13,7 +13,6 @@ DEFAULT_LANG = 'es'
 
 THEME = "pelican-clean-blog"
 
-
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
@@ -26,9 +25,8 @@ SOCIAL = (
          ('Instagram', 'https://www.instagram.com/javierpzh/'),
          ('Twitter', 'https://twitter.com/jperezhid_'),
          ('GitHub', 'https://github.com/javierpzh'),
-	     ('Facebook', 'https://www.facebook.com/javier.perezhidalgo.904'),
-	     ('envelope-square', 'mailto:javierperezhidalgo01@gmail.com'),
-         ('LinkedIn', 'https://www.linkedin.com/in/javier-p%C3%A9rez-hidalgo/')
+	     ('LinkedIn', 'https://www.linkedin.com/in/javier-p%C3%A9rez-hidalgo/'),
+	     ('envelope-square', 'mailto:javierperezhidalgo01@gmail.com')
          )
 
 DEFAULT_PAGINATION = 10

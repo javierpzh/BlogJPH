@@ -1,7 +1,7 @@
 Title: Introducción y desarrollo de VPN con WireGuard
 Date: 2021/07/01
 Category: Seguridad y Alta Disponibilidad
-Header_Cover: theme/images/banner-wireguard.png
+Header_Cover: theme/images/banner-vpn.png
 Tags: VPN, WireGuard, Site-to-Site
 
 A día de hoy, nos encontramos con una situación de monopolio absoluto en el mundo de las VPN, liderado por **OpenVPN**, que ya todos conoceréis, o incluso habréis trabajado con él.

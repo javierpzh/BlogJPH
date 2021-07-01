@@ -84,11 +84,14 @@ Entre las más significativas, se encuentran las siguientes:
 En este punto, podemos hacernos una idea de todo el potencial de *WireGuard*, y de lo que promete llegar a ser en un futuro no muy lejano. Para verlo con un poco más de profundidad, y como no podía faltar, vamos a ver algunos ejemplos prácticos de este software.
 
 
-### Conexión Side to Side
+### Conexión Site to Site
 
-En primer lugar, para mostrar el funcionamiento de WireGuard, voy a mostrar cómo se realiza una conexión “Side to Side” mediante comandos. Esto nos servirá para comprender mejor la comodidad que nos brinda WireGuard, aunque no es lo recomendable para una puesta en producción.
+En primer lugar, para mostrar el funcionamiento de *WireGuard*, voy a mostrar cómo se realiza una conexión **“Site to Site”** mediante comandos. Esto nos servirá para comprender mejor la comodidad que nos brinda *WireGuard*, aunque no es lo recomendable para una puesta en producción.
+
 Para ello he grabado el siguiente vídeo donde se puede apreciar con todo detalle el proceso:
-Demo Side to Side - WireGuard
+
+[Demo Site to Site - WireGuard](https://www.youtube.com/watch?v=tRnnk_P8cyA)
+
 
 ### Escenario real para producción
 

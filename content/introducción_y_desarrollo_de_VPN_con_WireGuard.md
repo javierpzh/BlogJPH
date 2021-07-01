@@ -44,7 +44,7 @@ Teniendo en cuenta estos aspectos, me interesé por **WireGuard**, y empecé a i
 
 ## ¿ Qué es WireGuard ?
 
-![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/transparente-wireguard.png)
+![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/wireguard.png)
 
 *WireGuard* es un protocolo de comunicación de software libre que implementa técnicas de VPN para crear conexiones seguras punto a punto en configuraciones enrutadas o puenteadas.
 

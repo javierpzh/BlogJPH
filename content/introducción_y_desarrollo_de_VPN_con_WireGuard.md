@@ -1,7 +1,7 @@
 Title: Introducción y desarrollo de VPN con WireGuard
 Date: 2021/07/01
 Category: Seguridad y Alta Disponibilidad
-Header_Cover: theme/images/banner-wireguard.jpg
+Header_Cover: theme/images/banner-wireguard.png
 Tags: VPN, WireGuard, Site-to-Site
 
 A día de hoy, nos encontramos con una situación de monopolio absoluto en el mundo de las VPN, liderado por **OpenVPN**, que ya todos conoceréis, o incluso habréis trabajado con él.
@@ -31,7 +31,7 @@ Teniendo en cuenta estos aspectos, me interesé por WireGuard, y empecé a inves
 
 
 
-¿ Qué es WireGuard ?
+## ¿ Qué es WireGuard ?
 
 WireGuard es un protocolo de comunicación de software libre que implementa técnicas de VPN para crear conexiones seguras punto a punto en configuraciones enrutadas o puenteadas.
 Es una aplicación multiplataforma (Linux, Windows, macOS, Android e iOS). Se presenta como una solución más rápida y sencilla que las existentes hasta la fecha, para aquellos usuarios que necesiten o deseen hacer uso de una VPN.
@@ -49,7 +49,7 @@ Hace uso del protocolo UDP, normalmente se utiliza el puerto 51820, aunque por d
 
 
 
-Principales diferencias con OpenVPN
+### Principales diferencias con OpenVPN
 
 Para combatir a su principal rival e incitar al cambio a los clientes, WireGuard se ha visto en la obligación de tener que incorporar una serie de mejoras.
 Entre las más significativas, se encuentran las siguientes:
@@ -69,19 +69,19 @@ Entre las más significativas, se encuentran las siguientes:
 - Kill-Switch: En WireGuard podremos habilitar el Kill-Switch en los dispositivos, de esta forma, si la conexión VPN se interrumpe, el propio software también se encargará de interrumpir todo el tráfico de red hasta que se vuelva a reestablecer la conexión VPN, con el objetivo de que no naveguemos sin la protección que nos brinda esta VPN.
 En este punto, podemos hacernos una idea de todo el potencial de WireGuard, y de lo que promete llegar a ser en un futuro no muy lejano. Para verlo con un poco más de profundidad, y como no podía faltar, vamos a ver algunos ejemplos prácticos de este software.
 
-Conexión Side to Side
+### Conexión Side to Side
 
 En primer lugar, para mostrar el funcionamiento de WireGuard, voy a mostrar cómo se realiza una conexión “Side to Side” mediante comandos. Esto nos servirá para comprender mejor la comodidad que nos brinda WireGuard, aunque no es lo recomendable para una puesta en producción.
 Para ello he grabado el siguiente vídeo donde se puede apreciar con todo detalle el proceso:
 Demo Side to Side - WireGuard
 
-Escenario real para producción
+### Escenario real para producción
 
 Además del ejemplo visto en el apartado anterior, he preparado un escenario más elaborado y que simularía una puesta en producción mucho más real.
 Este escenario está liderado por un servidor que se encontrará en una máquina virtual con un sistema Debian 11.
 Como clientes voy a incorporar uno con un sistema Debian 11 y un cliente Windows. Adicionalmente, WireGuard posee una app tanto en Play Store para usuarios de Android, como en App Store para los usuarios de iOS. Dada esta posibilidad, también incorporaré un cliente de cada uno de estos tipos. Además, en todos estos dispositivos, las configuraciones las realizaré mediante ficheros, es decir, lo idóneo para una puesta en producción. Hecha esta pequeña introducción vamos a pasar con las propias configuraciones en sí.
 
-Configuración servidor Debian 11 (primera parte)
+#### Configuración servidor Debian 11 (primera parte)
 En primer lugar, empezaremos viendo la configuración del servidor WireGuard, recordemos en una máquina Debian 11. Comenzaremos instalando el paquete en sí. Este paquete estará disponible en repositorios a partir de Debian 11, para versiones anteriores lo podremos encontrar en repositorios backports:
 root@server:~# apt install wireguard –y
 
@@ -156,7 +156,10 @@ root@server:/etc/wireguard# ip a show wg0
 
 root@server:/etc/wireguard# systemctl enable wg-quick@wg0
 Created symlink /etc/systemd/system/multi-user.target.wants/wg-quick@wg0.service → /lib/systemd/system/wg-quick@.service.
-Configuración cliente Debian 11
+
+
+#### Configuración cliente Debian 11
+
 En este punto vamos a pasar con la configuración del primer cliente. Se trata del cliente Linux.
 El inicio del proceso es exactamente el mismo que el que hemos llevado a cabo en el servidor, por lo que omitiré las explicaciones realizadas anteriormente:
 root@client:~# apt install wireguard -y
@@ -210,7 +213,7 @@ Como podemos ver es un proceso totalmente rápido y sencillo, así que tan solo 
 
 
 
-Configuración servidor Debian 11 (añadiendo cliente Linux)
+#### Configuración servidor Debian 11 (añadiendo cliente Linux)
 Como he comentado, el cliente Linux ya se encontraría listo para poder navegar a través de nuestro servidor VPN, pero el servidor aún no lo hemos configurado para que sea capaza de tratar a este cliente, por lo que vamos a llevar a cabo dicho proceso.
 De nuevo editaremos el fichero de configuración “wg0.conf” y en él, ahora sí, añadiremos la sección Peer.
 Como ya hemos visto, en la parte de los clientes, tan solo vamos a tener que añadir una sección Peer que definirá al propio servidor al que deseemos conectarnos, pero en el caso de los servidores es distinto, ya que tendremos que crear una sección Peer por cada cliente que deseamos que se conecte.

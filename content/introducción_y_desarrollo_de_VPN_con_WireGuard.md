@@ -44,11 +44,11 @@ Teniendo en cuenta estos aspectos, me interesé por **WireGuard**, y empecé a i
 
 ## ¿ Qué es WireGuard ?
 
-![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/wireguard.png)
-
 *WireGuard* es un protocolo de comunicación de software libre que implementa técnicas de VPN para crear conexiones seguras punto a punto en configuraciones enrutadas o puenteadas.
 
 Es una aplicación **multiplataforma** (Linux, Windows, macOS, Android e iOS). Se presenta como una solución más rápida y sencilla que las existentes hasta la fecha, para aquellos usuarios que necesiten o deseen hacer uso de una VPN.
+
+![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/wireguard.png)
 
 Nació en el año 2016, por lo que es una tecnología muy reciente, aún en desarrollo y no conocida por muchos. Está escrita por Jason A. Donenfeld en **C++** y en **Go**, y publicada bajo GPL.
 

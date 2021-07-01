@@ -59,7 +59,6 @@ Sus creadores, aseguran una gran superioridad frente a *OpenVPN*, en aspectos co
 
 Hace uso del protocolo **UDP**, normalmente se utiliza el puerto 51820, aunque por defecto WireGuard utiliza puertos dinámicos. En mi caso, recomiendo asignar de manera estática el puerto **51820**, ya que es bastante más recomendable si vamos a implantar la aplicación detrás de un cortafuegos.
 
-![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/gráficoVPN.png)
 
 
 ### Principales diferencias con OpenVPN

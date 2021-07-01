@@ -257,7 +257,7 @@ AllowedIPs = 0.0.0.0/0
 Endpoint = 192.168.0.49:51820
 </pre>
 
-Podemos ver como en la sección Interface los campos son iguales que en el fichero del servidor, por lo que me centraré y trataré de explicar ahora la sección Peer:
+Podemos ver como en la sección *Interface* los campos son iguales que en el fichero del servidor, por lo que me centraré y trataré de explicar ahora la sección *Peer*:
 
 - **PublicKey:** especificamos la clave pública del servidor.
 
@@ -266,7 +266,8 @@ Podemos ver como en la sección Interface los campos son iguales que en el fiche
 - **Endpoint:** define la dirección del servidor al que nos conectaremos.
 
 
-Con esto habríamos terminado la configuración del cliente Linux.
+Con esto habríamos terminado la configuración del cliente *Linux*.
+
 Como podemos ver es un proceso totalmente rápido y sencillo, así que tan solo faltaría iniciar el servicio y esperar a la conexión.
 
 
@@ -384,7 +385,7 @@ PING www.google.es (172.217.17.3) 56(84) bytes of data.
 rtt min/avg/max/mdev = 18.946/20.402/21.957/1.231 ms
 </pre>
 
-En este momento, ya habríamos terminado el proceso de añadir el cliente Linux, así que vamos a pasar con un nuevo cliente, es el turno de *Windows*.
+En este momento, ya habríamos terminado el proceso de añadir el cliente *Linux*, así que vamos a pasar con un nuevo cliente, es el turno de *Windows*.
 
 
 #### Configuración cliente Windows
@@ -404,7 +405,7 @@ A continuación, voy a mostrar una captura de pantalla en la que visualizaremos 
 
 
 
-Antes de activar la conexión, añadiremos a nuestro servidor esta nueva sección Peer y lo reiniciaremos para aplicar cambios:
+Antes de activar la conexión, añadiremos a nuestro servidor esta nueva sección *Peer* y lo reiniciaremos para aplicar cambios:
 # W10 Client
 [Peer]
 PublicKey = 7HopGKOY2C8f6jBfEkc8whKUSoNSDvsqgI0ZMzPQ8Bg=

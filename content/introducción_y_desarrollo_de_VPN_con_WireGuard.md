@@ -44,6 +44,8 @@ Teniendo en cuenta estos aspectos, me interesé por **WireGuard**, y empecé a i
 
 ## ¿ Qué es WireGuard ?
 
+![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/transparente-wireguard.png)
+
 *WireGuard* es un protocolo de comunicación de software libre que implementa técnicas de VPN para crear conexiones seguras punto a punto en configuraciones enrutadas o puenteadas.
 
 Es una aplicación **multiplataforma** (Linux, Windows, macOS, Android e iOS). Se presenta como una solución más rápida y sencilla que las existentes hasta la fecha, para aquellos usuarios que necesiten o deseen hacer uso de una VPN.
@@ -60,7 +62,6 @@ Sus creadores, aseguran una gran superioridad frente a *OpenVPN*, en aspectos co
 
 Hace uso del protocolo **UDP**, normalmente se utiliza el puerto 51820, aunque por defecto WireGuard utiliza puertos dinámicos. En mi caso, recomiendo asignar de manera estática el puerto **51820**, ya que es bastante más recomendable si vamos a implantar la aplicación detrás de un cortafuegos.
 
-![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/transparente-wireguard.png)
 
 
 ### Principales diferencias con OpenVPN

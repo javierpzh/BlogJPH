@@ -71,7 +71,7 @@ Entre las más significativas, se encuentran las siguientes:
 
 - **Mejoras de ping:** *WireGuard* registra un tiempo de ping que es menos de la mitad del de *OpenVPN*.
 
-![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/gráficoping.png)
+![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/gráficospinglatencia.png)
 
 
 

@@ -185,13 +185,21 @@ root@server:/etc/wireguard# wg-quick up wg0
 [#] ip -4 address add 10.0.100.1 dev wg0
 [#] ip link set mtu 1420 up dev wg0
 [#] iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-Podemos ver cómo nos ha levantado el túnel, además, de haber aplicado las reglas especificadas, por lo que ahora mismo el servidor se encontraría activo. Esto se puede comprobar con el comando “wg”, que nos da un resumen del estado actual del servicio de WireGuard:
+</pre>
+
+Podemos ver cómo nos ha levantado el túnel, además, de haber aplicado las reglas especificadas, por lo que ahora mismo el servidor se encontraría activo. Esto se puede comprobar con el comando `wg`, que nos da un resumen del estado actual del servicio de *WireGuard*:
+
+<pre>
 root@server:/etc/wireguard# wg
 interface: wg0
   public key: cgJ6GfgX1x+YCDzW7TyrmuPzxfkJf5798h+NWwmVlmk=
   private key: (hidden)
   listening port: 51820
-Vamos a comprobar la nueva interfaz de red, en la podemos ver que le ha asignado la IP correctamente. Como último paso, voy a activar el inicio del servicio de WireGuard en cada arranque del sistema. Esto lo podemos hacer porque WireGuard posee una unidad de systemd, por lo que también podríamos manejar nuestro servidor a través de ella:
+</pre>
+
+Vamos a comprobar la nueva interfaz de red, en la podemos ver que le ha asignado la IP correctamente. Como último paso, voy a activar el inicio del servicio de *WireGuard* en cada arranque del sistema. Esto lo podemos hacer porque *WireGuard* posee una unidad de *systemd*, por lo que también podríamos manejar nuestro servidor a través de ella:
+
+<pre>
 root@server:/etc/wireguard# ip a show wg0
 4: wg0: <POINTOPOINT,NOARP,UP,LOWER_UP> mtu 1420 qdisc noqueue state UNKNOWN group default qlen 1000
     link/none
@@ -200,6 +208,7 @@ root@server:/etc/wireguard# ip a show wg0
 
 root@server:/etc/wireguard# systemctl enable wg-quick@wg0
 Created symlink /etc/systemd/system/multi-user.target.wants/wg-quick@wg0.service → /lib/systemd/system/wg-quick@.service.
+</pre>
 
 
 #### Configuración cliente Debian 11

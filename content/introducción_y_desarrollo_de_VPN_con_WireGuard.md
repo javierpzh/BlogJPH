@@ -213,8 +213,11 @@ Created symlink /etc/systemd/system/multi-user.target.wants/wg-quick@wg0.service
 
 #### Configuración cliente Debian 11
 
-En este punto vamos a pasar con la configuración del primer cliente. Se trata del cliente Linux.
+En este punto vamos a pasar con la configuración del primer cliente. Se trata del cliente *Linux*.
+
 El inicio del proceso es exactamente el mismo que el que hemos llevado a cabo en el servidor, por lo que omitiré las explicaciones realizadas anteriormente:
+
+<pre>
 root@client:~# apt install wireguard -y
 
 root@client:~# cd /etc/wireguard/
@@ -233,15 +236,13 @@ qEFD2evf0hEr/oAWCTReK7BCuRjZ+zeCu45WgSV1QlQ=
 
 root@client:/etc/wireguard# cat clientpublickey
 MVD+I0Q7Y4F8dZK6Nl5Lx7C5IDIv1h+Olnf9dBmJNns=
-
-
-
-
-
-
+</pre>
 
 De nuevo, crearemos un fichero de configuración, esta vez obviamente para el cliente.
-En él, vamos a volver a establecer la sección Interface que ya vimos en el servidor, y también añadiremos una nueva, llamada Peer. En esta sección es donde aparecerán los datos relativos al servidor:
+
+En él, vamos a volver a establecer la sección **Interface** que ya vimos en el servidor, y también añadiremos una nueva, llamada **Peer**. En esta sección es donde aparecerán los datos relativos al servidor:
+
+<pre>
 root@client:/etc/wireguard# nano wg0.conf
 
 root@client:/etc/wireguard# cat wg0.conf
@@ -254,21 +255,27 @@ ListenPort = 51820
 PublicKey = cgJ6GfgX1x+YCDzW7TyrmuPzxfkJf5798h+NWwmVlmk=
 AllowedIPs = 0.0.0.0/0
 Endpoint = 192.168.0.49:51820
+</pre>
+
 Podemos ver como en la sección Interface los campos son iguales que en el fichero del servidor, por lo que me centraré y trataré de explicar ahora la sección Peer:
-- PublicKey: especificamos la clave pública del servidor.
-- AllowedIPs: especificamos el rango de IPs que vamos a permitir que se nos asigne.
-- Endpoint: define la dirección del servidor al que nos conectaremos.
+
+- **PublicKey:** especificamos la clave pública del servidor.
+
+- **AllowedIPs:** especificamos el rango de IPs que vamos a permitir que se nos asigne.
+
+- **Endpoint:** define la dirección del servidor al que nos conectaremos.
+
+
 Con esto habríamos terminado la configuración del cliente Linux.
 Como podemos ver es un proceso totalmente rápido y sencillo, así que tan solo faltaría iniciar el servicio y esperar a la conexión.
 
 
-
-
-
-
 #### Configuración servidor Debian 11 (añadiendo cliente Linux)
-Como he comentado, el cliente Linux ya se encontraría listo para poder navegar a través de nuestro servidor VPN, pero el servidor aún no lo hemos configurado para que sea capaza de tratar a este cliente, por lo que vamos a llevar a cabo dicho proceso.
-De nuevo editaremos el fichero de configuración “wg0.conf” y en él, ahora sí, añadiremos la sección Peer.
+
+Como he comentado, el cliente Linux ya se encontraría listo para poder navegar a través de nuestro servidor VPN, pero el servidor aún no lo hemos configurado para que sea capaz de tratar a este cliente, por lo que vamos a llevar a cabo dicho proceso.
+
+De nuevo editaremos el fichero de configuración **“wg0.conf”** y en él, ahora sí, añadiremos la sección **Peer**.
+
 Como ya hemos visto, en la parte de los clientes, tan solo vamos a tener que añadir una sección Peer que definirá al propio servidor al que deseemos conectarnos, pero en el caso de los servidores es distinto, ya que tendremos que crear una sección Peer por cada cliente que deseamos que se conecte.
 Explicado esto, voy a enseñar el contenido del fichero del servidor tras realizar las modificaciones y añadir a este nuevo cliente Linux:
 root@server:/etc/wireguard# nano wg0.conf

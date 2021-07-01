@@ -490,9 +490,9 @@ PersistentKeepAlive = 25
 
 Reiniciado el servidor y activadas las conexiones en ambos clientes, ya podríamos disfrutar de todas las ventajas de nuestra red privada. Para mostrar el funcionamiento de ambos dispositivos, he preparado al igual que anteriormente, dos vídeos en los que muestro a tiempo real el servidor y el cliente en cuestión.
 
-(Demo Android - WireGuard)[]
+[Demo Android - WireGuard](https://www.youtube.com/watch?v=yrL_ZS1-xGQ)
 
-(Demo iOS - WireGuard)[]
+[Demo iOS - WireGuard](https://www.youtube.com/watch?v=Z4zdkleJfKg)
 
 
 ##Conclusión

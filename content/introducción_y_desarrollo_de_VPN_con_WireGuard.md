@@ -398,7 +398,7 @@ Para los usuarios de *Windows*, *WireGuard* tiene disponible una aplicación de 
 
 A continuación, voy a mostrar una captura de pantalla en la que visualizaremos la configuración de este nuevo cliente:
 
-
+![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/1-W10-config.jpeg)
 
 Antes de activar la conexión, añadiremos a nuestro servidor esta nueva sección *Peer* y lo reiniciaremos para aplicar cambios:
 
@@ -412,9 +412,11 @@ PersistentKeepAlive = 25
 
 Con el servidor listo, podremos activar el túnel desde nuestro cliente y automáticamente podremos visualizar la nueva interfaz con nuestra IP dentro de la red privada, además de poseer conexión a internet:
 
+![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/2-W10-activate.jpeg)
 
+![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/3-W10-direcciónIP.jpeg)
 
-
+![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/4-W10-ping.jpeg)
 
 Además de esto, he preparado una pequeña demo en la que podremos ver en tiempo real tanto el servidor como el cliente, cuando estamos navegando y realizando transmisiones de datos.
 

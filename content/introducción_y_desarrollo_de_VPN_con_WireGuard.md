@@ -19,6 +19,8 @@ Básicamente, lo que te permite es crear una red local sin necesidad que sus int
 
 Bien, una vez conocemos lo que es una VPN y las ventajas que nos ofrece, es el momento de preguntarnos, ¿necesitamos las VPNs?
 
+![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/gráficoVPN.png)
+
 
 ## ¿ Son necesarias las VPNs ?
 
@@ -40,7 +42,6 @@ Como he dicho al principio, hoy en día nos encontramos con una gran monopolizac
 Teniendo en cuenta estos aspectos, me interesé por **WireGuard**, y empecé a investigar un poco, dándome cuenta rápidamente y quedando gratamente sorprendido al ver sus sencillos procesos de configuración.
 
 
-
 ## ¿ Qué es WireGuard ?
 
 *WireGuard* es un protocolo de comunicación de software libre que implementa técnicas de VPN para crear conexiones seguras punto a punto en configuraciones enrutadas o puenteadas.
@@ -60,17 +61,17 @@ Sus creadores, aseguran una gran superioridad frente a *OpenVPN*, en aspectos co
 Hace uso del protocolo **UDP**, normalmente se utiliza el puerto 51820, aunque por defecto WireGuard utiliza puertos dinámicos. En mi caso, recomiendo asignar de manera estática el puerto **51820**, ya que es bastante más recomendable si vamos a implantar la aplicación detrás de un cortafuegos.
 
 
-
 ### Principales diferencias con OpenVPN
 
-Para combatir a su principal rival e incitar al cambio a los clientes, WireGuard se ha visto en la obligación de tener que incorporar una serie de mejoras.
+Para combatir a su principal rival e incitar al cambio a los clientes, *WireGuard* se ha visto en la obligación de tener que incorporar una serie de mejoras.
+
 Entre las más significativas, se encuentran las siguientes:
-- Notables mejoras de rendimiento: WireGuard casi toca el rendimiento del 100% de una conexión de 1 Gbps, y lo hace sin maximizar la CPU del servidor, esto, gracias a que su código está formado por unas 4 000 líneas de código, frente a las más de 100 000 que forman OpenVPN.
-- Mejoras de ping: WireGuard registra un tiempo de ping que es menos de la mitad del de OpenVPN.
 
+- **Notables mejoras de rendimiento:** *WireGuard* casi toca el rendimiento del 100% de una conexión de 1 Gbps, y lo hace sin maximizar la CPU del servidor, esto, gracias a que su código está formado por unas 4 000 líneas de código, frente a las más de 100 000 que forman *OpenVPN*.
 
+- **Mejoras de ping:** *WireGuard* registra un tiempo de ping que es menos de la mitad del de *OpenVPN*.
 
-
+![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/gráficoping.png)
 
 
 

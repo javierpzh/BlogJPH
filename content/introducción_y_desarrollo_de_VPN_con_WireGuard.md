@@ -96,14 +96,22 @@ Para ello he grabado el siguiente vídeo donde se puede apreciar con todo detall
 ### Escenario real para producción
 
 Además del ejemplo visto en el apartado anterior, he preparado un escenario más elaborado y que simularía una puesta en producción mucho más real.
-Este escenario está liderado por un servidor que se encontrará en una máquina virtual con un sistema Debian 11.
-Como clientes voy a incorporar uno con un sistema Debian 11 y un cliente Windows. Adicionalmente, WireGuard posee una app tanto en Play Store para usuarios de Android, como en App Store para los usuarios de iOS. Dada esta posibilidad, también incorporaré un cliente de cada uno de estos tipos. Además, en todos estos dispositivos, las configuraciones las realizaré mediante ficheros, es decir, lo idóneo para una puesta en producción. Hecha esta pequeña introducción vamos a pasar con las propias configuraciones en sí.
+
+Este escenario está liderado por un servidor que se encontrará en una máquina virtual con un sistema **Debian 11**.
+
+Como clientes voy a incorporar uno con un sistema **Debian 11** y un cliente **Windows**. Adicionalmente, *WireGuard* posee una app tanto en *Play Store* para usuarios de **Android**, como en *App Store* para los usuarios de **iOS**. Dada esta posibilidad, también incorporaré un cliente de cada uno de estos tipos. Además, en todos estos dispositivos, las configuraciones las realizaré mediante ficheros, es decir, lo idóneo para una puesta en producción. Hecha esta pequeña introducción vamos a pasar con las propias configuraciones en sí.
 
 #### Configuración servidor Debian 11 (primera parte)
-En primer lugar, empezaremos viendo la configuración del servidor WireGuard, recordemos en una máquina Debian 11. Comenzaremos instalando el paquete en sí. Este paquete estará disponible en repositorios a partir de Debian 11, para versiones anteriores lo podremos encontrar en repositorios backports:
-root@server:~# apt install wireguard –y
 
-Una vez instalado deberemos habilitar el bit de forward, para permitir el reenvío de paquetes:
+En primer lugar, empezaremos viendo la configuración del servidor *WireGuard*, recordemos en una máquina *Debian 11*. Comenzaremos instalando el paquete en sí. Este paquete estará disponible en repositorios a partir de *Debian 11*, para versiones anteriores lo podremos encontrar en repositorios *backports*:
+
+<pre>
+root@server:~# apt install wireguard –y
+</pre>
+
+Una vez instalado deberemos habilitar el **bit de forward**, para permitir el reenvío de paquetes:
+
+<pre>
 root@server:~# nano /etc/sysctl.conf
 ...
 net.ipv4.ip_forward = 1
@@ -111,11 +119,23 @@ net.ipv4.ip_forward = 1
 
 root@server:~# sysctl -p /etc/sysctl.conf
 net.ipv4.ip_forward = 1
-Hecho esto podremos dirigirnos al directorio de trabajo de WireGuard, que se encuentra en esta ruta:
+</pre>
+
+Hecho esto podremos dirigirnos al directorio de trabajo de *WireGuard*, que se encuentra en esta ruta:
+
+<pre>
 root@server:~# cd /etc/wireguard/
+</pre>
+
 Modificaremos la política de permisos en este directorio para que los ficheros que vamos a crear en los pasos posteriores, se creen de manera predeterminada con los permisos adecuados:
- root@server:/etc/wireguard# umask 077
-Ahora es el paso de generar nuestro par de claves públicas privadas mediante el siguiente comando que nos facilita WireGuard:
+
+<pre>
+root@server:/etc/wireguard# umask 077
+</pre>
+
+Ahora es el paso de generar nuestro par de claves públicas privadas mediante el siguiente comando que nos facilita *WireGuard*:
+
+<pre>
 root@server:/etc/wireguard# wg genkey | tee serverprivatekey | wg pubkey > serverpublickey
 
 root@server:/etc/wireguard# ls -l
@@ -128,9 +148,11 @@ wOENVR47BOYbfHFUUiYLq2H3xKOSZAe0oNNUXoHXVGk=
 
 root@server:/etc/wireguard# cat serverpublickey
 cgJ6GfgX1x+YCDzW7TyrmuPzxfkJf5798h+NWwmVlmk=
+</pre>
 
+Generados dichas claves, podremos crear nuestro fichero de configuración en el servidor, lo que va a definir su comportamiento/funcionamiento. El nombre que le asignemos, será el nombre que recibirá la interfaz de red de este túnel VPN, normalmente se le asigna el nombre **“wg0”** seguido de la terminación **“.conf”** . Dicho archivo poseerá inicialmente el siguiente aspecto:
 
-Generados dichas claves, podremos crear nuestro fichero de configuración en el servidor, lo que va a definir su comportamiento / funcionamiento. El nombre que le asignemos, será el nombre que recibirá la interfaz de red de este túnel VPN, normalmente se le asigna el nombre “wg0” seguido de la terminación “.conf” . Dicho archivo poseerá inicialmente el siguiente aspecto:
+<pre>
 root@server:/etc/wireguard# nano wg0.conf
 
 root@server:/etc/wireguard# cat wg0.conf
@@ -141,18 +163,22 @@ PrivateKey = wOENVR47BOYbfHFUUiYLq2H3xKOSZAe0oNNUXoHXVGk=
 ListenPort = 51820
 PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
-Podemos apreciar que he añadido una nueva sección llamada Interface y dentro de ella disponemos de varios campos:
-- Address: define la dirección IP que tendrá nuestro servidor.
-- PrivateKey: especificamos la clave privada que generamos anteriormente.
-- ListenPort: este campo no es obligatorio, pero sí es recomendable añadirlo para asignar un puerto estático. En mi caso defino el 51820 que es el que normalmente se utiliza en WireGuard.
-- PostUp / PostDown: definen las reglas de iptables que se levantarán y se eliminarán al iniciar o detener el servicio del servidor, de manera que podremos automatizar el proceso y será mucho más eficiente.
+</pre>
+
+Podemos apreciar que he añadido una nueva sección llamada **Interface** y dentro de ella disponemos de varios campos:
+
+- **Address:** define la dirección IP que tendrá nuestro servidor.
+
+- **PrivateKey:** especificamos la clave privada que generamos anteriormente.
+
+- **ListenPort:** este campo no es obligatorio, pero sí es recomendable añadirlo para asignar un puerto estático. En mi caso defino el *51820* que es el que normalmente se utiliza en *WireGuard*.
+
+- **PostUp / PostDown:** definen las reglas de *iptables* que se levantarán y se eliminarán al iniciar o detener el servicio del servidor, de manera que podremos automatizar el proceso y será mucho más eficiente.
 
 
+Es el momento de activar el servidor y ponerlo en funcionamiento. Para ello, algo que aún no he comentado, se utiliza el comando `wg-quick up/down (interfaz)` que sirve para manejar la actividad del servidor:
 
-
-
-
-Es el momento de activar el servidor y ponerlo en funcionamiento. Para ello, algo que aún no he comentado, se utiliza el comando “wg-quick up/down (interfaz)” que sirve para manejar la actividad del servidor:
+<pre>
 root@server:/etc/wireguard# wg-quick up wg0
 [#] ip link add wg0 type wireguard
 [#] wg setconf wg0 /dev/fd/63

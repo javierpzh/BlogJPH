@@ -276,8 +276,11 @@ Como he comentado, el cliente Linux ya se encontraría listo para poder navegar 
 
 De nuevo editaremos el fichero de configuración **“wg0.conf”** y en él, ahora sí, añadiremos la sección **Peer**.
 
-Como ya hemos visto, en la parte de los clientes, tan solo vamos a tener que añadir una sección Peer que definirá al propio servidor al que deseemos conectarnos, pero en el caso de los servidores es distinto, ya que tendremos que crear una sección Peer por cada cliente que deseamos que se conecte.
-Explicado esto, voy a enseñar el contenido del fichero del servidor tras realizar las modificaciones y añadir a este nuevo cliente Linux:
+Como ya hemos visto, en la parte de los clientes, tan solo vamos a tener que añadir una sección *Peer* que definirá al propio servidor al que deseemos conectarnos, pero en el caso de los servidores es distinto, ya que tendremos que crear una sección *Peer* por cada cliente que deseamos que se conecte.
+
+Explicado esto, voy a enseñar el contenido del fichero del servidor tras realizar las modificaciones y añadir a este nuevo cliente *Linux*:
+
+<pre>
 root@server:/etc/wireguard# nano wg0.conf
 
 root@server:/etc/wireguard# cat wg0.conf
@@ -296,9 +299,15 @@ PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACC
 Publickey = MVD+I0Q7Y4F8dZK6Nl5Lx7C5IDIv1h+Olnf9dBmJNns=
 AllowedIPs = 10.0.100.2/32
 PersistentKeepAlive = 25
+</pre>
+
 Podemos apreciar que en esta nueva sección volvemos a tener 3 campos.
-Nos encontramos con la clave pública esta vez del cliente, nos encontramos con el campo que definirá la dirección IP que se le va a asignar dentro de nuestro de nuestra red privada a este cliente, y nos encontramos con un nuevo campo llamado “PersistenKeepAlive” qué es opcional y se encargará de, si en más de 25 segundos no se realiza ninguna transmisión de datos entre el cliente/servidor, enviar un pequeño paquete que verificará que la conexión sigue activa, pero como digo no es obligatorio.
+
+Nos encontramos con la clave pública esta vez del cliente, nos encontramos con el campo que definirá la dirección IP que se le va a asignar dentro de nuestro de nuestra red privada a este cliente, y nos encontramos con un nuevo campo llamado **“PersistenKeepAlive”** qué es opcional y se encargará de, si en más de 25 segundos no se realiza ninguna transmisión de datos entre el cliente/servidor, enviar un pequeño paquete que verificará que la conexión sigue activa, pero como digo no es obligatorio.
+
 Hecho esto, aplicaremos los cambios a nuestro servidor reiniciando el servicio:
+
+<pre>
 root@server:/etc/wireguard# wg-quick down wg0
 [#] ip link delete dev wg0
 [#] iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
@@ -320,8 +329,13 @@ interface: wg0
 peer: MVD+I0Q7Y4F8dZK6Nl5Lx7C5IDIv1h+Olnf9dBmJNns=
   allowed ips: 10.0.100.2/32
   persistent keepalive: every 25 seconds
+</pre>
+
 Podemos ver como ahora, en el estado del servidor nos aparece una nueva sección que hace referencia a nuestro cliente. Irán apareciendo más secciones a medida que añadamos más clientes a nuestra red privada.
-Ahora sí, nuestro servidor estaría preparado para permitir que el cliente Linux navegue a través de él, por lo que vamos a iniciar el servicio en dicho cliente y comprobar que realmente podemos navegar y tenemos acceso a internet:
+
+Ahora sí, nuestro servidor estaría preparado para permitir que el cliente *Linux* navegue a través de él, por lo que vamos a iniciar el servicio en dicho cliente y comprobar que realmente podemos navegar y tenemos acceso a internet:
+
+<pre>
 root@client:/etc/wireguard# wg-quick up wg0
 [#] ip link add wg0 type wireguard
 [#] wg setconf wg0 /dev/fd/63
@@ -346,8 +360,13 @@ peer: cgJ6GfgX1x+YCDzW7TyrmuPzxfkJf5798h+NWwmVlmk=
   allowed ips: 0.0.0.0/0
   latest handshake: 34 seconds ago
   transfer: 156 B received, 260 B sent
-Se puede apreciar cómo el cliente ya se ha conectado al servidor. Esto se debe a que han aparecido en los campos “latest handshake” y “transfer”. El primero define el tiempo que lleva en curso la conexión y el segundo la cantidad de datos que se han recibido/enviado.
+</pre>
+
+Se puede apreciar cómo el cliente ya se ha conectado al servidor. Esto se debe a que han aparecido en los campos **“latest handshake”** y **“transfer”**. El primero define el tiempo que lleva en curso la conexión y el segundo la cantidad de datos que se han recibido/enviado.
+
 Si visualizamos la nueva interfaz de red, podemos ver cómo nos la ha creado con la dirección IP especificada, además de comprobar que realmente poseemos conexión a internet:
+
+<pre>
 root@client:/etc/wireguard# ip a show wg0
 4: wg0: <POINTOPOINT,NOARP,UP,LOWER_UP> mtu 1420 qdisc noqueue state UNKNOWN group default qlen 1000
     link/none
@@ -363,15 +382,13 @@ PING www.google.es (172.217.17.3) 56(84) bytes of data.
 --- www.google.es ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2087ms
 rtt min/avg/max/mdev = 18.946/20.402/21.957/1.231 ms
-En este momento, ya habríamos terminado el proceso de añadir el cliente Linux, así que vamos a pasar con un nuevo cliente, es el turno de Windows.
+</pre>
+
+En este momento, ya habríamos terminado el proceso de añadir el cliente Linux, así que vamos a pasar con un nuevo cliente, es el turno de *Windows*.
 
 
+#### Configuración cliente Windows
 
-
-
-
-
-Configuración cliente Windows
 Bien, una vez hemos visto cómo se realiza una configuración cliente-servidor, hemos podido darnos cuenta de que consta de 2 partes diferenciadas, la primera llevada a cabo en el cliente, donde realizamos su configuración, y la segunda llevada a cabo en el servidor, donde es necesario añadir a este nuevo cliente. Esto es siempre así, independientemente del sistema operativo que estemos utilizando, algo que ya he comentado como una de las ventajas de WireGuard.
 Una vez conocemos el proceso, seremos capaces de realizarlo en todos los clientes necesarios, así que esta parte la voy a tratar un poco más por encima, dando por hecho que ya hemos aprendido los conocimientos vistos en los apartados anteriores.
 Para los usuarios de Windows, WireGuard tiene disponible una aplicación de escritorio que podremos descargar desde su página oficial, en la cual realizaremos de manera gráfica su configuración, además de administrar todo lo relacionado con nuestro túnel.
@@ -417,13 +434,20 @@ Con el servidor listo, podremos activar el túnel desde nuestro cliente y autom�
 
 
 Además de esto, he preparado una pequeña demo en la que podremos ver en tiempo real tanto el servidor como el cliente, cuando estamos navegando y realizando transmisiones de datos.
-Demo Windows 10 - WireGuard
 
-Configuración cliente Android y cliente iOS
-Como ya sabemos perfectamente cómo crear y conectar clientes a nuestro servidor, sería una tontería volver a realizar los mismos procesos, aunque sean para clientes de otros sistemas por lo que, tanto para el cliente Android, como para el cliente iOS, he incorporado una pequeña modificación.
+[](Demo Windows 10 - WireGuard)
+
+#### Configuración cliente Android y cliente iOS
+
+Como ya sabemos perfectamente cómo crear y conectar clientes a nuestro servidor, sería una tontería volver a realizar los mismos procesos, aunque sean para clientes de otros sistemas por lo que, tanto para el cliente *Android*, como para el cliente *iOS*, he incorporado una pequeña modificación.
+
 En ambas aplicaciones, disponemos de 2 métodos a la hora de realizar las configuraciones. La primera sería el método tradicional que hemos visto hasta ahora, y la segunda, trata de escanear un código QR que directamente nos importe la configuración al dispositivo.
-Lógicamente vamos a ver este nuevo método. Lo voy a explicar por encima ya que en realidad es exactamente lo mismo, pero con la diferencia de que el proceso se realiza entero en la máquina servidor. Básicamente lo que vamos a hacer es, crear en el servidor, el fichero de configuración que deseemos obtener en nuestro cliente, y luego generar a partir de él, un código QR que al escanearlo en nuestros dispositivos nos importe la configuración. Una cosa que he omitido, aunque obviamente hay que tenerla en cuenta es que, será necesario volver a generar para cada cliente un nuevo par de claves.
-A continuación, voy a dejar tanto el fichero para el dispositivo Android, como el fichero para el dispositivo iOS:
+
+Lógicamente vamos a ver este nuevo método. Lo voy a explicar por encima ya que en realidad es exactamente lo mismo, pero con la diferencia de que el proceso se realiza entero en la máquina servidor. Básicamente lo que vamos a hacer es, crear en el servidor, el fichero de configuración que deseemos obtener en nuestro cliente, y luego generar a partir de él, un **código QR** que al escanearlo en nuestros dispositivos nos importe la configuración. Una cosa que he omitido, aunque obviamente hay que tenerla en cuenta es que, será necesario volver a generar para cada cliente un nuevo par de claves.
+
+A continuación, voy a dejar tanto el fichero para el dispositivo *Android*, como el fichero para el dispositivo *iOS*:
+
+<pre>
 root@server:/etc/wireguard/client_android# cat clientAndroid.conf
 [Interface]
 Address = 10.0.100.4/32

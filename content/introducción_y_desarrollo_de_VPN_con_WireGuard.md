@@ -73,14 +73,16 @@ Entre las más significativas, se encuentran las siguientes:
 
 ![.](images/introducción_y_desarrollo_de_VPN_con_WireGuard/gráficospinglatencia.png)
 
+- **Configuraciones:** Las configuraciones de *WireGuard* son bastante más sencillas y rápidas de realizar que las de *OpenVPN*. Esto es debido a que en *WireGuard* las conexiones se realizan mediante pares de claves públicas-privadas, no mediante nodos centrales, como es el caso de *OpenVPN*.
 
+- **Más seguro:** *WireGuard* utiliza métodos criptográficos más recientes, mientras que el cifrado de *OpenVPN* está un poco des-actualizado, lo que afirma su lugar como el protocolo más seguro de los dos.
 
+- **Compatibilidad con roaming:** *WireGuard* está diseñado para poder realizar *roaming* de manera fácil y rápida, es decir, si nuestro dispositivo cambia de red, y lógicamente cambia de IP pública, la conexión VPN seguirá levantada porque se volverán a autenticar rápidamente con el servidor VPN, de tal forma que siempre estaremos conectados a la VPN.
 
-- Configuraciones: Las configuraciones de WireGuard son bastante más sencillas y rápidas de realizar que las de OpenVPN. Esto es debido a que en WireGuard las conexiones se realizan mediante pares de claves públicas-privadas, no mediante nodos centrales, como es el caso de OpenVPN.
-- Más seguro: WireGuard utiliza métodos criptográficos más recientes, mientras que el cifrado de OpenVPN está un poco des-actualizado, lo que afirma su lugar como el protocolo más seguro de los dos.
-- Compatibilidad con roaming: WireGuard está diseñado para poder realizar roaming de manera fácil y rápida, es decir, si nuestro dispositivo cambia de red, y lógicamente cambia de IP pública, la conexión VPN seguirá levantada porque se volverán a autenticar rápidamente con el servidor VPN, de tal forma que siempre estaremos conectados a la VPN.
-- Kill-Switch: En WireGuard podremos habilitar el Kill-Switch en los dispositivos, de esta forma, si la conexión VPN se interrumpe, el propio software también se encargará de interrumpir todo el tráfico de red hasta que se vuelva a reestablecer la conexión VPN, con el objetivo de que no naveguemos sin la protección que nos brinda esta VPN.
-En este punto, podemos hacernos una idea de todo el potencial de WireGuard, y de lo que promete llegar a ser en un futuro no muy lejano. Para verlo con un poco más de profundidad, y como no podía faltar, vamos a ver algunos ejemplos prácticos de este software.
+- **Kill-Switch:** En *WireGuard* podremos habilitar el *Kill-Switch* en los dispositivos, de esta forma, si la conexión VPN se interrumpe, el propio software también se encargará de interrumpir todo el tráfico de red hasta que se vuelva a restablecer la conexión VPN, con el objetivo de que no naveguemos sin la protección que nos brinda esta VPN.
+
+En este punto, podemos hacernos una idea de todo el potencial de *WireGuard*, y de lo que promete llegar a ser en un futuro no muy lejano. Para verlo con un poco más de profundidad, y como no podía faltar, vamos a ver algunos ejemplos prácticos de este software.
+
 
 ### Conexión Side to Side
 

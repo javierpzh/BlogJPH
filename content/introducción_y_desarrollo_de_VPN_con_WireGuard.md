@@ -390,45 +390,27 @@ En este momento, ya habríamos terminado el proceso de añadir el cliente *Linux
 
 #### Configuración cliente Windows
 
-Bien, una vez hemos visto cómo se realiza una configuración cliente-servidor, hemos podido darnos cuenta de que consta de 2 partes diferenciadas, la primera llevada a cabo en el cliente, donde realizamos su configuración, y la segunda llevada a cabo en el servidor, donde es necesario añadir a este nuevo cliente. Esto es siempre así, independientemente del sistema operativo que estemos utilizando, algo que ya he comentado como una de las ventajas de WireGuard.
+Bien, una vez hemos visto cómo se realiza una configuración cliente-servidor, hemos podido darnos cuenta de que consta de 2 partes diferenciadas, la primera llevada a cabo en el cliente, donde realizamos su configuración, y la segunda llevada a cabo en el servidor, donde es necesario añadir a este nuevo cliente. Esto es siempre así, independientemente del sistema operativo que estemos utilizando, algo que ya he comentado como una de las ventajas de *WireGuard*.
+
 Una vez conocemos el proceso, seremos capaces de realizarlo en todos los clientes necesarios, así que esta parte la voy a tratar un poco más por encima, dando por hecho que ya hemos aprendido los conocimientos vistos en los apartados anteriores.
-Para los usuarios de Windows, WireGuard tiene disponible una aplicación de escritorio que podremos descargar desde su página oficial, en la cual realizaremos de manera gráfica su configuración, además de administrar todo lo relacionado con nuestro túnel.
+
+Para los usuarios de *Windows*, *WireGuard* tiene disponible una aplicación de escritorio que podremos descargar desde su página oficial, en la cual realizaremos de manera gráfica su configuración, además de administrar todo lo relacionado con nuestro túnel.
+
 A continuación, voy a mostrar una captura de pantalla en la que visualizaremos la configuración de este nuevo cliente:
 
 
 
-
-
-
-
-
-
-
-
 Antes de activar la conexión, añadiremos a nuestro servidor esta nueva sección *Peer* y lo reiniciaremos para aplicar cambios:
+
+<pre>
 # W10 Client
 [Peer]
 PublicKey = 7HopGKOY2C8f6jBfEkc8whKUSoNSDvsqgI0ZMzPQ8Bg=
 AllowedIPs = 10.0.100.3/32
 PersistentKeepAlive = 25
+</pre>
+
 Con el servidor listo, podremos activar el túnel desde nuestro cliente y automáticamente podremos visualizar la nueva interfaz con nuestra IP dentro de la red privada, además de poseer conexión a internet:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -437,6 +419,7 @@ Con el servidor listo, podremos activar el túnel desde nuestro cliente y autom�
 Además de esto, he preparado una pequeña demo en la que podremos ver en tiempo real tanto el servidor como el cliente, cuando estamos navegando y realizando transmisiones de datos.
 
 [](Demo Windows 10 - WireGuard)
+
 
 #### Configuración cliente Android y cliente iOS
 
